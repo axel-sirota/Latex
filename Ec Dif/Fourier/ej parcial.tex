@@ -1,0 +1,171 @@
+\documentclass[11pt,a4paper,oneside]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,accents, amsfonts, amssymb}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage[all]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\renewcommand{\baselinestretch}{1.5}
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand\PP{\mathbb{P}}
+\def\T{\mathcal{T}}
+\renewcommand\inc{\hookrightarrow}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def \le{\leqslant}
+\def \ge{\geqslant}
+\def\sen{{\rm sen}}
+\def\cos{{\rm cos}}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Ecuaciones Diferenciales -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc $2^{\circ}$ Parcial}
+
+\bigskip
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item {Punto a}
+
+Primero como $f \in L^1$ sabemos que $\hat{f}$ esta bien definida, y estamos suponiendo que es impar. Notemos que esto implica que $0 = \hat{f}(\xi) + \hat{f}(-\xi) = ctes*\int_{\R}{f(x)(e^{(-i \xi x)} + e^{(ix \xi)})dx} = ctes * \int_{\R}(f(x)cos(\xi x)dx)$. Por ende $\hat{f} = iC \int_{\R}{f(x) \sen(x \xi)dx}$.
+
+Ahora si nos daban $b > 0$ y nos ped\'ian probar que $ | \int_{1}^{b}{ \frac{\hat{f}(\xi)}{\xi} d\xi} | \leq A $ con $A$ que no dependa de $b$. Para eso deb\'iamos escribir lo que ya sabemos!! Tenemos que $\int_{1}^{b}{ \frac{\hat{f}(\xi)}{\xi} d\xi} = \int_{1}^{b}{\int_{\R}{\frac{f(x)\sen(x \xi)}{\xi} dx} d\xi}$ y como $ f \in L^1(\R) $ y $ \frac{\sin(x \xi)}{\xi} \in L^1([1,b]) \ \forall b \in \R_{\geq 0}$ (Pues por ejemplo esta acotada es continua y el soporte es de medida finita), esto dice que $ f \frac{\sin(x \xi)}{\xi} \in L^1([1,b] \otimes \R) \  \textsc{ctp b}$ entonces por Fubini tenemos que $ \int_{1}^{b}{\int_{\R}{\frac{f(x)\sen(x \xi)}{\xi} dx} d\xi} =  \int_{\R}{\int_{1}^{b}{\frac{f(x)\sen(x \xi)}{\xi} d\xi} dx}$. Este es un punto crucial, porque $\frac{\sen(x)}{x} \not \in L^1(\R_{\geq 0})$!!
+
+Reescribiendo tenemos que $\int_{1}^{b}{ \frac{\hat{f}(\xi)}{\xi} d\xi} = \int_{\R}{f(x) \int_{1}^{b}{\frac{\sen(x \xi)}{\xi} d \xi} dx}$. 
+
+Pasemos a acotar $\int_{1}^{b}{\frac{\sen(x \xi)}{\xi}d\xi}$, para eso notemos que si $b \geq 1$ entonces $\int_{1}^{b}{\frac{\sen(x \xi)}{\xi}d\xi} = \int_{x}^{xb}{\frac{\sin(x)}{x}dx}$ :
+
+\begin{itemize}
+
+\item {$b \leq 1$}
+
+Entonces tenemos $\int_{b}^{1}{\frac{\sen(x \xi)}{\xi}d\xi}$, donde ${\frac{\sen(x \xi)}{\xi}}$ es continua en un compacto y esta acotada, por ende $\int_{b}^{1}{\frac{\sen(x \xi)}{\xi}d\xi} \leq  \norm{sinc(x)}_{L^1([0,1])}$.
+
+\item {$b \geq 1$}
+
+Aca una forma era simplemente llamar $s_{2n} = \int_{2n \pi}^{(2n+1)\pi}{g dx}$ con $g = sinc(x)$, y llamar $s_{2n+1} = \int_{(2n+1)\pi}^{(2(n+1) \pi)}{g dx}$ entonces tenemos que $s_{2n} - s_{sn+1} \rightarrow 0$. Pero simplemente $\int_{\R_{\geq 0}} {sinc(x) dx} = \sum_{n}{(-1)^n s_n} < \infty $ por el criterio de Liebniz.
+
+\item {De yapa veamos como calcular $\int_{\R_{\geq 0}}{sinc(x) dx}!!$ donde $sinc(x) = \frac{\sin(x)}{x}$}
+
+\begin{enumerate}
+
+\item {My personal favorite}
+
+Sea $I_1(t) = \int_{t}^{\infty}{\frac{\sin(x-t)}{x} dx}$ y $I_2(t) = \int_{\R_{\geq 0}}{\frac{e^{-tx}}{1 + x^2} dx}$, entonces $I_1$ y $I_2$ son soluciones de $y\prime \prime + y = \frac{1}{t} \quad t > 0$. Por ende $I_1 - I_2$ satisface $y \prime \prime + y = 0$, pero la soluci\'on de eso es $I(t) = A\sin(t + B)$! Ahora como (ej) $I_1,I_2 \rightarrow 0$ tenemos que $A = 0$ por lo que $I_1(t) = B = I_2(t) \quad t\geq 0$. O sea que $\int_{\R_{\geq 0}}{sinc(x)dx} = \int_{\R_{\geq 0}}{\frac{1}{1 + x^2}dx} = \lim_{n}{\arctan(n) - \arctan(0)} = \frac{\pi}{2}$ \qed
+
+\item {A trickyy}
+
+Del \'ultimo ejercicio de la pr\'actica de Fourier tenemos que $\mathcal{L}(1) = \int_{\R_{\geq 0}}{e^{-tx}dx} = \frac{1}{t}$ donde $\mathcal{L}$ es el operador transformada de Laplace. Entonces $\int_{\R^{\geq 0}}{sinc(x) dx} = \int_{\R_{\geq 0}}{\int_{\R_{\geq 0}}{e^{-xt}\sin(x)dt} dx} = \int_{\R^{\geq 0}}{sinc(x) dx} = \int_{\R_{\geq 0}}{\int_{\R_{\geq 0}}{e^{-xt}\sin(x)dx} dt}$ (Por Fubini) Y como $\mathcal{L}(\sin(x)) = \dfrac{1}{1+t^2}$ tenemos que $\int_{\R^{\geq 0}}{sinc(x) dx} = \int_{\R^{\geq 0}}{\frac{1}{1+t^2} dt} = \frac{\pi}{2} $
+
+\end{enumerate}
+
+\end{itemize}
+
+Por ende por h o por v tenemos que $ | \int_{1}^{b}{\frac{\hat{f}(\xi)}{\xi}d\xi}| \leq \int_{\R}{|f(x)| |\int_{1}^{b}{\frac{\sin(x \xi)}{\xi}d\xi}| dx} \leq C \norm{f}_{L^1} := A$ y $A$ no depende de $b$.\qed
+
+\item {Punto b}
+
+Aqu\'i simplemente era hallar una $g \in C_0$ impar tal que la cota anterior no ande, y era notar que una funci\'on que tienda a $0$ muy lentamente va a funcionar pues esa integral va a diverger! Por ejemplo si $f(x) = \frac{1}{ln(x)}$ andar\'ia, pero hay que definirla bien. Buen entonces hacemos $\tilde{f}(x) = \frac{1}{ln(x)} \ \chi_{x \geq 2} + \alpha \ \chi_{0 \leq x \leq 2}$ donde $\alpha$ es lineal entre $\frac{1}{ln(2)}$ y $0$. Entonces sea $g$ la extensi\'on impar de $\tilde{f}$, es claro que $g \in C_0$ y es impar. Adem\'as $\int_{1}^{b}{\frac{g}{x} dx} = A +  \int_{2}^{b}{\frac{1}{ln(x)x} dx} = A + ln(ln(x))|_{2}^{b} \rightarrow \infty \quad (b \rightarrow \infty)$ y por ende $\not \exists f \in L^1 \ / \hat{f}=g$ \qed
+
+\item {Punto c}
+
+Tenemos que $C_{c}^{\infty} \subset S =\mathcal{F}(S) \subset \F(L^1) \subset C_0$ por ende como $\overline{C_{c}^{\infty}}=C_0$ entonces $\overline{\F(L^1)}=C_0$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+
+
+\end{document}

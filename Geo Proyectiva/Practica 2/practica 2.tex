@@ -1,0 +1,542 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 2}
+	
+	\bigskip
+	
+\textbf{Recuerdo:} Una \emph{curva parametrizada} en el plano es un conjunto $\C \subset
+\R^2$ junto con una funci\'on $\alpha: (a,b) \to \R^2$ tal que $\C$ es la imagen de
+$\alpha$. Decimos que $\C$ es diferenciable (o $C^k$) si tiene una parametrizaci\'on
+diferenciable (o $C^k$), y que es regular si tiene una parametrizaci\'on diferenciable
+$\alpha$ tal que $\alpha'(t) \neq 0$ para todo $t \in (a,b)$.
+\begin{enumerate}
+	
+	%%%%%%%%%%%%%%%
+	\section{Algunas curvas con nombre propio}
+	
+	\item Un disco circular de radio 1 contenido en el plano $xy$ rueda sobre el eje $x$ sin
+	deslizar. La figura descripta por un punto fijo sobre la circunferencia del disco se
+	llama \emph{cicloide}.
+	
+	\begin{itemize}
+		\item Obtener una parametrizaci\'on del cicloide y determinar sus puntos singulares.
+		
+		\item Calcular la longitud de arco del cicloide correspondiente a una rotaci\'on completa del
+		disco.
+	\end{itemize}
+	
+	\label{Eercicio 1}
+	
+	\begin{proof}
+		
+		Notemos que $\alpha(t) = h(t) + \omega(t)$ donde $h(t) = (t,1)$ y $\omega(t) = (-\sin(t) , -\cos(t)$, por lo tanto $\alpha = (t - \\sin(t) , 1 - \cos(t))$, notemos que $\dot{\alpha(t)} = (1- \cos(t) , \sin(t)) = 0$ si y s\'olo si $t = k\pi$.
+		
+		Adem\'as $l(\alpha) = \int_{0}^{2\pi}{\norm{\dot{\alpha}} dt} = \int_{0}^{2\pi}{\sqrt{(1- \cos(t))^2 + \sin(t)^2}dt} = \int_{0}^{2\pi}{\sqrt{2- 2 \cos(t)}dt} = 2\int_{0}^{2\pi}{\sin(\frac{t}{2})dt} = -4 [\cos(\frac{t}{2})]^{2\pi}_{0} = 8$ \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\alpha:(0,\pi)\to\R^2$ dada por 
+	\[
+	\alpha(\theta)=(\sin(\theta),\cos(\theta)+\log(\tan(\theta/2))).
+	\]
+	La curva parametrizada por $\alpha$ es llamada \emph{tractriz}.
+
+	\begin{itemize}
+		\item Probar que la funci\'on $\alpha$ es diferenciable pero no regular.
+		
+		\item Sea $P$ un punto de la tractriz, $L$ la recta tangente que pasa por $P$, y $Q$ la
+		intersecci\'on de $L$ con el eje $y$. Probar que la distancia de $P$ a $Q$ es 1.
+	\end{itemize}
+
+
+	\label{Ejercicio 2}
+
+	\begin{proof}
+	
+		\begin{itemize}
+			
+			\item Notemos que como $t \in (0,\pi)$ entonces $\frac{t}{2} \in (0, \frac{\pi}{2})$ y por lo tanto como $\sin,\cos,\log,\tan$ son diferenciables all\'i se tiene que $\alpha$ es diferenciable. No obstante $\dot{\alpha}(t) = \left( \cos(t) , - \sin(t) + \dfrac{1}{\sin(t)} \right)$ y por lo tanto si $t \rightarrow \frac{1}{2}$ se tiene que $\dot{\alpha}(t) = 0$. Por lo tanto $\alpha$ no es regular.
+			
+			\item Sea $P = \alpha(t_0) = (\sin(t_0),\cos(t_0)+\log(\tan(t_0/2)))$, luego la recta tangente que pasa por $P$ es $L = P + \dot{\alpha}(t_0)t = (\sin(t_0),\cos(t_0)+\log(\tan(t_0/2))) + t (\cos(t_0) , - \sin(t_0) + \frac{1}{\sin(t_0)}) = (\sin(t_0) + t \cos(t_0), \cos(t_0)+\log(\tan(t_0/2)) - t ( - \sin(t_0) + \frac{1}{\sin(t_0)}) )$ y son demsiadas cuentas esto...
+			
+		\end{itemize}
+	
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\alpha:(-1,+\infty )\to \R^2$ dada por
+	\[
+	\alpha(t) = \left(\frac{3at}{1+t^3},\frac{3at^2}{1+t^3}\right),
+	\]
+	y sea $\C$ la curva que parametriza. Probar que:
+	\begin{itemize}
+		\item el origen pertenece a $\C$, y en ese punto su tangente es el eje $x$;
+		
+		\item se tiene que $\lim\limits_{t\to +\infty }\alpha (t)=(0,0)$ y
+		$\lim\limits_{t\to +\infty }\alpha ^{\prime }(t)=(0,0)$;
+		
+		\item la recta $x+y+a=0$ es una as\'intota de $\C$.
+		
+	\end{itemize}
+	La figura que se obtiene completando la curva con su sim\'etrica respecto de la recta $y=x$
+	se llama \emph{folio de Descartes}.
+
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Calculemos $\dot{\alpha} = \left( \frac{3a(1+t^3) - 9at^3}{(1+ t^3)^2} , \frac{6at(1+t^3) - 9at^4}{(1+ t^3)^2}   \right)$
+			
+			De all\'i notemos que $(0,0) = \alpha(0)$ y que $\dot{\alpha}(0) = (3a,0)$, por lo tanto el origen pertence a la curva y en el origen la tangente es el eje x
+			
+			\item Clar\'isimo
+			
+			\item Notemos que $x + y + a = \dfrac{3at + 3at^2 + a + at^3}{1 + t^3} = a \dfrac{3t + 3t^2 + 1 + t^3}{1 + t^3} =  a \dfrac{(1+t)^3}{(1 -t + t^2)(1+t)} = a \dfrac{(1+t)^2}{(1 -t + t^2)} \rightarrow 0 $ cuando $t \rightarrow -1 $ por lo tanto la asi\'intota es $x +y +a$. \qed	
+		\end{enumerate}
+		
+	\end{proof}
+		
+	
+	%%%%%%%%%%%%%%%
+	\item  Sean $ b < 0 < a$, y consideremos la funci\'on $\alpha:(0,+\infty) \to \R^2$ dada
+	por
+	\[		
+	\alpha (t)=(ae^{bt}\cos(t), ae^{bt}\sin (t)). 
+	\]	
+	La curva parametrizada por esta funci\'on se llama \emph{espiral logar\'itmica}. 
+
+	
+	\begin{itemize}
+		\item Probar que $\lim\limits_{t\to +\infty }\alpha (t)=(0,0)$, y que cuando $t\to+\infty$ la
+		curva sigue una trayectoria que envuelve al origen infinitas veces (s\'i, el enunciado es
+		vago... parte del ejercicio es precisar esta noci\'on de ``envolver el origen'').
+		
+		\item Probar que $\lim\limits_{t\to +\infty }\alpha'(t)=(0,0)$ y $\lim\limits_{t\to +\infty
+		}\int_0^t\abs{\alpha'(\tau)}\dd \tau$ es finito. Concluir que la espiral logar\'itmica tiene
+		longitud de arco finita.
+	\end{itemize}
+	
+	\label{Ejecicio 4}
+	
+	\begin{proof}
+		\begin{enumerate}
+			
+			\item Es claro que $\lim\limits_{t \rightarrow \infty} \alpha = (0,0)$, veamos la siguiente proposici\'on. Sea $c > 0$, $L = \sett{(x,y) \ / \ y = ax}$ y consideremos $t_1 = min (t \in \R_{+} \ / \ \alpha(t) \in L)$, es claro que $t_1$ esta bien definido pues como $\alpha$ es continua y $\alpha ( \frac{\pi}{2}) = (0,y_1)$ entonces debe existir $t^* \in (0, \pi/2)$ tal que $\alpha(t^*) \in L$. Notemos ahora que $\alpha(\frac{3 \pi}{2}) = (0,y_2)$ con $y_2 < y_1$, luego por inducci\'on si consideramos $t_n = min (t \in (t_{n-1}, \infty) \ / \ \alpha(t) \in L$ se tiene que $\sett{t_n}_{n \in \N}$ est\'a bien definido y es una sucesi\'on creciente.	Tomemos $a_n \alpha(t_n) $ y veamos que $a_n \rightarrow (0,0)$, esto es simple pues si $t_n \rightarrow t^* < \infty$ si tomamos $k = min (n \in \N \ / \ (2n+1)\pi / 2 > t^* )$ entonces $\alpha(\frac{(2k+1)\pi}{2}) = (0,y)$ con $y < y_n$ para todo $n \in \N$, y por continuidad no existe $y^* < y \ / \ (0,y^*) \in Im(\alpha)$. Como $\alpha(\frac{(2(k+1)+1)\pi}{2})$ cumple se tiene que $t_n \rightarrow \infty$.  Luego como $a$ era arbitrario probamos que para toda recta que sale del origen si consideramos la sucesi\'on $a_n$ dada por las intersecciones de la recta con la curva se tiene que $(0,0)$ es un punto de acumulaci\'on de $a_n$ y por lo tanto la curva envuelve a $(0,0)$ infinitas veces.
+			
+			\item Notemos que $\alpha\prime (t) = \left( ae^{bt}(b\cos(t) - \sin(t)) , ae^{bt}(b\sin(t) + \cos(t))   \right) \rightarrow (0,0)$ cuando $t \rightarrow \infty$ pues los t\'erminos trigonom\'etricos est\'an acotados. Por otro lado $\int_0^t\abs{\alpha'(\tau)}\dd \tau = a^2 \int_{0}^{t} {e^{2bt}(b^2 + 1)} = a^2(b^2+1) \frac{e^{2bt}}{2b} \rightarrow 0$ cuando $t \rightarrow \infty$. \qed 
+			
+			
+		\end{enumerate}
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%%%
+	
+	\item Sea $\alpha:\R\to\R^2$ la funci\'on
+	\[
+	\alpha(t)=\bigg(\frac{(1+t^2)t}{1+t^4}\,,\frac{(1-t^2)t}{1+t^4}\bigg).
+	\]
+	La curva parametrizada por $\alpha$ se llama \emph{lemniscata}.
+
+	\begin{itemize}
+		\item Probar que la funci\'on $\alpha$ es diferenciable, regular y simple.
+		
+		\item Determinar $\lim\limits_{t\to-\infty}\alpha(t)$ y
+		$\lim\limits_{t\to+\infty}\alpha(t)$ y concluir que $\alpha$ no es un homeomorfismo
+		entre $\R$ y la lemniscata.
+	\end{itemize}
+	
+	\label{Eercicio 5}
+	
+	\begin{proof}
+		Si consideramos $\alpha(t) = (\sin(t), \sin(2t)$ es uan reparametrizaci\'on de la lemniscata mucho mas amigable donde todo queda trivial. \qed
+	\end{proof}
+	%%%%%%%%%%%%%%%
+	\section{Normales, tangentes y curvaturas}
+	Sea $\C$ una curva parametrizada por longitud de arco por la funci\'on $\alpha$. El vector
+	\emph{tangente} a $\C$ en $P = \alpha(s)$ es $\tt(s) = \alpha'(s)$; el vector
+	\emph{normal} a $\C$ en $P$ es el \'unico vector unitario $\nn(s)$ tal que $\{\tt(s),
+	\nn(s)\}$ forma una base ortonormal orientada de $\R^2$. Finalmente, la curvatura de $\C$
+	en $P$ es igual a $\kappa(s) = |\alpha''(s)|$.\\
+	
+	Todas las curvas de aqu\'i en adelante son parametrizables.
+	
+	\item Calcular la curvatura de un c\'irculo de radio $r$.
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		Sea $\alpha(t) = (r\cos(t) , r \sin(t))$ una parametrizaci\'on del c\'irculo de radio $r$. Luego $\dot{\alpha}(t) = (-r \sin(t) , r\cos(t))$ y $\abs{\dot{\alpha}} = r$, finalmente $\ddot{\alpha}(t) = (-r \cos(t), -r \sin(t))$ por lo que $K_C = \frac{\langle (-r \cos(t), -r \sin(t)) , (-r \cos(t), -r \sin(t)) \rangle}{r^3} = \frac{1}{r}$.
+		
+		Notemos que si reparametrizamos $\alpha$ por longitud de arco $\alpha(s) = (r\cos(s/r) , r \sin(s/r))$, luego $K_C = \abs{\ddot{\alpha}} = \abs{\dot{(-\sin(s/r), \cos(s/r)} }= \abs{(\frac{-11}{r} \cos(s/r), \frac{-1}{r}\sin(s/r)} = \frac{1}{r}$. \qed
+		
+	\end{proof}
+	
+	
+	\item Sea $\C$ una curva que no pasa por el origen y sea $P$ el punto de $\C$ m\'as pr\'oximo
+	al origen. Probar que la tangente a $\C$ en $P$ es ortogonal al vector $P$.
+	
+	\label{Ejercicio 7}
+	
+	\begin{proof}
+		Sea $f(t) = \abs{\alpha(t)}^2$, luego la hip\'otesis es que existe $t_0 = min (f)$ y $P = \alpha(t_0)$, luego si $\alpha = (x(t) , y(t)) $ entonces $\dot{f}(t_0) = 2x\dot{x} + 2y \dot{y} |_{t_0} = 2(x(t_0)\dot{x}(t_0) + y(t_0)\dot{y}(t_0) ) = 2 \langle \alpha(t_0) , \dot{\alpha}(t_0) \rangle = 2 \langle P , \tt_P \rangle = 0$. \qed
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Probar que si todas las normales a una curva pasan por un punto fijo entonces la
+	curva est\'a contenida en un c\'irculo.
+	
+	\label{Ejercicio 8}
+	
+	\begin{proof}
+		
+		Sea $\alpha(s)$ la curva dada reparametrizada por longitud de arco, luego para cada $s \in I$ existe $r_s$ tal que $P = \alpha(s) + r_s \nn(s)$. Como $r_s = \langle P- \alpha  , \nn \rangle$ se tiene que $r$ es diferenciable en $s$, luego $ \dfrac{d}{dt}\abs{P - \alpha(s)}^2 = 2 \langle P- \alpha(s) , -\dot{\alpha} (s) \rangle = 2 \langle r(s) \nn(s) , \dot{\alpha}(s) \rangle = 0$, por lo que la distancia de $P$ a $\alpha(s)$ es constante y entonces $\alpha(I) \subseteq S^1$. \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\C$ una curva y $\alpha$ una
+	parametrizaci\'on por longitud de arco.
+	
+	\begin{itemize}
+		\item Probar que $\alpha''(s)$ es ortogonal a $\alpha'(s)$ para todo $s \in (a,b)$. En
+		particular $\tt'(s) = \alpha''(s)$ es paralelo al vector normal $\nn(s)$.
+		
+		\item Sea $k(s)$ el \'unico escalar tal que $\tt'(s) = k(s) \nn(s)$. Probar que
+		$|k(s)| = \kappa(s)$.
+		
+		\item Probar que $\kappa(s)$ es el \'area del rect\'angulo formado por el par de vectores
+		$\tt(s), \tt'(s)$.
+		
+		\item Probar que si $\kappa$ es constante e igual a $1/r$ entonces $\C$ est\'a contenida
+		en una circunferencia de radio $r$.
+	\end{itemize}
+	
+	\label{Ejercicio 9}
+	
+	\begin{proof}
+		\begin{enumerate}
+			
+			\item Como $\alpha$ esta parametrizada por longitud de arco, entonces $\abs{\dot{\alpha}} = 1$, luego $0 =  \dfrac{d}{dt} \langle \dot{\alpha} , \dot{\alpha} \rangle = 2 \langle \dot{\alpha} , \ddot{\alpha} \rangle$. Como $\sett{\tt , \nn}$ es una base de $\R^2_{\alpha(s)}$ para todo $s$ se tiene que $\tt'(s) = a(s) \nn(s)$.
+			
+			\item $\abs{k(s)} = \abs{\ddot{\alpha}} = \kappa(s)$
+			
+			\item Notemos que $det \left( 
+			\begin{array}{c}
+			\tt	\\ 
+			\dot{\tt}
+			\end{array} 
+			\right) = det \left( 
+			\begin{array}{c}
+			\tt	\\ 
+			k(s) \nn
+			\end{array} 
+			\right) = \abs{k(s)}det \left( 
+			\begin{array}{c}
+			\tt	\\ 
+			\nn
+			\end{array} 
+			\right) = \kappa(s)$
+			
+			\item Inspirados en \ref{Ejercicio 8} veamos si la curva $P(s) = \alpha(s) + \frac{1}{\kappa}\nn(s)$ es constante, luego como todas las normales se cruzar\'ian en un punto fijo se tiene por \ref{Ejercicio 8} que $\alpha(I) \subseteq S^1 $. Notemos que $\dot{P} = \dot{\alpha} + \frac{1}{\kappa} \dot{\nn} = \tt + \frac{1}{\kappa} (-\kappa \tt)$ por las ecuaciones de Frenet Serret; luego $\dot{P} = 0$ y por \ref{Ejercicio 8} se tiene que $\alpha$ esta contenida en un  c\'irculo. \qed
+			
+		\end{enumerate}
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\C$ una curva y sea $\alpha$ una parametrizaci\'on cualquiera (no necesariamente
+	por longitud de arco). Demostrar que la curvatura de $\C$ est\'a dada por
+	\[
+	k =
+	\frac{\alpha_1'\alpha_2''-\alpha_2'\alpha_1''}{[(\alpha_1')^2+(\alpha_2')^2]^{3/2}}.
+	\]
+	
+	\label{Ejercicio 10}
+	
+	\begin{proof}
+		
+		Por un lado por definici\'on $\dot{\tt} = \dfrac{d}{dt}{\dfrac{\dot{\alpha}}{\abs{\dot{\alpha}}}} = \dfrac{d}{dt}(\frac{1}{\abs{\dot{\alpha}}}) \dot{\alpha} + \dfrac{\ddot{\alpha}}{\abs{\dot{\alpha}}}$, pero por el otro existe $\theta:I \rightarrow \R$ tal que $\tt = (\cos(\theta), \sin(\theta))$ por lo que $\dot{\theta} (-\sin(\theta), \cos(\theta)) = \dfrac{d}{dt}(\frac{1}{\abs{\dot{\alpha}}}) \dot{\alpha} + \dfrac{\ddot{\alpha}}{\abs{\dot{\alpha}}}$.
+		
+		Si $J$ es el operador rotaci\'on en $\pi/2$ se tiene que $\dot{\theta} \abs{\dot{\alpha}} = \langle \dot{\tt} , J(\dot{\alpha}) \rangle = \dfrac{1}{\abs{\dot{\alpha}}} \langle \ddot{\alpha}, J(\dot{\alpha}) \rangle$. Y por lo tanto $\dot{\theta} = \dfrac{1}{\abs{\dot{\alpha}}^2} \langle \ddot{\alpha}, J(\dot{\alpha}) \rangle$.
+		
+		De all\'i conclu\'imos que $\kappa = \dfrac{\dot{\theta}}{\abs{\dot{\alpha}}} = \dfrac{1}{\abs{\dot{\alpha}}^3} \langle \ddot{\alpha}, J(\dot{\alpha}) \rangle = \dfrac{\ddot{y(t)}\dot{x(t)} - \ddot{x(t)}\dot{y(t)}}{\abs{\dot{\alpha}}^3}$ \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $k:I\to\R$ una funci\'on diferenciable definida sobre un intervalo abierto
+	$I\subseteq \R$. Fijemos $s_0 \in I$ y definamos una nueva funci\'on $\theta: I \to \R$
+	como $\theta(s) = \int_{s_0}^s k(\sigma)\dd \sigma$ para cada $s\in I$. Probar que la curva $\C$
+	parametrizada por $\alpha: I \to \R^2$, donde
+	\[
+	\alpha(s)=\left(\int_{s_0}^s \cos \theta (\sigma)\dd \sigma,\int_{s_0}^s \sin \theta (\sigma)\dd \sigma\right)
+	\]
+	tiene curvatura $k$, y que cualquier otra curva cuya curvatura est\'e dada por $k$ es
+	congruente a $\C$ (es decir, se obtiene aplicando una transformaci\'on lineal ortogonal que preserva orientaci\'on y una
+	traslaci\'on a $\C$).
+	
+	\label{Ejercicio 11}
+	
+	\begin{proof}
+		
+		Es claro que $\dot{\alpha} = (\cos(\theta), \sin(\theta)$ y por la unicidad de la funci\'on arco se tiene que $\kappa = \dfrac{\dot{\theta}}{\abs{\dot{\alpha}}} = \dot{\theta} = k$. Supongamos ahora que $g$ es otra curva parametrizada por longitud de arco tal que $K_g = K_C = k$, sean $\sett{e_1,e_2}$ la referencia movil de $\alpha$ y $\sett{u_1,u_2}$ la de $g$; finalmente sea $B :I \rightarrow \R^{2 \times 2}$ tal que $B e_i = u_i$ que es claro que es diferenciable. Luego $\dfrac{d}{dt}(B e_1) = \dot{B}e_1 + B \dot{e_1} = \dot{B}e_1 + B k e_2 = \dot{B}e_1 + k u_2 = \dot{u_1} = k u_2$, por lo que $\dot{B}e_1 = 0$ y an\'alogamente $\dot{B}e_2 = 0$ y como $\sett{e_1,e_2}$ es una base de $\R^2$ para todo $s$ se tiene que $B(s) = B \in M_s(\R)$. Notemos adem\'as que como $B$ lleva una base orientada positivamente a otra, por Lineal se tiene que $B \in O(2)$, por lo tanto por Frenet-Serret tenemos $B \dot{\alpha} = \dot{g}$ con lo que $B \alpha - g = p$, si consideramos $f = Bx - p$ se tiene que $f$ es un isomorfismo af\'in tal que $f(\alpha) = g$. \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Consideremos una curva dada en coordenadas polares por la ecuaci\'on $\rho =\rho
+	(\theta )$, con $\rho:[a,b]\to\R$ una funci\'on suficientemente
+	diferenciable. Probar que la longitud de la curva es
+	\[
+	\int_a^b\sqrt{\rho(\theta)^2+\rho'(\theta)^2}\dd\theta
+	\]
+	y que su curvatura, como funci\'on de $\theta$, es
+	\[
+	k=\frac{2\rho'^2-\rho\rho''+\rho ^2}{(\rho'^2+\rho^2)^{\frac 32}}.
+	\]
+
+	\label{Eercicio 12}
+	
+	\begin{proof}
+		
+		Sea $\alpha(\theta) = (x(\theta), y(\theta))$ una parametrizaci\'on de la curva definida por $\rho$, donde $x = \rho(\theta)\cos(\theta)$ e $y = \rho(\theta)\sin(\theta)$. Por lo tanto:
+		
+		\[
+		\begin{array}{ccc}
+		\dot{\alpha} & = & (\dfrac{dx}{d\theta}, \dfrac{dy}{d\theta}) \\ 
+		& = & (\dot{\rho}\cos(\theta) - \rho\sin(\theta) , \dot{\rho}\sin(\theta) + \rho\cos(\theta) ) 
+		\end{array} 		
+		\]
+		
+		Con lo que:
+		
+		\[
+		\begin{array}{ccc}
+			\abs{\dot{\alpha}}^2 & = & (\dot{\rho}\cos(\theta) - \rho\sin(\theta) )^2 + (\dot{\rho}\sin(\theta) + \rho\cos(\theta))^2 \\
+			& = & \dot{\rho}^2 \cos^2(\theta) + \rho^2\sin^2(\theta) + \dot{\rho}^2 \sin^2(\theta) + \rho^2 \cos^2(\theta) \\
+			& = & \dot{\rho}^2 + \rho ^2
+		\end{array}
+		\]
+		
+		Conclu\'imos que $l(\alpha) = \int_{a}^{b}{\abs{\dot{\alpha}}d\theta} = \int_{a}^{b}{\sqrt{\rho^2 + \dot{\rho}^2} d\theta}$
+		
+		
+		Por otro lado notemos que $\ddot{\alpha} = (\ddot{\rho}\cos(\theta) - 2\dot{\rho}\sin(\theta) - \rho\cos(\theta) , \ddot{\rho}\sin(\theta) + 2\dot{\rho}\cos(\theta) - \rho \sin(\theta) ) $ y por lo tanto:
+		
+		\[
+		\begin{array}{ccc}
+		\kappa & = & \dfrac{(\ddot{\rho}\sin(\theta) + 2\dot{\rho}\cos(\theta) - \rho \sin(\theta))(\dot{\rho}\cos(\theta) - \rho\sin(\theta)) - (\ddot{\rho}\cos(\theta) - 2\dot{\rho}\sin(\theta) - \rho\cos(\theta))(\dot{\rho}\sin(\theta) + \rho\cos(\theta) )}{\abs{\dot{\alpha}}^3} \\ 
+		& = & \dfrac{2\dot{\rho}^2- \ddot{\rho}\rho + \rho^2}{(\rho^2 + \dot{\rho}^2)^{{3}/{2}}}
+		\end{array} 
+		\] \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\section{Centros de curvatura}
+	Sea $\C$ una curva cuya curvatura nunca se anula y sea $\alpha:(a,b)\to \R^2$ una
+	parametrizaci\'on por longitud de arco. Si $s \in (a,b)$, se llama \emph{centro de
+		curvatura de $\C$ en $P = \alpha(s)$} al punto
+	\[
+	x(s)=\alpha(s)+\frac{1}{\kappa(s)} \nn(s)
+	\]
+	y se llama \emph{c\'irculo osculador a $\alpha$ en $s$} al c\'irculo centrado en $x(s)$ cuyo
+	radio es $\kappa(s)^{-1}$.
+	
+	\item Mostrar que la curva $\C$ y el c\'irculo osculador se cortan en $P$, y en ese punto
+	tienen la misma tangente y la misma curvatura. 
+
+	\label{Ejercicio 13}
+	
+	\begin{proof}
+		
+		Sea $s$ fijo y $P = \alpha(s)$, luego una parametrizaci\'on del c\'irculo osculador de $\alpha$ en $P$ es $c(t) = \alpha(s) + \frac{1}{\kappa(s)}\nn(s) + \frac{1}{\kappa(s)}(\cos(t), \sin(t))$
+		
+		Luego como $\sett{\tt(s), \nn(s)}$ es una base se tiene que $(\cos(t),\sin(t)) = x(t)\tt(s) + y(t)\nn(s)$ y luego como $\nn(s) \in S^1$ existe un \'unico $t^* \in (0 , 2\pi)$ tal que $-\nn(s) = (\cos(t^*), \sin(t^*))$. Por lo tanto $c(t^*) = \alpha(s)$ y el c\'irculo osculador y la curva se tocan en $P$
+		
+		Notemos que $\dot{c}(t) =  \frac{1}{\kappa(s)}(-\sin(t), \cos(t))$ y por lo tanto por un lado $\abs{\dot{c}}= \frac{1}{\kappa(s)}$ y por el otro $\dot{c}( t^*) =  \frac{1}{\kappa(s)}(-\sin(t^*), \cos(t^*)) =  \frac{1}{\kappa(s)}J(-\nn(s)) =  \frac{1}{\kappa(s)}\tt(s)$. Conclu\'imos que la tangente al c\'irculo osculador $\tt_C(t^*) = \dfrac{\dot{c}}{\abs{\dot{c}}} (t^*) = \dfrac{\frac{1}{\kappa(s)}\tt(s)}{\frac{1}{\kappa(s)}} = \tt(s)$ y por lo tanto el c\'irculo osculador y la curva tienen la misma tangente.
+		
+		Finalmente al ser un c\'irculo de radio $\frac{1}{\kappa(s)}$ es claro que la curvatura de $c$ es $\kappa(s)$ por \ref{Ejercicio 6}. \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Determinar los centros de curvatura y los c\'irculos osculadores de la elipse 
+	\[
+	\frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+	\]
+	
+	Sea $\alpha(t) = (a\cos(t), b \sin(t)$ una parametrizaci\'on de la elipse, luego $\dot{\alpha}(t) = (-a\sin(t), b\cos(t))$ y $\abs{\dot{\alpha}}^2 = a^2 \sin^2(t) + b^2 \cos^2(t)$. Por lo tanto se tiene que $\tt(t) =  \frac{(-a\sin(t), b\cos(t))}{\sqrt{a^2 \sin^2(t) + b^2 \cos^2(t)}}$ y $\nn(t) = J(\tt(s))$.
+	
+	Como $\alpha(t)$ no esta parametrizada por longitud de arco calculemos la curvatura por \ref{Ejercicio 10}, y para eso sea $\ddot{\alpha} = (-a\cos(t), - b\sin(t))$, luego:
+	
+	\[
+	\begin{array}{ccc}
+	\kappa_C & = & \dfrac{\ddot{y(t)}\dot{x(t)} - \ddot{x(t)}\dot{y(t)}}{\abs{\dot{\alpha}}^3} \\ 
+	& = & \dfrac{ab}{\abs{\dot{\alpha}}^3} 
+	\end{array} 
+	\]
+	
+	Por lo tanto los centros de curvatura $\chi(t) = (a \cos(t), b \sin(t) )+ ab \abs{\dot{\alpha}}^2 (-b\cos(t), -a\sin(t)) = ((a - abb(a^2 \sin^2(t) + b^2 \cos^2(t))) \cos(t), (b - aba(a^2 \sin^2(t) + b^2 \cos^2(t))) \sin(t))$ y dado $t$ fijo los circulos osculadores son $c_t(s) = (a \cos(t), b \sin(t) )+ ab \abs{\dot{\alpha}}^2 (-b\cos(t), -a\sin(t)) + \dfrac{\abs{\dot{\alpha}}^3}{ab}(\cos(s), \sin(s))$. (Me maree en las cuentas...)\qed
+	
+	
+	%%%%%%%%%%%%%%%
+	\item La \emph{evoluta} de $\C$, que notamos $e(\C)$, es la curva formada por los centros
+	de curvatura de $\C$; la funci\'on $x(s)$ es una parametrizaci\'on de $e(\C)$. 
+	
+	\begin{itemize}
+		\item Probar que la tangente a $e(\C)$ en $Q = x(s)$ es paralela a la normal a $\C$ en
+		$P = \alpha(s)$.
+		
+		\item Supongamos que la curvatura de $\C$ es mon\'otona. Probar que la longitud de arco de $e(\C)$ entre dos puntos $Q$ y $Q'$ es igual a la diferencia de los radios de curvatura en los correspondientes puntos $P$ y $P'$ de $\C$.
+	\end{itemize}
+	
+	\label{Ejercicio 15}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+		
+			\item Sea $x(s) = \alpha(s) + \dfrac{1}{\kappa(s)} \nn(s)$ una parametrizaci\'on de la evoluta de $\C$, luego $\dot{x}(s) = \dot{\alpha}(s) + \dfrac{d}{dt} \left(\dfrac{1}{\kappa(s)}\right)\nn(s) + \dfrac{1}{\kappa(s)} \dot{\nn(s)}$. Como $\alpha$ esta parametrizada por longitud de arco se tiene que $\dot{\alpha}(s) = \tt(s)$ y por Frenet Serret $\dot{\nn(s)} = - \kappa(s)\tt(s)$ y entonces $\dot{x}(s) = \tt(s) + \dfrac{d}{dt} \left(\dfrac{1}{\kappa(s)}\right)\nn(s) - \tt(s)= \dfrac{d}{dt} \left(\dfrac{1}{\kappa(s)}\right)\nn(s)$. Luego $\tt_x(s) // \nn(s)$
+			
+			\item NOtemos que por el item anterior se tiene que si llamamos $Q = x(s)$ y $Q' = x(s')$ entonces la longitud de arco entre esos dos puntos es $l_x(Q,Q') = \int_{s}^{s'}{\abs{\dot{x(\eta)}}d\eta} = \int_{s}^{s'}{\abs{\dfrac{d}{d\eta} \left(\dfrac{1}{\kappa(\eta)}\right)\nn(\eta)}d\eta}$. Como $\kappa$ es monotona entonces $\dfrac{1}{\kappa}$ tambi\'en lo es y entonces $\dfrac{d}{ds} \left(\dfrac{1}{\kappa(s)}\right)$ tiene signo constante para todo $s$, supongamos que es positivo. Luego se tiene que $l_x(Q,Q') = \int_{s}^{s'}{{\dfrac{d}{d\eta} \left(\dfrac{1}{\kappa(\eta)}\right)}d\eta} = \dfrac{1}{\kappa(\eta)} \rvert_{s}^{s'} = \dfrac{1}{\kappa(s')} - \dfrac{1}{\kappa(s)}$ como pide el enunciado. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+\end{enumerate}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

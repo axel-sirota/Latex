@@ -1,0 +1,230 @@
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+%\usepackage[all]{xy}
+\usepackage{graphics}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{mathrsfs}%\usepackage[nosolutions]{practicas}
+\setlength{\textwidth}{15cm}
+\setlength{\topmargin}{0cm}
+\setlength{\oddsidemargin}{.5cm}
+\setlength{\evensidemargin}{.5cm}
+\setlength{\textheight}{21.5cm}
+%\overfullrule5pt
+%\relpenalty=10000
+%\binoppenalty=10000
+%\hyphenation{siguiente}
+
+%\hyphenation{existe}
+
+\newcommand\B{\mathcal{B}}
+\newcommand\F{\mathcal{F}}
+\newcommand\inte{\mathrm{int}}
+\newcommand\A{\mathcal{A}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\NN{\mathbb{N}}
+\newcommand\QQ{\mathbb{Q}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\ZZ{\mathbb{Z}}
+	\def\T{\mathcal{T}}
+\newcommand\inc{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+%\renewcommand\emptyset\varnothing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\def\R{\mathbb{R}}
+%	\def\A{\mathbb{A}}
+	\def\C{\mathcal{C}}
+	\def \N{\mathbb{N}}
+%	\def \P{\mathbb{P}}
+	\def \Q{\mathbb{Q}}
+	\def \Z{\mathbb{Z}}
+
+	\def\P{{\mathbb P}}
+
+	\def \le{\leqslant}			\def \ge{\geqslant}
+
+\def\sen{{\rm sen}}
+\def\cos{{\rm cos}}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+\begin{document}
+%\renewcommand{\sectionmark}[1]{{Práctica 0}{}}
+%\fancyhead[CE]{\slshape Práctica 0}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\fancyfoot[RO,LE]{{\sffamily Práctica 7}}
+\renewcommand{\headrulewidth}{0pt}
+%\lhead{}
+%\fancyfoot[RO,RE]{Práctica 0}
+%\renewcommand{\footrulewidth}{0.6pt}
+\begin{center}
+{\Large\bf\sffamily Topolog\'ia}
+
+Segundo cuatrimestre - 2015
+
+Práctica 7
+
+{\bf\sffamily Revestimientos y Aplicaciones del Teorema de Brouwer y Borsuk-Ulam.}
+\end{center}
+
+
+%%%%%%%%%%%%%%%
+\sffamily
+
+
+\begin{center} \rule{12cm}{.4mm} \end{center}
+\bigskip
+%%%%%%%%%%%%%%%
+\sffamily
+\textbf{Revestimientos.}
+
+\begin{enumerate}
+
+\item Pruebe que si $X$ es un espacio e $Y$ es discreto, entonces la proyecci\'on $p_X:X\times Y\to X$ es un revestimiento.
+
+\item Pruebe que si $p:E\to B$ es un revestimiento, la fibra $E_b=p^{-1}(b)$ es un subespacio discreto de $E$ para todo $b\in B$. Pruebe además que si $B$ es conexo, todas las fibras tienen el mismo cardinal.
+
+\item
+Pruebe que las siguientes funciones son revestimientos:
+	\begin{enumerate}
+	\item $p : \R\to S^1$, $p(x)=(\cos(2\pi x), \sen(2\pi x))$.
+	\item $f:S^1\to S^1$, $f(z)=z^n$,  $n\in\N$ fijo.
+	\item $p:S^n\to P^n$ la proyecci\'on al plano proyectivo.
+	\item $G$ grupo topol\'ogico, $H$ subgrupo discreto de $G$ y $p:G\to G/H$ la proyecci\'on al cociente.
+	\item $p:E\to B$, $p(x,y)=(e^{2\pi i x}, e^{2\pi iy})$, donde 
+$E = \{(x,y) \in \R^2 : x \in\Z \text{ \'o } y\in\Z\}$ y
+$B = \{(z,w) \in S^1\times S^1 : z =1 \text{ \'o } w =1\}$.
+	\end{enumerate}
+
+\item 
+Pruebe que $p:\R_{>0}\to S^1$ definida por $p(x)=(\cos (2\pi x), \sen (2\pi x))$ es un homeomorfismo local pero no es un revestimiento.
+
+\item
+Pruebe que si $p:E\to B$ es un revestimiento, entonces $p$ es abierta y por lo tanto es cociente.
+
+\item
+Pruebe que si $p:E\to B$ y $p':E'\to B'$ son revestimientos, entonces $p\times p':E\times E'\to B\times B'$ tambi\'en lo es. Usar este resultado para calcular el grupo fundamental del toro.
+
+\item
+Sean $p:X\to Y$ y $q:Y\to Z$ revestimientos.
+Pruebe que si $q^{-1}(z)$ es finito para cada $z\in Z$, entonces $qp:X\to Z$ es un revestimiento.
+
+\item
+Pruebe que los revestimientos son estables por cambio de base. En particular, si $p:E\to B$ es revestimiento y $A\subset B$, entonces $p|_{p^{-1}(A)}:p^{-1}(A)\to A$ es revestimiento.
+
+\item
+Sea $B$ un espacio conexo y localmente conexo, y sea $p:E\to B$ un revestimiento. Pruebe que si $C$ es una componente conexa de $E$, entonces $p|_C:C\to B$ es un revestimiento.
+
+\item
+Sea $p : \R\to S^1$ el revestimiento usual.
+Pruebe que $f : X  \to S^1$ puede levantarse a una funci\'on continua $\tilde f : X \to \R$ tal que $p\tilde f = f$ si y s\'olo si $f$ es
+null homot\'opica.
+
+
+
+%\item
+%Pruebe que $p:\R\times\R_{>0}\to\R^2\setminus\{0\}$, $(a,b)\mapsto (b\cos 2\pi a,b\sin 2\pi a)$ es un revestimiento. Halle levantados de los siguientes caminos:
+%\be[i)]	\item $f(t)=(2-t,0)$	\item $g(t)=((1+t)\cos(2\pi t),(1+t)\sin(2\pi t))$	\item	$h(t)=f(t)\ast g(t)$ \en
+%Dibujar estos caminos y sus levantados.
+
+
+
+%\item
+%Sea $p\times p:\R\times\R\to S^1\to S^1$ el revestimiento usual del toro. Sea $\omega$ el camino 
+%$\omega(t)=((cos2\pi it, sen2\pi i t), (cos4\pi it, sen4\pi it))$.
+%Dibujar $\omega$ en el toro inmerso en $\R^3$ y calcular y dibujar un levantamiento $\tilde \omega$.
+
+
+\item
+Sea $G$ un grupo topol\'ogico y $X$ un $G$-espacio (ver ej. 31 pr\'actica 2). Decimos que la acci\'on es {\em libre} si $gx\neq x$ para todo $x\in X$ y todo $g\in G$, $g\neq e$. Decimos que la acci\'on es {\em propiamente discontinua} si para todo $x\in X$ existe $U$ entorno abierto de $x$ tal que $gU\cap U=\emptyset$ para todo $g\in G$, $g\neq e$.
+	\be
+	\item Pruebe que si $G$ es finito, $X$ es Hausdorff y la acci\'on es libre, entonces es propiamente discontinua.
+	\item Pruebe que si $G$ act\'ua en $X$ y la acci\'on es propiamente discontinua, entonces la proyecci\'on $p:X\to X/G$ es un revestimiento.
+	\item Sea $X=\R\times [0,1]\subset\R^2=\mathbb{C}$. Sea $G\subset {\rm Aut}(X)$  el subgrupo generado por $\phi$,donde $\phi(z)= \bar{z}+1+i$.
+Pruebe que la acci\'on de $G$ en $X$ es propiamente discontinua, y que $X/G$ es homemomorfo a la banda de Möbius.
+	\item Calcular el grupo fundamental de la banda de Möbius.
+	\en
+
+	
+	\item Sea $p : E \rightarrow B$ una fibraci\'on. Sean $e\in E$, 
+$b=p(e)$.
+\begin{enumerate}
+\item Puebe que que si $B$ es simplemente conexo, entonces la inclusi\'on de la fibra $E_b$ en $E$ induce un epimorfismo
+$i_* : \pi_1 (E_b , e ) \rightarrow \pi_1(E, e)$.
+\item Pruebe que si la fibra $E_b$ es
+simplemente conexa, entonces $p_* : \pi_1 (E, e) \rightarrow \pi_1 (B, b)$ es un isomorfismo.
+\item Pruebe que si $E$ es simplemente conexo, entonces hay una biyecci\'on entre $\pi_1(B,b)$ y $\pi_0(E_b)$.
+\end{enumerate} 
+
+
+%\item
+%Sean $f,g:S^1\to S^1$ dadas por $f(z)= z^n$, $g(z)=1/z^n$. Calcular 
+%$$f_*,g_*:\pi_1(S^1,1)\to\pi_1(S^1,1)$$
+
+	
+%\item
+%Calcular el grupo fundamental de los siguientes espacios.
+%\begin{enumerate}
+%\item $X=S^1 \times [0,1]$, un cilindro.
+%\item $X=S^1 \times \R$, un cilindro infinito.
+%\item $X=\R^2\setminus\{0\}$, el plano pinchado.
+%\item $X=M$, la banda de M\"obius.
+%\item $X=T=S^1 \times S^1$, el toro usual.
+%%Dibujar los generadores en una inmersi\'on de $T$ en $\R^3$.
+%\item $X=\R^3\setminus L$, donde $L$ es una recta o un plano.
+%%\item $X=\P ^{n}(\R)$.
+%%\item $X=S^2$.
+%\end{enumerate}
+
+\item Sabiendo que $\pi_1(S^1)=\ZZ$, calcule el grupo fundamental de los siguientes espacios.
+\begin{enumerate}
+\item $X=S^1 \times [0,1]$, un cilindro.
+\item $X=S^1 \times \R$, un cilindro infinito.
+\item $X=\R^2\setminus\{0\}$, el plano pinchado.
+\item $X=M$, la banda de M\"obius.
+\item $X=T=S^1 \times S^1$, el toro usual.
+%Dibujar los generadores en una inmersi\'on de $T$ en $\R^3$.
+\item $X=\R^3\setminus L$, donde $L$ es una recta o un plano.
+%\item $X=\P ^{n}(\R)$.
+%\item $X=S^2$.
+\end{enumerate}
+
+%\item Pruebe que no existe una retracci\'on $r:D^2\to S^1$.
+
+%\item Sean $f,g:S^1\to S^1$ dados por $f(z)=z^n$ y $g(z)=1/z^n$. Calcular los morfismos inducidos $f_*,g_*:\pi_1(S^1,b_0)\to\pi_1(S^1,b_0)$.
+
+\bigskip
+
+%%%%%%%%%%%%%%%
+\sffamily
+
+\noindent 
+\textbf{Aplicaciones del Teorema de Brouwer y Borsuk-Ulam.}
+
+%\begin{center} \rule{12cm}{.4mm} \end{center}
+
+
+\item Demuestre que si $A$ es un retracto del disco $D^2$, entonces toda funci\'on continua $f:A\to A$ tiene un punto fijo.
+
+\item Demuestre que si $f:S^1\to S^1$ es null-homot\'opica, entonces tiene un punto fijo y adem\'as existe $x\in S^1$ tal que $f(x)=-x$.
+
+\item Teorema de Lusternik-Schnirelmann (para dimensi\'on 2). Pruebe que si $S^2$ se cubre con tres abiertos, entonces uno de ellos contiene dos puntos antipodales.
+
+\item Pruebe que si $f:S^2\to S^2$ es continua y $f(x)\neq f(-x)$ para todo $x$, entonces $f$ es sobreyectiva.
+
+
+
+\end{enumerate}
+\end{document} 
+

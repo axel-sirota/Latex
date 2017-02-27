@@ -1,0 +1,672 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia-- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Teorema Van Kampen}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}
+
+\begin{proof}
+
+Vamos por partes!
+
+Sea $ p=(1,0,0) \in S^2 $ , $ U = B(p,\epsilon) \cap S^{2} $ con $ \epsilon > 0 $ decentemente peque\~no para no tocar los polos; y sea $ V = X - \overline{B(p,\epsilon - \epsilon ')} \cap S^{2} $ con $ 0< \epsilon - \epsilon ' < \epsilon $. Entonces notemos que $U \cap V $ es el anillo rodeando a $p$ sobre $S^{2}$; entonces tenemos que $U,V,U \cap V $ son abiertos arco-conexos no vac\'ios. Por el teorema de Van-Kampen tenemos que $\pi_1(X)=\pi_1(U)*\pi_1(V) / \mathord{<i^{-1}([\omega])j([\omega]) \ , \ [\omega] \in \pi_1(U \cap V)>}$, y nos basta calcular estos grupos!
+
+\begin{enumerate}
+
+\item{$\pi_1(U)$}
+
+Notemos que $U \simeq \{*\}$ y por ende $\pi_1(U)=\pi_1(\{*\})=0$
+
+\item{$\pi_1(U \cap V)$}
+
+Es simple ver que $U \cap V \simeq S^{1}$ el c\'irculo rodeando a $p$. Por ende $\pi_1(U \cap V)= \pi_1(S^1)=\Z$
+
+\item {$\pi_1(V)$}
+
+En general uno tiene que $S^2 - \{p\} \simeq \R^2 \simeq D^2$ y por ende $V-\{\{0\}\times \{0\}\times (-1,1) \} \simeq D^2$. Ahora si seguimos la deformaci\'on de los polos uno ve que esta recta se va deformando en una manija uniendo los dos puntos internos! Llamemos $\alpha$ a esta manija entre los puntos internos de $D^2$ a donde paran los polos, lo que decimos es que $V \simeq D^2 \cup \alpha$. Ahora si es f\'acil ver que $D^2 \cup \alpha \simeq [-1,1]\times \{0\} \times \{0\} \cup \{x^2 + y^2 =1 \ , \ y>0 \ , z=0\}$ porque aplastamos el disco al eje $x$ (que se puede por ser contr\'actil) y la manija la rotamos al plano $z=0$. Pero $[-1,1]\times \{0\} \times \{0\} \cup \{x^2 + y^2 =1 \ , \ y>0 \ , z=0\} \simeq S^1$ y entonces tenemos que $V \simeq S^1$ y entonces $\pi_1(V) = \pi_1(S^1) = \Z$
+
+\item {Hallemos la presentaci\'on de $\pi_1(X)$} 
+
+Como $\pi_1(U \cap V) = <[\omega]>$ donde $\omega$ es el lazo de los puntos a distancia chica en la esfera, ie : $\omega = B(p,\delta) \cap S^2 \subset U \cap V$. Ahora como $\omega(t) \not \in \{0\}\times \{0\}\times [-1,1]  \ \forall t \in I$ tenemos que (si llamamos $f$ a la equivalencia homot\'opica entre $V$ y el disco con manija) $[i([\omega])] = [f([\omega])]=[\omega']$ donde $\omega' \subset D^2$ y por ende es un lazo null-homot\'opico, o sea $i([\omega])=0$. Como trivialmente $j^{-1}([\omega])=0$ pues $U$ es contr\'actil tenemos que $N=0$ y por ende $\pi_1(X)=\Z * 0 / 0 = \Z$
+
+\end{enumerate}
+
+\end{proof}
+
+\bigskip
+
+\begin{center}
+
+\textbf{Teorema de Van Kampen}
+
+\end{center}
+
+\begin{enumerate}
+
+
+\item{Determine los grupos fundamentales de los siguientes espacios:}
+
+\begin{enumerate}
+
+\item {$T^2 - \{ \overline{p} \}$}
+
+\begin{proof}
+
+Hagamos la identificaci\'on $T^2 = I \times I \ / \mathord{\sim}$ donde $\sim$ es la conocida (Como se hacen los dibujitos de cuadrados con flechitas Ximee???). Notemos que v\'ia la homotop\'ia lineal podemos asumir que $\overline{p} = q((\frac{1}{2},\frac{1}{2}))=q(p)$ donde $q(x)=[x]_{\sim}$. Ahora sea $f (x)= \frac{x}{\norm{x}_{\infty}}$ es claro que $f:I \times I \rightarrow \partial(I \times I)$ y es continua, veamos que es una equivalencia homot\'opica con inversa $i(x)=x$!
+
+Notemos que $fi(x)=f(x)=x$ pues $\norm{x}_{\infty}=1$ y por ende $fi = 1_{\partial(I \times I)}$
+
+Por otro lado $if(x)= \frac{x}{\norm{x}_{\infty}}$, sea $H : (I \times I) \times I \rightarrow I \times I$ dada por $H((x,t),s) = s*(x,t) + (1-s)(f(x,t))$ entonces como $(x,t) \neq (0,0)$ H esta bien definida y es continua. Adem\'as tenemos que $H_0=if$ y $H_1=1_{I \times I}$, por ende $f$ es equivalencia homot\'opica.
+
+Ahora vamos a probar que $f$ baja al cociente como equivalencia homot\'opica (por\'unica vez modulo parcial estas cuentas)
+
+Nosotros sabemos que $qf:I \times I \rightarrow \partial(I \times I) \ / \mathord{\sim}$ es continua, adem\'as si $x \sim y$ entonces $x,y \in \partial(I \times I)$ y por ende $f(x)=x \sim f(y)=y$, o sea que $qf$ respeta $q_{\sim}$.
+
+Entonces tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+{I \times I -\{p\}} \arrow{r}{f} \arrow[swap]{d}{q_{\sim}} & {\partial(I \times I)} \arrow[swap]{d}{q_{\sim}} \\ 
+{{I \times I -\{p\}} \ / \mathord{\sim}} \arrow[dashed]{r}{\overline{{f}}} & {\partial(I \times I)} \ / \mathord{\sim} \\
+\end{tikzcd}
+\]
+
+
+\[
+\begin{tikzcd}
+{I \times I -\{p\} \times I} \arrow{r}{H} \arrow[swap]{d}{q_{\sim}} & {\partial(I \times I)} \arrow[swap]{d}{q_{\sim}} \\ 
+{{I \times I -\{p\}} \ / \mathord{\sim} \times I} \arrow[dashed]{r}{\overline{{H}}} & {\partial(I \times I) \ / \mathord{\sim}} \\
+\end{tikzcd}
+\]
+
+Finalmente sea $\overline{H}(\overline{(x,t)},s)=s\overline{(x,t)} + (1-s)\overline{f}(\overline{(x,t)})$ es f\'acil ver que $H$ bajaba al cociente y entonces $\overline{H}$ es continua y hace que $1_{I \times I - \{p\} \ / \mathord{\sim}} \simeq \overline{{if}} \ (\overline{H})$ pues $f(\overline{(x,t)})=f(x,t)$. Entonces tenemos que $I \times I - \{p\} \ / \mathord{\sim} \simeq \partial(I \times I) \ / \mathord{\sim}$.
+
+Ahora por la pr\'actica sabemos que $\partial(I \times I) \ / \mathord{\sim} \simeq S^1 \vee S^1$ y entonces tenemos que $T^2 - \{p\} \simeq S^1 \vee S^1$ y entonces $\pi_1(T^2 - \{p\}) \simeq \Z*\Z$ \qed
+
+\end{proof}
+
+\begin{remark}
+Hagamos de yapa el $T^2 - \{p_1,...,p_k\}$!!
+\end{remark}
+
+\begin{proof}
+
+V\'ia la misma idea ubiquemos a todos los $\{p_1,...,p_k\} \in B((\frac{1}{2},\frac{1}{2}),\frac{1}{2}) \subset \interior{I \times I}$ con $p:=p_1 = (\frac{1}{2},\frac{1}{2})$ y ahora si sea $A := \{r \in I \ / \ \{p_1,...,p_k\} \subset B(p,r) \ y \ B(p,r) \subset I \times I \}  $, sabemos que $A$ est\'a acotado y es no vac\'io pues, por ejemplo $\frac{1}{2} \in A$ entonces sea y $r=inf \ A + \epsilon'$. Sea $U = B(p,r)$ y sea $V= I\times I - \overline{B(p,r')}$ con $r'$ tal que $inf \ A < r' < r$ que existe por la propiedad del\'infimo; entonces tenemos que $U,V, U \cap V$ son abiertos no vac\'ios arco-conexos, por el teorema de Van Kampen tenemos que $\pi_1(T^2 - \{p_1,...,p_k\}) = \pi_1(U)*\pi_1(V) \ / N$ veamos cada uno para dar una presentaci\'on!!
+
+\begin{enumerate}
+
+\item {$\pi_1(U)$}
+
+Sean $S_i=\partial(B(p_i,\epsilon))$ con $\epsilon > 0$ tal que $S_i \cap S_j = \emptyset$ y sean $\alpha_i$ caminos tal que $\alpha_i(0) \in S_i$, $\alpha_i(t) \not \in S_i \ \forall i \in \{1,...,k\} \ , \forall t \in (0,1)$ , $\alpha(1) \in S_{i+1}$, $\alpha_i(t) \neq \alpha_j(t)$ (o sea los caminos disjuntos que unen estas esferas). Entonces como $D^2$ es contr\'actil tenemos que $U \simeq \bigcup_{i=1}^{k} S_i \ \cup \ \bigcup_{i=1}^{k-1} { \alpha_i (I)}$, ahora uno puede ir contrayendo los $\alpha_i(I)$ de a uno y entonces obtenemos que $U \simeq S_1 \vee_{1} (S_2 \vee_{2} (... \vee_{k} S_k))$, o sea la primera wedge la segunda, y estas dos wedge por otro punto diferente a una tercera y asi iterativamente. Entonces por el corolario de la te\'orica tenemos que $\pi_1(U)=\pi_1(S_1)*\pi_1(S_2 \vee_{2} (S_3 \vee_{3}... ))=\pi_1(S_1)*\pi_1(S_2)*...*\pi_1(S_k)$, esto podemos usar inducci\'on simplemente. Ahora como $S_j \simeq S^1 \quad \forall j \in \{1,...,k\}$ tenemos que $\pi_1(U)=\ast_{i=1}^{k}\Z$
+
+\item{$\pi_1(V)$}
+
+Es claro que aqu\'i aplica lo hecho anteriormente y por ende $\pi_1(V)=\Z*\Z$
+
+\item{$\pi_1(U \cap V)$}
+
+Como antes es f\'acil ver que $U \cap V \simeq S^1$ y por ende $\pi_1(U \cap V) = \Z$
+
+\item{Hallemos la presentaci\'on!}
+
+Agarremos el lazo $\omega=\epsilon*e^{2 \pi i t} + p$ o sea el c\'irculo rodeando a $p$ que es el generador de $\pi_1(U \cap V)$ y veamos que le pasa en ambos grupos!
+
+\begin{itemize}
+\item {En U:}
+
+Notemos que $i([\omega]) = [1][2]...[k]$ si notamos $<[i]> = \pi_1(S_i)$ pues dar una vuelta por el c\'irculo grande es lo mismo que dar una vuelta por cada c\'irculito peque\~no. 
+\item{En V:}
+
+Ac\'a es f\'acil ver que $j([\omega])=aba^{-1}b^{-1}$ por lo mismo que vimos en la pr\'actica al calcular el $\pi_1(T^2)$
+\end{itemize}
+
+Entonces tenemos que $\pi_1(T^2 - \{p_1,...,p_k\})= <a,b,1,2,...,k | aba^{-1}b^{-1}*12...k = 0>$ Y dios sabe que tan lindo sea eso... \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {$ \R P^2 - \{ \overline{p} \} $}
+
+\begin{proof}
+
+Recordemos que podemos representar a $\R P^2 \simeq I \times I \ / \mathord{\sim}$ donde ahora $\sim$ es la de lados cruzados (Quiero poder escribir el dibujito y no se hacerloo =(). Entonces igual que antes con el toro, podemos decir que $p=(\frac{1}{2},\frac{1}{2})$ y entonces, por el item anterior tenemos que $I \times I \ / \mathord{\sim} \simeq \partial(I \times I) \ / \mathord{\sim}$. Ahora notemos que en este caso por la pr\'actica tenemos que $\partial(I \times I) \ / \mathord{\sim} \simeq S^1$ y entonces tenemos que $\R P^2 - \{\overline{p}\} \simeq S^1$ y por ende $\pi_1(\R P^2 - \{\overline{p}\}) = \Z$ \qed
+
+\end{proof}
+
+\begin{remark}
+Ac\'a mucho sentido no tiene para m\'i calcular el $\pi_1(\R P^2 -\{p_1,...,p_n\})$ pues es la misma idea que antes.
+\end{remark}
+
+\item {$S^n \vee S^n$}
+
+\begin{proof}
+
+Ac\'a podemos hacerlo de dos maneras!
+
+\begin{enumerate}
+
+\item {Usando el siguiente corolario de la te\'orica:}
+
+\begin{corollary}
+\label{corolario}
+Sean $X,Y$ espacio topol\'ogicos con $x_0 \in X$ y $y_0 \in Y$ tal que $\{x_0\} \subset X$ y $\{y_0\} \subset Y$ son cerrados. A su vez sean $U \subset X$ y $V \subset Y$ abiertos tal que $\{x_0\} \subset U$ y $\{y_0\} \subset Y$ son RDF. Entonces si consideramos $X \vee_{x_0 \sim y_0} Y$ resulta que tenemos que $\pi_1(X \vee Y , \overline{x_0}) = \pi_1(X,x_0)*\pi_1(Y,y_0)$
+
+\end{corollary}
+
+Pues si notamos al punto de adjunci\'on como $\{(0,...,0)\}$, que es cerrado,  entonces si llamamos $U=S^n - \{(-2,0,...,0)\}$ y $V=S^n - \{(2,0,...,0)\}$ entonces tenemos que $U$ y $V$ son RDF de $\{(0,0,...,0)\}$(Por la pr\'actica 6) y entonces tenemos por \ref{corolario} que $\pi_1(S^n \vee S^n)=\pi_1(S^n)*\pi_1(S^n)= \Z * \Z \ \mbox{\Large$\chi$}_{\{n=1\}}$ \qed
+
+
+\item {Usando Van Kampen}
+
+
+Pues aqu\'i llamo a $U = X -\{(-1,0,...,0)\}$ y $V=X - \{(1,0,...,0)\}$ entonces $U \simeq S^n$ y $V \simeq S^n$ (a los dos distintos) y $U \cap V \simeq \{x_0\}$; por lo que $\pi_1(S^n \vee S^n)=\pi_1(U)*\pi_1(V)/0 = \pi_1(S^n)*\pi_1(S^n)= \Z * \Z \ \mbox{\Large$\chi$}_{\{n=1\}}$ \qed
+
+
+\end{enumerate}
+
+\end{proof}
+
+\item {$S^1 \cup \R_{\geq 0} \times \{0\}$}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item {A lo pr\'actica 6}
+
+\medskip 
+
+Recordemos que $\R_{\geq 0} \times \{0\} \simeq \R_{\geq 0} $ y entonces es contr\'actil, m\'as a\'un tenemos que $\{1\}$ es un RDF de $\R_{\geq 0}$ y entonces tenemos que $\R_{\geq 0} \times \{0\}$ es un RDF del $\{(1,0)\}$. Probemoslo!
+
+Sea $H: \R_{\geq 0} \times \{0\} \times I \rightarrow \R_{\geq 0} \times \{0\}$ dada por $H((x,0),t)=(x,0)*t + (1-t)(1,0)$ entonces $H$ es continua y $H_1 = 1_{\R_{\geq 0} \times \{0\}}$ y $H_0 = C_{(1,0)}$ y $H_{(1,0)} = (1,0)$, que prueba lo dicho.
+
+Afirmo que si extiendo $H$ a $S^1 \cup \R_{\geq 0} \times \{0\}$ como la identidad, entonces $\widetilde{H}$ ser\'a la homotop\'ia buscada entre $S^1$ y $S^1 \cup \R_{\geq 0} \times \{0\}$. En efecto pues $S^1$ y $\R_{\geq 0} \times \{0\}$ son cerrados que generan al espacio, $\widetilde{H}|_{S^1} = 1_{S^1}$ es continua, $\widetilde{H}|_{\R_{\geq 0} \times \{0\}} = H$ es continua y $\widetilde{H}|_{S^1 \cap \R_{\geq 0} \times \{0\}} = \widetilde{H}|_{(1,0)}=(1,0)$ o sea que es compatible. Entonces por el lema del pegado $\widetilde{H}:S^1 \cup \R_{\geq 0} \times \{0\}$ es continua.
+
+Notemos que $\widetilde{H}_0 = f$ y $\widetilde{H}_1 = 1_{S^1 \cup \R_{\geq 0} \times \{0\}}$ con $f = 1_{S^1} *  \mbox{\Large$\chi$}_{S^1} + C_{(1,0)} * \mbox{\Large$\chi$}_{\R_{\geq 0} \times \{0\}}$ por lo que $S^1 \simeq S^1 \cup \R_{\geq 0} \times \{0\}$ y entonces $\pi_1(S^1 \cup \R_{\geq 0} \times \{0\}) = \Z$ \qed
+
+\medskip 
+
+\item {Usando Van Kampen}
+
+\medskip 
+
+Sea $U = X -\{(0,0)\}$ y $V = B((0,0),\epsilon) \cap X$ entonces $U,V,U \cap V$ son abiertos arco-conexos y adem\'as por la pr\'actica 6 tenemos que $U \simeq S^1$, $V \simeq \{*\}$ y $U \cap V \simeq \{*\}$, entonces por Van Kampen tenemos que $\pi_1(X)=\pi_1(S^1)* 0 / 0 = \pi_1(S^1)=\Z$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item $S^1\cup(\R_{\geq 0}\times\R)$;
+
+\begin{proof}
+
+Inspirados en el anterior, sea $U = X \setminus \{(0,0)\}$ y $V = B((0,0),\epsilon) \cap X$ entonces $U,V,U \cap V$ son abiertos arco-conexos. Adem\'as tenemos que $V$ y $U \cap V$ son contr\'actiles y por la pr\'actica 6 $U \simeq S^1$ v\'ia $f = \frac{x}{\norm{x}_{2}}$. Entonces si juntamos todo tenemos que $\pi_1(X)=\pi_1(S^1)* 0 / 0 = \pi_1(S^1)=\Z$ \qed 
+
+\end{proof}
+
+\item $S^1\cup(\R\times\{0\})$;
+
+\begin{proof}
+ 
+$X$ resulta mas interesante, porque si primero usamos (usando la $f$ de antes) $\widetilde{f}= f  \mbox{\Large$\chi$}_{\norm{x}_2 \geq 1} + 1_{X}\mbox{\Large$\chi$}_{\norm{x}_2 \leq 1}$ entonces $\widetilde{f}|_{\norm{x}_2 \geq 1} = f$ es continua, $\widetilde{f}|_{\norm{x}_2 \leq 1} = 1_X$ es continua y $\widetilde{f}|_{\norm{x}_2 = 1} = 1_X$ es compatible. Entonces por el lema del pegados sobre los cerrados $F_1 = \{\norm{x}_2 \geq 1\}$ y $F_2 = \{\norm{x}_2 \leq 1\}$ uno tiene que $\widetilde{f}$ es continua. M\'as a\'un si tomamos $H = t 1_X + (1-t)\widetilde{f}$ entonces v\'ia $\widetilde{f}$ uno tiene que $X \simeq S^1 \cup [-1,1] \times \{0\} \ (rel \ S^1 \cup [-1,1] \times \{0\})$. Ahor\'a si retraemos este \'ultimo espacio al $(0,0)$ por el eje $x$ afirmo que $X \simeq S^1 \vee S^1 \ (rel \ S^1 \vee S^1)$ y entonces $\pi_1(X)= \Z * \Z$   \qed
+
+\begin{declaration}
+$S^1 \cup [-1,1] \times \{0\} \simeq S^1 \vee S^1$
+\end{declaration}
+
+\begin{proof}
+Lo haremos en dos partes:
+
+\begin{enumerate}
+\item $q:X \rightarrow X / [-1,1] \times \{0\}$ es equivalencia homot\'opica.
+
+Esta es resultado de tomar la homotop\'ia que retrae el eje x al punto $(0,0)$ de forma continua, entonces esta homotop\'ia cumple las hip\'otesis del ejercicio 6 de la pr\'actica 6, por ende $q$ es equivalencia homot\'opica.
+
+\item $X / [-1,1] \times \{0\} \simeq S^1 \vee S^1$
+
+Estoy seguro que debe valer pero no lo se probar...
+
+\end{enumerate}
+
+\end{proof}
+
+\end{proof}
+
+\begin{remark}
+
+No se me ocurrieron abiertos para usar Van Kampen y evitar las cuentas...
+
+\end{remark}
+
+
+
+\item $\R^2\setminus(\R_{\geq 0}\times\{0\})$.
+
+\begin{proof}
+
+Sea $U = \{(x,y) \in \R^2 \ / \ y > 0\}$ y $V = \{ (x,y) \in \R^2 \ / \ y < 0 \ o ( \ x < 0 \ , \ y < 1 \  ) \}$, entonces $U,V, U \cap V$ son abiertos arco-conexos no vac\'ios y $\pi_1(U)= 0$ y $\pi_1(V) = 0$ por lo que $\pi_1(X) = 0$ \qed
+
+\end{proof}
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%
+
+\item {Sea $n\geq 3$ y sea $A \subseteq \R^n$ un conjunto finito. Pruebe que $\R^n \smallsetminus A$ es simplemente conexo.
+}
+
+\begin{proof}
+
+Sea $A = \{p_1,...,p_k\}$ y $V_i \ni p_i$ dada por $V_i =S_{\epsilon}(p_i)$ y sean $\alpha_{i,i+1}$ el camino que una a los entornos $V_i$ con $V_{i+1}$. Sea $B = \bigcup_{i=1}^{k}{V_i} \cup \bigcup_{j=1}^{k-1}{\alpha_{j,j+1}}$ (Los entornos unidos por los caminos), entonces $B$ es arco-conexo y $\R^n -A \simeq B$. Ahora es claro que $B \simeq S_1 \vee_{1} (S_2 \vee_{2} (S_3 \vee_3 \dots))$ (contraemos los $\alpha_{i,i+1}(I)$ a un punto) entonces por inducci\'on tenemos que $\pi_1(\R^n \setminus A) = \pi_1(B) = \ast_{i=1}^{k} {\pi_1(S^n)} = \ast_{i=1}^{k} {\Z \ \mbox{\Large$\chi$}_{n=1}}$ \qed
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%
+\item {Sea $X\subseteq \R^m$ la uni\'on de abiertos convexos $X_1 \cdots X_n$ tales que $X_i\cap X_j \cap X_k\neq \varnothing$ para todo $i,j,k$. Muestre que $X$ es simplemente conexo.
+}
+
+\begin{proof}
+
+Hagamoslo por inducci\'on!
+
+\begin{itemize}
+
+\item {$k=2$}
+
+Aqu\'i usemos el argumento clave que si $A \subset \R^n$ es convexo y abierto entonces $A \simeq D^n \simeq \{*\}$. Entonces tomamos $U = X_1$ y $V = X_2$ entonces como por hip\'otesis $U \cap V \neq \emptyset$ y es abierto y convexo trivialmente, tenemos que $U,V,U \cap V$ son abiertos arco-conexos, no vac\'ios y simplemente conexos, entonces $\pi_1(X_1 \cup X_2) = 0$ por Van Kampen.
+
+\item {$k \rightarrow k+1$}
+
+Sea $U = X_{k+1}$ y $V = \bigcup _{i=1}^{k} {X_k}$ entonces $U$ y $V$ son abiertos arco-conexos y simplemente conexos por hip\'otesis inductiva; bastar\'ia  ver que $U \cap V$ es abierto arco-conexo no vac\'io. Notemos que $U \cap V = \bigcup_{i=1}^{k} {X_i \cap K_{k+1}}$, pero dado $i,j \in \{1, \dots , k\}$ uno tiene que $X_i \cap X_j \cap X_{k+1} \neq \emptyset$ y entonces sea $x_0 \in X_i \cap X_j \cap X_{k+1}$, como $X_i \cap X_{k+1}$ es arco-conexo $\exists \alpha_i$ camino de alg\'un punto $x_1$ a $x_0$, y an\'alogo con $x_2 \in X_j \cap X_{k+1}$, por lo que $\alpha_1 * \alpha_2$ es un camino de alg\'un punto de $X_i \cap X_{k+1}$ a $X_j \cap X_{k+1}$ por lo que $U \cap V$ es arco-conexo. Por Van Kampen $\pi_1(X) = 0$
+
+\end{itemize}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%
+\item {Para cada $n\in \N$ sea $C_i$ la circunferencia en~$ \R^2$
+con centro en~$(n,0)$ y radio~$n$. Sea $X=\bigcup_{n\in \N} C_n\subseteq  \R^ 2$ y sea
+$x_0=(0,0)\in X$. Pruebe que  $\pi_1(X,x_0)$ es el grupo libre $\ast_{_{n\in \N}} \pi_1(C_n)$, el mismo que el grupo fundamental del
+wedge infinito $\bigvee_{_{n\in N}} S^1$. Muestre que $X$ y $\bigvee_{_{n\in N}} S^1$ son homot\'opicamente equivalentes, pero no
+homeomorfos.
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item {$\pi_1(\bigcup_{n \in \N} {C_n}) \ \simeq \ \ast_{n \in \N}{\pi_1(C_n)}$}
+
+Hallemos un isomorfismo entre $\pi_1(\bigcup_{n \in \N} {C_n})$ y $\ast_{n \in \N}{\pi_1(C_n)}$!! 
+
+Como nosotros tenemos la intuici\'on que, si llamamos $\alpha_n: I \rightarrow C_n$ al lazo que recorre una vez $C_n$, $<\alpha_n>_{n \in \N} = \ast_{n \in \N} {\pi_1(C_n)}$ entonces notemos que $i_{n_*}: \pi_1(C_n,(0,0)) \rightarrow \pi_1(X)$ es morfismo de grupos $\forall n \in \N$. Por la propiedad universal del coproducto $\exists \phi: \ast_{n \in \N} {\pi_1(C_n)} \rightarrow \pi_1(X)$. Veamos que $\phi$ es iso!
+
+\begin{itemize}
+
+\item {$\phi$ es epi}
+
+Para eso sea $[\omega] \in \pi_1(X)$ notemos que $\omega(I)$ es compacto pues $\omega$ es continua, y entonces $\omega(I)$ es acotado, supongamos que $\norm{\omega(I)} \leq N$. Llamemos $r_N : X \rightarrow \bigcup_{i=1}^{N}{C_n}$ retracci\'on dada por $r_N = 1_X \ \mbox{\Large$\chi$}_{\bigcup_{n \leq N}{C_n}} + C_(0,0) \ \mbox{\Large$\chi$}_{\bigcup_{n \gneq N}{C_n}}$, entonces por lo dicho anteriormente $\omega \simeq r_N \omega$ y por ende $[\omega] \in \pi_1(\bigcup_{i=1}^{N}{C_N}) = \ast_{i=1}^{N}{\Z} = \ast_{i=1}^{N} {\pi_1(C_n)}$ donde la \'ultima igualdad es por inducci\'on. Por ende $\phi ([r_N \omega]) = [\omega]$ y $\phi$ es epi.
+
+\item {$\phi$ es mono}
+
+Supongamos que $\phi([\omega]) = 0$, entonces $\exists H: I \times I \rightarrow \bigcup_{n \in \N}{C_n}$ continua tal que $H_0 = C_{(0,0)}$ y $H_1 = \omega$. Pero $H(I \times I)$ tambi\'en es compacto y por ende acotado, por lo que $H \simeq r_{N'} H$ con $N'$ el m\'aximo entre el $N$ de $\omega$ y el de $H$! Pero entonces $\omega \simeq r_{N'} \omega \simeq C_{(0,0)}$ pues la primer equivalencia es dada por la retracci\'on de $r_{N'}$ y la segunda por $r_{N'} H$, entonces $[\omega]=0$ en $\ast_{i=1}^{N'}{\pi_1(C_n)}$, pero como ya era cero para $n \gneq N'$, entonces $[\omega]=0$ en $\ast_{n \in \N}{\pi_1(C_n)}$ y $\phi$ es mono \qed
+
+\end{itemize}
+
+\item {X y $\bigvee_{n \in \N} {S^1}$ son homot\'opicamente equivalentes.}
+
+Notemos que dado un $C_n$, $\exists r_n:C_n \rightarrow S^1$ dado por $r_n = \frac{x}{n} -(n-1,0)$, entonces si identificamos $S^1_n$ como el elemento n-\'esimo del wedge, tenemos $i_n : S^1 \inc \bigvee_{n \in \N}{S^1}$ y entonces tenemos $h_n = i_n r_n : C_n \rightarrow \bigvee_{n \in \N}{S^1} \ \forall n \in \N$ pues $h_n|_{(0,0)}=(0,0)$. Sea $h : \bigcup_{n \in \N}{C_n} \rightarrow \bigvee_{n \in \N}{S^1}$ el morfismo inducido por las $h_n$ dado por $h = \sum {h_n \ \mbox{\Large$\chi$}_{C_n}}$, afirmo que $h$ es equivalencia homot\'opica!
+
+En efecto, para cada $n$ $\exists k_n : S^1_n \rightarrow C_n$ inversa homot\'opica de $h_n$, y entonces induce una $g_n = i k_n : S^1_n \rightarrow \bigcup C_n$. Por propiedad universal del coproducto $\exists g: \coprod_{n \in \N}{S^1_n} \rightarrow \bigcup C_n$ y como $g$ manda el punto en com\'un al mismo $(0,0)$, baja al cociente y $\exists w : \bigvee_{n \in \N}{S^1} \rightarrow \bigcup_{n \in \N} {C_n}$. Notemos que $wh = \sum {wh_n \ \mbox{\Large$\chi$}_{C_n}} = \sum {k_nh_n \ \mbox{\Large$\chi$}_{C_n}} \simeq \sum {\mbox{\Large$\chi$}_{C_n}} \simeq 1_{\bigcup{C_n}}$, y an\'alogo al rev\'es pues $h_nk_n \simeq 1_{S^1_{n}}$, por lo que $hw \simeq 1_{\bigvee {S^1}}$ y resulta que $\bigcup_{n \in \N}{C_n} \simeq \bigvee_{n \in \N}{S^1}$ \qed
+
+\item {Pero no son homeomorfos!}
+
+En efecto notemos que $X$ al tener la topolog\'ia subespacio de $\R^n$ cumple que es 1 contable, mientras que un entorno de abiertos del $(0,0)$ en el wedge es no contable. En efecto supongamos que $\B := \{\B_i\}_{i \in \N}$ es una base de entornos abiertos del $(0,0)$, para cada $i$ elegimos $V_i \subset S^1$ tal que $p_i(\B_i) \not \subset V_i$ y tomamos $V:=\bigvee_{i \in \N}{V_i} \subset \bigvee_{n \in \N}{S^1}$, por la construcci\'on tenemos que $\not \exists B_i \in \B \ / \ B_i \subset V$, por ende $|\B| > \aleph_0$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+
+\item {Para cada $n\in \N$ sea $C_i$ la circunferencia en~$ \R^2$ con centro en~$(1/n,0)$ y radio~$1/n$. Sea $X=\bigcup_{n\in \N} C_n\subseteq  \R^ 2$ y sea $x_0=(0,0)\in X$. Pruebe que  $\pi_1(X,x_0)$ es un grupo no numerable.}
+
+\begin{proof}
+
+Sea $H = \prod_{n \in \N}{\Z / 2\Z}$, entonces es claro que $|H| > \aleph_0$; sea $s \in H \ , \ s=(a_s)_{s \in \N}$ y contruimos $\alpha_s :I \rightarrow X$ dado por $\alpha_s = \sum_{n \in \N} (cte \mbox{\Large$\chi$}_{a_n=0} + l_n \ \mbox{\Large$\chi$}_{a_n = 1}) \mbox{\Large$\chi$}_{[\frac{n-1}{n},\frac{n}{n+1}]}$ donde $l_n$ es el lazo est\'andar en $C_n$ y $cte$ es para que $\alpha_s$ sea continua; veamos que $[\alpha_s] \neq [\alpha_t]$ si $s \neq t$!! Supongamos que $s \neq t$, entonces $\exists N \ / \ a_N=1 \ , \ b_N=0$ y sea $q_N = 1_X \ \mbox{\Large$\chi$}_{C_N}$ entonces $[q_N \alpha_s] \neq [q_N \alpha_t]$ pues $[q_N \alpha_s]=[l_N] \neq [0]$ y $[q_N \alpha_t]=[0]$; entonces $\alpha : H \rightarrow X$ dado por $\alpha(s) := \alpha_s$ es inyectiva y entonces $|X| > \aleph_0$ \qed
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+\item {Sea $n\in\N$ y sea $Y_n = \{ x \in \R^2 \ / \ \exists j \in \{ 1,\dots,n \} \ , \ d(x,(j- \frac{1}{2},0 ) ) = \frac{1}{2} \}$ . Determine $\pi_1(Y_n,0)$.
+}
+
+\begin{proof}
+
+Notemos que $Y_n = \bigcup_{i=1}^{n} {S((n - \frac{1}{2},0), \frac{1}{2})}$ y entonces $Y_n \simeq S^1 \vee_{1} (S^1 \vee_2 (... \vee_n S^1))$ y entonces, por lo visto antes, $\pi_1(Y_n) = \ast_{i=1}^{n} {\Z}$ \qed
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+
+\item {Sea $n\in \N$. Sea $X\subseteq  \R^3$ la uni\'on de $n$ rectas por el origen. Calcule $\pi_1( \R^3\smallsetminus X)$}
+
+\begin{proof}
+
+Notemos que v\'ia $f= \frac{x}{\norm{x}_2}$ tenemos que $X \simeq S^2 \setminus A$ donde $A = \{ x_1, \dots ,x_{2n} \}$ con $\{x_i , x_{2i} \} = L_i \cap S^2$, y luego si fijamos un punto $x_1$ como el polo norte y llamamos $p$ la proyecci\'on estereogr\'afica entonces $S^2 \setminus A \simeq \R^2 \setminus \{y_1, \dots , y_{2n-1} \}$, y como ya vimos $\R^2 \setminus \{y_1, \dots , y_{2n-1} \} \simeq \bigvee_{i=1}^{2n-1}{S^1}$ y entonces $\pi_1(X)=\pi_1(\bigvee_{i=1}^{2n-1}{S^1}) = \ast_{i=1}^{2n-1}{\Z}$ \qed
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+%\item Sea $Y$ un espacio que se obtiene de un espacio arcoconexo $X$ adjuntando $n$-celdas para un $n\in \N_{\geq 3}$ fijo. Muestre que la inclusi\'on $i:X\rightarrow Y$ induce un isomorfismo en el $\pi_1$. Aplique lo anterior para mostrar que el complemento de un subespacio discreto de $ \R^n$ ($n\geq 3$) es simplemente conexo.
+
+%%%%%%%%%%%%%%
+
+\item {Sea $X$ el espacio cociente de $S^2$ que se obtiene de identificar el polo norte y el polo sur en un punto. Calcule $\pi_1 (X)$.}
+
+\begin{proof}
+
+Notemos que $S^2 \ / \ S^0 \simeq X$ con $X$ el espacio del ejercicio para entregar, entonces tenemos que $\pi_1(S^2 \ / \ S^0)=\Z$
+
+\begin{declaration}
+
+$S^2 \ / \ S^0 \simeq S^2 \vee S^1$
+
+\end{declaration}
+
+\begin{proof}
+??? Ximeeeee ayudaaaaa!!!!
+\end{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+\item{
+
+\be
+\item{ Si $L\subseteq \R^n$ es una variedad lineal de dimensi\'on $k$, con $0\leq k\leq n-2$, determine el grupo $\pi_1( \R^n\setminus L)$}
+\item{ Si $C\subseteq \R^3$ es una circunferencia, entonces $\pi_1( \R^3\setminus C)= \Z$.}
+\en
+
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Podemos suponer, v\'ia una traslaci\'on, que $L$ es un subespacio de dimensi\'on $k$; entonces $L= \{ L_1=0 , \dots , L_{n-k}=0 \}$ donde $L_i \in (\R^n)^*$, m\'as a\'un podemos suponer que $L_i = x_i$! Con lo que $L \simeq \R^k$, entonces tenemos:
+
+\begin{declaration}
+$\R^n \setminus \R^k \simeq S^{n-(k+1)} \times \R^k$ 
+\end{declaration}
+
+Por lo que $\pi_1(\R^n \setminus L) = \pi_1(S^{n-(k+1)}) = \Z \ \mbox{\Large$\chi$}_{\{n=k-2\}}$
+
+\begin{proof} {de la Afirmaci\'on}
+
+Tomar $f = (\frac{x_1}{\norm{x}_2} , \dots , \frac{x_{n-k}}{\norm{x}_2}, x_{n-k+1}  , \dots , x_n)$ \qed
+
+\end{proof}
+
+\item Notemos que $\R^3 \setminus A \cup \{\infty\} \simeq S^3 \setminus A$ y entonces por Van Kampen
+$\pi_1(\R^3 \setminus A) = \pi_1(S^3 \setminus A)$, pero $S^3 \setminus A \simeq \R^3 \setminus \{y=0 , z=0\}$ pues tomo la proyecci\'on estereogr\'afica por un punto de $A$. Pero trivialmente $\R^3 \setminus \R \times \{0\} \times \{0\} \simeq S^1 \times \R$ por $f= (\frac{x}{\norm{(x,y,z)}_2} , \frac{y}{\norm{(x,y,z)}_2},z)$ y $ S^1 \times \R \simeq S^1$ por el ejercicio 1, por lo que $\pi_1(\R^3 \setminus A)=\Z$ \qed 
+
+\begin{declaration}
+$\R^3 \setminus A \simeq S^2 \vee S^1$
+\end{declaration}
+
+\begin{proof}
+????? Idem antes Ximeeee ayuda!!
+\end{proof}
+
+\end{enumerate}
+
+\end{proof}
+
+%\begin{small}
+%\textit{Sugerencia: Muestre que $ \R^3\setminus C$ se deforma en un subespacio homeomorfo
+%a~$S^1\vee S^2$}
+%\end{small}
+
+
+\item {
+Sea $ K = I \times I / \sim $ donde $ (x,y) \sim (x',y') $ si se satisface alguna de las siguientes condiciones:
+
+$$( x=x' \ , \ y=y') \text{ \'o } ( \{ y,y' \} = \{ 0,1 \} \text{ y } x=x' ) \text{ \'o } ( \{x,x'\} =\{0,1\} \text{ e } y+y'=1 )$$
+
+El espacio $K$ es la {\em Botella de Klein}. Calcule (una presentaci\'on d)el grupo fundamental de $K$.
+}
+
+\begin{proof}
+
+Hagamos como el toro! Sea $U = I \times I -\{(\frac{1}{2},\frac{1}{2})\}$ y $V= B((\frac{1}{2},\frac{1}{2}),\epsilon)$ entonces, de la misma manera que en el ejercicio 1 con el toro, tenemos que $U \ / \mathord{\sim} \simeq S^1 \vee S^1$ y $V \simeq \{*\}$. Por otro lado $\pi_1(U \cap V) \simeq S^1$ y lo \'unico que nos va a diferenciar del toro va a ser en la presentaci\'on!
+
+Aqu\'i sea $\alpha= \epsilon * e^{2 \pi i t}$ el lazo generador de $\pi_1(U \cap V)$ entonces $\alpha=ab^{-1}ab$!
+
+Entonces tenemos, por el teorema de Van Kampen, que $\pi_1(K)= \Z * \Z * 0 / <ab^{-1}ab = 1> = <a,b> / <ab^{-1}ab = 1>$ \qed
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+%\item ¿C\'omo har\'ia para contruir un espacio arcoconexo cuyo grupo fundamental sea isomorfo a $ \Z_n$? ¿Y uno con grupo fundamental isomorfo a $ \Z_n\times  \Z_m$?
+
+
+
+%ac\'a empieza lo que hab\'ia sacado
+%%%%%%%%%%%%%%%
+%\item Sea $X$ un espacio topol\'ogico y sean $A$,~$B\subseteq X$ dos cerrados
+%simplemente conexos tales que $X=A\cup B$ y $A\cap B$ tiene un solo punto.
+%Entonces todo revestimiento $p:E\to X$ es un homeomorfismo.
+%
+%%%%%%%%%%%%%%%%
+%\item Sea $X$ un espacio topol\'ogico y sean $U$,~$V\subseteq X$ dos abiertos
+%arco-conexos tales que $X=U\cup V$ y $U\cap V$ es no vac\'io y arco-conexo.
+%Sean $x\in U\cap V$ y $\psi:U\to X$ la inclusi\'on.
+%\be
+%
+%\item Si $V$ es simplemente conexo, entonces
+%$\psi_*:\pi_1(U,x)\to\pi_1(X,x)$ es sobreyectivo
+%
+%\item Si $V$ y $U\cap V$ son simplemente conexos, entonces
+%$\psi_*:\pi_1(U,x)\to\pi_1(X,x)$ es un isomorfismo.
+%
+%
+%%%%%%%%%%%%%%%
+%\item\be
+%
+%\item Si $n\geq 2$, entonces la esfera $S^n$ es simplemente conexa.
+%
+%\item Si $n\geq 2$, entonces $\pi_1(\PP^n)\cong \Z_2$.
+%
+%\en
+
+%%%%%%%%%%%%%%%
+%\item\be
+%
+%\item Muestre que $\pi_1(\PP^2_\R\vee\PP^2_ \R)$ es infinito.
+%
+%\item Muestre que $\pi_1(\PP^2_ \R\vee\PP^2_ \R)\cong \Z\rtimes \Z_2$ para
+%una cierta acci\'on de~$ \Z_2$ sobre~$ \Z$.
+%
+%\en
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Clasificacion de revestimientos
+%
+%\item
+%%Una funci\'on se dice {\em homot\'opicamente nula} o {\em null-homot\'opica} si es homot\'opica a una funci\'on constante.
+%\be	\item Probar que si $n>1$, entonces toda funci\'on continua $S^n\to S^1$ es null-homot\'opica.
+%		\item Probar que toda funci\'on continua $P^2\to S^1$ es null-homot\'opica.
+%		\item Exhibir una funci\'on $S^1\times S^1\to S^1$ que no sea null-homot\'opica.
+%		\en
+%	
+%
+%\item
+%Sea $T=S^1\times S^1$ el toro. Considerando el isomorfismo $\pi_1(T,(b_0,b_0))\cong\Z\times\Z$ dado por las proyecciones, describir los revestimientos de $T$ asociados a los subgrupos
+%\be	\item $\Z\times 0\subset \Z\times\Z$;
+%		\item el subgrupo generado por $(1,1)\in\Z\times\Z$;
+%		\item $\{(2n,2m): n,m\in\Z\}$.
+%		\en
+%
+%\item
+%\be	\item Probar que todo isomorfismo de $\pi_1(T,x_0)$ est\'a inducido por alg\'un homeomorfismo $T\to T$ que deja quieto a $x_0$.
+%		\item Probar que si $E$ es un revestimiento conexo de $T$, entonces $E$ es homeomorfo a $\R^2$, $S^1\times\R$ \'o $T$.
+%		
+%		Sugerencia: si $F$ es un grupo abeliano libre de rango $2$ y $N$ es un subgrupo no trivial, entonces existe una base $\{a_1, a_2\}$ de $F$ tal que $\{na_1\}$ es base de $N$ para alg\'un $n$ o bien $\{na_1, ma_2\}$ es base de $N$ para ciertos $n,m$.
+%		\en
+%
+%\item
+%Sea $G$ un grupo topol\'ogico arcoconexo y localmente arcoconexo con elemento neutro $e$, y sea $p:\tilde G\to G$ un revestimiento con $\tilde G$ arcoconexo y $\tilde e\in p^{-1}(e)$. 
+%Probar que la multiplicaci\'on $\mu:G\times G\to G$ y la funci\'on $\nu:G\to G$, $\nu(x)=x^{-1}$ se levantan a funciones $\tilde \mu:\tilde G\times \tilde G\to \tilde G$  y $\tilde \nu:\tilde G\to \tilde G$ que hacen de $\tilde G$ un grupo topol\'ogico con neutro $\tilde e$. Probar adem\'as que $p$ es un morfismo.
+%
+%%\item
+%%Sean $q:X\to Y$  y $r:Y\to Z$ revestimientos. Probar que si $Z$ admite revestimiento universal, entonces $rq$ tambi\'en es revestimiento.
+%
+%\item
+%Probar que si $B$ admite un revestimiento universal, entonces $B$ es semilocalmente simplemente conexo.
+%
+%\item
+%
+%Sean $X, Y, Z$ espacios arcoconexos y localmente arcoconexos y sean $q:X\to Y$, $r:Y\to Z$ funciones continuas. Sea $p=rq$.
+%\begin{enumerate}
+%\item Probar que si $p$ y $r$ son revestimientos, tambi\'en lo es $q$.
+%\item Probar que si $p$ y $q$ son revestimientos, tambi\'en lo es $r$.
+%\item Probar que si $q$ y $r$ son revestimientos y el espacio $Z$ admite un revestimiento universal, entonces $p$ tambi\'en es un revestimiento.
+%\end{enumerate}
+%
+%%\item
+%%Sea $H=\cup_{n\geq 1} \partial B_{1/n}(1/n,0)\subset\R^2$ el {\em arito Hawaiano}.
+%%\be	\item Probar que $H$ no es semilocalmente simplemente conexo.
+%%		\item Sea $C(H)$ el {\em cono} de $H$, que consiste en el subespacio de $\R^3$ formado por la uni\'on de todos los segmentos que unen un punto de $H\subset\R^2\times\{0\}$ con el punto $(0,0,1)$. Probar que $C(H)$ es semilocalmente simplemente conexo pero no localmente simplemente conexo.
+%%		\en
+%
+%\item
+%Sean $E,B$ arcoconexos y localmente arcoconexos, y sea $p:E\to B$ un revestimiento. Una {\em transformaci\'on deck} es un homeomorfismo $h:E\to E$ tal que $ph=p$.
+%\be	\item Sean $e_0,e_1\in p^{-1}(b_0)$. Probar que existe una transformaci\'on deck $h$ tal que $h(e_0)=e_1$ si y s\'olo si $p_*(\pi_1(E,e_0))=p_*(\pi_1(E,e_1))$. Probar que si $h$ existe, entonces es \'unica.
+%		\item Si $H=p_*(\pi_1(E,e_0))$ es normal en $\pi_1(B,b_0)$, entonces $p:E\to B$ se dice un {\em revestimiento regular}. Probar que en ese caso, el grupo de transformaciones deck de $E$ es isomorfo al grupo cociente $\pi_1(B,b_0)/H$.
+%		\item Concluir que si $p:E\to B$ es un revestimiento universal de $B$, entonces $\pi_1(B,b_0)$ es isomorfo al grupo de transformaciones deck.
+%		\en
+%
+%\item
+%Describir el grupo de transformaciones deck del revestimiento usual $p:\R\times\R\to S^1\times S^1$.
+%
+%%\item
+%%Probar que un revestimiento conexo de dos hojas es regular.
+%%
+%%\item
+%%(Dif\'icil) Sea $X$ un espacio arcoconexo, localmente arcoconexo y semilocalmente simplemente conexo.
+%%\be	\item Probar que si $X$ es regular y tiene una base numerable, entonces $\pi_1(X,x)$ es numerable.
+%%		\item Probar que si $X$ es compacto y Hausdorff, entonces $\pi_1(X,x)$ es finitamente generado.
+%%		\en
+
+
+\end{enumerate}
+
+\end{document}

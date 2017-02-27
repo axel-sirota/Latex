@@ -1,0 +1,213 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Hil}{\mathcal{H}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\f}{\mathbb{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\prodint}[1]{\langle #1 \rangle}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Final An\'alisis Funcional}
+
+\bigskip
+
+\chapter{Espacios de Hilbert}
+
+\section{Propiedades Elementales}
+
+\begin{definition}
+Si $\X$ es un espacio vectorial sobre un cuerpo $\f$, un semi-producto interno es $u: \X \times \X \rightarrow \f$ tal que $\forall \alpha, \beta \in \f$ y $x,y,z \in \X$:
+
+\begin{itemize}
+\item $u(\alpha x + \beta y, z) = \alpha u(x,z) + \beta u(y,z)$
+\item $u(\alpha x + \beta y, z) = \bar{\alpha} u(x,z) + \bar{\beta} u(y,z)$
+\item $u(x,x) \geq 0$
+\item $u(x,y) = \bar{u(y,x)}$
+\end{itemize}
+
+\end{definition}
+
+\begin{remark}
+$u(0,y)=u(x,0)=0$
+\end{remark}
+
+Si $u(x,x)=0 \Longrightarrow x=0$ entonces $u$ es un producto interno, lo notaremos: $u(x,y)=\prodint{x,y}$
+
+\begin{proposition}
+
+Si $\prodint{.,.}$ es un semi producto interno en $\X$, entonces:
+\[
+|\prodint{x,y}|^2 \leq \prodint{x,x} \prodint{y,y} \quad \forall x,y \in \X
+\]
+
+Es m\'as, la igualdad se da si $\exists \alpha,\beta \neq 0 \ / \ \prodint{\alpha x + \beta y , \alpha x + \beta y} = 0$
+
+\end{proposition}
+
+\begin{proof}
+
+Sea $\alpha \in \f$ y $x,y \in \X$, entonces:
+
+\[
+0 \leq \prodint{x - \alpha y , x - \alpha y} = \prodint{x,x} - \alpha \prodint{y,x} - \overline{\alpha}{\prodint{x,y}} + |\alpha|^2\prodint{y,y}
+\]
+
+Supongamos que $\prodint{y,x} = be^{i \theta} \ , \ b\geq 0$ y sea $\alpha = te^{-i \theta}$ con $t \in \R$, entonces:
+
+\[
+0 \leq \prodint{x,x} - 2bt + t^2 \prodint{y,y} \ \Longleftrightarrow \ 0 \geq 4b^2 - 4 \prodint{x,x} \prodint{y,y}
+\\
+\Longleftrightarrow \ |\prodint{x,y}|^2 \leq \prodint{x,x} \prodint{y,y}
+\]
+\qed
+\end{proof}
+
+\begin{corollary}
+Si $\prodint{.,.}$ es un producto interno en $\X$, entonces $\norm{x} = \prodint{x,x}^{\frac{1}{2}}$ es una norma en $\X$.
+\end{corollary}
+
+\begin{proposition}
+Sean $f_1,f_2,...,f_n \in \Hil$ espacio de Hilbert, entonces:
+ 
+$$\norm{f_1+f_2 + ... + f_n} ^2 = \sum_{i=0}^{n}{\norm{f_i}^2}$$
+ 
+\end{proposition}
+
+\begin{proof}
+Paja \qed
+\end{proof}
+
+\begin{proposition}
+Si $\Hil$ es un espacio de Hilbert y $f,g \in \Hil$ entonces:
+
+\begin{equation}\label{paralelogramo}
+\norm{f+g}^2 + \norm{f-g}^2 = 2 (\norm{f} ^2 + \norm {g} ^2)
+\end{equation}
+
+Reciprocamente si $\Hil$ es un Banach tal que su norma $\norm{.}$ cumple \ref{paralelogramo}, entonces $\norm{.} = \prodint{.,.}^{\frac{1}{2}}$ para un producto interno tal que $\Hil$ es Hilbert.
+
+\end{proposition}
+
+\begin{proof}
+
+$\Longrightarrow)$ Es f\'acil
+
+$\Longleftarrow)$ Supongamos que vale \ref{paralelogramo} y que $\f = \R $ y sea $u(x,y)= \frac{1}{4} \norm{x+y}^2 - \frac{1}{4} \norm{x-y}^2$, veamos que es un producto interno.
+
+\begin{itemize}
+
+\item $u(x,y)=u(y,x)$
+
+Trivial
+
+\item $\norm{x}=u(x,x)^{\frac{1}{2}}$
+
+$u(x,x) = \frac{1}{4} \norm{2x}^{2} = \frac{4}{4} \norm{x}^2 = \norm{x}^2$. Como ambos son positivos listo.
+
+\item $u$ es $\X \times \X$ continua
+
+Por definci\'on $\norm{.}$, sumar y restar son continuos y composici\'on de continuas es continua.
+
+\item  $$
+
+\end{itemize}
+\end{proof}
+
+
+\chapter{Operadores en Espacios de Hilbert}
+
+\end{document}

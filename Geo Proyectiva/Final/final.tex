@@ -1,0 +1,653 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Final}
+	
+	\bigskip
+
+\section{Introcci\'on y resultados previos}
+
+En este final vamos a demostrar el teorema de Gauss-Bonnet que relaciona la curvatura total de una superficie regular con una caracter\'istica topol\'ogica de la superficie medida en la caracter\'istica de Euler-Poincar\'e.
+
+Comenzemos con unos lemas que nos facilitar\'an los c\'alculos.
+
+\begin{lemma}{Angulo de campos}
+	\label{Existencia de funcion de angulo}
+	\\
+	
+	Seam $a,b$ funciones diferenciables tal que $a^2 + b^2 = 1$ y sea $\phi_0$ tal que $\cos(\phi_0)=a(t_0), \sin(\phi_0)=b(t_0)$
+	
+	Luego:
+	
+	\begin{equation*}
+		\phi = \phi_0 + \int_{t_0}^{t}{a\dot{b} - b\dot{a} dt}
+	\end{equation*}
+	
+	Cumple que $a = \cos(\phi), b = \sin(\phi)$
+	
+\end{lemma}
+
+\begin{proof}
+	Notemos que basta ver que:
+	
+	\[
+	0 = (a- \cos(\phi))^2 + (b- \sin(\phi))^2 = 2 - 2 \left(a \cos(\phi) + b \sin(\phi)\right)
+	\]
+	
+	que pasa si y s\'olo si
+	
+	\[
+	A = a \cos(\phi) + b \sin(\phi) = 1
+	\]
+	
+	Por un lado recordemos que $a^2 + b^2 = 1$ por lo que $a\dot{a} = - b \dot{b}$ y juntando todo:
+
+	\begin{equation*}
+		\begin{aligned}
+			\dot{A} = & -a \sin(\phi)\dot{\phi} + \dot{a}\cos(\phi) +b \cos(\phi)\dot{\phi} + \dot{b}\sin(\phi) \\
+					= & -a \sin(\phi) \left(a\dot{b} - b\dot{a}\right)+ \dot{a}\cos(\phi) +b \cos(\phi)\left(a\dot{b} - b\dot{a}\right) + \dot{b}\sin(\phi) \\
+					= & -\sin(\phi) \left(aa\dot{b} + bb \dot{b}\right)+ \dot{a}\cos(\phi)  + \cos(\phi)\left(- a^2\dot{a} - b^2\dot{a}\right) + \dot{b}\sin(\phi) \\
+					= & -\sin(\phi)\dot{b}  \left(a^2+ b^2 \right)+ \dot{a}\cos(\phi)  - \dot{a}  \cos(\phi)\left( a^2 + b^2 \right) + \dot{b}\sin(\phi) \\
+					= & 0
+		\end{aligned}
+	\end{equation*}
+	
+	Como $A(t_0) = 1$ se tiene que $A = 1$. \qed
+	
+\end{proof}
+
+Recordemos que dada una curva $\alpha$ en $S$ y un campo $X \in \chi_c$ esta bien definida la \textit{derivada covariante} de $w$ dada por:
+
+\begin{equation*}
+	\dfrac{Dw}{dt} = \left(\dot{w} \right)^{T}
+\end{equation*}
+
+Si se cumple que $\norm{w} = 1$ entonces $\dfrac{Dw}{dt} \perp N, \dfrac{Dw}{dt} \perp w$ por lo que:
+
+\[
+\dfrac{Dw}{dt} = \lambda N \times w
+\]
+
+A $\lambda = \norm{\dfrac{Dw}{dt}}$ se le denomina el valor algebraico de la derivada covariante y lo notaremos $\lambda = \left[\dfrac{Dw}{dt}\right]$.
+
+\begin{definition}{\'Angulo entre campos vectoriales}
+	\\
+	
+	Sea $\alpha$ una curva en $S$ y $v,w \in \chi_{\alpha}$ tal que $\norm{v} = \norm{w} = 1$, luego existe $\bar{v}$ tal que $\sett{v,\bar{v}}$ son base de $T_{\alpha(t)} S$ para todo $t \in I$. Por lo tanto existen $a,b$ funciones diferenciables tal que $w = av + b \bar{v}$ y por \ref{Existencia de funcion de angulo} existe $\phi$ tal que $w = \cos(\phi)v + \sin(\phi) \bar{v}$.
+	
+\end{definition}
+
+\begin{lemma}
+	\label{Derivada covariante y angulo}
+	
+	Sea $\alpha$ una curva en $S$ y $v,w \in \chi_{\alpha}$ tal que $\norm{v} = \norm{w} = 1$, luego:
+	
+	\begin{equation*}
+		\left[\dfrac{Dw}{dt}\right] - \left[\dfrac{Dv}{dt}\right] = \dfrac{d\phi}{dt}
+	\end{equation*}
+	
+	Donde $\phi$ esta definida anteriormente.
+	
+\end{lemma}
+
+\begin{proof}
+	
+	Sean $\bar{v} = N \times v$ y $\bar{w} = N \times w$, luego:
+	
+	\begin{equation*}
+		\begin{aligned}
+			w = & \cos(\phi)v + \sin(\phi) \bar{v} \\
+			\bar{w} = & \cos(\phi)N \times v + \sin(\phi) N \times \bar{v} \\
+			= & \cos(\phi) \bar{v} - \sin(\phi) v 
+		\end{aligned}
+	\end{equation*}
+	
+	Luego tenemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\dot{w} = & - \sin(\phi)v \dot{\phi} + \cos(\phi) \dot{\phi}\bar{v} + \cos(\phi)\dot{v} + \sin(\phi) \dot{\bar{v}} \\
+		\ip{\dot{w},\bar{w}} = & -\dot{\phi} \cos{\phi} \sin(\phi) \underbrace{\ip{v,\bar{v}}}_{= 0} + \cos^2(\phi) \dot{\phi} \underbrace{\ip{\bar{v}, \bar{v}}}_{= 1}  + \cos^2(\phi) \ip{\dot{v}, \bar{v}} + \sin(\phi)\cos(\phi) \underbrace{\ip{\dot{\bar{v}}, \bar{v}}}_{= 0}  \\_{= 0} 
+		& + \sin^2(\phi) \dot{\phi}  \underbrace{\ip{v,v} }_{= 1} - \cos(\phi)\sin(\phi) \dot{\phi} \underbrace{\ip{\bar{v},v} }_{=0}- \sin(\phi)\cos(\phi) \underbrace{\ip{\dot{v},v} }_{= 0} - \sin^2(\phi) \underbrace{\ip{\dot{\bar{v}},v}}_{ = -\ip{\dot{v},\bar{v}} \text{ Pues } \ip{v, \bar{v}} = 0} \\
+		= & \dot{\phi} + \ip{\dot{v},\bar{v}}
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo que conclu\'imos que:
+	
+	\begin{equation*}
+	 \left[\dfrac{Dw}{dt}\right] = \ip{\dot{w} , N \times w} = \ip{\dot{w}, \bar{w}} = \dot{\phi} + \ip{\dot{v},\bar{v}} = \dot{\phi} + \left[\dfrac{Dv}{dt}\right] \qed
+	\end{equation*}
+	
+\end{proof}
+
+\begin{lemma}
+	\label{Valor de la derivada covariante en funcion de tensor fund}
+	
+	Sea $(U,x)$ una carta alrededor de $p$ de una superficie $S$ y supongamos que $f := x^{-1}$ es una parametrizaci\'on ortogonal. Sea $\alpha = f \circ g$ una curva en $U$ y $w \in \chi_{\alpha}$ tal que $\norm{w} = 1$, luego:
+	
+	\[
+		\left[\dfrac{Dw}{dt}\right] = \dfrac{1}{2 \sqrt{EG}} \left(G_u \dfrac{dv}{dt} - E_v \dfrac{du}{dt}\right) + \dfrac{d \phi}{dt}
+	\]
+	
+	Donde $\phi(t)$ esta dado por \ref{Existencia de funcion de angulo} entre $\partial x_{1}$ y $w$.
+	
+\end{lemma}
+
+\begin{proof}
+	
+	Sean $e_1 = \dfrac{\partial x_1}{\sqrt{E}}, e_2 = \dfrac{\partial x_2}{\sqrt{G}}$, luego por \ref{Derivada covariante y angulo} se tiene:
+	
+	\begin{equation*}
+		\left[\dfrac{Dw}{dt}\right] = \left[\dfrac{De_1}{dt}\right] + \dfrac{d \phi}{dt}
+	\end{equation*}
+	
+	Pero notemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\left[\dfrac{De_1}{dt}\right] = & \ip{\dfrac{de_1}{dt}, N \times e_1} \\
+		= & \ip{\dfrac{de_1}{dt}, e_2} \\
+		= & \ip{(e_1)_u, e_2} \dfrac{du}{dt} + \ip{(e_1)_v, e_2} \dfrac{dv}{dt} \\
+		= & \underbrace{- \frac{1}{2} \dfrac{E_v}{\sqrt{EG}}}_{{\ip{f_u,f_v} = 0 \ \Longrightarrow \ip{f_{uu} , f_v} = -  \ip{f_u,f_{uv}} = - \frac{1}{2}E_v}} \dfrac{du}{dt} + \ip{(e_1)_v, e_2} \dfrac{dv}{dt}	\\
+		= & - \frac{1}{2} \dfrac{E_v}{\sqrt{EG}}\dfrac{du}{dt} + \underbrace{\frac{1}{2} \dfrac{G_u}{\sqrt{EG}}}_{{\ip{f_{uv},f_v} = \ip{f_{vu},f_v} = \frac{1}{2}G_u}} \dfrac{dv}{dt}	\\
+		= & \dfrac{1}{2 \sqrt{EG}} \left(G_u \dfrac{dv}{dt} - E_v \dfrac{du}{dt}\right)  \qed	
+	\end{aligned}
+	\end{equation*}
+	
+
+\end{proof}
+
+\begin{lemma}
+	\label{Curvatura Gaussiana en funcion del primer tensor}
+		
+	Sea $(U,x)$ una carta alrededor de $p$ de una superficie $S$ y supongamos que $f := x^{-1}$ es una parametrizaci\'on ortogonal, entonces vale:
+	
+	\[
+	K = -\dfrac{1}{2\sqrt{EG}} \left(\left(\dfrac{E_v}{\sqrt{EG}}\right)_v + \left(\dfrac{G_u}{\sqrt{EG}}\right)_u \right)
+	\]
+	
+\end{lemma}	
+
+\begin{proof}
+	Recordemos de la demostraci\'on del teorema Egregium que:
+	
+	\[
+	-EK = \Gamma^{1}_{12}\Gamma^{2}_{11} + \left(\Gamma^{2}_{12}\right)_u + \Gamma^{2}_{12} \Gamma^{2}_{12} - \Gamma^{2}_{12}\Gamma^{1}_{11} - \left(\Gamma^{2}_{12}\right)_v - \Gamma^{2}_{11}  \Gamma^{2}_{22}
+	\]
+	
+	Por otro lado al deducir los s\'imbolos de Christoffel dedujimos los siguientes tres sistemas de ecuaciones:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\frac{1}{2} E_u = & \ip{f_{uu}, f_u} = & \Gamma^{1}_{11} E + \Gamma^{2}_{11}F \\
+		F_u - \frac{1}{2} E_v = & \ip{f_{uu}, f_v} = & \Gamma^{1}_{11} F + \Gamma^{2}_{11}G \\
+		\\
+		\frac{1}{2} E_v = & \ip{f_{uv}, f_u} = & \Gamma^{1}_{12} E + \Gamma^{2}_{12}F \\
+		\frac{1}{2} G_u = & \ip{f_{uv}, f_v} = & \Gamma^{1}_{12} F + \Gamma^{2}_{12}G \\
+		\\
+		F_v - \frac{1}{2} G_u = & \ip{f_{vv}, f_u} = & \Gamma^{1}_{22} E + \Gamma^{2}_{22}F \\
+		\frac{1}{2} G_v = & \ip{f_{vv}, f_v} = & \Gamma^{1}_{22} F + \Gamma^{2}_{22}G 		
+	\end{aligned}
+	\end{equation*}
+	
+	Pero como la parametrizaci\'on es ortogonal tenemos que $F = 0$ por lo que esto se resuelve:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\Gamma^{1}_{11} = \dfrac{E_u}{2E}\\
+	\Gamma^{1}_{12} = \dfrac{E_v}{2E}\\
+	\Gamma^{1}_{22} = - \dfrac{G_u}{2E}\\
+	\Gamma^{2}_{11} = - \dfrac{E_v}{2G} \\
+	\Gamma^{2}_{12} = \dfrac{G_u}{2G}\\
+	\Gamma^{2}_{22} = \dfrac{G_v}{2G}
+	\end{aligned}
+	\end{equation*}
+	
+	Y juntando todo:
+	
+	\begin{equation*}
+	\begin{aligned}
+		-EK = & -\dfrac{E_v}{2E}\dfrac{E_v}{2G} + \left(\dfrac{G_u}{2G}\right)_u + \dfrac{G_u}{2G}\dfrac{G_u}{2G} - \dfrac{G_u}{2G}\dfrac{E_u}{2E} - \left(\dfrac{G_u}{2G}\right)_v + \dfrac{E_v}{2G}  \dfrac{G_v}{2G} \\
+			= & - \dfrac{E_v^2}{4EG} + \dfrac{G_{uu}}{2G} - \dfrac{G_{u}^2}{4G^2} - \dfrac{E_uG_u}{4EG} + \dfrac{E_vv}{2G} - \dfrac{E_vG_v}{4G^2} \\
+			\\
+		K = & \dfrac{E_v^2}{4E^2G} - \dfrac{G_{uu}}{2EG} + \dfrac{G_{u}^2}{4EG^2} + \dfrac{E_uG_u}{4E^2G} - \dfrac{E_vv}{2EG} + \dfrac{E_vG_v}{4EG^2} \\
+		= &  -\dfrac{1}{2\sqrt{EG}} \left(\left(\dfrac{E_v}{\sqrt{EG}}\right)_v + \left(\dfrac{G_u}{\sqrt{EG}}\right)_u \right) \qed
+	\end{aligned}
+	\end{equation*}
+	
+\end{proof}
+
+\begin{definition}
+	Sea $\alpha:[0,l] \rightarrow S$ una funci\'on continua, decimos que es una curva \textit{simple, cerrada y regular a trozos} si:
+	
+	\begin{enumerate}
+		
+		\item $\alpha(0) = \alpha(l) $ 
+		\item Para todos $t_1 \neq t_2 \in [0,l]$ se tiene que $\alpha(t_1) \neq \alpha(t_2)$
+		\item Existe una partici\'on $\Pi$ de $[0,l]$ tal que para todo subintervalo $I_j \in \Pi$ se tiene que $\alpha |_{I_j}$ es regular.
+		
+	\end{enumerate}
+	
+\end{definition}
+
+Notemos que si tenemos una curva simple, cerrada y regular a trozos entonces para todos los extremos $t_i$ de la partici\'on $\Pi$ est\'a bien definido:
+
+\begin{itemize}
+	\item $\lim\limits_{t \rightarrow t_i^-}{\dot{\alpha}(t)} := \dot{\alpha}(t_i - 0) \neq 0$
+	\item $\lim\limits_{t \rightarrow t_i^+}{\dot{\alpha}(t)} := \dot{\alpha}(t_i + 0) \neq 0$
+\end{itemize}
+
+\begin{definition}
+	Dada una curva simple, cerrada y regular a trozos en una superficie orientada $S$ con normal $N$, entonces definimos el \textit{\'angulo externo} en el v\'ertice $\alpha(t_i)$ como $\abs{\theta_i} := ang \left(\dot{\alpha}(t_i - 0), \dot{\alpha}(t_i + 0) \right)$ y el signo dado por $sg \left(det(\dot{\alpha}(t_i - 0), \dot{\alpha}(t_i + 0), N)\right)$.
+	
+	En caso de que $\abs{\theta_i} = \pi$ entonces por la regularidad a trozos existe $\epsilon' > 0$ tal que $det \left(\dot{\alpha}(t_i - \epsilon), \dot{\alpha}(t_i + \epsilon), N\right) \neq 0$ para todo $0 < \epsilon < \epsilon'$.
+	
+\end{definition}
+
+Recuerdo:
+
+\begin{theorem}
+	Sea $c : [a,b] \rightarrow \R^2$ una curva regular cerrada, simple y orientada positivamente, entonces:
+	
+	\begin{equation*}
+		I_{c} = \frac{1}{2\pi} \int_{a}^{b}{k_c ds} = 1
+	\end{equation*}
+	
+\end{theorem}
+
+Cuya generalizaci\'on a superficies es:
+
+\begin{theorem}{De las tangentes cambiantes}
+	\label{Teo de las tangentes cambiantes}
+	\\
+	Sea $\alpha$  una curva simple, cerrada y regular a trozos en una superficie orientada $S$ con normal $N$, adem\'as sea $\Pi = \sett{t_1 , \dots , t_i , \dots , t_k}$ la partici\'on asociada a $\alpha$ tal que $\alpha|_{[t_i,t_{i+1}]}$ es regular. Consideremos $\phi_i$ que mida el \'angulo entre $f_u$ y $\dot{\alpha}$; entonces:
+	
+	\[
+	\sum\limits_{i = 0}^{k}{\left(\phi_i (t_{i+1}) - \phi_i(t_i)\right)} + \sum\limits_{i = 0}^{k}{\theta_i} = \pm 2\pi
+	\]	
+	
+	Donde el signo depende de la orientaci\'on de $\alpha$.
+	
+\end{theorem}
+
+\begin{proof}{Caso sin v\'ertices}
+	
+	Sea $g$ el primer tensor fundamental en $S$ y notemos $l(u,v) = <u,v>$ al producto interno usual de $\R^2$, entonces para $v \in [0,1]$:
+	
+	\[
+		g^{v} = vg + (1-v)l
+	\]
+	
+	resulta una m\'etrica Riemmaniana para $S$. Sean $e_{1}^{v},e_{2}^{v}$ una base ortonormal seg\'un $g^v$ de $T_pS$ dada por $e_{1}^{v} = \dfrac{f_u}{\norm{f_u}_{g^v}}$. Sea $\theta^v$ el \'angulo entre $e_{1}^{v}$ y $\dot{\alpha}$ que por \ref{Existencia de funcion de angulo} existe y es continua.
+	
+	Consideremos $h(v) := \theta^{v}(l) - \theta^{v}(0)$ que es una funci\'on continua respecto de $v$. Es conocido que $h : [0,1] \rightarrow 2\pi\Z$ y entonces como $\Z$ es discreto se tiene que $h$ es constante. Por \ref{Teo de las tangentes cambiantes} adem\'as se sabe que $h(0)=2 \pi$ por lo que conclu\'imos que $h(1) = \theta(l) - \theta(0) = 2\pi$. \qed
+	
+\end{proof}
+
+\begin{definition}
+	Sea $S$ una superficie orientada, un subconjunto $R \subset S$ se dice una \textit{regi\'on} si es la uni\'on de una abierto conexo y su frontera. Similarmente $R$ se dice una \textit{regi\'on simple} si $R$ es homeomorfo a un disco y $\partial R = \alpha(I)$ con $\alpha$ una curva simple, cerrada y regular a trozo.
+	
+	En ese caso decimos que $\alpha$ esta \textit{orientada positivamente} si para todo $t \in I$ y para cada curva $\beta$ tal que $\beta(0) = \alpha(t), \dot{\beta}(0) \neq \dot{\alpha}(t)$ se tiene que $\ip{\dot{\beta}(0) , N \times \dot{\alpha}(t)} > 0$. 
+	
+\end{definition}
+
+Intuitivamente esto refiere a que recorriendo la curva $\alpha$ en la direcci\'on de $N$ se tiene que a la izquierda se encuentra $R$.
+
+\begin{definition}
+	
+	Sea $f$ una parametrizaci\'on de una superficie orientada $S$ alrededor de un punto $p$, luego si $g$ es diferenciable definimos para una regi\'on acotada de $f(A)$:
+	
+	\[
+	\iint_{f^{-1}(R)}{g\sqrt{EG-F^2} dudv}
+	\]
+	
+	Como la integral de $g$ sobre $R$ y la notaremos $\iint_{R}fd\sigma$. 
+	
+\end{definition}
+
+\section{El teorema de Gauss-Bonnet local}
+
+\begin{theorem}{El teorema de Gauss-Bonnet local}
+	\label{Gauss-Bonnet local}
+	\\
+	Sea $(U,x)$ una carta alrededor de un punto $p \in S$ una superficie orientada, supongamos que $x^{-1} :=f$ sea una parametrizaci\'on ortogonal compatible con la orientaci\'on de $S$ y $x(U) := A \subset \R^2$ es homeomorfo a un disco. Sea $R \subset U$ una regi\'on simple y sea $\alpha$ la parametrizaci\'on de su frontera, asumamos adem\'as que $\alpha$ esta orientada positivamente y reparametrizada por longitud de arco; finalmente sean $\alpha(t_0) , \dots , \alpha(t_k)$ y $\theta_0, \dots, \theta_k$ los v\'ertices y \'angulos externos de $\alpha$. Entonces:
+	
+	\begin{equation*}
+		\int k_g ds + \iint_{R} Kd\sigma + \sum\limits_{i=0}^{k}{\theta_i} = 2\pi
+	\end{equation*}
+	
+	Donde $k_g$ es la curvatura geod\'esica de los arcos regulares de $\alpha$, la integral se interpreta como la suma de los subintervalos donde $\alpha$ es regular y $K$ es la curvatura gaussiana de $S$.
+	
+\end{theorem}
+
+\begin{proof}
+	
+	Por \ref{Valor de la derivada covariante en funcion de tensor fund} tenemos que:
+	
+	\[
+	k_g(s) = \dfrac{1}{2 \sqrt{EG}} \left(G_u \dfrac{dv}{ds} - E_v \dfrac{du}{ds}\right) + \dfrac{d \phi_i}{ds}
+	\]
+	
+	Por lo que:
+	
+	\[
+	\sum\limits_{i=0}^{k}{\int_{t_i}^{t_{i+1}}{k_g(s)ds}} = \sum\limits_{i=0}^{k}{\int_{t_i}^{t_{i+1}}{\left(\dfrac{G_u}{2 \sqrt{EG}} \dfrac{dv}{ds} - \dfrac{E_v}{2 \sqrt{EG}} \dfrac{du}{ds}\right)}} + \sum\limits_{i=0}^{k}{\int_{t_i}^{t_{i+1}}{\dfrac{d \phi_i}{ds}}}
+	\]
+	
+	Y por el teorema de Gauss-Green se tiene que:
+	
+	\[
+		\sum\limits_{i=0}^{k}{\int_{t_i}^{t_{i+1}}{k_g(s)ds}} = \iint_{x(R)}{ \left\lbrace \left(\dfrac{G_u}{2 \sqrt{EG}}\right)_v + \left(\dfrac{E_v}{2 \sqrt{EG}}\right)_u \right\rbrace du dv}
+	\]
+	
+	Pero por \ref{Curvatura Gaussiana en funcion del primer tensor} se tiene que:
+	
+	\[
+		\iint_{x(R)}{ \left\lbrace \left(\dfrac{G_u}{2 \sqrt{EG}}\right)_v + \left(\dfrac{E_v}{2 \sqrt{EG}}\right)_u \right\rbrace du dv} = - \iint_{x(R)}{K\sqrt{EG}dudv} = - \iint_{x(R)}{K d\sigma} 
+	\]
+	
+	Finalmente por \ref{Teo de las tangentes cambiantes} tenemos que:
+	
+	\[
+		\sum\limits_{i=0}^{k}{\int_{t_i}^{t_{i+1}}{\dfrac{d \phi_i}{ds}}} = \sum\limits_{i=0}^{k}{\phi_i(t_{i+1}) - \phi_i(t_i)} = 2\pi - \sum\limits_{i=0}^{k}{\theta_i}
+	\]
+	
+	LUego juntando todo llegamos al resultado esperado. \qed
+	
+\end{proof}
+
+\section{El teorema de Gauss-Bonnet global}
+
+\begin{definition}
+	Una regi\'on $R \subset S$ se dice \textit{regular} si $R$ es compacto y $\partial R$ es la uni\'on de finitas curvas cerradas, simples y regulares a trozos que no se intersecan.
+\end{definition}
+
+\begin{remark}
+	Si $S$ es una superficie regular compacta, entonces $S$ es una regi\'on regular con frontera nula
+\end{remark}
+
+\begin{definition}
+	
+	Sea $R$ una regi\'on regular que tiene solo $3$ v\'ertices con \'angulos externos $\theta_i \neq 0$, entonces decimos que $R$ es un \textit{tri\'angulo}.
+	
+\end{definition}
+
+\begin{definition}
+	Una \textit{triangulaci\'on} de una regi\'on regular $R \subset S$ es una familia finita $\mathcal{J}$ de tri\'angulos $T_i$ tal que:
+	
+	\begin{itemize}
+		\item $\bigcup\limits_{i=0}^{k}{T_i} = R$
+		\item Si $T_i \cap T_j \neq \emptyset$, entonces $T_i \cap T_j$ es un lado com\'un de $T_i,T_j$ o es un v\'ertice com\'un de $T_i,T_j$.
+	\end{itemize}
+	
+\end{definition}
+
+\begin{definition}
+	Dada una regi\'on regular $R \subset S$ y una triangulaci\'on $\mathcal{J}$ definimos $\chi_R = F-E+V$ la \textit{caracter\'istica de Euler Poincar\'e}, donde $F$ es el n\'umero de tri\'angulos, $E$ es el n\'umero de lados y $V$ el n\'umero de v\'ertices.
+\end{definition}
+
+Asumamos los siguientes resultados topol\'ogicos:
+
+\begin{proposition}
+	\label{existencia de triangulacion}
+	Toda regi\'on regular de una superficie regular admite una triangulaci\'on
+\end{proposition}
+
+\begin{proposition}
+	\label{Existencia de triangulacion linda}
+	Sea $S$ una superficie regular orientada y sea $\sett{x^{-1}_{\alpha}}_{\alpha \in A}$ una familia de parametrizaciones compatibles con la orientaci\'on compatible con la orientaci\'on de $S$. Sea $R \subset S$ una regi\'on regular, entonces existe una triangulaci\'on $\mathcal{J}$ de $R$ tal que todo tri\'angulo $T \in \mathcal{J}$ esta contenido en una \'unica carta $(U,x_{\alpha})$. Es m\'as, si la frontera de cada tri\'angulo de $\mathcal{J}$ esta orientada positivamente, entonces tri\'angulos adyacentes determinan orientaciones opuestas en el lado com\'un.
+\end{proposition}
+
+\begin{proposition}
+	Si $R \subset S$ es una regi\'on regular de una superficie $S$ entonces la caracter\'istica de Euler Poincar\'e no depende de la triangulaci\'on de $R$.
+\end{proposition}
+
+\begin{proposition}
+	\label{valores de euler en superficies}
+	Sea $S$ una superficie compacta y conexa, entonces $\chi_S = 2 - 2*g$ para $g$ la cantidad de manijas de la superficie. Es m\'as si $S'$ cumple que $\chi_{S'} = \chi_S$ entonces $S'$ es homeomorfa a $S$
+\end{proposition}
+
+\begin{proposition}
+	\label{integral sobre region regular bien def}
+	Dada una regi\'on regular $R \subset S$ entonces la integral:
+	
+	\[
+	\sum\limits_{i=0}^{k}{\iint_{x_{i}(T_i)}{f \sqrt{E_iG_i - F_i^2}du_idv_i}}
+	\]
+	
+	No depende de la triangulaci\'on $\mathcal{J}$ elegida o el atlas $\sett{x_{i}}$ elegido sobre $S$. Entonces la integral esta bien definida y la notaremos $\iint_{R}f d\sigma$, la \textit{integral de f sobre la regi\'on regular $R$}
+\end{proposition}
+
+\begin{theorem}
+	\label{G-B global}
+	Sea $R \subset S$ una regi\'on regular en una superficie orientada, sean $\alpha_i$ curvas cerradas, simples, orientadas positivamente, reparametrizadas por longitud de arco y regulares a trozos que no se intersecan tal que $\partial R = \cup \alpha_i(I)$.Finalmente sean $\theta_0, \dots, \theta_k$ los \'angulos externos de las $\alpha_i$. Entonces:
+	
+	\begin{equation*}
+	\sum\limits_{i=0}^{n}\int_{\alpha_i} k_g ds + \iint_{R} Kd\sigma + \sum\limits_{i=0}^{k}{\theta_i} = 2\pi\chi_R
+	\end{equation*}
+	
+	Donde $k_g$ es la curvatura geod\'esica de los arcos regulares de $\alpha_i$, la integral se interpreta como la suma de los subintervalos donde $\alpha_i$ es regular y $K$ es la curvatura gaussiana de $S$.
+\end{theorem}
+
+\begin{proof}
+	Sea $\mathcal{J}$ la triangulaci\'on de $R$ dada por \ref{Existencia de triangulacion linda} en un atlas ortogonal. Aplicando a cada tri\'angulo \ref{Gauss-Bonnet local} y \ref{integral sobre region regular bien def} y sumando obtenemos:
+	
+	\begin{equation*}
+		\sum\limits_{i=0}^{n}\int_{\alpha_i} k_g ds + \iint_{R} Kd\sigma + \sum\limits_{j,k=1}^{F,3}{\theta_{j,k}} = 2\pi F
+	\end{equation*}
+	
+	Donde $F$ es la cantidad de tri\'angulos y $\theta_{j,1} , \theta_{j,2}$ y $ \theta_{j,3}$ son los \'angulos exteriores del tri\'angulo $T_j \in \mathcal{J}$. Sean $\phi_{j,k} = \pi - \theta_{j,k}$, entonces:
+	
+	\begin{equation*}
+		\sum\limits_{j,k}{ \theta_{j,k}} = \sum\limits_{j,k}{\pi} - \sum\limits_{j,k}{\phi_{j,k}} = 3 \pi F -  \sum\limits_{j,k}{\phi_{j,k}}
+	\end{equation*}
+	
+	Sea:
+	
+	\[
+	\begin{aligned}
+		E_e = & \text{n\'umero de lados externos de } \mathcal{J} \\
+		E_i = & \text{n\'umero de lados internos de } \mathcal{J} \\
+		V_e = & \text{n\'umero de v\'ertices externos de } \mathcal{J} \\
+		V_i = & \text{n\'umero de v\'ertices internos de } \mathcal{J}
+	\end{aligned}
+	\]
+	
+	Como las curvas $\alpha_{i}$ son cerradas entonces $E_e = V_e$ y adem\'as es simple ver que $3F = 2E_i + E_e$ por lo que:
+	
+	\begin{equation*}
+	\sum\limits_{j,k}{ \theta_{j,k}} =  2\pi E_i + \pi E_e -  \sum\limits_{j,k}{\phi_{j,k}}
+	\end{equation*}
+	
+	Observemos ahora que los v\'ertices externos pueden ser v\'ertices de las curvas o introducidos por la triangulaci\'on, sea por lo tanto $V_e = V_{ec} + V_{et}$. Como adem\'as la suma de los v\'ertices internos es $2 \pi$ obtenemos:
+	
+	\begin{equation*}
+	\sum\limits_{j,k}{ \theta_{j,k}} =  2\pi E_i + \pi E_e -  2 \pi V_i - \pi V_{et} - \sum\limits_{l}{\phi_{l}}
+	\end{equation*}	
+	
+	Sumando y restando $\pi E_e$ y al restar considerando que $E_e =  V_e$ entonces
+	
+	\begin{equation*}
+	\begin{aligned}
+	\sum\limits_{j,k}{ \theta_{j,k}} =  & 2\pi E_i + 2\pi E_e -  2 \pi V_i - \pi V_{et} - \pi V_e - \pi V_{ec} + \sum\limits_{l}{\theta_{l}} \\
+									 = & 2\pi E - 2\pi V + \sum\limits_{l}{\theta_{l}}
+	\end{aligned}	
+	\end{equation*}		
+	
+	Juntando todo:
+
+	\begin{equation*}
+	\sum\limits_{i=0}^{n}\int_{\alpha_i} k_g ds + \iint_{R} Kd\sigma + \sum\limits_{l}{\theta_l} = 2\pi (F-E+V) = 2\pi \chi_R \qed
+	\end{equation*}	
+	
+\end{proof}
+
+\section{Aplicaciones}
+
+\begin{corollary}
+	Si $R$ es una regi\'on simple entonces recuperamos \ref{Gauss-Bonnet local}
+\end{corollary}
+
+\begin{proof}
+	Claramente $\chi_R = 1$. \qed
+\end{proof}
+
+\begin{corollary}
+	Sea $S$ una superficie compacta y orientable, entonces:
+	
+	\[
+	\iint_S Kd\sigma = 2\pi \chi_S
+	\]
+	
+\end{corollary}
+
+\begin{proof}
+	$S$ es una regi\'on regular sin frontera y \ref{G-B global} \qed
+\end{proof}
+
+\begin{corollary}
+	\label{Curvatura positiva es homeo a la esfera}
+	Una superficie regular compacta de curvatura positiva es homeomorfa a la esfera.
+\end{corollary}
+
+\begin{proof}
+	Por \ref{G-B global} es claro que $\chi_S > 0$ pues $K>0$, por \ref{valores de euler en superficies} se tiene que $S$ es homeomorfa a la esfera. \qed
+\end{proof}
+
+\begin{corollary}
+	Sea $S$ una superficie compacta de curvatura positiva, entonces si existen dos geod\'esicas cerradas y simples estas se intersecan.
+\end{corollary}
+
+\begin{proof}
+	Por \ref{Curvatura positiva es homeo a la esfera} se tiene que $S$ es homeomorfa a la esfera; supongamos que $\Gamma_1 \cap \Gamma_2 = \emptyset$, luego $\Gamma_1 \cup \Gamma_2$ es la frontera de una regi\'on regular $R$ tal que $\chi_R = 0$, luego por \ref{G-B global} $K = 0$. \qed
+\end{proof}
+\end{document}

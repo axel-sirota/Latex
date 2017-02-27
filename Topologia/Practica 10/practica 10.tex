@@ -1,0 +1,545 @@
+\documentclass[11pt,a4paper,oneside]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,accents, amsfonts, amssymb}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage[all]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand\PP{\mathbb{P}}
+\def\T{\mathcal{T}}
+\renewcommand\inc{\hookrightarrow}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def \le{\leqslant}
+\def \ge{\geqslant}
+\def\sen{{\rm sen}}
+\def\cos{{\rm cos}}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia-- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Homolog\'ia}
+
+\bigskip
+
+\sffamily
+
+\begin{enumerate}
+
+%\item 
+% (Lema de los 5) Dado el siguiente diagrama de filas exactas
+%$$\xymatrix{
+%M_1 \ar[r] \ar[d]_a & M_2\ar[r]\ar[d]_b & M_3\ar[r]\ar[d]_c &
+%M_4\ar[r]\ar[d]_d & M_5\ar[d]_e\\
+%N_1\ar[r] & N_2\ar[r] & N_3 \ar[r] & N_4\ar[r] & N_5}$$
+%
+%Pruebe que
+%\begin{enumerate}
+%\item Si $b$ y $d$ son mono y $a$ es epi, entonces $c$ es mono.
+%\item Si $b$ y $d$ son epi y $e$ es mono, entonces $c$ es epi.
+%\item Concluya que si $a,b,d$ y $e$ son iso, entonces $c$ es iso.
+%\end{enumerate}
+
+\item
+Halle todos los grupos abelianos posibles $M$ en la siguiente
+sucesi\'on exacta corta:
+$$0\to \Z_2\to M \to \Z_4\to 0$$
+
+\begin{proof}
+Si tengo tiempo la hago...
+\end{proof}
+
+\item
+Pruebe que una sucesi\'on exacta corta de complejos de cadenas
+\[\xymatrix{0 \ar[r] & A_* \ar[r]^f& B_*  \ar[r]^g & C_*  \ar[r] &  0}\]
+induce una sucesi\'on exacta larga de homolog\'ia
+\[\xymatrix{\dots\ar[r]^{ \partial_{n+1}}& H_n(A)\ar[r]^{f_n}& H_n(B)\ar[r]^{g_n}& H_n(C) \ar[r]^{\partial_{n}}& H_{n-1}(A)\ar[r]^{f_{n-1}}&H_{n-1}(B)\ar[r]^{g_{n-1}}&\dots}\]
+%%Esta construcci\'on es {\em natural}. $\partial_n$ se llama {\em morfismo de conexi\'on}.
+
+\begin{proof}
+
+B\'asicamente es probar el lema de la serpiente... Veamoslo porque es divertido!
+
+Tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+& ker(d_n) \arrow[swap,hook]{d}{i} \arrow{r}{\tilde{f_n}} & ker(d'_n) \arrow[swap,hook]{d}{i} \arrow{r}{\tilde{g_n}} & ker(d''_n) \arrow[swap,hook]{d}{i} & \\
+0 \rar & A_n \arrow[swap]{d}{d_n} \arrow{r}{f_n} & B_n \arrow[swap]{d}{d'_n} \arrow{r}{g_n} & C_n \arrow[swap]{d}{d''_n} \rar & 0 \\
+0 \rar & A_{n-1} \arrow{r}{f_{n-1}} \arrow[swap]{d}{d_{n-1}} & B_{n-1} \arrow{r}{g_{n-1}} \arrow[swap]{d}{d'_{n-1}} & C_{n-1} \rar \arrow[swap]{d}{d''_{n-1}} & 0 \\
+0 \rar & A_{n-2} \arrow{r}{f_{n-2}} & B_{n-2} \arrow{r}{g_{n-2}}& C_{n-2} \rar & 0 \\
+& ker(d_{n-1}) \arrow[swap,hook]{u}{i} \arrow{r}{\tilde{f_{n-1}}} & ker(d'_{n-1}) \arrow[swap,hook]{u}{i} \arrow{r}{\tilde{g_{n-1}}} & ker(d''_{n-1}) \arrow[swap,hook]{u}{i} & \\
+\end{tikzcd}
+\]
+
+Ahora si sea $c \in ker(d''_n)$, como $g_n$ es epi $\exists b \in B_n \ / g_n(b)=c$, pero entonces $g_{n-1}d'_n(b) = d''_n g_n(b)= d''_n(c) = 0$ por la conmutatividad del diagrama, por lo que $d'_n(b) \in Ker(g_{n-1})=Im(f_{n-1})$ por lo que $\exists a \in A_{n-1}$ tal que $f_{n-1}(a)=d'_n(b)$ y notemos que $f_{n-2}d_{n-1}a = d'_{n-1}f_{n-1}(a)=d'_{n-1}d'_{n}(b)=0$ pues $Im(d'_n)\subset Ker(d'_{n-1}) \ \forall n \in \N$; por ende como $f_{n-2}$ es mono tenemos que $d_{n-1}(a)=0$ por lo que $a \in ker(d_{n-1})$!! Definimos entonces $\partial([c])=[a]$ y afirmamos que est\'a bien definido en el cociente y la sucesi\'on es exacta! Veamoslo!
+
+\begin{itemize}
+
+\item {$\partial$ esta bien definida}
+
+Sean $c \in ker(d''_n)$ y $b,b' \in B_n \ / \ g_n(b)=c=g_n(b')$ y sean $a,a' \in A_{n-1}$ los \'unicos (pues $f_{n-1}$ es mono) tal que $f_{n-1}(a)=d'_n(b)$ y $f_{n-1}(a')=d'_n(b')$. Entonces por hip\'otesis tenemos que $b-b' \in ker(g_n)=Im(f_n)$ y entonces $b-b'=f_n(z)$ para alg\'un $z \in A_n$, pero entonces $f_{n-1}d_n(z)=d'_nf_{n}(z)=d'_n(b-b')=f_{n-1}(a-a')$ por lo que como $f_{n-1}$ es mono tenemos que $d_n (z)=a-a'$ y $a-a' \in Im(d_n)$ y por ende $[a]=[a']$ en $ker(d_{n-1}) / Im(d_{n}) := H_{n-1}(A)$
+
+\item {La sucesi\'on es exacta}
+Uhh este da re vagancia, da...
+
+
+\end{itemize}
+
+Por ende por lo probado tenemos que $\partial$ pasa bien al cociente y entonces cocientando los $ker$ tenemos el siguiente diagrama:
+
+
+\[
+\begin{tikzcd}
+& H_n(A) \arrow[swap,hook]{d}{i} \arrow{r}{\tilde{f_n}} & H_n(B) \arrow[swap,hook]{d}{i} \arrow{r}{\tilde{g_n}} & H_n(C) \arrow[swap,hook]{d}{i} \arrow[out=0, in=180, looseness=2, overlay, red]{ddddll}{\partial} & \\
+0 \rar & A_n \arrow[swap]{d}{d_n} \arrow{r}{f_n} & B_n \arrow[swap]{d}{d'_n} \arrow{r}{g_n} & C_n \arrow[swap]{d}{d''_n} \rar & 0 \\
+0 \rar & A_{n-1} \arrow{r}{f_{n-1}} \arrow[swap]{d}{d_{n-1}} & B_{n-1} \arrow{r}{g_{n-1}} \arrow[swap]{d}{d'_{n-1}} & C_{n-1} \rar \arrow[swap]{d}{d''_{n-1}} & 0 \\
+0 \rar & A_{n-2} \arrow{r}{f_{n-2}} & B_{n-2} \arrow{r}{g_{n-2}}& C_{n-2} \rar & 0 \\
+& H_{n-1}(A) \arrow[swap,hook]{u}{i} \arrow{r}{\tilde{f_{n-1}}} & H_{n-1}(B) \arrow[swap,hook]{u}{i} \arrow{r}{\tilde{g_{n-1}}} & H_{n-1}(C) \arrow[swap,hook]{u}{i} & \\
+\end{tikzcd}
+\]
+
+Que es la sucesi\'on exacta larga pedida \qed
+
+\end{proof}
+
+\item
+Sean $(C_*,d)$ y $(D_*,d')$ complejos. Pruebe que $(C_*\oplus
+D_*,d\oplus d')$ es un complejo y que $$H_*(C\oplus D)=H_*(C)\oplus
+H_*(D).$$
+
+\begin{proof}
+Veamos que cumple la propiedad universal! Recordamos que la propiedad universal del coproducto es:
+
+\begin{remark}
+Consideremos $f_i : M_i \rightarrow M$ morfismos de grupos $\forall i \in I$ entonces si llamamos $j_i : M_i \rightarrow \bigoplus_{i}{M_i}$ dado por $m_j \mapsto \sum_{i} \delta_{i,j}m_j$ tenemos que $\exists! f: \bigoplus_{i}{M_i}:\rightarrow M$ tal que el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+M_i \arrow{r}{f_i} \arrow[swap]{d}{j_i} & M \\
+\bigoplus_{i}{M_i} \arrow[dashed]{ur}{f} \\
+\end{tikzcd}
+\]
+
+\end{remark}
+
+Entonces si notamos $i_1 : C \rightarrow C \oplus D$ tal que $c \mapsto c+0$ y $i_2$ la an\'aloga veamos que todo funciona! Sea $M$ un grupo abeliano, $f_1: H_n(C) \rightarrow M$ y $f_2: H_n(D) \rightarrow M$; definimos $j_1 : H_n(C) \rightarrow H_n(C \oplus D)$ dado por $[c] \mapsto [i_1(c)]$ y $j_2$ an\'alogo y definimos $f:H_n(C \oplus D) \rightarrow M$ dado por $[c + d] \mapsto f_1([i_1(c)]) + f_2([i_2(d)])$. Entonces tenemos que $f_i = f \circ  j_i$ para $i \in \sett{0,1}$ y $H_n(C \oplus D)$ cumple la PU, entonces $H_n(C \oplus D) = H_n(C) \oplus H_n(D)$ \qed
+
+\end{proof}
+
+\item
+Sea $m\in\N$. Calcule la homolog\'ia del siguiente complejo de cadenas:
+$$\dots\to\Z\to\Z\to\Z\to\dots \qquad d_{2n}(x)=0 \quad d_{2n+1}(x)=mx$$
+
+\begin{proof}
+
+Por definici\'on tenemos que $H_n = Ker (d_n) / Im (d_{n+1})$ entonces separemos!
+
+\begin{itemize}
+\item {$n=2k$}
+
+Entonces tenemos que $d_n=0$ y $d_{n+1}=mx$ por lo cual tenemos que $Ker(d_n) = \Z$ y $Im(d_{n+1}) = m\Z $ por lo que $H_n = \Z_m$
+
+\item {$n = 2k+1$}
+
+Entonces tenemos que $d_n = mx$ y $d_{n+1} = 0$ por lo que $Ker(d_n) = 0$ y $Im(d_{n+1}) = 0$ por lo que $H_n = 0$
+
+\qed
+
+\end{itemize}
+
+\end{proof}
+
+\item
+Pruebe que si $i:A\rightarrow X$ es un retracto, entonces $i_*:H_n(A)\to H_n(X)$ es un monomorfismo para todo $n\ge 0$, y que si $i$ es retracto por deformaci\'on d\'ebil, entonces $i_*$ es isomorfismo.
+
+\begin{proof}
+
+Sea $r:X \rightarrow A$ tal que $ri = 1_A$ pero tenemos por la te\'orica que la aplicaci\'on $f:A \rightarrow X \mapsto f_*: H_n(A) \rightarrow H_n(X)$ es functorial, por ende $1_{H_n(A)}=(1_A)_* = (ri)_* = r_* i_*$ , entonces como $1_{H_n(A)}$ es isomorfismo, tenemos que $i_*$ es monomorfismo y $r_*$ es epimorfismo. Si adem\'as se tiene que $ir \simeq 1_X$ entonces, como por la te\'orica sabemos que $f \simeq g \ \Longrightarrow f_* = g_*$, tenemos que $r_* i_* = 1_{H_n(X)}$ y por lo mismo entonces $i_*$ y $r_*$ son isomorfismos. \qed
+
+\end{proof}
+
+%\item
+%\begin{enumerate}
+%\item
+%Sea $\{X_i\}$ una familia finita de espacios topol\'ogicos y sea $x_i\in
+%X_i$ tal que $(X_i,x_i)$ es un par bueno (ie, $x_i$  es retracto por deformaci\'on de entornos $U_i\ni x_i$ en $X_i$ ).
+%Si $X=\bigvee_i X_i$ es la uni\'on de los espacios, identificando
+%todos los puntos bases $x_i$, pruebe que $\tilde
+%H_n(X)=\oplus_i\tilde H_n(X_i)$.
+
+%
+%\item
+%Sea $A\subset X$. Pruebe que $H_0(X,A)=0$ si y s\'olo
+%si $A$ interseca todas las componentes arco conexas de $X$.
+%
+
+\item Sea $X$ espacio topol\'ogico, $x_0\in X$. Pruebe que $H_n (X, x_0 ) \simeq \tilde H_n (X)$ para todo $n$. 
+
+\begin{proof}
+
+Como $\sett{x_0} \subset X$ es subespacio, entonces $(X,x_0)$ es un par topol\'ogico y sabemos que existe la siguiente SEL:
+
+\[
+\begin{tikzcd}
+\dots \rar & \widetilde{H_n}(\sett{x_0}) \arrow{r}{i_*} & \widetilde{H_n}(X) \arrow{r}{q_*} & H_n(X,\sett{x_0}) \arrow{r}{\partial} & \dots \rar & H_0(X,\sett{x_0}) \rar & 0 \\
+\end{tikzcd}
+\]
+
+Pero nosotros sabemos que $\widetilde{H_n}(\sett{x_0}) = 0$ y por ende $\forall n \in \N$ tenemos que $q_* : \widetilde{H_n}(X) \rightarrow H_n(X, \sett{x_0})$ es isomorfismo \qed
+
+\end{proof}
+
+\item Pruebe que si $A$ es un retracto por deformaci\'on d\'ebil de un espacio $X$ entonces $H_n(X,A)=0$ para todo $n\ge 0$.
+
+\begin{proof}
+
+Como $A$ es RDD de $X$, en particular $(X,A)$ es un par topol\'ogico y entonces, como antes, existe la SEL:
+
+\[
+\begin{tikzcd}
+\dots \rar & {H_n}(A) \arrow{r}{i_*} & {H_n}(X) \arrow{r}{q_*} & H_n(X,A) \arrow{r}{\partial} & \dots  \\
+\end{tikzcd}
+\]
+
+Ahora por el ejercicio 5 sabemos que $i_*: H_n(A) \rightarrow H_n(X)$ es isomorfismo, entonces por la exactitud tenemos que $Im(\partial)=Ker(i_*)=0$ y $Ker(q_*) = Im(i_*)= H_n(X)$, por lo que el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+\dots \rar & {H_n}(A) \arrow{r}{i_*} \arrow[swap,equal,d] & {H_n}(X) \arrow{r}{q_*}  \arrow[swap,equal,d] & H_n(X,A) \arrow{r}{\partial}  \arrow[swap,d] & \dots  \\
+\dots \rar & H_n(A) \arrow{r}{i_*} & {H_n}(X) \rar & 0 \rar & \dots  \\
+\end{tikzcd}
+\]
+
+Y entonces por conmutatividad tenemos que $H_n(X,A) = 0$ \qed
+
+\end{proof}
+
+\item Pruebe que si $(X,A,B)$ es una terna con $B\subseteq A \subseteq X$, entonces existe una sucesi\'on exacta larga
+\[\xymatrix{\dots\ar[r]^{\partial_{n+1}}&H_n(A,B)\ar[r]^{i_*}&H_n(X,B)\ar[r]^{j_*}&H_n(X,A) \ar[r]^{\partial_{n}}&H_{n-1}(A,B)\ar[r]^{i_*}&\dots}\]
+
+\begin{proof}
+Notemos que si probamos que:
+
+\begin{equation}
+\label{SEC}
+\begin{tikzcd}
+0 \rar & S_*(A,B) \arrow{r}{i_*} & S(X,B) \arrow{r}{j_*} & S(X,A) \rar & 0 \\
+\end{tikzcd}
+\end{equation}
+
+Es una SEC de complejos, entonces el resultado es corolario de la existencia de la SEL de homolog\'ias para una SEC de complejos!
+
+Vayamos a eso!
+
+Sea $n \in \N$, entonces recordemos que $S_n(A,B) = S_n (A) / S_n(B)$, $S_n(X,B) = S_n(X) / S_n(B)$ y que $S_n(X,A) = S_n(X) / S_n(A)$. 
+
+Por otro lado como $A \subset X$ tenemos que $i:A \rightarrow X$ induce $i_{\eta} : S_n(A) \rightarrow S_n(B)$ dado por $\sigma \mapsto i \circ \sigma$, pero entonces si $\sigma \sim \sigma'$ entonces $i_{\eta}(\sigma) \sim i_{\eta}(\sigma')$ trivialmente! Entonces $i_* := \overline{q_{S_n(B)} \circ i_{\eta}}$ el bajado al cociente que ya vimos que est\'a bien definido y es continuo. Similarmente como $B \subseteq A$ tenemos que $S_n(B) \subset S_n(A)$ y entonces si $\sigma \in S_n(B) \Longrightarrow \sigma \in S_n(A)$, por ende $j_* := \overline{q_{S_n(A) \circ 1_X}}$ donde la bajada al cociente es sobre $S_n(B)$.
+
+Es claro entonces por definici\'on que $i_*$ es mono y $j_*$ es epi; adem\'as como $Im(i_*) = [S_n(A)]_{S_n(B)}$ por la definici\'on y $Ker(j_*)=[S_n(A)]_{S_n(B)}$ pues son los que identifica $q_{S_n(A)}$, tenemos de yapa que $Im(i_*) = Ker(j_*)$, o sea que \ref{SEC} es una SEC de complejos, y entonces existe la SEL del enunciado \qed
+
+\end{proof}
+
+%\item
+%Probar que $H_1(\R,\Q)$ es un grupo abeliano libre y calcular una base.
+
+%\item Versi\'on fuerte de la Sucesi\'on Exacta de Mayer-Vietoris. Probar que si un espacio $X$ es uni\'on de dos subespacios $A$ y $B$ tales que existen entornos $U$ y $V$ de $A$ y $B$ de modo que $A$ es retracto por deformaci\'on d\'ebil de $U$, $B$ es retracto por deformaci\'on d\'ebil de $V$ y $A\cup B$ es retracto por deformaci\'on d\'ebil de $U\cup V$, entonces existe una sucesi\'on exacta larga
+
+%$$\dots\xto{\partial}H_n(A\cap B)\xto{\phi_*}H_n(A)\oplus H_n(B)\xto{\psi_*}H_n(X) \xto{\partial}H_{n-1}(A\cap B)\xto{}\dots$$
+
+%Sugerencia: por la demostraci\'on vista en la te\'orica basta ver que $H_n(C_*^{\{A,B\}}(X))\to H_n(X)$ son isomorfismos.
+
+
+
+
+
+
+\item Sea $X$ un espacio contr\'actil y sea $A$ un subespacio de $X$. Pruebe que
+$H_n(X,A)$ es isomorfo a $\tilde H_{n-1}(A)$.
+
+\begin{proof}
+
+Nuevamente tenemos la SEL:
+
+\[
+\begin{tikzcd}
+\dots \rar & \widetilde{H_n}(X) \arrow{r}{q_*} & H_n(X,A) \arrow{r}{\partial} & \widetilde{H_{n-1}}(A) \arrow{r}{i_*} & \widetilde{H_{n-1}}(X) \arrow{r}{q_*} & \dots \\
+\end{tikzcd}
+\]
+
+Y ahora como $X$ es contr\'actil entonces tenemos que $H_n(X) = 0 \ \forall n \in \N$ por lo que $\partial$ es un isomorfismo. \qed 
+
+\end{proof}
+
+\item Sea X espacio topol\'ogico, y $A \subset X$ tal que $(X,A)$ es bueno. Si $CA$ es el \textit{cono} $(A\times I)/(A\times \{0\})$
+de $A$, considere $X\cup CA$ el espacio que se obtiene de identificar la base del cono $A\times \{1\}$ con $A\subseteq X$. Pruebe que $H_n(X,A)\simeq \tilde H_n(X\cup CA)$.
+
+\begin{proof}
+¿ $X / A \simeq X \coprod CA / A$ ?
+\end{proof}
+
+%\item \be 
+%\item Sea $A \subseteq X$ retracto. Pruebe que $H_q (X) = H_q (A) \oplus H_q (X, A)$.
+
+%\item Sea $X$ espacio topol\'ogico y sea $p \in S^n$ . Deduzca del item anterior que
+%$H_q (X \times S^n ) = H_q (X) \oplus H_q (X \times S^n , X \times \{p\})$.
+%\item  Pruebe la sucesi\'on relativa de Mayer-Vietoris: Sea $(X, Y )$ par topol\'ogico,
+%sean $A, B \subseteq X$ tales que $\mathring A \cup \mathring B = X$ y sean $C \subset A$ y $D \subset B$ tales
+%que $\mathring D \cup \mathring C = Y$ . Probar que existe una sucesi\'on exacta larga
+%\[\xymatrix{\cdots \ar[r]& H_q (A \cap B, C \cap D)\ar[r]&  H_q (A, C) \oplus H_q (B, D) \ar[r]& H_q (X, Y ) \ar[r]&  \cdots}\]
+%
+%\item Pruebe, usando el item anterior, que
+%$H_q (X \times S^n , X \times \{p\}) = H_{q-1} (X \times S^{ n-1} , X \times \{p\}).$
+%
+%\item Deduzca que
+%$H_q (X \times S^n , X \times \{p\}) = H_ {q-n} (X)$
+%y por lo tanto se obtiene el siguiente resultado interesante:
+%$H_q (X \times S^n ) = H_q (X) \oplus H_ {q-n} (X).$
+%
+%\item Calcule los grupos de homolog\'ia del toro n-dimensional $T^n= \underbrace{S^1\times S^1\times \cdots \times S^1}_{\text{n veces}}$  y de $S^n\times S^m$.
+%\en
+
+
+%\item Pruebe que $S^n$ no es un retracto de $D^{n+1}$ y que toda funci\'on continua $f: D^n\rightarrow D^n$ tiene alg\'un punto fijo.
+
+%\item Sean $U \subseteq R^n$ y $V\subseteq  R^m$ abiertos no vac\'ios. Pruebe que si $U$ y $V$ son homeomorfos, entonces $n = m$.
+%
+%\item Sea $X \subseteq R^n$ abierto. Pruebe que toda funci\'on $f : X \rightarrow R^n$ continua e inyectiva es abierta.
+%
+%\item Sea $X \subseteq R^n$ abierto no vac\'io. Pruebe que si existe una funci\'on continua e inyectiva $f : X \rightarrow R^m$, entonces $m \geq n$.
+
+
+
+
+%35. Use the Mayer?Vietoris sequence to show that a nonorientable closed surface,
+%or more generally a finite simplicial complex X for which H1 (X) contains torsion,
+%cannot be embedded as a subspace of R3 in such a way as to have a neighborhood
+%homeomorphic to the mapping cylinder of some map from a closed orientable surface
+%to X . [This assumption on a neighborhood is in fact not needed if one deduces the
+%result from Alexander duality in §3.3.]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item
+\begin{enumerate}
+\item
+Sea $\{X_i\}$ una familia finita de espacios topol\'ogicos y sea $x_i\in
+X_i$ tal que $(X_i,x_i)$ es un par bueno.
+Si $X=\bigvee_i X_i$ es la uni\'on de los espacios, identificando
+todos los puntos base $x_i$, probar que $\tilde
+H_n(X)=\oplus_i\tilde H_n(X_i)$.
+
+
+\item
+Calcular $\displaystyle \tilde H_n(\bigvee_{i\in I}S^k)$.
+\end{enumerate}
+
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item 
+
+Notemos que si $\sett{(X_\alpha,x_\alpha) \ , \ \alpha \in I}$ son pares buenos, entonces $(\coprod_{\alpha}{X_{\alpha}},\sett{x_{\alpha}})$
+ es un par bueno pues tomo $U = \coprod_{\alpha}{U_{\alpha}}$ como entorno abierto y RDF de $\sett{x_{\alpha}}$ (pues son finitos). Entonces por el corolario del teorema de escisi\'on tenemos que $H_n(\coprod_{\alpha}{X_{\alpha}},\sett{x_{\alpha}}) = \widetilde{H_n}(\bigvee_{i}{X_i})$. Solo nos faltar\'ia probar que $H_n(\coprod_{\alpha}{X_{\alpha}},\sett{x_{\alpha}}) = \bigoplus_{\alpha}{H_n(X_{\alpha},x_{\alpha})}$ pues nuevamente como $(X_{\alpha},x_{\alpha})$ es bueno entonces $H_n(X_{\alpha},x_{\alpha}) = \widetilde{H_n}(X_{\alpha})$ !! Pero notemos que como $I$ es finito esto es lo que hicimos en el ejercicio 3, pues la suma directa es un coproducto, y la demostraci\'on ser\'ia textual cambiando $j_1 : C \rightarrow C \oplus D$ por $j_1 : X_{\alpha} \rightarrow \coprod X_{\alpha}$. \qed
+ 
+ 
+\item Como $(S^k,x_0)$ es un par bueno pues $U = S^k - \sett{x_0}$ es RDF de $\sett{x_0}$ tenemos por el item anterior que $\widetilde{H_n}(\bigvee_{J} {S^k}) = \bigoplus_{J} {\widetilde{H_n}(S^k)} = \bigoplus_{J} \Z \ \chi_{k = n}$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\item Calcule los grupos de homolog\'ia de $\R^n\smallsetminus \{x_1, \cdots, x_m\}$
+
+\begin{proof}
+
+Copiemos nuestra idea de Van Kampen! Sea $C = \sett{r > 0 \ , \ \sett{x_1,\dots,x_m} \subsetneq B(x_1,r)}$ y entonces como justificamos all\'i tomamos $A = B(x_1 , inf(A) + \epsilon)$ y notemos que por las mismas t\'ecnicas de Van Kampen tenemos que $A \simeq \bigvee_{i=1}^{m} S^{n}$ (homot\'opica) por ende $\widetilde{H_k}(A) = \bigoplus_{i=1}^{m}{\Z \chi_{k=n}}$. Adem\'as como $\R^n \setminus \sett{x_1 , \dots , x_m} \simeq A $ entonces $\widetilde{H_k}(\R^n) = \bigoplus_{i=1}^{m}{\Z \chi_{k=n}}$ \qed
+
+
+\end{proof}
+
+\item Calcule la homolog\'ia del cociente de $S^2$ que se obtiene de identificar el polo norte y el polo sur en un punto.
+
+\begin{proof}
+Forma trucha: Ya se que $S^2 / S^0 \simeq S^1$ donde la equivalencia es homot\'opica, como los grupos de homolog\'ia son un invariante homot\'opico, entonces $H_n(S^2 / S^0) = H_n(S^1) = \Z \ \chi_{n=1}$ \qed
+\end{proof}
+
+%\item $S^1\times (S^1\vee S^1)$,
+%\item el espacio que se obtiene de $D^2$ luego de quitarle los interiores de dos sub-discos disjuntos en su interior e identificar las tres circuferencias resultantes via homeomorfismos que preservan la orientaci\'on en el sentido las agujas del reloj,
+%\item el cociente de $S^1\times S^1$ que se obtiene de identificar en $S^1\times \{x_0\}$ los puntos que difieren en una rotaci\'on de $2\pi/m$,  y de identificar  en $\{x_0\}\times S^1$ los puntos que difieren en una rotaci\'on de $2\pi/n$,
+%\en 
+
+
+
+%\item Sea $X$ el espacio cociente de $S^2$ bajo las identificaciones $x\sim -x$ en el ecuador $S^1$. Calcular sus grupos de homolog\'ia.
+
+%\item Pruebe que la funci\'on cociente $q:S^1\times S^1 \rightarrow S^2$ que colapsa el subespacio $S^1\vee S^1\subset S^1\times S^1$ en un punto no es null-homot\'opica mostrando que induce isomorfismo en $H_2$. 
+
+%\item Calcule los grupos de homolog\'ia del espacio que se obtiene del toro $S^1\times S^1$ adjunt\'andole una banda de Möbius via un homeomorfismo del borde de la banda de Möbius a la circunferencia $S^1\times \{x_0\}\subset S^1\times S^1$.
+
+\item Sea $X$ espacio topol\'ogico. Muestre que $\tilde H_n(X)\simeq \tilde H_{n+1}(\Sigma X)$ para todo $n\geq 0$, donde $\Sigma X$ es la \textit{suspensi\'on} de $X$, que se define como  sigue $\Sigma X=X\times I/\sim$, $(x,0)\sim (x',0)$, $(x,1)\sim (x',1)$ para todo $x,x'\in X$. 
+
+\begin{proof}
+Esto tiene toda la pinta de usar Mayer- Vietoris!! (Vamos a pensar a $\Sigma X = X \times [-1,1] / \sim$) Notemos que $\Sigma X = CX \coprod -CX / X$ Entonces sea $A= -CX \coprod X \times [0,\delta) / X$ que es el cono inferior y un cachito por arriba; similarmente sea $B = CX \coprod X \times [0,-\delta) / X$ lo mismo por debajo! Entonces es claro que $A,B$ son abiertos y $A \cup B = \Sigma X$
+
+\begin{itemize}
+
+\item 
+
+Es claro que $A,B \simeq -CX$ entonces $\widetilde{H_n}(A)= \widetilde{H_n}(B) = 0$ pues el cono es contr\'actil.
+
+\item
+
+Por otro lado $A \cap B \simeq X$ y por ende $\widetilde{H_n}(A\cap B) = \widetilde{H_n}(X)$
+
+\end{itemize}
+
+En resumen tenemos la siguiente SEL:
+
+\[
+\begin{tikzcd}
+\dots \rar & 0 \rar & \widetilde{H_n}(\Sigma X) \arrow{r}{\partial} & \widetilde{H_{n-1}}(X) \rar & 0 \\
+\end{tikzcd}
+\]
+
+Pues $\widetilde{H_n}(A) \oplus \widetilde{H_n}(B) = 0$ y $\widetilde{H_n}(A \cap B) = \widetilde{H_n}(X)$. Por ende $\partial$ es un isomorfismo y $\widetilde{H_{n+1}}(\Sigma X) = \widetilde{H_n}(X)$ \qed
+
+\end{proof}
+
+\item Sea $X$ un espacio topol\'ogico tal que $X=\bigcup_{i=1}^n U_i$ con $U_i$ abiertos tales que toda intersecci\'on $\bigcap _{i=1}^k U_{i_k}$ es vac\'ia o tiene  homolog\'ia reducida trivial. Pruebe que $\tilde H_i(X)=0$ para todo $i\geq n-1$ y muestre con un ejemplo que la desigualdad es \'optima.
+
+\begin{proof}
+
+Hagamos inducci\'on!
+
+\begin{itemize}
+
+\item {$n = 2$}
+
+Tenemos que $X = U_1 \cup U_2$, con $\widetilde{H_k}(U_i) = 0$ y $\widetilde{H_k}(U_1 \cap U_2) = 0$ entonces por Mayer Vietoris tenemos que $0 \rightarrow 0 \rightarrow \widetilde{H_k}(X) \rightarrow 0$ y por ende $\widetilde{H_k} = 0 \ n \geq 0$
+
+\item {$n-1 \Longrightarrow n$}
+
+Sea $A = \bigcup_{i=1}^{n-1} U_i$ y $B = U_{n}$, entonces tenemos que $\widetilde{H_k}(A) = 0 \ \forall k \geq n-2$ por HI, por otro lado $\widetilde{H_k}(B) = 0$ por HI, y quiero ver que $\widetilde{H_k}(X) = 0 \ \forall k \geq n-1$ entonces por Mayer Vietoris:
+
+\[
+\begin{tikzcd}
+\dots \rar & \widetilde{H_{n}}(A) \oplus \widetilde{H_{n}}(B) \rar & \widetilde{H_{n}}(X) \arrow[out=0, in=180, looseness=2, overlay, red]{dll}{\partial} \\
+\widetilde{H_{n-1}}(A \cap B) \rar & \widetilde{H_{n-1}}(A) \oplus \widetilde{H_{n-1}} \rar & \widetilde{H_{n-1}}(X) \arrow[out=0, in=180, looseness=2, overlay, red]{dll}{\partial} \\
+\widetilde{H_{n-2}}(A \cap B) \rar & \dots \\
+\end{tikzcd}
+\]
+
+Y aqu\'i se ve claramente lo pedido porque tenemos $0 \rightarrow \widetilde{H_{k}}(X) \rightarrow 0$ para $k \geq n-1$ \qed
+
+\end{itemize}
+
+\end{proof}
+
+
+\end{enumerate}
+
+\end{document}

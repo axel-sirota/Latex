@@ -1,0 +1,512 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{tikz-cd}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Resuelto de pr\'actica 7}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}
+
+Vamos por partes!
+
+\begin{enumerate}
+\item {$\Longrightarrow$)}
+
+Supongamos que $E$ es compacto y $T_2$, entonces como $p$ es continua tenemos que $p(E)=B$ es compacto. Por otro lado sean $x,y \in B$ y sean $u \in E_{x}$ y $v \in E_{y}$ y $U \ni u$, $V \ni v$ entorno abiertos disjuntos por ser $T_2$ $E$; entonces por el ejercicio 5 de la pr\'actica tenemos que $p$ es abierta y $p(U)\ni x$ y $p(V) \ni y$ son entornos abiertos disjuntos en $B$. Por ende $B$ es $T_2$.
+
+\item {$\Longleftarrow$)}
+
+Supongamos que $B$ es compacto y $T_2$. Afirmo que como $p^{-1}(b)$ es finito $\forall b \in B$ entonces $p$ es cerrada!
+
+Sea $A$ un cerrado en $E$ y $x \not \in p(A)$ entonces como $p$ es revestimiento tenemos que $\exists U \ni x \ / \ p^{-1}(U)=\coprod_{i=1}^{n}{V_i}$ con $p|_{V_i}$ un homeo. Notemos que en realidad intersecando con $p(A)^{c}$ podemos tomar $U \subset p(A)^{c}$. Sea entonces $V:=\bigcap_{i=1}^{n}{p(V_i)}$ notemos que $x \in V$ trivialmente y que $V \subset p(V_1) \simeq U \subset p(A)^{c}$ y por ende $x \in V \subset p(A)^{c}$ o sea que $p(A)$ es cerrado. Entonces si consideramos los pullback:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{f} \arrow[swap]{d}{g} & E \arrow[swap]{d}{p} \\ 
+Y \arrow{r}{\overline{f}} \arrow[swap]{d}{h} & B \arrow[swap]{d}{\pi} \\ 
+Z \arrow{r}{\overline{\overline{f}}} & \{*\} \\
+\end{tikzcd}
+\]
+
+Entonces notemos que como $p$ es revestimiento y los revestimientos son estables por cambio de base, entonces $g$ es revestimiento, como $\pi$ es propia por ser $B$ compacto tenemos que $h$ es cerrada y como la fibra de $p$ es finita tenemos que $g$ es cerrada por lo anterior, por lo que $hg$ es cerrada; entonces tenemos que $p \pi : E \rightarrow \{*\}$ es propia y entonces $E$ es compacto.
+
+Por otro lado Sean $x,y \in E$ y consideremos $p(x)$ y $p(y)$. Si $x,y \in E_{p(x)}$ entonces los $V_i$ del revestimiento sirven pues ellos son disjuntos. Si no, sean $U,V$ entornos abiertos disjuntos respectivos de $p(x)$ y $p(y)$ si consideramos la intersecci\'on de $U$ y $V$ con los entornos que existen por el revestimiento $U_{p(x)}$ y $V_{p(y)}$ tenemos que $\exists \widetilde{U},\widetilde{V}$ entornso abiertos disjuntos de $p(x)$ y $p(y)$ tal que $p^{-1}(\widetilde{U})=\coprod_{i=1}^{n}{U_{x_i}}$ y $p^{-1}(\widetilde{V})=\coprod_{i=1}^{n}{V_{y_i}}$. Llamemos $U_{x_{i_0}} \ni x$ y $V_{y_{i_0}} \ni y$ estos entonces son abiertos disjuntos de $E$ pues son homeomorfos a abiertos disjuntos de $B$. Entonces $E$ es $T_2$ \qed
+\end{enumerate}
+
+\begin{center}
+{\bf\sffamily Revestimientos y Aplicaciones del Teorema de Brouwer y Borsuk-Ulam.}
+\end{center}
+
+\begin{enumerate}
+
+\item {Pruebe que si $X$ es un espacio e $Y$ es discreto, entonces la proyecci\'on $p_X:X\times Y\to X$ es un revestimiento}
+
+\begin{proof}
+
+Tenemos $p_X : X \times Y \rightarrow X$ veamos que es un revestimiento!
+
+\begin{itemize}
+
+\item $p$ es trivialmente continua y suryectiva
+
+\item Sea $x_0 \in X$, entonces tenemos que $x_0 \in X$, con $X$ abierto y $X = \coprod_{y \in Y}{X \times \{y\}}$ donde cada $X \times \{y\}$ es abierto pues es producto de abiertos y $p_{X}|_{X \times \{y\}}$ es un homeomorfismo con inversa $i_{y}: x \mapsto (x,y)$. \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Pruebe que si $p:E\to B$ es un revestimiento, la fibra $E_b=p^{-1}(b)$ es un subespacio discreto de $E$ para todo $b\in B$. Pruebe además que si $B$ es conexo, todas las fibras tienen el mismo cardinal.
+}
+
+\begin{proof}
+
+Sea $p:E \rightarrow B$ y $b \in B$, entonces como $p$ es revestimiento $\exists U \ni b$ abierto de $B$ tal que $p^{-1}(U) = \coprod _{i \in I}{V_i}$ con $V_i$ abiertos disjuntos y $p|_{V_i}:V_i \rightarrow B$ es homeo. 
+
+Supongamos que $\exists j_0 \in I$ tal que $\left| p^{-1}(b) \cap V_{j_0} \right| > 1$ y sean $v_1,v_2 \in V_{j_0}$ dichos elementos tal que $p(v_1)=p(v_2) = b$, pero entonces $p|_{V_{j_0}}$ no es inyectiva y por ende no es homeo! Abs! 
+
+Por ende $p^{-1}(b) \cap V_i = \{v_i\} \ \forall i \in I$, y si $E_b$ tiene la topolog\'ia subespacio entonces de la ecuaci\'on anterior se ve que es discreto. \qed
+
+\end{proof}
+
+\item {Pruebe que las siguientes funciones son revestimientos:
+	\begin{enumerate}
+	\item $p : \R\to S^1$, $p(x)=(\cos(2\pi x), \sen(2\pi x))$.
+	\item $f:S^1\to S^1$, $f(z)=z^n$,  $n\in\N$ fijo.
+	\item $p:S^n\to P^n$ la proyecci\'on al plano proyectivo.
+	\item $G$ grupo topol\'ogico, $H$ subgrupo discreto de $G$ y $p:G\to G/H$ la proyecci\'on al cociente.
+	\item $p:E\to B$, $p(x,y)=(e^{2\pi i x}, e^{2\pi iy})$, donde 
+$E = \{(x,y) \in \R^2 : x \in\Z \text{ \'o } y\in\Z\}$ y
+$B = \{(z,w) \in S^1\times S^1 : z =1 \text{ \'o } w =1\}$.
+	\end{enumerate}}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $q = (1,0)$ y sea $U := S^1 - \{q\}$, entonces notemos que $p^{-1}(U) = \coprod_{n \in \N}{(n,n+1)}$ y que $\forall n \in \N \ p((n,n+1)) = S^1 - \{q\}$ y es un homeomorfismo con inversa $\hat{p}(s) = \textit{El \'unico t tal que $p(t)=s$ pues $t \not \in \{n,n+1\}$}$.
+
+Por otro lado si hacemos lo mismo con $q = (-1,0) $ y los abiertos $(n + \frac{1}{2} , n + \frac{3}{2})$ tenemos lo mismo.
+
+Por ende $p$ es un revestimiento!
+
+\item Sea $q = (1,0)$ y sea $U:= S^1 - \{q\}$ entonces notemos que $p^{-1}(U)= \{z \in S^1 \ , \ Im(z)>0\} \bigcup \{z \in S^1 \ , \ Im(z)< 0\}$ y cada uno de ellos es homeomorfo, v\'ia $p$, a $U$.
+
+An\'alogamente con $q = (-1,0)$ Y todo igual salvo que tomamos $Re(z)$ en vez de $Im(z)$, por ende $p$ es un revestimiento!
+
+\item Veamos que es revestimiento! Para eso vamos por partes:
+
+\begin{itemize}
+
+\item Como $p$ es cociente es autom\'aticamente sobreyectiva y continua
+
+\item Sea $x \in S^n /_{ \mathord x \sim -x}$ notemos que un abierto $ U \ni x$ en $\R P^n$ es $U=p(V)$ con $V \in S^n$ abierto pues $\R P^n$ tiene la topolog\'ia cociente. Pero $S^n \inc \R^{n+1}$ es un subespacio cerrado y por ende tiene inducida la topolog\'ia m\'etrica, por lo que podemos elegir $V \in S^n \ , \ \mathtt{diam}(V)< \delta$ con $\delta>0$ dado y $V$ abierto! 
+
+Con esto en mente, sea $\delta > 0$ tal que si $x \in U \subset \R P^n$, entonces $p^{-1}(U)= V \cup -V$ con $-V$ es conjunto de ant\'ipodas de $V$ y tal que $V \cup -V = \emptyset$. O sea, si $x \in \R P^n$ entonces la fibra de un abierto de $x$ es la uni\'on de dos abiertos uno en cada casquete de $S^n$; pero como $p|_{V}:V \rightarrow \R P^n \cap U$ y $p|_{-V}:-V \rightarrow \R P^n \cap U$ son inyectivas(por construcci\'on), sobreyectivas, continuas y abiertas entonces son homeomorfismos. Por ende, $\forall x \in \R P^2$ $\exists U \ni x$ abierto parejamente cubierto.\qed
+
+\end{itemize}
+
+\item ??
+
+\item Veamos que $p$ es revestimiento!
+
+\begin{itemize}
+\item Notemos que $E = p_{x}^{-1}(\Z) \cup p_{y}^{-1}(\Z)$ y como $\Z$ es cerrado de $\R$ y las proyecci\'ones continuas, entonces $E$ es un subespacio cerrado del producto. De la misma manera $B = p_{z}^{-1}(\{\bar{1}\}) \cup p_{w}^{-1}(\{\bar{1}\})$ donde $\bar{1}:=\overline{(0,1)}:=1$ y por ende $B$ tambi\'en es cerrado.
+\item Como $pi_X$ y $pi_Y$ son continuas y las $i_i$ son iniciales, entonces $p$ es continua en $XxY$ y como $E$ es un subespacio cerrado entonces $p$ es continua en $E$.
+\item Sea $(z,w) \in S^1$ entonces $z=e^{i 2 \pi \theta_1}$ y $w=1$ (o viceversa) entonces $p((\theta_1,1))=(z,w)$ y $p$ es sobre.
+\item Sea $(z,w) \in B$ y supongamos sin p\'erdida de generalidad que $w=1$, y supongamos que $z \neq 1$ entonces $U = S^1-\{1\} \times \{1\} $ es abierto en $B$ y $(z,w) \in U$; adem\'as $p^{-1}(U) = \coprod_{n} {(n,n+1) \times \{n\}}$ donde $V_n := (n,n+1) \times \{n\}$ es abierto en $E$ y $p|_{V_n}$ es continua, sobreyectiva, inyectiva y abierta y por ende homeomorfismo. Como si $z = \{1\}$ podemos tomar $U = S^1 - \{-1\} \times \{1\}$ y la cuenta es la misma, llegamos a que $p$ es revestimiento.\qed
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Pruebe que $p:\R_{>0}\to S^1$ definida por $p(x)=(\cos (2\pi x), \sen (2\pi x))$ es un homeomorfismo local pero no es un revestimiento.
+}
+
+\begin{proof}
+
+Por partes!:
+
+\begin{itemize}
+
+\item Sea  $x >0$ y $x \in U \subset R_{>0}$ un entorno de $x$ tal que $diam(U)<1$, entonces $p|_U : U \rightarrow S^1 \cap p(U)$ es inyectiva (pues $diam(U)<1$), sobreyectiva, continua (pues restringo a un subespacio abierto) y abierta (pues si $V \subset U$ es abierto, entonces $V=p^{-1}(p(U))$ es abierto y entonces como $p$ es cociente $p(U)$ es abierto); por ende es un homeomorfismo local.
+
+\item Sea $1 := \overline{(0,1)} \in S^1$ y $1 \in U \subset S^1$ un entorno abierto del $1$, entonces notemos que $p^{-1}(U) = (0,\epsilon) \cup \coprod_{n}(n,n+1)$ donde $p_{(n,n+1)}$ es un homeo entre $(n,n+1)$ y $U$ pero $(0,\epsilon) \not \cong U$ y por ende $p$ no es revestimiento.
+
+\end{itemize}
+
+\end{proof}
+
+\item {Pruebe que si $p:E\to B$ es un revestimiento, entonces $p$ es abierta y por lo tanto es cociente.
+}
+
+\begin{proof}
+
+Sea $U \subset E$ abierto y sea $y=p(x) \in p(U)$, entonces como $p$ es revestimiento tenemos que $\exists V \ni y$ con $V \subset B$ tal que $p^{-1}(V) = \coprod_{i \in I}{U_i}$. Como $p(x)=y \in V$ entonces $\exists i_0 \in I$ tal que $x \in U_{i_0}$, sea entonces $U \cap U_{i_0}$ que es un abierto de $E$ y contiene a $x$, Como $p|_{U_{i_0}}$ es homeo, en particular es abierta y entonces $p(U \cap U_{i_0}) = p|_{U_{i_0}}(U \cap U_{i_0}):=V_y$ es abierto, $y \in V_y$ y $V_y \subset V$ trivialmente pues $p(U_{i_0})=V$, por ende $y=p(x)$ es punto interior de $p(U)$ y $p$ es abierta
+
+\end{proof}
+
+\item {Pruebe que si $p:E\to B$ y $p':E'\to B'$ son revestimientos, entonces $p\times p':E\times E'\to B\times B'$ tambi\'en lo es. Usar este resultado para calcular el grupo fundamental del toro.
+}
+
+\begin{proof}
+
+Vayamos por partes!
+
+\begin{itemize}
+
+\item $p \times p'$ es continua por ser producto de continua, a su vez es sobreyectiva por lo mismo
+
+\item Sea $(b,b') \in B \times B'$, como $p$ es revestimiento entonces $\exists b \in V \subset B$ tal que $p^{-1}(V)=\coprod_{i}{U_i}$,  a su vez como $p'$ es revestimiento entonces $\exists b' \in V' \subset B'$ tal que $p'^{-1}(V')=\coprod_{i}{U'_i}$. Por ende sea $(b,b') \in V \times V'$, entonces $p^{-1}(V \times V') = \coprod_i {U_i} \times \coprod_j {U'_j} = \coprod_{i,j}{U_i \times U'_j}$ y como $p|_{U_i}$ es homeo y $p'|_{U'_j}$ es homeo, entonces $p \times p' |_{U_i \times U'_{j}}$ es homeo y $p \times p'$ es revestimiento.
+
+\end{itemize}
+
+Entonces tenemos el revestimiento $p \times p : \R \times \R \rightarrow S^1 \times S^1 \simeq T$ con $p(t)=e^{2 \pi i t}$ y donde al punto base $(1,1) \in T$ se tiene que $E_{(1,1)} \simeq \Z \times \Z$, por ende tenemos los morfismos inducidos:
+
+\[
+\begin{tikzcd}
+\pi_1(\R^2,(0,0)) \arrow{r}{p_*} & \pi_1(T,(1,1)) \arrow{r}{\phi_*} & \Z \times \Z \\ \quad 
+\end{tikzcd}
+\]
+
+Pero como $\R^2$ es contr\'actil se tiene que $\phi_*$ es una biyecci\'on y solo nos falta ver que es morfismo de grupos! Recordemos que $\phi_*([\gamma])=\widetilde{\gamma}^{e_0}(1)$ donde $e_0 \in p^{-1}((1,1))$ y en nuestro caso tomaremos el $(0,0)$. Sean $\widetilde{\gamma}^{(0,0)},\widetilde{\omega}^{(0,0)}$ caminos levantados del toro y $\tau:I \rightarrow \R^2$ dado por $t \mapsto \widetilde{\omega}^{(0,0)}(t) + \widetilde{\gamma}^{(0,0)}(1)$, el chiste es que este es otro camino levantado de $\omega$ que empieza en donde $\widetilde{\gamma}^{(0,0)}$ termina, y por ende al aplicar $\phi_*$ nos va a dar lo que queremos! Notemos que $p\tau (t) = p(\widetilde{\omega}^{(0,0)}(t) + \widetilde{\gamma}^{(0,0)}(1))= p(\widetilde{\omega}^{(0,0)}(t))=\omega(t)$ pues $\widetilde{\gamma}^{(0,0)}(1) \in \Z \times \Z$ pero $\tau(0) = \widetilde{\omega}^{(0,0)}(0) + \widetilde{\gamma}^{(0,0)}(1) = (0,0) + \widetilde{\gamma}^{(0,0)}(1) = \widetilde{\gamma}^{(0,0)}(1)$ y tenemos lo que dec\'iamos. Por ende $\widetilde{\gamma}^{(0,0)}*\tau$ esta bien definido y $p(\widetilde{\gamma}^{(0,0)}*\tau)=p(\widetilde{\gamma}^{(0,0)})*p(\tau)=\gamma*\omega$ que el \'ultimo siempre esta bien definido pues son lazos en $(1,1)$. O sea que el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+& \R^2 \arrow[swap]{d}{p} \\ \quad 
+I \arrow{r}{\gamma*\omega} \arrow{ur}{\widetilde{\gamma}^{(0,0)}*\tau} & T
+\end{tikzcd}
+\]
+
+Y como $\widetilde{\gamma}^{(0,0)}*\tau(0)=(0,0)$ entonces por el teorema de unicidad del levantamiento de caminos tenemos que $\widetilde{\gamma}^{(0,0)}*\tau = \widetilde{\gamma*\omega}^{(0,0)}$ por ende $\phi_*([\gamma*\omega]) = \widetilde{\gamma*\omega}^{(0,0)}(1)=\widetilde{\gamma}^{(0,0)}*\tau(1) = \tau(1) = \widetilde{\omega}^{(0,0)}(1) + \widetilde{\gamma}^{(0,0)}(1) = \phi_*([\omega]) + \phi_*([\gamma])$ y por ende $\phi_*$ es un isomorfismo, por lo que $\pi_1(T(1,1)) \simeq \Z \times \Z$.
+
+\textbf{Otra forma:} Sabemos que $\pi_1(S^1,1) \simeq \Z$, entonces por el ejercicio 16 de la pr\'actica 6 tenemos que $\pi_1(T,(1,1)) = \pi_1(S^1 \times S^1 , (1,1)) \simeq \pi_1(S^1(1))^2 \simeq \Z \times \Z$ \qed
+
+\end{proof}
+
+\item {Sean $p:X\to Y$ y $q:Y\to Z$ revestimientos.
+Pruebe que si $q^{-1}(z)$ es finito para cada $z\in Z$, entonces $qp:X\to Z$ es un revestimiento.
+}
+
+\begin{proof}
+
+Como composici\'on de continuas es continua y composici\'on de sobreyectivas es sobreyectiva, tenemos que ver que cada punto contiene un abierto parejamente cubierto! Sea $z \in Z$, como $q$ es revestimiento tenemos que $\exists z \in U \subset Z$ tal que $q^{-1}(U) = \coprod_{i \in I}{V_i}$ con $V_i \subset Y$ abiertos y $q|_{V_i}:V_i \rightarrow U$ son homeomorfismos; ahora como por hip\'otesis $E_{z}:=q{-1}(z)$ es finito, y por el ejercicio 2 es discreto tenemos que $I$ es finito. Sea $y_i \in E_z$, entonces como $p$ es revestimiento sabemos que $\exists y_i \in \widetilde{V_i} \subset Y$ tal que $p^{-1}(\widetilde{V_i}) = \coprod_{j \in J}{W_ij}$ con $W_{ij} \subset X$ abiertos y $p|_{W_ij}$ homeomorfismos. Entonces veamos $\widetilde{U} := q(\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}) \cap U$ cumple!
+
+\begin{itemize}
+
+\item $z \in \widetilde{U}$ pues $z \in U$ por hip y $q^{-1}(z) = E_z \subset \bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}$ (pues cada $V_i \simeq_q U$) y por ende $z \in q(\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}) $
+
+\item $\widetilde(U)$ es abierto pues $\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}$ es abierto y $q$ es abierta por el ej 5 y $U$ es abierto
+
+\item $(qp)^{-1}(\widetilde{U}) = p^{-1}(q^{-1}(\widetilde{U})) = p^{-1}(\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}} \cap q^{-1}(U))=\star$ (Pues $q$ es sobre) $\star = p^{-1}(\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}) = \bigcap_{i=1}^{n}{p^{-1}(V_i \cap \widetilde{V_i})} = \bigcap_{i=1}^{n}{p^{-1}(V_i) \cap \coprod_{j \in J}{W_{ij}} )} = \coprod_{j \in J} {\bigcap_{i=1}^{n} {p^{-1}(V_i) \cap W_{ij}}} := \coprod_{j \in J} {X_j}$ donde como la intersecci\'on es finita y $p$ es continua tenemos que $X_j$ es abierto. Ahora $qp|_{X_i}$ es un homeo entre $X_i \simeq \widetilde{U}$ pues $p$ es homeo entre $W_{ij}$ y $\widetilde{V_i}$ y entonces al restringir a $p^{-1}(V_i)$ lo sigue siendo con $\widetilde{V_i} \cap V_i$, ahora $q$ es homeo entre $V_i$ y $U$ y por ende al restringir a $\widetilde{V_i}$ lo sigue siendo con $U \cap \widetilde{V_i}$ y luego lo sigue siendo entre $\bigcap_{i=1}^{n}{V_i \cap \widetilde{V_i}}$ y $\widetilde{U}$.
+
+\end{itemize}
+
+Por ende para $z \in Z$ hallamos $\widetilde{U} \ni z$ un abierto de $Z$ parejamietno cubierto por $qp$ y por ende $qp$ es revestimiento \qed
+
+\end{proof}
+
+\item {Pruebe que los revestimientos son estables por cambio de base. En particular, si $p:E\to B$ es revestimiento y $A\subset B$, entonces $p|_{p^{-1}(A)}:p^{-1}(A)\to A$ es revestimiento.
+}
+
+\begin{proof}
+
+Veamoslo! Sea $p: E \rightarrow B$ un revestimiento y $g:X \rightarrow B$ una funcion continua, sea $P:=\{(s,t) \in X \times E \ / \ g(s)=p(t)\}$ el pullback cl\'asico del diagrama:
+
+\[
+\begin{tikzcd}
+P \arrow[dashed]{r}{p_E} \arrow[swap,dashed]{d}{p_X} & E \arrow[swap]{d}{p} \\ \quad 
+X \arrow{r}{g} & B
+\end{tikzcd}
+\]
+
+Veamos que $p_X$ es revestimiento!
+
+\begin{itemize}
+
+\item Sea $x \in X$ y consideremos $g(x) \in B$, entonces como $p$ es sobreyectiva $\exists t \in E$ tal que $p(t)=g(x)$ y entonces $(x,t) \in P$ y $p_X(x,t)=x$, por ende $p_X$ es sobreyectiva. Notemos que probamos que las sobreyectivas son estables por cambio de base.
+
+\item Es trivial por conmutatividad que las continuas son estables por cambio de base
+
+\item Sea $x \in X$ y consideremos $g(x) \in B$, entonces como $p$ es revestimiento sabemos que $\exists g(x) \in U \subset B$ tal que $q^{-1}(U)= \coprod_{i}{V_i}$ con $V_i \subset E$ abiertos y $V_i \simeq U$. Notemos que $W:=g^{-1}(U)$ es abierto en $X$ y cumple que $g(W) \subset U$, veamos que $x \in W$ esta parejamente cubierto! Para eso $p_X^{-1}(W) = p_X^{-1}(g^{-1}(U)) = (gp_X)^{-1}(U) = (pp_E)^{-1}(U) = p_E^{-1}(\coprod_{i}{V_i}) = \coprod_{i}{p_E^{-1}(V_i)}$ y los $p_E^{-1}(V_i)$ son abiertos de $P$, faltar\'ia ver que $p_X|_{p_E^{-1}(V_i)}$ es un homeomorfismo. Para esto notemos el siguiente diagrama:
+
+
+\[
+\begin{tikzcd}
+p_E^{-1}(V_i) \arrow[dashed]{r}{p_E} \arrow[swap,dashed]{d}{p_X} & V_i \arrow[swap]{d}{p} \\ \quad 
+g^{-1}(U) \arrow{r}{g} & U
+\end{tikzcd}
+\]
+
+Como entonces $p_E^{-1}(V_i)$ es el pullback de ese diagrama, entonces como los homeomorfismos son estables por cambio de base, tenemos que $p_X|_{p_E^{-1}(V_i)}$ es un homeomorfismo. \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Sea $B$ un espacio conexo y localmente conexo, y sea $p:E\to B$ un revestimiento. Pruebe que si $C$ es una componente conexa de $E$, entonces $p|_C:C\to B$ es un revestimiento.
+}
+
+\begin{proof}
+
+Notemos primero que como $p$ es revestimiento $E$ hereda las propiedas locales de $B$, veamoslo! Sea $x \in E$ y veamos $p(x) \in B$, entonces como $p$ es revestimiento $\exists p(x) \in U \subset B$ abierto tal que $p^{-1}(U) = \coprod_{i}{V_i}$, notemos que $U$ lo podemos tomar conexo!
+\begin{itemize}
+\item Sea $\widetilde{U} \ni x$ el entorno abierto y conexo de $x$ y $U$ el parejamente cubierto, sea $\widehat{U}:=U \cap \widetilde{U}$, entonces $p^{-1}(\widehat{U}) = \coprod_{i}{V_i \cap p^{-1}(\widetilde{U})}$ y trivialmente $V_i \cap p^{-1}(\widetilde{U}) \simeq_p \widehat{U}$, que es lo que quer\'iamos
+\end{itemize}
+
+Entonces, volviendo, tomamos el $U$ original conexo y por ende como $V_i \simeq U$ tenemos que $V_i$ los abiertos de $E$ son conexos y por ende $E$ es localmente conexo. Ahora si con esto dicho, veamos que $p|_C$ es revestimiento.
+
+\begin{itemize}
+
+\item Sea $b \in B$ y $U \ni b$ el entorno abierto conexo parejamente cubierto, entonces como $\exists V_i \subset X$ con $V_i \simeq U$ en particular $\exists v_i \in V_i \ / \ p(v_i)=b \ \forall \ i \in I$. Sea $C$ la componente conexa, entonces como los $V_i$ son conexos, $\exists i_0 \in I \ / V_{i_0} \subset C$ y por ende $v_{i_0} \in C$ y $p(v_{i_0})=b$. Por ende $p|_C$ es sobreyectiva. Trivialmente como restringir es inicial, $p|_C$ es continua.
+
+\item Sea todo como lo anterior, o sea $x \in U \subset X$ y $p^{-1}(U)= \coprod_{i \in I}{V_i}$ y veamos $p^{-1}|_C(U) = \coprod_{i \in I}{V_i \cap C}$. Como $V_i$ son conexos y $C$ es una componente conexa, tenemos que $V_i \subset C$ o $V_i \cap C = \emptyset$, sea $J \subset I$ los indices que sobreviven, entonces $V_j \cap C = V_j \ \forall j \in J$. Entonces tenemos que $p^{-1}|_C(U) = \coprod_{j \in J}{V_j}$ y como los $V_j \simeq_p U$ entonces por ser todo igual $V_j \simeq_{p|_{C}} U$ y entonces $U$ esta parejamente cubierto. Notemos que $B$ autom\'aticamente queda conexo pues es la imagen por $p$ de $C$. (No use conexi\'on, esta mal??) \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Sea $p : \R\to S^1$ el revestimiento usual.
+Pruebe que $f : X  \to S^1$ puede levantarse a una funci\'on continua $\tilde f : X \to \R$ tal que $p\tilde f = f$ si y s\'olo si $f$ es
+null homot\'opica.}
+
+\begin{proof}
+
+Veamoslo por partes!
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$}
+
+Supongamos que $\exists \widetilde{f}:X \rightarrow \R$ tal que $f =  p\widetilde{f}$ entonces como $\R$ es contr\'actil tenemos que $\widetilde{f} \simeq C_{x_0}$ y por ende $f = p\widetilde{f} \simeq C_{r}$, o sea $f$ es nul-homot\'opica.
+
+\item {$\Longleftarrow)$}
+
+Ahora volvamos! Sea $x \in X$ miremos $f(x) \in S^1$, como $f$ es nullhomot\'opica, entonces se que $f \simeq C_{s_0}$ con $s_0 \in S^1$ y como $S^1$ es arco-conexo se que $\exists \alpha$ camino de $s_0$ a $f(x)$. Sea ahora $r_0 \in E_{s_0} \subset \R$ y consideremos $\widetilde{\alpha}^{r_0}$ el camino levantado de $\alpha$ en $\R$, notemos que $p(\widetilde{\alpha}^{r_0}(t))=f(t)$ y por ende definimos $\widetilde{f}(x) = \widetilde{\alpha}^{r_0}(1)$, veamos que esta bien definida, que es continua y que hace conmutar el diagrama!
+
+\begin{itemize}
+
+\item Supongamos que $\alpha,\omega:I \rightarrow S^1$ son dos caminos que unen $s_0$ con $f(x)$, entonces $\alpha*\overline{\omega}$ es un lazo en $s_0$. Afirmo que $\widetilde{\alpha*\overline{\omega}}^{r_0}$ es un lazo en $r_0$; efectivamente pues $f$ es null-homot\'opica y entonces $[\alpha*\overline{\omega}] = [C_{s_0}] = 0$ y $[0] \in \{[\omega] \in \pi_1(S^1,s_0) \ / \ \widetilde{\omega}^{r_0}(1)=r_0 \} = p_*(\pi_1(\R,r_0))=0$ pues $\R$ es simplemente-conexo. Entonces $\widetilde{\alpha}^{r_0}*\widetilde{\overline{\omega}}^{r_1}$ es un lazo en $r_0$ donde $r_1 = \widetilde{\alpha}^{r_0}(1)$. Por lo tanto $\overline{\widetilde{\overline{\omega}}^{r_1}}(0)=r_0$ y es otro levantado $\alpha$, por ende por el levantamiento \'unico de caminos tenemos que $\overline{\widetilde{\overline{\omega}}^{r_1}} = \widetilde{\omega}^{r_0}$ y cuando evaluamos en $t=1$ tenemos que $\widetilde{\omega}^{r_0}(1)=\overline{\widetilde{\overline{\omega}}^{r_1}}(1)=\widetilde{\overline{\omega}}^{r_1}(0)=r_1=\widetilde{\alpha}^{r_0}(1)$ y por ende $\widetilde{f}$ esta bien definida.
+
+\item Sea $x \in X$ y sea $U \ni f(x)$ el entorno parejamente cubierto, entonces $p^{-1}(U) = \coprod_{j}{W_j}$. Sea $j_0 \in J$ tal que $\widetilde{f}(x) \in W_{j_0}$ y consideremos $q:=p|^{-1}_{W_{j_0}} : U \rightarrow W_{j_0}$ el homeomorfismo correspondiente. Ahora si, sea $W \ni \widetilde{f}(x)$ un entorno abierto y veamos $p(W \cap W_{j_0})$ que es abierto de $S^1$ pues $p|_{W_{j_0}}$ es homeo, entonces $V := f^{-1}(p(W \cap W_{j_0}))$ es un abierto de $X$ pues $f$ es continua. Veamos que $\widetilde{f}(V) \subset W$ y probariamos la continuidad de $\widetilde{f}$!!
+
+Dado $x' \in V$ sea $\alpha:I \rightarrow S^1$ tal que $\alpha(0)=x$ y $\alpha(1)=x'$, entonces $q(\alpha)$ que es un levantamiento de $\alpha$ y $q\alpha(0) = \widetilde{f}(x)$; entonces $\widetilde{f}(x') = q\alpha(1) \in W_{j_0} \cap W \subset W$ pues $\alpha(1) \in f(V) \subset p(W_{j_0} \cap W)$ por lo que $q\alpha(1) \in qf(V) \subset qp(W_{j_0} \cap W) = W_{j_0} \cap W$ pues $q$ es la inversa de $p|_{W_{j_0}}$. Por ende probamos que dado $W\ni f(x)$ entorno abierto, $\exists V \ni x$ entorno abierto tal que $\widetilde{f}(V) \subset W$ y por ende $\widetilde{f}$ es continua.
+
+\item Por contrucci\'on es trivial que hace conmutar el diagrama!
+
+\end{itemize}
+
+\end{itemize}
+
+\end{proof}
+
+\item {Sea $G$ un grupo topol\'ogico y $X$ un $G$-espacio (ver ej. 31 pr\'actica 2). Decimos que la acci\'on es {\em libre} si $gx\neq x$ para todo $x\in X$ y todo $g\in G$, $g\neq e$. Decimos que la acci\'on es {\em propiamente discontinua} si para todo $x\in X$ existe $U$ entorno abierto de $x$ tal que $gU\cap U=\emptyset$ para todo $g\in G$, $g\neq e$.
+	\be
+	\item Pruebe que si $G$ es finito, $X$ es Hausdorff y la acci\'on es libre, entonces es propiamente discontinua.
+	\item Pruebe que si $G$ act\'ua en $X$ y la acci\'on es propiamente discontinua, entonces la proyecci\'on $p:X\to X/G$ es un revestimiento.
+	\item Sea $X=\R\times [0,1]\subset\R^2=\mathbb{C}$. Sea $G\subset {\rm Aut}(X)$  el subgrupo generado por $\phi$,donde $\phi(z)= \bar{z}+1+i$.
+Pruebe que la acci\'on de $G$ en $X$ es propiamente discontinua, y que $X/G$ es homemomorfo a la banda de Mobius.
+	\item Calcular el grupo fundamental de la banda de Mobius.
+	\en
+}
+
+\begin{proof}
+
+???
+
+\end{proof}
+
+\item {Sea $p : E \rightarrow B$ una fibraci\'on. Sean $e\in E$, 
+$b=p(e)$.
+\begin{enumerate}
+\item Puebe que que si $B$ es simplemente conexo, entonces la inclusi\'on de la fibra $E_b$ en $E$ induce un epimorfismo
+$i_* : \pi_1 (E_b , e ) \rightarrow \pi_1(E, e)$.
+\item Pruebe que si la fibra $E_b$ es
+simplemente conexa, entonces $p_* : \pi_1 (E, e) \rightarrow \pi_1 (B, b)$ es un isomorfismo.
+\item Pruebe que si $E$ es simplemente conexo, entonces hay una biyecci\'on entre $\pi_1(B,b)$ y $\pi_0(E_b)$.
+\end{enumerate} 
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $[\omega] \in \pi_1(E,e)$ un lazo, entonces consideremos $p_*([\omega])=[p\omega] \in \pi_1(B,b)$, como $B$ es simplemente conexo tenemos que $[p\omega]=[C_b]$, o sea que $\exists H:I \times I \rightarrow B$ continua tal que $H_0 = p\omega$ y $H_1 = C_b$. Como $p$ es fibraci\'on esta $H$ se levanta a $\widetilde{H}: I \times I \rightarrow E$ tal que $\widetilde{H}_0 = \widetilde{p\omega}^{e}$ y $\widetilde{H}_1 = \widetilde{C_b}^{e} = C_e$, pero $\widetilde{p\omega}^{e} = \omega$ y por ende $\omega \simeq_{\widetilde{H}} C_e$ y por ende $i_*([C_e])=[\omega]$ y $i_*$ es epimorfismo.
+
+\item Veamoslo por partes!
+
+\begin{itemize}
+
+\item {Monomorfismo}
+
+Sea $[\alpha] \in \pi_1(E,e)$ tal que $p_*([\alpha]) = 0$, entonces $p\alpha \simeq C_b$ y como $p$ es fibraci\'on tenemos que $\widetilde{p\alpha}^{e} = \alpha \simeq \widetilde{C_b}^{e}=C_e$ y por ende $[\alpha] = [C_e] = [0]$ y $p_*$ es monomorfismo.
+
+\item {Epimorfismo}
+
+Sea $[0] \neq [\omega] \in \pi_1(B,b)$ y consideremos $\widetilde{\omega}^{e}$ veamos que este es un lazo en $e$! ??
+
+\end{itemize}
+
+\item ??
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Sabiendo que $\pi_1(S^1)=\Z$, calcule el grupo fundamental de los siguientes espacios.
+\begin{enumerate}
+\item $X=S^1 \times [0,1]$, un cilindro.
+\item $X=S^1 \times \R$, un cilindro infinito.
+\item $X=\R^2\setminus\{0\}$, el plano pinchado.
+\item $X=M$, la banda de M\"obius.
+\item $X=T=S^1 \times S^1$, el toro usual.
+%Dibujar los generadores en una inmersi\'on de $T$ en $\R^3$.
+\item $X=\R^3\setminus L$, donde $L$ es una recta o un plano.
+%\item $X=\P ^{n}(\R)$.
+%\item $X=S^2$.
+\end{enumerate}}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Nosotros ya sabemos que $X \simeq X \times I \ \forall X$ espacio topol\'ogico v\'ia la homotop\'ia lineal $H((x,t),s) = (x,t+s(0-t))$ y entonces, en particular $\pi_1(S^1,s) = \pi_1(S^1 \times I,s)=\Z$ pues el $\pi_1$ es un invariante homot\'opico.
+\item Como ya probamos en la pr\'actica pasada que, como $[0,1]$ es un compacto convexo de $\R$, $I \simeq \R$ entonces $S^1 \simeq S^1 \times I \simeq S^1 \times \R$ y entonces $\pi_1(S^1 \times \R ,s) = \Z$
+\item Notemos que $1_{\R^2 - \{0\}} \simeq \frac{\hat{x}}{\norm{\hat{x}}}$ via $H(\hat{x},t)= \dfrac{(1-t)1_{\R^2 - \{0\}} + t\frac{\hat{x}}{\norm{\hat{x}}}}{\norm{(1-t)1_{\R^2 - \{0\}} + t\frac{\hat{x}}{\norm{\hat{x}}}}}$ y como $\frac{\hat{x}}{\norm{\hat{x}}}|_{S^1} = 1_{S^1}$ tenemos que $\R^2 - \{0\} \simeq S^1 \ (rel \ S^1)$ y por ende $\pi_1(\R^2 - \{0\} , r) = \Z$
+\item Notemos que $M = I \times I / \mathord {(0,x) \sim (1,1-x)}$ y notemos que $S^1 \cong I \times I / \mathord {(0,\frac{1}{2}) \sim (1,\frac{1}{2})}$ entonces podemos sospechar que $S^1 \simeq M$. Sea $H: M \times I \rightarrow S^1$ dada por $H(\overline{(x,t)},s)=\overline{(x,t)}(1-s) + (s)\overline{(x,\frac{1}{2})}$, es f\'acil ver como hicimos en la pr\'actica 6 que esta $H$ es la proyecci\'on de la homotop\'ia lineal en $I \times I$ que compuesta con la proyecci\'on al cociente de $S^1$ respeta $q_M$ y por ende es continua y vale lo que queremos! Entonces $\pi_1(M,s) = \pi_1(S^1,s)=\Z$
+\item Como hicimos en el ejercicio 6 $\pi_1(T,(1,1)) = \pi_1(S^1 \times S^1 , (1,1)) \simeq \pi_1(S^1(1))^2 \simeq \Z \times \Z$
+\item Veamoslo por separado!
+
+\begin{itemize}
+\item {$L$ es una recta}
+
+En este caso notemos que $\R^3 - L \simeq \R^3 - L'$ donde $L'= \{ x=0 \ , \ y=0 \ \}$ pues $\exists Q \ GL_3(\R) \ / \ Q(L)=L'$ y entonces $H=1_xt + (1-t)Qx$ es la homotop\'ia que nos da lo anterior! Pero ahora notemos que $\R^3 - L' \simeq S^1 \times \R$ pues $\R^3 - L' = \R \times \R^2 - \{0\}$ y \'este \'ultimo ya probamos que $\R^2 - \{0\} \simeq S^1$. Pero entonces $\pi_1(\R^3 - L,r) = \pi_1(\R^3 - L',r') = \pi_1(\R \times \R^2 - \{0\} ,r'') = \pi_1(S^1 \times \R ,s') = \pi_1(S^1,s)=\Z$
+
+\item{$L$ es un plano}
+
+En este caso $\R^3-L \simeq \R^3_{x<0} \times \R^3_{x>0}$ pues nuevamente $\exists Q \ GL_3(\R) \ / \ Q(L)= \{z=0\}$ y con la misma homotop\'ia, pero $\R^3_{x<0} \cup \R^3_{x>0} \simeq \R^3_{x<0} \times \R^3_{x>0}$ trivialmente, lo que da lo dicho. Entonces $\pi_1(\R^3-L,r) = \pi_1(\R^3_{x<0},r) \times \pi_1(\R^3_{x>0},r') = \pi_1(\R^3,r) \times \pi_1(\R^3,r')=0$ pues $\R^3_{x<0} \simeq \R^3$ e idem el otro, y entonces son simplemente conexos. 
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+\bigskip
+
+%%%%%%%%%%%%%%%
+\sffamily
+
+\noindent 
+\textbf{Aplicaciones del Teorema de Brouwer y Borsuk-Ulam.}
+
+
+\item {Demuestre que si $A$ es un retracto del disco $D^2$, entonces toda funci\'on continua $f:A\to A$ tiene un punto fijo.}
+
+\begin{proof}
+
+Sea $f:A \rightarrow A$ continua y sea $x \in D^2$, entonces definimos $\widetilde{f}(x)=f(r(x))$, dado que $A \subset D^2$ tenemos que $\widetilde{f}:D^2 \rightarrow D^2$ y es continua por ser composici\'on de continuas. Entonces por el teorema de Brower $\exists x_0 \in D^2 \ / \ \widetilde{f}(x_0)=x_0$, o sea que $f(r(x_0))=x_0$, pero $f(A)\subset A$ y por ende $x_0 \in A$, entonces como $ri=1_A$ tenemos que $r(x_0)=x_0$, por lo que $f(x_0)=x_0$ con $x_0 \in A$, o sea que $f$ tiene un punto fijo \qed
+
+\end{proof}
+
+\item {Demuestre que si $f:S^1\to S^1$ es null-homot\'opica, entonces tiene un punto fijo y adem\'as existe $x\in S^1$ tal que $f(x)=-x$.}
+
+\begin{proof}
+
+Si $f:S^1 \rightarrow S^1$ es null-homot\'opica entonces $\exists \widehat{f}:D^2 \rightarrow S^1$ tal que $\widehat{f}|_{S^1}=f$, en particular como $S^1 \subset D^2$ es un subespacio cerrado, tenemos una $\widehat{f}:D^2 \rightarrow D^2$ continua, por Brower yo se que $\exists x_0 \ / \widehat{f}(x_0)=x_0$, pero igual que antes $x_0 \in S^1$, y como $\widehat{f}|_{S^1}=f$ tenemos que $f(x_0)= x_0$!!
+
+Por otro lado supongamos que si $f$ es null-homot\'opica, entonces $-f$ tambi\'en! Entonces bajo las mismas hip\'otesis y el mismo razonamiento $\exists x_1 \in S^1$ tal que $-f(x_1)=x_1$ por lo que $f(x_1) = -x_1$ \qed
+
+\end{proof}
+
+\item {Teorema de Lusternik-Schnirelmann (para dimensi\'on 2). Pruebe que si $S^2$ se cubre con tres abiertos, entonces uno de ellos contiene dos puntos antipodales.
+}
+
+\begin{proof}
+
+Supongamos que $S^2 = U_1 \cup U_2\cup U_3$, entonces $S^2 = \bigcup_{i=1}^{3}{F_i}$ cerrados tal que $F_1 \cap -F_1 = \emptyset$ y $F_2 \cap -F_2 = \emptyset$. Entonces como $S^2$ es compacto y $T_2$ entonces es $T_5$ y por ende por el lema de Uryshon $\exists g_i : S^2 \rightarrow I$ tal que $g_i(F_i)=0$ y $g_i(-F_i)=1$ continua, sea entonces $f:=(g_1,g_2):S^2 \rightarrow \R^2$ que es continua. Por Bersok-Ulam $\exists x \in S^2$ tal que $f(x)=f(-x)$, Supongamos que $x \in F_i$ con $i \in \{1,2\}$, entonces $g_i(x)=0=g_i(-x)$ por lo que $-x \in F_i$, ABS! Pues $F_i \cap -F_i = \emptyset$. Entonces $x \in F_3$! Por el mismo argumento a $-x$ tenemos que $-x \in F_3$ \qed
+
+\end{proof}
+
+\item {Pruebe que si $f:S^2\to S^2$ es continua y $f(x)\neq f(-x)$ para todo $x$, entonces $f$ es sobreyectiva.}
+
+\begin{proof}
+
+Supongamos que $f$ no es sobreyectiva y sea $s \in S^2 \ / Im(f)\subset S^2 - \{s\}$, recordemos que $\exists h:S^2-\{s\} \rightarrow \R^2$ homeomorfismo y entonces $hf:S^2 \rightarrow \R^2$ es continua. Por el teo de Bersok-Ulam $\exists x_0 \in S^2$ tal que $hf(x_0)=hf(-x_0)$, pero como $h$ es homeomorfismo, en particular es inyectivo y llegamos a que $f(x_0)=f(-x_0)$ ABS! Entonces $f$ es sobreyectiva \qed
+
+\end{proof}
+
+
+\end{enumerate}
+
+\end{document}

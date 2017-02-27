@@ -1,0 +1,393 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\sette}[2]{\{#1 \ , \ #2 \}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Conexi\'on y Arco-conexi\'on}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}
+
+\begin{enumerate}
+\item Sean $\prod X_{\alpha}$ con la topolog\'ia producto,  $x= (x_{\alpha})\in X$. Pruebe que $C_{x}=\prod C_{x_{\alpha}}$.
+
+\item Sea $\mathbb{R}^{\omega}$ con la topolog\'ia caja. Pruebe que $x\in \mathbb{R}^{\omega}$ est\'a en la misma componente conexa que la sucesi\'on  nula $\mathbf 0$ si y s\'olo si $x$ es eventualmente cero.\footnote{\textit{Sugerencia}: Construya un homeomorfismo entre $\mathbb{R}^{\omega}$ que mande a $\mathbf 0$ y $x$ a 
+una sucesi\'on acotada y una no acotada respectivamente.} Deduzca que  $x,y\in \mathbb{R}^{\omega}$ est\'an en la misma componente conexa si y s\'olo si $x-y$ es eventualmente cero.
+
+\end{enumerate}
+
+\begin{proof}
+ 
+\begin{enumerate}
+
+\item Sea $x \in C$, entonces como $C$ es conexo y $p_i$ es continua, $p_i(x) = x_i \in p_i(C)$ con $p_i(C)$ conexo, por ende $p_i(C) \subset C_i$ pues $C_i$ es el mayor conexo que contine a $x_i$; por ende $x_i \in C_i \ \forall i$. Entonces $C \subseteq \prod_{i}{C_i}$.
+
+Sea $f : \prod {C_i} \rightarrow \sett{0,1}$ y sea $(x_i) \in f^{-1}(0)$, entonces como $f$ es continua $\exists U \ni x$ entorno b\'asico tal que $U \subset f^{-1}(0)$, ie: $U_1 \times \dots \times U_k \times \prod_{i > k}{C_i} \subseteq f^{-1}(0)$ y por ende $\sett{x_1} \times \dots \times \sett{x_k} \times \prod_{i>k}{C_i} \subseteq f^{-1}(0)$. Ahora usemos el siguiente lema:
+
+\begin{lemma}
+
+Si $x_i =  y_i$ salvo para $i= j_0$ fijo, entonces $x,y$ est\'an en la misma componente conexa.
+
+\end{lemma}
+
+\begin{proof} (Del lema)
+$C_{j_0} \times \prod_{i \neq j_0}{\sett{x_i}} \simeq C_{j_0}$ y $C_{j_0}$ es conexo \qed
+\end{proof}
+
+Por endeusando el lema $k$ veces tenemos que $\prod_{C_i} \subset f^{-1}(0)$ y entonces $\prod {C_i}$ es conexo, por ende $x \in \prod {C_i} \subset C$. \qed
+
+
+\item Notemos primero que $f_y (x) = x+y$ es un homeomorfismo, y por ende $C(x) = x + C(0)$. Ahora si sea $B$ el conjunto de los puntos eventualmente cero y sea $x \in B$ y consideremos $f : I \rightarrow \R^{\omega}$ dado por $t \mapsto tx$. Veamos que $f$ es continua! Sea $t_0 \in f^{-1}(U)$ con $U$ abierto y sea $U_1 \times \dots $ un abierto b\'asico conteniendo a $f(t_0)$. Sea entonces $r_i$ el radio tal que $B((f(t_0))_i,r_i) \subset U_i$ y sea $N$ tal que $x_n = 0 \forall n \geq N$. Entonces si consideramos $r = min_{i<N}{r_i}$ entonces $f(B(t_0,r)) \subset U$, por ende $f$ es continua. Notemos que $f(0) = 0$ y $f(1) = x$ por lo que $B$ es arco-conexo y $x,0 \in B \subset C(0)$.
+
+Ahora veamos que si $x \not \in B$ entonces $x$ y $0$ no est\'an en la misma componente conexa! Para esto usemos el siguiente lema:
+
+\begin{lemma}
+$C = \sette{x \in \R^{\omega}}{x_n \textit{ no acotada}}$ es abierto y cerrado en $\R^{\omega}$ con la topolog\'ia uniforme, y por ende con la topolog\'ia caja.
+\end{lemma}
+
+\begin{proof} (Del lema)
+Trivial.
+\end{proof}
+
+Dado $x = (x_1,x_2 , \dots)$ sea $k_i = 1 \chi_{x_i = 0} + \frac{n}{x_i} \chi_{x_i \neq 0}$ y sea $f: \R^{\omega} \rightarrow \R^{\omega}$ dado por $f(x) = (k_1x_1 , k_2x_2 , \dots)$ Entonces $f$ es homeo y si $x \not \in B$ entonces $f(x)_n = n$ para infinito $n$ y entonces $f(x)$ no est\'a acotado, mientras que $f(0)$ s\'i. Como las acotadas son una partici\'on de $\R^{\omega}$ tenemos que $x,0$ no pueden estar en la misma componente conexa. \qed
+
+\end{enumerate} 
+ 
+\end{proof}
+
+\bigskip
+
+\begin{enumerate}
+
+\item {Ejercicio 1}
+
+\begin{proof}
+
+Sea $X = U \cup V$ una desconecci\'on donde $U,V \in \tau'$, entonces $U,V \in \tau$ y como $(X,\tau)$ es conexo $U = \emptyset$, por ende $(X,\tau')$ es conexo \qed
+
+\end{proof}
+
+\item {Ejercicio 2}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Supongamos que $\partial A = \emptyset$, entonces $ \interior{A} \subseteq A \subseteq \overline{A} \subseteq \interior{A} $ y entonces $A$ es abierto y cerrado, entonces $X = A \cup A^{c}$ donde ambos son abiertos y no vac\'ios. Abs! Entonces $\partial A \neq \emptyset$ \qed
+
+\item En efecto como $X$ es disconexo $\exists U / X = U \cup X \setminus U$, donde $U,X \setminus U$ son abiertos, entonces $\partial U = \emptyset$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 3}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $A \bigcup {A_{\alpha}} = U \cup V$ una disconexi\'on, podemos suponer que $A  \subset U$ pues $A$ es conexo. Entonces como $A_{\alpha} \subset \bigcup {A_{\alpha}}$ es subespacio, tenemos que $U \cap A_{\alpha},V \cap A_{\alpha}$ son una desconexi\'on de $A_{\alpha}$, pero como es conexo $V \cap A_{\alpha} = \emptyset$ ($A \subset U $). Entonces $V = \bigcup {V \cap A_{\alpha}} = \emptyset$
+
+\item Sea $\bigcup {A_n} = U \cup V$ y sea $x_0 \in A_{n} \cap A_{n+1}$, supongamos que $x_0 \in U$, entonces $A_n = U \cap A_n \cup V \cap A_n$ y como $A_n \cap U \ni x_0$ tenemos por conexi\'on de $A_n$ que $A_n \cap V = \emptyset$, por ende $V = \bigcup{V \cap A_n} = \emptyset$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 4}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item $\N \times [0,1) = [(1,0),(1,1)) \cup ((1,1) , \infty)$ donde $[(1,0),(1,1))$ es abierto pues es de la forma $[min \Omega , a)$ que es subb\'asico, mientras que el otro es abierto por ser sub b\'asico; y unen pues el $(1,1) \not \in \N \times [0,1)$. Por ende no es conexo.
+
+\item $[0,1) \times \N = [(0,1),(0,3)) \cup ((0,2), \infty)$ y ambos son abiertos.
+
+\item Sea una desconexi\'on $[0,1) \times [0,1] = U \cup V$, y consideremos $r = sup (U)$ y $v = inf(V)$, entonces $r \leq v$ pues sino no ser\'ian disjuntos. Pero si $r < v$ entonces $\exists z$ en el medio y $z \not \in U \cup V$! Por ende $r = v$ y como son disjuntos $r \in U$, pero entonces $r+ \epsilon \in U$ por ser $U$ abierto y $r+\epsilon \in V$ por la propiedad del \'infimo de $v$, por ende $U \cap V \neq \emptyset$. O sea que es conexo. 
+
+\item $[0,1] \times [0,1) = [(0,0),(0,1)) \cup ((0,1),(1,1))$ es una desconexi\'on.\qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 5}
+
+\begin{proof}
+
+Te\'orica. Por otro lado si $A = \overline{B(0,1)} \cup \overline{B(2,1)} \subset \R$ tenemos que $A$ es conexo pero $\interior{A} = (-1,1) \cup (1,2)$ que es disconexo. Y si considero un anillo vemos lo mismo para $\partial A.$ \qed
+
+\end{proof}
+
+\item {Ejercicio 6}
+
+\begin{proof}
+
+Supongamos que $A \cap \partial B = \emptyset$, entonces $A = A \cap B \cup A \cap (X \setminus B)$, y como $A \cap \partial B = \emptyset$ entonces $B = \overline{B}^{A} = \interior{B}^{A}$, o sea que $B$ es abierto y cerrado en $A$ y tambi\'en su complemento. Abs! Pues $A$ era conexo, entonces $A \cap \partial B \neq \emptyset$ \qed
+
+\end{proof}
+
+\item {Ejercicio 7}
+
+\begin{proof}
+
+Consideremos $f : X \rightarrow \sett{0,1}$ continua, entonces si $x \sim y$ entonces $x,y \in q^{-1}(y)$ que es conexo y entonces $f(x)=f(y)$ pues sino tendr\'ia una $f|_{q^{-1}(y)} \rightarrow \sett{0,1}$ continua no constante en un conexo. Abs! Entonces $f$ respeta $\sim$, por lo que por la PU del cociente el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{f} \arrow[swap]{d}{q} & \sett{0,1} \\
+Y \arrow[dashed]{ur}{\overline{f}} \\
+\end{tikzcd}
+\]
+
+Pero como $Y$ es conexo, $\overline{f} = C_{1}$, por ende $f = \overline{f} \circ q = C_{1}$ es constante. Entonces toda $f:X \rightarrow \sett{0,1}$ continua es contante, por ende $X$ es conexo \qed 
+
+\end{proof}
+
+\item {Ejercicio 8}
+
+\begin{proof}
+
+Les saco uno,dos extremos y quedan conexos o no.\qed 
+
+\end{proof}
+
+\item {Ejercicio 9}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Supongamos que $g(x):=f(x)-f(-x) \neq 0 \ \forall x \in S^1$, entonces $g > 0$ por Bolzano pues $S^1$ es conexo. Pero $g(x_1) > 0 \quad \Longleftrightarrow f(x_1) > f(-x_1)$, y entonces $g(-x_1) < 0$ ABS! Entonces $\exists x \in S^1 \ / \ f(x)=f(-x)$
+
+\item $g(x):=f - x$ es continua y Bolzano. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 10}
+
+\begin{proof}
+
+C\'alculo Avanzado \qed
+
+\end{proof}
+
+\item {Ejercicio 11}
+
+\begin{proof}
+
+\begin{itemize}
+
+\item {a) $\Longrightarrow$ b)}
+
+Sea $A \subset X$ un subespacio abierto y sea $x \in A$, entonces como $X$ es localmente conexo $\exists V_x \subset X$ abierto conexo tal que $x \in V_x \subset A$, por ende $V = V \cap A$ es abierto conexo de $A$. Entonces $A = \bigcup_{x \in A} {V_x}$ donde $V_x$ son abiertos conexos de $A$. Sea $C \subset A$ una componente conexa, entonces notemos que $V_x \cap C = V_x$ o $V_x \cap C = \emptyset$ pues al ser ambos conexos tendr\'ia una desconexi\'on de $V_x$, por ende $C = \bigcup_{x \in C}{V_x}$ y es abierto.
+
+\item {b) $\Longrightarrow$ c)}
+
+Sea $U \subset X$ abierto, entonces por b) $U = \bigcup{x \in U} {C_x}$ es la uni\'on de sus componente conexas, que son abiertas, por lo que dado $U \subset X$ abierto $\exists V$ abierto conexo tal que $V \subset U$, por ende una base de $\tau$ esta compuesta por abiertos conexos.
+
+\item {c) $\Longrightarrow$ a)}
+
+Sea $x \in U$ entorno de $X$, entonces $\exists V \in \tau$ tal que $x \in V \subset U$ por definici\'on de base y por c) $V$ es abierto conexo, por ende $X$ es localmente conexo. \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 12}
+
+\begin{proof}
+
+Sea $x_0 \in X$ y consideremos $f(x_0)$, entonces tenemos $U = \sette{x \in X}{f(x)=f(x_0)}$ y $V = \sette{x \in X}{f(x) \neq f(x_0)}$. Supongamos que $f$ no es constante, entonces $U,V \neq \emptyset$ y si $x \in U$, entonces $x \in W \subset U$ por la constante localidad, por lo que $U,V$ son abiertos no vac\'ios disjuntos de $X$ ABS! Entonces $f = C_{f(x_0)}$ \qed
+
+\end{proof}
+
+\item {Ejercicio 13}
+
+\begin{proof}
+C\'alculo avanzado \qed
+\end{proof}
+
+\item {Ejercicio 14}
+
+\begin{proof}
+
+Sea $x_0 \in A \cap B$ y entonces dados $x,y$ $\exists \gamma_1,\gamma_2$ caminos de $x$ a $x_0$ y de $x_0$ a $y$, tomo $\gamma = \gamma_1 * \gamma_2$ es un camino de $x$ a $y$ \qed
+
+\end{proof}
+
+\item {Ejercicio 15}
+
+\begin{proof}
+
+Sean $(x_1,y_1),(x_2,y_2) \in X \times Y$ y sean $\gamma_1$ camino de $x_1$ a $x_2$ y $\gamma_2$ camino de $y_1$ a $y_2$, tomo $\gamma = (\gamma_1 , \gamma_2)$ \qed
+
+\end{proof}
+
+\item {Eercicio 16}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $x \in U$, entonces como $U$ es un entorno abierto de $x$, $\exists V \subset X$ abierto arco-conexo tal que $x \in V \subset U$, como $U$ es abierto tenemos que $V$ es abierto en $U$ y entonces $U$ es localmente arco-conexo.
+
+\item Fijemos $x_0 \in X$ y sea $C = \sette{x \in X}{\exists \gamma:I \rightarrow X \ , \ \gamma(0)=x_0 \ , \ \gamma(1)=x}$, entonces $x_0 \in C$. Adem\'as como $X$ es localmente arco-conexo $\exists V \subset X$ abierto arco-conexo tal que $x \in V \subset X$ y por ende $x \in V \subset C$, o sea que $C$ es abierto. Finalmente sea $x \not \in C$ por el mismo argumento $C^{c}$ es abierto y por ende $C$ es cerrado, abierto y no vac\'io, entonces $C = X$.
+
+\item Trivial \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 17}
+
+\begin{proof}
+
+Sea $[a,b)$ un intervalo degenerado, entonces $[a,b) = [a,c) \cup [c,b)$ si $b > a$ por lo que lo desconectamos. Entonces las \'unicas componentes no vac\'ias son $\sett{x}$. Por otro lado si $C$ es componente arco-conexa, entonces es conexa, entonces $C = \sett{x}$. \qed
+
+\end{proof}
+
+\item {Ejercicio 18}
+
+\begin{proof}
+
+Sea $x \in U \subset I^2$ con $U$ entorno, entonces $\exists V \subset U$ abierto tal que $x \in V \subset U$, y como $V$ es abierto $\exists \epsilon > 0$ tal que $x \in (x-\epsilon,x+\epsilon)\cap I^2 \subset V \subset U$ donde $(x-\epsilon,x+\epsilon) \cap I^2$ es abierto conexo. Pero no puede ser localmente arco-conexo pues entonces la cantidad de componente conexas y arco-conexas ser\'ia igual pero $I^2$ es conexo y no arco-conexo. Resta ver $\pi_0(I^2)!$ Pero si vemos la demostraci\'on de que $I^2$ no es arco-conexo vemos que el problema era \textit{cruzar} intervalos pues ah\'i obteniamos no numerables abiertos disjuntos! Por ende es natural que  $\pi_0(I^2) = \sette{\sett{a} \times [0,1]}{a \in [0,1]}$. \qed
+
+\end{proof}
+
+\item {Ejercicio 19}
+
+\begin{proof}
+
+Tanto a) como b) son claros, asi que veamos el c)!
+
+\begin{itemize}
+
+\item {$K \times [0,1] \cup \sett{0} \times [0,1]$}
+
+Es claro que las componentes son $\sett{\frac{1}{n}} \times [0,1]$ o $\sett{0} \times [0,1]$
+
+\item {$A \setminus \sett{(0,\frac{1}{2})}$}
+
+Que es A ??
+
+\item {$B \cup [0,1]\times \sett{0}$}
+
+Que es B ??
+
+\item {$K \times [0,1] \cup -K \times [-1,0] \cup [0,1] \times -K \cup [-1,0] \times K$}
+
+Posta no entiendo este espacio...
+
+\end{itemize}
+
+\end{proof}
+
+
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents}
+\usepackage{tikz-cd}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia-- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Teorema Van Kampen}
+
+\bigskip
+
+\begin{enumerate}
+
+\item{Ejercicio 1}
+
+\begin{enumerate}
+
+\item {$T^2 - \{\overline{p}\}$}
+
+\begin{proof}
+
+Hagamos la identificaci\'on $T^2 = I \times I \ / \mathord{\sim}$ donde $\sim$ es la conocida (Como se hacen los dibujitos de cuadrados con flechitas Ximee???). Notemos que v\'ia la homotop\'ia lineal podemos asumir que $\overline{p} = q((\frac{1}{2},\frac{1}{2}))=q(p)$ donde $q(x)=[x]_{\sim}$. Ahora sea $f (x)= \frac{x}{\norm{x}_{\infty}}$ es claro que $f:I \times I \rightarrow \partial(I \times I)$ y es continua, veamos que es una equivalencia homot\'opica con inversa $i(x)=x$!
+
+Notemos que $fi(x)=f(x)=x$ pues $\norm{x}_{\infty}=1$ y por ende $fi = 1_{\partial(I \times I)}$
+
+Por otro lado $if(x)= \frac{x}{\norm{x}_{\infty}}$, sea $H : (I \times I) \times I \rightarrow I \times I$ dada por $H((x,t),s) = s*(x,t) + (1-s)(f(x,t))$ entonces como $(x,t) \neq (0,0)$ H esta bien definida y es continua. Adem\'as tenemos que $H_0=if$ y $H_1=1_{I \times I}$, por ende $f$ es equivalencia homot\'opica.
+
+Ahora vamos a probar que $f$ baja al cociente como equivalencia homot\'opica (por \'unica vez modulo parcial estas cuentas)
+
+Nosotros sabemos que $qf:I \times I \rightarrow \partial(I \times I) \ / \mathord{\sim}$ es continua, adem\'as si $x \sim y$ entonces $x,y \in \partial(I \times I)$ y por ende $f(x)=x \sim f(y)=y$, o sea que $qf$ respeta $q_{\sim}$.
+
+Entonces tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+{I \times I -\{p\}} \arrow{r}{f} \arrow[swap]{d}{q_{\sim}} & {\partial(I \times I)} \arrow[swap]{d}{q_{\sim}} \\ 
+{{I \times I -\{p\}} \ / \mathord{\sim}} \arrow[dashed]{r}{\overline{{f}}} & {\partial(I \times I)} \ / \mathord{\sim} \\
+\end{tikzcd}
+\]
+
+
+\[
+\begin{tikzcd}
+{I \times I -\{p\} \times I} \arrow{r}{H} \arrow[swap]{d}{q_{\sim}} & {\partial(I \times I)} \arrow[swap]{d}{q_{\sim}} \\ 
+{{I \times I -\{p\}} \ / \mathord{\sim} \times I} \arrow[dashed]{r}{\overline{{H}}} & {\partial(I \times I) \ / \mathord{\sim}} \\
+\end{tikzcd}
+\]
+
+Finalmente sea $\overline{H}(\overline{(x,t)},s)=s\overline{(x,t)} + (1-s)\overline{f}(\overline{(x,t)})$ es f\'acil ver que $H$ bajaba al cociente y entonces $\overline{H}$ es continua y hace que $1_{I \times I - \{p\} \ / \mathord{\sim}} \simeq \overline{{if}} \ (\overline{H})$ pues $f(\overline{(x,t)})=f(x,t)$. Entonces tenemos que $I \times I - \{p\} \ / \mathord{\sim} \simeq \partial(I \times I) \ / \mathord{\sim}$.
+
+Ahora por la pr\'actica sabemos que $\partial(I \times I) \ / \mathord{\sim} \simeq S^1 \vee S^1$ y entonces tenemos que $T^2 - \{p\} \simeq S^1 \vee S^1$ y entonces $\pi_1(T^2 - \{p\}) \simeq \Z*\Z$ \qed
+
+\end{proof}
+
+\begin{remark}
+Hagamos de yapa el $T^2 - \{p_1,...,p_k\}$!!
+\end{remark}
+
+\begin{proof}
+
+V\'ia la misma idea ubiquemos a todos los $\{p_1,...,p_k\} \in B((\frac{1}{2},\frac{1}{2}),\frac{1}{2}) \subset \interior{I \times I}$ con $p:=p_1 = (\frac{1}{2},\frac{1}{2})$ y ahora si sea $A := \{r \in I \ / \ \{p_1,...,p_k\} \subset B(p,r) \ y \ B(p,r) \subset I \times I \}  $, sabemos que $A$ est\'a acotado y es no vac\'io pues, por ejemplo $\frac{1}{2} \in A$ entonces sea y $r=inf \ A + \epsilon'$. Sea $U = B(p,r)$ y sea $V= I\times I - \overline{B(p,r')}$ con $r'$ tal que $inf \ A < r' < r$ que existe por la propiedad del \'infimo; entonces tenemos que $U,V, U \cap V$ son abiertos no vac\'ios arco-conexos, por el teorema de Van Kampen tenemos que $\pi_1(T^2 - \{p_1,...,p_k\}) = \pi_1(U)*\pi_1(V) \ / N$ veamos cada uno para dar una presentaci\'on!!
+
+\begin{enumerate}
+
+\item {$\pi_1(U)$}
+
+Sean $S_i=\partial(B(p_i,\epsilon))$ con $\epsilon > 0$ tal que $S_i \cap S_j = \emptyset$ y sean $\alpha_i$ caminos tal que $\alpha_i(0) \in S_i$, $\alpha_i(t) \not \in S_i \ \forall i \in \{1,...,k\} \ , \forall t \in (0,1)$ , $\alpha(1) \in S_{i+1}$, $\alpha_i(t) \neq \alpha_j(t)$ (o sea los caminos disjuntos que unen estas esferas). Entonces como $D^2$ es contr\'actil tenemos que $U \simeq \bigcup_{i=1}^{k} S_i \ \cup \ \bigcup_{i=1}^{k-1} { \alpha_i (I)}$, ahora uno puede ir contrayendo los $\alpha_i(I)$ de a uno y entonces obtenemos que $U \simeq S_1 \vee_{1} (S_2 \vee_{2} (... \vee_{k} S_k))$, o sea la primera wedge la segunda, y estas dos wedge por otro punto diferente a una tercera y asi iterativamente. Entonces por el corolario de la te\'orica tenemos que $\pi_1(U)=\pi_1(S_1)*\pi_1(S_2 \vee_{2} (S_3 \vee_{3}... ))=\pi_1(S_1)*\pi_1(S_2)*...*\pi_1(S_k)$, esto podemos usar inducci\'on simplemente. Ahora como $S_j \simeq S^1 \quad \forall j \in \{1,...,k\}$ tenemos que $\pi_1(U)=\ast_{i=1}^{k}\Z$
+
+\item{($\pi_1(V)$}
+
+Es claro que aqu\'i aplica lo hecho anteriormente y por ende $\pi_1(V)=\Z*\Z$
+
+\item{$\pi_1(U \cap V)$}
+
+Como antes es f\'acil ver que $U \cap V \simeq S^1$ y por ende $\pi_1(U \cap V) = \Z$
+
+\item{Hallemos la presentaci\'on!}
+
+Agarremos el lazo $\omega=\epsilon*e^{2 \pi i t} + p$ o sea el c\'irculo rodeando a $p$ que es el generador de $\pi_1(U \cap V)$ y veamos que le pasa en ambos grupos!
+
+\begin{itemize}
+\item {En U}
+Notemos que $i([\omega]) = [1][2]...[k]$ si notamos $<[i]> = \pi_1(S_i)$ pues dar una vuelta por el circulo grande es lo mismo que dar una vuelta por cada c\'irculito pequeño. 
+\item {En V}
+Ac\'a es f\'acil ver que $j([\omega])=aba^{-1}b^{-1}$ por lo mismo que vimos en la pr\'actica al calcular el 
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

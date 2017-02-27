@@ -1,0 +1,466 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Espacios topol\'ogicos}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}
+
+Sea $X$ un espacio topol\'ogico con la propiedad de que toda intersecci\'on arbitraria de abiertos
+ es abierta. Para cada $x\in X$, denotamos
+ $U_x$ a la intersecci\'on de todos los abiertos que contienen a $x$. 
+ Definimos una relaci\'on $\leq$ en $X$ v\'ia $x\leq y$ si y s\'olo si $x\in U_y$.  
+ 
+ Pruebe que $\leq$ es de equivalencia si y s\'olo si $\forall F\subseteq X$ cerrado, 
+ $\forall x\notin F$,
+ $\exists f:X\rightarrow [0,1]$ continua tal que $f(x)=0$ y $f(F)=\{1\}$.
+
+\begin{proof}
+Notemos primero que $\leq$ siempre es reflexiva y transitiva!
+
+\begin{itemize}
+\item {Reflexiva}
+
+Como $x \in U_x$ entonces $x \leq x$
+
+\item {transitiva}
+
+Supongamos que $x \leq y$ y $y \leq z$, entonces $y \in U_z$ y $x \in U_y$. Sea $U \ni z$ entorno abierto, entonces como $y \in U_z \subset U$ tenemos que $y \in U$, por ende $x \in U_y \subset U$, o sea que $x \in U$. Por ende como $U$ era arbitrario $x \in U_z$. 
+\end{itemize}
+
+Ahora si veamos la proposici\'on!
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$}
+
+Supongamos que $\leq$ es de equivalencia, o sea que si $x \in U_y$ entonces $y \in U_x$! Sea $F$ un cerrado tal que $x \not \in F$ y sea $f = \chi_F$, es claro que $f(F)=\sett{1}$ y que $f(x)=0$, veamos que $f$ es continua! Por el ejercicio 23 esto es equivalente a que $x \not \in \partial(E)!$, afirmo que $\partial(F) = \emptyset$.
+
+En efecto, $X = \bigcup_{\overline{x}}{U_x}$ y es una uni\'on disjunta pues si $x \sim y$ entonces $U_x = U_y$, o sea que tenemos la partici\'on en abiertos dada por $X = \coprod_{x}{U_x}$ donde uno sobre $x$ no relacionados, por ende $F = \coprod_{x} {U_x \cap F}$. Supongamos que $x \in F$, $y \in F^{c}$ pero $x \sim y$, entonces como $y \in F^{c}$ tenemos que $U_y \subset F^{c}$, pero entonces $x \in U_y \subset F^{c}$ ABS! Por ende $U_x \cap F = U_x$ o $U_x \cap F = \emptyset$ y por ende $F$ es abierto. Por lo tango $\partial{F} = \emptyset$ y $f$ es continua.
+
+\item {$\Longleftarrow)$}
+
+Supongamos que $x \leq y$ pero $y \not \leq x$, entonces $x \in U_y$ pero $y \not \in U_x$, entonces $\exists U \ni x$ tal que $y \not \in U$, sea entonces $F = U^{c}$, entonces $\exists f$ continua tal que $f(U^{c})=\sett{1}$ y $f(x)=0$ por ende $U^{c}$ es abierto y cerrado. Por ende $U^{c} \ni y$ es un abierto que contiene a $y$ pero que $x \not \in U^{c}$ ABS! Pues $x \in U_y$. Entonces $y \leq x$ y $\leq$ es de equivalencia.  \qed
+
+\end{itemize}
+
+\end{proof}
+
+\bigskip
+
+\begin{enumerate}
+
+\item{Ejercicio 1}
+
+\begin{proof}
+
+Veamos que es una topolog\'ia!
+
+\begin{itemize}
+
+\item {$\emptyset,Y \in \tau_Y$}
+
+Como $\emptyset \in \tau$ entonces $\emptyset = \emptyset \cap Y \in \tau_Y$, an\'alogo $Y = X \cap Y \in \tau_Y$.
+
+\item {$\cup_{j}{U_j}$}
+
+Sean $U_j \in \tau_Y$ entonces $U_j = Y \cap V_j$ con $V_j \in \tau$, entonces $\cup_{j}{U_j} = Y \cap \cup_{j}{V_j} \in \tau_Y$ pues $\cup_{j}{V_j} \in \tau$.
+
+\item{$F_1 \cap F_2$}
+An\'alogo. \qed
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 2}
+
+\begin{proof}
+
+Es claro y los cerrados son los conjuntos finitos \qed
+
+\end{proof}
+
+\item{Ejercicio 3}
+
+\begin{proof}
+Sea $\tau_A = \sett{\cap U_i \subset \R \ , \ \texttt{intersecciones finitas de abiertos} \ / \ diam(U_i)=\infty} \cup \sett{\emptyset}$, entonces veamos que $\tau_A$ es una topolog\'ia!
+
+\begin{itemize}
+\item {$\emptyset,\R$}
+Por definici\'on $\emptyset \in \tau_A$ y como $\R$ es abierto y no acotado, entonces $\R \in \tau_A$.
+
+\item{$\cup_{j}{U_j}$}
+
+Es claro que $\cup_{j}{U_j}$ es abierto pues es uni\'on de abiertos, mientras que $U_j \subset \cup_{j}{U_j}$ entonces $diam(\cup_{j}{U_j}) \geq diam(U_j) = \infty$, por lo que $\cup_{j}{U_j} \in \tau_A$.
+
+\item {$U_1 \cap U_2$}
+
+Por definici\'on.
+
+\end{itemize}
+
+Por ende $\tau_A$ es una topolog\'ia, cuyos cerrados son las uniones finitas de cerrados acotados, pero eso es un cerrado acotado (pues uni\'on finita de cerrados es cerrado). \qed
+
+\end{proof}
+
+\item {Ejercicio 4}
+
+\begin{proof}
+
+Es claro que es una topolog\'ia! Afirmo que es m\'as fina que la usual! En efecto, basta verlo en las bolas, y aqu\'i es trivial ver que toda bola es radialmente abierta. No obstante $B(0,1) \cup \sett{y=0}$ es radialmente abierto (tomo $p=(0,0)$) pero no es abierto con la topolog\'ia usual! Por ende $\tau_{met} \subsetneq \tau_{rad}$ \qed
+
+\end{proof}
+
+\item{Ejercicio 5}
+
+\begin{proof}
+\begin{enumerate}
+\item Trivial
+\item Trivial
+\item Molesto \qed
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 6}
+
+\begin{proof}
+Tan molesto como el anterior, es simplemente jugar con conjuntos.
+\end{proof}
+
+\item {Ejercicio 7}
+
+\begin{proof}
+Es claro que es un operador clausura pues $A \subseteq A \cup B$ y $A \cup B \cup B = A \cup B$, y los cerrados son los puntos fijos de $c$, o sea $A \ / A\cup B = A$, o sea que $B \subseteq A$. Por ende los abiertos son los $A\subseteq X$ tal que $A \subseteq B^{c}$
+\end{proof}
+
+\item{Ejercicio 8}
+
+\begin{proof}
+Trivial y tengo tiempo finito
+\end{proof}
+
+\item {Ejercicio 9}
+
+\begin{proof}
+Los cerrados son los finitos y los abiertos son los de complemento finito, por ende es ver dependiendo si $X$ es finito o no. \qed
+\end{proof}
+
+\item {Ejercicio 10}
+
+\begin{proof}
+Si $x_0 \in U$ etonces $U$ es abierto y su clausura es $X$ y al rev\'es si no. \qed
+\end{proof}
+
+\item {Ejercicio 11}
+\begin{proof}
+
+\begin{enumerate}
+
+\item {$\sett{(\frac{1}{n},0) \ , \ n \in \N} := B$}
+
+Notemos que $A \subseteq \interior{A} $ sii $A \subseteq B$ y $A$ abierto, pero si $A \subseteq B$ entonces $\exists J \subset \N$ tal que $A = \sett{(\frac{1}{m},0) , m \in J}$ pero si $(\frac{1}{m},0) \in A$ entonces un entorno abierto $V \ni x$ vale que $(\frac{1}{m+1},1) \in V$ y $(\frac{1}{m+1},1) \not \in A$, por ende el \'unico subconjunto abierto de $B$ es $\emptyset$, por ende $\interior{B}=\emptyset$.
+Por otro lado si $B \subseteq C$ con $C$ cerrado, entonces $\lim_{n}{(\frac{1}{n},0)} \in C$. Afirmo que $\lim_{n}{(\frac{1}{n},0)} = (0,1)$! En efecto sea $V \ni (0,1)$ entorno, entonces $((0,1-\epsilon),(\delta,\gamma))\subset V$, por Arquimedianidad $\exists N \in \N$ tal que $\frac{1}{N} < \delta$ y por ende $(\frac{1}{n},0) \in V \ \forall n \geq N$, entonces $\lim_{n}{(\frac{1}{n},0)} = (1,0)$. Por ende $\overline{B} = B \cup \sett{(0,1)}$.
+
+\item {$\sett{(1-\frac{1}{n},\frac{1}{2}) \ , \ n \in \N} := B$}
+
+Por el mismo motivo que el item anterior tenemos que $\interior{B} = \emptyset$, por otro lado afirmo que $B$ es cerrado. En efecto si $(x,y) \in I^2$ entonces $((x,y-\epsilon),(x,y+\epsilon)):=V$ es un entorno abierto de $(x,y)$ y si $x \neq 1- \frac{1}{n}$ entonces $b_n \not \in V \ \forall n \in \N$. Por ende si $B \subseteq F$ cerrado, entonces $B = F$, por ende $\overline{B}=F$.
+
+\item{$\sett{(x,0) \ , \ 0<x<1}:=B$}
+
+Sea $x \in B$ entonces $((x-\epsilon,1-\delta),(x,\gamma)) \ni x$ es un entorno abierto de $x$, pero $(1-\epsilon,1) \in V \ y \ (1-\epsilon,1) \not \in B$, por ende $\interior{B}=\emptyset$. Por otro lado si $(x,\delta)$ con $0<x<1$ entonces $V := ((x,\delta-\frac{\delta}{2}),(x,\delta + \frac{\delta}{2}))$ cumple que $b \not \in V \ \forall b \in B$, por ende (si hacemos como en a)) es f\'acil ver que $\overline{B} = B \cup \sett{(0,1),(1,0)}$.
+
+\item {$\sett{(x,\frac{1}{2} \ , \ 0<x<1)} :=B$}
+
+Sea $x \in B$, entonces $((x,\frac{1}{3}),(x,\frac{2}{3})):=V$  cumple que $V \subsetneq B$ y por ende $\interior{B} = \emptyset$. Por otro lado como hicimos antes tenemos que $\overline{B}=B$.
+
+\item {$\sett{(\frac{1}{2},y) \ , \ 0<y<1}$}
+
+Es claro que $\interior{B}=B$, por otro lado $\overline{B}=[(\frac{1}{2},0),\frac{1}{2},1]$ \qed
+
+\end{enumerate}
+
+
+\end{proof}
+
+\item {Ejercicio 12}
+
+\begin{proof}
+Sea $F $ cerrado, basta hallar $A$ tal que $\overline{A}=F$ y que $\interior{A}=\emptyset$, entonces tomemos $A = F \cap \Q$, entonces como $A$ tiene la topolog\'ia subespacio, vale lo pedido pues $\interior{\Q}=\emptyset$ y $\overline{\Q}=\R$. \qed
+\end{proof}
+
+\item {Ejercicio 13}
+
+\begin{proof}
+Es claro que $\cap{\tau_{\alpha}}$ es topolog\'ia verificando los axiomas, por otro lado sea $X \times Y$  el producto de dos espacios topol\'ogicos, y sea $\tau' = \sett{U \times Y, U \in \tau_X}$ y sea $\tau'' = \sett{X \times Y , V \in \tau_Y}$ entonces $U \times Y \cap X \times V \not \in \tau_X \cup \tau_Y$ y por ende no es topolog\'ia. \qed
+\end{proof}
+
+\item {Ejercicio 14}
+
+\begin{proof}
+Sea $\sigma(A) = \bigcap_{A \in \tau_i}{\tau_i}$, entonces es claro que $\sigma(A)$ cumple las dos propiedades! Es claro que $\sigma(\mathcal{A}) = \sett{\emptyset,\mathcal{A},\sett{a},\sett{b,c},\sett{d},\sett{a,b,c}\sett{b,c,d}}$.
+\end{proof}
+
+\item {Ejercicio 15}
+
+\begin{proof}
+Para verlo notemos que $X = \bigcup_{x \in X}{S_x}$ y por ende generan, y adem\'as $S_y \cap R_x = (x,y)$ y por ende intersecciones finitas de $\mathcal{S} \cup \mathcal{R}$ genera la base de $\tau_{ord}$. \qed
+\end{proof}
+
+\item {Ejercicio 16}
+
+\begin{proof}
+\begin{enumerate}
+\item Veamoslo de a poquito!
+
+Por un lado es claro que son base! Adem\'as tenemos que:
+
+\begin{itemize}
+
+\item $(a,b) = \bigcup_{n}[a- \frac{1}{n},b)$
+\item $(a,b) = \bigcup_{n} (a,b-\frac{1}{n}]$
+\item $(a,b) \in \mathcal{B}_4$
+\item $(a, \infty) = \bigcup_{n}(a,n)$
+\item $(-\infty ,a) = \bigcup_{n}(-n,a)$
+\item $B \in \tau_{cofin} \ \Longrightarrow B = (-\infty,a_1) \cup \bigcup (a_i,a_{i+1}) \cup (a_{n},\infty)$
+\item $x \in (a,b) - K$ entonces si $x \leq 0$tenemos que $x \in (a,x] \subset U$, sino sea $N$ el m\'as chico tal que $\frac{1}{N} < x$ entonces $U \cap (\frac{1}{N},x] = (y,x]$ con $y = \frac{1}{N} \chi_{\frac{1}{N} > a} + a \chi_{a > \frac{1}{N}}$ entonces $x \in (y,x] \subset (a,b)-K$
+\item Idem antes con $[y,x)$
+\end{itemize}
+
+Por ende $\mathcal{B}_7,\mathcal{B}_6,\mathcal{B}_5 \subsetneq \mathcal{B}_1 \subsetneq \mathcal{B}_4 \subsetneq \mathcal{B}_3,\mathcal{B}_2$.
+
+\item Es claro
+
+\item De a uno!
+
+\begin{enumerate}
+
+\item $\overline{K} = K \cup \sett{0}$ en $\tau_1$
+
+\item Idem anterior pues $0 \in [0,\epsilon):=V$ y $x_n \in V \forall n$ grande
+
+\item $\overline{K} = K$ en $\tau_3$ pues $(-\epsilon,0] \ni 0$ es un entorno abierto que no incluye a $K$! Es m\'as afirmo que $x_n \rightarrow x$ en $\tau_3$ sii $x_n \rightarrow x$ por la izquierda en la topo usual! Por ende $\frac{1}{n} \not \rightarrow x$ para ning\'un $x$.
+
+\item Es claro que $(- \epsilon + x ,x + \epsilon) - K \ni x$ es un entorno de $x \not \in K$ tal que $K \subsetneq V$ por ende $K = \overline{K}$ en $\tau_4$
+
+\item Idem $\tau_1$
+
+\item Idem $\tau_1$
+
+\item Sea $x \not \in K$ y sea $V \ni x$ entorno abierto, entonces $V = \R - J$ con $x \not \in J$ finito
+ y como $K$ es numerable, tenemos por cardinalidad que $\exists N$ tal que $\frac{1}{n} \in V \ \forall n \geq N$, por ende $\overline{K}=\R$ en $\tau_7$ \qed
+\end{enumerate}
+
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 17}
+
+\item{Ejercicio 18}
+
+\begin{proof}
+Ambos son re vagancia hacerlos...
+\end{proof}
+
+\item {Ejercicio 19}
+
+\begin{proof}
+\begin{enumerate}
+\item Sea $a$ tal que $x_{\alpha} = a \quad \forall \alpha \geq \gamma$ dado, entonces sea $U \ni a$ entorno abierto, entonces $a=x_{\alpha} \in U \quad \forall \alpha \geq \gamma$ y por ende $x_{\alpha} \rightarrow a$ \qed
+\item Sea $x_{\alpha} \rightarrow a$ y sea $f : \Omega \rightarrow \Lambda$ cofinal y consideremos $x_{f(\omega)}$ la subred. Sea $U \ni a$ entorno abierto y $\alpha '$ el que cumple que $x_{\alpha} \in U \ \forall \alpha \geq \alpha'$, entonces como $f$ es cofinal $\exists \omega' \ / \ f(\omega') \geq \alpha'$  y por ende $f(\omega) \geq f(\omega') \geq \alpha' \ \forall \ \omega \geq \omega'$ (pues f preserva el orden). Por ende $x_{f(\omega)} \in U \quad \forall \omega \geq \omega'$y entonces $x_{f(\omega)} \rightarrow a$ \qed
+
+\item Supongamos que $x_{\alpha} \not \rightarrow x$, entonces $\exists U \ni x$ tal que $\forall \alpha \exists \alpha' \ / \ x_{\alpha'} \not \in U$. Dado $\alpha \in \Lambda$ sea $\beta(\alpha)$ tal que $x_{\\beta(\alpha)} \not \in U$ y sea $D = \sett{\beta(\alpha), \ \alpha \in \Lambda}$, entonces $D$ es dirigido y $f=id$ es cofinal, por ende $x_{\beta(\alpha)}$ es una subred de $x_{\alpha}$ tal que $x_{\beta(\alpha)} \not \in U \quad \forall \beta(\alpha)$ por ende no tiene subred convergente. ABS! Por ende $x_{\alpha} \rightarrow x$\qed
+
+\item Preguntar...
+
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 20}
+
+\begin{proof}
+Veamos las dos inclusiones!
+
+\begin{itemize}
+\item {$\subset)$}
+
+Sea $x \in \overline{A}$ entonces dado $U \ni x$ tenemos que $U \cap A \neq \emptyset$. Sea $\Lambda = \sett{U \ , \ U \ni x \textit{abierto}}$ y le damos el orden $U \geq V \Longleftrightarrow U \subset V$, entonces sea $f: \Lambda \rightarrow X $ tal que $U \mapsto x_U \in U \cap A$. Entonces $x_U$ es una red y $x_U \rightarrow x$!
+
+\item {$\supseteq)$}
+
+Sea $x \in X$ tal que $\exists x_{\alpha} \rightarrow x$ con $x_{\alpha} \in A$, y sea $U \ni x$ entorno de $x$, entonces $x_{\alpha} \in U \cap A \ \forall \alpha \geq \alpha'$ y por ende $U \cap A \neq \emptyset$! Por ende $x \in \overline{A}$ \qed
+
+
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 21}
+
+\begin{proof}
+\begin{itemize}
+\item {$\Longrightarrow)$}
+
+Sea $D = \sett{(\alpha,U) \ , \ \alpha \in \Lambda \ , \ x \in U \ \textit{abierto tal que } x_{\alpha} \in U}$ y d\'emosle el orden $(\alpha,U) \leq (\beta,V) \ sii \ \alpha \leq \beta \ , \ V \subseteq U$, veamos que es dirigido! Sean $(\alpha,U),(\beta,V)$ y sea $\gamma \geq \alpha,\beta$ pues $\Lambda$ es dirigido, entonces como $x$ es punto de acumulaci\'on tenemos que $\sett{\alpha , x_{\alpha} \in U},\sett{\alpha, x_{\alpha} \in V}$ son cofinales y por ende $x_{\gamma} \in U \cap V$, por ende $(\gamma,U \cap V) \geq (\alpha,U),(\beta,V)$ y por ende $D$ es dirigido. Sea entonces $U \ni x$ entorno abierto, entonces $(\alpha,U) \mapsto x_{\alpha}$ es una red tal que $x_{\alpha} \in U \forall (\beta,V) \geq (\alpha,U)$, por ende $x_{\alpha} \rightarrow x$.
+
+\item{$\Longleftarrow)$}
+
+Sea $A \in \mathcal{F}_x$ entonces $\exists U$ abierto tal que $x \in U \subseteq A$, por ende $\exists \alpha' \ / \ x_{\alpha} \in U \subset A \ , \ \alpha \geq \alpha'$, por ende $\sett{\alpha , x_{\alpha} \in A}$ es cofinal \qed.
+
+\end{itemize}
+\end{proof}
+
+\item {Ejercicio 22}
+
+\begin{proof}
+Teorica \qed
+\end{proof}
+
+\item {Ejercicio 23}
+
+\begin{proof}
+\begin{itemize}
+\item {$\Longrightarrow)$}
+
+Supongamos que $x \in \partial{E}$, entonces como $\partial(E) = \partial(E^{c})$ tenemos que si $x \in E$ podemos tomar $x_{\alpha} \in E^{c}$ y si $x \not \in E$ podemos tomar $x_{\alpha} \in E$, tal que de todos modos $x_{\alpha} \rightarrow x$. Tomamos sin p\'erdida de generalidad el primer caso, entonces tenemos que $\chi_E(x_{\alpha})=0$ y $\chi_E(x)=1$ y por ende $\chi_E(x_{\alpha}) \not \rightarrow \chi_E(x)$, por ende $\chi_E$ no es continua.
+
+\item {$\Longleftarrow)$}
+
+Como $x \not \in \partial(E)$ tenemos que $x \in \interior{E}$ o $x \in \interior(E^{c})$, tomemos spdg el primer caso. Sea $x_{\alpha} \rightarrow x$ y sea $U \ni x$ entorno abierto de x, notemos que podemos tomar $U \subseteq \interior{E}$ pues sino tomo $V = U \cap \interior{E}$. Entonces como $x_{\alpha} \rightarrow x$ tenemos que $x_{\alpha} \in U \quad \forall \alpha \geq \alpha'$ y por ende $x_{\alpha} \in E \quad \forall \alpha \geq \alpha'$. Entonces $\chi_E(x_{\alpha})=1 \quad \forall \alpha \geq \alpha'$ y entonces $\chi_E(x_{\alpha}) \rightarrow \chi_E(x) \quad \forall x_{\alpha} \rightarrow x$, por ende $\chi_E$ es continua en x. \qed
+
+\end{itemize}
+\end{proof}
+
+\item {Ejercicio 24}
+
+\begin{proof}
+\begin{enumerate}
+\item Como $f$ es morfismo de orden y biyectivo, entonces es isomorfismo de orden, entonces $f(a,b)=(f(a),f(b))$ y $f^{-1}(a,b)=(f^{-1}(a),f^{-1}(b))$, por ende $f,f^{-1}$ son abiertas y por ende $f$ es homeo.
+\item Aplicar item a)
+\item Trivial que es biytectiva y preserva el orden, pero no es homoe pues uno es conexo y el otro no.\qed
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 25}
+
+\begin{proof}
+\begin{enumerate}
+\item Sea $A = \sett{x \in X \ / \ f(x) \leq g(x)}$ y notemos que si $f(x) > g(x)$ entonces $\exists U_1 \ni f(x)$ y $U_2 \ni g(x)$ tal que $f(y) > g(z) \quad \forall y \in U_1,z \in U_2$, entonces sea $U = f^{-1}(U_1) \cap g^{-1}(U_2)$, entonces $U$ es abierto pues $f,g$ son continuas y cumple que $x \in U \subseteq A^{c}$, por ende $A^{c}$ es abierto y entonces $A$ es cerrado.
+\item Notemos que $X = A \cup B$ donde $A$ es cerrado y $B = \sett{x \in X \ / \ f(x) \geq g(x)}$ tambi\'en es cerrado. Adem\'as tenemos que $h|_A = f$ es continua y $h|_{B} = g$ es continua, por el lema del pegado $h$ es continua. \qed
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 26}
+
+\begin{proof}
+
+\begin{enumerate}
+\item a),b),c) son de la te\'orica donde el contraejemplo es $f= \chi_{\sett{0}}$ y $F_n=[\frac{1}{n},1]$
+\item Sea $x \in X$ y $U_x$ es de la local finitud, entonces $f|_{U_x} = \bigcup_{i}^{n}{f|_{A_i}}$ pues $U \cap A_i = \emptyset$ salvo para finitos, como $f|_{A_i}$ es continua y $U_x = \bigcup_{i}^{n}{A_i}$ entonces por el lema del pegado parte b) tenemos que $f|_{U_x}$ es continua. Ahora como $X = \bigcup_{x \in X}{U_x}$ entonces como $f|_{U_x}$ es continua, por el lema del pegado parte a) tenemos que $f$ es continua. \qed
+\end{enumerate}
+
+\end{proof}
+
+\end{enumerate}
+
+
+\end{document}

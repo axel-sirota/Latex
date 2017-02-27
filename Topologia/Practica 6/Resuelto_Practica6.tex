@@ -1,0 +1,1039 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{tikz-cd}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Resuelto de pr\'actica 6}
+
+\bigskip
+
+\begin{itemize}
+
+\item {\underline{Ejercicio para entregar}}
+
+\item La cantidad de componentes conexas es un invariante homot\'opico.
+
+\begin{proof}
+
+Supongamos que $X \simeq Y$ pero que la cantidad de componentes conexas de $X$ (De ahora en mas $|C_X|$) es distinta de la de $Y$. Podemos suponer que $|C_X|=n > |C_Y|=m$. Notemos que si $f: X \rightarrow Y$ es la equivalencia homot\'opica y $X=\bigcup_{i \in I}^{d}{C_{x_i}}$ es la partici\'on de $X$ en sus componentes conexas, mientras que $Y=\bigcup_{i \in I}^{d}{C_{y_i}}$ es la partici\'on de $Y$ en sus componentes conexas  entonces $f(C_{x_i}) \subseteq C_{y_{j_0}}$ para un \'unico $j_o$ pues como f es continua, entonces $f(C_{x_i})$ es conexo, pero si $f(C_{x_i})\subseteq C_{y_{j_0}} \cup C_{y_{j_1}}$ eso ser\'ia una desconexi\'on. Por ende como $n \geq m $ entonces  $\exists i_0 , i_1 \in I$ tal que $f(C_{x_{i_0}}),f(C_{x_{i_1}}) \in C_{y_{j_0}}$, que es una manera muy poco linda de decir, al menos dos componentes distintas caen por $f$ es la misma componente de $Y$. Pero sea $g: Y \rightarrow X$ la inversa homot\'opica de $f$, entonces $g(C_{y_{j_0}}) \subseteq C_{x_{i_0}}$ por conexi\'on y el hecho que si fuese a otra diferente $C_{x_{i_2}}$ entonces via $H$  $fg \simeq 1_Y$ y entonces fijando $y_2 \in C_{y_{j_2}}$ tendriamos que $H_{y_2}$ ser\'ia un camino entre $y_2 \ y \ y_0$ que estan en diferentes componentes, Abs! Pero entonces, con el mismo razonamiento, sea $x_2 \in C_{x_{i_2}}$ y sea $F$ la homotop\'ia entre $gf \simeq 1_X$, entonces $F_{x_2}(t)$ cumple que $F_{x_2}(0)=gf (x_2)=x_0 \in C_{x_{i_0}}$ y $F_{x_2}(1)=x_2 \in C_{x_{i_2}}$ y por ende tenemos un camino entre $C_{x_{i_0}}$ y $C_{x_{i_2}}$. Abs! Entonces $n=m$ y notemos simplemente que si $|C_X|>|C_Y| \ \Longrightarrow \exists f$ suryectiva pero no inyectiva, y eso vale para todo cardinal .
+
+\end{proof}
+
+\end{itemize}
+
+\begin{enumerate}
+
+\item {Ejercicio 1}
+
+Probar que si $h,h':X\to Y$ son homot\'opicas (rel $A\subseteq X$) y $k,k':Y\to Z$ son homot\'opicas (rel $B\subseteq Y$ con $h(A)\subseteq B$),
+entonces $kh,k'h':X\to Z$ son homot\'opicas (rel $A$).
+
+\begin{proof}
+
+Sea $H:X \times I \rightarrow Y$ la homotop\'ia entre $h$ y $h'$, y sea $K:Y \times I \rightarrow Z$ la homotop\'ia entre $k$ y $k'$. Necesitamos una $F:X \times I \rightarrow Z$ cont\'inua tal que $F(x,0)=kh$ y $F(x,1)=k'h'$.
+
+Proponemos:
+
+$$F(x,s) = K(H(x,s),s)$$
+
+Entonces veamos:
+
+\begin{itemize}
+\item $F(x,0)= K(H(x,0),0) = K(h(x),0)=k(h(x)) = kh(x)$ entonces $F_0 := F(x,0) = kh$
+\item $F(x,1)= K(H(x,1),1) = K(h'(x),1)=k'(h'(x)) = k'h'(x)$ entonces $F_1 := F(x,1) = k'h'$
+\item $F$ es cont\'inua pues es composici\'on de $K$ y $H$ que son cont\'inuas \qed
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 2}
+
+Sea $X$ es un espacio topol\'ogico. Pruebe que las aplicaciones $i_0$,~$i_1:X\to X\times I$
+definidas por $i_j(x)=(x,j)$ ($j\in\{0,1\}$) son
+equivalencias homot\'opicas con la misma inversa $p:(x,t)\in X\times I\mapsto
+x\in X$. M\'as a\'un, $i_0\simeq i_1$.
+
+\begin{proof}
+
+Como ya nos dan la inversa, debemos ver que $i_jp \simeq 1_{X \times I}$ y que $pi_j \simeq 1_X$. Vayamos!
+
+\begin{enumerate}
+\item {$i_0$}
+
+Notemos que $i_0 p (x,t) = i_0 (x) = (x,0)$, entonces sea $H((x,t),s) = (x,t)(1-s) + (x,0)s$, para empezar $H: (X \times I) \times I \rightarrow X \times I$, esta bien definida y es continua pues es una combinaci\'on lineal entre $1_{X \times I}$ y $i_0 p$ que son continuas pues composi\'on de continuas. Adem\'as $H ((x,t),0) = (x,t) \Longrightarrow H_0 = 1_{X \times I}$ y $H((x,t),1) = (x,0) \Longrightarrow H_1 = i_0p$ entonces $i_0p \simeq 1_{X\times I}$
+
+Por otro lado $pi_0 (x) = p (x,0) = x$ entonces $pi_= = 1_{X}$ y por ende $i_0$ es una equivalencia homot\'opica.
+
+\item {$i_1$}
+
+Es f\'acil ver que si defino $\tilde{H} ((x,t),s) = (x,t)(1-s) + (x,1)s$ esta es la homotp\'ia que sirve.
+
+\item {$i_0 \simeq i_1$}
+
+Sea $F(x,t) = (x,0)t + (x,1)(1-t)$ entonces $F_0 = i_1$ y $F_1 = i_0$ y $F$ es una homotop\'ia. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 3}
+
+Sean $f$,~$g:X\to Y$ funciones continuas tal que
+$f\simeq g$. Pruebe que si $f$ es una equivalencia homot\'opica, entonces $g$ tambi\'en lo es.
+
+\begin{proof}
+
+Sea $k:Y \rightarrow X$ la inversa homoot\'opica de $f$. Entonces si usamos el ejercicio 1:
+
+$$f \simeq g \ \rightarrow 1_X \simeq kf \simeq kg$$
+$$f \simeq g \ \rightarrow 1_Y \simeq fk \simeq gk$$
+
+Entonces $kg \simeq 1_X$ y $gk \simeq 1_Y$, por la unicidad de la inversa, $k$ es la inversa homot\'opica de $g$ y por ende $g$ es una equivalencia homot\'opica \qed
+
+\end{proof}
+
+\item {Ejercicio 4}
+
+D\'e un ejemplo de una funci\'on $f$ que tenga inversa homot\'opica a izquierda (a
+derecha) pero no a derecha (a izquierda).
+
+\begin{proof}
+
+Sea $X = \{*\} \ , \ Y=S^{1} \ , i: X \rightarrow Y \ f:Y \rightarrow X$ con $i(*) = N$ (El polo norte)  y $f$ la funci\'on que lleva todo al punto $*$. Entonces:
+
+$if =C_N \quad fi = 1_{\{*\}}$
+
+De ac\'a sacamos que $i$ tienen inversa a izquierda, pero no a derecha pues $C_N \not\simeq 1_Y$ pues $S^1$ no es contractil. Del mismo ejemplo tenemos al rev\'es para $f$ \qed
+
+\end{proof}
+
+\item {Ejercicio 5}
+
+Pruebe que:
+
+\be
+\item Si $f$ posee una inversa homot\'opica a izquierda y una inversa
+homot\'opica a derecha, entonces $f$ es una equivalencia homot\'opica.
+
+\item $f$ es una equivalencia homot\'opica si y s\'olo si
+existen functiones $g$,~$h:Y\to X$ tales que $f\circ g$ y $h\circ f$ son
+equivalencias homot\'opicas.
+
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+\item Sa $g$ la inversa a izquierda y $h$ a derecha, entonces:
+
+$$g \simeq g1_Y \simeq g(fh) \simeq (gf)h \simeq 1_X h \simeq h \Longrightarrow \ gf \simeq 1_X \ fg \simeq fh \simeq 1_Y$$
+
+Entonces $f$ es equivalencia homot\'opica
+
+\item {De a partes}
+
+\begin{itemize}
+\item $\Longrightarrow )$
+
+Tomo $g=1_X$ y $h=1_Y$, entonces $fg = f$ y $hf = f$ y son equivalencias homot\'opicas por hip\'otesis.
+
+\item{$\Longleftarrow )$}
+
+Sea $k$ la inversa homot\'opica de $fg$, entonces $(fg)k \simeq f(gk) \simeq 1_Y$ y entonces $gk$ es una inversa hom\'otipica a derecha. Por otro lado sea $j$ la inversa homo\'otpica de $hf$, entonces $j(hf) \simeq (jh)f \simeq 1_X$ y entonces $jh$ es una inversa homot\'opica a izquierda. Por el item anterior $f$ es equivalencia homot\'opica. \qed
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+\item{Ejercicio 6}
+
+Sea $X$ un espacio, sea $A\subseteq X$ un subespacio y sea $a_0\in
+A$. Supongamos que existe una funci\'on continua $H:X\times I\to X$ tal que:
+$H(x,0)=x$ para todo $x\in X$;$H(A\times
+I)\subseteq A$; y  $H(a,1)=a_0$ para todo $a\in A$.
+Entonces la aplicaci\'on cociente $q:X\to X/A$ es una equivalencia
+homot\'opica.
+
+\begin{proof}
+
+A nosotros nos gustar\'ia hallar una funcion $\tilde{f}: X/A \rightarrow X$ tal que $fq \simeq 1_X$ y $qf \simeq 1_{X/A}$. Para obtener $\tilde{f}$ deber\'iamos tenes una $f:X \rightarrow X$ tal que $a \sim a' \Longrightarrow f(a) = f(a')$, pero notemos que $H$ hace esto pues manda todo $A$ en la tapa superior del cilindro al mismo punto. Entonces sea:
+
+$$f (x) = H(x,1)$$
+
+\begin{itemize}
+\item $f$ esta bien definida pues $H$ lo estaba
+\item $f$ es continua pues $f=H|_{X \times \{1\}}$ y $H$ era continua y restrinjo a un cerrado del cilindro.
+\item Si $a,a' \in A$ entonces $f(a)=f(a')=a_0$
+\end{itemize}
+
+Por todo lo anterior tenemos el siguiente diagrama conmutativo por la PU del cociente:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{f} \arrow[swap]{d}{q} & X \\ \quad 
+X/A \arrow[dashed]{ur}{\exists! \tilde{f}}
+\end{tikzcd}
+\]
+
+Afirmo que $\tilde{f}$ es la inversa homot\'opica de $q$, veamoslo!
+
+\begin{itemize}
+\item {$\tilde{f}q$}
+
+Sea $x \in X$, entonces $\tilde{f}q(x) = f(x) = H(x,1)$ por que el diagrama conmuta. Pero $H(x,0) = x$, entonces tenemos una $H:X \times I \rightarrow X$ continua tal que $H_0 = 1_X$ y que $H_1 = f$, entonces $\tilde{f}q = f \simeq 1_X$ y $\tilde{f}$ es la inversa a izquierda de $q$.
+
+\item {$q\tilde{f}$}
+
+Apriori esta es dif\'icil pues $q\tilde{f}(\bar{x}) = q(f(x)) = qH(x,1)$, pero $qH(x,0) = \bar{x}$. Notemos que hallar una homotop\'ia en $X/A$ es una funci\'on $\tilde{H}:X/A \times I \rightarrow X/A$, entonces inspirados por lo del principio veamos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+X \times I \arrow{r}{H} \arrow[swap]{d}{q \times 1_I} & X \arrow{r}{q} & X/A \\ \quad 
+X/A \times I \arrow[dashed]{urr}{\exists ! \tilde{qH}}
+\end{tikzcd}
+\]
+
+Pues:
+
+\begin{itemize}
+\item $qH$ es continua pues es composici\'on de continuas, y esta bien definida.
+\item Si $(x_1,t_1) \sim (x_2,t_2) \rightarrow x_1,x_2 \in A \ , \ t_1=t_2=t \ \Longrightarrow H(x_1,t),H(x_2,t) \in A \Longrightarrow qH(x_1,t_1)=qH(x_2,t_2)=\bar{a_0} $
+\item Como $I$ es localmente compacto y $T_2$ y $q$ es cociente, entonces $q \times 1_I$ es cociente
+\end{itemize}
+
+Notemos que $\tilde{qH}(\bar{x},0) = qH(x,0)=q(x) = \bar{x}$ y entonces $\tilde{qH}_0 = 1_{X/A}$, mientras que $\tilde{qH}(\bar{x},1)=qH(x,1)=qf(x)=q\tilde{f}(\bar{x})$ y entonces $\tilde{qH}_1 = q\tilde{f}$. Por ende $q\tilde{f} \simeq 1_{X/A}$ y con el item anterior $q$ es equivalencia homot\'opica. \qed
+
+\end{itemize}
+
+
+\end{proof}
+
+\item{Ejercicio 7}
+
+Pruebe que: 
+\be
+ \item Si $C\subseteq \R^ n$ es un subespacio convexo, entonces es contr\'actil. M\'as a\'un, $C$ tiene a cualquiera de
+sus puntos como retracto por deformaci\'on fuerte.
+ Concluya que $I$ y $\R$ son contr\'actiles.
+ 
+ \item Si $X$ es contr\'actil, entonces es arcoconexo.
+ 
+ \item Todo retracto de un espacio contr\'actil es contr\'actil.
+ \en
+
+\begin{proof}
+
+\begin{enumerate}
+\item Sea $c_0 \in C$, veamos que $\{c_0\}$ es RDF de $C$, esto dir\'a adem\'as que es contractil. Para esto notemos que $pi_{c_0}=1_{\{c_0\}}$, ahora para el otro lado $i_{c_0}p(c)=c_0$, tendr\'iamos que ver que $C_{c_0} \simeq 1_{C} (rel \ \{c_0\})$. Sea $H:C \times I \rightarrow C$ dada por $H(c,t) = ct + c_0(1-t)$, entonces:
+
+\begin{itemize}
+\item $H$ esta bien definida pues $\forall c \in C \ [c,c_0]\subseteq C$ y entonces $H(C \times I) \subseteq C$
+\item $H$ es continua
+\item $H(c,0) = c_0$ y entonces $H_0 = C_{c_0}$
+\item $H(c,1) = c$ y entonces $H_1 = 1_{C}$
+\item $H(c_0,t) = c_0 \ \forall t \in I$
+\end{itemize}
+
+Por todo lo anterior, tenemos que v\'ia $H$ $pi_{c_0} \simeq 1_{C} (rel \ \{c_0\})$ y por ende $\{c_0\}$ es RDF de $C$.
+
+
+\item Sea $H$ la homotop\'ia entre $C_{\{x_0\}}$ y $1_X$, entonces fijado $x \in X$ tenemos que $\gamma (t) := H_x(t) = H(x,t) : I \rightarrow X$ es continua y $\gamma(0) = H(x,0)=x_0$ y $\gamma(1)=H(x,1)=x$. Por ende: \begin{tikzcd}
+x_0 \arrow[bend left]{r}{\gamma} & x \end{tikzcd}  y $X$ es arcoconexo.
+
+\item Sea $r: X \rightarrow A$ tal que $ri_A = 1_A$ y sea $H:X \times I \rightarrow X$ tal que $H_0 = 1_X$ y $H_1 = C_{a_0}$ para un $a_0 \in A$. Sea $H^A :A \times I \rightarrow A$ dada por:
+
+$$H^A(a,t) = r(H(i_A(a),t))$$
+
+Entonces tenemos que:
+
+\begin{itemize}
+\item $H^A(A \times I) \subseteq A$ pues $r(X) \subseteq A$.
+\item $H^A$ es continua pues $r,H,i_A$ lo son
+\item $H^A(a,0)=r(H(i_A(a),0))=r(a_0)$ entonces $H^{A}_{0} = C_{\{r(a_0)\}}$
+\item $H^A(a,1)=r(H(i_A(a),1))=ri_A(a)=a$ entonces $H^{A}_{1} = 1_A$
+\end{itemize}
+
+Por ende dado un $a_0 \in A$ tenemos que $1_A \simeq C_{\{r(a_0)\}}$ y entonces A es contractil \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 8}
+
+Pruebe que:
+
+ \be \item Todo subespacio compacto convexo de $\R^n$ es retracto
+por deformaci\'on fuerte de $\R^n$.
+\item Si $A$ es un retracto de $X$, entonces para todo $Y$ espacio topol\'ogico, $A\times Y$ es retracto de $X\times Y$.
+
+\item Si $X$ es un espacio conexo y $A\subseteq X$ es un subespacio
+discreto con m\'as de un punto, entonces $A$ no es un \textit{retracto d\'ebil } de~$X$, es decir, 
+$\nexists$ $r:X\rightarrow A$ continua tal que $r\circ i\simeq \mathrm{id}_A$.
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $C \subseteq \R^n$ un compacto convexo, necesitamos definir $r:\R^n \rightarrow C$ tal que $ri_C=1_C$ , $i_Cr \simeq 1_{\R^n} \ (rel \ C)$. Como $ri_C(c)=r(c)=c$ entonces $r|_{C}=1_C$. Dado $x \in \R^n$ notemos que estamos en un espacio de Hilbert y $C$ es cerrado, acotado y convexo; por ende $\exists ! c_{x}^{*} \in C$ tal que $d(x,C)=d(x,c_{x}^{*})$, o sea el \'unico elemento de $C$ tal que realiza la distancia. Sea $r(x)=c_{x}^{*}$, veamos que esta sirve!
+
+\begin{itemize}
+\item Si $x \in C$, entonces $d(x,C)=0$ y por ende $r(x)=x$.
+\item Notemos que $r$ es continua pues $r(x)=P_C(x)$ donde $P$ es la proyecci\'on ortogonal a $C$ y esta funci\'on por Avanzado es continua(si suponemos que no, entonces perdemosla unicidad de $c_{x}^{*}$).
+\item Sea $H:\R^n \times I \rightarrow \R^n$ dada por $H(x,s)=x*s + r(x)*(1-s)$, entonces $H$ esta bien definida y es continua por los items anteriores. Adem\'as $H_0 = ir$ y $H_1 = 1_{\R^n}$. Adem\'as si $c \in C$ entonces $H(c,s)=c*s + r(c)*(1-s) = c*s + c*(1-s) = c \ \forall c \in C$.
+\end{itemize}
+
+Por todo lo anterior $ri_C = 1_C$, $i_Cr \simeq 1_{\R^n} \ (rel \ C)$ y entonces $C$ es RDF de $\R^n$
+
+
+\item Sea $r:X \rightarrow A$ tal que $ri_A = 1_A$, entonces si llamamos $\tilde{r} := r \times 1_Y$ tenemos que $\tilde{r}$ es continua y que $\tilde{r}i_{A \times Y}(a,y)=\tilde{r}(i_A(a),y) = (ri_A(a),y)=(a,y)$ y por ende $A \times Y$ es retracto de $X \times Y$
+
+\item Sea $r:X \rightarrow A$ tal que $ri_A \simeq 1_A$. Entonces existe $H:A \times I \rightarrow A$ continua tal que $H(a,0) = a$ y $H(a,1) = r(a)$. Como $X$ es conexo y $r$ es continua $r(X)$ es conexo, y como $A$ es discreto entonces $r(X)=\{a_0\}$ con $a_0 \in A$. Pero entonces sea $a_1 \in A \ , \ a_1 \neq a_0$ y sea $\gamma(t):=H_{a_1}(t)$, entonces $
+\gamma$ es continua y $\gamma(0)=a_1$ mientras que $\gamma(1)=r(a_1)=a_0$, o sea \begin{tikzcd} a_0 \arrow[bend left]{r}{\gamma} & a_1 \end{tikzcd}. Absurdo! Pues $A$ es discreto. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio9}
+
+Sean $X,Y$ espacios topol\'ogicos. Sea $[X,Y]$ el conjunto de clases homot\'opicas
+de funciones continuas de $X$ en $Y$. Pruebe que:
+\be 
+
+\item Si $Y$ es contr\'actil, entonces $[X,Y]$ tiene un s\'olo elemento.
+
+\item Si $X$ es contr\'actil e $Y$ arcoconexo, entonces $[X,Y]$ tiene un s\'olo elemento.
+
+\item Hay una biyecci\'on natural $[*,Y]\to\pi_0(Y)$.
+
+\item M\'as generalmente, si $Y$ es contr\'actil, entonces hay una
+biyecci\'on natural $[Y,X]\to\pi_0(X)$.
+
+\item Si $X'$ es otro espacio y $X\simeq X'$, entonces hay una biyecci\'on
+entre $\pi_0(X)$ y~$\pi_0(X')$.
+
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+\item Sea $f:X \rightarrow Y$, entonces $f \simeq 1_{Y}f \simeq C_{y_0}f = C_{y_0}$, entonces $\bar{f} = \bar{C_{y_0}} \ \forall f \in \mathcal{F}(X,Y)$
+\item Sean $f,g: X \rightarrow Y$, como $1_X \simeq C_{x_0}$ entonces x ej 1 $f = f1_X \simeq fC_{x_0} = C_{f(x_0)}$ y $g \simeq C_{g(x_0)}$. Sean $H$ y $K$ las homotop\'ias entre $f$ y $C_{f(x_0)}$, $C_{g(x_0)}$ y $g$. Deber\'iamos hallar una homotop\'ia $F$ entre $C_{f(x_0)}$ y $C_{g(x_0)}$, pues entonces $f \simeq g \ (H*F*K)$. Pero si llamamos $\gamma$ al camino que une a $f(x_0)$ y $g(x_0)$, entonces $F(x,t)=\gamma(t)$ tenemos que:
+\begin{itemize}
+\item $F$ es continua pues si $U \subseteq Y$ es abierto, entonces $\gamma^{-1}(U)$ es abierto en $I$ (por ser $\gamma$ continua), y entonces $F^{-1}(U)=X \times \gamma^{-1}(U)$ es abierto en el producto.
+\item $F_0(x) := F(x,0)= \gamma(0) = f(x_0) \ \Longrightarrow F_0 = C_{f(x_0)}$
+\item $F_1(x) := F(x,1)= \gamma(1) = g(x_0) \ \Longrightarrow F_1 = C_{g(x_0)}$
+\end{itemize}
+Y tenemos lo deseado.
+\item Hagamos el d)
+\item Nosotros queremos hallar una biyecci\'on entre $[Y,X]$ y $\Pi_0(X)$, dado que ambos son cocientes veamos si podemos encontrar una funcion continua que respeto ambas relaciones de equivalencia y por ende pueda pasar al cociente.
+Sea $y_0 \in Y$ tal que $C_{y_0} \simeq 1_Y$ y sea el morfismo $ev_{y_0}:\mathcal{C}(Y,X) \rightarrow X$ tal que $ev_{y_0}(f)=f(y_0)$. Esta funci\'on es continua por lo visto en la te\'orica si dotamos a $\mathcal{C}(Y,X)$ de la topolog\'ia compacto-abierta. Veamos el siguiente diagrama conmutativo:
+
+\[
+\begin{tikzcd}
+\mathcal{C}(Y,X) \arrow{r}{ev_{y_0}} \arrow[swap]{d}{q_h} & X \arrow[swap]{d}{q_X}\\  \quad
+[Y,X] & \Pi_0(X)\\
+\end{tikzcd}
+\]
+
+Entonces si $f \sim_h g$ entonces $f \simeq g$ y entonces $ev_{y_0}(f) = f(y_0) \sim_X g(y_0) = ev_{y_0}(g)$ pues si $H$ es la homotop\'ia entre $f$ y $g$, entonces $H_{y_0}:I \rightarrow Y$ es continua y $H_{y_0}(0)=H(y_0,0)=f(y_0)$ mientras que $H_{y_0}(1)=H(y_0,1)=g(y_0)$, por lo que \begin{tikzcd} f(y_0) \arrow[bend left]{r}{\gamma} & g(y_0) \end{tikzcd}. Por ende por la PU del cociente, el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+\mathcal{C}(Y,X) \arrow{r}{ev_{y_0}} \arrow[swap]{d}{q_h} & X \arrow[swap]{d}{q_X}\\  \quad
+[Y,X] \arrow[dashed]{r}{\exists ! \tilde{ev}_{y_0}} & \Pi_0(X)\\
+\end{tikzcd}
+\]
+
+Veamos que $\tilde{ev}_{y_0}$ es la biyecci\'on que buscabamos!
+
+\begin{itemize}
+\item $q_h,ev_{y_0},q_X$ son sobreyectivas, por ende $\tilde{ev}_{y_0}$ es sobreyectiva
+\item Sean $\overline{f} \neq \overline{g}$, queremos ver que $\overline{f(y_0)}\neq \overline{g(y_0)}$. Notemos que $\overline{f}=\overline{f1_Y}=\overline{fC_{y_0}}=\overline{C_{f(y_0)}}$, mientras que $\overline{g}=\overline{g1_Y}=\overline{gC_{y_0}}=\overline{C_{g(y_0)}}$; luego como $\overline{f}\neq \overline{g}$ entonces $\overline{C_{f(y_0)}}\neq\overline{C_{g(y_0)}}$ y por ende $\overline{f(y_0)}\neq \overline{g(y_0)}$ como quer\'iamos.
+\end{itemize}
+
+\item Como $X \simeq X'$ entonces $CX \simeq CX'$, y si recordamos que $CX$ es contractil $\forall X$ espacio topol\'ogico, tenemos v\'ia el item anterior que $\Pi_0(X) \simeq [CX,X]$ y $\Pi_0(X') \simeq [CX',X']$ por lo que basta probar que $[CX,X] \simeq [CX',X']$, pero esto es consecuencia de que $X \simeq X'$ y $CX \simeq CX' \ \Longrightarrow \ \mathcal{C}(CX,X) \simeq \mathcal{C}(CX',X')$, por lo que bajan igual al cociente. \qed  
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 10}
+
+Sea $f:X\to Y$ una funci\'on continua y sea $Z$ un espacio topol\'ogico.
+Definimos aplicaciones
+  \[
+  f^*:[g]\in[Y,Z]\mapsto [g\circ f]\in[X,Z],
+  \]
+  \[
+  f_*:[g]\in[Z,X]\mapsto [f\circ g]\in[Z,Y].
+  \]
+\be
+
+\item Las funciones $f^*$ y $f_*$ est\'an bien definidas.
+
+\item Si $f':X\to Y$ es otra funci\'on continua y $f\simeq f'$, entonces
+$f^*=f'^*$ y $f_*=f'_*$.
+
+\item Si $f$ es una equivalencia homot\'opica, entonces $f^*$ y $f_*$ son
+biyecciones.
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Veamoslo por partes!
+
+\begin{itemize}
+\item {$f^*$}
+
+Sean $g,g':Y \rightarrow Z$ tal que $g \simeq g'$, entonces por el ejercicio 1 $gf \simeq g'f$, por lo que $f^*(g) = f^*(g') $
+
+\item {$f_*$}
+
+Idem
+
+\end{itemize}
+
+\item Nuevamente por partes:
+
+\begin{itemize}
+\item Sea $g:Y \rightarrow Z$, entonces como $f \simeq f' \ \Longrightarrow gf \simeq gf' \ \Longrightarrow f^*(g) = f'^*(g) \ \Longrightarrow f^* = f'^*$
+\item Idem
+\end{itemize}
+
+\item Sea $k:Y \rightarrow X$ la inversa homot\'opica de $f$. Entonces como $kf \simeq 1_X \ \Longrightarrow (kf)^*=k^*f^* = 1_{X}^*$ y $fk \simeq 1_Y \ \Longrightarrow (fk)^* = f^*k^* = 1_{Y}^*$, por ende $f^*$ es una biyecci\'on con inversa $k^*$. Idem con $f_*$. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 11}
+
+Sea $X$ el \textit{peine}, esto es, el subespacio de~$\R^2$ dado por
+  \[
+  X=\{(x,y)\in\R^2:0\leq y\leq1, x=0\vee x^{-1}\in\N\} \cup \{(x,0):0\leq x\leq 1\}
+  \]
+Sea $x_0=(0,1)\in X$.
+\be
+
+\item El espacio $X$ es contr\'actil.
+
+\item No existe una homotop\'ia \textit{relativa a $x_0$} entre la identidad
+$\mathrm{id}_X:X\to X$ y la funci\'on constante $c:x\in X\mapsto x_0\in X$.
+
+
+\hspace{-23 pt}Esto nos dice que toda contracci\'on de~$X$ a $x_0$ mueve al punto~$x_0$.
+
+
+\item Por otro lado, el espacio $Y$ que resulta de pegar dos copias de~$X$
+identificando los puntos $x_0$ en un solo punto \textit{no} es contr\'actil.
+
+\item La inclusi\'on $i:X\to [0,1]\times[0,1]$ es una equivalencia homot\'opica pero no un retracto.
+
+\en
+
+\begin{proof}
+
+\be
+
+\item Veamos que $\{(0,0)\}$ es un RDF de $X$, lo cual deriva en que $X$ es contr\'actil. Notemos que tenemos que encontrar una homotop\'ia entre $1_X$ y $C_{(0,0)}$; en pos de ello sea $(x,y) \in X$ y sea $\gamma_{1}^{(x,y)}(t)=(x,y)(1-t) +t(x,0)$ y $\gamma_{2}^{(x,y)}(t)=(1-t)(x,0)+t(0,0)$. Es claro que $\gamma_1^{(x,y)}$ y $\gamma_2^{(x,y)}$ son caminos continuos en $X$ tal que $\gamma^{(x,y)}:=\gamma_2^{(x,y)}*\gamma_1^{(x,y)}$ es una camino continuo en $X$ del (x,y) al (0,0). Consideremos $H:X \times I \rightarrow X$ dada por $H((x,y),t)=\gamma^{(x,y)}(t)$, veamos que sirve:
+
+\begin{itemize}
+\item $H$ es continua pues $\gamma^{(x,y)}$ es continua $\forall(x,y)\in X$ y lineal (por lo que es continua en (x,y))
+\item $H_0 = 1_{(x,y)}$
+\item $H_1 = C_{(0,0)}$
+\item $H_{(0,0)}=(0,0) \ \forall t \in I$
+\end{itemize}
+
+Por todo esto si $i_{(0,0)}$ es la inclusi\'on y $r((x,y))=(0,0)$ tenemos que $ri_{(0,0)}=1_{(0,0)}$ y $i_{(0,0)}r \simeq 1_{X} \ (rel \ \{(0,0)\})$
+
+\item Sea $H:X \times I \rightarrow X$ continua tal que $H((x,y),0)=(x,y)$, $H((x,y),1)=(0,1)$ y $H((0,1),t)=(0,1) \ \forall t \in I$, lleguemos a un absurdo! Sea $x_0 := (0,1)$ y $x_o \in U$ con $U$ un entorno abierto disjunto de $\{0\}\times I$. Como $H(x_0,t)=x_0$ entonces $\{x_0\}\times I \subseteq H^{-1}(U)$, y como $\{x_0\}\times I$ es compacto por el lema del tubo $\exists x_0 \in V$ tal que $\{x_0\}\times I \subseteq V \times I \subseteq H^{-1}(U)$. Esto dice $\forall v \in V$, $H_t(v)\in U \ \forall t \in I$, en particular fijando $y=(\alpha,1) \in V$ tenemos que $H_y$ es un camino de $y$ a $x_0$ enteramente contenido en $U$. Abs! Pues $(0,0) \not \in U$!
+
+\item Hagamoslo por pasos!
+\begin{itemize}
+
+\item {Overture}
+
+Sea $Y = X_1 \cup_f X_2$ el doble peine donde $f$ identifica a los extremos superiores opuestos del peine. Supongamos que $x_0 = (1,0)$ es el punto de uni\'on y sea $H:Y \times I \rightarrow Y$ continua tal que $H_0 = C_{x_0}$ y $H_1 = 1_Y$ una homotop\'ia. 
+
+\item {H mueve al $x_0$}
+
+Notemos que $\tilde{H}:=H|_{X_2}$ es una homotop\'ia entre la identidad y el extremo superior en el peine, pues $X_2 \times I$ es un cerrado de $Y \times I$ y por ende restringir es continuo. Entonces si $H_{x_0}=x_0 \ \forall t \in I$ tendr\'iamos que $\tilde{H}_{x_0}=x_0 \ \forall t \in I$ ABS! Pues sab\'iamos de antes que toda homotop\'ia del peine mueve al $x_0$, por ende $H$ tambi\'en tiene que mover al $x_0$. 
+
+\item {Conjuntos por donde $x_0$ pasa}
+
+Sean los conjuntos $F_{x_0} = \{t \in I \ / \ H_{x_0}(t)=x_0\}$, $F_{(0,0)}=\{t \in I \ / \ H_{x_0}(t)=(0,0)\}$ y $F_{y_0}=\{t \in I \ / \ H_{x_0}(t)=y_0\}$ con $y_0$ el an\'alogo al $(0,0)$ en el peine rotado (osea si escribo a $X_2$ el peine usual y $X_1=Q(X_2+(1,0))$ el peine rotado y trasladado, entonces $y_0 = Q((0,0)+(1,1))$); notemos que $F_{x_0},F_{(0,0)},F_{y_0} \subseteq I$ son acotados (trivial) y son cerrados pues $F_{i}=H_{x_0}^{-1}(\{i\})$ con $i \in \{x_0,(0,0),y_0\}$ y $H$ es continua. Es claro que $F_{x_0}$ es no vac\'io y por ende es compacto, entonces como $\{0,1\} \subseteq F_{x_0}$, $\exists t_0,t_f \in I $ tal que $[0,t_0] \cup [t_f,1] \subseteq F_{x_0}$
+
+\item{Provemos que los tres son compactos no vac\'ios}
+
+Para ver que los otros conjuntos son no vac\'ios notemos que $H$ es continua y $X \times I$ es subespacio cerrado y acotado de $R^{2}$ y por ende es compacto, entonces $H$ es uniformemente continua. Sea $\epsilon > 0$ , $\delta > 0$ el de la continuidad uniforme y sea $x_0 \in U:=B_{\frac{\delta}{2}}(x_0)$, entonces $\exists N \in \N$ tal que $(\frac{1}{n},1) \in U \ \ \forall n \geq N$ y entonces (si llamamos con $y$ a los an\'alogos en $X_1$) $x_1:(\frac{N+1}{1},1),y_1 \in U$. Ahora como $H_{x_1}(t):I \rightarrow X$ es un camino continuo de $x_1$ a $x_0$, entonces por conexi\'on $H_{x_1}(I)$ es arcoconexo y entonces $(0,0) \in H_{x_1}(I)$, o sea $\exists t^* \in I$ tal que $H(x_1,t^*)=(0,0)$ y por ende como $d((x_0,t^*),(x_1,t^*)) < \delta \ \Longrightarrow d(H(x_0,t^*),(0,0)) < \epsilon$, tomando $\epsilon = \frac{1}{n}$ tenemos que $\exists \tilde{t}^* \in F_{(0,0)}$ y por ende $F_{(0,0)} \neq \emptyset$ y es compacto, an\'alogo con $F_{y_0}$.
+
+\item {El remate}
+
+Sean $t^{F_{(0,0)}}:= \hbox{min}(F_{(0,0)}), t^{F_{y_0}}:= \hbox{min}(F_{(y_0)}) \in (0,1)$ y podemos suponer sin p\'erdida de generalidad que $t_1 := t^{F_{(0,0)}} < t_2:=t^{F_{y_0}}$ (O sea que primero baja al $(0,0)$). Como $d((x_0,t_1),(y_1,t_1)) < \delta \ \Longrightarrow d(H(y_1,t_1),(0,0)) < \epsilon $ y como $B_{\epsilon}(0,0) \cap X_1 = \emptyset$ entonces $H(y_1,t_1) \in X_2 - \{x_0\}$, por ende como $[0,t_1] \subseteq I$ es arcoconexo y $H$ es continua tenemos que $H_{y_1}(t)$ es un camino entre $y_1 \in X_1$ y $(0,0) \in X_2 $ (en realidad a un punto arbitrariamente cerca del (0,0) y por ende podr\'iamos tomar un $t_{1}^{*}$ que si cumpla, pero mucha notaci\'on) y por ende por arcoconexi\'on $y_0 \in H_{y_1}([0,t_1])$. Pero entonces $\exists 0 < t_{\frac{1}{2}} < t_1$ tal que $H(y_1,t_{\frac{1}{2}})=y_0$ y como $d((x_0,t_{\frac{1}{2}}),(y_1,t_{\frac{1}{2}})) < \delta$ esto dice que $\exists t^* < t_1 \ / t^* \in F_{y_0}$, pero $t_2$ era el m\'inimo. ABS! Entonces $Y$ no es contr\'actil.
+
+\end{itemize}
+
+\item Sea $r:[0,1]^2 \rightarrow X$ dada por $r=C_{(0,0)}$, entonces $i_X r = C_{(0,0)} \simeq 1_{[0,1^2]}$ pues $[0,1]^2 \subseteq \R^2$ es un compacto convexo, por otro lado $ri_X = C_{(0,0)} \simeq 1_X$ por el item a), por ende $i_X :X \rightarrow [0,1]^2$ es una equivalencia homot\'opica. Pero no es un retracto porque si existiese $r:[0,1]^2 \rightarrow X$ continua tal que $ri_X=1_X$ entonces $r(x_0)=x_0$, $r(x_1)=x_1$ y entonces $\exists x_0 \in U$ entorno abierto en el cuadrado tal que $f(U) \subseteq B_{\frac{1}{2}}(x_0)$. Sea entonces $N \in \N \ / \ (\frac{1}{N},1) \in U \ \Longrightarrow (\frac{t}{N},1)\in U \ \forall t \in I$, entonces $\gamma:I \rightarrow X$ dada por $\gamma(t)=f((\frac{t}{N},1))$ es un camino continuo de $x_1$ a $x_0$ tal que $\gamma(I)\subseteq B_{\frac{1}{2}}(x_0)$ ABS! Entonces X no es retracto de $[0,1]^2$.
+
+\en
+
+\end{proof}
+
+\item {Ejercicio 12}
+
+Si $X$ es un espacio, el \textit{cono} de $X$ es el espacio $CX=X\times I/\mathord\sim$ donde $ \sim $ es la relaci\'on de equivalencia $(x,1)\sim(y,1)$ para todo par de puntos $x$,$y\in X$. Si $x \in X$ y $t \in I$, escribimos $[x,t] \in CX$ a la clase de equivalencia de $(x,t)$ en $ X \times I$.
+\be
+ 
+ \item La funci\'on $i:x\in X\mapsto[x,0]\in CX$ es continua, inyectiva y cerrada.
+ 
+ \item El espacio $CX$ es contr\'actil.
+ 
+ \item $X$ es contr\'actil si y s\'olo si $i:X\to CX$ es un retracto.
+ 
+ \item $f:X\rightarrow Y$ es homot\'opica a una funci\'on constante si y s\'olo si $f$ se puede extender a una funci\'on continua $\bar f: CX\rightarrow Y$.
+
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Por partes!
+
+\begin{itemize}
+
+\item {Continua}
+
+Notemos que en realidad $i:X \rightarrow CX$ es $i=qi_0$ con $i_0: X \rightarrow X \times I$ dado por $i_0(x)=(x,0)$ y estas dos son claramente continuas y composici\'on de continuas es continua.
+
+\item {Inyectiva}
+
+Si $x \neq y$ entonces $(x,0) \neq (y,0)$ y entonces $\overline{(x,0)} \neq \overline{(y,0)}$ pues $q$ relaciona cuando $t=1$
+
+\item {Cerrada}
+
+Si $F \subseteq X$ es cerrado, entonces $F \times \{0\} \subseteq X \times I$ es cerrado, pero entonces como $(x,0) \sim (y,0) \ \Longleftrightarrow \ x=y $ tenemos que $q(F \times \{0\})$ es cerrado, y entonces $i$ es cerrada.
+
+\end{itemize}
+
+\item Sea $\overline{x}^* \in CX$ el punto $\overline{(x,1)}$, probemos que $1_{CX} \simeq C_{\overline{x}^*}$! Para ello necesitamos una $\bar{H}: CX \times I \rightarrow CX$ y una buena idea es proceder como en el ej 6)! Sea $H: (X \times I) \times I \rightarrow X \times I$ dada por $H((x,t),s)=(x,t(1-s)+s)$ y veamos que $q_{X \times I}H$ va a respetar la relaci\'on de equivalencia dada por $q_{X \times I} \times 1_I$ y por ende va a bajar al cociente!
+O sea tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+(X \times I) \times I \arrow{r}{H} \arrow[swap]{d}{q_{X \times I} \times 1_I} & X \times I \arrow[swap]{d}{q_{X \times I}} \\ \quad 
+CX \times I \arrow[dashed]{r}{\exists ! \tilde{qH}} & CX
+\end{tikzcd}
+\]
+
+\begin{itemize}
+
+\item $H$ es continua por ser lineal y $q$ es continua, por ende $qH$ es continua
+
+\item Si $((x_1,t_1),s_1) \sim ((x_2,t_2),s_2) \ \Longrightarrow t_1=t_2=1 \ , \ s_1=s_2=s $, entonces tenemos que $qH(((x_1,1),s)) = q((x,1)) = \overline{(x,1)} = q((y,1)) = qH(((y,1),s))$. O sea que si $x,\tilde{x} \in (X \times I) \times I$ son tal que $x \sim \tilde{x} \ \Longrightarrow qH(x) = qH (\tilde{x})$
+
+\end{itemize}
+
+Entonces sabemos que $\exists ! \overline{qH}: (X \times I) \times I / \mathord \sim_{q_{X \times I} \times 1_I} \rightarrow X \times I / \mathord \sim_{q_{X \times I}}$, ie: $\exists ! \overline{qH}: CX \times I \rightarrow CX$ dada por $\overline{qH}(\overline{(x,t)},s)=qH((x,t),s)=\overline{(x,t(1-s)+s)}$. Veamos que esta nos va a servir!
+
+\begin{itemize}
+
+\item $\overline{qH}$ es continua por la PU del cociente
+
+\item $\overline{qH}_0 (\overline{(x,t)})= \overline{(x,t)}$ y entonces $\overline{qH}_0 = 1_{CX}$
+
+\item $\overline{qH}_1 (\overline{(x,t)}) = \overline{(x,1)}$ y entonces $\overline{qH}_1 = C_{\overline{(x,1)}}$
+
+\end{itemize}
+
+Por ende $1_{CX} \simeq C_{\overline{(x,1)}}$ y $CX$ es contr\'actil.
+
+\item Supongamos el item d) por un momento y veamos que es corolario de\'este. Sea $x_0 \in X$, entonces:
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$}
+
+X es contr\'actil sii $1_X \simeq C_{x_0}$ sii (item d)) $\exists \tilde{1_X}:CX \rightarrow X$ tal que $\tilde{1_X}|_X = 1_X$ y por ende $\tilde{1_X}i(x)=\tilde{1_X}(x)=1_X(x)=x$, o sea X es un retracto
+
+\item {$\Longleftarrow)$}
+
+Sea $r:CX \rightarrow X$ tal que $ri = 1_X$, notemos que en particular $r|_X=1_X$ y por ende $r$ es una extensi\'on al cono de $1_X$, sii por item d)  $\exists x_0 \in X \ / \ 1_X \simeq C_{x_0}$ sii $X$ es contr\'actil
+
+\end{itemize}
+
+\item Vamos por partes!
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$} 
+
+Sea $f:X \rightarrow Y$ y sea $y_0 \in Y$ tal que $f \simeq C_{y_0}$, entonces tenemos el siguiente diagrama conmutativo:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{f} \arrow[swap,hook]{d}{i} & Y \\ \quad 
+CX \arrow[dashed,bend right]{ur}{\exists!\overline{f}}
+\end{tikzcd}
+\]
+
+Para construirnos la $\overline{f}$ notemos que no podemos usar la PU del cociente pues $CX \neq X / \mathord \sim$, sino que es del cilindro, veamos entonces que si extendemos la homotop\'ia entre $f$ y $C_{y_0}$ en tiempo 0 deber\'ia ser una extensi\'on de $f$! Entonces tenemos:
+
+\[
+\begin{tikzcd}
+X \times I \arrow{r}{H} \arrow[swap]{d}{q} & Y \\ \quad 
+CX \arrow[dashed,bend right]{ur}{\exists!\overline{H}}
+\end{tikzcd}
+\]
+
+Veamos que $H: X \times I \rightarrow Y$ respeta $\sim_q$!
+
+\begin{itemize}
+
+\item $H$ es continua por hip\'otesis
+
+\item Si $(x_1,t_1) \sim (x_2,t_2)$ entonces $t_1=t_2=1$ y entonces $H(x_1,1)=y_0=H(x_2,1)$
+
+\end{itemize}
+
+Entonces $\exists ! \overline{H}:CX \rightarrow Y$ dada por $\overline{H}(\overline{(x,t)})=H(x,t)$, por ende $\overline{f}:\overline{H}(\overline{(x,0)})=H(x,0)=f$ y entonces $\overline{f}i=f$ y $\overline{f}|_i(X)=f$
+
+\item {$\Longleftarrow)$}
+
+Tenemos que $f=\overline{f}i$, pero $i \simeq cte$ pues CX es contr\'actil, entonces $f \simeq cte'$.
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hspace{-17pt}{\bfseries El grupo fundamental}
+
+%%%%%%%%%%%%%%%
+% \item Si $\alpha_1$,~$\alpha_2$,~$\alpha_3$, $\alpha_1'$,~$\alpha_2'$,~$\alpha_3':I\to X$ son
+% caminos en un espacio~$X$ tales que $\alpha_i(1)=\alpha_i'(0)$ si
+% $i\in\{1,2,3\}$, y si $H_i:\alpha_i\simeq_p\alpha_{i+1}$ y $H'_i:\alpha'_i\simeq_p\alpha'_{i+1}$,
+% para $i\in\{1,2\}$, son homotop\'ias, entonces
+%   \[
+%   (H_1+H_2)*(H_1'+H_2') = (H_1*H_1')+(H_2*H_2').
+%   \]
+
+%%%%%%%%%%%%%%%
+\item Sea $X$ es un espacio topol\'ogico y, $x_0\in X$. Sea $$\Omega(X,x_0)=\{\alpha\in
+C(I,X):\alpha(0)=\alpha(1)=x_0\}$$ con la topolog\'ia de subespacio
+de la topolog\'ia compacto-abierta. Pruebe que hay una biyecci\'on 
+$$\pi_0(\Omega(X,x_0))=\pi_1(X,x_0)$$.
+
+\begin{proof}
+
+Notemos que $\pi_0(\Omega(X,x_0))=\Omega(X,x_0)/\mathord \sim_1$ donde $\alpha \sim_1 \alpha'$ sii $\exists \psi : I \rightarrow \Omega(X,x_0)$ tal que $\psi(0)=\alpha \ , \psi(1)=\alpha'$. Mientras que $\pi_1(X,x_0) = \Omega(X,x_0)/\mathord \sim_2$ donde $\alpha \sim_2 \alpha'$ sii $\exists H : I \times I \rightarrow X$ tal que $H_0=\alpha \ , H_1=\alpha'$. Sea $id$ el morfismo identidad, veamos que $q_2i$ respeta $\sim_1 $!
+
+\begin{itemize}
+\item Es trivial que $q_2i$ es continua
+\item Si $\alpha \sim_1 \beta$ y sea $\psi$ el camino entre $\alpha$ y $\beta$, sea $H: I^2 \rightarrow X$ dada por $H(s,t)=\psi(s)(t)$, veamos que $\alpha \simeq_c \beta$ por $H$!
+
+\begin{itemize}
+\item $H$ es continua pues I es localmente compacto y $T_2$ y entonces vale la ley exponencial. (Aclarar...)
+\item $H(0,t)=\alpha(t)$ , $H(1,t)=\beta(t)$ , $H(s,0)=\psi(s)(0)=x_0=\psi(s)(1)=H(s,1)$ y por ende $\alpha \simeq_c \beta$
+\end{itemize}
+
+Por ende por la PU del cociente:
+
+
+\[
+\begin{tikzcd}
+\Omega(X,x_0) \arrow{r}{id} \arrow[swap]{d}{q_1} & \Omega(X,x_0) \arrow[swap]{d}{q_2}\\ \quad 
+\pi_0(\Omega(X,x_0)) \arrow[dashed]{r}{\exists!\overline{q_2}} & \pi_1(X,x_0)  
+\end{tikzcd}
+\]
+
+Veamos que $\overline{q_2}$ es uan biyecci\'on.
+
+\begin{itemize}
+\item Como $id,q_1,q_2$ son sobre, entonces por conmutatividad $\overline{q_2}$ es sobre
+\item Notemos $[.]$ a las clases en $\pi_0(\Omega(X,x_0))$ y $\overline{.}$ a las clases en $\pi_1(X,x_0)$; sean $[\alpha] \neq [\beta]$ y $H:I^2 \rightarrow X$ una homotop\'ia entre $\alpha$ y $\beta$, entonces sea $i \in I$ tenemos que $H_i(0)=\alpha(i)$ y $H_i(1)=\beta(i)$, o sea para cada $i \in I$ H es un camino entre $\alpha(i)$ y $\beta(i)$, como I es localmente compacto y $T_2$, entonces por la ley exponencial $\tilde{H}:I \rightarrow \CC(I,X)$ es continua, pero $\tilde{H}(I) \subseteq \Omega(X,x_0)$ y por ende $\tilde{H}$ es un camino continuo entre $\alpha$ y $\beta$, o sea que $[\alpha]=[\beta]$. Abs! Entonces $\overline{\alpha}\neq \overline{\beta}$ y $\overline{q_2}$ es inyectiva.
+
+\end{itemize}
+
+\end{itemize}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%
+
+\item Sea $X$ un espacio topol\'ogico, $x_0\in X$ y sea $s\in S^1$ un punto cualquiera. Sea
+$$[(S^1,s),(X,x_0)]=\{[f] /\,  f:S^1\to X  \text{ continua tal que } f(s)=x_0\}$$
+donde $[f]=[g]$ si $f\simeq g \textrm{ rel } \{s\} $. Pruebe que $\pi_1(X,x_0)=[(S^1,s),(X,x_0)]$.
+
+\begin{proof}
+
+Para empezar, sea $q := Qq_{\sim}:I \rightarrow S^1$ donde $q_{\sim}:I \rightarrow S^1$ dada por $q(0)=q(1)=(1,0)$ y $Q((x,y))=A((x,y))$ la rotaci\'on en un \'angulo $\theta$ dado por el \'angulo entre $s$ y $(1,0)$. Por ende como $det(A)=1$ tenemos que $Q:S^1 \rightarrow S^1$ es un isomorfismo y $q_s$ es cociente tal que $q_s(0)=q_s(1)=s$. Ahora si empecemos bien!
+
+Notemos $\Omega(S^1,s,X,x_0)=\{f \in \CC(S^1,X) /\,  f:S^1\to X  \text{ continua tal que } f(s)=x_0\}$ y $q_s:\Omega(S^1,s,X,x_0) \rightarrow [(S^1,s),(X,x_0)]$ la proyecci\'on al cociente dado por $f \sim_s g \ \Longleftrightarrow f \simeq G (rel \ \{s\})$, mientras que notemos $q_{x_0}: \Omega(X,x_0) \rightarrow \pi_1(X,x_0)$ la proyecci\'on al cociente dado por $f \sim g \Longleftrightarrow f \simeq g (rel \ \{x_0\})$. Nosotros queremos una aplicaci\'on $\psi$ tal que $q_s\psi$ respete $\sim$! Vayamos de a poco.
+
+Sea $f \in \Omega(X,x_0)$, entonces tenemos el diagrama:
+
+\[
+\begin{tikzcd}
+I \arrow{r}{f} \arrow[swap]{d}{q_{s}} & X \\ \quad
+S^1 \arrow[dashed,bend right]{ur}{\overline{f}}
+\end{tikzcd}
+\]
+
+Veamos que podemos obtener $\overline{f}:S^1 \rightarrow X$!
+
+\begin{itemize}
+\item $f$ es continua por hip\'otesis
+\item $f(0)=f(1)=x_0$ y por ende si $q(x)=q(x') \ \Longrightarrow f(x)=f(x')$
+\end{itemize}
+
+Notemos que por la PU del cociente tenemos que $\overline{f}$ es continua y $\overline{f}((\overline{x}))=f(x)$ y por ende $\overline{f}(s)=f(0)=x_0$ y por ende $\overline{f} \in \Omega(S^1,s,X,x_0)$. Por ende tenemos definida una aplicaci\'on $\psi:\Omega(X,x_0) \rightarrow \Omega(S^1,s,X,x_0)$ dada por $\psi(f)=\overline{f}$, este es un morfismo en la categor\'ia de los conjuntos. Veamos que $q_s\psi:\Omega(X,x_0) \rightarrow  [(S^1,s),(X,x_0)]$ respeta $\sim_{x_0}$!
+
+\begin{itemize}
+
+\item Si $f \sim_{x_0} g$ entonces $\exists H:I \times I \rightarrow X$ tal que:
+
+\begin{itemize}
+\item $H(s,0)=f(s)$
+\item $H(s,1)=g(s)$
+\item $H(0,t)=x_0$
+\item $H(1,t)=x_0$
+\end{itemize}
+
+Tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+I \times I \arrow{r}{H} \arrow[swap]{d}{q_{s} \times 1_I} & X \\ \quad
+S^1 \times I \arrow[dashed,bend right]{ur}{\overline{H}}
+\end{tikzcd}
+\]
+
+Veamos que $H$ respeta $\sim_{q_s \times 1_I}$ y por ende podemos proyectar la homotop\'ia!
+
+\begin{itemize}
+
+\item $H$ es continua
+
+\item Si $(s,t) \sim_{q_s \times 1_I} (s',t') \ \Longrightarrow t=t'$ y $s=s'$ u $s=0,s'=1$. En el primer caso trivialmente $H(s,t)=H(s',t')$, en el segundo $H(0,t)=x_0=H(1,t)$ 
+
+\end{itemize}
+
+Por ende como I es localmente compacto y $T_2$ tenemos que $q_s \times 1_I$ es cociente y por la PU del cociente tenemos $\overline{H}:S^1 \times I \rightarrow X$ continua dada por $\overline{H}(\overline{s},t)=H(s,t)$ y entonces tenemos que:
+
+\begin{itemize}
+
+\item $\overline{H}(\overline{s},0)=\overline{f}(\overline{s})$
+\item $\overline{H}(\overline{s},1)=\overline{g}(\overline{s})$
+\item $\overline{H}(s,t)=x_0$
+
+\end{itemize}
+
+Y por ende tenemos que $\psi(f) \simeq_s \psi(g) \ (rel \ \{s\})$
+
+En resumen vimos que si $f \sim_{x_0} g$ entonces $q_s\psi(f)=q_s\psi(g)$
+
+Por ende tenemos el siguiente diagrama conmutativo en la categor\'ia de conjuntos:
+
+\[
+\begin{tikzcd}
+\Omega(X,x_0) \arrow{r}{\psi} \arrow[swap]{d}{q_{x_0}} & \Omega(S^1,s,X,x_0) \arrow[swap]{d}{q_s} \\ \quad 
+\pi_1(\Omega(X,x_0)) \arrow[dashed]{r}{\exists!\overline{\psi}} &  \{ (S^1,s),(X,x_0) \} 
+\end{tikzcd}
+\]
+
+Por la PU del cociente tenemos que $\exists ! \overline{\psi}:\pi_1(\Omega(X,x_0)) \rightarrow [(S^1,s),(X,x_0)] $ dado por $\overline{\psi}([f]_{x_0})=q_s\psi(f)$ donde $[f]_{x_0}$ es la clase de f homot\'opica como caminos con inicio y final en $x_0$.
+
+Veamos que $\overline{\psi}$ es biyectiva!
+
+\begin{itemize}
+\item Como $q_{x_0},q_s,\psi$ son sobreyectivas, entonces claramente $\overline{\psi}$ lo va a ser
+\item Veamos que si $[f]_{x_0} \neq [g]_{x_0}$ entonces $\overline{\psi}([f]) \not \simeq \overline{\psi}([g]) \ (rel \ \{s\})$ y con eso estar\'iamos
+
+Sea $\overline{H}:S^1 \times I \rightarrow X$ una homotop\'ia entre $\psi(f)$ y $\psi(g)$ relativa a $\{s\}$, entonces definamos $H: I \times I \rightarrow X$ como:
+
+$$
+H(v,t) =
+\left\{
+	\begin{array}{ll}
+		\overline{H}(\overline{v},t)  & \mbox{si } v \neq \{0,1\} \\
+		\overline{H}(s,t) & \mbox{si } v  \in \{0,1\}
+	\end{array}
+\right.
+$$
+
+Entonces $H$ esta bien definida pues $\overline{0}=\overline{1}=s$. Adem\'as resulta continua pues como $q_{x_0}$ es continua entonces $H|_{[\epsilon,1-\epsilon]\times I}, H|_{[0,\epsilon] \times I}$ y $H|_{[1-\epsilon , 1] \times I}$ son continuas y lema del pegado. M\'as a\'un, $H(0,t)=H(1,t)=x_0$ y $H(s,0)=\overline{H}(\overline{s},0)=\overline{f}(\overline{s})=f(s)$ pues $s \not \in \{0,1\}$ y $H(s,1)=\overline{H}(\overline{s},1)=\overline{g}(\overline{s})=g(s)$ pues $s \not \in \{0,1\}$. Entonces $f \simeq g \ (rel \ \{x_0\})$ Abs! Entonces $\psi(f) \not \simeq \psi(g) \ (rel \ \{s\})$ y $\overline{\psi}$ es inyectiva.
+
+\end{itemize}
+
+\end{itemize}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Sean $x_0,x_1 \in X$ dos puntos en un espacio arcoconexo $X$. Probar que $\pi_1(X,x_0)$ es abeliano si y s\'olo si para todo par de caminos  $x_0 \xrightarrow{\omega,\omega'}x_1$ se tiene $\widehat \omega=\widehat{\omega'}$.  
+
+\begin{proof}
+Vamos por partes!
+\begin{itemize}
+
+\item {$\Longrightarrow)$}
+
+Sean $\omega, \omega' :I \rightarrow X$ dos caminos entre $x_0$ y $x_1$. Recordemos que $\hat{\omega}:\pi_1(X,x_0) \rightarrow \pi_1(X,x_1)$ se define por $\hat{\omega}([f])=[\overline{\omega}*f*{\omega}]$. Sea entonces $[f] \in \pi_1(X,x_0)$. Entonces $\hat{\omega}([f])=[\overline{\omega}*f*{\omega}]=[\overline{\omega}*f*\omega'*\overline{\omega'}*{\omega}]=[\overline{\omega}*f*\omega']*[\overline{\omega'}*{\omega}]=\star$
+Y como $\hat{\omega}$ es un iso, entonces $\pi_1(X,x_1)$ es abeliano, por lo que:
+$\star=[\overline{\omega'}*{\omega}]*[\overline{\omega}*f*\omega']=[\overline{\omega'}*({\omega}*\overline{\omega})*f*\omega']=[\overline{\omega'}*f*\omega']=\hat{\omega'}([f])$
+
+Por ende $\hat{\omega}=\hat{\omega'}$
+
+\item {$\Longleftarrow)$}
+
+Notemos que $\gamma := f*\omega$ es un camino de $x_0$ a $x_1$ y entonces por hip\'otesis $\hat{\gamma}([g])=\hat{\omega}([g])$. Veamos que resulta!
+
+$$\hat{\gamma}([g]) = \star_1 = [\overline{f*\omega}*g*f*\omega]=[\overline{\omega}*g*\omega]= \star_2 = \hat{\omega}([g])$$
+
+Entonces: $\star_1 = [\overline{\omega}*\overline{f}*g*f*\omega]$ y $\star_2 = [\overline{\omega}*g*\omega]$ entonces cancelando:
+
+$$[\overline{f}*g*f]=[g]$$
+
+y por ende:
+
+$$[f,g]=[\overline{f}*g*f*\overline{g}]=[1]$$
+
+O sea que $\pi_1(X,x_0)$ es abelaino 
+
+\end{itemize}
+
+\end{proof}
+
+%%%%%%%%%%%%%
+\item Pruebe que $\pi_1(X\times Y,(x,y))$ es isomorfo a $\pi_1(X,x)\times\pi_1(Y,y)$.
+ 
+\begin{proof}
+
+Sea $\psi:\pi_1(X\times Y,(x,y)) \rightarrow \pi_1(X,x)\times\pi_1(Y,y)$ el morfismo dado por $\psi([(f,g)])=([f],[g])$ veamos que es un isomorfismo!
+
+\begin{itemize}
+
+\item {$\psi$ es morfismo de grupos}:
+
+Sean $[(f,g)],[(f',g')]\in \pi_1(X \times Y, (x_0,y_0))$ entonces $\psi([(f,g)]*[(f',g')])=\psi([(f*f',g*g')])=([f*f'],[g*g'])=([f],[g])*([f'],[g'])=\psi([(f,g)])*\psi(([f',g']))$ y por ende es morfismo de grupos.
+
+\item {$\psi$ es monomorfismo}:
+
+Sean $H^X: I \times I \rightarrow X$ la homotop\'ia entre $f$ y $C_{x_0}$ y sea $H^Y: I^2 \times Y$ la an\'aloga para $g$ y $C_{y_0}$, entonces sea $H: I^2  \rightarrow X \times Y $ dada por $H=(H^X,H^Y)$, entonces:
+
+\begin{itemize}
+\item $H$ es continua pues es producto cartesiano de continuas
+\item $H(0,t)=(H^X(0,t),H^Y(0,t))=(x_0,y_0)$
+\item $H_0(s)=(H^{X}_{0}(s),H^{Y}_{0}(s)=(f(s),g(s))$
+\item $H_1 = (C_{x_0},C_{y_0}) = C_{(x_0,y_0)}$
+\end{itemize}
+
+Y por ende si $\psi([(f,g)])=[0]$ entonces $[(f,g)]=0$, o sea que $\{[0]\} = Ker(\psi)$ y $\psi$ es mono
+
+\item Trivialmente es epi.
+
+\end{itemize}
+
+Por todo lo anterior $\psi$ es un isomorfismo!
+
+\end{proof} 
+
+%%%%%%%%%%%%%%%
+\item Sea $X$ un espacio, sea $A\subseteq X$ un subespacio y sea $i:A\to X$
+la inclusi\'on.
+\be
+
+\item Si $r:X\to A$ es una retracci\'on, entonces cualquiera sea $a_0\in A$ 
+el morfismo $r_*:\pi_1(X,a_0)\to\pi_1(A,a_0)$ es un epimorfismo y el
+morfismo
+$i_*:\pi_1(A,a_0)\to\pi_1(X,a_0)$ es un monomorfismo.
+
+\item Si $A$ es un retracto por deformaci\'on , entonces
+%$\pi_1(A)$ y $\pi_1(X)$ son grupoides equivalentes y, en particular, 
+para
+todo $a_0\in A$ se tiene que $\pi_1(X,a_0)\cong\pi_1(A,a_0)$.
+\en
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item {Juntos}
+
+Recordemos que el morfismo $r_* ([f]) = [fr]$ y por ende como $ri_A = 1_A$ tenemos que el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+\pi_1(A,a_0)  \arrow{r}{(ri_A)_*} \arrow[swap]{dr}{(1_A)_*} & \pi_1(A,ri_A(a_0)=a_0) \arrow[swap]{d}{\widehat{C_{a_0}}} \\ \quad
+& \pi_1(A,a_0)
+\end{tikzcd}
+\]
+
+Por ende como $(1_A)_*$ es un isomorfismo y $(C_{a_0})_*$ es un isomorfismo, tenemos que $(ri_A)_*=r_*(i_A)_*$ es un isomorfismo. Pero ya nos dice que $r_*$ es epi y que $(i_A)_*$ es mono!
+
+\item 
+
+Ahora como $i_Ar \simeq 1_X$ tenemos nuevamente el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+\pi_1(X,a_0)  \arrow{r}{(i_Ar)_*} \arrow[swap]{dr}{(1_X)_*} & \pi_1(A,i_Ar(a_0)=a_0) \arrow[swap]{d}{\widehat{C_{a_0}}} \\ \quad
+& \pi_1(X,a_0)
+\end{tikzcd}
+\]
+
+Y por ende por el mismo razonamiento llegamos a que $(i_Ar)_*=(i_A)_*r_*$ es un isomorfismo, que nos dice que $r_*$ es mono adem\'as, y por ende un isomorfismo. 
+
+\end{enumerate}
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%
+% \item Sean $(X,x_0)$ e $(Y,y_0)$ dos espacios punteados.
+% \be
+% 
+% \item Las funciones $i_X:x\in X\mapsto (x,y_0)\in X\times Y$ y $i_Y:y\in
+% Y\mapsto(x_0,y)\in X\times Y$ inducen una funci\'on
+%   \[
+%   f:(\alpha,\beta)\in\pi_1(X,x_0)\times\pi_1(Y,y_0)
+%         \mapsto (i_X)_*(\alpha)\cdot (i_Y)_*(\beta)\in \pi_1(X\times Y,(x_0,y_0))
+%   \]
+% que es un isomorfismo de grupos.
+% 
+% \item En particular, si $\sigma\in\Omega(X,x_0)$ y $\tau\in\Omega(Y,y_0)$,
+% $[i_X\circ\sigma]$ y $[i_Y\circ\tau]$ son elementos de $\pi_1(X\times
+% Y,(x_0,y_0))$ que conmutan. Explicite una homotop\'ia para verlo.
+% 
+% \en
+
+
+%%%%%%%%%%%%%%%
+\item Sean $X$ un espacio topol\'ogico, $A\subseteq \R^ n$ un subespacio y 
+$f:A\rightarrow X$ una funci\'on continua. Pruebe que si $f$ se extiende a una
+ funci\'on $g:\R^ n \rightarrow X$, entonces para todo $a\in A$, el morfismo $f_*:
+ \pi_1(A,a)\rightarrow \pi_1(X,f(a))$ es el morfismo cero.
+
+\begin{proof}
+
+Sabemos que $\exists g:\R^n \rightarrow X$ tal que $f=gi_A$, pero $\R^n$ es contr\'actil y por ende $g \simeq C_{x_0}$ con $x_0 \in X$, entonces $f \simeq C_{x_0}$. Entonces sabemos que si $\gamma :I \rightarrow X$ es el camino entre $a \in A$ arbitrario y $f(a)$ (Suponemos que X es arco-conexo para que exista dicho camino) tenemos que el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+\pi_1(A,a)  \arrow{r}{(f)_*} \arrow[swap]{dr}{(C_{x_0})_*} & \pi_1(A,f(a_0)) \arrow[swap]{d}{\widehat{\gamma}} \\ \quad
+& \pi_1(X,x_0)
+\end{tikzcd}
+\]
+
+Y por ende $\widehat{\gamma}(f)_* =(C_{x_0})_* = 0 $ pues X es arco-conexo, como $\widehat{\gamma}$ es un isomorfismo siempre tenemos que $f_* = 0$
+
+\end{proof}
+
+ 
+%%%%%%%%%%%%%%%
+\item Sea $(G,\mathord\cdot,e)$ un grupo topol\'ogico. Si $\alpha$,~$\beta\in
+\Omega(G,e)$, sea 
+  \[
+  \alpha\odot\beta:t\in I\mapsto \alpha(t)\cdot\beta(t)\in G.
+  \]
+Esto define una operaci\'on $\odot$ en el conjunto $\Omega(G,e)$ que hace de
+\'el un grupo.
+\be
+
+\item La operaci\'on~$\odot$ induce una operaci\'on, que tambi\'en notamos
+$\odot$, sobre $\pi_1(G,e)$ y con \'esta $\pi_1(G,e)$ es un grupo.
+
+\item Esta estructura de grupo coincide con la estructura usual
+de~$\pi_1(G,e)$.
+
+\item $\pi_1(G,e)$ es un grupo abeliano.
+
+\en
+
+\end{enumerate}
+
+\end{document}

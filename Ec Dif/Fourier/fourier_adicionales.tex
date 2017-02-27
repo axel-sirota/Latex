@@ -1,0 +1,306 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{tikz-cd}
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=figures/]
+
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Sw}{\mathcal{S}}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Ecuaciones Diferenciales -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Pr\'actica Adicional de Transformada de Fourier}
+
+\bigskip
+
+\textbf{Aclarac\'ion:}
+
+En esta pr\'actica notamos $\F(f)(\xi) = \frac{1}{{2\pi}^{n/2}} \int_{\R^n}{f(x)e^{-2\pi i \xi.x}dx}$ y salvo especial menci\'on tomamos $L^1 := L^1(\R^n)$
+
+\medskip 
+
+\textbf{La transformada en $L^1$}
+
+\begin{enumerate}
+
+\item Sea $f \in L^1$ Probar que:
+
+\begin{enumerate}
+
+\item $\F(af+bg)=a\F(f) + b \F(g)$ para $a,b \in \R$ y $f,g \in L^1$
+
+\item $\F(f)$ es uniformemente continua
+
+\item El operador $\F : L^1 \rightarrow L^{\infty}$ es continuo y:
+
+$$\norm{\F(f)}_{L^{\infty}} \leq \norm{f}_{L^1}$$
+
+\item Tenemos que $\lim_{|\xi|\rightarrow \infty} \F(f)(\xi) = 0$
+
+\end{enumerate}
+
+O sea que $\F(L^1) \subseteq C_0$ (las funciones continuas que tienden a cero en el infinito)
+
+\item Sea $a>0$ y $f = e^{\pi a |x|^2}$, entonces:
+
+\begin{itemize}
+\item Probar que $\F(f) = \frac{a^{\frac{n}{2}}}{(2 \pi) ^{\frac{n}{2}}} e^{\dfrac{-\pi |\xi|^2}{a}}$
+\item Concluir que $\F$ admite al menos un punto fijo.
+\end{itemize}
+
+\item Sea $a>0$ y $f=e^{-2\pi a |x|}$. Entonces $\F(f) = c_n \dfrac{a}{ (a^2 + |\xi|^2)^{\frac{n+1}{2}} }$ con $c_n$ una constante que depende de la dimensi\'on del espacio.
+
+\item Sea $f,\F(f) \in L^1$, probar que si tanto $f$ como $\F(f)$ tienen soporte compacto, entonces $f=0$
+
+\item Sean $f,g \in L^1$ probar que:
+
+$$\int_{\R^n}{\F(f)(\xi){g}(\xi)d\xi} = \int_{\R^n}{f(x)\F(g)(x)dx}$$
+
+O sea que si se diese que $f,g \in L^1 \cap L^2$ tenemos que $\F$ preserva \'angulos.
+
+\begin{definition}
+Sea $f \in L^1$, definimos:
+
+\begin{itemize}
+
+\item $\tau_{x_0}(f)(x):=f(x-x_0)$
+\item $\mathit{Mod}_{x_0}(f)(x) := e^{2\pi i x.x_0}f(x)$
+\item $\mathit{Dil}_{U}^{p}(f)(x) := |det(U)|^{-\frac{1}{p}}f(U^{-1}x)$ con $1\leq p\leq\infty$ y $U \in GL(\R^n)$
+
+\end{itemize}
+
+\end{definition}
+
+\item Sea $f \in L^1$ probar que:
+
+\begin{enumerate}
+
+\item $\F\tau_{x_0} = \mathit{Mod}_{-x_0}\F$
+\item $\F \mathit{Mod_{\xi_0}} = \tau_{\xi_0}\F$
+\item $\F\mathit{Dil}_{U}^{p} = \mathit{Dil}_{U^*}^{p'}\F$ donde $U^*$ es la \'unica tal que $\langle Ux , y \rangle_{\R^n} = \langle x , U^*y \rangle_{\R^n}$
+
+
+\end{enumerate}
+
+\item Probar que si $f,g \in L^1$ y $\F(f) = \F(g)$ entonces $f=g$
+
+\item 
+
+\begin{enumerate}
+
+\item Sea $f \in L^1$ tal que $x_kf \in L^1$, entonces $\F(f)$ es diferenciable respecto a $\xi_k$ y 
+
+$$\dfrac{\partial}{\partial \xi_k} \left( \F(f) \right) (\xi) = \F(-2 \pi i x_k f)(\xi)$$ 
+
+\item Sea $f \in H^{1,k}\cap C^k \cap H_0^{1,k-1}$, entonces:
+
+$$\F(D^{\alpha}(f))(\xi) = (2 \pi i \xi)^{|\alpha|} \F(f)(\xi)$$ 
+
+\end{enumerate}
+
+\begin{definition}
+
+Sea $P \in \R[X_1,X_2,...,X_d]$, definimos $P(\partial_x):= \sum_{|\alpha| \leq k} {c_{\alpha} \partial_x^{\alpha}} := \sum_{|\alpha| \leq k}{c_{\alpha}\partial_{x_1}^{\alpha_1}...\partial_{x_k}^{\alpha_k}}$
+
+\end{definition}
+
+\item Probar las siguientes relaciones de conmutatividad:
+
+\begin{enumerate}
+
+\item $\F P(-2 \pi i x_k) = P(\partial_{\xi}^{\alpha})\F$
+\item $\F P(\partial_{x}^{\alpha}) = P(2\pi i \xi)\F$
+
+\end{enumerate}
+
+\item Sea $f \in L^1$ tal que $f$ es continua en $0$ y que $\F(f)\geq 0$. Probar que $\F(f) \in L^1$.
+
+
+\bigskip
+
+\textbf{La transformada y el Espacio de Schwartz}
+
+\begin{definition}
+
+Sea $p_N(f):= {\texttt{sup}_{|\alpha| \leq N \ , \ |\beta|\leq N}\texttt{sup}_{x \in \R^n}}{\left| x^{\alpha}\partial^{\beta}f \right|}$ con $\alpha,\beta \in \N_0^{n}$. Entonces definimos al \textit{espacio de Schwartz} como:
+
+$$\Sw := C^{\infty} \cap \{f \ / \ p_N(f) < \infty \ \forall N \in \N \} $$
+
+\end{definition}
+
+\item 
+
+\begin{enumerate}
+
+\item Probar que $\Sw$ es un espacio vectorial sobre $\R$
+\item $f(x)=e^{-\pi |x| ^2} \in \Sw $
+\item Es m\'as probar que $\Sw$ es metrizable por $d(f,g) = \sum_{N}{\dfrac{p_N(f-g)}{2^{N}(1 + p_N(f-g)) }}$
+\item Sea $\{ \phi_k \}_{k \in \N} \subseteq \Sw$ una sucesi\'on, entonces $\phi_k \rightarrow 0 \ \texttt{en $\Sw$}$ sii $p_N(\phi_k) \rightarrow 0 \ \forall N \in \N$
+\item Probar que $\Sw$ con la m\'etrica dada es un espacio m\'etrico completo.
+\item Sea $U_{\epsilon,N} := \{f \in \Sw \ / \ p_N(f) < \epsilon\}$, probar que los $U_{\epsilon,N}$ son una base de entornos del $0$ que hacen de $\Sw$ un \textit{espacio localmente convexo} y por ende podemos usar \textit{Hanh-Banach}.
+
+
+\end{enumerate}
+
+\item Sea $T:\Sw \rightarrow \Sw$ un operador lineal, entonces $T$ es continuo sii $\forall N \ \exists N' > 0$ y $C > 0$ tal que:
+
+$$p_N(T(\phi)) \leq Cp_{N'}(\phi) \quad \forall \phi \in \Sw$$
+
+\item 
+
+\begin{enumerate}
+\item Probar que $\F(\Sw(\R^n)) = \Sw(\R^n)$. O sea que $\F|_{\S}$ esta bien definida y es un operador suryectivo y continuo.
+\item Recordar que $\F$ es es operador inyectivo en $L^1$ y por ende en $\Sw$
+\item Probar que $\F|_{\Sw} : \Sw \rightarrow \Sw$ es un homemorfismo.
+
+\end{enumerate}
+
+\item Si $f,g \in \Sw$ entonces $f*g \in \Sw$ y $\F(f*g)=C\F(f)\F(g)$
+
+\bigskip
+
+\textbf{La transformada en $L^2$}
+
+\begin{definition}
+
+Notemos que si $f \in L^2$ uno puede tomar una sucesi\'on $\psi_k \rightarrow_{L^2} f$ tal que $\psi_k \in \Sw$, entonces definimos $\F(f) := \lim_{k \rightarrow \infty}{\F(\psi_k)}$
+
+\end{definition}
+
+\item Probar la buena definici\'on de $\F$ en sentido que no depende de la sucesi\'on que tiende a $f$, y que si $f \in L^2 \cap L^1$ entonces esta definici\'on coincide con la anterior.
+
+\item Probar que $\F: L^2 \rightarrow L^2$ es un operador unitario.
+
+\item {Diagonalizaci\'on de $\F$}
+
+\begin{enumerate}
+
+\item Recordar que si n=1 entonces $\F(e^{-\frac{x^2}{2}}) = e^{-\frac{\xi^2}{2}}$
+
+\item Sea $V := \{ p(x)e^{-\frac{x^2}{2}} \ , \ p \in \R[X]\}$ probar que $V = \bigcup_{n}{V_n}$ donde $V_n = V \cap K_{\leq n}[X]$ y por ende $dim_{\R}{V_n}=n+1$.
+
+\item Notemos que si llamamos $\mathit{D}(f) := f'$ entonces $\mathit{D}(p(x)e^{-\frac{x^2}{2}}) = D(p)(x)e^{-\frac{x^2}{2}}$ y por ende $V_n = \mathtt{Ker}(D^{n+1})$
+
+\begin{definition}
+
+Definimos los \textit{polinomios de Hermite de grado n} como $H_x(x)$ los que $H_n(x)e^{-\frac{x^2}{2}} = (-1)^n \frac{d^n}{dx^n}(e^{-\frac{x^2}{2}})$
+
+\end{definition}
+
+\item Probar que $\F(x^n e^{-\frac{x^2}{2}} ) = (-i)^n H_n(x) e^{-\frac{x^2}{2}}$ y por ende $\F(V_n)=V_n$, concluir que $\exists! p_n \in K_{\leq n}[X]$ tal que $\psi_n = p_n e^{-\frac{x^2}{2}}$ cumple que $\F(\psi_n) = (-i)^n \psi_n$
+
+\item Si $\mathit{D'} = D^2 - x^2$ entonces $\mathit{D'}$ conmuta con $\F$ y por ende tiene los mismos autoespacios. Concluir que $p_n = H_n$ y ya tenemos diagonalizado a $\F$
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{Transformada en distribuciones temperadas}
+
+\begin{definition}
+
+Notemos como $\Sw' := (\Sw)^*$ el dual topol\'ogico del espacio de Schwartz. Notemos que como $C^{\infty}_{c} \subset \Sw \subset L^p $ y $\Sw \subset C_0$ ; entonces $L^p \subset \Sw' \subset \mathcal{D}$ y que $\mathcal{M}(\R^n) \subset \Sw'$ donde $\mathcal{M}(\R^n)$ es el conjunto de medidas de Radon en $\R^n$ con la norma de la variaci\'on total.
+
+\end{definition}
+
+\item Probar que:
+
+\begin{enumerate}
+
+\item Dada $f \in L^p$ entonces la aplicaci\'on $\lambda_f (\phi) = \int_{\R^n}{f(x)\phi(x)dx} \ \forall \phi \in \Sw$ cumple que $\lambda_f \in \Sw'$. Entonces a cada $f \in L^p$ le podemos asociar una $\lambda_f \in \Sw'$, probar adem\'as que la aplicaci\'on $\lambda: L^p \rightarrow \Sw'$ dada por $f \mapsto \lambda_f$ es continua
+
+\item An\'alogamente al item anterior lo mismo con $\psi \in \Sw$
+
+\item An\'alogo con $\mu \in \mathcal{M}(\R^n)$ donde $\lambda_{\mu}(\phi) = \int_{\R^n}{\phi(x)d\mu}$
+
+\item El funcional $\delta'_{0} : \ \phi \mapsto -\phi'(0)$ con $\phi \in \Sw$ cumple que $\delta'_{0} \in \Sw'$ pero $\delta'_{0} \not \in \mathcal{M}(\R^n)$ y por ende la inclusi\'on es estricta.
+
+\end{enumerate}
+
+\item (Dif\'icil) Probar que la inclus\'ion $i: \Sw \inc \Sw'$ tiene rango denso en la topolog\'ia d\'ebil
+
+\begin{definition}
+
+Sea $\lambda \in \Sw'$ y $\phi \in \Sw$, entonces definimos $\F(\lambda)(\phi) := \lambda(\F(\phi))$.
+
+\end{definition}
+
+\item Probar que $\F$ as\'i definida esta bien definida y que resulta un homeomorfismo de $\Sw'$ en s\'i mismo.
+
+\item Probar que todas las anterior propiedades y simetr\'ias de $\F$ valen en el contexto de las dsitribuciones temperadas (convoluci\'on, traslaci\'on, modulaci\'on, etc..) adecuadamente definidas.
+
+\item Probar que $\F(pv \frac{1}{x})(\xi) = -\pi i sgn(\xi)$
+
+\item Probar que $\F \frac{1}{|x|^2} = \frac{\pi}{|\xi|}$
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,722 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 5}
+	
+	\bigskip
+
+\begin{enumerate}
+	\item Ejercicio 1
+	
+	\label{Ejercicio 1}
+	
+	\begin{proof}
+		
+		Primero:
+		
+		\textbf{Recuerdo}: Dada una carta $(U,x)$ de $M$ centrada en $p$, entonces $g_{i,j} \circ x^{-1}(a)= \ip{\partial x_{i}|_{x^{-1}(a)}, \partial x_{j}|_{x^{-1}(a)}} = \ip{dx^{-1}(e_i)|_{x^{-1}(a)},dx^{-1}(e_j)|_{x^{-1}(a)}}$. Luego si notamos $f := x^{-1}$ a la parametrizaci\'on de la carta $(U,x)$ y notamos $f_{u_i}(a) = \left(\dfrac{\partial f_1}{\partial u_i}|_{a} , \dfrac{\partial f_2}{\partial u_i}|_{a}, \dfrac{\partial f_3}{\partial u_i}|_{a}\right)$ entonces se tiene que $g_{i,j} \circ x^{-1}(a) = \ip{f_{u_i}(a) , f_{u_j}(a)}$.
+		
+		\begin{enumerate}
+			
+			\item Notemos aqu\'i que $f(u,v) = \left(a\sin(u)\cos(v) , b\sin(u)\sin(v),c\cos(u)\right)$ por lo tanto tenemos que calcular $f_u,f_v$:
+			
+			\[
+			\begin{aligned}
+				f_u = & \left(a\cos(u)\cos(v), b\cos(u)\sin(v),-c\cos(u)\right) \\
+				f_v = & \left(-a\sin(u)\sin(v), b\sin(u)\cos(v),0\right) 
+			\end{aligned}
+			\]
+			
+			Por lo tanto:
+			
+			\[
+			\begin{aligned}
+			\norm{g}_{E} = & \left(
+			\begin{array}{cc}
+			\ip{f_u,f_u} & \ip{f_u,f_v} \\
+			\ip{f_v,f_u} & \ip{f_v,f_v}
+			\end{array}
+			\right) \\
+						 = & \left(
+			\begin{array}{cc}
+			a^2\cos^2(u)\cos^2(v) + b^2\cos^2(u)\sin^2(v) + c^2\cos^2(u) & (b^2-a^2)\cos(u)\sin(u)\cos(v)\sin(v)\\
+			(b^2-a^2)\cos(u)\sin(u)\cos(v)\sin(v) & a^2\sin^2(u)\sin^2(v) + b^2\sin^2(u)\cos^2(v)
+			\end{array}
+			\right)
+			\end{aligned}
+			\]
+			
+			\item Notemos aqu\'i que $f(u,v) = \left(au\cos(v) , bu\sin(v),u^2\right)$ por lo tanto tenemos que calcular $f_u,f_v$:
+			
+			\[
+			\begin{aligned}
+			f_u = & \left(a\cos(v), b\sin(v),2u\right) \\
+			f_v = & \left(-au\sin(v), bu\cos(v),0\right) 
+			\end{aligned}
+			\]
+			
+			Por lo tanto:
+			
+			\[
+			\begin{aligned}
+			\norm{g}_{E} = & \left(
+			\begin{array}{cc}
+			\ip{f_u,f_u} & \ip{f_u,f_v} \\
+			\ip{f_v,f_u} & \ip{f_v,f_v}
+			\end{array}
+			\right) \\
+			= & \left(
+			\begin{array}{cc}
+			a^2\cos^2(v) + b^2\sin^2(v) + 4u^2 & (b^2-a^2)u\cos(v)\sin(v)\\
+			(b^2-a^2)u\cos(v)\sin(v) & a^2u^2\sin^2(v) + b^2u^2\cos^2(v)
+			\end{array}
+			\right)
+			\end{aligned}
+			\]
+			
+			\item Se entiende la idea para el resto... \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Ejercicio 2
+	
+	\label{Ejercicio 2}
+	
+	\begin{proof}
+		
+		Recordemos que del ejercicio 13 de la pr\'actica 4 que $f(u,v) = \dfrac{1}{1+u^2+v^2}\left(2u,2v,u^2+v^2-1\right)$ es una parametrizaci\'on de $S^2$ dada por la proyecci\'on estereogr\'afica. Luego:
+		
+		\[
+		\begin{aligned}
+		f_u = & \dfrac{2}{(u^2+v^2+1)^2}\left(-u^2+v^2+1, -2uv,2u\right) \\
+		f_v = & \dfrac{2}{(u^2+v^2+1)^2}\left(-2uv, +u^2-v^2+1,2v\right)
+		\end{aligned}
+		\]
+		
+		Por lo tanto:
+		
+		\[
+		\begin{aligned}
+		\norm{g}_{E} = & \left(
+		\begin{array}{cc}
+		\ip{f_u,f_u} & \ip{f_u,f_v} \\
+		\ip{f_v,f_u} & \ip{f_v,f_v}
+		\end{array}
+		\right) \\
+		= & \dfrac{4}{(u^2+v^2+1)^4}\left(
+		\begin{array}{cc}
+		(-u^2+v^2+1)^2 + 4u^2v^2 + 4u^2 & 0 \\
+		0 & (-v^2+u^2+1)^2 + 4u^2v^2 + 4v^2
+		\end{array}
+		\right) \\
+		= & \dfrac{4}{(u^2+v^2+1)^4}\left(
+		\begin{array}{cc}
+		u^4+2u^2v^2 +2u^2 + v^4 + 2v^2+1 & 0 \\
+		0 & 	v^4+2u^2v^2 +2uv2 + u^4 + 2u^2+1
+		\end{array}
+		\right) \\
+		= & \dfrac{4}{(u^2+v^2+1)^2}\left(
+		\begin{array}{cc}
+		1 & 0 \\
+		0 & 1
+		\end{array}
+		\right)
+		\end{aligned}
+		\] \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 3
+	
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		\begin{enumerate}
+			
+			\item Sean $a_0 < a_1$ y $b_0 < b_1$ tal que formen un cuadril\'atero en $x(U)$ con $(U,x)$ carta de $S$, luego notemos que por hip\'otesis tenemos que $\int_{t_0}^{t_1}{\norm{\dfrac{d{f(s,a_0)}}{ds}} ds} = \int_{t_0}^{t_1}{\norm{\dfrac{df(s,a_1)}{ds}} ds}$ y que $\int_{t_0}^{t_1}{\norm{\dfrac{d{f(b_0,s)}}{ds}} ds} = \int_{t_0}^{t_1}{\norm{\dfrac{df(b_1,s)}{ds}} ds}$. 
+			
+			Para la primera hip\'otesis, notemos que si llamamos $\phi(s) = f(s,a_0)$ y $\psi(s) = f(s,a_1)$ luego $\norm{\dot{\phi}}^2(u) = \ip{f_{u_1}(u,a_0),f_{u_1}(u,a_0)} = E(u,a_0)$ y similarmente $\norm{\dot{\phi}}^2(u) = \ip{f_{u_1}(u,a_1),f_{u_1}(u,a_1)} = E(u,a_1)$. Por lo tanto $\int_{t_0}^{t_1}{\frac{1}{a_1-a_0}(E(s,a_1)-E(s,a_0)) ds} = 0$ para todos $a_0 < a_1$ y $t_0 < t_1$, conclu\'imos que $\dfrac{\partial E}{\partial v} = 0$. An\'alogamente con $G$ para las otras curvas.
+			
+			Rec\'iprocamente es trivial que si $E(u,v) = E(u)$ y $G(u,v) = G(v)$ entonces va a valer la condici\'on de la hip\'otesis.
+			
+			\item Sea $(U,x)$ una carta de $S$ que cumplen la condici\'on de i) y sean $E,F,G$ los coeficientes del primer tensor fundamental en esa carta. Consideremos $\phi(u,v) = \left(\int_{u_0}^{u}{\sqrt{E(x,v)}dx}, \int_{v_0}^{v}{\sqrt{G(u,x)}dx}\right)$, luego $\phi_u = \left(\sqrt{E},0\right)$ y $\phi_v = \left(0,\sqrt{G}\right)$ y por lo tanto $\phi$ es una reparametrizaci\'on por el teorema de la funci\'on inversa. Notemos $\tilde{E},\tilde{F},\tilde{G}$ a los coeficientes del primer tensor fundamental respecto a la carta $(U,\phi \circ x)$, luego:
+			
+			\[
+			\begin{aligned}
+				\tilde{E} = & \ip{\dfrac{\partial (f \circ \phi^{-1})}{\partial u}(u,v) , \dfrac{\partial (f \circ \phi^{-1})}{\partial u}} \\
+						  = & \ip{f_{u}.\dfrac{1}{\sqrt{E}}, f_{u}.\dfrac{1}{\sqrt{E}}} \\
+						  = 1 \\
+				\tilde{G} = & \ip{\dfrac{\partial (f \circ \phi^{-1})}{\partial v}(u,v) , \dfrac{\partial (f \circ \phi^{-1})}{\partial v}} \\
+						  = & \ip{f_{v}.\dfrac{1}{\sqrt{G}}, f_{v}.\dfrac{1}{\sqrt{G}}} \\
+						  = 1
+			\end{aligned}
+			\]
+			
+			Luego por Cauchy-Schwartz tenemos que:
+			
+			\[
+			\begin{aligned}
+			\tilde{F} = & \ip{\dfrac{\partial (f \circ \phi^{-1})}{\partial u}(u,v), \dfrac{\partial (f \circ \phi^{-1})}{\partial v}(u,v)} \\
+						& \leq \norm{\dfrac{\partial (f \circ \phi^{-1})}{\partial u}(u,v)}^2 \norm{\dfrac{\partial (f \circ \phi^{-1})}{\partial v}(u,v)}^2 = 1
+			\end{aligned}
+			\]
+			
+			Por lo tanto existe $\theta \in [0,2\pi]$ tal que $\tilde{F} = \cos(\theta)$. \qed
+			
+		\end{enumerate}
+	\end{proof}
+	
+	\item Ejercicio 4
+	
+	\label{Ejercicio 4}
+	
+	\begin{proof}
+		
+		Notemos que al ser $S$ una superficie de revoluci\'on si suponemos que la curva generatriz $c$ admite una parametrizaci\'on inyectiva $c(t) = (x(t),0,z(t))$ con $x(t)>0$, luego podemos parametrizar $S$ por $f(t,u)= x(t)\left(\cos(u),\sin(u),0\right) + z(t) \left(0,0,1\right)$. En esta parametrizaci\'on tenemos que:
+		
+		\[
+		\begin{aligned}
+		E = & \ip{f_t, f_t} \\
+		  = & \ip{\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1),\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1)} \\
+		  = & \dot{x}^2(t) + \dot{z}^2(t) \\
+		  = & \norm{\dot{c(t)}}^2 \\
+		F = & \ip{f_t,f_u} \\
+		  = & \ip{\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1), x(t) \left(-\sin(u),\cos(u) ,0\right)} \\
+		  = & 0 \\
+		G = & \ip{f_u,f_u} \\
+		  = & \ip{x(t) \left(-\sin(u),\cos(u) ,0\right),x(t) \left(-\sin(u),\cos(u) ,0\right)} \\
+		  = & x^2(t)	
+		\end{aligned}
+		\]
+		
+		Por ende tomemos la reparametrizaci\'on $\phi(t,u)=\left(h(t),u\right)$ donde $h$ es la reparametrizaci\'on por longitud de arco de $c$, luego es claro que $\phi$ es una reparametrizaci\'on y respecto a la carta $(U,\phi \circ x)$ tenemos que:
+		
+		\[
+		\begin{aligned}
+		\tilde{E} = & 1 \\
+		\tilde{F} = & 0 \\
+		\tilde{G} = & x^2(h^{-1}(t))	
+		\end{aligned}
+		\]. \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 5
+	
+	\label{Ejercicio 5}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Sea $f(u,v)= (u,v,u^2+v^2)$ una parametrizaci\'on del paraboloide, luego recordemos que dada una carta $(U,f^{-1})$, localmente (en este caso al ser una carta global local es globalmente) tenemos que la aplicaci\'on de Gauss $N_U (p)= \dfrac{\partial x |_{p} \times \partial x |_{p}}{\norm{\partial x |_{p} \times \partial x |_{p}}} = \dfrac{f_u \times f_v}{\norm{f_u \times f_v}}$, por lo tanto tenemos:
+			
+			\[
+			\begin{aligned}
+				f_u = & \left(1,0,2u\right) \\
+				f_v = & \left(0,1,2v\right) \\
+				f_u \times f_v = & \ det \left(
+				\begin{array}{ccc}
+				1 & 0 & 2u \\
+				0 & 1 & 2v \\
+				i & j & k
+				\end{array}
+				\right) \ 
+							   =  \left(-2u,-2v,1\right) \\
+				\norm{f_u \times f_v} = & \sqrt{4(u^2+v^2) +1} = 2\sqrt{u^{2} + v^2 + \frac{1}{4}}
+			\end{aligned}
+			\]
+			
+			Por lo tanto conclu\'imos que $N = \dfrac{1}{\sqrt{u^{2} + v^2 + \frac{1}{4}}} \left(-u,-v,\frac{1}{2}\right)$
+			
+			\item Sea $f(u,v) = \left(\sqrt{1+u^2}\cos(v), \sqrt{1+u^2}\sin(v),u\right)$ una parametrizaci\'on del hiperboloide, luego reproduciendo lo anterior:
+			
+			\[
+			\begin{aligned}
+			f_u = & \left(\dfrac{u}{\sqrt{1+u^2}}\cos(v),\dfrac{u}{\sqrt{1+u^2}}\sin(v),1\right) \\
+			f_v = & \left(-\sqrt{1+u^2}\sin(v),\sqrt{1+u^2}\cos(v),0\right) \\
+			f_u \times f_v = & \ det \left(
+			\begin{array}{ccc}
+			\dfrac{u}{\sqrt{1+u^2}}\cos(v) & \dfrac{u}{\sqrt{1+u^2}}\sin(v) & 1 \\
+			-\sqrt{1+u^2}\sin(v) & \sqrt{1+u^2}\cos(v) & 0 \\
+			i & j & k
+			\end{array}
+			\right) \ 
+			=  \left(-\sqrt{1+u^2}\cos(v),-\sqrt{1+u^2}\sin(v),u\right) \\
+			\norm{f_u \times f_v} = & \sqrt{1+2u^2} 
+			\end{aligned}
+			\]
+			
+			Por lo tanto conclu\'imos que $N = \dfrac{1}{\sqrt{1+2u^2} } \left(-\sqrt{1+u^2}\cos(v),-\sqrt{1+u^2}\sin(v),u\right)$
+			
+			Otra forma mas genial ser\'i­a usar el ejercicio 15 de la pr\'actica 4 con $F=x^2+y^2-z^2-1$, ver que cumple con las hip\'otesis del ejercicio 3 de la pr\'actica 4 y por lo tanto autom\'aticamente $T_pM = \left(\nabla F_p\right)^{\perp} = \left(x,y,-z\right)^{\perp}$ y esa, m\'odulo la normalizaci\'on, es la normal! Y es la que obtuvimos bajo la identificaci\'on $x:=\sqrt{1+u^2}\cos(v) \ , \ y:=\sqrt{1+u^2}\sin(v) \ , \ z=u$
+			
+			\item Para la catenoide vamos a ir por la \'ultima estrategia porque nos evitamos dar una parametrizaci\'on de la catenoide! Sea $F = x^2 +y^2 - \cosh^2(z)$, luego notemos que:
+			
+			\[
+			dF_p = \left(2x,2y,-2\cosh(z)\sinh(z)\right) = 0 \ \Longleftrightarrow (x,y,z)=(0,0,0)
+			\]
+			
+			Y por lo tanto $dF_p \neq 0$ para todo $p \in S$. Conclu\'imos que:
+			
+			\[
+			\begin{aligned}
+			N(p) = & \dfrac{\nabla F_p}{\norm{\nabla F_p}} \\
+				 = & \dfrac{1}{2(x^2+y^2+\cosh^2(z)} \left(x,y,-\cosh(z)\sinh(z)\right)
+			\end{aligned}
+			\]
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Ejercicio 6
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		Sea $S$ la superficie de revoluci\'on de una curva $c(t)=(x(t),0,z(t)$ dada por la parametrizaci\'on $f(t,u)= x(t)\left(\cos(u),\sin(u),0\right) + z(t) \left(0,0,1\right)$, luego de \ref{Ejercicio 4} ya tenemos calculados los coeficientes de la primera forma fundamental y en particular se obtiene que:
+		
+		\[det(g_{i,j} \circ x^{-1}(a)) = \left(
+		\begin{array}{cc}
+		\dot{x}^2 + \dot{z}^2 & 0 \\
+		0 & x^2
+		\end{array}
+		\right) = (x\norm{\dot{c}})^2 \]
+		
+		Por otro para calcular la segunda forma fundamental necesitamos las derivadas segundas:
+		
+		\[
+		\begin{aligned}
+		f_{tt} = & \ddot{x}(t) \left(\cos(u),\sin(u),0\right) + \ddot{z}(t) (0,0,1) \\
+		f_{tu} = & \dot{x}(t) \left(-\sin(u),\cos(u),0\right) \\
+		f_{uu} = & x(t) \left(-\cos(u),-\sin(u),0\right)
+		\end{aligned}
+		\]
+		
+		Y de la te\'orica obtenemos que:
+		
+		\[
+		\begin{aligned}
+		l_{11} \circ x^{-1} (a) = & \dfrac{1}{\sqrt{det(g_{i,j} \circ x^{-1}(a))}} \ip{f_{t} \times f_u , f_{tt}}(a) \\
+								= & \dfrac{1}{x\norm{\dot{c}}} \ det \left(
+								\begin{array}{c}
+									\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1) \\
+									x(t) \left(-\sin(u),\cos(u) ,0\right) \\
+									\ddot{x}(t) \left(\cos(u),\sin(u),0\right) + \ddot{z}(t) (0,0,1)
+								\end{array}
+								\right) \\
+								= & \dfrac{1}{x\norm{\dot{c}}} \ det \left(
+								\begin{array}{ccc}
+									\dot{x}(t)\cos(u) & \dot{x}(t)\sin(u) & \dot{z}(t) \\
+									-x(t)\sin(u) & x(t)\cos(u)  & 0 \\
+									\ddot{x}(t)\cos(u) & \ddot{x}(t)\sin(u) & \ddot{z}(t)
+								\end{array}
+								\right) \\
+								= & \dfrac{1}{x\norm{\dot{c}}} \left(\ddot{z}\dot{x}x-\dot{z}x\ddot{x} \right) \\
+								= & \dfrac{\ddot{z}\dot{x}-\dot{z}\ddot{x}}{\sqrt{\dot{x}^2 + \dot{z}^2}} \\
+								= & K_c(t) \norm{\dot{c}} \\
+		l_{12} \circ x^{-1} (a) = & \dfrac{1}{\sqrt{det(g_{i,j} \circ x^{-1}(a))}} \ip{f_{t} \times f_u , f_{tu}}(a) \\
+								= & \dfrac{1}{x\norm{\dot{c}}} \ det \left(
+								\begin{array}{c}
+									\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1) \\
+									x(t) \left(-\sin(u),\cos(u) ,0\right) \\
+									\dot{x}(t) \left(-\sin(u),\cos(u),0\right)
+								\end{array}
+								\right) \\
+								= & \dfrac{1}{x\norm{\dot{c}}}  \ det \left(
+								\begin{array}{ccc}
+									\dot{x}(t)\cos(u) & \dot{x}(t)\sin(u) & \dot{z}(t) \\
+									-x(t)\sin(u) & x(t)\cos(u)  & 0 \\
+									-\dot{x}(t)\sin(u) & \dot{x}(t)\cos(u) & 0
+								\end{array}
+								\right) \\
+								= & 0 \\
+		l_{22} \circ x^{-1} (a) = & \dfrac{1}{\sqrt{det(g_{i,j} \circ x^{-1}(a))}} \ip{f_{t} \times f_u , f_{uu}}(a) \\
+								= & \dfrac{1}{x\norm{\dot{c}}} \ det \left(
+								\begin{array}{c}
+									\dot{x}(t) \left(\cos(u),\sin(u),0\right) + \dot{z}(t) (0,0,1) \\
+									x(t) \left(-\sin(u),\cos(u) ,0\right) \\
+									x(t) \left(-\cos(u),-\sin(u),0\right)
+								\end{array}
+								\right) \\
+								= & \dfrac{1}{x\norm{\dot{c}}}  \ det \left(
+								\begin{array}{ccc}
+									\dot{x}(t)\cos(u) & \dot{x}(t)\sin(u) & \dot{z}(t) \\
+									-x(t)\sin(u) & x(t)\cos(u)  & 0 \\
+									-x(t)\cos(u) & -x(t)\sin(u) & 0
+								\end{array}
+								\right) \\
+								= & -\dfrac{\dot{z}x }{\norm{\dot{c}}} \\										
+		\end{aligned}
+		\]
+		
+		Por simplicidad supongamos que $c$ esta reparametrizada por longitud de arco, recopilando tenemos que:
+		
+		\[
+		\begin{aligned}
+		g_{i,j} \circ x^{-1}(a) = & \left(
+									\begin{array}{cc}
+										1 & 0 \\
+										0 & x^2
+									\end{array}
+									\right) \\
+		l_{i,j} \circ x^{-1}(a) = & \left(
+									\begin{array}{cc}
+										K_c(t)  & 0 \\
+										0 & -\dot{z}x
+									\end{array}
+									\right)		
+		\end{aligned}
+		\]
+		
+		Por lo tanto tenemos que si representamos $\norm{dN_p} = (a_{i,j})$ entonces:
+		
+		\[
+		\begin{aligned}
+			a_{i,j} \circ x^{-1}(a) = & (g_{i,j} \circ x^{-1}(a))^{-1}(l_{i,j} \circ x^{-1}(a)) \\
+			 = & \left(
+				\begin{array}{cc}
+					1  & 0 \\
+					0 & \frac{1}{x^2}
+				\end{array}
+			\right)*\left(
+				\begin{array}{cc}
+					K_c(t)  & 0 \\
+					0 & -\dot{z}x
+				\end{array}
+			\right) \\
+			 = & \left(
+			 \begin{array}{cc}
+			   	 K_c(t)  & 0 \\
+				 0 & \frac{-\dot{z}}{x}
+			 \end{array}
+			 \right)	
+		\end{aligned}
+		\]		
+		
+		Conclu\'imos que:
+		
+		\[
+		\begin{aligned}
+			K = & \dfrac{-K_c \dot{z}}{x} \\
+			k_1 = & \dfrac{l_{11}}{g_{11}} = K_c \\
+			k_2 = & \dfrac{l_{22}}{g_{22}} = \dfrac{-\dot{z}}{x} \\
+			H = & \frac{1}{2} \dfrac{-\dot{z} + xK_c}{x} 
+		\end{aligned}
+		\]
+		\qed
+	\end{proof}
+	
+	\item Ejercicio 7
+	
+	\label{Ejercicio 7}
+	
+	\begin{proof}
+		
+		Sea $P \in C$ la curva tangente al plano $\Pi_P$ y sea $(U,x)$ una carta centrada en $P$, luego existe $c: (-\epsilon, \epsilon) \rightarrow x(U)$ tal que $g = x^{-1} \circ c$ es una parametrizaci\'on de $C \cap U$. Sea $v \in \R^3$ tal que $\Pi_P = \sett{q \in \R^{3} \ / \ \ip{q,v} = 0}$ y notemos que por hip\'otesis $\Pi_p = T_pM$ para todo $p \in C \cap U$, por lo tanto $N_{U \cap C}(q) = v$. Conclu\'imos que $II_p(q) = \ip{-dN_p(q),q} = 0$ pues $dN_p(q) = \dfrac{d N \circ g}{dt} |_0 = 0$, por lo tanto $K(p) = 0$ para todo $p \in C \cap U$. \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 8
+	
+	\label{Ejercicio 8}
+	
+	\begin{proof}
+		
+		De la te\'orica sabemos que como $K > 0$ ambas curvaturas principales tienen el mismo signo, sin p\'erdida de generalidad tomemos $0 < k_1 \leq k_2$. Tambi\'en por la te\'orica para todo $v \in T_pM$ se cumple que $k_1(p) \leq II_p(v) \leq k_2(p)$; y finalmente tambi\'en sabemos que $II_p(v) = K_C(p) \cos(\theta)$ donde $\theta$ es el \'angulo entre la normal y $\ddot{c}$. Juntando todo conclu\'imos el resultado. \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 9
+	
+	\label{Ejercicio 9}
+	
+	\begin{proof}
+		
+		Sabemos que la curva mencionada es la tactriz, descripta en el ejercicio 2 de la pr\'actica 2 por $c(t) = \left(\sin(t) , \cos(t) + \log(\tan(t/2))\right)$, por lo tanto una parametrizaci\'on de la superficie de revoluci\'on $C$ es $f(t,v) = (\sin(t)\cos(v),\sin(t)\sin(v),\cos(t) + \log(\tan(t/2)) )$ y como es la superficie de revoluci\'on de una parametrizaci\'on inyectiva y con $x(t)> 0$ se tiene que $f$ define una superficie regular po el ejercicio 12 de la pr\'actica 4.
+		
+		De \ref{Ejercicio 6} $K = \dfrac{\dot{y}K_c}{x\norm{\dot{c}}} = \dfrac{(1-\sin^2(t))}{\cos(t)\norm{\dot{c}}}=-1$. \qed
+		
+
+	\end{proof}
+	
+	\item Ejercicio 10
+	
+	\label{Ejercicio 10}
+	
+	\begin{proof}
+		
+		De \ref{Ejercicio 6}  se tiene que $K=0$ para todo $p$ si y s\'olo si $\dot{y}=0$ por lo que la superficie rotada es un plano, o $K_c = 0$ por lo que $c$ es una recta inclinada. Por lo tanto al rotar por revoluci\'on una recta obtenemos un cilindro o un cono. \qed
+		
+	\end{proof}
+
+	\item Ejercicio 11
+	
+	\label{Ejercicio 11}
+	
+	\begin{proof}
+		
+		Sea $p \in S$ tal que $K(p)>0$, luego ambas curvaturas principales son positivas o negativas. Suponiendo lo primero sin p\'erdida de generalidad y notando $v_1,v_2$ a los autovectores asociados a $k_1,k_2$ respectivamente, se tiene que $II_p(w)=\ip{-dN_p(v),v}=\ip{ak_1v_1 + bk_2v_2,av_1,bv_2}=a^2k_1+b^2k_2 = \left(\dfrac{a}{\dfrac{1}{\sqrt{k_1}}}\right)^2 + \left(\dfrac{b}{\dfrac{1}{\sqrt{k_2}}}\right)$. Conclu\'imos que el conjunto:
+		
+		\[
+		\begin{aligned}
+		\sett{w \in T_pS \ / \ II_p(v)=1} = & \sett{a,b\in \R / \left(\dfrac{a}{\dfrac{1}{\sqrt{k_1}}}\right)^2 + \left(\dfrac{b}{\dfrac{1}{\sqrt{k_2}}}\right)^2=1} = \mathcal{E} 
+		\end{aligned}
+		\]
+		
+		Similarmente si los autovalores fuesen negativos entonces $-dN_p(v_i)=-k_iv_i$ y por lo tanto la elipse sería con $II_p(v)=-1$.
+		
+		Si $p$ fuese umb\'ilico entonces $k=k_1=k_2$ y obtenemos que $\mathcal{E}$ es una circunsferencia de radio $\dfrac{1}{\sqrt{k}}$. \qed
+		
+	\end{proof}
+
+	\item Ejercicio 12
+	
+	\label{Ejercicio 12}
+	
+	\begin{proof}
+		
+		Sea $f(u,v)=\left(a\cos(u)\sin(v), b\sin(u)\sin(v), c\cos(v)\right)$, luego calculemos las derivadas de $f$:
+		
+		\[
+		\begin{aligned}
+		f_u = & \left(-a\sin(u)\sin(v),b\cos(u)\sin(v),0\right) \\
+		f_v = & \left(a\cos(u)\cos(v),b\sin(u)\cos(v),-c\sin(v)\right) \\
+		f_u \times f_v = & det \left(
+		\begin{array}{ccc}
+		-a\sin(u)\sin(v) & b\cos(u)\sin(v) & 0 \\
+		a\cos(u)\cos(v)  & b\sin(u)\cos(v) & -c\sin(v) \\
+		i & j & k 
+		\end{array}
+		\right) \\
+					   = & \left(-bc\cos(u)\sin^2(v),-ac\sin(u)\sin^2(v),-ab\sin(v)\cos(v)\right) \\ 
+		\norm{f_u \times f_v} = & \sqrt{b^2c^2\cos^2(u)\sin^4(v) + a^2c^2\sin^2(u)\sin^4(v) + a^2b^2\sin^2(v)\cos^2(v)}  \\
+		f_{uu} = & \left(-a\cos(u)\sin(v),-b\sin(u)\sin(v),0\right) \\
+		f_{uv} = & \left(-a\sin(u)\cos(v),b\cos(u)\cos(v),0\right) \\
+		f_{vv} = & \left(-a\cos(u)\sin(v),-b\sin(u)\sin(v),-c\cos(v)\right)
+		\end{aligned}
+		\]
+		
+		Por lo tanto se tiene que:
+		
+		\[
+		\begin{aligned}
+		det \left(g_{i,j} \circ x^{-1}(a)\right) = & det \left(
+		\begin{array}{cc}
+		\ip{f_u,f_u} & \ip{f_u,f_v} \\
+		\ip{f_v,f_u} & \ip{f_v,f_v}
+		\end{array}
+		\right) \\
+		= &  det \left(
+		\begin{array}{cc}
+		\left(a^2\sin^2(u) + b^2 \cos^2(u)\right)\sin^2(v) & (b^2 - a^2)\cos(u)\sin(u)\cos(v)\sin(v)\\
+		(b^2 - a^2)\cos(u)\sin(u)\cos(v)\sin(v) & \left(a^2\cos^2(u) + b^2 \sin^2(u)\right)\cos^2(v) + c^2\sin^2(v)
+		\end{array}
+		\right) \\
+		= & \left(a^2\sin^2(u) + b^2 \cos^2(u)\right)\left(a^2\cos^2(u) + b^2 \sin^2(u)\right)\sin^2(v)\cos^2(v) \\ 
+		& + \left(a^2\sin^2(u) + b^2 \cos^2(u)\right)c^2\sin^4(v) -  \\
+		& (b^2 - a^2)^2\cos^2(u)\sin^2(u)\cos^2(v)\sin^2(v)
+		\end{aligned}
+		\]
+		
+		Por el otro lado tenemos que:
+		
+		\[
+		\begin{aligned}
+		\sqrt{det(g_{i,j} \circ x^{-1}(a))}(l_{11} \circ x^{-1}(a)) = & \ip{f_u \times f_v , f_{uu}} \\
+											 = &  det \left(
+											 \begin{array}{ccc}
+											 -a\sin(u)\sin(v) & b\cos(u)\sin(v) & 0 \\
+											 a\cos(u)\cos(v) & b\sin(u)\cos(v) & -c\sin(v) \\
+											 -a\cos(u)\sin(v) & -b\sin(u)\sin(v) & 0
+											 \end{array}
+											 \right) \\
+											 = & abc\sin^3(v) \\
+		\sqrt{det(g_{i,j} \circ x^{-1}(a))}(l_{12} \circ x^{-1}(a)) = & \ip{f_u \times f_v , f_{uv}} \\
+											 = &  det \left(
+											\begin{array}{ccc}
+											-a\sin(u)\sin(v) & b\cos(u)\sin(v) & 0 \\
+											a\cos(u)\cos(v) & b\sin(u)\cos(v) & -c\sin(v) \\
+											-a\sin(u)\cos(v) & b\cos(u)\cos(v) & 0
+											\end{array}
+											\right) \\
+											= & 0 \\
+		\sqrt{det(g_{i,j} \circ x^{-1}(a))}(l_{22} \circ x^{-1}(a)) = & \ip{f_u \times f_v , f_{vv}} \\
+											= &  det \left(
+											\begin{array}{ccc}
+											-a\sin(u)\sin(v) & b\cos(u)\sin(v) & 0 \\
+											a\cos(u)\cos(v) & b\sin(u)\cos(v) & -c\sin(v) \\
+											-a\cos(u)\sin(v) & -b\sin(u)\sin(v) & -c\cos(v)
+											\end{array}
+											\right) \\
+											= & abc\sin^3(v)  + 2abc\cos^2(v)\sin(v) \\
+											= & abc\sin(v)\left(1+\cos^2(v)\right)
+		\end{aligned}
+		\]
+		
+		 \qed
+		
+	\end{proof}
+
+	\item Ejercicio 13
+	
+	\label{Ejercicio 13}
+	
+	\begin{proof}
+		De \ref{Ejercicio 6} sabemos que vale que $k = \dfrac{-K_c \dot{z}}{x} = cte$. Pero adem\'as sabemos que $\dot{x}^2 + \dot{z}^2 = 1$ por lo que derivando conclu\'imos:
+		
+		\[
+		\begin{aligned}
+			0 = & \dot{x}\ddot{x} + \dot{z}\ddot{z}
+		\end{aligned}
+		\]
+		
+		Por lo que:
+		
+		\[
+		\begin{aligned}
+			k = & \dfrac{-\dot{z} \left(\dot{z}\ddot{x} - \dot{x}\ddot{z}\right)}{x} \\
+			  = & \dfrac{-\dot{z}^2\ddot{x} - \dot{x}^2\ddot{x}}{x} \\
+			  = & \dfrac{-\ddot{x}}{x} \\
+		\end{aligned}
+		\]
+		
+		Y conclu\'imos por un lado que $\ddot{x} + kx = 0$ y de antes que $z = \int{\sqrt{1 + \dot{x}^2}}ds$. La rec\'iproca es clara pues para todo $k \in \R$ existe una soluci\'on de la ecuaci\'on diferencial y luego haciendo la integral obtenemos una superficie de revoluci\'on dada. \qed
+		
+	\end{proof}
+
+\end{enumerate}
+
+\end{document}

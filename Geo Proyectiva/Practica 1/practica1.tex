@@ -1,0 +1,798 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 1}
+	
+	\bigskip
+
+\textbf{Aclaraci\'on:} Notemos $\Bigsum{}{}$ a la suma en un espacio vectorial $V$ y $\Bigsum{}{}^{A}$ a la suma en $V_A$ con $A \in V$
+
+\begin{enumerate}
+	
+	\item Sea $V$ un espacio vectorial de dimensión $n$. 
+	Un \emph{sistema de coordenadas afines} en $V$ es un par 
+	$S= (A, \{v_1,\ldots, v_n\})$, con si $A\in V$ y $\{v_1,\ldots, v_n\}$
+	una base de $V_A$. Notaremos $S=\{A,v_1,\ldots,v_n\}$. Mostrar que son 
+	equivalentes las siguientes dos afirmaciones
+	
+	\begin{itemize}
+		
+		\item$S=\{A,v_1,\ldots,v_n\}$ es un sistema de coordenadas afines en $V$.
+		
+		\item $\{v_1-A;\ldots,v_n-A\}$  es una base de $V$.
+		
+	\end{itemize}
+	
+	\label{Ejercicio 1}
+	
+	\begin{proof}
+		
+		
+		
+		Por un lado supongamos que $S = \sett{A,v_1, \dots, v_n}$ es un sistema de coordenadas afines de $V$, y veamos que $\B = \sett{v_1 -A , \dots , v_n -A}$ es base de $V$.
+		
+		Sea $0 = \Bigsum{1 \leq  i \leq n}{x_i (v_i -A)}$, entonces $A = A +  \Bigsum{1 \leq i \leq n}{x_i . (v_i -A)} = \BigsumA{1 \leq i \leq n}{A}{x_i ._A v_i}$. Por lo tanto se tiene que $ 0 =_A \BigsumA{1 \leq i \leq n}{A}{{x_i} ._A v_i}$ y como $S$ es un sistema de coordenadas afines en $V$ se tiene que $x_i = 0$ para todo $1 \leq i \leq n$. Conclu\'imos que $\B$ es linealmente independiente.
+		
+		Por el teorema de la dimensi\'on, como $n = dim \ V = \vert \B \vert$ y $\B$ es linealmente independiente, se concluye que $\B$ es base.
+		
+		
+		Para el otro lado, sea $A = \BigsumA{1 \leq i \leq n}{A}{x_i ._A v_i} = A + \Bigsum{1 \leq i \leq n}{x_i .(v_i -A)}$ y por lo tanto $0 = \Bigsum{1 \leq i \leq n}{x_i . (v_i -A)}$. Como $\B$ es base de $V$ entonces $x_i = 0$ para todo $1 \leq i \leq n$ y por lo tanto $\sett{v_1 -A, \dots , v_n -A}$ es linealmente independiente en $V_A$; por el mismo razonamiento de dimensi\'on conclu\'imos que $S$ es un sistema de coordenadas afines en $V$. \qed
+		
+	\end{proof}
+	
+	\item Sean $V$ un espacio vectorial de dimensión $n$ y $S=\{A,v_1,\ldots,v_n\}$ un sistema de
+	coordenadas afines en $V$. Dado $v\in V$, notaremos con $[v]_S$ al vector
+	de coordenadas de $v$ con respecto a la base $\{v_1,\ldots,v_n\}$ de $V_A$; 
+	esto es, $[v]_S=(a_1,\ldots,a_n)$ si y solo si
+	\[
+	v = a_1\cdot_Av_1 +_A\cdots+_A a_n\cdot_Av_n.
+	\]
+	
+	\begin{itemize}
+		\item Hallar $[v]_S$ en los casos siguientes.
+		
+		\begin{itemize}
+			\item $V = \R^3$, $S=\{(2,1,0);(0,1,0),(2,0,1),(0,0,-3)\}$  y $v=(0,0,0)$.
+			
+			\item $V = \R_2[X]$, $S=\{X^2;X+1,X^2+3X,X^2+2\}$  y  $v=2X$.
+			
+			\item 
+			$V = \R^{2\times 2} $,
+			\[
+			S = 
+			\left\{
+			\begin{pmatrix}
+			0&1\\ %%@
+			0&0
+			\end{pmatrix}
+			;
+			\begin{pmatrix}
+			1&0\\
+			0&0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+			1&0\\ %%@
+			0&1
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+			0&0\\
+			2&0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+			0&0\\ %%@
+			0&1\end{pmatrix}
+			\right\}
+			\]  
+			y $v=\begin{pmatrix}3&2\\ -1&4\end{pmatrix}$.
+		\end{itemize}
+		
+		\item Sea $S=\{(0,-2,1);(1,0,0),(0,1,0),(0,0,1)\}$.
+		Calcular $v$, sabiendo que $[v]_S=(-2,0,4)$.
+		
+		\item Sean $S=\{A,v_1,\ldots,v_n\}$  y $S'=\{B,w_1,\dots,w_n\}$
+		dos sistemas afines en $ V $. Si $v\in  V $, expresar $[v]_{S'}$ en
+		funci\'on de $[v]_S$.
+		
+	\end{itemize}
+	
+	\label{Ejercicio 2}
+	
+	\begin{proof}		
+		
+		\begin{easylist}
+			
+			\ListProperties(Style1*=\bfseries,Numbers2=l,Mark1={},Mark2={)},Indent2=1em)
+			  
+			@ Primer item
+				
+			@@ $V = \R^3 \quad  S = \sett{(2, 1, 0) ; (0, 1, 0),(2, 0, 1),(0, 0, -3) }$ y $v = (0, 0, 0)$
+							
+			Sea $\B = \sett{(-2,0,0), (0,-1,1), (-2,-1,-3)}$, por el ejercicio \ref{Ejercicio 1} se tiene que $\B$ es una base de $\R^3$ y notemos que $[t_{-A}(v)]_{\B} = [(-2,-1,0)]_{\B} = (\frac{3}{4}, \frac{3}{4}, \frac{1}{4})$. Por la te\'orica tenemos entonces que $[t_{A}(t_{-A}(v))]_S = [v]_S = (\frac{3}{4}, \frac{3}{4}, \frac{1}{4})$.
+							
+			@@ $V = \R_2[X] \quad S = \sett{X^2; X + 1, X^2 + 3X, X^2 + 2}$ y $v = 2X$
+							
+			Nuevamente sea $\B = \sett{-X^2 +X +1 , 3X, 2}$ que por \ref{Ejercicio 1} es base de $\R_2[X]$ y notemos que $[v]_S = [t_{-A}(2X)]_{\B} = [-X^2 + 2X]_{\B} = (1,\frac{1}{3},-\frac{1}{6})$.
+				
+			@@ Igual
+				
+			@@ Igual
+			
+
+			@ Sea $\B = \sett{(1,2,-1), (0,3,-1) , (0,2,0)}$, luego $[(0,-2,1)]_{\B} = (0,-1,\frac{1}{2})$, por lo tanto sabemos de la te\'orica que $[v]_{S} = [v-(0,-2,1)]_{\B}$; por lo tanto $[v]_{\B} = (0,-1,\frac{1}{2}) + (-2,0,4)$. 
+			
+			@ Sea $\B= \sett{v_1 -A , \dots , v_n -A}$ y $\B' = \sett{w_1 -B , \dots , v_n - B}$ y luego $[v]_{S'} = [t_{-B}(v)]_{\B'} = C_{\B' , \B} [t_{-B}(v)]^{t}_{\B}$; por otro lado $[v]_{S} = [t_{-A}(v)]_{\B}$ y por lo tanto si consideremos $t(v) = v + A - B$ se tiene que $[v]_{S'} = C_{\B' , \B} [t(t_{-A}(v))]^{t}_{\B} = C_{\B' , \B} \norm{\phi_t}_{\B} [t_{-A}(v)]_{\B}^{t} = C_{\B' , \B} \norm{\phi_t}_{\B} [v]_{S}^{t}$. Donde como $A \neq B$ entonces $\norm{\phi_t},C_{\B' , \B} \in GL_3(\R)$. \qed
+			
+			
+		\end{easylist}
+		
+	\end{proof}
+	
+	\item Sea $m\geq 2$. El conjunto 
+	$\{v_1,\dots,v_m \}\subset V$ es \emph{afínmente independiente}
+	si $\{v_2-v_1,\dots,v_m-v_1 \}$ es linealmente independiente.
+	Probar que son
+	equivalentes las siguientes afirmaciones.
+	\begin{enumerate}
+		
+		\item El conjunto $\{v_1,\dots,v_m\}$ es afínmente independiente.
+		
+		\item Si $\sum_{i=1}^m\lambda_iv_i=0$ con
+		$\sum_{i=1}^m\lambda_i=0$ entonces $\lambda_i=0$ para
+		$1\leq i\leq m$.
+		
+		\item Dado $1\leq j \leq m$, el conjunto
+		$\{v_1,\ldots,\hat{v}_j,\ldots,v_m\}$ es linealmente independiente
+		en $V_{v_j}$.
+		
+	\end{enumerate}
+	
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		
+		Vayasmo de a partes:
+		
+		\begin{enumerate}
+			\item [i) $\Longrightarrow$ ii)] Sea $0 = \Bigsum{1 \leq i \leq n}{\lambda_i v_i}$, luego $0 = \Bigsum{1 \leq i \leq n}{\lambda_i v_i} - \Bigsum{1 \leq i \leq n}{\lambda_i v_1}$ pues $\Bigsum{1 \leq i \leq n}{\lambda_i} = 0$. Por lo tanto $0 = \Bigsum{2 \leq i \leq n}{\lambda_i (v_i - v_1)}$ y como $\sett{v_1, \dots , v_n}$ es afinmente independiente se concluye que $\lambda_i = 0$ para todo $2 \leq i \leq n$; finalizamos pues $\Bigsum{1 \leq i \leq n}{\lambda_i} = \lambda_1 = 0$.
+		
+			\item [ii) $\Longrightarrow$ iii)] Notemos que la hip\'otesis implica que el conjunto $\sett{(v_1,1) , \dots, (v_m,1)}$ es linealmente independiente pues si $0 = \Bigsum{1 \leq i \leq m}{\mu_i (v_i,1)}$ entonces se tiene que $\Bigsum{1 \leq i \leq m}{\mu_i v_i} = 0$ y que $\Bigsum{1 \leq i \leq m}{\mu_i} = 0$ luego se tiene que $\mu_i = 0$ para todo $1 \leq i \leq m$. Por lo tanto $\B = \sett{v_1 - v_j , \dots , v_{j-1} - v_j , v_{j+1} - v_j , \dots , v_m - v_j}$ es linealmente independiente, por \ref{Ejercicio 1} se tiene que $\sett{v_1 , \dots, v_{j-1}, v_{j+1}, \dots , v_m}$ es linealmente independiente en $V_{v_j}$.
+			
+			\item [iii) $\Longrightarrow$ i)] Por \ref{Ejercicio 1} esto vale. \qed
+			
+		\end{enumerate}
+		
+		
+	\end{proof}
+	
+	\item Un conjunto $S\subseteq\R^n$ está en \emph{posición general} si todo 
+	subconjunto $A\subseteq S$ de cardinal menor o igual a $n+1$ es afínmente
+	independiente. Probar que para todo $n\in\N$ el conjunto infinito
+	$S = \{ (t,t^2,\ldots, t^n)~:~t\in\R\}\subseteq\R^n$ está en posicion 
+	general en $\R^n$ 
+			
+	\label{Ejercicio 4}
+	
+	\begin{proof}
+		
+		Sea $A \subseteq S$ tal que $|A| = m \leq n+1$, luego existen $t_1 \neq \dots \neq t_{m} \neq 0$ (error pr\'actica) tal que $A = \sett{(t_1, \dots , t_{1}^{n}), \dots , (t_m, \dots , t_{m}^{n}) }$ y queremos ver que este conjunto es afinmente independiente. Por \ref{Ejercicio 3} hab\'iamos visto que esto es equivalente a que el conjunto $\sett{(1,t_1, \dots , t_{1}^{n}), \dots , (1,t_m, \dots , t_{m}^{n}) }$ sea linealmente independiente, que es equivalente a que sea inversible:
+		
+		\[
+		V = \left(
+		\begin{array}{cccc}
+		1 & t_1 & \dots & t_{1}^{n} \\ 
+		\vdots  & \ddots &  & \vdots \\
+		\vdots & & \ddots & \vdots \\
+		1 & t_m & \dots  & t_{m}^{n}  
+		\end{array} 
+		\right)
+		\]
+		
+		Pero como los $t_i$ son diferentes, entonces es sabido que la matriz de Vandermonde es inversible. \qed
+		
+	\end{proof}	
+	
+	\item Un subconjunto no vacío $M$ de un espacio vectorial $V$ se dice
+	\emph{variedad lineal} si existe $A\in V$ tal que $M$ es un subespacio de
+	$V_A$. Probar que, dado $M$ un subconjunto no vacío de $V$, son 
+	equivalentes las siguientes afirmaciones.
+	
+	\begin{enumerate}
+		
+		\item $M$ es una variedad lineal.
+		
+		\item $M$ es un subespacio de $V_B$ para todo $B\in M$.
+		
+		\item $M-_CA$ es un subespacio de $V_C$ para todo $A\in M$ y todo $C\in V$.
+		
+		\item $M-A$ es un subespacio de $V$ para todo $A\in M$.
+		
+		\item $M-A$ es un subespacio de $V$ para algún $A\in M$.
+		
+		\item Existen $A\in V$ y $S$ subespacio de $V$ tales que $M=A+S$.
+		
+	\end{enumerate}
+	
+	\label{Ejercicio 5}
+	
+	\begin{proof}
+		
+		Vayamos de a partes:
+		
+		\begin{itemize}
+			
+			\item [i) $\Longrightarrow$ ii)] Sea $B \in M$, como $M$ es variedad lineal existe $A \in V$ tal que $M$ es subespacio de $V_{A}$, luego $t_{B-A}(M)$ es subespacio de $t_{B-A}(V_A) = V_B$. Finalizamos notando que como $B \in M$ y $M$ es subespacio de $V_A$ entonces $B-A \in M$ y luego $t_{B-A}(M) = M$.
+			
+			\item [ii) $\Longrightarrow$ iii)] Sean $A \in M$ y $C \in V$, luego $M$ es subespacio de $V_A$ y notando que $M-_C A = M-A + C$ tenemos que $M-A$ es subespacio de $V$, luego $t_{C}(M-A) = M -_C A$ es subespacio de $V_C$
+			
+			\item [iii) $\Longrightarrow$ iv)] Supongamos que existe un $A \in M$ tal que $M - A$ no es subespacio de $V$, entonces por definici\'on $t_C(M -A) = M-A + C = M -_C A$ no es subespacio de $V_C$; conclu\'imos que $M-A$ es subespacio de $V$ para todo $A \in V$.
+			
+			\item[iv) $\Longrightarrow$ v)] Trivial
+			
+			\item [v) $\Longrightarrow$ vi)] Sabemos que existe $A \in M \subseteq V$ tal que $M-A = S$ es subespacio de $V$, luego $M = A +S$
+			
+			\item [vi) $\Longrightarrow$ i)] Trivial \qed
+			
+		\end{itemize}
+		
+	\end{proof}	
+	
+	\item Sea $V$ un espacio vectorial y $v_1,\dots,v_k\in V$.
+	Llamamos al subconjunto de $V$
+	\[
+	\sigma(v_1,\dots,v_k)
+	:= \left\{
+	\sum_{i=1}^k\lambda_iv_i \tq \sum_{i=1}^k\lambda_i=1
+	\right\}
+	\]
+	el conjunto de las combinaciones
+	afines de  $\{v_1,\dots,v_k\}$. Probar que
+	$\sigma(v_1,\dots,v_k)$ es una variedad lineal y que es la menor
+	que incluye a $\{v_1,\dots,v_k\}$. ¿Qué dimensión tiene?
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		Veamos primero que si $a,b \in \sigma(v_1, \dots , v_n)$ y $\lambda \in \R$ entonces $\lambda a + (1-\lambda) b \in \sigma(v_1 , \dots , v_n)$.
+		
+		Para esto existen $\mu_{1}^{a} , \dots , \mu_{n}^{a} , \mu_{1}^{b} , \dots , \mu_{n}^{b}$ tal que $a = \Bigsum{1 \leq i \leq n}{\mu_{i}^{a} v_i}, b = \Bigsum{1 \leq i \leq n}{\mu_{i}^{b} v_i}$; luego $\lambda a + (1-\lambda) b = \Bigsum{1 \leq i \leq n}{(\lambda \mu_{i}^{a} + (1- \lambda)\mu_{i}^{b})v_i}$ y $\Bigsum{1 \leq i \leq n}{\lambda \mu_{i}^{a} + (1- \lambda)\mu_{i}^{b}} = \lambda \Bigsum{1 \leq i \leq n}{\mu_{i}^{a}} + (1- \lambda) \Bigsum{1 \leq i \leq n}{\mu_{i}^{b}} = \lambda + 1 - \lambda = 1$. Por lo tanto tenemos que $\lambda a + (1-\lambda) b \in \sigma(v_1 , \dots , v_n)$.
+		
+		Sea $A \in V$, $S = \sett{v -A \ / \ v \in \sigma(v_1 , \dots , v_n)}$ y $s \in S$; luego $s + A \in \sigma(v_1, \dots , v_n)$ y entonces $\lambda(s+A) + (1-\lambda)A = \lambda s +A \in \sigma(v_1 , \dots , v_n)$; por lo atnto $\lambda s \in S$.
+		
+		Finalmente, sean $x,y \in S$ y luego $\frac{1}{2}(x+y) +A = \frac{1}{2}(x+A) + \frac{1}{2}(y+A)$ y por lo tanto $\frac{1}{2}(x+y) \in S$; por lo anterior $(x+y) \in S$.
+		
+		Conclu\'imos que $S$ es un subespacio y entonces $M = S +A$ y por \ref{Ejercicio 5} es una variedad lineal.
+		
+		Claramente es la m\'as chica que contiene a $\sett{v_1, \dots , v_n}$ y finalmente tiene dimensi\'on $n-1$. \qed
+		
+		
+	\end{proof}
+	
+	\item Hallar un conjunto de generadores afínmente independientes
+	de las siguientes variedades lineales.
+	
+	\begin{itemize}
+		
+		\item  $M=\{x\in \R^3 \tq x_1-x_3=2 \ ,\ 2x_1+x_2-x_3=1\}$.
+		\item  $M=\{x\in \R^3 \tq 2x_1+x_2=0\}$.
+		\item  $M=\{x\in \R^2 \tq x_1-x_2=2\ \ 2x_1-3x_2=1\}$.
+		\item  $M=\{x\in \R^5 \tq x_1-x_2+x_3-x_4+x_5=-2\}$.
+		\item  $M\subseteq\R_2[X]$ la menor variedad lineal que contiene al conjunto
+		\[
+		\{ 4X^2+2X, 2X^2+X, 3X^2+X+1, 5X^2+2X+1\}.
+		\]
+	\end{itemize}
+	
+	\label{Eercicio 7}
+	
+	\begin{proof}
+		
+		\begin{itemize}
+			
+			\item $M = \sett{x \in \R^3 \ / \ x_1 - x_3 = 2 , 2x_1 + x_2 - x_3 = 1}$
+			
+			Notemos que $A = (2,-3,0) \in M$ y luego $M - A = S$ es un subespacio dado por $S =  \sett{x \in \R^3 \ / \ (x_1 +2) - x_3 = 2 , 2(x_1 +2 ) + (x_2 -3) - x_3 = 1} = \\ \sett{ x \in \R^3 \ / \ x_1 - x_3 = 0 , 2x_1 +x_2 - x_3 = 0} = \left\langle (1,-1,1) \right\rangle$
+			
+			\item Igual
+			
+			\item Igual
+			
+			\item Igual
+			
+			\item $M \subseteq \R_2[X]$ la menor variedad lineal que tiene a $\sett{4X^2 + 2X, 2X^2 + X, 3X^2 + X + 1, 5X^2 + 2X + 1}$. Es claro que el conjunto no esa finmente independiente pues $x_2 + v_3 = v_4$, luego $M = 2X^2 + x + \langle 4X^2 + 2X, 3X^2 + X + 1 \rangle$.
+					
+			
+		\end{itemize}
+		
+	\end{proof}
+	
+	\item Sea $ f: V \longrightarrow V $ una transformación afín $ A \in V $ y $g: V_A \longrightarrow V_A$ dada por $$ g(v) = f(v) \underset{A}{-} f(A).$$ Probar que $g$ es lineal.
+	
+	 \label{Ejercicio 8}
+	 
+	 \begin{proof}
+	 	
+	 	Notemos primero que como $f$ es af\'in entonces existe $h : V \rightarrow V$ transformaci\'on lineal y $p \in V$ tal que $f = t_{p} \circ h$, por otro lado consideremos $t_{-A} : V_A \rightarrow V$ dado por $t_{-A}(v + A) = v$.
+	 	
+	 	Sea entonces $v+ A\in V_A$, luego $f \circ t_{-A}(v + A) = f(v) = p + h(v)$ y por otro lado $f \circ t_{-A} (A) = p + h(0) = p$; por lo tanto $f \circ t_{-A} = f \circ t_{-A} (A) + h$. Consideremos fionalmente $t : V_p \rightarrow V_A$ dado por $t(x + p) = x + A$, luego $g(v + A) = f \circ t_{-A} (A) + h(v) -  f \circ t_{-A} (A) + A = h(v) + A$.
+	 	
+	 	Conclu\'imos que si notamos laa coordenada de una transformaci\'on afín $z : V_p \rightarrow V_q$ tal que $z(v + p) = h(z) + q$ como $[z] = h$; se tiene que $[g] = h$ que es lineal, y por ende $g$ es lineal.
+	 	
+	 	En efecto, si $v,w \in V_A$ y $\lambda \in \R$ luego $g(v+_A \lambda._Aw) = g(v+ \lambda w+A) = A + h(v + \lambda w) = h(v) +_A \lambda h(w) = g(v) +_A \lambda._A g(w)$. \qed
+	 	
+	 \end{proof}
+	
+	\item Probar que $ f: V \longrightarrow V $ es una transformación afín si y solo si existen $ A \in V $ y $ g: V \longrightarrow V $ lineal tales que $f(v) = g(v) + A $. Deducir que $f$ es isomorfismo afín si y solo si $g$ es isomorfismo lineal.
+	
+	\label{Ejercicio 9}
+	
+	\begin{proof}
+		
+		Para un lado si existe $p \in V$ tal que $f : V \rightarrow V_p$ es lineal, entonces $t_{-p} \circ f : V \rightarrow V$ es lineal y por lo tanto si llamamos $g = t_{-p} \circ f$ se tiene que $f = t_p \circ g = g + p$.
+		
+		Para el otro es justamente \ref{Ejercicio 8} \qed
+		
+	\end{proof}
+	
+	\item Sea $f: \R^n \longrightarrow \R^n$ una función que satisface $ f(\lambda \underset{x}{\cdot} y) = \lambda \underset{f(x)}{\cdot}f(y) $ para cada $x,y \in \R^n$ y $\lambda \in \R$. Mostrar que $f$  es una transformación afín.
+	
+	\label{Ejercicio 10}
+	
+	\begin{proof}
+		
+		Por \ref{Ejercicio 9} debemos ver que $f(v) - A = g$ es lineal para $A = f(0)$. por lo tanto veamos $f(0)$. Notemos que $\lambda_x . y = x + \lambda (y-x)$ por lo tanto sabemos que para todos $x,y \in \R^n$ se tiene que $f(x + \lambda (y-x)) = f(x) + \lambda (f(y) - f(x))$.
+		
+		Sea $x,y \in \R^n$ tal que $x = 0$, luego $f(\lambda y) = f(\lambda ._{0} y) = \lambda ._{f(0)} f(y)$ por lo que llamemos $p = f(0)$ debemos probar que $f : V \rightarrow V_{f(0)}$ es lineal.
+		
+		Finalmente si $\lambda = \frac{1}{2}$ entonces queda que $f(\frac{1}{2}(x+y)) = \frac{1}{2} (f(x) + f(y))$ y por lo tanto $f(0) + \frac{1}{2}(f(x+y) - f(0)) = f(\frac{1}{2}(x+y))  = \frac{1}{2} (f(x) + f(y))$ y juntando los extremos $\frac{1}{2} f(x+y) = \frac{1}{2} (f(0) + f(x) + f(y)))$ con lo que $f(x+y) = f(x) +_{f(0)} f(y)$. \qed
+		
+	\end{proof}
+	
+	\section{Cuádricas}
+	
+	
+	\underline{Notación}: Dado un polinomio $P$ de grado dos en $n$ variables reales notaremos a la cuádrica que genera como $$ \mathcal{C}(P) = \{ x \in \R^n : P(x) = 0 \},$$ y a su centro como $\mbox{cent}(P) = \mbox{cent} \Big( \mathcal{C}(P) \Big).$
+	
+	\item Sea $\phi:V\times V\longrightarrow \R$ una forma bilineal sim\'etrica. Encontrar una base $B$ de
+	$V$ de modo que la matriz de $\phi$ en $B$, $\|\phi\|_B$,  sea
+	diagonal.
+	
+	\begin{itemize}
+		
+		\item $V=\R^3$, $\|\phi(x)\|_E=\left(\begin{matrix}1 & 1 & 0 \\  1 & 0 & -1 \\ 0 & -1
+		&-1\end{matrix}\right)$, donde $E$ es la base can\'onica de
+		$\R^3$.
+		
+		\item $V=\R^4$, $\phi(x,y)=3x_1y_1+2x_1y_2+2x_2y_1$.
+		
+		\item $V=\R^3$, $\|\phi(x)\|_B=\left(\begin{matrix}1 & 0 & 1 \\  0 & 1 & 0 \\ 1 &
+		0 & 1\end{matrix}\right)$, donde $B=\{(1,0,0),(1,0,1),(0,1,1)\}$.
+		
+	\end{itemize}
+	
+	\label{Ejercicio 11}
+	
+	\begin{proof}
+		
+		Hay que diagonalizar. \qed
+		
+	\end{proof}
+	
+	\item Sea $F:\R^3\longrightarrow\R$ la funci\'on cuadr\'atica
+	cuya expresi\'on en la base can\'onica es
+	\[
+	F(x)=x_1^2-x_2^2+3x_1x_2+x_2x_3-x_1+3x_2-10.
+	\]
+	Encontrar la
+	expresi\'on de $F$ en $\R^3_{(1,0,2)}$, $\R^3_{(1,1,5)}$ y
+	$\R^3_{(0,0,1)}$.
+	
+	\label{Ejercicio 12}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Notemos que $\|\phi(x)\|_E=\left(\begin{matrix}1 & 3 & 0 \\  0 & -1 & 1 \\ 0 & 0
+				& 0 \end{matrix}\right)$ y por lo visto en la pr\'actica podemos tomar la simetrizaci\'on de $\phi$ tal que $\tilde{\phi}(x,y) := \frac{\phi(x,y) + \phi(y,x)}{2}$ y entonces $\|\tilde{\phi}(x)\|_E=\left(\begin{matrix}1 & \frac{3}{2} & 0 \\  \frac{3}{2} & -1 & \frac{1}{2} \\ 0 & \frac{1}{2}
+				& 0 \end{matrix}\right)$. Adem\'as, $\varphi(x) = \frac{1}{2} \langle (-1,3,0 ) , {x} \rangle$ y $c = -10$.
+				
+				Por lo tanto si $A = (1,0,2)$ entonces $c_A = F(A) = 1 - 0 +0+0-1+0-10 = -10$; adem\'as:
+				
+				\[
+				\begin{array}{ccc}
+					\phi(X-A,X-A) & = & (x_1 - 1, x_2, x_3 - 2). \left(\begin{matrix}1 & 3 & 0 \\  0 & -1 & 1 \\ 0 & 0 & 0 \end{matrix}\right) . (x_1 - 1, x_2, x_3 - 2)^t \\
+					\phi(X-A,X-A) & = & (x_1 -1)^2 + 3(x_1 -1)x_2 - x_{2}^{2} + x_2(x_3-2)
+				\end{array} 				
+				\]
+				
+				Y finalmente $\varphi_A = \phi(X-A,A) + \varphi(X-A)$ con lo que:
+			
+				\[
+				\begin{array}{ccc}
+				\varphi_A & = & (x_1-1) 2x_2 + \frac{1}{2} \langle (-1,3,0 ) , {x} \rangle \\
+				\varphi_A & = & \frac{1}{2} x_1 + \frac{7}{2} x_2 -1
+				\end{array} 				
+				\]
+				
+				Finalmente entonces $F_A = (x_1 -1)^2 + 3(x_1 -1)x_2 - x_{2}^{2} + x_2(x_3-2) + x_1 + 7x_2 - 2 - 10$. No pienso hacer en los otros dos puntos... \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Dado un polinomio de grado dos en $n$ variables reales $P$ probar que para cualquier transformación afín inversible $f$ ($f(x) = T x + b$ con $T \in GL(n,\R))$)
+	vale que:
+	\begin{itemize}
+		\item $\mbox{cent}(P \circ f) = f^{-1} \mbox{cent}(P)$.
+		\item $ \mathcal{C}(P \circ f) = f^{-1} \mathcal{C}(P) $.
+	\end{itemize}
+	
+	\label{Ejercicio 13}
+	
+	\begin{proof}
+		
+		Vayamos de a partes:
+		
+		\begin{enumerate}
+			
+			\item Sea $p \in \mbox{cent}(P \circ f)$, luego si $P \circ f = \psi_f + 2 \varphi_f + c_f$ tenemos que $\norm{\phi_f} . p^t = b^t$. Pero $\phi_f(x,y) = \phi(f(x),f(y))$ y por lo tanto si $f = Tx + c$ tenemos que $\norm{\phi_f} = T^t\norm{\phi}T $. Esto junto nos dice que $T^{-1}b^t = \norm{\phi}T p^t = \norm{\phi}g^t$ con $g^t = Tp^t$, o sea que $f(p) \in \mbox{cent}(P)$. Es claro que todos los pasos eran si y s\'olo si por ende vale la rec\'iproca tomando $f^{-1} = f$.
+			
+			\item Si $P(f(v)) = 0$ entonces $f(v) \in \mathcal{C}(P)$, y para el otro lado si $f(v)$ es tal que $P(f(v)) = 0$ entonces $v \in \mathcal{C}(P \circ f)$. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Dado un polinomio de grado dos en $n$ variables reales $P$ probar que 
+	$$ \mbox{cent}(P) = \{ y \in \R^n : \frac{\partial P}{\partial x_i} (y)= 0 \; \forall \; i= 1, \ldots, n \}. $$
+	
+	\label{Ejercicio 14}
+	
+	\begin{proof}
+		
+		Sea $p \in \mbox{cent}(P)$ si y s\'olo si $P_p = \psi_p + c_p$, luego $\dfrac{\partial P}{\partial x_i}(p) = \dfrac{\partial \psi_p}{\partial x_i}(p) = (x-P) \norm{\phi} |_{p} + \norm{\phi} (x-P)^t |_{P} = 0$.
+		
+		Rec\'iprocamente si $\dfrac{\partial P}{\partial x_i}(p) = 0$ entonces $P$ no es lineal en $x - P$ y luego se tiene que $\varphi_p = 0$, o sea $p \in \mbox{cent}(P)$. \qed
+		
+	\end{proof}
+	
+	Ahora es en el resto de la gu\'ia usar \ref{Ejercicio 14} y hacer a lo analisis 1 los puntos de gradiente 0, ya tiene cero gracia hacer la forma a lo keilhauer (sirvio pa las demos)
+	
+	\item En cada uno de los siguientes casos encontrar el conjunto de centros de la cu\'adrica $Q$.
+	
+	\begin{itemize}
+		
+		\item $Q:\x x12+2\x x22-2\xx xx12+2x_2-1=0$\hfill (en $\R^2$)
+		
+		\item $Q:\x x12+4\x x22-4\xx xx12+2x-4x_2-5=0$ \hfill (en $\R^2$)
+		
+		\item $Q:\x x12-2\xx xx12+2\x x22+2x_1+3=0$ \hfill (en $\R^2$)
+		
+		\item $Q:\x x12-\x x22+\x x32+1=0$ \hfill (en $\R^3$)
+		
+		\item $Q:\x x12+\x x22-\x x32+2\xx xx12+2x_3+1=0$ \hfill (en $\R^3$)
+		
+		\item $Q:2\x x12-\x x22-\x x32+2\xx xx12+2\xx xx13-2\xx xx23+2x_1+4x_2+6x_3
+		-4=0$ \hfill (en $\R^3$)
+		
+		\item $Q:\x x12+\x x22-\xx xx12+x_3-7=0$ \hfill (en $\R^4$)
+		
+	\end{itemize}
+	
+	\begin{proof}
+		
+		Para pr\'acticar vamos a llevar a la forma normal a las cu\'adricas 1 y 6 pues parece que son con y sin centros.
+		
+		\begin{enumerate}
+			
+			\item  $Q:\x x12+2\x x22-2\xx xx12+2x_2-1=0$\hfill (en $\R^2$)
+			
+			Primero notemos que  $ \nabla F = (2(x_1-x_2) , 4x_2 - 2x_1 + 2)$ y entonces $\nabla F = 0$ si y s\'olo si:
+			
+			\[
+			\begin{array}{ccc}
+			x_1 - x_2 & = & 0 \\
+			4x_2 - 2x_1 + 2 & = & 0
+			\end{array}
+			\]
+			
+			Que pasa si y s\'olo si $(x_1,x_2) = (-1,-1)$, luego por \ref{Ejercicio 14} se tiene que $\emph{cent}(P) = \sett{(-1,-1)}$. Como $F((-1,-1)) = -2 \neq 0$ entonces el centro no est\'a en la cu\'adrica y estamos en el caso de las esferas. Sea $A = (-1,-1)$, luego por un lado $c_{A} = F(A) = -2$ y  adem\'as $\psi_{A} = \psi(X-A) = (x_1 +1 ,x_2 +1) 
+			\left( \begin{array}{cc} 
+			1 & 0 \\
+			-2 & 2
+			\end{array} \right)
+			\left( \begin{array}{c}
+			x_1 +1 \\
+			x_2 +1
+			\end{array} \right) = (x_1 +1)^2 + 2(x_2 +1)^2 -2(x_1+1)(x_2+1)$. 
+			
+			Finalmente, $\varphi_{A} = \phi(A,X-A) + \varphi(X-A) = (-1,-1) \left( \begin{array}{cc} 
+			1 & -1 \\
+			-1 & 2
+			\end{array} \right)
+			\left( \begin{array}{c}
+			x_1 +1 \\
+			x_2 +1
+			\end{array} \right) + (x_2+1) = -(x_2 +1) + (x_2+1) = 0$; conclu\'imos que:
+			
+			\[
+			F_A = (x_1 +1)^2 + 2(x_2 +1)^2 -2(x_1+1)(x_2+1) - 2
+			\]
+			
+			
+			Ahora para llevar $F_A$ a la forma normal  en vez de diagonalizar $\norm{\phi}$ vamos a ver el signo de los autovalores con el m\'etodo de Pancho, para eso notemos que:
+			
+			\[
+			\left( \begin{array}{cc} 
+			1 & -1 \\
+			-1 & 2
+			\end{array} \right)  \xrightarrow{F_2 -> F_2 + F_1} \left( \begin{array}{cc} 
+			1 & -1 \\
+			0 & 1
+			\end{array} \right) \xrightarrow{C_2 -> C-2 + C_1} \left( \begin{array}{cc} 
+			1 & 0 \\
+			0 & 1
+			\end{array} \right) 			
+			\]
+			
+			Entonces sabemos que ambos autovalores son positivos y entonces $F \simeq x_1^2 + x_2^2 - 1$. Ahora supongamos que nos piden la base $\B$ tal que presenta la equivalencia, entonces deer\'iamos diagonalizar, para eso veamos: 
+			
+			\[
+			\begin{aligned}
+			\chi(\lambda) = & det 
+			\left( \begin{array}{cc} 
+			\lambda - 1 & +1 \\
+			+1 & \lambda - 2
+			\end{array} \right) \\
+			 = & (\lambda -1)(\lambda -2) - 1 \\
+			 = & \lambda^2 -3\lambda +1 \\
+			 = & (\lambda - (\frac{1}{2}(3 + \sqrt{5}) ))(\lambda - (\frac{1}{2}(3 - \sqrt{5}))) 
+			\end{aligned}
+			\]
+			
+			Y claramente los autovectores son demasiado feos para analizar.
+			
+			\item $Q:2\x x12-\x x22-\x x32+2\xx xx12+2\xx xx13-2\xx xx23+2x_1+4x_2+6x_3
+			-4=0$ \hfill (en $\R^3$)
+			
+			Nuevamente primero notemos que $\nabla F = (4x_1 + 2x_2 + 2x_3 + 2 , -2x_2 +2x_1 -2x_3 +4 , -2x_3 +2x_1 -2x_2 +6) = 0$ si y s\'olo si:
+			
+			\[
+			\begin{array}{ccc}
+			4x_1 + 2x_2 + 2x_3 + 2 & = & 0 \\
+			-2x_2 +2x_1 -2x_3 +4  & = & 0 \\
+			-2x_3 +2x_1 -2x_2 +6 & = & 0
+			\end{array}
+			\]
+			
+			si y s\'olo si:
+			
+			\[
+			\left( \begin{array}{ccc}
+			2 &  1 & 1  \\
+			1 & -1 & -1 \\
+			1 & -1 & -1
+			\end{array} \right) \left(
+			\begin{array}{c}
+			x_1 \\
+			x_2 \\
+			x_3
+			\end{array} \right) = \left(
+			\begin{array}{c}
+			-1 \\
+			-2 \\
+			-3
+			\end{array}
+			\right)
+			\]
+			
+			Y se ve claramente de las condiciones 2 y 3 que el conjunto de soluciones es vac\'io y entonces la c\'uadrica no tiene centro. Para ver la equivalencia af\'in veamos el signo de los autovalores con el m\'etodo de Pancho:
+			
+			\[
+			\begin{aligned}
+			\left( \begin{array}{ccc}
+			2 &  1 & 1  \\
+			1 & -1 & -1 \\
+			1 & -1 & -1
+			\end{array} \right) & \xrightarrow{F_3 -> F_3 - F_2} \left( \begin{array}{ccc}
+			2 &  1 & 1  \\
+			1 & -1 & -1 \\
+			0 & 0 & 0
+			\end{array} \right) \xrightarrow{C_3 -> C_3 - C_2} \left( \begin{array}{ccc}
+			2 &  1 & 0  \\
+			1 & -1 & 0 \\
+			0 & 0 & 0
+			\end{array} \right) \\ 
+								& \xrightarrow{F_1->F_1 + F_2} \left( \begin{array}{ccc}
+			3 &  0 & 0  \\
+			1 & -1 & 0 \\
+			0 & 0 & 0
+			\end{array} \right) \xrightarrow{C_1->C_1 + C_2} \left( \begin{array}{ccc}
+			3 &  0 & 0  \\
+			0 & -1 & 0 \\
+			0 & 0 & 0
+			\end{array} \right) \\ 
+								& \xrightarrow{F_1 -> F_1 \frac{1}{\sqrt{3}}} \left( \begin{array}{ccc}
+			\frac{3}{\sqrt{3}} &  0 & 0  \\
+			0 & -1 & 0 \\
+			0 & 0 & 0
+			\end{array} \right) \xrightarrow{C_1 -> C_1 \frac{1}{\sqrt{3}}} \left( \begin{array}{ccc}
+			1 &  0 & 0  \\
+			0 & -1 & 0 \\
+			0 & 0 & 0
+			\end{array} \right)
+			\end{aligned}
+			\]
+			
+			Por lo tanto sabemos que $F \simeq x_1^2 - x_2^2 -2x_3$. 
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Determinar el conjunto de puntos singulares $Q_S=Q_c\cap Q$ para 
+	cada una de las siguientes cu\'adricas de $\R^n$.
+	
+	\begin{itemize}
+		
+		\item $Q:2\x x12+\x x22+\x x32-4x_2+1=0$ \hfill ($n=3$)
+		
+		\item $Q:\x x12-\x x22+\x x32-2\xx xx13-2\xx xx24+4x_4=0$ \hfill ($n=4$)
+		
+		\item $Q:\x x12-\x x22-\x x42-2\xx xx13+2\xx xx23-2\xx xx34+x_1-x_2+2x_3+x_
+		4=0$\hfill ($n=4$)
+		
+		\item $Q:\xx xx12+\xx xx34+\x x52=0$\hfill ($n=5$)
+		
+		\item $Q:\x x12-2x_1+1=0$\hfill ($n=2$)
+		
+	\end{itemize}
+	
+	
+	\item Determinar los $a\in\R$ para los cuales la cu\'adrica $Q$
+	de $\R^3$ de ecuaci\'on
+	\[
+	Q:
+	\x x12+(a^2+3)\x x22+(a^2-3)\x x32+(2a+4)\xx xx12+2\xx xx13+x_1-2x_2+1
+	=0
+	\]
+	tiene centro \'unico.
+	
+	
+	\item Sean $L$ una recta y $Q$ una cu\'adrica. Probar que el conjunto
+	$L\cap Q$ bien es vacío, tiene solo un punto, tiene solo dos puntos, o es
+	todo $L$.
+
+\end{enumerate}
+
+
+\end{document}

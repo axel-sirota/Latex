@@ -1,0 +1,800 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 2}
+	
+	\bigskip
+	
+\textbf{Recuerdo:}
+Sea $\C$ una curva parametrizada por longitud de arco por $\alpha$, que es derivable y
+regular. Definimos el vector tangente a $\C$ en el punto
+$\alpha(s)$ como $\tt(s) = \alpha'(s)$, el
+vector normal $\nn(s) = \alpha''(s)/|\alpha''(s)|$, y el binormal $\bb(s) = \tt(s) \times
+\nn(s)$. La curvatura de $\C$ es $\kk(s) = |\alpha''(s)|$, y su torsi\'on es el \'unico n\'umero
+$\tau(s)$ tal que $\bb'(s) = -\tau(s)\nn(s)$.
+
+El plano generado por $\tt,\bb$ se llama \emph{plano rectificante}; el generado por
+$\nn, \bb$, \emph{plano normal}; y el generado por $\tt,\nn$, \emph{plano osculador}.
+
+\section{Curvas en el espacio}
+
+\begin{enumerate}
+	%%%%%%%%%%%%%%%
+	\item Para cada curva parametrizada por $\alpha: I \to \R^3$, calcule la curvatura y la
+	torsi\'on (notar que las curvas \emph{no} est\'an parametrizadas por longitud de arco).
+	
+	\begin{itemize}
+		\item $\alpha(t) = (t,t^2,t^3)$, con $I = \R$;
+		\item $\alpha(t) = (t,\frac{1+t}{t},\frac{1-t^2}{t})$, con $I = \R \setminus\{0\}$;
+		\item $\alpha(t) = (t,f(t),g(t))$, con $I = \R$ y $f,g: \R \to \R$ diferenciables;
+		\item $\alpha(t) = (a(t-\sin(t)),a(t-\cos(t)),bt)$, con $I = \R$ y $a,b \in \R$;
+		\item $\alpha(t) = (a(3t-t^3),3at^2,a(3t+t^3))$, con $I = \R$ y $a \in \R$.
+	\end{itemize}
+	
+	\label{Ejercicio 1}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Notemos que $\dot{\alpha}(t) = (1,2t,3t^2)$ y $\ddot{\alpha}(t) = (0,2,6t)$, luego $\dot{\alpha} \times \ddot{\alpha} (t) = (6t^2, -6t ,2)$. 
+			
+			Por lo tanto sabemos que $\kappa_C (t) = \dfrac{\sqrt{36t^4 + 36 t^2 + 4}}{(4 + 36t^2)^{\frac{3}{2}}}$. Por otro lado como $\dddot{\alpha}(t) = (0,0,6)$ y que $\tau_C = \dfrac{1}{36t^4 + 36 t^2 + 4} det \left(
+			\begin{array}{ccc}
+			1 & 2t & 3t^2 \\ 
+			0 & 2 & 6t \\ 
+			0 & 0 & 6
+			\end{array} 
+			\right) = \dfrac{12}{36t^4 + 36 t^2 + 4}$
+			
+			\item Muchas cuentas
+			
+			\item Idem
+			
+			\item Notemos que $\dot{\alpha}(t) = (a(1-\cos(t)),a(1+\sin(t),b)$ y $\ddot{\alpha}(t) = (a\sin(t),a\cos(t),0)$, luego $\dot{\alpha} \times \ddot{\alpha} (t) = (-ab\cos(t), ab\sin(t) ,a^2((1-\cos(t))\cos(t) - (1+\sin(t))\sin(t)))$. 
+			
+			Por lo tanto Muchas cuentas.... \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%
+	\item Probar que si una curva satisface una de las siguientes condiciones, es una recta:
+	\begin{itemize}
+		\item Existe un punto por el que pasan todas las tangentes a la curva.
+		\item Todas las tangentes a la curva son paralelas entre s\'i.
+		\item Todos los planos normales son paralelos entre s\'i.
+	\end{itemize}
+	
+	\label{Ejercicio 2}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Supongamos $\alpha$ parametrizada por longitud de arco y sea $Q = \alpha(s)$ un punto de la curva y $P = Q+ t_s\dot{\alpha}(s)$ donde $t_s$ es el $t$ tal que $L_Q(t_s) = P$, luego $t_s = \ip{P - Q(s) , \dot{\alpha}(s)}$ por lo que es diferenciable. Consideremos $0 = \dot{P} = \dot{\alpha}(s) + (\ip{-\dot{\alpha}, \alpha} + \ip{P-\alpha , \ddot{\alpha}})\dot{\alpha} + \ip{P - Q(s) , \dot{\alpha}(s)} \ddot{\alpha}$, por lo tanto se tiene que $\ddot{\alpha}(s) = -\frac{(1+(\ip{-\dot{\alpha}, \alpha} + \ip{P-\alpha , \ddot{\alpha}}))}{\ip{P - Q(s) , \dot{\alpha}(s)}} \dot{\alpha}(s)$. Pero por otro lado $\ip{\ddot{\alpha} , \dot{\alpha}} = 0$ pues $\alpha$ esta parametrizada por longitud de arco. Luego se tiene que $\ddot{\alpha} = 0$ y $\alpha$ es una recta.
+			
+			\item Sean $s \in I$ fijo, $s'\neq s \in I$, luego por hip\'otesis se tiene que $\dot{\alpha}(s') = \lambda \dot{\alpha}(s)$, por lo tanto si $t$ es arbitrario se tiene que $\alpha(t) + h\dot{\alpha}(t) = \alpha(t) + h\lambda \dot{\alpha}(s)$. Por lo tanto dado $P = \alpha(t)$ se tiene que $\alpha(s') + h \dot{\alpha}(s') |_{\frac{\alpha(t) - \alpha(s')}{\dot{\alpha}(s)\lambda}} = P$ y entonces todas las tangentes se cruzan en $P$, luego por el item anterior $\alpha$ es una recta.
+			
+			\item Justamente que todos los planos normales sean paralelos es lo mismo que dados $s \neq s' \in I$ entonces los ortogonales a los planos normales son paralelos entre s\'i, es decir $\tt_s = \lambda \tt_{s'}$, luego por el item anterior $\alpha$ es una recta. \qed
+			
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Probar que si una curva satisface una de las siguientes condiciones, entonces es
+	plana:
+	\begin{itemize}
+		\item La intersecci\'on de todos sus planos osculadores es no vac\'ia;
+		\item Todos sus planos osculadores son paralelos.
+	\end{itemize}
+	
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Sea $P$ un punto en la intersecci\'on de los planos osculadores y sea $\bb$ tal que $\ip{\bb , P} = 0$ algun vector que defina al plano en el que est\'a $P$, luego existe $s$ tal que $\bb = \bb_s$ es el vector binormal de la curva en $s$. Por construcci\'on al estar $P$ es todo plano osculador si consideramos $s' \neq s$ luego $\ip {\bb_s' ,P } = 0$ y por lo tanto $\bb = \lambda \bb_s'$, luego $\dot{\bb_s} = 0$ y entonces $\tau_C = 0$ por lo que la curva es planar.
+			
+			\item Si todos los planos osculadores son paralelos, luego si llamamos $\bb_s$ al vector normal unitario a alg\'un plano osculador $\Pi_s$ se tiene que $\ip{ \bb_s , P} = 0$ para todo $P \in \Pi_{s'}$ el plano osculador en $s' \neq s$, luego $\dot{\bb_s} = 0$ y entonces $\tau_C = 0$. \qed
+			
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\C$ la curva parametrizada por $t \mapsto (a \sin^2(t), a \sin(t) \cos(t), a
+	\cos(t))$. Probar que 
+	\begin{itemize}
+		\item $\C$ est\'a contenida en la superficie de una esfera;
+		\item Todos sus planos normales pasan por el origen.
+	\end{itemize}
+	
+	\label{Ejercicio 4}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Ntemos que $\abs{\alpha(t)}^2 = a^2( \sin^4(t) + \sin^2(t) \cos^2(t) + \cos^2(t) ) = a^2 (\sin^4(t) + 2\cos^2(t) - \cos^4(t) ) = a^2 (1  -2\cos^2(t) + \cos^4(t) + 2\cos^2(t) - \cos^4(t) ) = a^2$ por lo tanto $\alpha(I) \subseteq S^2$.
+			
+			\item Notemos que $\dot{\alpha}(t) = (2a \sin(t)\cos(t) , a(\cos^2(t) - \sin^2(t)) , -a\sin(t)) $, por lo tanto el plano normal pasando por el punto $\alpha(t)$ esta dado por la ecuaci\'on:
+			
+			\[
+			\begin{aligned}
+			N_s  = & \{(x,y,z) \in \R^3 \ / \ \langle (2a \sin(t)\cos(t) , a(\cos^2(t) - \sin^2(t)) , -a\sin(t)) , (x,y,z) - \\ 
+				   & (a \sin^2(t), a \sin(t) \cos(t), a\cos(t))  = 0 \rangle \} \\
+				 = & \{(x,y,z) \in \R^3 \ / \ (2a \sin(t)\cos(t))(x-a \sin^2(t)) + (a(\cos^2(t) - \sin^2(t)))(y- a \sin(t) \cos(t)) + \\  
+				   & + (-a\sin(t))(z- a\cos(t)) = 0 \} \\
+				 = & \sett{(x,y,z) \in \R^3 \ / \ F(x,y,z) = 0}
+			\end{aligned}
+			\]
+			
+			Luego si consideramos:
+			
+			\[
+			\begin{aligned}
+			F(0,0,0) = & (2a \sin(t)\cos(t))(-a \sin^2(t)) + (a(\cos^2(t) - \sin^2(t)))(- a \sin(t) \cos(t)) + (-a\sin(t))(- a\cos(t)) \\
+					   & -a^2 \sin^3(t)\cos(t) -a^2 \sin(t)\cos^3(t) +a^2 \sin(t) \cos(t) \\
+					 = & a^2 \sin(t) \cos(t) (-\sin^2(t) - \cos^2(t) +1) = 0
+			\end{aligned}
+			\]
+			
+			Luego para todo $t \in I$ se tiene que $(0,0,0) \in N_s$. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%%
+	\item Sea $\alpha: \R \to \R^3$ la curva parametrizada por
+	\begin{align*}
+	\alpha(t) &= 
+	\begin{cases}
+	(t,e^{-1/t^2},0) & \mbox{ si } t < 0 \\
+	(0,0,0) & \mbox{si } t = 0 \\
+	(t,0,e^{-1/t^2}) & \mbox{ si } t > 0.
+	\end{cases}
+	\end{align*}
+	\begin{itemize}
+		\item Probar que la curva es diferenciable y regular.
+		\item Calcular los puntos de curvatura $0$ de la curva.
+		\item Calcular los planos osculadores de la curva $t$ tiende a $0$.
+		\item Probar que la torsi\'on de la curva es $0$, pero la curva no es plana.
+	\end{itemize}
+	
+	
+	\label{Ejercicio 5}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Es sabido que esa curva es diferenciable y es regular pues la primer coordenada de la derivada es constantemente 1.
+			
+			\item Sea primero $t < 0$, luego $\dot{\alpha} (t) =  \left( 1,\dfrac{2e^{-\frac{1}{t^2}}}{t^3}, 0 \right)$ y luego $\ddot{\alpha}(t) = \left( 0, \dfrac{(4 - 6t^2)e^{{-\frac{1}{t^2}}}}{t^6} ,0 \right)$ y por lo tanto $\dot{\alpha} \times \ddot{\alpha} = \left( 0 ,0 , \dfrac{(4 - 6t^2)e^{{-\frac{1}{t^2}}}}{t^6} \right)$.
+			
+			De esto conclu\'imos que $\kappa_C = 0$ si y s\'olo si $4 - 6t^2 = 0$ si y s\'olo si $t = -\dfrac{2}{3}$. Es claro que por simetr\'ia el punto $t = \dfrac{2}{3}$ es otro punto de curvatura $0$. Fnalmente notemos que $\lim\limits_{t \rightarrow 0}{\ddot{\alpha}} = 0$ por lo que $K_C(0) = 0$ tambi\'en.
+			
+			\item No entiendo la pregunta...
+			
+			\item Notemos que $\dddot{\alpha} \in \langle \tt , \nn \rangle$ pues solo tiene segunda componente y por lo tanto $\ip{\dddot{\alpha} , \dot{\alpha} \times \ddot{\alpha}} = 0$ con lo que conclu\'imos que $\tau_C = 0$ pero la curva no es plana pues cuando $t \rightarrow 0$ se tiene que $\dot{\alpha} \times \ddot{\alpha} \rightarrow 0$ y se ve que no hay plano que contenga al cero donde la curva quede contenida. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	%LISTO%
+	%%%%%%%%%%%%%%%
+	\item Sea $\alpha:I\rightarrow \R^3$ una curva diferenciable y
+	$[a,b]\subset I$ un subintervalo cerrado de~$I$. Para cada partici\'on
+	$P=\{a=t_0<t_1\hdots<t_n=b\}$ de $[a,b]$, consideremos la suma
+	\[
+	l(\alpha,P)=\sum_{i=1}^n\abs{\alpha(t_i)-\alpha(t_{i-1})}
+	\]
+	y notemos $\abs{P}=\max\limits_{i=1,\hdots,n}(t_i-t_{i-1})$ a la norma
+	de~$P$. Pruebe que para todo $\epsilon>0$ existe $\delta>0$ tal que
+	\[
+	\abs{P}<\delta
+	\implies
+	\abs{\int_a^b|\alpha'(t)|dt-l(\alpha,P)}<\epsilon.
+ 	\]
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		Como $\alpha \in C^1$ entonces es absolutamente continua y por ende rectificable. \qed 
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sean $F_1, F_2: \R^3 \to \R$ dos funciones. D\'e condiciones suficientes para que el
+	sistema
+	\[
+	F_1(x,y,z) = F_2(x,y,z) = 0
+	\]
+	determine una curva regular. Calcule el vector tangente unitario en cada punto.
+	
+	\label{Ejercicio 7}
+	
+	\begin{proof}
+		Sea $F = (F_1,F_2)$, luego si las $F_i$ son diferenciables y $DF = \left(\begin{array}{c}
+		\nabla F_1 \\
+		\nabla F_2 
+		\end{array}\right) \neq 0$ para todo $p \in \R^3$ entonces tenemos que para todo entorno $U \ni p_x$ se tiene que $\sett{(x,y,z) \in \R^3 \ / \ F(x,y,z) = (0,0)} = \alpha(U) $ para alguna $\alpha$ \'unica. Luego podemos definir (por unicidad) una \'unica $\alpha : \R \rightarrow \R^3$ tal que $F_1(\alpha(t)) = F_2(\alpha(t)) = 0$. Notemos que $DF \neq 0$ si y s\'olo si $\nabla F_1 \times \nabla F_2 (p) \neq 0$ para todo $p \in \R^3$. \qed 
+	\end{proof}
+	
+	
+	%%%%%%%%%%%%%%%
+	\section{F\'ormulas de Frenet}
+	Las f\'ormulas de Frenet son las ecuaciones
+	\[
+	\left\{\begin{aligned}
+	\tt' & = \hphantom{-\kappa \tt + {}} \kappa \nn \\
+	\nn' & = -\kappa\tt \hphantom{{} + \kappa\nn + {}} +\tau \bb \\
+	\bb' & = \hphantom{-\kappa \tt} -\tau \nn.
+	\end{aligned}\right.
+	\]
+	
+	\item Mostrar que si $\kappa$ es la curvatura de una curva $\alpha$, entonces su
+	torsi\'on es
+	\[
+	\tau(s) = \frac{\ip{\alpha'(s)\times \alpha''(s) ,\alpha'''(s)}}{\kappa^2(s)}.
+	\]
+	
+	\label{Ejercicio 8}
+	
+	\begin{proof}
+		
+		Notemos que $\ddot{\alpha} = a \tt + b \nn$, luego $\dddot{\alpha} = \dot{a} \tt + a \dot{\tt} + \dot{b} \nn + b \dot{\nn}$. Por lo tanto $\ip{\dddot{\alpha}, \bb} = \dot{a} \ip{\tt , \bb} + a \ip{\dot{\tt} , \bb} + \dot{b} \ip{\nn , \bb} + b \ip{\dot{\nn} , \bb} = b \ip{\dot{\nn} , \bb} = b \tau_C$. Conclu\'imos que $\tau_C = \frac{1}{b} \ip{\dddot{\alpha} , \bb} = \frac{1}{b \abs{\dot{\alpha} \times \ddot{\alpha}}}\ip{\dddot{\alpha}, \dot{\alpha} \times \ddot{\alpha}} $. Falta ver el valor de $b$, para eso notemos que $\nn = \dfrac{\ddot{\alpha} - \ip{\dot{\alpha},\ddot{\alpha}}\tt}{\abs{\ddot{\alpha} - \ip{\dot{\alpha},\ddot{\alpha}}\tt}}$, y por Lineal se sabe que $\abs{\ddot{\alpha} - \ip{\dot{\alpha},\ddot{\alpha}}\tt} = \abs{\ddot{\alpha}}\sin(\theta) = \dfrac{\abs{\dot{\alpha} \times \ddot{\alpha}}}{\abs{\dot{\alpha}}} $ donde $\theta$ es el \'angulo entre $\dot{\alpha}$ y $\ddot{\alpha}$; luego $\nn = \dfrac{\ddot{\alpha} - \ip{\dot{\alpha},\ddot{\alpha}}\tt}{\abs{\dot{\alpha} \times \ddot{\alpha}}}$. Conclu\'imos que $b = \abs{\dot{\alpha} \times \ddot{\alpha}}$ y por lo tanto $\tau_C = \frac{1}{\abs{\dot{\alpha} \times \ddot{\alpha}}^2}\ip{\dddot{\alpha}, \dot{\alpha} \times \ddot{\alpha}} = \frac{\ip{\alpha'(s)\times \alpha''(s) ,\alpha'''(s)}}{\kappa^2(s)}$. \qed
+		
+		
+	\end{proof}
+	%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\alpha:I\to\R^3$ una curva no necesariamente parametrizada por
+	la longitud de arco y sea $\beta:J\to\R^3$ una reparametrizaci\'on de
+	$\alpha$ por la longitud de arco $s=s(t)$ medido desde $t_0\in I$. Sea
+	$t=t(s)$ la funci\'on inversa de $s$ y denotemos
+	$\frac{\dd\alpha}{\dd t}=\alpha'$, $\frac{\dd^2\alpha}{\dd t^2}=\alpha''$
+	y $\frac{\dd^3\alpha}{\dd t^3}=\alpha'''$. Entonces
+	
+	\begin{itemize}
+		
+		\item $\frac{\dd t}{\dd s}=\frac{1}{\abs{\alpha'}}$ y
+		$\frac{\dd^2t}{\dd s^2}=-\frac{\ip{\alpha',\alpha''}}{\abs{\alpha'}^4}$;
+		
+		\item la curvatura de $\alpha$ en $t$ es
+		$\kappa(t) = \frac{\abs{\alpha'\times \alpha''}}{\abs{\alpha'}^3}$;
+		
+		\item la torsi\'on de $\alpha$ en $t$ es
+		$\tau(t)=\frac{\ip{\alpha' \times \alpha'' , \alpha'''}}{\abs{\alpha' \times \alpha''}^2}$.
+		
+	\end{itemize}
+	
+	\label{Ejercicio 9}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Es claro que $s(t) = \int_{0}^{t}{\abs{\dot{\alpha(\eta)}}\dd \eta}$ luego $\dfrac{ds}{dt} = \abs{\dot{\alpha}}$ y por el teorema de la funci\'on inversa se tiene que $\dfrac{dt}{ds} = \dfrac{1}{\abs{\dot{\alpha}}}$. Por otro lado $\dfrac{d}{ds} \left(\dfrac{dt}{ds}\right) = \dfrac{-\dfrac{d}{ds}\abs{\dot{\alpha}}}{\abs{\dot{\alpha}}^2}$ y por cambio de variables $\dfrac{d}{ds} \left(\dfrac{dt}{ds}\right) = \dfrac{-\dfrac{d}{dt}\abs{\dot{\alpha}} . \dfrac{dt}{ds}}{\abs{\dot{\alpha}}^2} = \dfrac{-\dfrac{d}{dt}\abs{\dot{\alpha}}} {\abs{\dot{\alpha}}^3} = \dfrac{2 \ip{\dot{\alpha}{\ddot{\alpha}}}}{2 \abs{\dot{\alpha}}  \abs{\dot{\alpha}}^3} = -\frac{\ip{\alpha',\alpha''}}{\abs{\alpha'}^4}$	
+			
+			\item Como $\dot{\tt} = \dfrac{d}{dt} \left(\dfrac{1}{\abs{\dot{\alpha}}}\right) \dot{\alpha} + \dfrac{1}{\abs{\dot{\alpha}}} \ddot{\alpha} $ luego si recordamos que $\abs{\ddot{\alpha} - \ip{\dot{\alpha},\ddot{\alpha}}\tt} = \abs{\ddot{\alpha}}\sin(\theta) = \dfrac{\abs{\dot{\alpha} \times \ddot{\alpha}}}{\abs{\dot{\alpha}}} $ de \ref{Ejercicio 8} tenemos que $\ip{\dot{\tt} , \nn} = \dfrac{\ip{\ddot{\alpha} , \nn}}{\abs{\dot{\alpha}}} = \dfrac{\abs{\dot{\alpha} \times \ddot{\alpha}}}{\abs{\dot{\alpha}}^2} = \abs{\dot{\alpha}} \kappa_C$ para que valga Serret-Frenet, conclu\'imos que $\kappa_C = \dfrac{\abs{\dot{\alpha}} \times \ddot{\alpha}}{\abs{\dot{\alpha}}^3}$
+			
+			\item Hecho en la cuenta de \ref{Ejercicio 8}. \qed
+					
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item  Una funci\'on $A:\R^3\to\R^3$ es una \emph{translaci\'on} si
+	existe $v\in\R^3$ tal que $A(x)=x+v$ para todo $x\in\R^3$. Una funci\'on
+	lineal $\rho:\R^3\to\R^3$ es una \emph{transformaci\'on ortogonal} si
+	$\ip{\rho(u),\rho(v)}=\ip{u,v}$ para cada par de vectores
+	$u$,~$v\in\R^3$. Finalmente, una funci\'on $f:\R^3\to\R^3$ es un
+	\emph{movimiento r\'igido} si es la composici\'on de una transformaci\'on
+	ortogonal de determinante positivo y una translaci\'on.
+	\begin{itemize}
+		
+		\item  La norma de un vector y el \'angulo entre dos
+		vectores son preservados por transformaciones ortogonales de determinante
+		positivo.
+		
+		\item  Si $T$ es una transformaci\'on ortogonal con determinante positivo, entonces el
+		producto vectorial de dos vectores cumple que
+		\[
+		T(u)\times T(v)=T(u\times v)
+		\]
+		¿Qu\'e ocurre si $T$ tiene determinante negativo?
+		
+		\item  La longitud, la curvatura y la torsi\'on de una curva son invariantes por
+		transformaciones r\'igidas.
+	
+	\label{Ejercicio 10}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Trivial
+			
+			\item Sea $\sett{e_1,e_2,e_3}$ una base orientada positivamente de $\R^3$, luego $T(u) \times T(v) = T(u_1 e_1 + u_2 e_2 + u_3 e_3) \times T(v_1 e_1 + v_2 e_2 + v_3 e_3) = (u_1 T(e_1) + u_2 T(e_2) + u_3 T(e_3)) \times (v_1 T(e_1) + v_2 T(e_2) + v_3 T(e_3)) = (u_1v_2 - u_2v_1) T(e_1) \times T(e_2) + (u_1v_3 - v_1u_3) T(e_1) \times T(e_3) + (u_2v_3 - v_2u_3) T(e_2) \times T(e_3)$ y como $T$ es ortogonal con determinante positivo se tiene que $T(e_1) \times T(e_2)$ es un vector ortogonal a $T(e_1),T(e_2)$ y por lo tanto es la imagen de un vector que es ortogonal a $e_1,e_2$, por lo que $T(e_1) \times T(e_2) = T(e_1 \times e_2)$; por lo tanto  $T(u) \times T(v) = (u_1v_2 - u_2v_1) T(e_1 \times e_2) + (u_1v_3 - v_1u_3) T(e_1 \times e_3) + (u_2v_3 - v_2u_3) T(e_2 \times e_3) = T(u \times v)$.
+			
+			\item Si $T \in O(2) \cap det^{-1}(1)$ entonces $\abs{\dot{\alpha}} = \abs{\dot{T(\alpha)}},\ip{\dot{\alpha}, \ddot{\alpha}}= \ip{\dot{T(\alpha)}, \ddot{T(\alpha)}}, \abs{\dot{\alpha} \times \ddot{\alpha}} = \abs{T(\dot{\alpha} \times \ddot{\alpha})} = \abs{\dot{T(\alpha)} \times \ddot{T(\alpha)}}, det \left(\begin{array}{c}
+			\dot{\alpha} \\
+			\ddot{\alpha} \\
+			\dddot{\alpha}
+			\end{array}\right) = \det(T) det \left(\begin{array}{c}
+			\dot{\alpha} \\
+			\ddot{\alpha} \\
+			\dddot{\alpha}
+			\end{array}\right) = det \left(\begin{array}{c}
+			T(\dot{\alpha}) \\
+			T(\ddot{\alpha}) \\
+			T(\dddot{\alpha})
+			\end{array}\right) = det \left(\begin{array}{c}
+			\dot{T(\alpha)} \\
+			\ddot{T(\alpha)} \\
+			\dddot{T(\alpha)}
+			\end{array}\right)$. Luego la longitud, la curvatura y al torsi\'on son invariantes antes transformaciones r\'igidas. \qed
+			
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\end{itemize}
+	
+	%%%%%%%%%%%%%%%
+	\item Una curva $\alpha:I\to\R^3$ es una \emph{h\'elice} si existe una
+	direcci\'on con la cual todas sus tangentes forman un \'angulo constante.
+	\begin{itemize}
+		
+		\item Si $\tau(s)\neq 0$ para todo $s\in I$, las siguientes condiciones son equivalentes:
+		\begin{enumerate}
+			
+			\item la curva $\alpha$ es una h\'elice;
+			
+			\item el cociente $\frac{\kappa}{\tau}$ es constante;
+			
+			\item las rectas normales ---aquellas que pasan por un punto de la curva con direcci\'on
+			dada por el vector normal--- son todas paralelas a un plano fijo;
+			
+			\item las rectas binormales ---aquellas que pasan por un punto de la curva con direcci\'on
+			dada por el vector binormal--- forman un \'angulo constante  con una direcci\'on fija.
+			
+		\end{enumerate}
+		
+		\item Si $s\in\R$ y $a,b,c$ son tales que $c^2=a^2+b^2$, entonces la curva
+		\[
+		\alpha(s)=(a\cos(\tfrac{s}{c}),a\sin(\tfrac{s}{c}),b\tfrac{s}{c})
+		\]
+		es una h\'elice parametrizada por longitud de arco con
+		$\frac{\kappa}{\tau}=\frac{b}{a}$.
+	\end{itemize}
+	
+	\label{Ejercicio 11}
+	
+	\begin{proof}
+		
+		Vayamos de a pasos:
+		
+		\begin{enumerate}
+			
+			\item 
+			
+			\begin{enumerate}
+			
+				\item[i) $\Longrightarrow$ ii)] Supongamos que existe $v \in \R^3$ tal que $\ip{v , \dot{\alpha}} = K$, luego como $\sett{\tt, \nn ,\bb}$ es una base de $\R^3$ se tiene que $v = K \tt + k_1 \nn + k_2 \bb$, por lo tanto $0 = \dot{v} = K \dot{\tt} + \dot{k_1}\nn + k_1 \dot{\nn} + \dot{k_2} \bb + k_2 \dot{\bb} = K\kappa \nn + \dot{k_1} \nn + k_1 (-\kappa \tt + \tau \bb) + \dot{k_2} \bb - k_2 \tau \nn = -\kappa k_1\tt + (K \kappa + \dot{k_1} - k_2\tau )\nn + (k_1 \tau + \dot{k_2})\bb$. Deducimos que:
+			
+				\[
+				\begin{array}{ccc}
+				k_1 & = & 0 \\
+				K \kappa + \dot{k_1} - k_2\tau & = & 0 \\
+				k_1 \tau + \dot{k_2} & = & 0  
+				\end{array}
+				\]
+			
+				Luego tenemos que $k_1 =0, k_2 = C$ de lo que deducimos que $K \kappa = C \tau$ y entonces $\dfrac{\kappa}{\tau}$ es constante.
+			
+				\item[ii) $\Longrightarrow$ iii)] No vale...
+			
+				\item[ii) $\Longrightarrow$ iv)] Sabemos que $\dfrac{\kappa}{\tau} = C$, luego si tomo $v =  \tt + C\bb$ se tiene que $\ip{v , \bb} = 1$ y que $\dot{v} =  \dot{\tt} + C\dot{\bb} = \kappa \nn + -C\tau \nn = 0$ luego se tiene un vector fijo $v$ tal que $\ip{v, \bb} = \emph{cte}$.
+			
+				\item [iv) $\Longrightarrow$ i)] Sabemos que existe $u \in \R^3$ tal que $\ip{u, \bb} = C$, luego $C = \ip{u , \tt \times \nn} = \ip{\tt , \nn \times u}$, adem\'as $0 = \dfrac{d}{dt}{\ip{\bb , u}} = \tau \ip{\nn , u}$ por lo que $\ip{u , \nn} = 0$. Por lo tanto sabemos que como $\sett{\tt,\nn,\bb}$ es base de $\R^3$ entonces $u = k(s) \tt + C \bb$, luego $0 = \dot{u} = \dot{k}\tt + k \dot{\tt} + C \dot{bb} = \dot{k}\tt + (k\kappa - C \tau)\nn$ y conclu\'imos que $\dot{k} = 0$, o sea que $\ip{u , \tt} = K = \emph{cte}$. \qed
+			
+			\end{enumerate}
+			
+			\item Notemos que $\dot{\alpha} = (-\frac{a}{c} \sin(\frac{a}{c}) , \frac{a}{c} \cos(\frac{a}{c}) , \frac{b}{c} )$ y entonces efectivamente $\abs{\dot{\alpha}} = 1$. Si calculamos $\ddot{\alpha} = (-\frac{a}{c^2} \cos(\frac{a}{c}) , -\frac{a}{c^2} \sin(\frac{a}{c}) ,0)$ entonces $\kappa = \abs{\ddot{\alpha}} = \frac{a}{c^2}$ y finalmente como $\dddot{\alpha} = (\frac{a}{c^3} \sin(\frac{a}{c}) ,-\frac{a}{c^3} \cos(\frac{a}{c}) ,0 )$ entonces:
+			
+			
+			\[
+			\begin{aligned}
+			\tau  = & \frac{c^4}{{a^2}} . det \left( \begin{array}{ccc}
+			-\frac{a}{c}\sin(\frac{a}{c}) &  \frac{a}{c} \cos(\frac{a}{c}) & \frac{b}{c}  \\
+			-\frac{a}{c^2} \cos(\frac{a}{c}) & -\frac{a}{c^2} \sin(\frac{a}{c}) & 0  \\
+			\frac{a}{c^3} \sin(\frac{a}{c}) &-\frac{a}{c^3} \cos(\frac{a}{c}) & 0 
+			\end{array} \right)\\
+			      = &  \frac{c^4}{{a^2}}  \frac{b}{c} \dfrac{a^2}{c^5} \\
+			      = & \frac{b}{c^2}
+			\end{aligned} 
+			\]
+			
+			Luego se tiene que $\dfrac{\kappa}{\tau} = \dfrac{\frac{a}{c^2}}{\frac{b}{c^2}} = \frac{a}{b}$.
+			
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Si $\alpha:I\to\R^3$ es una curva parametrizada por longitud de arco, la
+	\emph{indicatriz esf\'erica} de~$\alpha$ es la curva $\beta=\tt_\alpha:I\to\R^3$.
+	\begin{itemize}
+		
+		\item La curvatura de la indicatriz esf\'erica de~$\alpha$ es $\kappa_\beta = \frac{\dd
+			s_\beta }{\dd s_\alpha }$, donde $s_\alpha, s_\beta$ son reparametrizaciones por
+		longitud de arco.
+		
+		\item Determine la indicatriz de una recta, de una h\'elice circular y de una curva plana.
+	\end{itemize}
+	
+	\label{Ejercicio 12}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Como $\sigma(t)$ es una curva no parametrizada por longitud de arco, sabemos que $\kappa_{\sigma} = \dfrac{\abs{\dot{\sigma} \times \ddot{\sigma} }}{\abs{\dot{\sigma}}^3}$. Luego se tiene que $\dot{\sigma} = \kappa \nn$ y que $\ddot{\sigma} = \dot{\kappa} \nn + \kappa (-\kappa \tt + \tau \bb)$, por lo tanto $\dot{\sigma} \times \ddot{\sigma} = \kappa^2 (\kappa \bb + \tau \tt)$, por lo que $\abs{\dot{\sigma} \times \ddot{\sigma} } = \kappa^2 \sqrt{ \kappa^2 + \tau^2}$, luego $\kappa_{\sigma} = \dfrac{\sqrt{ \kappa^2 + \tau^2}}{\kappa}$.
+			
+			\item Sea $\alpha(t) = a + tv$, luego $\beta(t) = \dfrac{v}{\abs{v}}$ es la indicatriz de $\alpha$.
+			
+			Por otro lado sea $\sigma = (\cos(t), \sin(t), t)$, luego $\beta(t) = (-\sin(t), \cos(t), 0)$ es la indicatriz de $\sigma$, o sea la indicatriz de una h\'elice es una circunferencia.
+			
+			Fnalmente, el \'ultimo ni sentido le veo... \qed
+			 
+		\end{enumerate}
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item  La indicatriz esf\'erica de una curva es una circunferencia si y s\'olo si la curva es
+	una h\'elice.
+	
+	\label{Ejercicio 13}
+	
+	\begin{proof}
+		
+		Supongamos que $\beta(I) \subseteq S^1$, entonces por un lado $\beta$ es plana y si $\kappa_{\beta} = \dfrac{\sqrt{\tau^2 + \kappa^2}}{\kappa} > 0 $ entonces por la te\'orica se tiene que $\tau_{\beta} = 0$. Como $\tau_{\beta} = \dfrac{\ip{\dot{\beta} \times \ddot{\beta} , \dddot{\beta}}}{\abs{\dot{\beta} \times \ddot{\beta}}^2}$, notemos que $\dddot{\beta} = \dfrac{d}{dt} \left( \dot{\kappa} \nn + \kappa (-\kappa \tt + \tau \bb)\right) = \ddot{\kappa} \nn + 2\dot{\kappa} (-\kappa \tt + \tau \bb) + \kappa (-\dot{\kappa}\tt + \kappa^2 \nn + \dot{\tau}\bb - \tau^2 \nn) = (-3\kappa \dot{\kappa})\tt + g(t) \nn + (2\dot{\kappa}\tau + \kappa \dot{\tau} )\bb = \left(-\frac{3}{2} \dfrac{d \left( \kappa^2 \right) }{dt} \right) \tt + g(t) \nn + \left( \tau  \dot{\kappa}  + \dfrac{d \left(\kappa \tau \right) }{dt} \right) \bb$.
+		
+		Por lo tanto como $\tau_{\beta} = 0$ conclu\'imos que:
+		
+		\[
+		\begin{array}{ccc}
+		\tau  \dot{\kappa}  + \dfrac{d \left(\kappa \tau \right) }{dt} & = & 0 \\
+		\\
+		\dfrac{d \left( \kappa^2 \right) }{dt} & = & 0
+		\end{array}
+		\]
+		
+		O sea conclu\'imos que $\kappa = \sqrt{C}$ y que $\tau = D$ ambas constantes y por lo tanto $\dfrac{\tau}{\kappa} = \emph{cte}$ y entonces $\alpha$ es una h\'elice.
+		
+		Para el otro lado si $\alpha$ es una h\'elice entonces existe $v \in \R^3$ tal que $\ip{v,\beta} = C$, luego $\ip{v,\dot{\beta}} = 0 = \ip{v,\ddot{\beta}} = \ip{v,\dddot{\beta}}$ y por lo tanto conlu\'imos que $\tau_{\beta} = 0$. Adem\'as notemos que como $\alpha$ es h\'elice entonces $\dfrac{\tau}{\kappa} = C$ y entonces $\kappa_{\beta} = \sqrt{\left( \dfrac{\tau}{\kappa} \right)^2 + 1} = \emph{cte}$; conclu\'imos que $\beta$ es una curva plana, de norma 1 y con curvatura constante, luego es una circunsferencia. \qed
+		
+		
+	\end{proof}
+	
+%	\item  Probar que una condici\'on necesaria y suficiente para que una curva sea una h\'elice es que
+%	$$
+%	x^{(iv)}\cdot (x^{\prime \prime \prime }\times x^{\prime \prime })=-\kappa^5\frac d{ds}(\frac \tau \kappa )=0
+%	$$
+	
+%	\item Dadas funciones $\kappa $ y $\tau $ en $\R$, es posible reducir las ecuaciones de Frenet a una \'unica ecuaci\'on y as\'\i\ hallar sus soluciones y por lo tanto hallar las curvas con tales curvatura y torsi\'on. Verificar que una tal ecuaci\'on es:
+%	$$
+%	x^{(iv)}-(2\frac{\kappa ^{\prime }}\kappa +\frac{\tau ^{\prime }}\tau
+%	)x^{\prime \prime \prime }+(\kappa ^2+\tau ^2-\frac{\kappa \kappa ^{\prime
+%	\prime }-2(\kappa ^{\prime })^2}{\kappa ^2}+\frac{\kappa ^{\prime }\tau
+%	^{\prime }}{\kappa \tau })x^{\prime \prime }+\kappa ^2(\frac{\kappa ^{\prime
+%	}}\kappa -\frac{\tau ^{\prime }}\tau )x^{\prime }=0
+%	$$
+	
+	
+	%%%%%%%%%%%%%%%
+
+	\item Supongamos que $\alpha: I \to \R^3$ es una curva parametrizada por longitud de arco tal que $\kappa'$ y $\tau$ nunca se anulan.
+	Entonces la curva trazada por $\alpha$ est\'a contenida en una esfera si y s\'olo si existe
+	$A\in\R$ tal que
+	\[
+	R^2+(R^{\prime})^2T^2=A,
+	\]
+	con $R=\frac1\kappa$ y $T=\frac1\tau$.
+	
+	\label{Ejercicio 14}
+	
+	\begin{proof}
+		
+		Supongamos que $\alpha$ esta parametrizada por longitud de arco y que esta contenida en una esfera, luego existe $p \in \R^3$ y $r \in \R_{+}$ tal que $ip{\alpha-p , \alpha -p } = r^2$ y entocnes $\ip{\dot{\alpha} , \alpha -p } = 0$ por lo que $\ip{\ddot{\alpha}, \alpha - p} + \ip{\dot{\alpha} , \dot{\alpha}} = 0$. Como $\alpha$ esta parametrizada por longitud de arco se tiene que $\ip{\ddot{\alpha} , \alpha-p} = -1$ y entonces $\ddot{\alpha} \neq 0 $ por lo que $\kappa > 0 $ y esta definido el triedro de Frenet.
+		
+		Notemos que $1 = \kappa \abs{\ip{\nn} , \alpha - p} \leq \kappa \abs{\alpha -p} = \kappa r$ por lo que en efecto $\kappa \geq \frac{1}{r} > 0$. Adem\'as de lo mismo se tiene que:
+		
+		\[
+		\begin{aligned}
+		0  = & \dot{\kappa} \ip{\nn ,\alpha-p } + \kappa \ip{\dot{\nn} , \alpha -p } + \kappa \ip{\nn , \tt} \\
+		   = & \dot{\kappa} \ip{\nn ,\alpha-p } + \kappa \ip{\dot{\nn} , \alpha -p } \\
+		   = & \dot{\kappa} \ip{\nn ,\alpha-p } + \kappa \ip{-\kappa \tt + \tau \bb, \alpha -p } \\
+		   = & \frac{\dot{\kappa}}{\kappa} \ip{\kappa\nn ,\alpha-p } + \kappa \ip{-\kappa \tt + \tau \bb, \alpha -p } \\
+		   = & \frac{\dot{\kappa}}{\kappa} \ip{\dot{\tt},\alpha-p } + \kappa \ip{-\kappa \tt + \tau \bb, \alpha -p } \\
+		   = & -\frac{\dot{\kappa}}{\kappa} -\kappa^2 \ip{\tt , \alpha -p} + \kappa \tau \ip{\bb , \alpha -p} \\
+		   = & -\frac{\dot{\kappa}}{\kappa} + \kappa \tau \ip{\bb , \alpha -p} 
+		\end{aligned}
+		\]
+		
+		Por otro lado si desarrollamos $\alpha - p = \ip{\alpha - p , \tt}\tt + \ip{\alpha - p , \nn} \nn + \ip{\alpha - p , \bb} \bb = -\frac{1}{\kappa} \nn + \frac{\dot{\kappa}}{\tau\kappa^2}\bb$ y entonces conclu\'imos que:
+		
+		\[
+		\begin{aligned}
+		r^2  = & \frac{1}{\kappa^2}  + \frac{\dot{\kappa}^2}{\tau^2\kappa^4} = R^2 + T^2\dot{R}^2
+		\end{aligned}
+		\]
+		
+		Para el otro lado si $\alpha$ esta parametrizada por longitud de arco y cumple la condici\'on anterior, entonces si consideramos $\gamma(t) = \alpha + \frac{1}{\kappa}\nn - \frac{\dot{\kappa}}{\kappa^2 \tau} \bb$ el centro de la esfera osculatriz de $\alpha$ notemos que:
+		
+		\[
+		\abs{\gamma(t) - \alpha(t)}^2 = \frac{1}{\kappa^2} + \frac{\dot{\kappa}^2}{\kappa^4 \tau^2} = r^2 
+		\]
+		
+		Y entonces si $\dot{\gamma} = 0$ entonces probar\'iamos que $\alpha(I) \subseteq S^2$. Vayamos a ver eso:
+		
+		\[
+		\begin{aligned}
+		\dot{\gamma}  = &  \dot{\alpha} - \frac{\dot{\kappa}}{\kappa^2}\nn + \frac{1}{\kappa}(-\kappa \tt + \tau \bb) - \dfrac{d}{dt} \left(\frac{\dot{\kappa}}{\kappa^2 \tau}\right) \bb + \frac{\dot{\kappa}}{\kappa^2 } \nn \\
+					  = &  \left(  \frac{\tau}{\kappa} - \dfrac{d}{dt} \left(\frac{\dot{\kappa}}{\kappa^2 \tau}\right) \right) \bb \\
+		\end{aligned}
+		\]
+		
+		Por hip\'otesis sabemos que $r^2 - \frac{1}{\kappa^2} = \left( \frac{\dot{\kappa}}{\tau \kappa^2} \right)^2$ y derivando se tiene que $\frac{2 \kappa \dot{\kappa}}{\kappa^4} = 2 \left( \frac{\dot{\kappa}}{\tau \kappa^2} \right) \dfrac{d}{dt} \left( \frac{\dot{\kappa}}{\tau \kappa^2} \right)$ de donde $\frac{\tau}{\kappa} = \dfrac{d}{dt} \left( \frac{\dot{\kappa}}{\tau \kappa^2} \right)$ y conclu\'imos que $\dot{\gamma} = 0$. \qed
+		
+	\end{proof}
+	
+	%%%%%%%%%%%%%%%
+	\item Sean $\alpha:\R\to\R^3$ una curva, $[a,b]\subset\R$ un intervalo cerrado no trivial, $p=\alpha(a)$ y
+	$q=\alpha(b)$.
+	\begin{itemize}
+		
+		\item Si $v$ es un vector unitario, entonces
+		\[
+		(q-p)\cdot v = \int_a^b\alpha'(t) \cdot v ds\leq \int_a^b\abs{\alpha'(t)}\dd t.
+		\]
+		
+		\item En particular, si $v=\frac{q-p}{\abs{q-p}}$, tenemos que
+		\[
+		\abs{\alpha(b)-\alpha(a)}
+		\leq \int_a^b\abs{\alpha'(t)}\dd t
+		\]
+		y, por lo tanto, la curva con menor longitud de arco
+		que une los puntos $p$ y~$q$ es la l\'inea recta.
+		
+		\label{Ejercicio 15}
+		
+		\begin{proof}
+			
+			Si $v \in \R^3$ es tal que $\abs{v} = 1$ entonces $ \ip{(q-p) , v} = \ip{\int_{a}^{b}{\dot{\alpha(s)}\dd s} , v } = \int_{a}^{b}{ \ip{\dot{\alpha(s)} , v} \dd s}  = \int_{a}^{b}{ \abs{\dot{\alpha(s)}} \abs{ v} \cos(\theta) \dd s}  \leq \int_{a}^{b}{ \abs{\dot{\alpha(s)}}\dd s}$. \qed
+			
+		\end{proof}
+		
+	\end{itemize}
+	
+	%%%%%%%%%%%%%%%
+	\item Sea $\alpha:\R\to\R^3$ una curva parametrizada por longitud de arco, con curvatura
+	y torsi\'on nunca nulas. Sea $s_0\in\R$ y sea $P$ un plano que satisface las siguientes
+	condiciones:
+	\begin{itemize}
+		\item[-] el punto $P$ contiene la recta tangente en $s_0$, y
+		\item[-] para todo entorno $I\subset\R$ de $s_0$, existen puntos de $\alpha(I)$ a ambos lados de $P$.
+	\end{itemize}
+	Entonces $P$ es el plano osculador de $\alpha$ en $s_0$.
+	
+	\label{Ejercicio 16}
+	
+	\begin{proof}
+		
+		Sea $0 \neq v \in \R^3$ tal que $P = \sett{x \in \R^3 \ / \ \ip{x - \alpha(s_0) , v} = 0}$, o sea el vector director del plano $P$, luego consideremos $x(t) = \ip{\alpha(t) - \alpha(s_0) , v}$. Notemos que $x(s_0) = 0$ y que $\dot{x} = \ip{\dot{\alpha} , v}$ y por hip\'otesis se tiene que $\dot{x}(s_0) = \ip{\dot{\alpha}(s_0) , v} = \ip{\tt (s_0) , v} = 0$.
+		
+		Sea ahora $h > 0$, luego como $\alpha$ es diferenciable se tiene por el teorema de Taylor que:
+		
+		\[
+		\begin{array}{ccccc}
+		x(s_0+h) & = &  x(s_0) + h\dot{x}(s_0) + \frac{h^2}{2} \ddot{x}(s_0) + R(h) & = &  \frac{h^2}{2} \ddot{x}(s_0) + R(h) \quad \emph{ con } \lim\limits_{h \rightarrow 0}{\frac{R(h)}{h^2}} = 0 \\
+		\\
+		x(s_0-h) & = &  x(s_0) - h\dot{x}(s_0) + \frac{h^2}{2} \ddot{x}(s_0) - R(h) & = &  \frac{h^2}{2} \ddot{x}(s_0) - R(h) \quad \emph{ con } \lim\limits_{h \rightarrow 0}{\frac{R(h)}{h^2}} = 0 
+		\end{array}
+		\]		
+		
+		Por hip\'otesis se tiene que $\alpha$ cruza $P$ por lo que se debe tener que (sin p\'erdida de generalidad) $\ip{\alpha(s_0 -h) -\alpha(s_0) , v} < 0$ y $\ip{\alpha(s_0 + h) -\alpha(s_0) , v} > 0$ para todo $h > 0$. Por lo tanto si $\ddot{x}(s_0) > 0$ entonces si tomamos $\varepsilon < \frac{\ddot{x}(s_0)}{2} $ se tiene que existe $h>0$ tal que $\abs{\frac{R(h)}{h^2}} < \varepsilon$ y por ende $	\abs{\frac{x(s_0-h)}{h^2}} > \abs{ \frac{\ddot{x}(s_0)}{2} } - \abs{\frac{R(h)}{h^2}} > 0$; an\'alogamente con $\ddot{x}(s_0)< 0$ y por lo tanto conclu\'imos que $0 = \ddot{x}(s_0) = \ip{\ddot{\alpha}(s_0) , v} = \ip{\kappa \nn(s_0) , v} = \kappa \ip{\nn(s_0) , v}$. Luego $\ip{\nn(s_0) , v} = 0$ y entonces $\nn \in P$ y conclu\'imos que $\ip{\tt , \nn} \subseteq P$ y por teorema de la dimensi\'on $P = \ip{\tt , \nn}$. \qed
+		
+	\end{proof}
+	
+	%%
+	%%\item En $\R^3$, la distancia entre un punto $y$ y
+	%%una recta que pasa por $x$ en la direcci\'on del vector
+	%%unitario $u$ es $d=|(y-x)\times u|$. En base a esta
+	%%f\'ormula, demostrar que la tangente tiene un contacto de
+	%%primer orden con la curva.
+	%%
+	%%\item En $\R^3$, la distancia de un punto $y$ a un
+	%%plano que pasa por $x$ con vector normal unitario $u$ es
+	%%$d=|(y-x)\times u|$. Usar esta f\'ormula para probar que
+	%%todo plano que contiene a la tangente y no es el osculador
+	%%tiene un contacto de primer orden con la curva, mientras que
+	%%el contacto del plano osculador es de segundo orden.
+	%%
+	
+	
+	%%%%%%%%%%%%%%%
+	\item* Sea $\alpha:I\to\R^3$ una curva regular no necesariamente parametrizada por
+	longitud de arco con curvatura y torsi\'on nunca nulas. Decimos que $\alpha$ es una
+	\emph{curva de Bertrand} si existe una curva $\beta: I \to \R^3$ tal que las rectas
+	normales de $\alpha$ y $\beta$ en puntos correspondientes de~$I$ coinciden, y en ese
+	caso $\beta$ es la \emph{compa\~nera de Bertrand} de $\alpha$ y puede escribirse en la
+	forma
+	\[
+	\beta(t)=\alpha(t)+rn(t).
+	\]
+	\begin{itemize}
+		
+		\item En esa expresi\'on para $\beta$, $r$ es constante.
+		
+		\item $\alpha$ es una curva de Bertrand si y s\'olo si existe una relaci\'on lineal
+		\[
+		A\kappa+B\tau=1
+		\]
+		con $A$ y $B$ constantes no nulas.
+		
+		\item Si $\alpha$ tiene m\'as de una compa\~nera de Bertrand, entonces
+		tiene infinitas y esto ocurre si y s\'olo si $\alpha$ es una h\'elice
+		circular.
+		
+	\end{itemize}
+	
+	
+\end{enumerate}
+
+\end{document}

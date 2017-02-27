@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Geometr\'ia Diferencial -- 1$^\circ$
+cuatrimestre 2016}
+\centerline{\sc Entrega Pr\'actica 1}
+
+\bigskip
+
+Sea $n \in \N$. Consideramos en $S^n \subset \R^{n+1}$ la siguiente relaci\'on de 
+equivalencia: dados $v, w \in S^n$, decimos que $v \sim w$ si y solo si $v = \pm w$. 
+El espacio proyectivo $n$-dimensional $\P^n(\R)$ es el espacio cociente $S^n/\sim$.
+Probar que este espacio es una variedad diferenciable compacta y conexa, y calcular su 
+dimensi\'on.
+
+\begin{proof}
+
+Disclamer: Consideraremos $B_r(x) := \sett{y \in \R^n \ / \ \norm{y-x} < r} \subseteq \R^n$;  $-A := \sett{-a \ , \ a \in A}$ y $\overline{y}= q(y)$ con $y \in X$ y $q:X \rightarrow X/ \sim_q$
+
+Vamos de a partes!
+
+\begin{itemize}
+
+\item Compacta
+
+Si llamamos $q:S^n \rightarrow \P^n$ a la aplicaci\'on cociente, entonces sabemos que es continua. Como $S^n$ es compacta, $q$ es continua y la compacidad es un invariante topol\'ogico; entonces $\P^n = q(S^n)$ es compacto.
+
+\item Conexa
+
+Por el mismo argumento tenemos que $S^n$ es conexo, $q$ es continua y la conexi\'on es un invariante topol\'ogico; por ende $\P^n = q(S^n)$ es conexo
+
+\item Variedad Topol\'ogica
+
+Aqu\'i debemos probar que $P^n$ es $T_2$, tiene una base numerable, y el localmente Eucl\'ideo.
+
+\begin{enumerate}
+
+\item Sean $\bar{a}, \bar{b} \in \P^n$ tal que $\bar{a} \neq \bar{b}$, si llamamos a $q: S^n \rightarrow \P^n$ a la aplicaci\'on cociente sea $a \in q^{-1}(\bar{a}) = \sett{a,-a}$ y $b \in q^{-1}(\bar{b}) = \sett{b,-b}$. Sea $0 < \epsilon < \frac{1}{2}\texttt{min}\sett{\norm{a+b},\norm{a-b}}$ y consideremos $U := B_{\epsilon}(a) \cap S^n \ ; \ V:= B_{\epsilon}(b) \cap S^n$. Notemos que por la condici\'on impuesta a $\epsilon$ tenemos que $U,V \neq \emptyset$ y $U \cap V = \emptyset$. Consideremos $\overline{U} = q(U) \ , \ \overline{V}:=q(V)$, entonces tenemos que ambos son abiertos pues $q^{-1}(q(U)) = U \cup -U$ que es abierto y $\P^n$ tiene la topolog\'ia cociente; y similarmente con $q^{-1}(q(V))$. Afirmo que $\overline{U}\cap \overline{V} = \emptyset$; en efecto, si $\overline{w} \in \overline{U}\cap \overline{V}$ entonces $\sett{w,-w} = q^{-1}(w)\in q^{-1}(\overline{U}\cap \overline{V})= (U \cup -U) \cap (V \cup -V) = (-U \cap V) \cup (U \cap -V)$. Sin p\'erdida de generalidad supongamos que $w \in U \cap -V$ (si estuviese en el opuesto tomo $w$ como $-w$ y listo), entonces $\norm{b-a} = \norm{b-w+w-a} \leq \norm {b-w} + \norm{w-a} < 2\epsilon < \texttt{min}\sett{\norm{a+b},\norm{a-b}}$. ABS! Entonces $\overline{U}\cap \overline{V} = \emptyset$ y $\P^n$ es $T_2$
+
+\item Sea $\B = \sett{B_{r_i}(q_i), \ r_i \in \Q \ , \ q_i \in \Q^n}$ una base numerable de $\R^n$, entonces es claro que $\F = \B \cap S^n$ es una base numerable pues $S^n$ tiene la topolog\'ia subespacio de $\R^n$. Sea $\overline{\F} = \sett{\sett{\overline{f} \ , f \in F} , \ \ F \in \F}$, es claro que es numerable y veamos que es base de $\P^n$. Es claro que $\bigcup_{\overline{F} \in \overline{\F}} {\overline{F}} = \P^n$ pues $\F$ cubr\'ia y simplemente estoy aplicando $q$ a ambos lados; finalmente como $\F$ era base, si $\overline{U},\overline{V} \in \overline{F}$, entonces como $U \cap V \in \F$ entonces $\overline{U}\cap \overline{V} \in \overline{F}$ por definici\'on. Por ende $\P^n$ admite una base numerable.
+
+\item Sea $x= (x^1, \dots{} , x^{(i)} , \dots{} , x^n) \in S^n$ y $\overline{U}_i := \sett{\overline{x} \in \P^n \ / \ x^{i}\neq 0}$. Consideremos $\psi_i : \overline{U}_i \rightarrow \R^{n}$ dada por $(x^1, \dots , x^i , \dots , x^n) \mapsto (\frac{x^1}{x^{i}} , \dots , 1 , \dots , \frac{x^n}{x^{i}})$ y veamos que $\psi_i$ es un homeo con $\psi_i(\overline{U}_i)$! Pero esto es claro pues la biyectividad es trivial, la continuidad esta dada por dividir por un elemento no nulo, y $\psi_{i}^{-1}(x)=(x^1 , \dots 1 , \dots x^n)$! Por ende $\psi_i$ es un homeo y $\forall \overline{x} \in \P^n$ $\exists i_0 \ / \ \overline{x}\in \overline{U}_i$. Por ende $\P^n$ es localmente eucl\'ideo.
+
+\end{enumerate} 
+
+\item Que los cambios de coordenadas sean diferenciables.
+
+Sean $i < j < n$, entonces $\psi_i \circ \psi_{j}^{-1} (\overline{x}) = \psi_i ((x^1 , \dots , 1_j , \dots , x^n)) = ( \frac{x^1}{x^{i}} , \dots 1 , \dots \frac{1_j}{x^{i}}, \frac{x^n}{x^{i}})$ que es diferenciable en $\psi_j(U_i \cap U_j)$.
+
+\end{itemize}
+
+Por ende $\mathcal{A} = \sett{( \overline{U}_i , \psi_i) \ i \in \sett{1,\dots,n}}$ es un atlas para $\P^n$ y por ende $\P^n$ es una variedad diferenciable compacta y conexa, de dimensi\'on $n$(visto al ver la localidad ecucl\'idea). \qed
+
+\end{proof}
+
+\end{document}

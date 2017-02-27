@@ -1,0 +1,506 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Clasificaci\'on de revestimientos}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}: Sea $B$ un espacio topol\'ogico arcoconexo, localmente arcoconexo y semilocalmente simplemente 
+conexo.
+Dado un revestimiento $p:E\rightarrow B$, se dice que $p$ es \textit{abeliano} si es normal y su grupo de transformaciones deck
+$G_E$ es abeliano. Se dice  que $p$ es \textit{universalmente abeliano} si es abeliano y para todo revestimiento
+$p':E'\rightarrow B$ abeliano, existe una funci\'on continua $\varphi:E\rightarrow E'$ tal que
+$p=p' \circ \varphi$. 
+Probar que $B$ admite un revestimiento universalmente abeliano.
+
+\begin{proof}
+Como $B$ es arco-conexo, localmente arco-conexo y semi localmente simplemente conexo entonces $\psi : [p : E \rightarrow B] \mapsto Fix_p(e)$ es biyectiva. Sea $H = [\pi_1(B,b),\pi_1(B,b)]$ el conmutador de $\pi_1(B,b)$, entonces $\exists r: E \rightarrow B$ revestimiento tal que $Fix_r(e)=H$; como $H \triangleright \pi_1(B,b)$ entonces $r$ es normal y entonces por el ejercicio 11 de la pr\'actica tenemos que $\pi_1(B,b) \ / \ H \simeq \textit{Deck}_r(E,B)$. Entonces $r$ es abeliano pues es normal y su grupo de transformaciones Deck es claramente abeliano!
+ 
+Recordemos la propiedad universal del grupo $X \ / \ [X,X]$: Sea $f:X \rightarrow A$ abeliano, entonces $\exists g : X / [X,X] \rightarrow A$ tal que el siguiente diagrama conmute:
+
+\begin{equation}
+\label{PU abeliano}
+\begin{tikzcd}
+X \arrow{r}{f} \arrow[swap]{d}{q_{[X,X]}} & A \\
+X \ / \ [X,X] \arrow[dashed]{ur}{g} \\
+\end{tikzcd}
+\end{equation}
+
+Sea entonces $p':E' \rightarrow B$ otro revestimiento abeliano, por lo que $\pi_1(B,b) \ / \ Fix_{p'}(e')$ es abeliano, entonces por \ref{PU abeliano} tenemos que $\exists \phi: \pi_1(B,b)/H \rightarrow \pi_1(B,b) \ / \ Fix_{p'}(e')$ morfismo de grupos tal que $q_{H} = q_{Fix_{p'}(e)} \phi$ por lo que $H \leq Fix_{p'}(e)$, pero entonces tenemos el siguiente diagrama!
+
+\[
+\begin{tikzcd}
+& E' \arrow[swap]{d}{p'} \\
+E \arrow{r}{r} & B\\
+\end{tikzcd}
+\]
+
+Por el lema del levantamiento $\exists p: E \rightarrow E'$ tal que $rp = p'$. Entonces $r$ es un revestimiento universalmente abeliano de $B$ \qed
+
+\end{proof}
+
+\medskip
+
+\begin{enumerate}
+
+\item {\be	\item Pruebe que si $n>1$, entonces toda funci\'on continua $S^n\to S^1$ es null-homot\'opica.
+		\item Pruebe que toda funci\'on continua $P^2\to S^1$ es null-homot\'opica.
+		\item Exhiba una funci\'on $S^1\times S^1\to S^1$ que no sea null-homot\'opica.
+		\en}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Como $S^n$ es simplemente conexo para $n>1$, entonces $1_{S^n} \simeq C_{s_0}$, por lo que por la pr\'actica 6 tenemos que $f = f 1_{S^n} \simeq C_{f(s_0)}$, por lo que $f$ es null-homot\'opica \qed
+
+\item Sea el revestimiento universal de $S^1$ por $\R$, por lo que tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+& \R \arrow[swap]{d}{p} \\
+P^2 \arrow{r}{f} & S^1 \\
+\end{tikzcd}
+\]
+
+Veamos que $f_*(\pi_1(P^2))=0 !$
+
+En efecto como $f : P^2 \rightarrow S^1$, entonces $f_* : \Z / 2 \Z \rightarrow \Z$, pero entonces $0=f_*(0)=2*f_*(\overline{1})$ y como $Tor(\Z)=0$ entonces $f_* = 0$.
+
+Por ende tenemos a $P^2$ que es arco-conexo y localmente arco-conexo, y $f_*(\pi_1(P^2)) = 0 \subset p_*(\pi_1(\R)) = 0$, entonces por el lema del levantamiento $\exists \widetilde{f} : \R \rightarrow P^2$ tal que:
+
+\[
+\begin{tikzcd}
+& \R \arrow[swap]{d}{p} \\
+P^2 \arrow{r}{f} \arrow[dashed]{ur}{\widetilde{f}} & S^1 \\
+\end{tikzcd}
+\]
+
+Pero como $\R$ es contr\'actil tanto $\widetilde{f}$ como $p$ son null-homot\'opicas, por ende $p\widetilde{f}=f$ es null-homot\'opica. \qed
+
+\item Sea $f: T \rightarrow S^1$ dado por $f(\theta,\phi)=\theta ^2 * \phi ^3$ entonces como el producto es de n\'umeros complejos, $f$ est\'a bien definida, y como $f_* = 2n + 3m$ es claro que $f_* \neq 0$ y por ende $f$ no es null-homot\'opica \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Pruebe que si	$X$ es arcoconexo y localmente arcoconexo y $\pi_1(X)$ es finito, entonces toda funci\'on $X\rightarrow S^1$ es null-homot\'opica.
+}
+
+\begin{proof}
+
+Notemos que como $X$ cumple las hip\'otesis del lema del levantamiento, s\'olo nos bastar\'a probar que $f_*(\pi_1(X))=0$ si $\pi_1(X)$ es finito; en cuyo caso por el item 1.b) tendr\'iamos que $f$ es null-homot\'opica.
+
+Sea $[\alpha] \in \pi_1(X)$ un lazo no nulo, como $\pi_1(X)$ es finito $\exists m \in \N$ tal que $[\alpha^{*m}]=0$ por la existencia de caracter\'istica. Entonces $0 = f_*([\alpha^{*m}]) = f_*([\alpha])^{*m} \in \pi_1(S^1)$, pero $\pi_1(S^1) = \Z$, y $Tor(\Z)=0$ por lo que $f_*([\alpha]) = 0$. Como $[\alpha]$ era arbitrario, tenemos que $f_* = 0$. \qed
+
+\end{proof}
+
+\item {Sea $T=S^1\times S^1$ el toro. Considerando el isomorfismo $\pi_1(T,(b_0,b_0))\cong\Z\times\Z$ dado por las proyecciones, describa los revestimientos de $T$ asociados a los subgrupos
+\be	\item $\Z\times 0\subset \Z\times\Z$;
+		\item el subgrupo generado por $(1,1)\in\Z\times\Z$;
+		\item $\{(2n,2m): n,m\in\Z\}$.
+		\en
+}
+
+\begin{proof}
+
+Hagamoslo de dos maneras!
+
+\textit{Sabiendo que $p:S^1 \times S^1 \rightarrow T$ dado por $p(z,w)= (z^n , w^m)$ es revestimientos $\forall n,m \in \N \times \N$}
+
+
+\begin{enumerate}
+
+
+\item {$\Z \times \sett{0}$}
+
+Notemos que $\Z \times \sett{0} = \langle (1,0) \rangle$ y entonces yo quiero un revestimiento que la fibra en una coordenada tenga cardinal 1 y la fibra en al otra sea 0. Sea entonces $p : S^1 \times \R \rightarrow T$ dado por $(z,y) \mapsto (z, e^{2 \pi i y})$! 
+Como $\pi_1(S^1 \times \R) = \Z$ tomemos el lazo 
+$\alpha=(e^{2 \pi i t},0)=(z,0)$ que genera $\pi_1(S^1 \times \R)$, entonces $[p(\alpha)]=[(z,1)]$ y $\langle [(z,1)] \rangle = \Z \times 0 $ por lo que $p_*(\pi_1(S^1 \times \R)) = \Z \times \sett{0}$ y $p$ es el revestimiento buscado. \qed
+
+\item {$<(1,1)>$}
+
+Siguiendo el esp\'iritu anterior, notemos que al tener 1 generador, el espacio que reviste debe ser $S^1 \times \R$, por lo que sea el revestimiento $p: S^1 \times \R \rightarrow T$ dado por $p(z,y)=(z,ze^{2 \pi i y})$ que es claro que es revestimiento. Sea $\alpha=(e^{2 \pi i t},0)=(z,0)$ el generador de $\pi_1(S^1 \times \R)$, entonces $p_*([\alpha])=[p(\alpha)]=[(z,z)]$ y $\langle (z,z) \rangle = \langle (1,1) \rangle$ por lo que $p_*(\pi_1(S^1) \times \R) = <(1,1)>$ \qed
+
+\item {$\langle (2,0) , (0,2) \rangle = \langle (2n,2m) \ , \ n,m \in \N \rangle$}
+
+Ahora al tener dos generadores, necesitamos dos $S^1$! entonces sea $p: S^1 \times S^1 \rightarrow T$ dado por $p(z,w)=(z^2,w^2)$ que es revestimiento por ser producto de revestimientos!. Entonces ahora tenemos dos lazos generadores! Sea $\alpha=(e^{2 \pi i t},1)=(z,1)$ y $\beta=(1,e^{2 \pi i t})=(1,w)$ que son los dos generadores de $\pi_1(S^1 \times S^1)$, entonces tenemos que $p_*([\alpha]) = [p(\alpha)]=[(z^2,1)]=[(z,1)*(z,1)]=2*[(z,1)]= 2*[(z,1)]+0*[(1,w)]$ y por ende $p_*([\alpha])= \langle (2,0) \rangle$. Similarmente se ve que $p_*([\beta])=\langle (0,2) \rangle$ y por ende $p_*(\pi_1(S^1 \times S^1))=\langle (2,0) , (0,2) \rangle $ \qed
+
+\begin{declaration}
+Si $H= \langle (p,q), (r,s) \rangle$, entonces $p(z,w)=(z^p w^r, z^q w^s)$ cumple que $Fix_p(e_0)=H$
+\end{declaration}
+
+\begin{proof}
+Idem item anterior donde reemplazamos numeritos.
+\end{proof}
+
+\end{enumerate}
+
+\textit{Usando transformaciones Deck}
+
+\begin{enumerate}
+
+\item {$\Z \times \sett{0}$}
+
+Clase de Xime que no recuerdo...
+
+\end{enumerate}
+
+\end{proof}
+
+\item{
+\be	\item {Pruebe que todo isomorfismo de $\pi_1(T,x_0)$ est\'a inducido por alg\'un homeomorfismo $T\to T$ que deja quieto a $x_0$.}
+		\item {Pruebe que si $E$ es un revestimiento conexo de $T$, entonces $E$ es homeomorfo a $\R^2$, $S^1\times\R$ \'o $T$.}
+		
+		Sugerencia: si $F$ es un grupo abeliano libre de rango $2$ y $N$ es un subgrupo no trivial, entonces existe una base $\{a_1, a_2\}$ de $F$ tal que $\{na_1\}$ es base de $N$ para alg\'un $n$ o bien $\{na_1, ma_2\}$ es base de $N$ para ciertos $n,m$.
+		\en
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Recordemos que $\pi_1(T,x_0) \simeq \Z \times \Z$ y por ende un isomorfismo $\phi$ de $\Z \times \Z$ es simplemente $\phi:=M*(x,y)$ con $M \in GL_2(\Z)$. Ahora entonces si hacemos la identificaci\'on $T = S^1 \times S^1 = \R / \Z \times \R / \Z$ afirmo que $h (\overline{x},\overline{y})=M*(\overline{x},\overline{y})$ cumple lo pedido! En efecto,  como $\phi$ es iso entonces $\phi(e_{x_0})=e_{x_0}$ y entonces, si llamamos $\psi : \pi_1(T,x_0) \rightarrow \Z \times \Z$ a la identificaci\'on del $\pi_1(T,x_0)$, esto dice que $M*(\psi^{-1}(z_0,z_1))=\psi^{-1}(z_0,z_1)$ y como $\psi^{-1}(z_0,z_1)=q(x_0)$ entonces tenemos que $h(x_0)=x_0$. Por otro lado como $M$ baja bien al cociente tenemos que $h_* \cong \phi$ \qed
+
+\item ???
+
+\end{enumerate}
+
+\end{proof}
+
+\item{
+Sea $G$ un grupo topol\'ogico arcoconexo y localmente arcoconexo con elemento neutro $e$, y sea $p:\tilde G\to G$ un revestimiento con $\tilde G$ arcoconexo y $\tilde e\in p^{-1}(e)$. 
+Pruebe que la multiplicaci\'on $\mu:G\times G\to G$ y la funci\'on $\nu:G\to G$, $\nu(x)=x^{-1}$ se levantan a funciones $\tilde \mu:\tilde G\times \tilde G\to \tilde G$  y $\tilde \nu:\tilde G\to \tilde G$ que hacen de $\tilde G$ un grupo topol\'ogico con neutro $\tilde e$. Pruebe adem\'as que $p$ es un morfismo.
+}
+%\item
+%Sean $q:X\to Y$  y $r:Y\to Z$ revestimientos. Pruebe que si $Z$ admite revestimiento universal, entonces $rq$ tambi\'en es revestimiento.
+
+\begin{proof}
+
+???
+
+\end{proof}
+
+\item{
+Pruebe que si $B$ admite un revestimiento universal, entonces $B$ es semilocalmente simplemente conexo.
+}
+
+\begin{proof}
+
+Sea $b \in B$, entonces como $\exists p:E \rightarrow B$ revestimiento universal, $\exists U \ni b$ entorno abierto parejamente cubierto. Por ende el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+& E \arrow[swap]{d}{p} \\
+U \arrow{r}{i} \arrow[dashed]{ur}{p^{-1}} & B \\
+\end{tikzcd}
+\]
+
+Pero entonces como $\pi_1(E)=0$ entonces por el lema del levantamiento $i_*(\pi_1(U))=0$ \qed
+
+\end{proof}
+
+\item {Sea $p:\tilde{X}\rightarrow X$ un revestimiento simplemente conexo de $X$, y sea $A\subseteq X$ un subespacio arcoconexo y localmente arcoconexo, con $\tilde{A}\subseteq \tilde{X}$ una componente arcoconexa de $p^{-1}(A)$. Muestre que $p:\tilde{A}\rightarrow A$ es el revestimiento correspondiente al n\'ucleo del morfismo $i_*:\pi_1(A)\rightarrow \pi_1(X)$.}
+
+\begin{proof}
+
+Por definici\'on $p:\tilde{A}\rightarrow A$ es el revestimiento correspondiente al n\'ucleo del morfismo $i_*:\pi_1(A)\rightarrow \pi_1(X)$ sii $Fix_p(\widetilde{a_0})=\textit{Ker}(i_*)$ sii $\sett{\omega \in \Omega(A,a_0) \ / \ \omega \simeq C_{x_0} \ , \ x_0 \in X} = \sett{\omega \in \Omega(A,a_0) \ / \  \widetilde{\omega} \in \Omega(\tilde{A} \ , \ \widetilde{a_0})}$. Veamoslo!
+
+\begin{itemize}
+
+\item {$\subseteq)$}
+
+Sea $\omega \in \Omega(A,a_0)$ tal que $\omega \simeq C_{x_0}$ con $x_0 \in X$, entonces por el levantamiento \'unico de homotop\'ias tenemos que $\widetilde{\omega}^{\widetilde{a_0}} \simeq \widetilde{C_{x_0}}^{p^{-1}(x_0)}$ con $\widetilde{a_0} \in p^{-1}(a_0) \subset \widetilde{A}$. Ahora si llamamos $\widetilde{H}$ a la homotop\'ia levantada, tenemos que $\widetilde{H}_{\widetilde{a_0}}$ es un camino entre $\widetilde{a_0}$ y $p^{-1}(x_0)$ y por ende como $\widetilde{A}$ es una componente arcoconexa,  $\exists \widetilde{a_1} \in \widetilde{A} \ / \widetilde{a_1} \in p^{-1}(x_0)$. Ahora, es claro que $\widetilde{C_{x_0}}^{\widetilde{a_1}} = C_{\widetilde{a_1}}$, pero como $\widetilde{\omega}^{\widetilde{a_0}} \simeq \widetilde{C_{x_0}}^{\widetilde{a_1}}$ tenemos finalmente que $\widetilde{a_1} = \widetilde{a_0}$ pues son dos caminos homot\'opicos y tienen que empezar en el mismo lugar! Adem\'as tenemos entonces (pues la homotop\'ia de caminos es relativa a $\sett{0,1}$) que $\widetilde{\omega}^{\widetilde{a_0}}(1)=\widetilde{a_0}$, por lo que $\omega \in \sett{\omega \in \Omega(A,a_0) \ / \  \widetilde{\omega} \in \Omega(\tilde{A} \ , \ \widetilde{a_0})}$ 
+
+\item {$\supseteq)$}
+
+Sea $\omega \in \Omega(A,a_0)$ tal que $\widetilde{\omega}^{\widetilde{a_0}} \in \Omega(\widetilde{A},\widetilde{a_0})$, entonces como $p$ es simplemente conexo, tenemos que $\pi_1(A) = 0$ pues es subespacio arcoconexo y simplemente conexo de $\widetilde{X}$, por ende $\widetilde{\omega}^{\widetilde{a_0}} \simeq C_{\widetilde{a_0}} \ (\widetilde{H})$ y entonces $\omega \simeq C_{x_0} \ (p\widetilde{H})$, con lo que $i_*([\omega])=0$. \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item{
+Sea $H=\bigcup_{n\geq 1} \partial B_{1/n}(1/n,0)\subset\R^2$ el {\em arito Hawaiano}.
+\be	\item {Pruebe que $H$ no es semilocalmente simplemente conexo.}
+		\item {Sea $C(H)$ el {\em cono} de $H$, que consiste en el subespacio de $\R^3$ formado por la uni\'on de todos los segmentos que unen un punto de $H\subset\R^2\times\{0\}$ con el punto $(0,0,1)$. Pruebe que $C(H)$ es semilocalmente simplemente conexo pero no localmente simplemente conexo.}
+		\en
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $(0,0) \in H$ y $U \ni (0,0)$ un entorno abierto, entonces como $H$ tiene la topolog\'ia subespacio de $\R^2$ sabemos que $\exists N \in \N$ tal que $\partial B_{\frac{1}{N}} (\frac{1}{N},0) \subset U$ y por ende $\omega = \frac{1}{N} e^{2 \pi i t} + (\frac{1}{N},0)$ cumple que $i_*([\omega]) \neq 0$. Por ende encontramos $h \in H$ tal que $\forall U \ni h$ entornos abiertos tenemos que $i_*(U) \neq 0$, por ende $H$ no es semilocalmente simplemente conexo. \qed
+
+\item Vamos por partes!
+
+\begin{itemize}
+
+\item {$C(H)$ es semi localmente simplemente conexo}
+
+Es claro pues $C(H)$ es un cono de un espacio topol\'ogico y por ende es contr\'actil. Entonces dado $x \in C(H)$ y $U \ni x$ todo $\omega \in \Omega(U,x)$ cumple que $\omega \simeq C_{(0,0,1)}$. Por ende $i_*(U)=0$
+
+\item {$C(H)$ no es localmente simplemente conexo}
+
+Tambien es claro pues el $(0,0,0)$ no tiene una base de entornos contr\'actiles por el item a). \qed
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Sean $X, Y, Z$ espacios arcoconexos y localmente arcoconexos y sean $q:X\to Y$, $r:Y\to Z$ funciones continuas. Sea $p=r\circ q$.
+\begin{enumerate}
+\item {Pruebe que si $p$ y $r$ son revestimientos, tambi\'en lo es $q$. \textcolor{red}{Pruebe que $q$ es normal si $p$ lo es.}}
+\item {Pruebe que si $p$ y $q$ son revestimientos, tambi\'en lo es $r$. }
+\item {Pruebe que si $q$ y $r$ son revestimientos y el espacio $Z$ admite un revestimiento universal, entonces $p$ tambi\'en es un revestimiento.}
+\end{enumerate}
+
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $x_0 \in X, y_= := q(x_0) \in Y$ y $z_0 := p(x_0) \in Z$
+
+Veamos primero que $q$ es sobre!
+
+Sea $y \in Y$ y sea $\alpha$ un camino de $y_0$ a $y$, entonces $r\alpha:=\beta$ es un camino en $Z$ empezando en $z_0$, sea $\gamma := \widetilde{\beta}^{x_0}$ el levantado en $X$, entonces $q \gamma$ es un camino levantado de $\beta$ empezando en $y_0$; por unicidad de levantamiento de caminos tenemos que $\alpha = q \gamma$ y entonces $y = \alpha(1) = q \gamma(1) = q(\gamma(1))$ y por ende $y \in Im(q)$, por lo tanto $q$ es sobre.
+
+Ahora si veamos que es revestimiento!
+
+Sea $y \in Y$ y $z=r(y) \in Z$, entonces como $p$ y $r$ son revestimientos $\exists U \ni z$ entorno abierto parejamente cubierto por $p$ y $r$. Sea $V \subset r^{-1}(U)$ tal que $y \in V$, y veamos que esta parejamente cubierto por $q$! Sea $p^{-1}(U)= \coprod_{i}(X_i)$, entonces notemos que $q(X_i) \subset r^{-1}(U)$ y como $X_i$ son conexos, si llamamos $r^{-1}(U)= \coprod_{j} {Y_j}$ entonces $q(X_i) \subset Y_j$, por lo que $q^{-1}(V)= \coprod_{i}{\widetilde{X_i}}$ donde $\widetilde{X_i}$ es tal que $q(\widetilde{X_i}) \subset V$. Ahora sea el diagrama:
+
+\[
+\begin{tikzcd}
+\widetilde{X_i} \arrow[swap]{dr}{q_{\widetilde{X_i}}} \arrow[swap]{dd}{p|_{\widetilde{X_i}}} & \\
+ & V \arrow[swap]{dl}{r|_{V}} \\
+U & \\
+\end{tikzcd}
+\]
+
+Como por definici\'on conmuta, y $p|_{\widetilde{X_i}}, r|_{V}$ son homeomorfismos, entonces $q_{\widetilde{X_i}}$ lo es \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Sea $p:\tilde E\rightarrow B$ revestimiento universal. Dado un revestimiento $r:E\rightarrow B$, pruebe que existe un revestimiento $q:\tilde E\rightarrow E$ tal que $r\circ q=p$.}
+
+\begin{proof}
+
+Notemos que tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+\tilde{E} \arrow[swap]{dd}{p} \arrow[swap,dashed]{dr}{q} & \\
+& E \arrow[swap]{dl}{r} \\
+B & \\
+\end{tikzcd}
+\]
+
+Entonces, como $p_*(\pi_1(\tilde{E}))=0 \subseteq r_*(\pi_1(E))$ pues $p$ es universal, y ademas $\tilde{E}$ es arco-conexo y localmente arco-conexo tenemos entonces por el lema del levantamiento que $\exists q:\tilde{E} \rightarrow E$ tal que $p = r \circ q$. Ahora por el ejercicio 9.b tenemos que, como $p$ y $r$ son revestimiento, $q$ es revestimiento. \qed
+
+\end{proof}
+
+\item{
+Sean $E,B$ arcoconexos y localmente arcoconexos, y sea $p:E\to B$ un revestimiento, $b_0\in B$, $e_0\in p^{-1}(b_0)$. Una {\em transformaci\'on deck} es un homeomorfismo $h:E\to E$ tal que $ph=p$. El conjunto de transformaciones deck $\deck(p)$ forman un grupo con la operaci\'on dada por la composici\'on.
+\be	
+\item {Se dice que $p:E\to B$ es \emph{normal} si para todo $b_0\in B$ y $e_0,e_1\in p^{-1}(b_0)$, existe una transformaci\'on deck tal que $h(e_0)=e_1$. Pruebe que $p$ es normal si y s\'olo si $H=p_*(\pi_1(E,e_0))$ es un subgrupo normal de $\pi_1(B,b_0)$. }
+		\item  {Pruebe que si $p$ es normal, $\deck(p)$ es isomorfo al grupo cociente $\pi_1(B,b_0)/H$.}
+		\item {Concluya que si $p:E\to B$ es un revestimiento universal de $B$, entonces $\pi_1(B,b_0)$ es isomorfo al grupo de transformaciones deck.}
+		\en
+}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sean $e_1,e_2 \in p^{-1}(b)$ entonces $\exists h \in \textit{Deck}(E,B) \ / \ h(e_1)=e_2 \ \Longleftrightarrow \ Fix(e_1) = Fix(e_2)$. Donde la \'ultima igualdad es por el lema del levantamiento al diagrama:
+
+\[
+\begin{tikzcd}
+& E \arrow[swap]{d}{p} \\
+E \arrow{ur}{h} \arrow{r}{p} & B \\
+\end{tikzcd}
+\]
+
+Pero entonces $Fix(e_1)=Fix(e_2) \Longleftrightarrow \ |\overline{\sett{Fix(e) \ , \ e \in p^{-1}(b)}}|=1$ donde es tomar la clase de conjugaci\'on, pero esto \'ultimo pasa sii $Fix(e_1) \triangleright \pi_1(B,b)$ \qed
+
+\item Sea $ \alpha \in \pi_1(B,b)$ y $e_1 \in p^{-1}(b)$, entonces sea $e_2 = g.e_1$ donde la acci\'on es la de la pr\'actica 7; entonces como $p$ es normal $\exists ! \phi_g \in \textit{Deck}(E,B)$ tal que $\phi(e_1)=e_2$. Por lo tanto tenemos un morfismo $\chi : \pi_1(B.b) \rightarrow \textit{Deck}(B,E)$ dado por $g \mapsto \phi_g$. Veamos que es el que nos sirve!
+
+\begin{itemize}
+
+\item {$\chi$ est\'a bien definida}
+
+Eso es porque la existencia deriva que $p$ es normal, mientras que la unicidad deriva de que $p$ es revestimiento y por ende todo levantado es \'unico.
+
+\item {Es morfismo de grupos}
+
+En efecto, por un lado $\chi (\alpha * \beta)$ es la transformaci\'on deck que $e_1 \mapsto e_1.(\alpha*\beta)$ mientras que $\chi(\alpha) \circ \chi(\beta)$ es la transformaci\'on Deck que $e_1 \mapsto (e_1.\alpha).(\beta)$; pero como la acci\'on es transitiva tenemos que $e_1.(\alpha * \beta) = (e_1. \alpha).\beta$, finalmente como $\chi( \alpha * \beta)(e_1) = \chi (\alpha) \circ \chi (\beta) (e_1)$ tenemos (pues son transformaciones Deck) que $\chi (\alpha * \beta) = \chi (\alpha) \circ \chi(\beta)$
+
+\item {Es epimorfismo}
+
+Sea $h \in \textit{Deck}(E,B)$ y sea $\alpha$ el camino entre $e_1$ y $h(e_1)$, entonces $p \alpha \in \Omega(B,b)$ que cumple que $h = \chi(p \alpha)$.
+
+\item {$Ker(\chi) = p_*(\pi_1(E,e_1))$}
+
+Es claro que $\chi(\alpha) = 1_E \ \Longleftrightarrow \ \alpha . e_1 = e_1 \ \Longleftrightarrow \ \alpha \in stab(e_1)=p_*(E,e_1)$ pues $p$ es normal. 
+
+\end{itemize}
+
+Por ende por el primer teorema de isomorfismo tenemos que $\pi_1(B,b) \ / \ \pi_1(E,e) \simeq \textit{Deck}(E,B)$ \qed
+
+\item Es claro que si $p$ es universal entonces $p_*(\pi_1(E,e_1)) = 0$ y entonces $\pi_1(B,b) \simeq \textit{Deck}(E,B)$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Describa el grupo de transformaciones deck del revestimiento usual $p:\R\times\R\to S^1\times S^1$.}
+
+\begin{proof}
+
+Notemos por un lado que si $p h = p$ entonces $p_1 h = p_1$ donde $p_1$ es la primer coordenada del revestimiento universal de $T$, ie $p_1$ es el revestimiento universal de $S^1$, por ende $h_n (x,y) = (x+n,y)$ son transformaciones Deck. An\'alogo con la segunda coordenada tenemos que $\sett{(x,y) \mapsto (x+n,y+m) \ , \ n,m \in \N} \subseteq \textit{Deck}(\R^2 , T)$. Por el otro lado si $h \in \textit{Deck}(\R^2,T)$ entonces $e^{2 \pi i h(t)} = e^{2 \pi i t}$ y por ende $h(t) = t+n$ por lo tanto $\textit{Deck}(\R^2 , T) = \sett{(x,y) \mapsto (x+n,y+m) \ , \ n,m \in \N} \simeq \Z \times \Z$ \qed 
+
+\end{proof}
+
+%\item Sean $E,B$ arcoconexos y localmente arcoconexos, y sea $p:E\to B$ un revestimiento, con  $G(p)$ su grupo de transformaciones deck.
+%\be
+%\item Pruebe que $G(p)$ act\'ua en $E$ de manera propiamente discontinua.
+%\item Sea $q:E\rightarrow E/G(p)$ la proyecci\'on al cociente. Pruebe que $q$ es un revestimiento normal.
+%
+%\item Pruebe  que existe un revestimiento $r:X/G(p)\rightarrow B$ tal que $r\circ q=p$.
+%\en 
+
+
+\item {Sea $E$ un espacio topol\'ogico, y $G$ un grupo que act\'ua en $E$ de manera propiamente discontinua. Sea $p:E\to B$ es un revestimiento. Pruebe que:
+\be
+\item {La proyecci\'on al cociente $q:E\rightarrow E/G$ es un revestimiento normal.}
+\item {Si $E$ es arcoconexo, entonces $G$ es el grupo de transformaciones deck de $q$.}
+
+
+\item{ Existe un revestimiento $r:E/G\rightarrow B$ tal que $r\circ q=p$.}
+
+\item{ Todo subgrupo $H$ de $\deck(p)$ act\'ua en $E$ de manera propiamente discontinua, es decir, para todo  $e\in E$, existe un abierto $U\ni e$ tal que $h(U)\cap U=\varnothing$ para todo $h\in H$.}
+%\item Si $E$ es arcoconexo y localmente arcoconexo, entonces $E$ es isomorfo a $\pi_1(E/G)/p_*(\pi_1(E))$.
+\en}
+
+%\item
+%Pruebe que un revestimiento conexo de dos hojas es regular.
+%
+%\item
+%(Dif\'icil) Sea $X$ un espacio arcoconexo, localmente arcoconexo y semilocalmente simplemente conexo.
+%\be	\item Pruebe que si $X$ es regular y tiene una base numerable, entonces $\pi_1(X,x)$ es numerable.
+%		\item Pruebe que si $X$ es compacto y Hausdorff, entonces $\pi_1(X,x)$ es finitamente generado.
+%		\en
+
+\end{enumerate}
+
+\end{document}

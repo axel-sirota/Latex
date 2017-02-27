@@ -1,0 +1,616 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\sette}[2]{\{#1 \ , \ #2 \}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Topolog\'ia -- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Topolog\'ias iniciales y finales}
+
+\bigskip
+
+\textbf{Ejercicio para entregar}
+
+\begin{enumerate}
+
+\item Sean $X$ un espacio topol\'ogico, $\sim$ una relaci\'on de equivalencia en $X$ y $\sim'$ una relaci\'on de equivalencia en $X/_{\sim}$. Pruebe que el espacio $\left(X/_{\sim} \right)/_{\sim'}$ es homeomorfo a $X/_{\sim''}$, donde $x \sim'' y$ si y s\'olo si $q(x) \sim' q(y)$, con $q: X\rightarrow X/_{\sim}$ la proyecci\'on al cociente.
+Deduzca que el toro $T$ es homeomorfo a $\mathbb{S}^1 \times I /_{[(z,0) \sim (z, 1)]}$, y que la botella de Klein $K$ es homeomorfa a $\mathbb{S}^1 \times I /_{[(z,0) \sim (\bar{z}, 1)]}$.
+
+\item Sean $\{X_n\}_{n\in \mathbb{N}}$ una sucesi\'on de espacios topol\'ogicos,
+ y $f_n : X_n \rightarrow X_{n-1}$ funciones continuas. Consideramos $X= \{(x_n)\in \prod X_n: f_n(x_n) = x_{n-1} ~ \forall n\in \mathbb{N}\}$,
+  y $p_n : X\rightarrow X_n$ las funciones definidas por $p_n((x_k)) = x_n$. Le damos a $X$ la topolog\'ia inicial inducida por $\{p_n\}_{n\in \mathbb{N}}$. $X$ es el \textit{l\'imite inverso} o \textit{l\'imite proyectivo} de $\{X_n\}$, y se denota $X=\varprojlim X_n$.
+ 
+\begin{enumerate}
+
+\item Pruebe la siguiente propiedad universal: dados $Y$ espacio topol\'ogico y $g_n: Y \rightarrow X_n$ familia de funciones continuas tal que $f_n g_n = g_{n-1}$, existe una \'unica $g:Y\rightarrow X$ funci\'on continua tal que $p_n g = g_n$.
+\item Sea $f_n : \mathbb{R}^n \rightarrow \mathbb{R}^{n-1}$ la proyecci\'on a las primeras $n-1$ coordenadas. Pruebe que $\varprojlim \mathbb{R}^n$ es homeomorfo a $\mathbb{R}^\mathbb{\omega}$.
+\end{enumerate}
+\end{enumerate}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $q : X \rightarrow X/ \sim$, $q_1: X \rightarrow X / \sim'$ y $q_2 : X \rightarrow X / \sim''$. Consideremos $q : X \rightarrow X/ \sim$ y veamos el diagrama:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{q} \arrow[swap]{d}{q_2} & X / \sim \arrow[swap]{d}{q_1} \\
+X / \sim'' \arrow[dashed]{r}{\widetilde{q}} & X / \sim / \sim' \\ 
+\end{tikzcd}
+\]
+
+Notemos que $q_1 \circ q : X \rightarrow X / \sim / \sim'$ es continua y que si $x \sim'' y $ entonces $q(x) \sim' q(y)$ y entonces $q_1 \circ q (x) = q_1 \circ q (y)$. Por ende por la PU del cociente el diagrama de arriba conmuta. Es claro que $\widetilde{q}$ es continua y sobreyectiva e inyectiva (esto\'ultimo por la cuenta de arriba), nos bastar\'ia ver que es abierta. Sea $U_2 \subset X / \sim''$ abierto, entonces $q_2^{-1}(U_2) =  U$ es abierto. Entonces $\widetilde{q}(U_2)$ es abierto sii $q_1^{-1}(\widetilde{q} (U_2))$ es abierto sii $q^{-1}(q_1 ^{-1}(\widetilde{q}(U))) = q_1^{-1}(U_2) = U$ es abierto. Por ende $\widetilde{q}$ es abierta y entonces $\widetilde{q}$ es homeo. \qed 
+
+\item 
+
+\begin{enumerate}
+
+\item Dados $Y$ y $\sett{g_n}$ tal que el siguiente diagrama conmuta $\forall n$:
+
+\[
+\begin{tikzcd}
+Y \arrow{r}{g_n} \arrow{dr}{g_{n-1}} & X_n \arrow[swap]{d}{f_n} \\
+& X_{n-1} \\
+\end{tikzcd}
+\]
+
+Debemos hallar una $g : Y \rightarrow X$ continua tal que el siguiente diagrama conmute:
+
+
+\[
+\begin{tikzcd}
+Y \arrow{r}{g} \arrow{dr}{g_{n}} & X \arrow[swap]{d}{p_n} \\
+& X_{n} \\
+\end{tikzcd}
+\]
+
+Definamos $g : Y \rightarrow X$ dado por $y \mapsto (g_n(y))_{n \in \N}$. Y veamos que cumple la propiedad universal:
+
+\begin{itemize}
+\item {$g$ esta bien definida}
+
+Sea $y \in Y$ veamos que $g(y) \in X$! pero $g(y) \in X \ sii \ f_n(g_n(y)) = g_{n-1}(y)$ y esto vale por hip\'otesis.
+
+\item {$g$ cumple el diagrama conmutativo de arriba}
+
+Trivial por construcci\'on, pues $p_n(g(y)) = p_n( (g_k(y))_k )=g_n(y)$
+
+\item {$g$ es continua}
+
+Como las $\sett{p_n}$ son familia inicial, entonces $g$ es continua sii $p_n \circ g = g_n$ es continua $\forall n \in \N$, pero esto vale por hip\'otesis. Por ende $g$ es continua.
+
+\item {Unicidad}
+
+Sea $h : Y \rightarrow X$ otra funci\'on que hace conmutar el diagrama, entonces $p_n(g) = g_n = p_n(h) \ \forall n \in \N$, y por ende $p_n(g-h) = 0 \ \forall n$ y como las $p_n$ son iniciales entonces $g = h$.
+
+\end{itemize}
+
+\item Veamos que $\R^{\omega}$ cumple la propiedad universal! Sean $Y$ y $g_n : Y \rightarrow \R^n$ tal que:
+
+\[
+\begin{tikzcd}
+Y \arrow{r}{g_n} \arrow{dr}{g_{n-1}} & \R^n \arrow[swap]{d}{f_n} \\
+& \R^{n-1}
+\end{tikzcd}
+\]
+
+Y sea $g : Y \rightarrow \R^{\omega}$ dada por $y \mapsto ((g_n(y))_n)_{n \in \N}$ O sea en el lugar n-\'esimo tenemos a la coordenada n-\'esima de $g_n$. Entonces $g$ cumple la PU! Por ende $\R^{\omega} \simeq \varprojlim \R^n$ \qed
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{proof}
+
+\bigskip
+
+\begin{enumerate}
+
+\item {Ejercicio 1}
+
+\begin{proof}
+Debemos ver que $\sett{U \cap Z \ , \ U \subseteq A} = \sett{V \cap Z \ , \ V \subseteq X}$.
+
+\begin{itemize}
+
+\item {$\subseteq)$}
+
+Como $U \subseteq A$ abierto, entonces al ser A subespacio tenemos que $U = V \cap A$ con $V$ abierto en $X$, por ende $U \cap Z = V \cap A \cap Z$ y como $Z \subset A$ tenemos que $Z \cap A = Z$, por ende $U \cap Z = V \cap Z$ con $V$ abierto en X.
+
+\item {$\supseteq)$}
+
+$V \cap Z = V \cap A \cap Z = U \cap Z$ con $U = V \cap A$ abierto de $A$ \qed
+
+\end{itemize}
+\end{proof}
+
+\item {Ejercicio 2}
+
+\begin{proof}
+\begin{enumerate}
+
+\item Sea $I \times I \subset \R \times \R$ entonces tomemos al $\sett{\frac{1}{2}} \times (\frac{1}{2},1]:=A$ como $A = \sett{\frac{1}{2}} \times (\frac{1}{2},2) \cap I^2$ tenemos que $A$ es abierto para la topo subespacio, pero $A$ claramente no es abierto en la topo del orden, pues un entorno del $(\frac{1}{2},1]$ incluye a $(x,0)$ con $x > \frac{1}{2}$ y $(x,0) \not \in A$.
+
+\item Veamoslo por partes!
+
+\begin{itemize}
+\item Sea $U= (a,b)$ un abierto b\'asico de $Y$ en la topolog\'ia del orden, entonces ya es abierto de $\R^2$.
+
+\item Sea $U = V \cap Y$ con $V = (a,b)$ en $\R^2$, y sea $a' = inf \sett{r \in (a,b) \ / \ r \in Y}$, y $b' = sup \sett{r \in (a,b) \ / \ r \in Y}$. Por lo que $(a,b) \cap I^2 = (a',b')$, pero como $Y$ es convexo tenemos que $(a',b') \subset Y$ y entonces es un abierto de la topolog\'ia del orden. \qed (Preguntar...)
+
+\end{itemize}
+
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 3}
+
+\begin{proof}
+
+\begin{enumerate}
+\item Abierto en ambos
+\item Abierto en I pero no es $\R$
+\item No abierto en ninguno de los dos
+\item Idem
+\item Dado que $\sett{\frac{1}{n}} \cup 0 \cup \sett{-1,1}$ es cerrado en ambos espacios, entonces este conjunto es abierto en ambos.
+\item Abierto en I pero no en $\R$ \qed
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 4}
+
+\begin{proof}
+
+$\sette{U \times V}{U \in \tau_A \ , \ V \in \tau_B} = \sette{U \times V}{U = Z \cap A \ , \ V = W \cap B} = \sett{(Z \cap A) \times (W \cap B)} = \sett{(Z \times W) \cap (A \times B)}$ \qed
+
+\end{proof}
+
+\item {Ejercicio 5}
+
+\begin{proof}
+
+Sea $U \times V$ abierto en $A \times B$, entonces $i_1^{-1}(U \times V) = U$ que es abierto en $X$, por ende las inclusiones son continuas, por lo que las proyecciones son abiertas. No obstante $p_1 (\sett{xy=0}) = \sett{x > 0}$ y por ende no es cerrada. \qed
+
+\end{proof}
+
+\item {Ejercicio 6}
+
+\begin{proof}
+\begin{enumerate}
+
+\item Notemos que $f_X = f \circ i_1$ y $f_Y = f \circ i_2$ y tanto $f,i_1,i_2$ son continuas, por ende $f_X,f_Y$ son continuas. \qed 
+
+\item Infinitos ejemplos de A1 \qed
+
+\end{enumerate}
+\end{proof}
+
+\item {Ejercicio 7}
+
+\begin{proof}
+
+Sea $x \in \overline{A \times B}$, entonces dado $U \ni x$ entorno abierto (que podemos suponer de la forma $V \times W$ con ambos abiertos respectivos), entonces $V \cap A \times W \cap B =V \times W \cap A \times B \neq \emptyset$, sii $V \cap A \neq \emptyset \ , \ W \cap B \neq \emptyset$, sii $x \in \overline{A} \times \overline{B}$. \qed
+
+\end{proof}
+
+\item {Ejercicio 8}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $U \in \tau_{ord}$, sii $U = (a,b) = {\sett{a_x} \times (a_y,\infty)} \bigcup_{a_x <x< b_x} {\sett{x} \times \R} \cup \sett{b_x} \times (-\infty,b_y)$. Entonces es claro que ambas son m\'as finas que la topo usual de $\R^2$.
+
+\item Ufff Vamos de a partes!
+
+\begin{itemize}
+
+\item Sea $U = (a,b) \times (c,d) = \bigcup_{a_x < x < b_x} { \sett{x} \times (c,d)}$ entonces como $\sett{x} \times (c,d)$ es abierto b\'asico de la topolog\'ia del orden, tenemos que $U \in \tau_{ord}$
+\item Por la misma cuenta de antes $U \in \tau_{d \times R}$
+\item Por el item anterior $\tau_{ord} = \tau_{d \times \R}$ 
+\end{itemize}
+
+Por ende $\tau_{prod} \subsetneq \tau_{ord} = \tau_{d \times \R}$ \qed
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 9}
+
+\begin{proof}
+
+\begin{itemize}
+
+\item {$\R_l \times \R$}
+
+Sea $U = V \cap L$, entonces $V = [a,b) \times (c,d)$ y supongamos que $L$ no es vertical, entonces $U = [a',b')$ y como estos ya son una base, tenemos que $\tau_L = \R_l$. Por otro lado si $L$ es vertical, tenemos que $L \simeq \R$ via $p_2$ la proyecci\'on.
+
+\item {$\R_l \times \R_l$}
+
+Ac\'a debemos separar en la pendiente de L! Si $L$ es horizontal o vertical, es f\'acil ver que $L \simeq \R_l$ v\'ia las proyecciones. Por otro lado si la pendiente es positiva, tenemos que $U = V \cap L = [a,b) \times [c,d) \cap L = [a',b')$ y por ende $\tau_L = \R_l$; pero si la pendiente es negativa tenemos que $U = V \cap L = [a,b) \times [c,d) \cap L = [a',b']$ y por ende como $[a',b'] \cap [b',c'] = \sett{b'}$ tenemos que $\tau_L = \tau_d$ \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 10}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Veamoslo para $f$! Es claro que es inyectiva, por ende veamos que es inicial! Sea $U \subset X$ abierto, entonces $U = f^{-1}(U \times Y)$ y $U \times Y$ es abierto del producto. Por otro lado si $U \times V$ es abierto del producto, entonces $f^{-1}(U \times V)=U$ es abierto de $X$. Por ende $U \subseteq X$ es abierto sii $U = f^{-1}(V)$ con $V \subseteq X \times Y$ abierto. Por ende $f$ es inicial!
+
+\item Sea $(X \times X, \tau')$ otra topolog\'ia que hace a $d$ continua y consideremos $1_X : (X \times X , \tau') \rightarrow (X \times X , \tau)$, como $p_X$ es inicial, sabemos que $1_X$ es continua sii $p_X \circ 1_X$ es continua, entonces tenemos el siguiente diagrama:
+
+\[
+\begin{tikzcd}
+(X \times X , \tau') \arrow{r}{1_X} \arrow[swap]{d}{d} & (X \times X , \tau) \arrow{r}{p_X} & (X, \tau_{sub}) \arrow[swap]{dll}{d_{x_0}} \\
+\R \\
+\end{tikzcd}
+\]
+
+Como $U \subseteq (X, \tau_{sub})$ es abierto de $X$ con la topolog\'ia subespacio de la m\'etrica sii tiene la topolog\'ia m\'etrica por $d_{x_0}$, entonces $U = B(x_0,r)$, pero $B(x_0,r) = d_{x_0}^{-1}((-r,r))$. Por ende $(X,\tau_{sub})$ es inicial respecto a $\sett{d_{x_0}}$. Por ende $p_X \circ 1_X$ sii $d_{x_0} \circ p_X \circ 1_X = d$ es continua. Por ende $1_X$ es continua y $\tau \subseteq \tau'$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 11}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sean $\sett{0} \in \R$, entonces es claro que son cerrados, pero $\prod_{i}{\sett{0}}$ no es cerrado en $\prod_{i}{\R}$ con la topolog\'ia producto, pues $\triangle_{0}^{c} = \prod_{i}{\R - \sett{0}}$ y $\R - \sett{0} \neq \R$ para infinitos \'indices. Por otro lado como $\prod_{i}{A_{i}^{c}}$ si es abierto en la topolog\'ia caja, tenemos que $\prod_{i}{A_i}$ es cerrado en esta topolog\'ia.
+
+\item Sea $x \in \prod{\overline{A_i}}$, y sea $U \ni x$ un entorno abierto, como $x_{i} \in \overline{A_i}$ tenemos que $\exists y_i \in U_i \cap A_i$, por lo que $y = (y_i) \in U \cap \prod_{i}{A_i}$; por ende $x \in \overline{\prod_{i}{A_i}}$. 
+
+Para el otro lado sea $x \in \overline{\prod_{i}{A_i}}$ y sea $x_j \in V_j \subset X_j$ abierto. Entonces como $\pi_{j}^{-1}(V_j) \subset \prod_{i}{X_i}$ es abierto y $x \in \pi_{j}^{-1}(V_j)$, entonces $\exists y \in \pi_{j}^{-1}(V_j) \cap \prod_{i}{A_i}$, por ende $y_j \in A_j \cap V_j$ y $x_j \in \overline{A_j}$. Por ende $x \in \prod_{i}{\overline{A_i}}$, y vale para ambas topolog\'ias. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 12}
+
+\begin{proof}
+
+Sea $f(t) = t$, entonces $f$ es continua sii $p_X \circ f $ es continua para todo $X$. Por otro lado $f$ es continua si $x_{\alpha} \rightarrow x$ sii $f(x_{\alpha}) \rightarrow f(x)$ sii $p_X \circ f (x_{\alpha}) \rightarrow p_X \circ f(x)$. Por ende como $f(x_{\alpha}) = x_{\alpha}$ tenemos que $x_{\alpha} \rightarrow x$ sii $p_X(x_{\alpha}) \rightarrow p_X(x) \ \forall X$. Notemos que esto no es cierto para la topolog\'ia caja!
+
+En efecto, sea $x_n = (x_{n}^{m})$ dado por $x_{n}^{m} = \frac{1}{m+n}$. Entonces $p_m(x_{n}) \rightarrow 0 \ \forall m \in \N$, pero si tomo $U = (-\frac{1}{n+2},\frac{1}{n+2}) \times \dots \times (-\frac{1}{m+n+1},\frac{1}{n+m+1}) \times \dots$ tenemos que $U \ni 0$ es un entorno abierto tal que $x_n \not \in U \ \forall n \in \N$ y por ende $x_n \not \rightarrow 0$. \qed
+
+\end{proof}
+
+\item {Ejercicio 13}
+
+\begin{proof}
+
+C\'alculo Avanzado \qed
+
+\end{proof}
+
+\item {Ejercicio 14}
+
+\begin{proof}
+
+Veamoslo por partes!
+
+\begin{itemize}
+
+\item {Topolog\'ia producto}
+
+
+Aqu\'i notemos que $p_i (f) = i*t$, $p_i(g) = t$ y $p_i(h) = t/i$ y son todas continuas $\forall i$, por ende $f,g,h$ son continuas con la topolog\'ia producto.
+
+\item {Topolog\'ia caja}
+
+Sea $U = (-1,1) \times (-1/4,1/4) \times \dots$, entonces si $f$ fuese continua tendr\'iamos que $f(-\delta,\delta) \subset U$ por la continuidad en el 0, o sea que $p_i (-i\delta,i\delta) = (-i\delta,i\delta) \subset (-\frac{1}{i^2},\frac{1}{i^2}) \ \forall i \in \N$ Abs! Entonces $f$ no es continua. Notemos que la misma cuenta vale para probar que $g,h$ no son continuas.
+
+\item {Topolog\'ia uniforme}
+
+Sea $U = B(0,r) = \sett{x \in \R^{\omega} \ / \ sup(|x_n|) < r}$, entonces $f^{-1}(U)= \sett{t \in \R \ / \ it < r \ \forall i} = \sett{0}$ que no es abierto, entonces $f$ no es continua.
+Por otro lado notemos que $d(g(t),g(s)) = sup(|s-t|) = |s-t|$, por ende $g$ es homeo, y de la misma manera lo es $h$. \qed
+
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 15}
+
+\begin{proof}
+
+Vagancia... \qed
+
+\end{proof}
+
+\item {Ejercicio 16}
+
+\begin{proof}
+
+\begin{itemize}
+
+\item Sea $x \in \R^{\omega}$ y $U$ un entorno en la topolog\'ia producto, entonces $U = U_1 \times \dots \times U_k \times \prod_{j>k}{\R}$ y tomemos $y = (x_1, \dots, x_k , 0 ,0 , \dots)$, entonces $y \in \R^{\infty} \cap U$ y entonces $\overline{\R^{\infty}} = \R^{\omega}$
+
+\item Sea $x \not \in \R^{\infty}$ y sea $W_n = B(x_n , |x_n|/2)$, y tomo $W = \prod_{n}{W_n}$ es un entorno abierto de $x$ tal que $W \cap \R^{\infty} = \emptyset$, por ende $\overline{\R^{\infty}} = \R^{\infty}$ en la topolog\'ia caja.
+
+\item Sea $x = (x_n) \rightarrow 0$, entonces $\exists N \in \N \ / \ sup(|x_n|)< \epsilon \quad \forall n  \geq N$, por ende $y = (x_1, \dots , x_N , 0 \dots) \in \R^{\infty}$ cumple que $d(y,x) = sup(|x_n|) < \epsilon$ y entonces $C_0 \subset \overline{\R^{\infty}}$. Por otro lado es claro que si $x \in \overline{\R^{\infty}}$ entonces $sup(|x_n-y_n|) < \epsilon'$ y si $N$ es tal que $y_n = 0 \quad \forall n \geq N$ tenemos que $sup(|x_n|) < \epsilon' \quad \forall n \geq N$ y entonces $x \rightarrow 0$. \qed
+
+
+\end{itemize}
+
+\end{proof}
+
+\item {Ejercicio 17}
+
+\begin{proof}
+
+C\'alculo avanzado.
+
+\end{proof}
+
+\item {Ejercicio 18}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Veamos que es sobreyectiva y final!
+
+Sea $y \in Y$ y consideremos $g(y) \in X$, entonces $f(g(y)) = y$ y por ende $f$ es sobreyectiva.
+
+Por otro lado sea $h : Y \rightarrow Z$, si $h$ es continua entonces $h \circ f$ es continua pues es composici\'on de continuas. Por otro lado si $h \circ f$ es continua, entonces sea $h \circ f \circ g$ que es continua pues $g$ es continua, pero $h \circ f \circ g = h \circ 1_Y =  h$ y por ende $h$ es continua. Por ende $f$ es final. \qed
+
+\item Sea $i_A : A \rightarrow X$, entonces $r \circ i_A = 1_A$ y por ende $r$ es cociente. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 19}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item $p_{1}|_{X}$ es cociente pues es retracci\'on (con inversa $i_{\R} (r) = (r,0)$), Sea $F \subset X$ cerrado, entonces $F = [a,b] \times \sett{c}$ o $F = \sett{a} \times [b,c]$ y por ende $p_{1}|_{X}(F) = [a,b] \ o \ \sett{a}$ que son cerrados. Pero sea $U = \R_{> 0} \times \sett{0} \cup \sett{0} \times \R_{> 0}$ que es un abierto de $X$, entonces $p_{1}|_{X}(U) = \R_{\geq 0}$ y por ende $p_{1}|_{X}$ no es abierta.
+
+\item Nuevamente tenemos que $p_{1}|_{Y}$ es cociente por ser retracci\'on, y sea $U = [0,1) \times (2,3)$ que es abierto de $Y$, entonces $p_{1}|_{Y}(U) = [0,1)$ que no es abierto. Por otro lado sea $F = \sette{xy = 0}{x > 0}$, que es cerrado de $Y$, pero $p_{1}|_{Y}(F) = \R_{> 0}$ que es abierto, y entonces $p_{1}|_{Y}$ es un cociente ni abierto ni cerrado. \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 20}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Es claro que $g$ es cociente pues $g|_{Z} = 1_Z$ y por ende es retracci\'on (Si le damos a $Z$ la topolog\'ia final por $g$ para ser continua).
+
+\item Sea $U \subseteq Z$ entonces es abierto sii $V = g^{-1}(U)$ es abierto. Notemos que $(a,b) \times \sett{0}$ con $0 \not \in (a,b) $ es abierto entonces pues $g^{-1}((a,b) \times \sett{0}) = (a,b) \times \R$ que es abierto en $\R \times \R$, adem\'as $\sett{0} \times (a,b)$ es abierto siempre pues $g|_{\sett{0}}=1_{\sett{0} \times \R}$. Finalmente como $g^{-1}((0,0)) = (0,0)$ que no es abierto tenemos que  $g^{-1}((a,b) \times \sett{0}) = (a,0) \times \R \cup (0,b) \times \R \cup (0,0)$ si $0 \in (a,b)$ y este conjunto no es abierto en $\R \times \R$. Por ende $\tau_Z = \sette{\sett{0} \times (a,b) \ , \ (c,d) \times \sett{0}}{0 \not \in (c,d)}$ \qed
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 21}
+
+\begin{proof}
+
+???
+
+\end{proof}
+
+\item {Ejercicio 22}
+
+\begin{proof}
+???
+\end{proof}
+
+\item{Ejercicio 23}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Sea $f(t) = e^{(2 \pi i t)}$, entonces tenemos que $f: \R \rightarrow S^1$ y $x \sim y \ sii \ x,y \in \Z \Longleftrightarrow f(x)=f(y)=(0,1)$. Por ende por PU del cociente $\exists \widetilde{f} : \R / \Z \rightarrow S^1$ continua. Notemos que $\widetilde{f}$ es continua, biyectiva y la inversa es $g(z) = arg(z)/ 2 \pi$ que es continua. Por ende $\widetilde{f}$ es homeo.
+
+\item Como $\R \simeq [0,1]$ entonces $\R^2 \simeq I^2$, entonces $\R^2 / \Z \times \Z \simeq I^2 \times \Z \times \Z \simeq I / \Z \times I / \Z$ y por el item anterior $I / \Z \simeq S^1$, por ende $\R^2 / \Z \times \Z \simeq T$
+
+\item Es claro que $S^2 \simeq I^2 / \sim$ donde $x \sim y \Longleftrightarrow x,y \in \partial(I^2)$ y centremos al cuadrado en el 0. Preguntar...
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 24}
+
+\begin{proof}
+
+Tenemos que ver que $f$ es inicial! Sea $U \subset X$ abierto, tenemos que ver que $U =f^{-1}(V)$ con $V \subseteq Y$ abierto. Ahora como $f$ es inyectiva tenemos que  $U = f^{-1}(f(U))$ y como $f$ es final $f(U)$ es abierto sii $f^{-1}(f(U))$ es abierto, que lo es por hip\'otesis. Por ende probamos que $U \subset X$ es abierto sii $U = f^{-1}(V)$ con $V \subset Y$ abierto (y dio que $V = f(U)$). Por ende $f$ es subespacio por ser inyectiva e inicial. \qed
+
+\end{proof}
+
+\item {Ejercicio 25}
+
+\begin{proof}
+
+Sea $V \subset Y$, como $f$ es continua si $V$ es abierto entonces $f^{-1}(V)$ es abierto. Ahora debemos ver que $V \subset Y$, tal que $U = f^{-1}(V)$ es abierto entonces $V$ es abierto. Ahora sea $U =  f^{-1}(V)$ abierto, como $f$ es inicial $U$ es abierto sii $U = f^{-1}(H)$ con $H \subset Y$ abierto, y como $f$ es suryectiva $V=f(U) = f(f^{-1}(H)) = H$, por ende $H = V$ y $V$ es abierto. Por ende $f$ es cociente por ser suryectiva y final. \qed
+
+\end{proof}
+
+\item {Ejercicio 26}
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item Recordemos 	que $1 - \chi_U = \chi_{U^{c}}$ y por ende nos dicen que $U$ es abierto sii $\chi_{U^{c}}$ es continua. 
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$}
+
+Sea $U$ abierto, entonces $\chi_{U^c}^{-1}(\sett{0}) = U$ es abierto, por ende $\chi_{U^c}$ es continua.
+
+\item {$\Longleftarrow)$}
+
+Sea $\chi_{U^c}$ continua, entonces $\chi_{U^c}^{-1}(\sett{0}) = U$ es abierto.
+
+\end{itemize}
+
+\item Sea $U \subset X$ abierto. Veamos que $U = \chi_{U^c}^{-1}(V)$ con $V \subset \mathfrak{S}$ abierto. Tomemos $V = \sett{0}$, entonces $U = \chi_{U^c}^{-1}( \sett{0})$, por ende la familia $\sett{\chi_U}$ es inicial.
+
+\end{enumerate}
+
+\end{proof}
+
+\item {Ejercicio 27}
+
+\begin{proof}
+???
+\end{proof}
+
+\item {Ejercicio 28}
+
+\begin{proof}
+Sea $U \subset X$ abierto sub-b\'asico, entonces $U = f_j ^{-1}(V)$ con $V \subset X_i$ abierto. Entonces $e(U) = (f_i(U))_{i \in I}$ sea $x \in e(U)$
+\end{proof}
+
+\item {Ejercicio 29}
+
+\begin{proof}
+
+Como $\mathcal{F}$ separa puntos, entonces $e$ es inyectiva, en efecto si $x \neq y$, entonces $\exists i_0 \ / f_{i_0}(x) \neq f_{i_0}(y) \Longrightarrow e(x) \neq e(y)$. Adem\'as por el ejercicio anterior es abierta, por ende sea $U$ abierto. Entonces $U = e^{-1}(e(U))$ por ser $e$ inyectiva, y $e(U)$ es abierto por ser $e$ abierta. Por ende $e$ es inyectiva e inicial, y por ende es subespacio. \qed
+
+\end{proof}
+
+\item {Ejercicio 30}
+
+\begin{proof}
+
+\begin{itemize}
+
+\item {$\Longrightarrow)$} 
+
+Sea $g : Y \rightarrow Z$ tal que $f \circ g : X \rightarrow Z$ es continua. Sea el diagrama:
+
+\[
+\begin{tikzcd}
+X \arrow{r}{f} & Y \arrow{r}{g} & Z \\
+X_i \arrow{u}{i_i} \arrow{ur}{f_i} & \\
+\end{tikzcd}
+\]
+
+Como $i_i$ es continua, entonces $i_i \circ f \circ g = f_i \circ g$ son continuas, pero como $\sett{f_i}$ es final tenemos que $g$ es continua. Por ende $f$ es final.
+
+\item {$\Longleftarrow)$}
+
+Sea $g : Y \rightarrow Z$ tal que $f_i \circ g$ es continua, entonces $i_i \circ f \circ g$ es continua, pero como $X$ tiene la topolog\'ia final respecto a $\sett{i_i}$ tenemos que $f \circ g$ es continua, y como $f$ es final entonces $g$  es continua. Por ende $\sett{f_i}$ es final . \qed
+
+\end{itemize}
+
+\end{proof}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,437 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Geometr\'ia Proyectiva - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 4}
+	
+	\bigskip
+
+\begin{enumerate}
+	
+	\item Ejercicio 1
+	
+	\label{Ejercicio 1}
+	
+	\begin{proof}
+		
+		Vayamos por partes:
+		
+		\begin{itemize}
+			
+			\item[i) $\Longrightarrow$ ii)] Supongamos que para cada punto $x \in M$ existen abiertos $U,V \subseteq \R^n$ y un difeomorfismo $h : U \rightarrow V$ tales que $x \in U$ y:
+			
+			\[
+			h(U \cap M) = V \cap \left( \R^k \times 0^{n-k} \right) = \sett{y \in V \ / \ y_{k+1} = y_{k+2} = \dots = y_n = 0}
+			\]
+			
+			Y queremos ver que para todo punto $x \in M$ existen abiertos $U \subseteq \R^n$ y $W \subseteq \R^k$ y una funci\'on diferenciable inyectiva $\phi : W \rightarrow \R^n$ tal que:
+			
+			\begin{enumerate}
+				\item $x \in U$
+				\item $\phi(W) = M \cap U$
+				\item $D\phi(y)$ tiene rango $k$ para todo $y \in W$
+				\item $\phi^{-1} : \phi(W) \rightarrow W$ es continua
+			\end{enumerate}
+			
+			Notemos entonces que si llamamos $\pi_k : V \rightarrow \R^k$ a la proyecci\'on a las primeras coordenadas, entonces tenemos que $\pi_{k}(V \cap \left(\R^{k} \times 0^{n-k}\right)) = \sett{z \in \R^k \ / \ (z,0) \in V \cap \left(\R^{k} \times 0^{n-k}\right)} = W$ es un abierto de $\R^k$. Es m\'as, si llamamos $i_k (y) = (y,0)$ a su inversa tenemos que $\phi := h^{-1} \circ i_k : W \rightarrow U$ esta bien definida. Veamos que esta es la parametrizaci\'on que nos sirve:
+			
+			\begin{enumerate}
+				\item $x \in U$ por hip\'otesis
+				\item $\phi(W) = h^{-1}(i_k(W)) = h^{-1}(V \cap \left(\R^{k} \times 0^{n-k}\right)) = h^{-1}(h(U \cap M)) = U \cap M$
+				\item Sabemos que $i_k$ es diferenciable e inyectiva pues es al inclusi\'on, y adem\'as $h ^{-1}$ es diferenciable e inyectiva pues $h$ es difeomorfismo, conclu\'imos que  $\phi$ es diferenciable e inyectiva.
+				\item $D\phi(y) = D(h^{-1} \circ i_k)(y) = Dh^{-1}(y,0) \circ Di_k(y)$ por la regla de la cadena. Por el teorema de la funci\'on inversa sabemos que $rg(Dh^{-1}(y,0)) = rg(Dh^{-1}(z)) = n$ para todo $z \in V$, y como $i_k$ es transformaci\'on lineal entonces $rg(Di_k(y)) = rg(\norm{i_k}_{E})$ y:
+				
+				\[
+				rg(\norm{i_k}_{E}) = rg \left(
+				\left[
+				\begin{array}{c|c}
+				Id_k & 0 \\
+				\hline
+				0 & 0
+				\end{array}
+				\right] \right) = k
+				\]
+				
+				Por lo tanto $D\phi(y)$ tiene rango $k$ para todo $y \in W$
+				
+				\item Notemos que $\phi^{-1}: U \cap M \rightarrow W$ esta dada por $\phi{-1} = \pi_k \circ h$ que es continua por ser composici\'on de continuas.
+			\end{enumerate}
+			
+			\item[ii) $\Longrightarrow$ i)] Sea $x \in M$, luego por hip\'otesis existen $x \in U \subseteq \R^n$ y $W \subseteq \R^k$ abiertos tal que $\phi : W \rightarrow \R^n$ es una parametrizaci\'on, tomando si es necesario $\tilde{\phi^{-1}} =  \phi^{-1} - \phi^{-1}(x)$ podemos suponer que $\phi(0) = x$. Supongamos sin p\'erdida de generalidad que la primer sub-matriz de $k \times k$ tenga determinante no nulo, o sea $det \left( \dfrac{\partial \phi_i}{\partial u_j} \vert_{0} \right)_{i,j \leq k} \neq 0$. Consideremos $G : W \times \R^{n-k} \rightarrow \R^{n}$ dado por $G(u,t_{k+1} , \dots, t_n) = \left(\phi_1(u) , \dots , \phi_{k}(u), \phi_{k+1}(u) + t_{k+1} , \dots , \phi_{n}(u) + t_n \right)$, luego se ve que $DG_{0}$ es un isomorfismo, por lo que por el teorema de la funci\'on inversa existe $A \subseteq W $, $\delta > 0$ y $B \subseteq \R^n$ tal que $G : A \times (-\delta , \delta)^{n-k} \rightarrow B$ es un difeomorfismo. Notemos que como $A \subseteq W$ tenemos que $\phi(A) = \tilde{U} \cap M$ con $\tilde{U} \subseteq U$ abierto y adem\'as por construcci\'on $x = G(0) \in B \cap \tilde{U}$, luego existe $\epsilon < \delta$ y $\tilde{A} \subseteq A$ tal que $G(\tilde{A} \times (-\epsilon,\epsilon))= V \subseteq U \cap \tilde{U}$ es un difeomorfismo de $R^n$. Finalmente es claro que $G(\tilde{A} \times \sett{0}) = \phi(\tilde{A}) \subseteq V\cap M$, y rec\'iprocamente si $q \in V \cap M$ entonces como $V \cap M \subseteq U \cap \tilde{U} \cap M \subseteq \phi(A)$ entonces $q = G(u',0) = G(u,t)$ y como $G$ es biyectiva resulta que $u = u'$. Conclu\'imos que $G^{-1}$ es el difeomorfismo buscado. \qed
+			
+		\end{itemize}
+		
+	\end{proof}
+	
+	\item Ejercicio 2
+	
+	\label{Ejercicio 2}
+	
+	\begin{proof}
+		
+		Sea $x \in N \subseteq M$, luego por un lado $N = W \cap M$ pues $N$ es abierto relativo y por el otro como $M$ es subvariedad de dimensi\'on $k$ existen $U,V \subseteq \R^n $ abiertos y $h: U \rightarrow V$ difeomorfismo, tal que $x \in U$ y $h(U \cap M)= V \cap \left(\R^{k} \times 0 ^{n-k}\right)$. Por lo tanto si consideramos $g = h|_{(U \cap W)}$ luego $g$ es difeomorfismo pues $h$ lo era y ademas trivialmente se sigue cumpliendo que $g(U \cap W \cap M) = h(U \cap W) \cap \left(\R^{k} \times 0 ^{n-k}\right)$ por lo que $N$ es subvariedad de dimensi\'on $k$. \qed
+
+	\end{proof}
+	
+	\item Ejercicio 3
+	
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		
+		Sea $x \in M$, luego como $rg(df)(x) = n-k$ tenemos que $df : \R^n \rightarrow \R^{n-k}$ es suryectiva; como $x \in M \subseteq U$ entonces existe $\epsilon > 0$ tal que $B_{\epsilon}(x) \subseteq U$. Definamos $g : B_{\epsilon}(0) \rightarrow \R^{n-k}$ dado por $g(u) = f(u+x)$, luego $dg|_{B_{\epsilon}(0)} = df|_{B_{\epsilon}(x)}$ y entonces $dg$ es suryectiva en un entorno de $0$. En este punto supongamos sin pérdida de generalidad que $det \left(\dfrac{\partial g_i}{\partial{u_j}}\right)_{\left\lbrace k+1 \leq i,j \leq n\right\rbrace} \neq 0$ pues $dg$ es suryectiva.
+		
+		Finalmente sea $h : B_{\epsilon}(0) \rightarrow \R^n$ dado por $h(u) = (u_1 , \dots , u_k , g(u))$, luego es claro que $dh$ es un isomorfismo  por lo tanto existe $W \subseteq B_{\epsilon(0)}$, $V_1 \subseteq \R^{k}$ y $V_2 \subseteq \R^{n-k}$ tal que $h: W \rightarrow V_1 \times V_2$ es un difeomorfismo. Notemos entoces que $F = h(u-x)$ cumple que las hip\'otesis del ejercicio 1, luego por \ref{Ejercicio 1} $M$ es una subvariedad de dimensi\'on $n-k$ \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 4
+	
+	\label{Ejercicio 4}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Sea $x \in M$ luego por ser $M$ subvariedad de dimensi\'on $k$ existe $U \subseteq \R^n$, $W \subseteq \R^{k}$ y $\phi: W \rightarrow \R^n$ tal que:
+			
+			\begin{enumerate}
+				\item $x \in U$
+				\item $\phi(W) = M \cap U$
+				\item $D\phi(y)$ tiene rango $k$ para todo $y \in W$
+				\item $\phi^{-1} : \phi(W) \rightarrow W$ es continua
+			\end{enumerate}
+			
+			Afirmo que existe un abierto $V \subseteq W$, $\epsilon > 0$ y $\phi(W) \subseteq \Omega \subseteq \R^n$ y $F : V \times (-\epsilon, \epsilon)^{n-k} \rightarrow \Omega$ difeomorfismo tal que $F (u,0) = \phi(u)$.
+			
+			En efecto, como $rg(d\phi) = k$ entonces podemos asumir sin p\'erdida de generalidad que $det \left(\dfrac{\partial \phi_i}{\partial{u_j}}\right)_{\left\lbrace 1 \leq i,j \leq k\right\rbrace} \neq 0$, y luego si definimos $F(u,t) : W \times \R^{n-k} \rightarrow \R^n$ dado por $F(u,t_{k+1} , \dots , t_n) = (\phi_1(u) , \dots , \phi_{k}(u), \phi_{k+1}(u) + t_{k+1} , \dots , \phi_{n}(u) + t_{n} )$ entonces $dF$ es un isomorfismo. Por el teorema de la funci\'on inversa existe $V \subseteq W, \epsilon > 0 , \Omega \subseteq \R^n$ tal que $F : V \times (-\epsilon, \epsilon)^{n-k} \rightarrow \Omega$ es un difeomorfismo tal que $F(u,0) = \phi(u)$.
+		
+			Luego de aqu\'i es claro que $h = \pi_{n-k}  \circ F$ cumple que tiene rango $n-k$ y $h^{-1}(0) = \phi(V) = V \cap M$ \qed
+			
+			\item ???
+			
+		\end{enumerate}
+
+	\end{proof}
+	
+	\item Ejercicio 5
+	
+	\label{Ejercicio 5}
+	
+	\begin{proof}
+		
+		Sea $\phi : \R^n \rightarrow \R^{n+m}$ dado por $\phi(x) = (x,f(x))$ y veamos que $\phi$ es una parametrizaci\'on de $\Gamma_f$. Para ello es claro que $\phi$ es inyectiva y que $\phi(\R^n) = \Gamma_f \cap \R^{n+m}$, adem\'as si $f$ es diferenciable entonces $\phi$ es diferenciable y finalmente si $\pi_k (x,f(x)) = x$ luego $\pi_k = \phi^{-1}$ es continua. Finalmente es f\'acil ver que:
+		
+		\[
+		rg(d\phi) = rg \left(
+		\left[
+		\begin{array}{c|c}
+		Id_n & 0 \\
+		\hline
+		df & 0
+		\end{array}
+		\right] \right) = n
+		\]
+		
+		Por lo que $\Gamma_f$ es una subvariedad de dimensi\'on $n$ \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 6
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		Vayamos de a pasos:
+		
+		\begin{itemize}
+			
+			\item [i) $\Longrightarrow$ ii)] Sea $p \in M$ y sea $U \ni p$ tal que existe $g: U \rightarrow \R$ extensi\'on diferenciable de $f$, luego tomemos una carta $(V,x)$ con $V \subseteq U \cap M$, luego $f \circ x^{-1} |_{x(V)} = g \circ x^{-1} |_{x(V)}$ y como $g,x^{-1}$ son diferenciables entonces $f \circ x^{-1}$ es diferenciable. 
+			
+			\item  [ii) $\Longrightarrow$ iii)] Sea $p \in M$ y $(V,y)$ una carta arbitraria alrededor de $p$ y $(U,x)$ la carta de $p$ tal que $f \circ x^{-1}$ es diferenciable. Luego si considero $W \subseteq U \cap V$ entonces $f \circ y^{-1} |_{y(W)} = (f \circ x^{-1} |_{x(W)}) \circ (x \circ y^{-1})$ que es diferenciable.
+			
+			\item  [iii) $\Longrightarrow$ i)] Notemos que por la resoluci\'on de \ref{Ejercicio 1} sabemos que existe $U,V \subseteq \R^n$ abiertos tal que $p \subseteq U$ y $h : U \rightarrow V$ difeomorfismo tal que $h(U \cap M) =  \sett{y \in V \ / \ y_{k+1} = \dots = y_n = 0} = W$ y por lo tanto $\pi_k \circ h : U \rightarrow \pi_k(V)$ es una aplicaci\'on diferenciable de rango $k$. Luego sea $g = f \circ x^{-1} \circ h$ que es diferenciable y cumple que $g |_{U\cap M} = \left(f \circ x^{-1}  \right)|_W =  f|_{U \cap M}$. \qed
+			
+		\end{itemize}
+		
+	\end{proof}
+	
+	\item Ejercicio 7
+	
+	\label{Ejercicio 7}
+	
+	\begin{proof}
+		
+		Sea $p_i : \R^p \rightarrow \R$, luego como $g$ es diferenciable se tiene que existe $W \subseteq \R^m$ y $\tilde{g}: W \rightarrow P$ tal que $g|_{W \cap N} = \tilde{g}|_{W \cap N}$, similarmente existen $U \subseteq \R^n$ y $\tilde{f}$, luego si consideramos $V= f^{-1}(f(U) \cap W) \subseteq U$ entonces $p_i \circ g \circ f|_{V \cap M} = p_i \circ \tilde{g} \circ \tilde{f}|_{V \cap M}$ que es diferenciable; conclu\'imos que $g \circ f$ es diferenciable. \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 8
+	
+	\label{Ejercicio 8}
+	
+	\begin{proof}
+		
+		Para un lado, sea $v \in df(\R^k)$ y tomemos la carta $(f(W) =V,f^{-1} = x)$ alrededor de $p$. Luego existen $w_1, \dots , w_k \in \R$ tal que $v = \Bigsum{1 \leq i \leq n}{w_i df(e_i)}$, si consideramos $w = (w_1, \dots , w_k)$ entonces $\alpha(t) = x(p) + tw \in \R^k$ y se tiene que $\alpha(0) = p$ y $\dot{\alpha}(0) = w$. 
+		Por lo tanto existe $\epsilon>0$ tal que $c = x^{-1} \circ \alpha \in V$ para todo $t \in (-\epsilon, \epsilon)$ y se tiene que $c(0) = p$ y $\dot{c}(0) = dc_0(1) = d(x^{-1} \circ \alpha)_0 (1) = dx^{-1}_{x(p)} \circ d\alpha_0 (1) = dx^{-1}_{x(p)}(\dot{\alpha}(0)) = dx^{-1}_{x(p)} (w) = \Bigsum{1 \leq i \leq n}{w_i df(e_i)} = v$.
+		
+		Rec\'iprocamente, supongamos que existe $c: (-\epsilon, \epsilon) \rightarrow M$ tal que $c(0) = p$ y $dc_0(1)=v$, luego $x \circ c : (-\epsilon,\epsilon) \rightarrow W$ es una curva diferenciable tal que $d(x \circ c)_0(1) = \left( \dfrac{d(x_1 \circ c)}{dt}(0) , \dots , \dfrac{d(x_1 \circ c)}{dt}(0)  \right)$, luego $v = dc_0(1) = dx^{-1}_{x(p)} \left( \dfrac{d(x_1 \circ c)}{dt}(0) , \dots , \dfrac{d(x_1 \circ c)}{dt}(0)  \right) = \Bigsum{1 \leq i \leq k}{\dfrac{d(x_1 \circ c)}{dt}(0) dx^{-1}_{x(a)}(e_i)} \in dx^{-1}(\R^k)$. \qed
+	\end{proof}
+	
+	\item Ejercicio 9 trivial
+	
+	\item Ejercicio 10
+	
+	\label{Ejercicio 10}
+	
+	\begin{proof}
+		
+		Sea $F : \R^3 \rightarrow \R$ dado por $F(x,y,z)=x^2 + y^2 -1 $, luego notemos que $dF_p = \nabla F (p) = (2x , 2y , 0)_p$ y si $p \in \mathcal{C}$ el cilindro, luego $rg(dF_p) = 1 = 3-2$. Por lo tanto por \ref{Ejercicio 3} si consideramos $U= \R^3$ se tiene que $\mathcal{C}$ es una subvariedad regular de dimensi\'on $2$, ie: una superficie regular por \ref{Ejercicio 1}.
+		
+		No obstante, como $F$ no es biyectiva para obtener una parametrizaci\'on por los m\'etodos de \ref{Ejercicio 3} deber\'iamos computar $F^{-1}$ y entonces tendr\'iamos $4$ cartas. Por otro lado en polares $\phi(\theta,z) = (\cos (\theta) , \sin(\theta) , z)$ es una parametrizaci\'on de $\mathcal{C}$ pues es diferenciable, una inmersi\'on y es una biyecci\'on del abierto $(0,2\pi) \times \R$ con $\mathcal{C} = \R^3 \cap \mathcal{C}$.\qed
+
+	 \end{proof}
+	 
+	 
+	\item Ejercicio 11
+	
+	\label{Ejercicio 11}
+	
+	\begin{proof}
+		
+		Ya vimos en \ref{Ejercicio 5} que $\Gamma_f$ es una superficie regular, si $p \in \Gamma_f$ luego $T_p\Gamma_f = \langle d\phi_{\phi^{-1}(p)}(e_1) , d\phi_{\phi^{-1}(p)}(e_2) \rangle = \langle \dfrac{\partial \phi}{\partial x}|_{(x,y)} , \dfrac{\partial \phi}{\partial y}|_{(x,y)} \rangle = \langle \left( 1 ,0 , \dfrac{\partial f}{\partial x} \right) , \left( 0 ,1 , \dfrac{\partial f}{\partial y} \right) \rangle = \langle (-\nabla f , 1) \rangle^{\perp}$. \qed
+		
+	\end{proof}
+		
+	\item Ejercicio 12
+	
+	\label{Ejercicio 12}
+	
+	\begin{proof}
+		
+		Es claro que $\phi$ es biyectiva y diferenciable, adem\'as:
+		
+		\[
+		rg(d\phi) = rg \left(
+		\left[
+		\begin{array}{c c c}
+		\dot{x}\cos(\theta) & \dot{x}\sin(\theta) & \dot{z} \\
+		-x\sin(t) & x\cos(\theta) & 0
+		\end{array}
+		\right] \right) = 2
+		\]
+		
+		Por lo que $\phi: (a,b) \times (0,2\pi) \rightarrow M$ es una parametrizaci\'on.
+		
+		De este modo es claro que el toro es cubierto por dos parametrizaciones de este estilo, es decir $\phi_1(t,\theta) : (2+\cos(t))(\cos(\theta) , \sin(\theta),0) + (\sin(t)(0,0,1)$ donde $\phi_1 :  (0,2\pi) \times (a,b) \rightarrow T$ y $\phi_2 :  (0,2\pi) \times (a,b) \rightarrow T$ dado por $\phi_2(t,\theta) = \phi_1(t,\theta + \pi/2)$. Por lo tanto el toro es una superficie regular por ser cubierto por parametrizaciones. \qed
+		
+	\end{proof}
+		
+	\item Ejercicio 13
+	
+	\label{Eercicio 13}
+	
+	\begin{proof}
+		Notemos que $P:S^2 \setminus N \rightarrow \R^2$ esta dado por $P(x,y,z) = \left( \frac{x}{1-z} , \frac{y}{1-z} ,0 \right)$	que es continua; afirmo que $f(s,t)=P^{-1}(s,t,0) = \left( \frac{2s}{1+s^2 + t^2} , \frac{2t}{1+s^2 + t^2} , \frac{s^2+t^2-1}{1 + s^2+t^2} \right)$. En efecto, 
+		
+		\[
+		\begin{aligned}
+		P \circ f(s,t) = & P\left( \frac{2s}{1+s^2 + t^2} , \frac{2t}{1+s^2 + t^2} , \frac{s^2+t^2-1}{1 + s^2+t^2} \right) \\
+		= & \left( \dfrac{\frac{2s}{1+s^2 + t^2}}{1-\frac{s^2+t^2-1}{1 + s^2+t^2}} , \dfrac{\frac{2t}{1+s^2 + t^2} }{1-\frac{s^2+t^2-1}{1 + s^2+t^2} }, 0\right) \\
+		= & \left( \dfrac{\frac{2s}{1+s^2 + t^2}}{\frac{2}{1 + s^2+t^2}} , \dfrac{\frac{2t}{1+s^2 + t^2} }{\frac{2}{1 + s^2+t^2} }, 0\right) \\
+		= & (s,t,0)
+		\end{aligned}
+		\]
+		
+		\[
+		\begin{aligned}
+		f \circ P(x,y,z) = & f\left(\left( \frac{x}{1-z} , \frac{y}{1-z} \right) \right) \\
+		= & \left( \frac{2x(1-z)}{(1-z)^2+x^2 + y^2} , \frac{2y(1-z)}{(1-z)^2+x^2 + y^2} , \frac{(\frac{x}{1-z})^2+(\frac{y}{1-z} )^2-1}{1 + (\frac{x}{1-z})^2+(\frac{y}{1-z} )^2} \right)\\
+		= & \left( \frac{2x(1-z)}{(1-z)^2+x^2 + y^2} , \frac{2y(1-z)}{(1-z)^2+x^2 + y^2} , \frac{x^2+y^2-(1-z)^2}{(1-z)^2 + x^2+y^2} \right)\\
+		= & \left( x , y, \frac{1 - z^2 -(1-2z + z^2)}{2(1-z)} \right) \\
+		= & (x,y,z)
+		\end{aligned}
+		\]
+		
+		Por lo tanto tenemos que $f$ es una biyecci'on de $\R^2 \rightarrow S^2 \setminus N$ diferenciable y con inversa continua. Bastar\'ia ver que $rg(df)=2$ pero muchas cuentas.... Por lo tanto $f$ es una parametrizaci\'on de $S^2 \setminus N$ \qed
+		
+	\end{proof}
+	
+	\item Ejercicio 14
+	
+	\label{Ejercicio 14}
+	
+	\begin{proof}
+		Sea $f = (\frac{x}{a})^2 + (\frac{y}{b})^2 + (\frac{z}{c})^2 -1$, luego $f: \R^3 \rightarrow \R^{3-2}=\R$ es una aplicaci\'on diferenciable con $0$ en su imagen tal que $\mathcal{E} = f^{-1}(0)$ y $rg(df_p) = 3-2=1$ para todo $p \in \mathcal{E}$; luego por \ref{Ejercicio 3} se tiene que $E$ es una superficie regular. Para ver parametrizaciones una forma simple es tomar $\mathcal{A}$ un atlas para $S^2$ y tomas $f(x,y,z)=(ax,yb,cz) : S^2 \rightarrow \mathcal{E}$; luego como tanto $f$ como $f^{-1}$ admiten extensiones diferenciables resulta que $f$ es un difeomorfismo y por lo tanto $f(\mathcal{A})$ es un atlas para $\mathcal{E}$. Otra ser\'ia $\Phi(\theta,\psi) = (a \cos(\theta)\sin(\psi) , b\sin(\theta)\sin(\psi) , c \cos(\psi))$ que son las coordenadas esf\'ericas alargadas en los ejes. \qed
+	\end{proof}
+	
+	\item Ejercicio 15
+	
+	\label{Ejercicio 15}
+	
+	\begin{proof}
+		Si $F$ resultase diferenciable tal que $dF_p \neq 0$ para todo $p \in F^{-1}(0)=M$ luego por \ref{Ejercicio 3} se tiene que $M$ es una superficie regular. Supongamos que $c : (-\epsilon, \epsilon) \rightarrow M$ es una curva diferenciable tal que $c(0)=p$ y $\dot{c}(0)=v$, luego $F \circ c = 0$ por lo que $dF_p (v) = 0$ para todo $v \in T_pM$. Por otro lado $dF_p(v) = dF_p(\dot{c}(0)) = d(F \circ c)_0(1) = \frac{d(F \circ c)}{dt}|_{0} = \Bigsum{1 \leq i \leq 3}{\dfrac{\partial F}{\partial u_i}} \dfrac{d c_i}{dt} = \ip{\nabla F|_{p} , v}$; por lo tanto como $\nabla F _p \neq 0$ para todo $p \in M$ conclu\'imos que $T_pM = {\nabla F |_p}^{\perp}$. \qed
+	\end{proof}
+	
+	\item Ejercicio 16
+	
+	\label{Ejercicio 16}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Afirmo que el cono no es una superficie regular, para eso notemos $M = S^+ \cup S^-$ con $S^+ = \sett{u \in S \ / \ u_z \geq 0}$. Sea $A \subseteq \R^2$ abierto, $U \subseteq \R^3$ y $h: A \rightarrow U \cap M$ parametrizaci\'on, en particular homeomorfismo; sean adem\'as $a,b,c \in A$ tal que $h(a) \in S^+$, $h(b)=0$ y $h(c) \in S^-$ que en particular dice que $a\neq b \neq c$ pues $h$ es biyectiva. Como $A$ es arco-conexo existe $\gamma: I \rightarrow A$ camino de $a$ a $c$ tal que $b \not \in \gamma(I)$; como $h$ es homeomorfismo entonces $h \circ \gamma$ es un camino de $h(a)$ a $h(c)$ tal que $0 \not \in h \circ \gamma(I)$, pero todo camino de $S^+$ a $S^-$ pasa por $0$ lo que conluye que no exist\'ia tal parametrizaci\'on.
+			
+			Aqu\'i probamos que el cono no es una variedad topol\'ogica, supongamos que nos preguntaban por $S^+$ que s\'i es una variedad topol\'ogica veamos que no es una superficie regular. Para eso recordemos que si $S$ es superficie entonces para todo $p \in S$ existe $U \subseteq \R^2$ y $V \subseteq \R^3$ tal que $\phi (u,v) = (u,v,f(u,v))$ es una parametrizaci\'on alrededor de $p$, por lo tanto si $S^+$ fuese superficie admitir\'ia una parametrizaci\'on $\phi=(x,y,f(x,y))$ alrededor de $0$ tal que $f^2 = x^2 + y^2$ con $f \geq 0$. Por la unicidad de la ra\'iz cuadrada se tiene que $f = \sqrt{x^2 + y^2}$ y como $f$ no es diferenciable conclu\'imos que no existe parametrizaci\'on alrededor del $0$.
+			
+			\item Sea $G$ el hiperboloide y tomemos $\phi(u,v) = (u,v,u^2-v^2)$, luego $\phi$ es claramente una biyecci\'on de abiertos y diferenciable, finalmente:
+			
+			\[
+			rg(d\phi) = rg \left(
+			\left[
+			\begin{array}{c c c}
+			1 &\dot 0 & 2u \\
+			0 & 1 & -2v
+			\end{array}
+			\right] \right) = 2
+			\]		
+			
+			Por lo tanto $\phi$ es una parametrizaci\'on de $G$. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+\end{enumerate}
+
+
+\end{document}

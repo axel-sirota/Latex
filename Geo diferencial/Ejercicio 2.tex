@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\sett}[1]{\{#1\}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\centerline{\bf Geometr\'ia Diferencial -- 1$^\circ$
+cuatrimestre 2016}
+\centerline{\sc Entrega Pr\'actica 2}
+
+\bigskip
+
+\textbf{Recordemos}: Una subvariedad de $\R^n$ de dimensi\'on $k$ es un conjunto $M \subset \R^n$ con la
+topolog\'ia de subespacio con la siguiente propiedad: para todo punto $p \in M$
+existen un entorno abierto $U$ de $p$, un abierto $V$ de $\R^n$ y un difeomorfismo $h: U
+\to V$ tal que $h(U \cap M) = V \cap (\R^k \times \{0\})$. Un par $(U, h)$ como el
+indicado se llama una \emph{carta de $U$ adaptada a $M$} .
+
+Ejercicio: Sea $W \subset \R^n$ abierto y $f: W \to \R^m$ una funci\'on diferenciable con la
+	siguiente propiedad:	para todo punto $x$ tal que $f(x) = 0$ el rango de $Df(x)$ es $m$.
+	Probar que $f^{-1}(0)$ es una subvariedad de dimensi\'on $n-m$.
+
+\begin{proof}
+
+Sea $M := f^{-1}(0) \subset \R^n$ y dot\'emoslo de la topolog\'ia subespacio, autom\'aticamente por ser subespacio de $\R^n$ es una variedad topol\'ogica. Sea $p \in M$, como $rk(Df)|_{M} = m = cte$ y $f$ es diferenciable entonces por el teorema del rango constante $\exists (U,\phi)$ carta con $p \in U$ y $(V,\psi)$ carta con $f(p)=0 \in V \ , \psi(f(p))=0$ tal que $\psi \circ f \circ \phi ^{-1}((x^1 , \dots x^n)) = (x^1 , \dots , x^{m} , 0 , \dots , 0 )$, o sea el siguiente diagrama conmuta:
+
+\[
+\begin{tikzcd}
+U \subset \R^n \arrow{r}{f} \arrow[swap]{d}{\phi} & V \subset \R^n \arrow[swap]{d}{\psi} \\ 
+\phi(U) \subset \R^n \arrow{r}{\overline{f}} & \psi(V) \subset \R^n \\ 
+\end{tikzcd}
+\]
+
+Donde $\overline{f}((x^1 , \dots x^n)) = (x^1 , \dots , x^{m} , 0 , \dots , 0 ))$
+
+
+Por ende notemos que si tomamos $U \ni p$ el del teorema y tomamos $V=\phi(U)$ y tomamos como el difeomorfismo $h := \phi$ entonces $\phi(U \cap M) = \sett{(\phi(u)_1 = \phi(u)_m = 0) \ , \ u \in U \cap M} = \phi(U) \cap (\R^{n-m} \times \sett{0})$ pues si $p \in U \cap M$ entonces $\overline{f} \circ \phi (p)= (\phi(p)_1, \dots , \phi(p)_m , 0 , \dots , 0) = \psi \circ f (p) = 0$. Por ende $M$ es una subvariedad de dimensi\'on $n-m$ por definici\'on. \qed
+\end{proof}
+
+\end{document}

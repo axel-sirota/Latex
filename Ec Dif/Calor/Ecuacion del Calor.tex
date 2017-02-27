@@ -1,0 +1,430 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{tikz-cd}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+		\begin{array}{lll}
+			#1 & \mbox{ } #2 \\
+			#3 & \mbox{ } #4 \\
+			#5 & \mbox{ } #6
+		\end{array}
+	\right.
+}
+
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+%\usepackage{amsthm}
+\usepackage{amsfonts, amssymb}
+\usepackage{mathrsfs}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[all]{xy}
+%\usepackage{graphics}
+%\usepackage[nosolutions]{practicas}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\sen{{\rm sen} \, \theta}
+\def\cos{{\rm cos}\, \theta}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+\def \en{\end{enumerate}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyfoot[CO]{\slshape \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\centerline{\bf Ecuaciones Diferenciales-- 2$^\circ$
+cuatrimestre 2015}
+\centerline{\sc Ecuaci\'on del calor}
+
+\bigskip
+
+\section{El marco}
+
+Nostros intentando resolver la ecuaci\'on:
+
+\begin{equation}
+\label{Calor}
+{
+	\left\{
+		\begin{array}{ll}
+			u_t -  \triangle u = 0 & (x,t) \in \R^n \times (0,\infty) \\
+			u(x,0)=g(x) & 
+		\end{array}
+	\right.
+}
+\end{equation}
+
+Uno encuentra que la soluci\'on esta dada (al menos formalmente) por $u(x,t)=(g \ast \Phi(-,t))(x)$ donde $\Phi$ es la densidad de una variable aleatoria $X \sim N(x,t)$. Entonces, usando que $X_n \Rrightarrow X$ donde $X_n \sim N(x,\frac{1}{n})$ y $X \sim \delta_0$ uno llega al siguiente lema:
+
+\begin{lemma}
+Sea $u(x,t)$ la soluci\'on de \ref{Calor} dada antes, entonces se tiene que:
+\begin{itemize}
+\item Si $g \in L^{\infty}(\R^n)$ y $x$ es un punto de continuidad de $g$, entonces se tiene que $\lim_{t \searrow 0}{u(x,t)} = g(x,t)$
+\item Si $g \in L^2(\R^n)$ se tiene que $\lim_{t \searrow 0}{\norm{u(.,t) - g}_{L^2(\R^n)}} = 0$
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Esto ya lo demostr\'o Mauro hace varios d\'ias.
+\end{proof}
+
+Pero nos queda la duda de si la soluci\'on propuesta es efectivamente una soluci\'on, en ese marco tenemos:
+
+\begin{proposition}
+\label{Solucion homogeneo}
+Sea $g \in C_b(\R^n)$ entonces la funci\'on $u$ dada antes cumple que:
+\begin{itemize}
+\item $u \in C^{\infty}(\R^n \times (0,\infty))$
+\item  $u_t -  \triangle u = 0 \quad (x,t) \in \R^n \times (0,\infty) $
+\item $\lim_{x \rightarrow x_0 \ t \searrow 0}{u(x,t)}=g(x_0) \ \forall x_0 \in \R^n$
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Es simple, ejercicio
+\end{proof}
+
+Ahora si se nos presenta un problema no homogeneo lo que vamos a hacer es aplicar el \textit{Principio de Duhamel} que nos dice que la soluci\'on es superponer soluciones homogeneas asociadas. En particular esto dice que:
+
+Sea el problema
+
+\begin{equation}
+\label{Calor no homogeneo}
+{
+	\left\{
+		\begin{array}{ll}
+			u_t -  \triangle u = f(x) & (x,t) \in \R^n \times (0,\infty) \\
+			u(x,0)=0 & 
+		\end{array}
+	\right.
+}
+\end{equation}
+
+entonces llamamos $u(x,t;s)$ a la soluci\'on de:
+
+\begin{equation}
+\label{Calor  homogeneo asociado}
+{
+	\left\{
+		\begin{array}{ll}
+			v_t -  \triangle v = 0 & (x,t) \in \R^n \times (0,\infty) \\
+			v(x,s)= f(x,s) & 
+		\end{array}
+	\right.
+}
+\end{equation}
+
+Y la idea va a ser superponer las diferentes condiciones iniciales $s$! En efecto:
+
+\begin{remark}
+$u(x,t) = \int_{0}^{t}{u(x,t,s)ds}$ es soluci\'on de \ref{Calor no homogeneo}.
+\end{remark}
+
+\begin{proof}
+Formalmente, tenemos que $u_t = u(x,t;t) + \int_{0}^{t}{u_t(x,t;s)ds} = f(x,t) + \int_{0}^{t}{\triangle u (x,t;s)ds} = f(x,t) + \triangle u(x,t)$
+\end{proof}
+
+Entonces si juntamos todo tenemos:
+
+\begin{theorem}
+
+Sea $g \in C_b(\R^n)$ y $f \in C^{2,1}_{c}(\R^n \times (0,\infty))$, entonces la funci\'on $u:\R^n \times (0, \infty) \rightarrow \R$ dada por:
+
+$$u(x,t) = (g \ast \Phi(-,t))(x) + \int_{0}^{t}{f \ast \Phi(-,t-s) ds}$$
+
+Verifica que:
+
+\begin{enumerate}
+\item $u \in C^{2,1}(\R^n \times (0, \infty))$
+\item $u$ es soluci\'on de:
+
+
+\begin{equation}
+\label{Calor completo}
+{
+	\left\{
+		\begin{array}{ll}
+			u_t -  \triangle u = f(x) & (x,t) \in \R^n \times (0,\infty) \\
+			u(x,0)= g(x) & 
+		\end{array}
+	\right.
+}
+\end{equation}
+
+\item $\lim_{x \rightarrow x_0 \ t \searrow 0}{u(x,t)}=g(x_0) \ \forall x_0 \in \R^n$
+
+\end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+Ejercicio
+\end{proof}
+
+
+Por ende ya sabemos la existencia de soluci\'on, como comentario no hay unicidad en ese dominio, por ende nos queda analizar la unicidad en dominios acotados donde ya sabemos de la clase de Pau que tenemos un resultado positivo. M\'as a\'un recordemos que en el espacio libre tenemos unicidad para funciones "que no crecen mucho"
+
+\section{M\'etodos de energ\'ia}
+
+Veamos un m\'etodo que nos va a dar la dependencia param\'etrica de la soluci\'on y como corolario la unicidad hacia atr\'as.
+
+\begin{proposition}
+
+Sea $h \in C(\overline{U})$ y sea $u \in C^{2,1}(U_T) \cap C(\partial_pU)$ una soluci\'on de:
+
+\begin{equation}
+\label{Calor estabilidad previa}
+{
+	\left\{
+		\begin{array}{lll}
+			u_t -  \triangle u = 0 & (x,t) \in U_T \\
+			u=0 & \partial U \times (0,T) \\
+			u = h & \overline{U} \times \{0\}
+		\end{array}
+	\right.
+}
+\end{equation}
+
+Entonces $u$ verifica que:
+
+$$\int_{U}{u^2}dx \leq \int_{U}{h^2 dx} \ \forall t \in [0,T]$$
+
+\end{proposition}
+
+\begin{proof}
+
+Multipliquemos \ref{Calor estabilidad previa} por $u$ es integremos en $U$, nos queda:
+
+$$\int_{U}{uu_t} - \int_{U}{u \triangle u} = 0 $$
+
+Pero como $uu_t = \frac{1}{2}(u^2)_t$, y del otro lado podemos usar partes, tenemos que:
+
+$$\frac{1}{2} \frac{d}{dt} \int_{U}{u^2} + \int_{U}{\| \nabla u \|^2} = 0$$
+
+Y por ende $\frac{1}{2} \frac{d}{dt} \int_{U}{u^2} \leq 0$ por o que si llamamos $e(t)= \int_{U}{u^2}$ nos queda que $\dot{e} \leq 0$ y por ende $e(t) \leq e(0)$ que es lo que quer\'iamos probar. \qed
+
+\end{proof}
+
+Lo que nos da:
+
+\begin{corollary}
+
+Sea $h_1,h_2 \in C(\overline{U})$ y sea $u_1,u_2 \in C^{2,1}(U_T) \cap C(\partial_pU)$ una soluci\'on de \ref{Calor estabilidad previa} respectivamente, entonces se tiene que:
+
+$$\int_{U}{|u_1 - u_2|^2}dx \leq \int_{U}{|h_1 - h_2|^2 dx} \ \forall t \in [0,T]$$
+
+\end{corollary}
+\begin{proof}
+Trivial \qed
+\end{proof}
+\begin{corollary}
+
+Existe a lo sumo una soluci\'on del problema:
+
+\begin{equation}
+\label{Calor estabilidad }
+{
+	\left\{
+		\begin{array}{lll}
+			u_t -  \triangle u = f & (x,t) \in U_T \\
+			u = g & \partial U \times (0,T) \\
+			u = h & \overline{U} \times \{0\}
+		\end{array}
+	\right.
+}
+\end{equation}
+
+\end{corollary}
+
+\begin{proof}
+Si $u_1,u_2$ son soluciones, entonces $w := u_1 -u_2$ verifica \ref{Calor estabilidad previa} con $h=0$ y por ende $\norm{w} = 0$ lo que da, junto a la continuidad de $w$ que $u_1 = u_2$ \qed
+\end{proof}
+
+Finalmente tenemos la unicidad hacia atr\'as:
+
+\begin{theorem}
+
+Sean $u_1,u_2 \in C^2(U_T)$ soluciones de:
+
+\begin{equation}
+\label{Calor unicidad atras}
+{
+	\left\{
+		\begin{array}{ll}
+			u_t -  \triangle u = f & (x,t) \in U_T \\
+			u = g & \partial U \times (0,T)
+		\end{array}
+	\right.
+}
+\end{equation}
+
+Entonces si $u_1(x,T) = u_2(x,T) \ \ \forall x \in U$, entonces $u_1 = u_2 $ en $U_T$
+
+\end{theorem}
+
+\begin{proof}
+
+Sea $w = u_1 - u_2$ y definamos la energ\'ia como $e(t) = \int_{U}{w(x,t)^2 dx}$ entonces se tiene que $\dot{e}(t) = -2 \int_{U}{|\nabla w|^2 dx}$ y $\ddot{e}(t) = -4 \int_{U}{\nabla w \cdot \nabla w_t dx} = 4 \int_{U}{\triangle w w_t dx} = 4 \int_{U}{(\triangle w)^2 dx}$.
+
+Por otro lado, como $w|_{\partial U}=0$ tenemos que $\int_{U}{|\nabla w|^2 dx} = -\int_{U}{w \triangle w dx} \leq (\int_{U}{w^2 dx})^{\frac{1}{2}}(\int_{U}{(\triangle w)^2 dx})^{\frac{1}{2}}$. Don la \'ultima desigualdad es Holder.
+
+Juntando todo tenemos que:
+
+
+\begin{equation}
+\label{convexidad}
+{
+(\dot{e})^2 \leq e(t) \ddot{e}
+}
+\end{equation}
+
+
+Sea $f(t) = log(e(t))$, entonces por \ref{convexidad} tenemos que $\ddot{f} \geq 0$ y $f$ es convexa. Ahora supongamos que $\exists [t_1,t_2] \subset [0,T]$ tal que $e|_{[t_1,t_2]}>0$, entonces:
+
+$$f((1-\tau)t_1 + \tau t_2) \leq (1-\tau)f(t_1) + \tau f(t_2)$$ 
+
+por lo que:
+
+$$ e((1-\tau)t_1 + \tau t_2) \leq e(t_1)^{(1-\tau)}e(t_2)^{\tau} $$
+
+Y por ende $e|_{[t_1,t_2]}=0$\qed
+\end{proof}
+
+\section{Movimiento Browniano}
+
+Notemos que la soluci\'on de \ref{Calor} en $n=1$ era $u(x,t)=\dfrac{1}{(2\pi t)^{\frac{1}{2}}}\int_{\R}{\phi(y)e^{\frac{-(x-y)^2}{2t}}} = \mathbb{E}(\phi(X_t))$ donde $X_t \sim N(x,t)$. Es m\'as Pablo les mostr\'o que si partimos de un paseo al azar sim\'etrico uno obtiene "en el l\'imite" la ecuaci\'on del calor! Pero entonces, que ser\'ia el l\'imite del paseo al azar? Sabemos por lo anterior que tiene que ver con la normal!
+
+Ganemos intuici\'on: Sea $P_n = \sum_{i=1}^{n}{X_i}$ donde $X_i \sim Be_{\{-1,1\}}(\frac{1}{2})$ el paseo al azar sim\'etrico, entonces es claro que $\mathbb{E}(P_n)=0$ y $Var(P_n)=n$. Sea ahora $k > 0$ y $t$ tal que $n=tk$ y sea $B_{k}(t) = \frac{1}{(k)^{\frac{1}{2}}} \sum_{i=1}^{[tk]}{X_i}$ donde ahora las $X_i \sim Be_{\{-\frac{1}{k},\frac{1}{k}\}}$. Es f\'acil ver que al ser un escalamiento por $k$ y dividir por $\frac{1}{(k)^{\frac{1}{2}}}$ tenemos que $\mathbb{E}(B_k(t))=0$ y $Var(B_k(t))=t$ . La idea es que si $k \rightarrow \infty$ ver que $\{B_k(t)\} \Rightarrow \{B(t)\}$ como proceso estoc\'astico, y adem\'as que tenga caminos continuos. Es f\'acil ver que, como los cumplen los paseos al azar, este proceso l\'imite debe cumplir que:
+
+\begin{itemize}
+
+\item $\{B(t)\}$ debe ser continuo, ie: fijado $\omega \in \Omega$ entonces $B(t,\omega)$ es una funci\'on continua.
+\item $B(t)-B(s)$ debe tener una distribuci\'on que \textit{solo dependa} de $t-s$
+\item Si $t<s<r<q$ entonces $B(s)-B(t)$ es independiente de $B(q)-B(r)$
+\item Como $\frac{[tk]}{k} \rightarrow t$ debe pasar que $\mathbb{E}(B(t))=0$ y $Var(B(t))=t$
+\item Finalmente por el teorema central del l\'imite se debe dar que $B(t) \sim N(0,t)$.
+
+\end{itemize}
+
+Llamamos a un proceso estoc\'astico \textit{Movimiento Browniano} si cumple todas esas caracter\'isticas. Es importante notar que este l\'imite es como proceso (o a mi gusto como convergencia d\'ebil de medidas de probabilidad). Un mont\'on de interrogantes ser\'ian en que espacio est\'a definido este proceso, a que filtraci\'on de sigma algebras esta asociado... Pra todo esto esta Teor\'ia de Probabilidades donde no se chamuya como ac\'a. Linda demo de existencia: Evans copado. Lindo libro genial para ver todo bien bien, Convergence of probability Measures
+
+Notemos que como caso particular, si llamamos $w_{t}^{x} = x + w_t $ con $w_t$ un MB, entonces se tiene que $\mathbb{E}({\phi(w_{t}^{x})})$ cumple \ref{Calor}!
+
+\subsection{Procesos de Markov}
+
+Una propiedad genial del MB que ayuda siempre es que $w_{t+s}|_{\{w_u,u \leq s,w_s=x\}} \sim w_{t}^{x}$. Esto es decir que saber la probabilidad en tiempo $t+s$ sabiendo la historia del proceso hasta $s$ y sabiendo donde termino en $s$ en lo mismo que la probabilidad del proceso en $t$ arrancando en $x$. Llamamos un \textit{proceso de Markov} al proceso que cumple eso. Sea el semigrupo $\mathcal{P}:=\{P_t , t\geq 0\}$ asociado a un proceso de Markov $\{\xi_t , t\geq 0\}$ dado por:
+
+$$P_t \phi(x) = \mathbb{E}(\phi(\xi_{t}^{x}))$$
+
+Es claro que $\mathcal{P} \curvearrowright B(\R)$
+
+\begin{proposition}
+$P_{t+s} = P_s \circ P_t$
+\end{proposition}
+
+\begin{proof}
+
+$$P_{t+s}\phi (x) = \mathbb{E}(\phi(\xi_{t+s}^{x})) = \mathbb{E}(\mathbb{E}(\phi(\xi_{t+s}^{x})| \xi_{u}^{x} \ , \ u \leq s))=\mathbb{E}(P_t\phi(\xi_{s}^{x}))=P_s ( P_t \phi)(x)$$ \qed
+
+\end{proof}
+
+Definimos el \textit{generador infinitesimal} de $\xi$ como:
+
+\begin{equation}
+\label{generador}
+{
+A\phi = \lim_{t \searrow 0}{\dfrac{P_t\phi -\phi}{t}}
+}
+\end{equation}
+
+\begin{theorem}
+
+Para $\phi \in \mathcal{D}(A)\cap B(\R)$ tenemos que $u(x,t)=(P_t \phi)(x)$ resuelve:
+
+\begin{equation}
+\label{Ecuacion markov}
+{
+	\left\{
+		\begin{array}{ll}
+			u_t =  Au \\
+			u(0,.) = \phi
+		\end{array}
+	\right.
+}
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+Notemos primero que $u(0,x)=\mathbb{E}(\phi(\xi_{0}^{x}))=\mathbb{E}(\phi(x))=\phi(x)$
+Adem\'as:
+
+$$u_t = \lim_{h \searrow 0}{\dfrac{P_{t+h}\phi - P_t \phi}{h}} = \lim_{h \searrow 0}{\dfrac{P_h(P_{t}\phi) - P_t \phi}{h}} = A(P_t(\phi))=Au$$\qed
+
+\end{proof}
+
+\begin{theorem}
+El generador del MB es $A= \frac{1}{2}\triangle$
+\end{theorem}
+\begin{proof}
+Hace falta definir el c\'alculo estoc\'astico y lo que es la integral de Ito respecto a un movimiento browniano.\qed
+\end{proof}
+\end{document}

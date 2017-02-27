@@ -1,0 +1,353 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\newcommand\pp{\mathbf{p}}
+\newcommand\mm{\mathbf{m}}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf \'Algebra 3 - $2^{\circ}$ cuatrimestre $2016$}
+	\centerline{\sc Pr\'actica 1}
+	
+	\bigskip
+	
+\begin{enumerate}
+	
+	\item Ejercicio 1
+	
+	\label{Ejercicio 1}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Sea $I \subsetneq A$ un ideal y consideremos $\mathcal{P} = \sett{R \subsetneq A \ , \ R \emph{ ideal } , \ I \subseteq R}$ ordenado por la inclusi\'on. Luego $\P$ es un poset y sea $\mathcal{L} \subseteq \P$ una cadena. Tomemos $B = \Bigcup{L \in \mathcal{L}}{L}$ que cumple que $L \subseteq B$ para todo $L \in \mathcal{L}$, luego veamos que $B \in \P$. 
+				
+			Como $1 \not \in L$ para todo $L \in \mathcal{L}$, luego $1 \not \in B$ y conclu\'imos que $B \subsetneq A$. Adem\'as como $I \subseteq L$ para todo $L \in L$ entonces $I \subseteq B = \Bigcup{L \in \mathcal{L}}{L}$. Finalmente sean $r \in A; a,b \in B$ luego $a \in L_a , \ b \in L_b \subseteq L_a$ y por lo tanto $a,b \in L_a$ con lo que $a +b \in L_a \subseteq B$; adem\'as $ra \in L_a \subseteq B$ por lo que $B$ es ideal.
+				
+			Conclu\'imos que toda cadena en $\P$ tiene cota superior y por lo tanto por el Lema de Zorn tiene un elemento maximal $P$ que es un ideal maximal.
+			
+			\item Sea $\pp$ un ideal primo de $A$ y sean $\overline{a}\overline{b} = 0 \in \quotient{A}{\pp}$, luego $ab \in \pp$ y como $\pp$ es primo (sin p\'erdida de generalidad podemos suponer que) $a \in \pp$, luego $\overline{a} = 0$. Conclu\'imos que $\quotient{A}{\pp}$ es \'integro.
+			
+			Rec\'iprocamente sean $ab \in \pp$, luego $\overline{ab} = \overline{a}\overline{b} = 0 \in \quotient{A}{\pp}$, como $\quotient{A}{\pp}$ es \'integro (sin p\'erdida de generalidad podemos suponer que) $\overline{a} = 0$, por lo que $a \in \pp$. Conclu\'imos que $\pp$ es primo.
+			
+			\item Sea $\mm$ un ideal maximal de $A$ y sea $\overline{x} \neq 0 \in \quotient{A}{\mm}$ luego $K = \mm + Ax$ es un ideal que cumple que $\mm \subsetneq K \subseteq A$, como $\mm$ es maximal se tiene que $K = A$ por lo que existe $s \in A; m \in \mm$ tal que $1 = m + sx$ con lo que $\overline{1} = \overline{s}\overline{x} \in \quotient{A}{\mm}$. Conclu\'imos que $\quotient{A}{\mm}$ es un cuerpo.
+			
+			Sea $K \subseteq A$ ideal tal que $\mm \subsetneq K \subseteq A $, luego existe $x \in K, x \not \in \mm$ y por lo tanto $\overline{x} \neq 0 \in \quotient{A}{\mm}$. Como es un cuerpo entonces existe $y \in A$ tal que $\overline{1} = \overline{x}\overline{y}$. Como $K$ es ideal $1 = yx \in K$ por lo que $K=A$, conclu\'imos que $\mm$ es maximal.
+			
+			\item Sea $f^{-1}(\mm) \subsetneq I \subseteq A$ un ideal y consideremos $f(f^{-1}(\mm)) \subseteq f(I) \subseteq B$ luego como existe $I \ni x \not \in f^{-1}(\mm)$ entonces por definici\'on $K=f(I) \ni f(x) \not \in f(f^{-1}(\mm))= \mm$ pues $f$ es suryectiva. Por otro lado sean $f(a),f(b) \in K$, entonces $f(a) + f(b) = f(a+b) \in K$ pues $I$ es ideal y $f$ morfismo de anillos; adem\'as si $r \in B$ como $f$ es epi entonces existe $j \in A$ tal que $f(j)=r$, luego $rf(a) = f(j)f(a) = f(ja) \in K$ pues $I$ es ideal y $f$ morfismo. Conclu\'imos que $K$ es ideal y como $\mm$ es maximal entonces $K = B$, por lo que $I = f^{-1}(B) = A$ y entonces $f^{-1}(\mm)$ es maximal (es claro que era ideal por la misma cuenta).
+			
+			\item Sea $Ker(f) \subseteq K$ el nucleo de $f$, luego como $K$ es cuerpo $ker(f) = 0$ o $ker(f) = K$, como $f \neq 0$ entonces $ker(f) = 0$ y $f$ es inyectivo.
+			
+			\item Sea $a\neq 0 \in D$, consideremos $f : D \rightarrow D$ dado por $f(x) = ax$, luego si $f(x) = ax = 0$ entonces como $D$ es dominio y $a \neq 0$ se tiene que $x = 0$. Por lo tanto $f$ es inyectiva y por cardinalidad es sobreyectiva, luego es biyectiva y entonces existe $b \in R$ tal que $1 = f(b)= ab$; conclu\'imos que $D$ es cuerpo. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Ejercicio 2
+	
+	 \label{Ejercicio 2}
+	 
+	 \begin{proof}
+	 	
+	 	Sea $ev_{b} : \Q[X] \rightarrow \Q[b]$ el morfismo evaluaci\'on, veamos que $ker(ev_b) \neq 0$ para los $b$ dados:
+	 	
+	 	\begin{itemize}
+	 		
+	 		\item Si $b = \sqrt{2}$ entonces $ev_{b}(X^2 -2) = 0$
+	 		
+	 		\item Si $b = \sqrt{3}$ entonces $ev_{b}(X^2 -3) = 0$
+	 		
+	 		\item Si $b = i$ entonces $ev_{b}(X^2 +1) = 0$
+	 		
+	 		\item Si $b = 2^{\frac{1}{{3}}}$ entonces $ev_{b}(X^3 -2) = 0$
+	 	\end{itemize}
+	 	
+	 	Luego en cada caso como $\Q$ es DIP entonces $\Q[X]$ es DIP y $ker(ev_b) = \ip{f}$ con $f$ el polinomio minimal de $b$ sobre $\Q$, luego como $\ip{f}$ es maximal por \ref{Ejercicio 1} se tiene que $\quotient{\Q[X]}{\ip{f}}$ es cuerpo, pero por el Primero Teo de isomorfismo $\quotient{\Q[X]}{\ip{f}} \simeq \Q[b]$, luego es cuerpo. \qed
+	 	
+	 \end{proof}
+	
+	\item Ejercicio 3
+	
+	\label{Ejercicio 3}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item  Sea $\phi : \C \rightarrow \R$ un morfismo, luego $\phi(1) = 1$ por lo que $0 = \phi(-1 + 1) = \phi(-1) + \phi(1) = \phi(-1) +1$; conclu\'imos que $\phi(-1) = -1$. Supongamos que $\phi(i) = a$, luego $-1 = \phi(-1) = \phi(i^2)=a^2$ pero $X^2 +1$ es irreducible en $\R[X]$, luego no existe tal $\phi$.
+			
+			\item Por el item anterior no existe un morfismo de cuerpos de $\C$ a $\R$.
+			
+			\item Sea $\phi : K \rightarrow L$ un morfismo de cuerpos, y sea $j : \Z \rightarrow L$ el morfismo inicial de $L$ e $i : \Z \rightarrow K$ el de $K$, luego tenemos que el siguiente diagrama conmuta:
+			
+			\begin{equation*}
+			\begin{tikzcd}
+			\Z \arrow[swap] {d} {i} \arrow{r} {1_{\Z}}   & \Z \arrow[swap] {d} {j} \\
+			K \arrow[swap] {r} {\phi} & L 
+			\end{tikzcd}
+			\end{equation*}
+			
+			Luego $\phi$ induce un morfismo $\psi : \quotient{\Z}{Ker(i)} \rightarrow \quotient{\Z}{ker(j)}$ y como $1_{\Z}$ es isomorfismo, resulta que $\psi$ tambi\'en lo es. Conclu\'imos que si $Char(k)=p$, luego $Char(L) = p$. Por lo tanto no existen morfismos de $\Q \rightarrow \FF_p$
+			
+			\item Sea $j: \Z \rightarrow K$ el morfismo inicial, luego por lo visto anteriormente si la caracter\'istica de $K$ no es $0$ no hay morfismos, por otro lado si la caracter\'istica de $K$ es $0$ entonces existe un \'unico morfismo pues $j$ es \'unico y pasa al cuerpo de fracciones de manera \'unica. Es m\'as, este morfismo $\overline{j} : \Q \rightarrow K$ es $\overline{j}(\frac{n}{m}) = (n 1_K) (m 1_K)^{-1}$.
+			
+			\item Por lo visto en \ref{Ejercicio 2} queremos un morfismo ${\phi} : \quotient{\Q[X]}{\ip{X^2 - 2}} \rightarrow \quotient{\Q[X]}{\ip{X^2 - 3}}$, para eso notemos que $\phi|_{\Q} = 1_{\Q}$ por lo que $\phi(a+b\sqrt{2}) = a+b\phi(\sqrt{2})$, luego $2= \phi((\sqrt{2})^2) = \phi(\sqrt{2})^2$. No obstante $(a+b\sqrt{3})^2 = a^2 + 3b^2 + 2ab\sqrt{3}$, pero no existen $a,b \in \Q$ que cumplan, por lo que no hay tal morfismo.
+			
+			\item Sea $\phi : \C \rightarrow \C$ tal que $\phi|_{\R} = 1_{\R}$, luego $\phi(a+bi) = a+b\phi(i)$ y $-1 = \phi(-1) = \phi(i^2) = \phi(i)^2$ por lo que $\phi(i) = \pm i$. Luego $\sett{\C \xrightarrow{\phi} \C \ , \ \phi \emph{ morfismo de cuerpos} \ , \ \phi|_{\R}=1_{\R}} = \sett{1_{\C}, a+bi \mapsto a+bi}$.
+			
+			\item Es claro que $\Q[i] \subseteq \C$ es un subcuerpo y viendo la demostraci\'on anterior nunca se pide que $a,b \not \in \Q$ por lo que vale igual.
+			
+			\item Ambos morfismos del item anterior adem\'as son isomorfismos
+			
+			\item Por el primer item no hay morfismo de $\Q[i]$ a $\R$ pues $-1$ es un cuadrado en el primero pero no en el segundo
+			
+			\item Si $\phi: \R \rightarrow \R$ es morfismo de cuerpos luego $\phi|_{\Q} = 1_{\Q}$ como ya vimos, adem\'as si $x > 0$ entonces $x = y^2$ por lo que $\phi(x) = \phi(y^2)=\phi(y)^2 > 0$. Por lo tanto sean $x > y$, entonces $\phi(x-y) > 0$ con lo que $\phi(x) > \phi(y)$; luego finalmente si $x \in \R$ supongamos que $x \neq \phi(x)$ entonces existe $q \in \Q$ tal que $x < q=\phi(q) < \phi(x)$ pero como $x < q$ entonces $\phi(x) < \phi(q)$. Conclu\'imos que el \'unico morfismo de cuerpos sobre $\R$ es la identidad. \qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Ejercicio 4
+	
+	\label{Ejercicio 4}
+	
+	\begin{proof}
+		Sea $0 \neq a \in A$ y consideremos $L_a : A \rightarrow A$ dado por $L_a(x) = ax$, luego $L_a$ es un morfismo $\mathbb{K}$ lineal, como $A$ es un dominio  entonces $L_a$ es inyectiva. Luego por ser de dimensi\'on finita es suryectiva y entonces existe $a^{-1}$. \qed
+	\end{proof}
+
+	
+	\item Ejercicio 5
+	
+	\label{Ejercicio 5}
+	
+	\begin{proof}
+		
+		\begin{itemize}
+			
+			\item Es claro que si $a,b \in \mathcal{U}(A)$ entonces $b^{-1}a^{-1}$ es una inversa de $ab$ por lo que el producto es cerrado, adem\'as trivialmente la unidad es $1$ y el producto es asociativo. Finalmente si $a \in \mathcal{U}(A) $ entonces $aa^{-1}=1$ por lo que $a^{-1} \in \mathcal{U}(A)$.
+			
+			\item Veamos uno por uno:
+			
+			\begin{enumerate}
+				\item Es claro que $\mathcal{U}(\Z) = \sett{1,-1}$
+				
+				\item Como $K$ es cuerpo entonces $\mathcal{U}(K) = K \setminus \sett{0} $
+				
+				\item Sea $a+bi=\alpha \in \mathcal{U}(\Z[i])$, luego existe $\beta \in \Z[i]$ tal que $\alpha \beta = 1$ por lo que $\abs{\alpha}^2 \abs{\beta}^2 = 1$ y conclu\'imos que $a^2 + b^2 = 1$ de lo que:
+				
+				\[
+				\begin{aligned}
+					a^2 = 1 & \emph{y} & b^2 = 0 \\
+					& \emph{o} & \\
+					a^2 = 0 & \emph{y} & b^2 = 1 					
+				\end{aligned}
+				\]
+				
+				Y conclu\'imos que $\mathcal{U}(\Z[i]) = \sett{\pm 1 , \pm i}$
+				
+				\item Sea $a+b\sqrt{5}i=\alpha \in \mathcal{U}(\Z[\sqrt{5}i])$, luego existe $\beta \in \Z[\sqrt{5}i]$ tal que $\alpha \beta = 1$ por lo que $\abs{\alpha}^2 \abs{\beta}^2 = 1$ y conclu\'imos que $a^2 + 5b^2 = 1$ de lo que:
+				
+				\[
+				\begin{aligned}
+				a^2 = & 1 \\
+				b^2 = & 0  					
+				\end{aligned}
+				\]
+				
+				Y conclu\'imos que $\mathcal{U}(\Z[\sqrt{5}i]) = \sett{\pm 1}$
+					
+				\item Es claro que si $p \in \mathcal{U}(A[X])$ entonces como todos los t\'erminos no constantes deben ser $0$ se concluye que $ \mathcal{U}(A[X]) =  \mathcal{U}(A)$.
+				
+				\item Si $a \in  \mathcal{U}(\quotient{\Z}{n\Z})$ entonces $ab \cong 1 \ (mod \ n)$ si y s\'olo si $ab - kn = 1$ para alg\'un $k \in \Z$, si y s\'olo si $mcd(a,n) = 1$. \qed
+			\end{enumerate}
+			
+		\end{itemize}
+		
+	\end{proof}
+	
+	\item Ejercicio 6
+	
+	\label{Ejercicio 6}
+	
+	\begin{proof}
+		
+		\begin{enumerate}
+			
+			\item Es claro que $K$ es cuerpo.
+			
+			\item Si $a,b \in A$ entonces $f(ab) = (ab,1) = (a,1).(b,1) = f(a)f(b)$, $f(a+b)=(a+b,1)=(a,1)+(b,1)=f(a) + f(b)$ y $f(1)=(1,0)$ por lo que $f$ es morfismo de anillos. Adem\'as como el neutro de la suma es $(0,1)$ tenemos que $f(a)=(0,1)$ si y s\'olo si $a=0$ por lo que es monomorfismo.
+			
+			\item Para un lado si $D$ es dominio entonces tomemos $K$ el cuerpo de fracciones de $D$. Rec\'iprocamente sea $a,b \in D$ tal que $0 = ab$, luego $0 = f(ab)=f(a)f(b) \in K$ Como $K$ es cuerpo entonces sin p\'erdida de generalidad podemos suponer que $f(a) = 0$ y como $f$ es mono $a = 0$; conclu\'imos que $D$ es \'integro.\qed
+			
+		\end{enumerate}
+		
+	\end{proof}
+	
+	\item Notemos $F_A$ como el cuerpo de fracciones de $A$. Vayamos uno por uno:
+	
+	\begin{enumerate}
+		
+		\item Afirmamos que $\Q = F_{\Z}$, para esto sea $j: \Z \rightarrow K$ el morfismo inicial, luego si consideramos $\psi : \Q \rightarrow K$ dado por $\psi(n,m) = j(n)(j(m))^{-1}$ y $i: \Z \rightarrow \Q$ dado por $i(n)=(n,1)$; luego el siguiente diagrama conmuta:
+		
+			\begin{equation*}
+			\begin{tikzcd}
+			\Z \arrow[swap] {dr} {j} \arrow{r} {i}   & \Q \arrow[swap] {d} {\psi} \\
+			 & K 
+			\end{tikzcd}
+			\end{equation*}		
+			
+		Como $\Q$ cumple la propiedad universal, entonces $\Q = F_{\Z}$.
+		
+		\item Sea $\phi: \Z[i] \rightarrow K$, luego es claro que $\phi(a+bi) = j(a) + j(b)\phi(i)$ con $j : \Z \rightarrow K$ el morfimso inicial. Si identificamos $n := n 1_K = j(n)$ luego notemos que $\phi(a+bi)^{-1} = \frac{(a + b)}{a^2 + b^2} + \frac{(a - b)}{a^2 + b^2}i \in \Q[i]$; por lo tanto el siguiente diagrama conmuta:
+		
+			\begin{equation*}
+			\begin{tikzcd}
+			\Z[i] \arrow[swap] {dr} {\phi} \arrow{r} {i}   & \Q \arrow[swap] {d} {\psi} \\
+			& K 
+			\end{tikzcd}
+			\end{equation*}			
+		
+		Con $\psi(c+di,a+bi) = (c+d\phi(i))(a+b\phi(i))^{-1} =  \left( \frac{c(a + b)}{a^2 + b^2} - \frac{d(a - b)}{a^2 + b^2} \right) + \frac{d(a + b)}{a^2 + b^2} + \left( \frac{c(a - b)}{a^2 + b^2} \right) \phi(i)$
+		
+		\item M\'as generalmente si $\alpha$ es ra\'iz de $X^{2} - \alpha$ entonces como ese polinomio es irreducible en $\Q$ tenemos que $Q[\alpha]= Q(\alpha)$ su propio cuerpo de fracciones, por lo que si $\phi: \Z[\alpha] \rightarrow K$ entonces induce $\psi: \Q[\alpha] \rightarrow K$ tal que:	
+		
+		
+		\begin{equation*}
+		\begin{tikzcd}
+		\Z[\alpha] \arrow[swap] {dr} {\phi} \arrow{r} {i}   & \Q[\alpha] \arrow[swap] {d} {\psi} \\
+		& K 
+		\end{tikzcd}
+		\end{equation*}			
+		
+		Y como $\Q[\alpha] = \Q(\alpha)$ es un cuerpo tenemos que $\Q[\alpha] = F_{\Z[\alpha]}$ es el cuerpo de fracciones de $\Z[\alpha]$.
+		
+		\item Finalmente si $K$ es cuerpo entonces es su propio cuerpo de fracciones mediante $i : K\rightarrow K$ al identidad. \qed
+		
+	\end{enumerate}
+	
+\end{enumerate}
+	
+\end{document}
