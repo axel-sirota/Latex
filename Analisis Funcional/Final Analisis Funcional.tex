@@ -141,18 +141,162 @@
 Si $\mathcal{X}$ es un espacio vectorial sobre un cuerpo $\mathbb{F}$, un conjunto $\mathcal{B} = \sett{v_i}_{i \in I}$ se dice:
 
 \begin{enumerate}
-\item \textit{Linealmente independiente} si dados $v_{i_1}, \dots, v_{i_k} \in \B$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \ in \F$ tal que $\Bigsum{i}{\lambda_{i_i}v_{i_i}} = 0$ implica que $\lambda_{i_i} = 0$ para todo $1 \leq i \leq k$.
-\item \textit{Sistema de generadores} si dado $v \in \mathcal{X}$ entonces existen $v_{i_1}, \dots, v_{i_k} \in \B$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \ in \F$ tal que $\Bigsum{i}{\lambda_{i_i}v_{i_i}} = v$.
+\item \textit{Linealmente independiente} si dados $v_{i_1}, \dots, v_{i_k} \in \B$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \in \F$ tal que $\Bigsum{i}{\lambda_{i_i}v_{i_i}} = 0$ implica que $\lambda_{i_i} = 0$ para todo $1 \leq i \leq k$.
+\item \textit{Sistema de generadores} si dado $v \in \mathcal{X}$ entonces existen $v_{i_1}, \dots, v_{i_k} \in \B$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \in \F$ tal que $\Bigsum{i}{\lambda_{i_i}v_{i_i}} = v$.
 \item \textit{Base} si es a la vez un sistema de generadores linealmente independiente.
 \end{enumerate}
+\end{definition}
 
-Ejemplos:
+\begin{example}
+
+
 
 \begin{itemize}
-	\item $X=\R[X]$ es un espacio vectorial, si consideramos $\B = {1,X,X^2, \dots} = {X^j}_{j \in \N}$ es base.
-	\item 
-\end{itemize}
+	\item $X=\R[X]$ es un espacio vectorial, si consideramos $\B = \sett{1,X,X^2, \dots} = \sett{X^j}_{j \in \N}$ es base.
+	\item $X=\mathcal{C}[a,b]$ es un espacio vectorial, si consideramos $\B = \sett{e^{\alpha x}, \alpha \in [0,1]}$ veamos que es linealmente independiente.
+	
+	\begin{proof}
+		Sean $\alpha_1, \dots, \alpha_n \in [0,1]$ y $\lambda_{1}, \dots, \lambda_{n} \in \R$ tal que $\Bigsum{i}{\lambda_i e^{\alpha_i x}} = 0$ para todo $x \in [a,b]$; luego si derivamos $n-1$ veces tenemos el sistema:
+		
+		\[
+			\left(
+				\begin{array}{cccc}
+					e^{\alpha_1 x} &  e^{\alpha_2 x} &  \dots &  e^{\alpha_n x} 
+				\end{array}
+			\right)
+			\left(
+				\begin{array}{cccc}
+					1 & \alpha_1 &  \dots &  \alpha_1^{n-1} \\
+					\vdots & \vdots & \vdots & \vdots \\
+					1 &  \alpha_n &  \dots &  \alpha_n^{n-1}					 
+				\end{array}
+			\right)
+			\left(
+			\begin{array}{c}
+			\lambda_{1} \\
+			\lambda_{2} \\
+			\vdots \\
+			\lambda_{n}
+			\end{array}
+			\right) = 
+			\left(
+			\begin{array}{c}
+			0 \\
+			0 \\
+			\vdots \\
+			0
+			\end{array}
+			\right)
+		\]
+		Y como los $\alpha_i$ son distintos entonces la matriz de Vandermonde es inversible y el sistema admite una \'unica soluci\'on, $\lambda_{1} = \lambda_{2} = \dots = \lambda_{n} = 0$. \qed
+	\end{proof}
 
+\end{itemize}
+\end{example}
+
+Recordemos:
+
+\begin{proposition}[Lema de Zorn]
+	\label{Lema de Zorn}
+	
+	Si $(P,\leq)$ es un conjunto parcialmente ordenado, no vac\'io, tal que todo subconjunto no vac\'io $S \subseteq P$ totalmente ordenado admite una cota superior; entonces existe un elemento maximal en $P$.
+\end{proposition}
+
+\begin{proposition}
+	Si $E$ es un espacio vectorial, entonces $E$ admite una base.
+\end{proposition}
+
+\begin{proof}
+	Consideremos $P = \sett{S \subseteq E \ / \ S \text{ es li}}$ y dotemoslo del orden dado por la inclusi\'ion, luego $P \neq \emptyset$ pues si $v \in E$ entonces $\sett{v} \in P$.
+	
+	Sea $\sett{S_i}$ una colecci\'on de subconjuntos de $P$ totalmente ordenada y sea $T = \Bigcup{i \in I}{S_i}$, luego es claro que $S_i \leq T$; faltar\'ia ver que $T \in P$.
+	
+	Para eso sean $v_{i_1}, \dots, v_{i_k} \in T$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \ in \F$ tales que $\Bigsum{k}{\lambda_i v_i} = 0$. Como son finitos existe $k_0 \in \N$ tal que $v_i \in S_{k_0}$ para todo $i$, que al ser un conjunto linealmente independiente resulta que $\lambda_{1} = \lambda_{2} = \dots = \lambda_{n} = 0$. Conclu\'imos que $T \in P$, luego por \ref{Lema de Zorn} existe $M \in P$ elemento maximal.
+	
+	Finalmente, sea $v \in E \setminus <M>$ (el conjunto generado por combinaciones lineales de $M$), luego $M \cup \sett{v}$ ser\'ia un conjunto li lo que contradice la maximalidad de $M$; por ende no existe tal $v$ y $M$ resulta base. \qed
+	
+	
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Dos bases tienen mismo cardinal, Hamel}
+	Sea $E$ un espacio vectorial y sean $\B_1, \B_2$ dos bases de Hamel de $E$. Luego $\#B_1 = \#B_2$.
+\end{proposition}
+
+\begin{proof}
+	Sea $x \in \B_1$ y llamemos $S(x)$ al conjunto de los elementos $v \in \B_2$ tal que al escribir a $x$ como combinaci\'on lineal de elementos de $\B_2$ aparece $v$, por lo que si $x = \Bigsum{k}{\lambda_{i_k} v_{i_k}}$ entonces $S(x) = \sett{v_{i_1}, \dots, v_{i_n}}$.
+			
+	\begin{lemma}
+		\label{Lema de cardinalidad de bases}
+		$\Bigcup{x \in \B_1}{S(x)} = \B_2$
+	\end{lemma}
+	\begin{proof}{Del lema}
+		Si $v \in \Bigcup{x \in \B_1}{S(x)}$ luego existe $x_0 \in \B_1$ tal que $v \in S(x_0)$ por lo que $v \in \B_2$ por definici\'on de $S(x)$. Rec\'iprocamente, si $v \in \B_2$ pero no existe $x \in \B_1$ tal que $v \in S(x)$, entonces $v \not \in <\B_1> =E = <\B_2>$. \qed
+	\end{proof}
+	
+	Por \ref{Lema de cardinalidad de bases} tenemos que $\# \B_2 \leq \Bigsum{x \in \B_1}{\#S(x)} \leq \#\N \#\B_1 \leq \#B_1$.
+	
+	Razonando al rev\'es obtenemos la otra desigualdad. \qed		
+	
+\end{proof}
+
+\begin{definition}
+	Si $E$ es un espacio vectorial, una norma definida en $E$ es una aplicaci\'on $\norm{.}: E \mapsto \R$ tal que:
+	
+	\begin{enumerate}
+		\item $\norm{x} \geq 0$
+		\item $\norm{x} = 0 \ \Longleftrightarrow x = 0$
+		\item $\norm{\lambda x} = \abs{\lambda} \norm{x} $
+		\item $\norm{x+y} \leq \norm{x} + \norm{y}$
+	\end{enumerate}
+	
 \end{definition}
+
+\begin{remark}
+	Todo espacio normado es un espacio m\'etrico pero no viceversa.
+\end{remark}
+
+\begin{definition}
+	Si $E$ es un espacio vectorial, un producto interno definido en $E$ es una aplicaci\'on $\ip{.,.}: E \times E \mapsto F$ tal que:
+	
+	\begin{enumerate}
+		\item $\ip{.,z}$ es lineal
+		\item $\ip{x,x} = 0 \ \Longleftrightarrow x = 0$
+		\item $\ip{x,y} = \overline{\ip{y,x}}$
+	\end{enumerate}
+	
+\end{definition}
+
+
+\begin{remark}
+	Todo espacio con producto interno es un espacio normado pero no viceversa.
+\end{remark}
+
+\begin{theorem}[Cauchy-Schwartz]
+	\label{Desigualdad de Cauchy-Schwartz }
+	Sea $E$ un espacio vectorial y $\ip{.}$ un producto interno definido en $E$; luego si $x,y \in E$ se tiene que $\abs{\ip{x,y}} \leq \norm{x} \norm{y}$.
+\end{theorem}
+
+\begin{proof}
+	Sean $x,y \in E$, $\lambda \in \C$ y sea $z = x-\lambda y$, luego $\ip{z,z} = \ip{x,x} + \abs{\lambda^2}\ip{y,y} -2 \Re(\lambda \ip{y,x}) \geq 0$.
+	
+	Si $\ip{y,x} = re^{i \theta}$ sea $\lambda = e^{-i \theta}t$ con $t \in \R$; luego:
+	
+	\[
+		0 \geq \ip{x,x} + t^2 \ip{y,y} - 2bt \cong c -2bt = at^2
+	\]
+	
+	Luego como la cuadr\'atica dada es positiva, eso implica que $0 \leq 4b^2 -4ac$ por lo que:
+	
+	\[
+		0 \leq b^2 -ac = \abs{\ip{x,y}}^2 - \ip{x,x}\ip{y,y}
+	\]
+	
+	Si 
+	
+	\qed
+	
+\end{proof}
 
 \end{document}
