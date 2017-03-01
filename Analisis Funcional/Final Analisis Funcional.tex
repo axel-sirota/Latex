@@ -284,7 +284,7 @@ Recordemos:
 	Si $\ip{y,x} = re^{i \theta}$ sea $\lambda = e^{-i \theta}t$ con $t \in \R$; luego:
 	
 	\[
-		0 \geq \ip{x,x} + t^2 \ip{y,y} - 2bt \cong c -2bt = at^2
+		0 \geq \ip{x,x} + t^2 \ip{y,y} - 2bt \equiv c -2bt + at^2 := q(t)
 	\]
 	
 	Luego como la cuadr\'atica dada es positiva, eso implica que $0 \leq 4b^2 -4ac$ por lo que:
@@ -293,9 +293,7 @@ Recordemos:
 		0 \leq b^2 -ac = \abs{\ip{x,y}}^2 - \ip{x,x}\ip{y,y}
 	\]
 	
-	Si 
-	
-	\qed
+	Si $\abs{\ip{x,y}}= \norm{x} \norm{y}$, entonces $b^2 = \ip{x,x} \ip{y,y}$ por lo que $b^2 -ac = 0$. Esto implica que existe $t_0$ tal que $q(t_0) = 0$, por lo tanto eso implica que $\ip{x-e^{-i \theta}t_0 y,x- e^{-i \theta}t_0 y} \equiv 0$ y por lo tanto $x = e^{-i \theta}t_0 y$. \qed
 	
 \end{proof}
 
