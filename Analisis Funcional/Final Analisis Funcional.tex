@@ -12,7 +12,9 @@
 \usepackage{fancyhdr}
 \usepackage[all]{xy}
 \usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
 
+\usepackage{bookmark}
 
 \topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
 \textheight25cm
@@ -34,9 +36,9 @@
 \newcommand{\x}[3]{#1_#2^#3}
 \newcommand{\xx}[4]{#1_#3#2_#4}
 \newcommand\dd{\,\mathrm{d}}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\newcommand\abs[1]{\left\lvert#1\right\rvert}
-\newcommand\ip[1]{\left\langle#1\right\rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
 \renewcommand\tt{\mathbf{t}}
 \newcommand\nn{\mathbf{n}}
 \newcommand\bb{\mathbf{b}}                      % binormal
@@ -52,8 +54,6 @@
 \newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
 \newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
 \newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
-
-
 
 \def \le{\leqslant}	
 \def \ge{\geqslant}
@@ -131,6 +131,7 @@
 	\centerline{\bf An\'alisis Funcional - $1^{\circ}$ cuatrimestre $2017$}
 	\centerline{\sc Final}
 	
+	\tableofcontents
 	\bigskip
 
 \section{Espacios Vectoriales}
@@ -241,6 +242,8 @@ Recordemos:
 	
 \end{proof}
 
+\subsection{Normas y productos internos}
+
 \begin{definition}
 	Si $E$ es un espacio vectorial, una norma definida en $E$ es una aplicaci\'on $\norm{.}: E \mapsto \R$ tal que:
 	
@@ -295,6 +298,340 @@ Recordemos:
 	
 	Si $\abs{\ip{x,y}}= \norm{x} \norm{y}$, entonces $b^2 = \ip{x,x} \ip{y,y}$ por lo que $b^2 -ac = 0$. Esto implica que existe $t_0$ tal que $q(t_0) = 0$, por lo tanto eso implica que $\ip{x-e^{-i \theta}t_0 y,x- e^{-i \theta}t_0 y} \equiv 0$ y por lo tanto $x = e^{-i \theta}t_0 y$. \qed
 	
+\end{proof}
+
+\begin{definition}
+	Un espacio normado que es completo respecto a la distancia inducida por la norma se llama \textit{Espacio de Banach}
+\end{definition}
+
+\begin{definition}
+	Un \textit{Espacio de Hilbert} es un espacio de Banach donde la norma proviene de un producto interno mediante $\norm{x} = \sqrt{\ip{x,x}}$.
+\end{definition}
+
+\begin{proposition}
+	\label{Identidad de poralizacion}
+	Sea $E$ un espacio con producto interno, entonces:
+	
+	\begin{itemize}
+		\item $\mathcal{R}(\ip{x,y}) = \frac{1}{4}\left(\norm{x+y}^2 - \norm{x-y}^2\right)$
+		\item $\mathcal{I}(\ip{x,y}) = \frac{1}{4}\left(\norm{x+iy}^2 - \norm{x-iy}^2\right)$
+	\end{itemize}
+
+\end{proposition}
+
+\begin{proof}
+	Por un lado $\norm{x+y}^2 = \norm{x}^2 + \norm{y}^2 + 2\mathcal{R}(\ip{x,y})$ y $\norm{x-y}^2 = \norm{x}^2 + \norm{y}^2 - 2\mathcal{R}(\ip{x,y})$; por lo que restando se obtiene:
+	
+	\[
+		4\mathcal{R}(\ip{x,y}) = \norm{x+y}^2 - \norm{x-y}^2
+	\]
+	
+	Por el otro: 
+	
+	\[
+	\begin{aligned}
+		\norm{x+iy}^2 = & \ip{x+iy,x+iy} \\
+					  = & \norm{x}^2 + \abs{i}\norm{y}^2 -i \ip{x,y} + i \overline{\ip{x,y}} \\
+					  = & \norm{x}^2 + \norm{y}^2 -i 2 \mathcal{I}(\ip{x,y}) \\
+		\norm{x-iy}^2 = & \ip{x-iy,x-iy} \\
+			   		  = & \norm{x}^2 + \abs{i}\norm{y}^2 +i \ip{x,y} - i \overline{\ip{x,y}} \\
+					  = & \norm{x}^2 + \norm{y}^2 +i 2 \mathcal{I}(\ip{x,y}) \\
+	\end{aligned}
+	\]
+	
+	Por lo tanto restando ambas obtenemos:
+	
+	\[
+		4\mathcal{I}(\ip{x,y}) = \norm{x+iy}^2 - \norm{x-iy}^2
+	\]
+	\qed
+	
+\end{proof}
+
+\begin{proposition}[Ley del paralelogramo]
+	\label{Ley del paralelogramo}
+	Sea $E$ un espacio normado real, entonces existe $\ip{.,.}: E \times E \rightarrow \C$ tal que $\norm{x}= \sqrt{\ip{x,x}}$ si y s\'olo si para todos $x,y \in E$ vale:
+	
+	\[
+		\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 + 2\norm{y}^2
+	\]
+\end{proposition}
+
+\begin{proof}
+	Si $\norm{x} = \sqrt{\ip{x,x}}$ entonces de la demostraci\'on de \ref{Identidad de poralizacion} se da el resultado. Rec\'iprocamente definamos:
+	
+	 $$ \ip{x,y} := \frac{1}{4}\left(\norm{x+y}^2 - \norm{x-y}^2\right)$$
+	
+	Luego verifiquemos que es un producto interno.
+	
+	\begin{enumerate}
+		\item $\sqrt{\ip{x,x}} = \norm{x}$
+		\item Como $\norm{x+y} = \norm{y+x}$ y $\norm{x-y} = \norm{-(y-x)} = \norm{y-x}$ conclu\'imos que $\ip{x,y} = \ip{y,x}$.
+		\item Dado que $\norm{.}, +, -, *$ son $\norm{.}$-continuas entonces $\ip{.,x},\ip{x,.}$ es $\norm{.}$-continua.
+		\item Sean $x,y,z \in E$ entonces:
+		
+		\[
+		\begin{aligned}
+			\norm{x+y+z}^2 = & 2\norm{x+z}^2 + 2\norm{y}^2 - \norm{x-y+z}^2
+						   = & 2\norm{y+z}^2 + 2\norm{x}^2 - \norm{y - x+z}^2
+		\end{aligned}
+		\]
+		
+		Luego como $A=B$ y $A=C$ implica $A=\frac{B+C}{2}$ se obtiene:
+		
+		\[
+		\begin{aligned}
+			\norm{x+y+z}^2 = & \norm{x+z}^2 + \norm{y}^2 - \frac{1}{2}\norm{x-y+z}^2 + \norm{y+z}^2 + \norm{x}^2 - \frac{1}{2}\norm{y - x+z}^2 \\
+			\norm{x+y-z}^2 = & \norm{x-z}^2 + \norm{y}^2 - \frac{1}{2}\norm{x-y-z}^2 + \norm{y-z}^2 + \norm{x}^2 - \frac{1}{2}\norm{y - x-z}^2 \\
+						   = & \norm{x-z}^2 + \norm{y}^2 - \frac{1}{2}\norm{-x+y+z}^2 + \norm{y-z}^2 + \norm{x}^2 - \frac{1}{2}\norm{-y + x+z}^2 
+		\end{aligned}
+		\]
+		
+		Por lo tanto:
+		
+		\[
+			\begin{aligned}
+				\ip{x+y,z} = & \frac{1}{4} \left(\norm{x+y+z}^2 - \norm{x+y-z}^2\right) \\
+						   = & \frac{1}{4} \left(\norm{x+z}^2 - \norm{x-z}^2\right) + \frac{1}{4} \left(\norm{y+z}^2 - \norm{y-z}^2\right) \\
+						   = & \ip{x,z} + \ip{y,z}
+			\end{aligned}
+		\]
+		
+		\item Por el item anterior es claro por inducci\'on que $\lambda \ip{x,y} = \ip{\lambda x,y}$ para todo $\lambda \in \N$ y como vale para $\lambda = -1$ tenemos que vale para todo $\lambda \in \Z$. Si $\lambda = \frac{p}{q} \in \Q$ entonces si llamamos $x' = \frac{x}{q}$ tenemos:
+		
+		\[
+			q\ip{\lambda x, y} = q \ip{p x',y} = p \ip{qx',y} = p \ip{x,y}
+		\]
+		
+		Luego $\lambda \ip{x,y} = \ip{\lambda x, y}$ para todo $\lambda \in \Q$. Por lo tanto probamos que fijados $x,y \in E$ la funci\'on $g(t)=\frac{1}{t} \ip{tx,y}$ y la funci\'on constante $h(t) = \ip{x,y}$ cumplen que $h\vert_{\Q} = g \vert_{\Q}$ y por continuidad entonces $h \equiv g$ para todo $t \in \R \setminus \sett{0}$; como el caso $\lambda = 0$ es trivial conclu\'imos que $\lambda \ip{x,y} = \ip{\lambda x,y}$. \qed
+		
+	\end{enumerate}
+	
+\end{proof}
+
+\section{Espacios de Hilbert}
+
+\subsection{Preliminares}
+
+\begin{proposition}
+	\label{Prod interno es continuo}
+	Sea $E$ un espacio vectorial con producto interno, luego el producto interno es continuo.
+\end{proposition}
+
+\begin{proof}
+	Sea $x_n, (y_n)$ tales que $x_n \rightarrow x, y_n \rightarrow y$, luego:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\abs{\ip{x_n,y_n} -  \ip{x,y}} = & \abs{\ip{x_n - x,y_n} + \ip{x,y_n - y}} \\ 
+		\leq & \abs{\ip{x_n-x,y_n}} + \abs{\ip{x,y_n-y}} \\
+		\leq & \abs{\ip{x_n-x,y_n -y}} + \abs{\ip{x_n-x,y}} + \abs{\ip{x,y_n-y}} \\ 
+		\leq & \norm{x_n - x}\norm{y} + \norm{x}\norm{y_n-y} + \norm{x_n - x}\norm{y_n-y} \rightarrow 0 
+	\end{aligned}
+	\end{equation*}
+	\qed
+\end{proof}
+
+\subsection{Conjuntos ortogonales y ortonormales}
+
+\begin{definition}
+	Sea $E$ un espacio vectorial con producto interno, luego dados dos vectores $x,y \in E$ decimos que son \textit{ortogonales} si $\ip{x,y} = 0$.
+	
+	A su vez decimos que son \textit{ortonormales} si osn ortogonales y $\norm{x} = \norm{y} = 1$
+	
+	Finalmente dado un conjunto $S \subseteq E$ entonces decimos que es \textit{ortogonal / ortonormal} si dados cualesquiera $x,y \in S$ resulta que son \textit{ortogonales / ortonormales} 
+\end{definition}
+
+\begin{example}
+	El conjunto $\sett{e^{inx} \ , \ n \in \N \ , \ x \in [0,2 \pi]}$ es ortonormal.
+\end{example}
+
+\begin{theorem}
+	\label{Escritura de proyeccion a un conjunto ortonormal}
+	Sea $E$ un espacio vectorial con producto interno y sea $S \subseteq E$ un conjunto ortonormal, luego si $x \in \ip{S}$ entonces existe una \'unica escritura de $x$ dada por:
+	
+	$$x = \sum\limits_{i = 1}^{n}{\ip{x,u_i}u_i} \qquad u_i \in S$$
+	
+\end{theorem}
+
+\begin{proof}
+	Como $x \in \ip{S}$ entonces existen \'unicos $\lambda_{1},\dots, \lambda_{n}$ tal que $x = \sum\limits_{i = 1}^{n}{\lambda_i u_i}$. Luego:
+	
+	
+	\[
+		\ip{x,u_j} = \sum\limits_{i = 1}^{n}{\lambda_i \ip{u_i,u_j}} = \lambda_j
+	\]
+	\qed
+\end{proof}
+
+\begin{theorem}[Desigualdad de Bessel]
+	\label{Desigualdad de Bessel}
+	Sea $E$ un espacio vectorial con producto interno y sea $S \subseteq E$ un conjunto ortonormal, luego:
+	
+	\begin{enumerate}
+		\item SI $x \in E$ y $u_1, \dots, u_n \in S$ luego $\sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2} \leq \norm{x}^2$
+		\item Si $x \in E$ entonces $\sett{u \in S \ / \ \ip{x,u}\neq 0}$ es a lo sumo numerable
+		\item Si $x,y \in E$ entonces $\abs{\Bigsum{u \in S}{\ip{x,u}\overline{\ip{y,u}}}} \leq \norm{x}\norm{y}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Sean $u_1,\dots,u_n \in S$ y sea $z = x - \sum\limits_{i = 1}^{n}{{\ip{x,u_i}}}$, luego:
+	
+	\[
+	\begin{aligned}
+		0 \leq & \ip{z,z} \\
+		= & \ip{x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}},x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}}} \\
+		= & \norm{x}^2 + \norm{\sum\limits_{i = 1}^{n}{\ip{x,u_i}}}^2 - 2 \mathcal{R} \left(\ip{\sum\limits_{i = 1}^{n}{\ip{x,u_i}},x}\right) \\
+		= & \norm{x}^2 + \sum\limits_{i = 1}^{n}{\norm{\ip{x,u_i}}^2} - 2 \mathcal{R} \left(\sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2}\right) \\
+		= & \norm{x}^2 - \sum\limits_{i = 1}^{n}{\norm{\ip{x,u_i}}^2}.
+	\end{aligned}
+	\]
+	
+	\item Notemos que $S = \sett{u \in S \ / \ \abs{\ip{x,u}} > 0} = \Bigcup{n \in \N}{\underbrace{\sett{u \in S \ / \ \abs{\ip{x,u}} \geq \frac{1}{m} }}_{T_m}}$.
+	
+	Ahora sean $u_1,\dots,u_n \in T$ por el item anterior sabemos que:
+	
+	\[
+		\frac{n}{m^2} \leq \Bigsum{1 \leq k \leq n}{\abs{\ip{x,u_k}}^2} \leq \norm{x}^2
+	\]
+	
+	Por lo que $n \leq m^2 \norm{x}^2$ y entonces $\# T_m \leq m^2 \norm{x}^2 < \infty$ para todo $m$, por lo tanto $\# S \leq \# \N * \# T_m \leq \# \N$.
+	
+	\item Sean $x,y \in E$ y $u_1,\dots,u_n \in S$, luego:
+	\[
+	 \begin{aligned}
+	 	 \abs{\sum\limits_{i = 1}^{n}{\ip{x,u_i}\overline{\ip{y,u_i}}}} \leq_\text{C-S} & \sqrt{ \sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2}}\sqrt{ \sum\limits_{i = 1}^{n}{\abs{\ip{y,u_i}}^2}} \\
+	 	 \leq_\text{a} & \norm{x}\norm{y}
+	 \end{aligned}
+	\]
+	\qed
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	\label{Todo conjunto ortonormal en un separable es numerable}
+	Si $E$ es un espacio vectorial con producto interno tal que $E$ es separable, entonces todo conjunto ortonormal es a lo sumo numerable
+\end{theorem}
+
+\begin{proof}
+	Sea $S \subseteq E$ un conjunto ortonormal y sean $u \neq v \in S$, luego $\norm{u-v}^2 = \norm{u}^2 + \norm{v}^2 = 2$ y por lo tanto $B_{\frac{\sqrt{2}}{2}}(u) \cap B_{\frac{\sqrt{2}}{2}}(v) = \emptyset$.
+	
+	Sea $D \subseteq E$ un subconjunto denso numerable, luego $B_{\frac{\sqrt{2}}{2}}(u) \cap D \neq \emptyset$ para todo $u \in S$. Consideremos $f:S \rightarrow D$ dado por $f(u) \in B_{\frac{\sqrt{2}}{2}}(u) \cap D$, luego si $f(u) = f(v)$ entonces $f(v) \in B_{\frac{\sqrt{2}}{2}}(u) \cap B_{\frac{\sqrt{2}}{2}}(v) $ y por lo tanto $u = v$. Como $f$ es inyectiva conclu\'imos que $S$ es a lo sumo numerable. \qed
+	
+\end{proof}
+
+\begin{theorem}
+	\label{Proyeccion de un elemento en un ortonormal}
+	Sean $H$ un espacio de Hilbert, $u_n$ una sucesi\'on de vectores ortonormales  y $c_n$ una sucesi\'on de numeros complejos. Luego:
+	
+	\begin{equation}
+		\Bigsum{n \in \N}{c_nu_n} \in H \ \Longleftrightarrow \ \Bigsum{n \in \N}{\abs{c_n}^2} < \infty
+	\end{equation}
+	
+	M\'as a\'un, $c_n = \ip{\Bigsum{n \in \N}{c_n u_n}, u_n}$
+	
+\end{theorem}
+
+\begin{proof}
+	Sea $S_k = \sum\limits_{i = 1}^{k}{c_i u_i}$, luego como $(u_n)$ son ortonormales dos a dos y $H$ es completo:
+	
+	\[
+			\norm{\sum\limits_{i = k+ 1}^{k'}{c_n u_n}}^2 = \sum\limits_{i = k+ 1}^{k'}{\abs{c_n}^2}
+	\]
+	Por ende:
+	\begin{equation*}
+				\Bigsum{n \in \N}{c_nu_n} \in H \ \Longleftrightarrow \ \Bigsum{n \in \N}{\abs{c_n}^2} < \infty
+	\end{equation*}
+	
+	Finalmente, notemos que $\ip{S_k,u_j} = c_j$ para todo $k \geq j$ y ,adem\'as si $(c_n) _in l^2$, entonces $S_k \rightarrow \Bigsum{n \in \N}{c_n u_n}=:x$; por lo tanto por \ref{Prod interno es continuo} $c_n = \ip{S_k,u_n} \rightarrow \ip{x,u_n}$. 
+	\qed
+	
+\end{proof}
+
+\begin{definition}
+	Sea $E$ un espacio vectorial con producto interno y $M \subseteq E$, definimos \textit{el ortogonal a } $M$ como $M^{\perp} = \sett{x \in E \ / \ \ip{x,m} = 0 \ \forall m \in M}$.
+\end{definition}
+
+\begin{proposition}
+	\label{El ortogonal es cerrado}
+	$M^{\perp}$ es un subespacio cerrado de $E$
+\end{proposition}
+
+\begin{proof}
+	Si $(x_n) \subset M$ es tal que $x_n \rightarrow x$ entonces por \ref{Prod interno es continuo} $0 = \ip{m,x_n} \rightarrow \ip{m,x}$, por lo que $x \in M$. \qed
+\end{proof}
+
+\begin{theorem}
+	\label{Proyeccion a un conjunto ortonormal arbitrario}
+	Sea $H$ un espacio de Hilbert y sea $S \subseteq H$ un conjunto ortonormal, luego:
+	
+	\begin{enumerate}
+		\item Si $x \in H$ entonces $x_S = \Bigsum{u \in S}{\ip{x,u}u}$ esta bien definido
+		\item Si $M = \ip{S}$ entonces $x \in M$ si y solo si $x = x_S$. Es m\'as si $x \in H$ entonces $x - x_S \in M^{\perp}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item 	Dado $x \in H$, de \ref{Desigualdad de Bessel} sea $(u_n)$ una numeraci\'on de $S = \sett{u \in S \ / \ \ip{x,u}=0}$ y sea $(v_n)$ otra ordenaci\'on de los $u_n$; notemos $x_1 = \Bigsum{n}{\ip{x,u_n}u_n}$ y $x_2 = \Bigsum{n}{\ip{x,u_n}u_n}$ que por \ref{Proyeccion de un elemento en un ortonormal} y \ref{Desigualdad de Bessel} est\'an bien definidos.
+	
+	Luego:
+	
+	\[
+	\begin{aligned}
+		\ip{x_1 - x_2 , u_n} = & \ip{x_1,u_n} - \ip{x_2,u_n} \\
+		\underbrace{=}_{u_n = v_{m_n} \text{ para alg\'un } m_n} & \ip{x,u_n} - \ip{x,v_{m_n}} \\
+		= & \ip{x,u_n} - \ip{x,u_n}
+		= & 0
+	\end{aligned}
+	\]
+	
+	Por ende, $\ip{x_1 - x_2,u_n} = \ip{x_1 - x_2,v_n} = 0 $ para todo $n \in \N$ y se concluye que $\ip{x_1 - x_2 , x_1 - x_2} = 0$ por lo que $x_1 = x_2$ y entonces $x_S$ esta bien definido y no depende del orden de la suma.
+	
+	\item Sea $x_{S_k} = \sum\limits_{i=1}^{k}\ip{x,u_i}u_i \in M$, luego como $M$ es cerrado se tiene que $x_{S_k} \rightarrow x_S \in M$. Ahora sea $s \in S$, entonces:
+	
+	\[
+	\ip{x-x_S,v} = \ip{x,v} - \ip{x_S,v} = \ip{x,v} - \ip{x,v} = 0
+	\]
+	
+	Por lo que $x - x_S \in M^{\perp}$. Finalmente, si $x \in M$ entonces como $x_S \in M$ entonces $x - x_S \in M \cap M^{\perp} = \sett{0}$, luego $x = x_S$. \qed
+	
+	\end{enumerate}
+	
+\end{proof}
+
+\subsection{Conjuntos ortonormales completos}
+
+\begin{definition}
+	Sea $E$ un espacio vectorial con producto interno y sea $S \subseteq E$ ortonormal, diremos que $S$ es \textit{completo} si $S \subseteq T$ y $T$ es ortonormal, entonces $S = T$.
+\end{definition}
+
+\begin{proposition}
+	\label{Ortogonal vacio es ser completo}
+	Sea $S$ un conjunto ortonormal tal que $S^{\perp} = \sett{0}$, entonces $S$ es completo
+\end{proposition}
+
+\begin{proof}
+	Sea $T$ ortonormal y sea $v \in T \setminus S$, luego $v \in S^{\perp} = 0$ por lo que $S$ es completo. \qed
+\end{proof}
+
+\begin{theorem}
+	Sea $E$ un espacio vectorial con producto interno, $S \subseteq E$ ortonormal y sea $M = \ip{S}$, entonces:
+	
+	\begin{enumerate}
+		\item Si $M = E$ entonces $S$ es completo
+		\item Si $S$ es completo y $E$ es de Hilbert entonces $M = E$
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Si $x \in S^{\perp}$ entonces $x \in M^{\perp}=E^{\perp}=\sett{0}$, por lo tanto $S$ es completo
+		\item Sea $x \in E$, luego por \ref{Proyeccion a un conjunto ortonormal arbitrario} $x_S$ esta bien definido y $x - x_S \in M^{\perp}$, luego como $S$ es completo $x - x_S = 0$ y por \ref{Proyeccion a un conjunto ortonormal arbitrario} se tiene que $x \in M$. \qed
+	\end{enumerate}
 \end{proof}
 
 \end{document}
