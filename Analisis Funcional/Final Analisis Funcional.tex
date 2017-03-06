@@ -66,10 +66,17 @@
 \def\deck{{\rm Deck}}
 \def\Tau{{\rm T}}
 
-\newtheorem{theorem}{Teorema}[section]
+\newtheorem{mytheorem}{Theorem}
+ %
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
 \newtheorem{lemma}[theorem]{Lema}
+
 \newtheorem{proposition}[theorem]{Proposici\'on}
+
 \newtheorem{corollary}[theorem]{Corolario}
+
 
 \newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
@@ -618,6 +625,7 @@ Recordemos:
 \end{proof}
 
 \begin{theorem}
+	\label{Conjunto ortonormal completo genera en un Hilbert}
 	Sea $E$ un espacio vectorial con producto interno, $S \subseteq E$ ortonormal y sea $M = \ip{S}$, entonces:
 	
 	\begin{enumerate}
@@ -633,5 +641,978 @@ Recordemos:
 		\item Sea $x \in E$, luego por \ref{Proyeccion a un conjunto ortonormal arbitrario} $x_S$ esta bien definido y $x - x_S \in M^{\perp}$, luego como $S$ es completo $x - x_S = 0$ y por \ref{Proyeccion a un conjunto ortonormal arbitrario} se tiene que $x \in M$. \qed
 	\end{enumerate}
 \end{proof}
+
+\begin{corollary}
+	\label{Escritura de elemento de un HIlbert en un ortonormal completo}
+	Sea $H$ de Hilbert y $S \subseteq H$ un conjunto ortonormal completo, luego si $x \in H$ entonces $x = \Bigsum{u \in S}{\ip{x,u}u}$.
+\end{corollary}
+
+\begin{proof}
+	Como $H$ es Hilbert y $S$ es completo entonces por \ref{Conjunto ortonormal completo genera en un Hilbert} tenemos que $\ip{S} = H$, luego por \ref{Proyeccion a un conjunto ortonormal arbitrario} si $x \in H$ entonces $x = x_S$. \qed 
+\end{proof}
+
+\begin{theorem}[Identidad de Parseval]
+	\label{Identidad de Parseval}
+	Sea $E$ un espacio vectorial con producto interno y $S \subseteq E$ un conjunto ortonormal tal que para todo $x \in E$ vale:
+	
+	\begin{equation}
+	\label{eq: Identidad de Parseval}
+		\norm{x}^2 = \Bigsum{u \in S}{\abs{\ip{x,u}}^2}
+	\end{equation}
+	
+	Luego $S$ es completo. M\'as a\'un si $E$ es Hilbert y $S$ es completo entonces vale \ref{eq: Identidad de Parseval}
+\end{theorem}
+
+\begin{proof}
+	Sea $x \in E$ tal que $x \in S^{\perp}$, luego por \ref{eq: Identidad de Parseval} $\norm{x} = \Bigsum{u \in S}{\abs{\underbrace{\ip{x,u}}_{=0}}^2} = 0$, luego $x = 0$ y $S$ es completo.
+	
+	Si $E$ es Hilbert y $S$ es completo entonces por \ref{Escritura de elemento de un HIlbert en un ortonormal completo} y \ref{Desigualdad de Bessel} vale que $x = \Bigsum{n \in \N}{\ip{x,u_n}u_n}$ por lo que:
+	
+	\begin{equation*}
+		\begin{aligned}
+			\norm{x}^2 = & \ip{x,x}  \\
+			= & \ip{\Bigsum{n \in \N}{\ip{x,u_n}u_n},\Bigsum{n \in \N}{\ip{x,u_n}u_n}} \\
+			= & \Bigsum{n \in \N}{\ip{x,u_n}\overline{\ip{x,u_n}}} \\
+			= & \Bigsum{n \in \N}{\abs{\ip{x,u_n}}^2} \\
+			= & \Bigsum{u \in S}{\abs{\ip{x,u}}^2}
+		\end{aligned}
+	\end{equation*}
+	\qed
+\end{proof}
+
+\begin{corollary}
+	Sea $H$ Hilbert y $m \in M = \ip{S}$ con $S \subseteq H$ un conjunto ortonormal, luego $\norm{x-m} \geq \norm{x - x_S}$
+\end{corollary}
+
+\begin{proof}
+	$\norm{x - m}^2 = \norm{\underbrace{x- x_S}_{\in M^{\perp}} + \underbrace{x_S - m}_{\in M}}^2 = \norm{x-x_S}^2 + \norm{x_S - M}^2 \geq \norm{x-x_S}^2$ \qed
+\end{proof}
+
+\subsection{Ortogonalizaci\'on de Gram Schmitt}
+
+\begin{theorem}[Ortogonalizaci\'on de Gram-Schmidt]
+	\label{Ortogonalizacion de GS}
+	Sea $E$ un espacio vectorial con producto interno y sea $D$ un conjunto linealmente independiente no vac\'io, luego si $D$ es a lo sumo numerable existe $S	 \subseteq E$ ortonormal tal que:
+	
+	\begin{itemize}
+		\item $\# S = \# D$
+		\item $\ip{D} = \ip{S}$
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	Sea $D = \sett{x_n}$ y definamos:
+	
+	\[
+		\begin{array}{cccccc}
+			y_1 = & x_1 & \quad,\quad & u_1 = \dfrac{y_1}{\norm{y_1}} & \quad,\quad & S_1 = \sett{u_1} \\ 
+			y_2 = & x_2 - x_{S_1} & \quad,\quad & u_2 = \dfrac{y_2}{\norm{y_2}} & \quad,\quad & S_2 = \sett{u_1,u_2} \\ 
+			\vdots & \vdots & \quad,\quad & \vdots & \quad,\quad & \vdots \\ 
+			y_n = & x_n - x_{S_{n-1}}  & \quad,\quad & u_n = \dfrac{y_n}{\norm{y_n}} & \quad,\quad & S_n = \sett{u_1, \dots, u_n} \\ 
+		\end{array}
+	\]
+	
+	Luego sea $S = \Bigcup{n \in \N}{S_n}$ y es claro verificar ambas propiedades. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Aproximacion por ortonormal separable en Hilbert separable}
+	Sea $E$ un espacio vectorial con producto interno de dimensi\'on infinita, luego si $E$ es separable existe $S \subseteq E$ ortonormal, completo y numerable tal que $\overline{\ip{S}} = E$.
+\end{proposition}
+
+\begin{proof}
+	Como $E$ es separable existe $D = \sett{x_n} \subseteq E$ denso numerable. Sea $n_1 = \min\sett{n \in \N \ / \ x_n \neq 0}$ y $y_1 = x_{n_1}$ e inductivamente sea $n_k = \min\underbrace{\sett{n \in \N \ / \ x_n \not \in \ip{y_1, \dots, y_{k-1}} \ , \ n_k > n_{k-1}}}_{A_k}$ y $y_k = x_{n_k}$ , luego por la buena ordenaci\'on de $\N$ y el hecho que $D$ es denso y $dim(E)= \infty$ entonces $A_k \neq \emptyset$ para todo $k \in \N$ por lo que $n_k$ esta bien definido. Sea $Y = \Bigcup{k \in \N}{\sett{y_k}}$
+	
+	\begin{lemma}
+		\label{Lemma: Aproximacion por ortonormal separable en Hilbert separable}
+		$\ip{D} = \ip{Y}$ e $Y$ es linealmente independiente.
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on (del Lema)]
+		
+		Si $x_{n_0} \in D$ luego si $n_0 = n_k$ para alg\'un $k$ se concluye que $x_{n_0} \in Y$, si no entonces por Arquimedianidad $A = \sett{n \in \N \ / \ n > n_0 \ , \ \exists k \in \N \ , \ n = n_k \ } \neq \emptyset$ y sea $\hat{k} = \min A$; luego $x_{n_0} \in \ip{A_{\hat{k}-1}} \subseteq \ip{Y}$. Se concluye que $D \subseteq \ip{Y}$ y entonces $\ip{D} \subseteq \ip{Y}$.
+		
+		Rec\'iprocamente sea $y \in Y$, luego por definici\'on de $y$ se tiene que $y = x_{n_k} \in \ip{D}$ para alg\'un $k$ y entonces $Y \subseteq \ip{D}$ por lo que $\ip{Y} = \ip{D}$.
+		
+		Finalmente por construcci\'on $Y$ es linealmente independiente. \qed  
+		
+	\end{proof}
+	
+	Luego por \ref{Ortogonalizacion de GS} existe $S \subseteq E$ ortonormal tal que $\ip{S} = \ip{Y} \underbrace{=}_{\ref{Lemma: Aproximacion por ortonormal separable en Hilbert separable}} \ip{D}$, y como $D$ es denso se tiene que $\overline{\ip{S}} = \overline{\ip{D}} \supseteq \overline{D} = E$. \qed
+	
+	
+\end{proof}
+
+\subsection{Dimensi\'on de un espacio de Hilbert}
+
+\begin{proposition}
+	\label{Dos sistemas ortonormales y completos tienen el mismo cardinal}
+	Sea $E$ un espacio vectorial con producto interno y sean $S_1,S_2 \subseteq E$ conjuntos ortonormales y completos, luego $\# S_1 = \# S_2$ 
+\end{proposition}
+
+\begin{proof}
+	Si $S_1$ es finito entonces $S = \sett{u_1, \dots, u_k}$, sea $x \in E$ entonces $x - x_{S_1} = x - \sum\limits_{i=1}^{k}{\ip{x,u_i}u_i} \in S_1^{\perp} = \sett{0}$ por lo que $S_1$ es generador y ortonormal; conclu\'imos que $S_1$ es base y $\dim_E = k$. An\'alogamente $S_2 = \sett{v_1 , \dots , v_j}$ es base y finalmente sea $T \in End(E)$ dada por $T(u_i) = v_i$, luego $T$ es biyectiva y $\# S_1 = \# S_2$ .
+	
+	Si $S_1$ es infinito entonces para $x \in S_1$ sea $S_2(x) = \sett{u \in S_2 \ / \ \ip{u,x} \neq 0}$, luego por \ref{Desigualdad de Bessel} sabemos que $S_2(x)$ es a lo sumo numerable.
+	
+	\begin{lemma}
+		$\Bigcup{x \in S_1}{S_2(x)} = S_2$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on (del Lema)]
+		Supongamos que existe $y \in S_2$ tal que $y \not \in S_2(x)$ para todo $x \in S_1$, luego $y \in S_{1}^{\perp} = \sett{0}$; conclu\'imos que $S_2 \subseteq \Bigcup{x \in S_1}{S_2(x)}$ pues $S_2$ es ortonormal.
+		
+		Trivialmente se da la otra inclusi\'on. \qed
+	\end{proof}
+	
+	Por lo tanto $\# S_2 \leq \# \left(\N \times S_1\right) = \# S_1$; an\'alogamente $\# S_1 \leq \# S_2$ y se concluye el resultado. \qed
+	
+\end{proof}
+
+\begin{definition}
+	Se define $dim(E) = \# S$ donde $S \subseteq E$ es un sistema ortonormal completo.
+\end{definition}
+
+\begin{definition}
+	Sean $E$ y $F$ dos espacios vectoriales con producto interno, decimos que son \textit{congruentes} si existe $T \in L(E,F)$ isomorfismo tal que $\norm{T(x)}_{F} = \norm{x}_E$
+\end{definition}
+
+\begin{definition}
+	Sea $Q \neq \emptyset$, luego definimos $l^2(Q) = \sett{f : Q \rightarrow \R \ / \ \# \sett{q \in Q \ / \ f(q) \neq 0} \leq \aleph_0 \ , \ \Bigsum{q \in Q}{\abs{f(q)}^2} < \infty}$.
+\end{definition}
+
+\begin{proposition}
+	Valen:
+	
+	\begin{enumerate}
+		\item $l^2(Q)$ es un espacio de Hilbert con producto interno dado por $\ip{f,g} = \Bigsum{q \in Q}{f(q)\overline{g(q)}}$
+		\item Sea $S = \sett{\chi_{\sett{q}}}_{q \in Q}$ es ortonormal y completo
+		\item Si $\# Q > \# \N$ entonces $l^2(Q)$ no es separable
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proposition}
+	\label{Existencia de sistema ortonormal completo}
+	Todo espacio vectorial con producto interno admite un sistema ortonormal completo.
+\end{proposition}
+
+\begin{proof}
+	Sea $P = \sett{S \subseteq E \ / \ S \text{ ortonormal}}$ y dotemoslo del orden dado por la inclusi\'ion, luego $P \neq \emptyset$ pues si $v \in E$ entonces $\sett{v} \in P$.
+	
+	Sea $\sett{S_i}$ una colecci\'on de subconjuntos de $P$ totalmente ordenada y sea $T = \Bigcup{i \in I}{S_i}$, luego es claro que $S_i \leq T$; faltar\'ia ver que $T \in P$.
+	
+	Para eso sean $v_1,v_2 \in T$, luego existe $S_i$ tal que $v_1,v_2 \in S_i$ y como este es ortonormal resulta que $\ip{v_1,v_2} = 0$ y $\norm{v_1} = \norm{v_2} = 1$. Conclu\'imos que $T \in P$, luego por \ref{Lema de Zorn} existe $M \in P$ elemento maximal.
+	
+	Finalmente sea $v \in M^{\perp}$, luego $M \cup \sett{\dfrac{v}{\norm{v}}}$ ser\'ia un conjunto ortonormal lo que contradice la maximalidad de $M$; por ende no existe tal $v$ y $M$ resulta completo. \qed
+\end{proof}
+
+\begin{theorem}
+	\label{HIlbert congruente a un l2}
+	Sea $H$ Hilbert tal que $\dim H = \alpha$ entonces $H \cong l^2(Q)$ con $\# Q = \alpha$
+\end{theorem}
+
+\begin{proof}
+	Sea $S_{\alpha} = \sett{u_i}_{i \in Q}$ un sistema ortonormal, completo de $H$ que existe por \ref{Existencia de sistema ortonormal completo}; luego $x \in H$ entonces $x = \Bigsum{i \in Q}{\ip{x,u_i}u_i}$, y debido a \ref{Identidad de Parseval} y \ref{Desigualdad de Bessel} $\sett{\ip{x,u_i}}_{i \in Q} \subset l^2(Q)$. Definimos $T : H \rightarrow l^2(Q)$ dado por $T(x) = (\ip{x,u_i})_{i \in Q}$ y veamos que es la indicada.
+	
+	\begin{enumerate}
+		\item $T$ es lineal
+		
+		Sean $x,y \in H$ y $\lambda \in \mathbb{F}$, luego $T(x + \lambda y) = \left(\ip{x+\lambda y , u_i}\right) = \left( \ip{x,u_i} + \lambda \ip{y,u_i} \right) = T(x) + \lambda T(y)$.
+		
+		\item $T$ es monomorfismo
+		
+		Si $T(x) = (0)$ luego $\ip{x,u_i} = 0$ para todo $i \in Q$, luego $x \in S^{\perp} = \sett{0}$ pues $S$ es completo.
+		
+		\item $T$ es epimorfimso
+		
+		Si $(c_i) \in l^2(Q)$ luego por \ref{Proyeccion de un elemento en un ortonormal} $x = \Bigsum{i \in Q}{c_i u_i} \in H$ y $T(x) = (c_i)$
+		
+		\item $T$ es isometr\'ia
+		
+		Por \ref{Identidad de Parseval}
+		
+	\end{enumerate}
+	\qed
+\end{proof}
+
+
+\begin{corollary}
+	Sea $H$ Hilbert separable de dimensi\'on infinita, luego $H$ es congruente a $l^2$
+\end{corollary}
+
+\subsection{Proyecci\'on ortogonal}
+
+\begin{example}
+	El sistema $\sett{\dfrac{e^{int}}{\sqrt{2 \pi}} \ , \ t \in [0,2 \pi]}_{n \in \N}$ es completo.
+\end{example}
+
+\begin{proof}
+	Supongamos que $\int_{-\pi}^{\pi}{f(t)e^{int} dt} = 0$ para todo $n \in \N$ y sea $g(t) = \int_{-\pi}^{t}{f(t) dt}$, luego $g$ es continua y $g' = f$ ctp por el teorema de diferenciaci\'on de Lebesgue. Notemos que:
+	
+	\[
+	\begin{aligned}
+		g(\pi) = & \int_{-\pi}^{\pi}{f(t) dt} = \int_{-\pi}^{\pi}{f(t) e^{i0t}dt} = 0 = g(-\pi) \\
+		\int_{-\pi}^{\pi}{g(t) e^{int} dt} = & \dfrac{g(t)e^{int}}{ni} \vert_{-\pi}^{\pi} - \dfrac{\int_{-\pi}^{\pi}{f(t)e^{int}}}{in} = 0
+	\end{aligned}	
+	\]
+	
+	Por lo tanto tenemos que $\int_{-\pi}^{\pi}{g(t)e^{int}dt} = 0$ donde $g$ es continua y $g(-\pi) = g(\pi) = 0$, por Stone-Weirstrass existe $(p_n)_{n \in \N}$ sucesi\'on de polinomios trigonom\'etricos tal que $p_n \rightrightarrows g$, por lo tanto:
+	
+	\begin{equation*}
+		\int_{-\pi}^{\pi}{p_k(t)e^{int}} \rightarrow \int_{-\pi}^{\pi}{g(t)e^{int}dt} = 0 \quad n \in \N
+	\end{equation*}
+	
+	No obstante, si $p_k \neq cte$ entonces para todo $k \in \N$ $\ip{p_k,e^{int}} \neq 0$ para alg\'un $n$, luego $p_k = cte = g(\pi) = 0$. Conclu\'imos que $g = 0$ y entonces $f = 0$ ctp. \qed
+	
+\end{proof}
+
+\begin{theorem}
+	\label{Proyeccion unica en un cerrado convexo}
+	Sea $H$ Hilbert y $K$ cerrado y convexo, luego si $x \in H$ entonces existe un \'unico $k \in K$ tal que $\norm{x-k} = d(x,K)$
+\end{theorem}
+
+\begin{proof}
+	Sea $d_n = \norm{x-k_n}$ una sucesi\'on minimizante, luego para todo $n \geq N \in \N$ vale que $d + \frac{1}{N} \geq \norm{x-k_n}$ por lo que por \ref{Ley del paralelogramo}:
+	
+	\begin{equation*}
+		\norm{(x-k_n) - (x-k_m)}^2 + \norm{(x-k_n) + (x-k_m)}^2 =  2 \norm{x-k_n}^2 + 2 \norm{x-k_m}^2
+	\end{equation*}
+	
+	Por lo tanto:
+	
+	\[
+	\begin{aligned}
+		\norm{k_n-k_m}^2 = & 2 \norm{x-k_n}^2 + 2 \norm{x-k_m}^2  - \norm{2x-k_n -k_m}^2 \\
+		= & 2 \norm{x-k_n}^2 + 2 \norm{x-k_m}^2  - 4\norm{x- \underbrace{\dfrac{k_n -k_m}{2}}_{\in K}}^2 \\
+		\leq & 2 \left(d + \frac{1}{n}\right)^2 + 2 \left(d + \frac{1}{m}\right)^2 - 4d^2 \\
+		= & \frac{4d}{n} + \frac{2}{n^2} + \frac{4d}{m} + \frac{2}{m^2} \quad  \overrightarrow{n,m \rightarrow \infty} \quad 0
+	\end{aligned}
+	\]
+	
+	Luego $(k_n)$ es de Cauchy y como $H$ es completo existe $k \in K$ tal que $k_n \rightarrow K$; por \ref{Prod interno es continuo} $d = \norm{x-k}$. Si $h \in K$ tal que $\norm{x-h} = d$ luego como $K$ es convexo $\frac{k+h}{2} \in K$ por lo que:
+	
+	\[
+	d \leq \norm{x-\frac{k+h}{2}} \leq \dfrac{\norm{x-k} + \norm{x-h}}{2} = d
+	\]
+	
+	Luego por \ref{Ley del paralelogramo}:
+	
+	\[
+		\norm{k-h}^2 = 2 \norm{x-k}^2 + 2 \norm{x-h}^2  - 4\norm{x- \dfrac{k -h}{2}}^2 = 0 \\
+	\]
+	
+	Por lo que $k = h$. \qed
+\end{proof}
+
+\begin{definition}
+	Sea $M \subseteq H$ un subespacio cerrado de $H$ Hilbert, luego por \ref{Proyeccion unica en un cerrado convexo} existe un \'unico $f_0 \in M$ tal que para todo $x \in H$ vale $\norm{x-f_0} = d(x,M)$. A su vez como $M$ es cerrado tambi\'en es un espacio de Hilbert, luego por \ref{Existencia de sistema ortonormal completo} existe $S \subseteq M$ tal que $M = \ip{S}$, finalmente por \ref{Proyeccion de un elemento en un ortonormal} vale que $f_0 = x_S$.
+	
+	En resumen, dado $M \subseteq H$ subespacio cerrado y $h \in H$ existe un \'unico elemento $f_0$ tal que $h - f_0 \in M^{\perp}$. Definimos la \textit{proyecci\'on ortogonal sobre } $M$ $P_M:H \rightarrow M$ dado por $P_M(h) = f_0$.
+\end{definition}
+
+\begin{proposition}
+	\label{Propiedades proyeccion ortogonal}
+	Sea $M \subseteq H$ un subespacio cerrado en un Hilbert, sea $h \in H$ y $Ph := P_M(h)$ el \'unico elemento tal que $h - Ph \in M^{\perp}$, luego:
+	
+	\begin{enumerate}
+		\item $P$ es lineal
+		\item $\norm{Ph} \leq \norm{h}$
+		\item $P^2 = P$
+		\item $\ker P = M^{\perp}$ y $ran P = M$
+	\end{enumerate}
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item Sean $x,y \in H$, $\lambda \in \mathbb{F}$ y $m \in M$; luego $\ip{x + \lambda y - Px + \lambda Py, f} = \ip{x -Px,f} + \lambda \ip{y - Py,f} = 0$. Por unicidad en \ref{Proyeccion unica en un cerrado convexo} vale que $P(x + \lambda y) = Px + \lambda Py$.
+		
+		\item Notemos que $\norm{h}^2 = \norm{\underbrace{h - Ph}_{\in M^{\perp}} + \underbrace{Ph}_{\in M}}^2 = \norm{h-Ph}^2 + \norm{Ph}^2 \geq \norm{Ph}^2$.
+		
+		\item Como $P\vert_M = Id_M$ entonces $P(Ph) = Ph$ para todo $h \in H$.
+		
+		\item Si $Ph = 0$ entonces $h - Ph = h \in M^{\perp}$; rec\'iprocamente si $h \in M^{\perp}$ entonces $h-0 \in M^{\perp}$ por lo que $h \in \ker P$. \qed
+	\end{enumerate}
+	\end{proof}
+	
+\end{proposition}
+
+\begin{corollary}
+	Sea $M \subseteq H$ un subespacio cerrado en un Hilbert, entonces $(M^{\perp})^{\perp} = M$
+\end{corollary}
+
+\begin{proof}
+	Primero notemos que:
+	
+	\begin{lemma}
+		$Id - P_M = P_{M^{\perp}}$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Sea $m \in M^{\perp}$ y $h \in H$, luego $\ip{h - (Id - P_M)(h),m} = \ip{h - h + P_M(h),m} = \ip{P_M(h),m} = 0$, por la unicidad de \ref{Proyeccion unica en un cerrado convexo} vale que $P_{M^{\perp}} = Id - P_M$. \qed
+	\end{proof}
+	
+	Luego por \ref{Propiedades proyeccion ortogonal} vale que $\left(M^{\perp}\right)^{\perp} = \ker P_{M^{\perp}} = \ker (Id - P_M) \underbrace{=}_{0 = h - Ph \Leftrightarrow h = Ph } ran \ P = M$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Calculo del doble complemento ortogonal}
+	Sea $A \subseteq H$  un conjunto en un Hilbert, luego $(A^{\perp})^{\perp} = \overline{\ip{A}}$
+\end{corollary}
+
+\begin{proof}
+	Para esto vamos a utilizar dos lemas:
+	
+	\begin{lemma}
+		\label{Lemma1: Calculo del doble complemento ortogonal}
+		$\ip{A}^{\perp} = A^{\perp}$
+	\end{lemma}
+	
+	\begin{proof}
+		Por un lado si $f \in A^{\perp}$ luego $\ip{f, \sum\limits_{i=1}^{n}{c_i a_i}} = \sum\limits_{i=1}^{n}{c_i\ip{f,a_i}} = 0$ por lo que $f \in \ip{A}^{\perp}$.
+		
+		Rec\'iprocamente si $f \in \ip{A}^{\perp}$ y sea $a \in A$, luego $\ip{f,\underbrace{a}_{A \subseteq \ip{A}}} = 0$ por lo que $f \in A^{\perp}$. \qed
+		
+	\end{proof}
+	
+	\begin{lemma}
+		\label{Lemma2: Calculo del doble complemento ortogonal}
+		Sea $U \subseteq H$ un conjunto en un Hilbert, entonces $U^{\perp} = \overline{U}^{\perp}$.
+	\end{lemma}
+	
+	\begin{proof}
+		Sea $h \in U^{ \perp}$, luego si $u \in \overline{U}$ entonces existe $\sett{u_n}_{n \in \N} \subset U$ tal que $u_n \rightarrow u$. Por \ref{Prod interno es continuo} entonces $0 = \ip{h,u_n} \rightarrow \ip{h,u}$ por lo que $h \in \overline{U}^{\perp}$.
+		
+		Rec\'iprocamente, si $h \in \overline{U}^{\perp}$ y $u \in U \subseteq \overline{U}$ entonces $\ip{h,u} = 0$; conclu\'imos que $h \in U^{\perp}. \qed$
+	\end{proof}
+	
+	Luego por el corolario previo $\overline{\ip{A}} = \left(\overline{\ip{A}}^{\perp}\right)^{\perp} \underbrace{=}_{\ref{Lemma2: Calculo del doble complemento ortogonal}} \left({\ip{A}}^{\perp}\right)^{\perp} \underbrace{=}_{\ref{Lemma1: Calculo del doble complemento ortogonal}} \left({{A}}^{\perp}\right)^{\perp} $. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Variedad es densa si el complemento es vacio}
+	Sea $M \subseteq H$ una variedad lineal en un Hilbert, luego $M$ es denso si y s\'olo si $M^{\perp} = \sett{0}$
+\end{corollary}
+
+\begin{proof}
+	Si $\overline{M} = H$ entonces $M^{\perp} \underbrace{=}_{\ref{Lemma2: Calculo del doble complemento ortogonal}} = \overline{M}^{\perp} = H^{\perp} = \sett{0}$.
+	
+	Rec\'iprocamente de \ref{Calculo del doble complemento ortogonal} sabemos que $\overline{M} = \left(M^{\perp}\right)^{\perp} = \sett{0}^{\perp} = H$. \qed
+\end{proof}
+
+\subsection{Teorema de representaci\'on de Riesz}
+
+\begin{proposition}
+	\label{Continuidad de un funcional}
+	Sea $H$ un espacio de Hilbert y sea $L : H \rightarrow \mathbb{F}$ un funcional lineal, entonces son equivalentes:
+	
+	\begin{enumerate}
+		\item $L$ es continua
+		\item $L$ es continua en 0
+		\item $L$ es continua en alg\'un punto
+		\item Existe $c > 0$ tal que:
+		
+		\begin{equation}
+		\label{eq: Funcional acotado}
+			\abs{L(h)} \leq c \norm{h} \quad \forall h \in H
+		\end{equation}  
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Es claro que $1) \Longrightarrow 2) \Longrightarrow 3)$ y que $4) \Longrightarrow 2)$, veamos las que faltan:
+	
+	\begin{enumerate}
+		\item[$3) \Longrightarrow 1)$]Supongamos que $L$ es continua en $h_0 \in H$ y sea $h \in H$; luego si $h_n \rightarrow h$ entonces $h_n - h + h_0 \rightarrow h_0$, por lo tanto $L(h_0) = \lim L(h_n - h + h_0) = \lim L(h_n) - L(h) + L(h_0)$ y conclu\'imos que $L(h) = \lim L(h_n)$.
+		
+		\item[$ 2) \Longrightarrow 4) $] Como $L$ es continua en $0$ entonces si $V = \sett{\alpha \in \mathbb{F} \ / \ \abs{\alpha} < 1}$ entonces $L^{-1}(V)$ es abierto; es decir existe $\delta > 0$ tal que $\norm{h} < \delta$ implica $\abs{L(h)} < 1$.
+		
+		Si $h \in H$ y $\epsilon > 0$ entonces $\norm{\dfrac{\delta h}{\norm{h} + \epsilon}} < \delta$ por lo que:
+		
+		\[
+			1 > \abs{L\left[\dfrac{\delta h}{\norm{h} + \epsilon}\right]} = \dfrac{\delta}{\norm{h} + \epsilon} \abs{L(h)}
+		\]
+		
+		Por lo que si $\epsilon \rightarrow 0$:
+		
+		\[
+			\abs{L(h)} < \dfrac{1}{\delta} \left(\norm{h}\right) := c \norm{h}
+		\]
+		\qed
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Decimos que $L : H \rightarrow \mathbb{F}$ es \textit{acotado} si vale \ref{eq: Funcional acotado}. De \ref{Continuidad de un funcional} vemos que un funcional es acotado si y s\'olo si es continuo.
+	
+	En ese caso definimos:
+	
+	\begin{equation*}
+		\norm{L} = \sup \sett{\abs{L(h)}: \ \norm{h} \leq 1}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{proposition}
+	Si $L$ es un funcional acotado entonces:
+	\begin{equation}
+	\label{eq: Normas equivalentes de un funcional}
+	\begin{aligned}
+		\norm{L} := & \sup \sett{\abs{L(h)}: \ \norm{h} \leq 1} \\
+		= & \sup \sett{\abs{L(h)}: \ \norm{h} = 1}\\
+		= & \sup \sett{\dfrac{\abs{L(h)}}{\norm{h}}: \ h \neq 0}  \\
+		= & \inf \sett{c > 0: \ \abs{L(h)} \leq c \norm{h} \ h \in H} 
+	\end{aligned}	
+	\end{equation}
+	
+	Es m\'as, vale que $\abs{L(h)} \leq \norm{L} \norm{h}$ para todo $h \in H$.
+	
+\end{proposition}
+
+\begin{proof}
+	Notemos(solo por esta demostraci\'on):
+	
+	\[
+	\begin{array}{ccc}
+	 \norm{L}_2 & = & \sup \sett{\abs{L(h)}: \ \norm{h} = 1} \\
+	 \norm{L}_3 & = & \sup \sett{\dfrac{\abs{L(h)}}{\norm{h}}: \ h \neq 0} \\
+	 \norm{L}_4 & =  & \inf \sett{c > 0: \ \abs{L(h)} \leq c \norm{h} \ h \in H}
+	\end{array}
+	\]
+	
+	Vamos por partes, 
+	
+	\begin{itemize}
+		\item Primero como $\sett{\abs{L(h)}: \ \norm{h} = 1} \subseteq \sett{\abs{L(h)}: \ \norm{h} \leq 1}$ entonces vale que $\norm{L}_2 \leq \norm{L}$. 
+		
+		Rec\'iprocamente, si $\norm{h} \leq 1$ entonces:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{L\left(\dfrac{h}{\norm{h}}\right)} \leq \norm{L}_2 \\
+		\Longrightarrow &	\dfrac{1}{\norm{h}}\abs{L(h)} \leq \norm{L}_2 \\
+		\Longrightarrow &	\abs{L(h)} \leq \norm{L}_2 \norm{h} \leq \norm{L}_2 \\
+		\Longrightarrow &	\sup\limits_{\norm{h} \leq 1} \abs{L(h)} \leq \norm{L}_2 \\
+		\Longrightarrow &	\norm{L} \leq \norm{L}_2
+		\end{array}
+		\end{equation*}
+		
+		\item Si $h \neq 0$ entonces:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{L\left(\dfrac{h}{\norm{h}}\right)}  \leq \norm{L}_2 \\
+		\Longrightarrow &	\dfrac{1}{\norm{h}}\abs{L(h)} \leq \norm{L}_2 \\
+		\Longrightarrow &	\sup\limits_{h \neq 0} \sett{\dfrac{1}{\norm{h}}\abs{L(h)}} \leq \norm{L}_2 \\
+		\Longrightarrow &	\norm{L}_3 \leq \norm{L}_2
+		\end{array}
+		\end{equation*}
+		
+		Rec\'iprocamente notemos que $\sett{\abs{L(h)}: \ \norm{h} = 1} = \sett{\dfrac{\abs{L(h)}}{\norm{h}}: \ \norm{h} = 1} \subseteq \sett{\dfrac{\abs{L(h)}}{\norm{h}}: \ h \neq 0}$ por lo tanto $\norm{L}_2 \leq \norm{L}_3$.
+		
+		\item Sea $\epsilon > 0$, luego:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{L\left(\dfrac{h}{\norm{h} + \epsilon}\right)} \leq \norm{L} \\
+		\Longrightarrow  & \abs{L(h)} \leq \left(\norm{h} + \epsilon\right) \norm{L} \\
+		\text{Si } \epsilon \rightarrow 0 \Longrightarrow  & \abs{L(h)} \leq \norm{L} \norm{h} \\
+		\Longrightarrow  & \norm{L}_4 \leq \norm{L}
+		\end{array}
+		\end{equation*}
+		
+		Rec\'iprocamente, si $\norm{L(h)} \leq c \norm{h}$ entonces $\norm{L} \leq c$ por lo que $\norm{L} \leq \norm{L}_4$. \qed
+		
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}[Teorema de Representaci\'on de Riesz]
+	Sea $L : H \rightarrow \mathbb{F}$ un funcional, entonces $L$ es acotado si y s\'olo si existe un \'unico $h_0 \in H$ tal que $L(h) = \ip{h,h_0}$. En ese caso $\norm{L} = \norm{h_0}$.
+\end{theorem}
+
+\begin{proof}
+	Sea $M = \ker L$, como $L$ es acotada entonces $M$ es cerrado y como $L \neq 0$ (en cuyo caso $h_0 = 0$) entonces $M^{\perp} \neq \sett{0}$. Como $H = M \oplus M^{\perp}$ entonces existe $f_0 \in M^{\perp}$ tal que $L(f_0) = 1$.
+	
+	Sea $h \in H$, entonces $L(h - L(h)f_0) = 0$ por lo que $h - L(h)f_0 \in M$; de aqu\'i conclu\'imos:
+	
+	\begin{equation*}
+	\begin{array}{cccc}
+	& 0 & = & \ip{h - L(h)f_0, f_0} \\
+	\Longrightarrow & 0 & = & \ip{h,f_0} - L(h)\norm{f_0}^2 \\
+	\Longrightarrow & L(h) & = & \dfrac{1}{\norm{f_0}^2}\ip{h,f_0} \\
+	\Longrightarrow & L(h) & \underbrace{=}_{h_0 = \dfrac{f_0}{\norm{f_0}^2}} & \ip{h,h_0} 
+	\end{array}
+	\end{equation*}
+	
+	Si $h_0'$ es tal que $\ip{h,h_0} = L(h) = \ip{h,h_0'}$ entonces $0 = \ip{h,h_0 - h_0'}$ para todo $h \in H$, en particular $0 = \ip{h_0 - h_0',h_0 - h_0'} = \norm{h_0 - h_0'}^2$ por lo que $h_0 = h_0'$.
+	
+	Rec\'iprocamente, si $L(h) = \ip{h,h_0}$ entonces por \ref{Desigualdad de Cauchy-Schwartz } $\abs{L(h)} \leq \norm{h} \norm{h_0}$ por lo tanto $\norm{L} \leq \norm{h_0}$.
+	
+	En ese caso, $L\left(\dfrac{h_0}{\norm{h_0}}\right) = \dfrac{1}{\norm{h_0}}\ip{h_0,h_0} = \norm{h_0}$ por lo que $\norm{L} = \norm{h_0}$. \qed
+	
+\end{proof}
+
+\section{Espacios de Banach}
+
+\subsection{Operadores entre espacios normados}
+
+\begin{proposition}
+	\label{La norma es continua}
+	Sea $E$ un espacio normado, entonces:
+	
+	\begin{enumerate}
+		\item La suma es continua
+		\item El producto por un escalar es continuo
+		\item La norma es continua
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Si $x_n \rightarrow x$ y $y_n \rightarrow y$ entonces $\norm{x+y - x_n - y_n} \leq \norm{x_n -x} + \norm{y_n -y} \rightarrow 0$
+		\item Si $x_n \rightarrow x$ y $\lambda \in \mathbb{F}$ entonces $\norm{\lambda x_n - \lambda x} = \abs{\lambda} \norm{x_n - x} \rightarrow 0$.
+		\item Si $x_n \rightarrow x$ entonces por definici\'on $\norm{x_n -x} \rightarrow 0$. \qed
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Sea $E$ un espacio normado y $x_0 \in E$ entonces $\overline{B_r(x_0)} = B_r[x_0]$.
+\end{proposition}
+
+\begin{proof}
+	Si $x \in \overline{B_r(x_0)}$ entonces existe $\sett{x_n} \subset B_r(x_0)$ tal que $x_n \rightarrow x$, como $\norm{x_n - x_0} < r$ entonces por \ref{La norma es continua} se tiene que $\norm{x_n - x_0} \rightarrow \norm{x - x_0}$ por lo que $x \in B_r[x_0]$.
+	
+	Rec\'iprocamente si $x \not \in \overline{B_r(x_0)}$ entonces existe $\epsilon > 0$ tal que $B_{\epsilon}(x) \cap B_r(x_0) = \emptyset$; luego $\norm{x - x_0} > \epsilon + r > r$ por lo que $x \not \in B_{r}[x_0]$. \qed
+\end{proof}
+
+\begin{theorem}
+	\label{Banach si y solo si abs convergente es convergente}
+	Sea $X$ un espacio normado, entonces $X$ es de Banach si y s\'olo si vale:
+	
+	\begin{equation}
+		\label{eq: Condicion de Banach}
+		\text{Si } \left(x_n\right) \text{ cumple que } \Bigsum{n \in \N}{\norm{x_n}} < \infty \ \Longrightarrow \ \Bigsum{n \in \N}{x_n} \in X
+	\end{equation}
+	
+\end{theorem}
+
+\begin{proof}
+	Sea $S_k = \Bigsum{n \leq k}{x_n}$, entonces si $k > k'$, $\norm{S_{k} - S_{k'}} = \norm{\sum\limits_{n = k'+1}^{k}{x_n}} \leq \sum\limits_{n = k'+1}^{k}{\norm{x_n}} \ \underrightarrow{k,k' \rightarrow \infty} \ 0$. Luego $S_k$ es de Cauchy y como $X$ es Banach $S_k \rightarrow \Bigsum{n \in \N}{x_n} \in X$.
+	
+	Rec\'iprocamente, sea $\left(x_n\right) \subset X$ de Cauchy y para cada $k \in \N$ sea $\epsilon = \frac{1}{2^k}$ y $n_k \in \N$ tal que $\norm{x_{n} - x_m} < \frac{1}{2^k}$ si $n,m \geq n_k$. Luego si $z_k = x_{n_{k+1}} - x_{n_k}$ entonces $\Bigsum{k}{\norm{z_k}} < \Bigsum{k}{\frac{1}{2^k}} < \infty$; luego por hip\'otesis $S_m = \sum\limits_{k=1}^{m}{z_k}$ converge, pero $S_m = x_{n_{m+1}} - x_{n_1}$, luego $\lim\limits_{m} {x_{n_m}} = x_{n_1} + \lim S_m \in X$; como $x_n$ es de Cauchy y tiene una subsucesi\'on convergente entonces $(x_n)$ es convergente. \qed
+	
+\end{proof}
+
+\begin{definition}
+	Si $X,Y$ son espacios normados un \textit{isomorfismo topol\'ogico} es $T : X \rightarrow Y$ tal que:
+	
+	\begin{itemize}
+		\item $T$ es isomorfismo lineal
+		\item $T$ y $T^{-1}$ son continuas
+	\end{itemize}
+	
+\end{definition}
+
+\begin{proposition}
+	\label{Continuidad de un operador}
+	Seax $X,Y$ espacios normados y sea $T : X \rightarrow Y$ un operador lineal, entonces son equivalentes:
+	
+	\begin{enumerate}
+		\item $T$ es continua
+		\item $T$ es continua en 0
+		\item $T$ es continua en alg\'un punto
+		\item Existe $c > 0$ tal que:
+		
+		\begin{equation}
+		\label{eq: Operador acotado}
+		\norm{T(x)}_Y \leq c \norm{x}_X \quad \forall x \in X
+		\end{equation}
+		\item $T$ est\'a acotado en $B_1[0]$
+		\item $T$ est\'a acotado en $B_r[x_0]$ para todos $x_0 \in X$ y $r > 0$
+		\item $T$ est\'a acotado en $\partial B_r[x_0]$ para todos $x_0 \in X$ y $r > 0$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Es claro que $1) \Longrightarrow 2) \Longrightarrow 3)$, que $4) \Longrightarrow 2)$ y que $6) \Longrightarrow 7)$, veamos las que faltan:
+	
+	\begin{enumerate}
+		\item[$3) \Longrightarrow 1)$] Supongamos que $T$ es continua en $x_0 \in X$ y sea $x \in X$; luego si $x_n \rightarrow x$ entonces $x_n - x + x_0 \rightarrow x_0$, por lo tanto $T(x_0) = \lim T(x_n - x + x_0) = \lim T(x_n) - T(x) + T(x_0)$ y conclu\'imos que $T(x) = \lim T(x_n)$.
+		
+		\item[$ 2) \Longrightarrow 4) $] Como $T$ es continua en $0$ entonces si $V = \sett{y \in Y \ / \ \norm{y}_Y < 1}$ entonces $T^{-1}(V)$ es abierto; es decir existe $\delta > 0$ tal que $\norm{x}_X < \delta$ implica $\norm{T(x)}_Y < 1$.
+		
+		Si $x \in X$ y $\epsilon > 0$ entonces $\norm{\dfrac{\delta x}{\norm{x}_X + \epsilon}}_X < \delta$ por lo que:
+		
+		\[
+		1 > \norm{T\left[\dfrac{\delta x}{\norm{x}_X + \epsilon}\right]}_Y = \dfrac{\delta}{\norm{x}_X + \epsilon} \norm{T(x)}_Y
+		\]
+		
+		Por lo que si $\epsilon \rightarrow 0$:
+		
+		\[
+		\norm{T(x)}_Y < \dfrac{1}{\delta} \left(\norm{x}_X\right) := c \norm{x}_X
+		\]
+		
+		\item[$ 4) \Longrightarrow 5) $] Sea $x \in B_1[0]$, luego $\norm{T(x)}_Y \leq c \norm{x}_X \leq c$.
+		
+		\item[$ 5) \Longrightarrow 6) $] Sea $r > 0$ y $x_0 \in X$, luego si $x \in B_r[x_0]$ entonces existe $M > 0$ tal que $\norm{T\left(\dfrac{x- x_0}{r}\right)}_Y \leq M$ pues $\dfrac{x- x_0}{r} \in B_1[0]$
+		
+		Por lo tanto $\norm{T(x) - T(x_0)}_Y \leq Mr$ lo que implica que $\norm{T(x)}_Y \leq rM + \norm{T(x_0)}_Y := C$.
+		
+		\item[$ 7) \Longrightarrow 1) $] Sea $x_0 \in X$, luego por hip\'otesis si $\norm{x - x_0}_X = 1$ entonces $\norm{T(x - x_0)}_Y \leq C$; por lo tanto:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+			& \norm{T \left(\dfrac{x- x_0}{\norm{x - x_0}_X}\right)}_Y \leq C \\
+			\Longrightarrow & \norm{T(x) - T(x_0)}_Y \leq C\norm{x- x_0}_X
+		\end{array}
+		\end{equation*}
+		
+		Cuando $\norm{x - x_0}_X < \delta = \frac{\epsilon}{C}$.
+		\qed
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Si $X = Y = C[a,b]$ dotados de la norma supremo entonces $T(f)(x) = \int_{a}^{x}{f(t)dt}$ es un operador lineal acotado que no es un isomorfismo topol\'ogico.
+\end{example}
+
+\begin{corollary}
+	Sean $X,Y$ normados y sea $T:X \rightarrow Y$ un isomorfismo lineal. Entonces $T$ es isomorfismo topol\'ogico si y s\'olo si existen $C_1,C_2 > 0$ tal que $C_1 \norm{x} \underbrace{\leq}_{\star} \norm{T(x)} \underbrace{\leq}_{\ast} C_2\norm{x}$
+\end{corollary}
+
+\begin{proof}
+	Si $T$ es isomorfimso topol\'ogico entonces:
+	
+	\begin{equation*}
+	\begin{array}{ccc}
+	T \text{ continua } & \Longrightarrow & \exists C_2 > 0 \ / \ \norm{T(x)} \leq C_2 \norm{x} \quad \forall x \in X \\
+	T^{-1} \text{ continua } & \Longrightarrow & \exists D_1 > 0 \ / \ \norm{T^{-1}(y)} \leq D_1 \norm{y} \quad \forall y \in Y \\
+	 & \Longrightarrow & \norm{x} \leq D_1 \norm{T(x)} \quad \forall x \in X \\
+	 & \Longrightarrow & C_1\norm{x} \leq \norm{T(x)} \quad \forall x \in X 
+	\end{array}
+	\end{equation*}
+	
+	Por lo tanto vale que:
+	
+	\[
+		C_1 \norm{x} \leq \norm{T(x)} \leq C_2\norm{x}
+	\]
+	
+	Rec\'iprocamente, por $\ast$ se concluye que $T$ es acotado y por \ref{Continuidad de un operador} es continua; asimismo de $\star$ si $x = T^{-1}(y)$ se ve que $T^{-1}$ es continua.
+	
+\end{proof}
+
+\subsection{Espacios vectoriales de dimensi\'on finita}
+
+\begin{definition}
+	Si $\norm{.}_1, \norm{.}_2$ son dos normas en un espacio vectorial $X$ entonces decimos que son \textit{equivalentes} si $1_X : (X,\norm{.}_1) \rightarrow (X,\norm{.}_2)$ es un isomorfismo topol\'ogico.
+\end{definition}
+
+\begin{theorem}
+	Sea $X$ un espacio vectorial de dimensi\'on finita, entonces:
+	
+	\begin{enumerate}
+		\item Dos normas siempre son equivalentes
+		\item $X$ es topol\'ogicamente isomorfo a $\R^n$ con $n = \dim X$
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Sea $\norm{.}$ una norma en $X$ y veamos que $\norm{.}$ y $\norm{.}_{\infty}$ son equivalentes.
+		
+		Sea $a = \sum\limits_{i=1}^{k}{a_i e_i}$, luego $\norm{a} \leq \sum\limits_{i=1}^{k}{\abs{a_i}\norm{e_i}} \leq \norm{a}_{\infty}C$.
+		
+		Luego sea $id: (X,\norm{.}_{\infty}) \rightarrow (X,\norm{.})$
+		
+		Sabemos que $B_{1}[0]$ es compacta en $(X,\norm{.}_{\infty})$ y por la cuenta anterior $id$ es continua, por lo tanto $id(S) = S$ es compacta en $(X,\norm{.})$ y por ende alcanza m\'inimo y m\'aximo. 
+		
+		Sean $C_1 = \min\limits_{\norm{x}_{\infty} = 1} \norm{x}$ y $C_2 = \max\limits_{\norm{x}_{\infty} = 1} \norm{x}$, por lo tanto si $x \in X$ entonces:
+		
+		\[
+		C_1 \leq \norm{\dfrac{x}{\norm{x}_{\infty}}} \leq C_2
+		\]
+		
+		\item Si $x = \sum\limits_{i=1}^{k}{a_i e_i}$ definimos $T(x) = (a_1 , \dots, a_n)$, luego:
+		
+		$$C_1 \norm{x} \leq \norm{T(x)}_{\infty} = \norm{x}_{\infty} \leq C_2 \norm{x}$$
+		
+		Por lo que $T$ es isomorfismo topol\'ogico. \qed
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	Todo espacio vectorial de dimensi\'on finita es Banach.
+\end{corollary}
+
+\begin{corollary}
+	Si $X$ es normado de dimensi\'on finita, entonces todo subconjunto cerrado y acotado es compacto.
+\end{corollary}
+
+\begin{proof}
+	Si $A\subseteq X$ es cerrado y acotado, entonces existe $x_0 \in X, r > 0$ tal que $A \subset B_{r}[x_0]$ y $B_{r}[x_0]$ es compacto pues $B_1[0]$ lo es. Por lo tanto $A$ es un cerrado en un compacto. \qed
+\end{proof}
+
+\begin{theorem}
+	Si $X$ es un espacio normado de dimensi\'on infinita, entonces $B_1[0]$ no es compacta
+\end{theorem}
+
+\begin{proof}
+	Veamos primero el siguiente lema:
+	
+	\begin{lemma}[Lema de Riesz]
+		\label{Lema de Riesz}
+		Sea $M \subseteq X$ un subespacio no denso en un Banach, dado $r \in (0,1)$ existe $x \in X$ tal que $\norm{x} = 1$ pero $d(x,M) \geq r$ 
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Sea $y \in X \setminus \overline{M}$ y notemos$R = d(y,M)$, luego si $\epsilon > 0$ existe $m_1 \in M$ tal que $\norm{m_1 - y} < R + \epsilon$. Sea $x = \dfrac{y - m_1}{\norm{y - m_1}}$, luego $\norm{x}=1$ y:
+		
+		\[
+		\begin{aligned}
+		d(x,M) = & \inf\limits_{m \in M} \norm{x - m} \\ 
+		= & \inf\limits_{m \in M} \norm{m - \dfrac{y}{\norm{y - m_1}} + \dfrac{m_1}{\norm{y - m_1}}} \\
+		= & \dfrac{\inf\limits_{m \in M} \norm{m - y} }{\norm{m_1 - y}} \\
+		= & \dfrac{R}{R + \epsilon} \nearrow 1
+		\end{aligned}
+		\]
+		\qed
+		
+	\end{proof}
+	
+	Sea $x_1 \in \partial B_1[0]$, luego por \ref{Lema de Riesz} aplicado a $S_1 = \ip{x_1}$ existe $x_2 \in \partial B_1[0]$ tal que $\norm{x_1 - x_2} > \frac{1}{2}$.
+	
+	Inductivamente sea $x_n \in \partial B_1[0]$ tal que $d(x_n, S_{n-1}) = d(x_n , \sett{x_1 , x_2 , \dots , x_{n-1}}) > \frac{1}{2}$. Luego por construcci\'on $\sett{x_n}_{n \in \N} \subset B_1[0]$ es una sucesi\'on tal que $\norm{x_n - x_m} > \frac{1}{2}$ para todos $n \neq m$ por lo tanto es una sucesi\'on acotada que no admite subsucesi\'on convergente. Conclu\'imos que $B_1[0]$ no es compacto \qed
+	
+\end{proof}
+
+\subsection{Espacio de Operadores entre espacios normados}
+
+\begin{definition}
+	Dados $X,Y$ normados decimos que $T : X \rightarrow Y$ es \textit{acotado} si vale \ref{eq: Operador acotado}. De \ref{Continuidad de un operador} vemos que un funcional es acotado si y s\'olo si es continuo.
+	
+	En ese caso definimos:
+	
+	\begin{equation*}
+	\norm{T} = \sup \sett{\norm{T(x)}: \ \norm{x} \leq 1}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{proposition}
+	Si $T$ es un operador acotado entonces:
+	\begin{equation}
+	\label{eq: Normas equivalentes de un operador}
+	\begin{aligned}
+	\norm{T} := & \sup \sett{\norm{T(x)}: \ \norm{x} \leq 1} \\
+	= & \sup \sett{\norm{T(x)}: \ \norm{x} = 1}\\
+	= & \sup \sett{\dfrac{\norm{T(x)}}{\norm{x}}: \ x \neq 0}  \\
+	= & \inf \sett{c > 0: \ \norm{T(x)} \leq c \norm{x} \ x \in X} 
+	\end{aligned}	
+	\end{equation}
+	
+	Es m\'as, vale que $\norm{T(x)} \leq \norm{T} \norm{x}$ para todo $x \in X$.
+	
+\end{proposition}
+
+\begin{proof}
+	Notemos(solo por esta demostraci\'on):
+	
+	\[
+	\begin{array}{ccc}
+	\norm{T}_2 & = & \sup \sett{\abs{T(x)}: \ \norm{x} = 1} \\
+	\norm{T}_3 & = & \sup \sett{\dfrac{\abs{T(x)}}{\norm{x}}: \ x \neq 0} \\
+	\norm{T}_4 & =  & \inf \sett{c > 0: \ \abs{T(x)} \leq c \norm{x} \ x \in X}
+	\end{array}
+	\]
+	
+	Vamos por partes, 
+	
+	\begin{itemize}
+		\item Primero como $\sett{\abs{T(x)}: \ \norm{x} = 1} \subseteq \sett{\abs{T(x)}: \ \norm{x} \leq 1}$ entonces vale que $\norm{T}_2 \leq \norm{T}$. 
+		
+		Rec\'iprocamente, si $\norm{x} \leq 1$ entonces:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{T\left(\dfrac{x}{\norm{x}}\right)} \leq \norm{T}_2 \\
+		\Longrightarrow &	\dfrac{1}{\norm{x}}\abs{T(x)} \leq \norm{T}_2 \\
+		\Longrightarrow &	\abs{T(x)} \leq \norm{T}_2 \norm{x} \leq \norm{T}_2 \\
+		\Longrightarrow &	\sup\limits_{\norm{x} \leq 1} \abs{T(x)} \leq \norm{T}_2 \\
+		\Longrightarrow &	\norm{T} \leq \norm{T}_2
+		\end{array}
+		\end{equation*}
+		
+		\item Si $x \neq 0$ entonces:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{T\left(\dfrac{x}{\norm{x}}\right)}  \leq \norm{T}_2 \\
+		\Longrightarrow &	\dfrac{1}{\norm{x}}\abs{T(x)} \leq \norm{T}_2 \\
+		\Longrightarrow &	\sup\limits_{x \neq 0} \sett{\dfrac{1}{\norm{x}}\abs{T(x)}} \leq \norm{T}_2 \\
+		\Longrightarrow &	\norm{T}_3 \leq \norm{T}_2
+		\end{array}
+		\end{equation*}
+		
+		Rec\'iprocamente notemos que $\sett{\abs{T(x)}: \ \norm{x} = 1} = \sett{\dfrac{\abs{T(x)}}{\norm{x}}: \ \norm{x} = 1} \subseteq \sett{\dfrac{\abs{T(x)}}{\norm{x}}: \ x \neq 0}$ por lo tanto $\norm{T}_2 \leq \norm{T}_3$.
+		
+		\item Sea $\epsilon > 0$, luego:
+		
+		\begin{equation*}
+		\begin{array}{cc}
+		& \abs{T\left(\dfrac{x}{\norm{x} + \epsilon}\right)} \leq \norm{T} \\
+		\Longrightarrow  & \abs{T(x)} \leq \left(\norm{x} + \epsilon\right) \norm{T} \\
+		\text{Si } \epsilon \rightarrow 0 \longrightarrow  & \abs{T(x)} \leq \norm{T} \norm{x} \\
+		\longrightarrow  & \norm{T}_4 \leq \norm{T}
+		\end{array}
+		\end{equation*}
+		
+		Rec\'iprocamente, si $\norm{T(x)} \leq c \norm{x}$ entonces $\norm{T} \leq c$ por lo que $\norm{T} \leq \norm{T}_4$. \qed
+		
+	\end{itemize}
+\end{proof}
+
+\begin{definition}
+	Sean $X,Y$ normados, definimos $L(X,Y) = \sett{T:X \rightarrow Y  \ / \ T \text{lineal y acotado}}$
+\end{definition}
+
+\begin{proposition}
+	Si $X,Y$ son normados entonces $L(X,Y)$ es normado
+\end{proposition}
+
+\begin{proof}
+	Probemos al desigualdad triangular pues las dem\'as son triviales:
+	
+	Sean $T,W : X \rightarrow Y$ lineales y acotadas, entonces $\norm{T + W} = \sup\limits_{\norm{x} \leq 1}{\norm{(T + W)(x)}} = \sup\limits_{\norm{x} \leq 1}{\norm{Tx + Wx}} \leq \sup\limits_{\norm{x} \leq 1}{\norm{Tx} + \norm{Wx}} \leq \sup\limits_{\norm{x} \leq 1}{\norm{T(x)}} + \sup\limits_{\norm{x} \leq 1}{\norm{W(x)}} = \norm{T} + \norm{W}$. \qed
+	
+\end{proof}
+
+\begin{theorem}
+	\label{Espacio de operadores es banach si lo es el codominio}
+	Sean $X,Y$ normados, entonces $Y$ es de Banach si y s\'olo si $L(X,Y)$ es de Banach
+\end{theorem}
+
+\begin{proof}
+	Sea $(T_n)_{n \in \N} \subset L(X,Y)$ una sucesi\'on de Cauchy, y sea $\epsilon > 0$ entonces existe $N \in \N$ tal que $\norm{T_n - T_m} < \epsilon$ para todos $n,m \geq N$.
+	
+	En particular dado $x \in B_{1}[0]$ vale que ${\norm{T_n(x) - T_m(x)}} \leq  \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T_m(x)}} = \norm{T_n - T_m} < \epsilon$ por lo que $\left(T_n(x)\right)_{n \in \N} \subset Y$ es una sucesi\'on de Cauchy; como $Y$ es Banach $\lim T_n(x) \in Y$. Adem\'as si $\norm{x} \geq 1$ entonces $\lim T_n(x) = \lim \norm{x}T_n\left(\dfrac{x}{\norm{x}}\right) = \norm{x} \lim T_n \left(\dfrac{x}{\norm{x}}\right) \in Y$; luego definimos:
+	
+	\[
+	T(x) = \lim T_n(x) \quad \forall x \in X
+	\]
+	
+	Veamos que $T_n \rightarrow T$ y que $T \in L(X,Y)$.
+	
+	\begin{itemize}
+		
+		\item Por \ref{La norma es continua} y la linealidad de $T_n$ vale que $T$ es lineal
+		\item Sea $x \in B_1[0]$ y $\epsilon > 0$, luego sea $N \in \N$ tal que $\norm{T_n - T_m} < \epsilon$ para todos $n,m \geq N$; entonces $\norm{T(x)} = \norm{T(x) - T_N(x) + T_N(x)} \leq \norm{T(x) - T_N(x)} + \norm{T_N(x)} < \epsilon + C$.
+		
+		\item Sea $\epsilon > 0$, luego $\epsilon > \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T_m(x)}} \underrightarrow{m \rightarrow \infty} \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T(x)}} = \norm{T_n - T}$. 
+	\end{itemize}
+	
+	La vuelta la probaremos con Hanh-Banach. \qed
+	
+\end{proof}
+
+\begin{definition}
+	Sea $X$ espacio normado, luego notamos $X^{\star} := L(X, \mathbb{F})$ y se llama \textit{espacio dual topol\'ogico}.
+	
+	Si pensamos a $X$ como espacio vectorial solamente tambi\'en esta definido $X^{'} := \sett{T:X \rightarrow \mathbb{F}, \ / \ T \text{ lineal}}$ el \textit{ dual algebraico}.
+
+\end{definition}
+
+\subsection{Espacios cocientes}
+
+Sea $X$ un espacio vectorial normado y $S \subseteq X$ un subespacio cerrado. Definimos la siguiente relaci\'on de equivalencia en $X$:
+
+\[
+x \sim_S y \Longleftrightarrow \ x-y \in S
+\]
+
+y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
+
+
+\begin{proposition}
+	El espacio $\left(\quotient{X}{S}, \norm{.}_S \right)$ es un espacio normado con la suma definida por $[x] + [y] = [x+y], [\lambda x] = \lambda.[x]$
+\end{proposition}
+
+\begin{proof}
+	\begin{itemize}
+		\item Sean $x,x' \in X$ tal que $[x] = [x']$, entonces $x - x' \in S$ por lo que $\lambda(x-x') \in S$; en conclusi\'on $\lambda . [x] := [\lambda x] = [\lambda x'] =: \lambda . [x']$.
+		\item Sean $x,x'y,y' \in X$ tal que $[x] = [x']$, $[y] = [y']$, luego $x-x' \in S$ y $y-y' \in S$ por lo que $(x-x') + (y-y') = (x+y) - (x'+y') \in S$; en conclusi\'on $[x] + [y] := [x+y] = [x' + y'] =: [x'] + [y']$.
+		\item Sean $[x] \in \quotient{X}{S}$, $\lambda \in \mathbb{F}$, luego $\norm{\lambda [x]} = \norm{[\lambda x]} = \inf\limits_{t \in [\lambda x]}{\norm{t}} = \inf\limits_{t \in [x]}{\norm{\lambda t}} = \abs{\lambda} \norm{[x]}$
+		\item Sean $[x],[y] \in \quotient{X}{S}$, luego $\norm{[x] + [y]} = \norm{[x+y]} = \inf\limits_{t \in [x + y]}{\norm{t}} \leq \inf\limits_{t \in [x] \\ w \in [y]}{\norm{t+w}} \leq \norm{[x]} + \norm{[y]}$
+		\item Si $\norm{[x]} = 0$ entonces existe $t_n$ tal que $\norm{t_n} < \frac{1}{n}$ con $t_n \in [x]$, por lo tanto $x + s_n = t_n \rightarrow 0$ y entonces $s_n \rightarrow -x$. Como $S$ es cerrado $-x \in S$ y como es subespacio $x \in S$; luego $[x]=[0]$
+		
+		Trivialmente si $x \in S$ entonces $[x] = [0]$ y entonces $\norm{[x]} = 0$. \qed
+		
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}
+	Sean $S \subseteq X$ un subespacio cerrado en un normado, entonces:
+	
+	\[
+		\norm{[x]} = d(x,S)
+	\]
+	
+\end{proposition}
+
+\begin{proof}
+	$d(x,S) = \inf\limits_{s \in S}{\norm{x - s}_X} = \inf\limits_{-s \in S}{\norm{x + s}_X} = \inf\limits_{t \in [x]}{\norm{t}_X}$.\qed
+\end{proof}
+
+\begin{theorem}
+	\label{Propiedades del espacio cociente}
+	Sea $M \subseteq X$ un subespacio cerrado de un espacio normado y notemos $Q: X \rightarrow \quotient{X}{M}$ la proyecci\'on can\'onica, entonces:
+	
+	\begin{enumerate}
+		\item $Q$ es continua y $\norm{Q} \leq 1$.
+		\item Si $X$ es de Banach entonces $\quotient{X}{M}$ lo es.
+		\item Si $W \subset \quotient{X}{M}$ entonces $W$ es abierto si y s\'olo si $Q^{-1}(W)$ es abierto.
+		\item Si $U \subset X$ es abierto entonces $Q(U) \subset \quotient{X}{M}$ es abierto.
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	Vayamos de a partes:
+	
+	\begin{enumerate}
+		\item $\norm{Q(x)} = \norm{[x]} = d(x,M) \leq \norm{x}$ pues $0 \in M$; conclu\'imos por \ref{Continuidad de un operador}.
+		
+		\item Sea $\left([x_n]\right) \subset \quotient{X}{M}$ una sucesi\'on tal que $\Bigsum{n \in \N}{\norm{[x_n]}} < \infty$, y para cada $n \in \N$ tal que $\norm{[x_n]} \neq 0$ sea $\epsilon_n = \norm{[x_n]}$. Luego $\norm{[x_n]} + \epsilon_n = 2\norm{[x_n]} >  \norm{x_n + m_n}$ para cierto $m_n \in M$  (Si $\norm{[x_n]} = 0$ entonces $x_n \in M$ y tomamos $m_n = -x_n \in M$), como $\Bigsum{n \in \N}{\norm{[x_n]}} < \infty$ entonces $\Bigsum{n \in \N}{\norm{m_n + x_n}} < \infty$ y por \ref{Banach si y solo si abs convergente es convergente} $\Bigsum{n \in \N}{m_n + x_n} \in X$. Como $S_p = \sum\limits_{n = 1}^{p}{x_n + m_n} \rightarrow \Bigsum{n \in \N}{m_n + x_n}:= v \in X$ y $Q$ es continua entonces $\sum\limits_{n = 1}^{p}{[x_n]} = Q\left(S_p\right) \rightarrow Q(v) \in \quotient{X}{M}$; conclu\'imos por \ref{Banach si y solo si abs convergente es convergente} que $\quotient{X}{M}$ es de Banach.
+		
+		\item Sea $W \subset \quotient{X}{M}$ tal que $Q^{-1}(W)$ es abierto, luego si $[x_0] \in W$ entonces $x_0 \in Q^{-1}(W)$ y existe un $r > 0$ tal que $x_0 + B_r(0) \subset Q^{-1}(W)$. Veamos el siguiente lema:
+		
+		\begin{lemma}
+			$Q(B_r(0)) = B_r([0])$
+		\end{lemma}
+		
+		\begin{proof}[Demostraci\'on del lema]
+			Si $\norm{x} < r$, entonces $\norm{[x]} = \norm{Qx} \leq \norm{x} < r$. Rec\'iprocamente si $\norm{[x]} < r$ entonces existe $y \in M$ tal que $\norm{x+y} < r$ por lo que $[x] = Q(x+y) \in Q(B_r(0))$. \qed
+		\end{proof}
+		
+		Por el lema $W = QQ^{-1}(W) \supset Q(x_0 + B_r(0)) = B_r([x_0])$ por lo que $W$ es abierto.
+		
+		\item Si $U \subset X$ es abierto entonces $Q^{-1}(Q(U)) = U + M = \Bigcup{m \in M}{U+y}$ que es una uni\'on de abiertos, por lo que $Q^{-1}(Q(U))$ es abierto; por el punto anterior $Q(U)$ es abierto. \qed
+		
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	Si $X$ es normado, $M \subseteq X$ es un subespacio cerrado y $N \subseteq X$ es de dimensi\'on finita entonces $M+N$ es un subespacio cerrado.
+\end{proposition}
+
+\begin{proof}
+	Consideremos $Q: X \rightarrow \quotient{X}{M}$, como $\dim Q(N) \leq \dim N < \infty $ entonces $Q(N)$ es cerrado y como $Q$ es continua entonces $Q^{-1}(Q(N)) = N+M$ es cerrado .\qed
+\end{proof}
+
+\section{Teorema de Hahn-Banach}
 
 \end{document}
