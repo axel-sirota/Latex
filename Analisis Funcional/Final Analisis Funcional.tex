@@ -1312,6 +1312,7 @@ Recordemos:
 \end{definition}
 
 \begin{theorem}
+	\label{En dimension finita las normas son equivalentes}
 	Sea $X$ un espacio vectorial de dimensi\'on finita, entonces:
 	
 	\begin{enumerate}
@@ -1614,5 +1615,197 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 \end{proof}
 
 \section{Teorema de Hahn-Banach}
+
+\subsection{Funcionales Lineales}
+
+\begin{definition}
+	Sea $X$ un $\mathbb{F}$ espacio vectorial, un \textit{hiperplano} en $X$ es una variedad lineal $M$ tal que $\dim \quotient{X}{M}$
+\end{definition}
+
+\begin{proposition}
+	Una variedad lineal es un hiperplano si y s\'olo si existe $f \neq 0 \in X^{'}$ tal que $M = \ker f$
+\end{proposition}
+
+\begin{proof}
+	Si $f \in X^{'}$ es no nulo entonces $f$ induce $\bar{f}: \quotient{X}{\ker f} \rightarrow \mathbb{F}$ isomorfismo por lo que $\ker f$ es un hiperplano.
+	
+	Rec\'iprocamente, si $M$ es un hiperplano entonces existe $T: \quotient{X}{M} \rightarrow \mathbb{F}$ un isomorfismo; luego si consideramos $f = Q \circ T$ cumple que $f \in X^{'}$ y $M = \ker f$. \qed
+\end{proof}
+
+\begin{proposition}
+	\label{Dos funcionales con mismo nucleo son proporcionales}
+	Sean $f,g \in X^{'}$, luego $\ker f = \ker g$ si y s\'olo si $g = \alpha f$ con $\alpha \in \mathbb{F}$
+\end{proposition}
+
+\begin{proof}
+	Sea $x_0 \in X$ tal que $f(x_0) = 1$, luego $g(x_0) = \alpha \neq 0$ y entonces $x - f(x)x_0 \in \ker f = \ker g$; por lo tanto $g(x) = \alpha f(x)$. \qed
+\end{proof}
+
+\begin{proposition}
+	Si $X$ es un espacio normado y $M$ es un hiperplano entonces $M$ es denso o cerrado.
+\end{proposition}
+
+\begin{proof}
+	Sabemos que $\overline{M}$ es una variedad lineal y vale que $M \subset \overline{M}$ por lo que $\dim \quotient{X}{\overline{M}} \leq \dim \quotient{X}{M} = 1$. \qed
+\end{proof}
+
+\begin{theorem}
+	Si $X$ es normado y $f \in X^{'}$ entonces $f$ es acotada si y s\'olo si $\ker f$ es cerrado.
+\end{theorem}
+
+\begin{proof}
+	Sea $M = \ker f$ cerrado, entonces por \ref{Propiedades del espacio cociente} $Q$ es continua y sea $T : \quotient{X}{\ker f} \rightarrow \mathbb{F}$ un isomorfismo entonces $T$ es continua pues $\norm{Tx} \leq \sum\limits_{i=1}^{k}{\abs{\lambda_i}\norm{Te_i}} \leq C\norm{x}_{\infty} \underbrace{\leq}_{\ref{En dimension finita las normas son equivalentes}} D \norm{x}$. Luego $g = T \circ Q \in X^{\ast}$ y $\ker g = \ker f$, por \ref{Dos funcionales con mismo nucleo son proporcionales} vale que $f = \alpha g \in X^{\ast}$. \qed
+\end{proof}
+
+\begin{proposition}
+	\label{Operador desde un espacio de dim finita es continuo}
+	Si $X$ es normado de dimensi\'on finita e $Y$ es normado, luego si $T: X \rightarrow Y$ es lineal entonces es continua.
+\end{proposition}
+
+\begin{proof}
+	Ver arriba. \qed
+\end{proof}
+
+\subsection{El Teorema de Hanh-Banach}
+
+\begin{definition}
+	Sea $X$ un espacio vectorial, un \textit{funcional sublineal} es una $q : X \rightarrow \R$ tal que:
+	
+	\begin{enumerate}
+		
+		\item Dados $x,y \in X$ vale $q(x+y) \leq q(x) + q(y)$
+		\item Dado $x \in X$ vale $q(\alpha x) = \alpha q(x)$ para todo $\alpha \geq 0$	
+	\end{enumerate}
+	
+\end{definition}
+
+\begin{proposition}
+	\label{Escritura de funcionales lineales complejos}
+	Sea $X$ un $\C$ espacio vectorial, entonces:
+	
+	\begin{enumerate}
+		\item Si $f : X \rightarrow \R$ es un $\R$ funcional lineal, entonces $\tilde{f}(x) = f(x) - if(ix)$ es un $\C$ funcional lineal.
+		\item Si $g : X \rightarrow \C$ es un $\C$ funcional lineal y  $f = \Re g$, entonces $g = \tilde{f}$.
+		\item Si $p$ es una seminorma entonces $\abs{f} \leq p \ \Longleftrightarrow \ \abs{\tilde{f}} \leq p$
+		\item Si $X$ es normado entonces $\norm{f} = \norm{\tilde{f}}$
+	\end{enumerate}
+	
+\end{proposition}
+	
+\begin{proof}
+	\begin{enumerate}
+		\item Es claro que $\tilde{f}$ es $\R$ lineal y adem\'as notemos que $\tilde{f}(ix) = f(ix) - if(-x) = if(x) + f(ix) =i( f(x) - i f(ix)) = i \tilde{f}(x)$; por lo tanto $\tilde{f}$ es $\C$ lineal.
+		\item Como $g$ es $\C$ lineal entonces $g(ix) = ig(x)$ y luego $\Im g(ix) = \Im ig(x) = \Re g = f(x)$ por lo que $-f(ix) = \Im g(x)$ y conclu\'imos que $g = \tilde{f}$.
+		\item Si $\abs{f} \leq p$ luego como $\tilde{f} = e^{i\theta}\abs{\tilde{f}}$ entonces $\abs{\tilde{f}} = \tilde{f}(e^{-i\theta}x) = \Re \tilde{f}(e^{-i\theta}x) = f(e^{-i\theta}x) \leq p(e^{-i\theta}x) = \abs{e^{-i\theta}}p(x)$.
+		
+		Rec\'iprocamente si $\abs{\tilde{f}} \leq p$ entonces $\pm f( x)= \Re \tilde{f(\pm x)} \leq \abs{\tilde{f}(\pm x)} \leq p$ por lo que $\abs{f} \leq p$.
+		
+		\item Como $\norm{f}$ es una seminorma, entonces $\norm{\tilde{f}} \leq \norm{f}$. \qed
+		
+	\end{enumerate}
+\end{proof}	
+
+\begin{lemma}
+	\label{Lemma: Hanh-Banach}
+	
+	Sea $X$ un $\R$ espacio vectorial y sea $q$ un funcional sublineal en $X$. Si $M \subseteq X$ es un hiperplano y $f : M \rightarrow \R$ es un funcional tal que $f \leq q$ para todo $x \in M$ entonces existe $F : X \rightarrow \R$ una extensi\'on tal que $F \leq q$.
+		
+\end{lemma}
+
+\begin{proof}
+	Sea $x_0 \in X \setminus M$ por lo que $X = M \oplus \ip{x_0}$, asumamos que existe tal extensi\'on $F$ y notemos $\alpha_0 = F(x_0)$. Si $t > 0$ y $y_1 \in M$ entonces $F(tx_0 + y_1) = t\alpha_0 + f(y_1) \leq q(tx_0 + y_1)$ por lo que $\alpha_0 \leq q(x_0 + \frac{y_1}{t}) - f(\frac{y_1}{t})$ para todo $y_1 \in M$ que se reduce a ($M$ variedad):
+	
+	\begin{equation*}
+		\alpha_0 \leq q(x_0 + y_1) - f(y_1) \quad \forall y_1 \in M
+	\end{equation*}
+	
+	Adem\'as si $t \geq 0$, $y_2 \in M$ entonces $F(-tx_0 + y_2) = -t\alpha_0 + f(y_2) \leq q(-tx_0 + y_2)$ y conclu\'imos:
+	
+	\begin{equation}
+	\label{eq: Condicion Hanh-Banach}
+		q(-x_0 + y_2) + f(y_2)  \leq \alpha_0 \leq q(x_0 + y_1) - f(y_1) \quad \forall y_1y_2 \in M
+	\end{equation}
+	
+	Y rec\'iprocamente si $\alpha_0$ cumple \ref{eq: Condicion Hanh-Banach} entonces volviendo se cumple lo necesitado para $F$. Reordenando necesitamos probar que $f(y_1 + y_2) \leq q(x_0 + y_1) + q(-x_0 + y_2)$; pero:
+	
+	\begin{equation*}
+	\begin{aligned}
+		f(y_1 + y_2) \leq & q(y_1 + y_2) = q(x_0 + y_1 -x_0 + y_2) \\
+		\leq & q(x_0 + y_1) + q(-x_0 + y_2)
+	\end{aligned}
+	\end{equation*}
+	
+	Luego, elegimos $\alpha_0$ tal que $\sup\limits_{y_2 \in M}\sett{f(y_2) - q(-x_0 + y_2)} \leq \alpha_0 \leq \inf\limits_{y_1 \in M}\sett{q(x_0 + y_1) - f(y_1)}$ y definimos $F(tx_0 + y) := t \alpha_0 + f(y)$ y $F$ es una extensi\'on de $f$ tal que $F \leq q$. \qed
+	
+\end{proof}
+
+\begin{theorem}[Teorema de Hanh-Banach (Versi\'on real)]
+	\label{Hanh-Banach real}
+
+	Sea $X$ un $\R$ espacio vectorial y sea $q$ un funcional sublineal en $X$. Si $M \subseteq X$ es un subespacio y $f : M \rightarrow \R$ es un funcional tal que $f \leq q$ para todo $x \in M$ entonces existe $F : X \rightarrow \R$ una extensi\'on tal que $F \leq q$.
+\end{theorem}
+
+\begin{proof}
+	Sea $\mathcal{S} = \sett{(M_1,f_1) \ , \ M_1 \supseteq M \ , \ M_1\text{ variedad } \ , \ f_1 \in M_1^{'} \ , \ f_1 \vert_{M} = f \ , \ f_1 \leq q \vert_{M_1}}$ y lo dotamos del orden dado por:
+	
+	\[
+	(M_1,f_1) \leq_S (M_2,f_2) \ \Longleftrightarrow \ M_1 \subseteq M_2 \ , \ f_2 \vert_{M_1} = f_1
+	\]
+	
+	Luego $(\mathcal{S}, \leq_S)$ es un poset. Sea $\mathcal{C} = \sett{(M_i,f_i)}_{i \in I}$ una cadena en $\mathcal{S}$ y sea $N = \Bigcup{i \in I}{M_i}$, luego $N$ es variedad y definimos $F: N \rightarrow \R$ dado por $F(x) = f_i(x)$ si $x \in M_i$.
+	
+	Si $x \in M_i,M_j$ entonces como $\mathcal{C}$ esa cadena $M_i \subseteq M_j$ y $F(x) = f_j(x) = f_i(x)$ pues $f_j \vert_{M_i} = f_i$ por lo que $F$ esta bien definida. Con una cuenta an\'aloga se ve que $F$ es lineal y que $F \leq q$ por lo que $(N,F) \in \mathcal{S}$ es una cota superior para $\mathcal{C}$.
+	
+	Por \ref{Lema de Zorn} existe $(Y,F)$ un elemento maximal y por \ref{Lemma: Hanh-Banach} $Y = X$. \qed
+	
+\end{proof}
+
+\begin{theorem}[Teorema de Hanh-Banach]
+	\label{Hanh-Banach}
+	
+	Sea $X$ un espacio vectorial (real o complejo) y sea $p$ una seminorma en $X$. Si $M \subseteq X$ es un subespacio y $f : M \rightarrow \C$ es un funcional tal que $\abs{f} \leq q$ para todo $x \in M$ entonces existe $F : X \rightarrow \C$ una extensi\'on tal que $\abs{F} \leq q$.
+\end{theorem}
+
+\begin{proof}
+	Por \ref{Escritura de funcionales lineales complejos}(2) si notamos $f_1 = \Re f$ entonces $f(x) = f_1(x) - i f_1(ix)$ y adem\'as de la cuenta de la demostraci\'on de la vuelta de  \ref{Escritura de funcionales lineales complejos}(3) $\abs{f_1} \leq p$ para todo $x \in M$, luego por \ref{Hanh-Banach real} existe $F_1 \in X^{'}$ extensi\'on de $f_1$ tal que $\abs{F_1} \leq p$ por la misma cuenta que antes en \ref{Escritura de funcionales lineales complejos}(3).
+	
+	Sea $F = \tilde{F_1}$ y por \ref{Escritura de funcionales lineales complejos}(3) vale que $\abs{F} \leq p$. \qed
+\end{proof}
+
+\subsection{Corolarios de Hanh-Banach}
+
+\begin{corollary}
+	\label{La extension del funcional preserva norma}
+	Si $X$ es normado, $M$ es subespacio y $f \in M^{\ast}$ entonces existe $F \in X^{\ast}$ tal que $F \vert_{M} = f$ y $\norm{F} = \norm{f}$
+\end{corollary}
+
+\begin{proof}
+	Sea $p(x) = \norm{f}\norm{x}$, luego $\abs{f(x)}\leq p$ y por \ref{Hanh-Banach} existe $F: X \rightarrow \mathbb{F}$ extensi\'on tal que $\abs{F(x)} \leq p = \norm{f} \norm{x}$  por lo que $\norm{F} \leq \norm{f}$; finalmente $\norm{f} = \sup\limits_{\substack{x \in S \\ \norm{x} = 1}} \abs{f(x)} = \sup\limits_{\substack{x \in S \\ \norm{x} = 1}} \abs{F(x)} \leq \norm{F}$ entonces $\norm{f} = \norm{F}$. \qed
+\end{proof}
+
+\begin{corollary}
+	Si $X$ es normado y $\sett{x_1, \dots , x_d}$ es un conjunto linealmente independiente y $\alpha_1 , \dots , \alpha_d \in \mathbb{F}$ entonces existe $f \in X^{\ast}$ tal que $f(x_i) = \alpha_i$ para todo $1 \leq i \leq d$.
+\end{corollary}
+
+\begin{proof}
+	Sea $M = \ip{x_1 , \dots , x_d}$ y sea $g( \sum\limits_{i=1}^{k}{\beta_i x_i}) = \sum\limits_{i=1}^{k}{\beta_i \alpha_i}  \in M^{\ast}$ por \ref{Operador desde un espacio de dim finita es continuo}, sea $f$ la extensi\'on dada por \ref{La extension del funcional preserva norma}. \qed
+\end{proof}
+
+
+\begin{corollary}
+	\label{Norma en funcion de funcionales}
+	Si $X$ es normado y $x \in X$ entonces:
+	
+	\begin{equation}
+		\label{eq: Norma en funcion de funcionales}
+		\norm{x} = \sup \sett{\abs{f(x)} \ , \ f \in X^{\ast} \ , \ \norm{f} \leq 1}
+	\end{equation}
+\end{corollary}
+
+\begin{proof}
+	Sea $f \in X^{\ast}$ tal que $\norm{f} \leq 1$, entonces $\abs{f(x)} \leq \norm{f}\norm{x} \leq \norm{x}$ por lo que $\sup \sett{\abs{f(x)} \ , \ f \in X^{\ast} \ , \ \norm{f} \leq 1} \leq \norm{x}$.
+	
+	Sea ahora $M = \ip{x}$ y definamos $g \in M^{\ast}$ dado por $g(\beta x) = \beta \norm{x}$ que es continua por \ref{Operador desde un espacio de dim finita es continuo} y $\norm{g} = 1$. Por \ref{La extension del funcional preserva norma} existe $f \in X^{\ast}$ tal que $\norm{f}=1$ y $f(x) = g(x) = \norm{x}$. \qed
+\end{proof}
 
 \end{document}

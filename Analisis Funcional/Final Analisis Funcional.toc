@@ -16,3 +16,6 @@
 \contentsline {subsection}{\numberline {3.3}Espacio de Operadores entre espacios normados}{18}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Espacios cocientes}{20}{subsection.3.4}
 \contentsline {section}{\numberline {4}Teorema de Hahn-Banach}{21}{section.4}
+\contentsline {subsection}{\numberline {4.1}Funcionales Lineales}{21}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}El Teorema de Hanh-Banach}{22}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Corolarios de Hanh-Banach}{23}{subsection.4.3}
