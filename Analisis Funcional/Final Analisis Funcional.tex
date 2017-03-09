@@ -1798,7 +1798,7 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 	
 	\begin{equation}
 		\label{eq: Norma en funcion de funcionales}
-		\norm{x} = \sup \sett{\abs{f(x)} \ , \ f \in X^{\ast} \ , \ \norm{f} \leq 1}
+		\norm{x} = \max \sett{\abs{f(x)} \ , \ f \in X^{\ast} \ , \ \norm{f} \leq 1}
 	\end{equation}
 \end{corollary}
 
@@ -1807,5 +1807,80 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 	
 	Sea ahora $M = \ip{x}$ y definamos $g \in M^{\ast}$ dado por $g(\beta x) = \beta \norm{x}$ que es continua por \ref{Operador desde un espacio de dim finita es continuo} y $\norm{g} = 1$. Por \ref{La extension del funcional preserva norma} existe $f \in X^{\ast}$ tal que $\norm{f}=1$ y $f(x) = g(x) = \norm{x}$. \qed
 \end{proof}
+
+\begin{corollary}
+	\label{Si x no esta ne la clasura de un subespacio existe un funcional que separa}
+	Si $X$ es normado, $M \subseteq X$ es un subespacio cerrado, $x_0 \in X \setminus M$ y $d = dist\left(x_0 ,M\right)$ entonces existe $f \in X^{\ast}$ tal que $M \subset \ker f$, $f(x_0) = 1$ y $\norm{f} = \frac{1}{d}$
+\end{corollary}
+
+\begin{proof}
+	Sea $Q : X \rightarrow \quotient{X}{M}$ la proyecci\'on al cociente, como $\norm{[x_0]} = d$ entonces por \ref{Norma en funcion de funcionales} existe $g \in \left(\quotient{X}{M}\right)^{\ast}$ tal que $g\left([x_0]\right) = d$ y $\norm{g} = 1$. Luego si consideramos $f =  d^{-1} \circ g \circ Q : X \rightarrow \mathbb{F}$ cumple que $f \in X^{\ast}$, $f(x_0) = 1$ y $M \subseteq \ker f$; adem\'as $\abs{f(x)} = d^{-1} \abs{g(Q(x))} \leq d^{-1} \norm{g}\norm{Q} \norm{x}$ por lo que $\norm{f} \leq d^{-1}$.
+	
+	Por otro lado, como $\norm{g}=1$ existe $[x_n] \subset B_1([0]) \subseteq \quotient{X}{M}$ tal que $\abs{g([x_n])} \rightarrow 1$, sea $y_n \in Q^{-1}[x_n]$ que cumple que $\norm{x_n + y_n} < 1$, entonces $\abs{f(x_n+y_n)} = d^{-1} \abs{g([x_n])} \rightarrow d^{-1}$ por lo que $\norm{f} = d^{-1}$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Clausura en funcion de funcionales}
+	Si $X$ es normado y $M$ es un subespacio, entonces:
+	
+	\begin{equation}
+	\label{eq: Clausura en funcion de funcionales}
+		\overline{M} = \Bigcap{\substack{f \in X^{\ast} \\ M \subseteq \ker f}}{\ker f}	
+	\end{equation}
+	
+\end{corollary}
+
+\begin{proof}
+	Si $f \in X^{\ast}$, $x \in \overline{M}$ y sea $\sett{x_n}_{n \in \N} \subset M$ con $x_n \rightarrow x$ tal que $f(x_n) = 0$, entonces como $f$ es continua $0 = f(x_n) \rightarrow f(x) = 0$ por lo que $x \in \ker f$.
+	
+	Rec\'iprocamente si $x_0 \not \in \overline{M}$ entonces por \ref{Si x no esta ne la clasura de un subespacio existe un funcional que separa} existe $f \in X^{\ast}$ tal que $M \subset \ker f \not \ni x_0$ por lo que $x_0 \not \in \Bigcap{\substack{f \in X^{\ast} \\ M \subseteq \ker f}}{\ker f}$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{M es denso si el unico funcional que lo anula es el nulo}
+	Si $X$ es normado y $M$ es subespacio, entonces $M$ es denso si y s\'olo si dado $f \in X^{\ast}$ tal que $M \subseteq \ker f$ implique que $f = 0$.
+\end{corollary}
+
+\begin{proof}
+	Si $\overline{M} = X$ dado $x \in X$ existe $m_n \subset M$ tal que $m_n \rightarrow x$ por lo que $0 = f(m_n)  \rightarrow f(x) = 0$ por lo que $f(x) = 0$ para todo $x \in X$.
+	
+	Rec\'iprocamente, si $\Bigcap{\substack{f \in X^{\ast} \\ M \subseteq \ker f}}{\ker f} = \ker 0 = X$ entonces por \ref{Clausura en funcion de funcionales} vale que $X = \overline{M}$. \qed
+	
+\end{proof}
+
+\subsection{Separabilidad y Reflexividad}
+
+\begin{theorem}
+	\label{Dual separable implica separable}
+	Sea $X$ normado tal que $X^{\ast}$ es separable, entonces $X$ es separable	
+\end{theorem}
+
+\begin{proof}
+	Como $X^{\ast}$ es separable entonces $B = \partial B_1[0]$ lo es, sea $D = \sett{f_n}_{n \in \N}$ un conjunto denso en $B$. Sea $0 < \epsilon < 1$, como $\norm{f_n} = 1$ entonces existe $x_n$ tal que $\norm{x_n} = 1$ y $\abs{f(x_n)} \geq \epsilon$ y sea $M = \overline{\ip{x_1 , \dots , x_n, \dots }}$.
+	
+	Sea $x_0 \in X \setminus M$, luego por \ref{M es denso si el unico funcional que lo anula es el nulo} existe $f \in X^{\ast}$ tal que $f(x_0) \neq 0 $ y $M \subseteq \ker f$. Luego $\epsilon \leq \abs{f_n(x_n)} = \abs{f_n(x_n) - \underbrace{f(x_n)}_{x_n \in M \subset \ker f}} = \abs{(f-f_n)(x_n)} \leq \norm{x_n} \norm{f-f_n} = \norm{f-f_n}$, por lo que $\norm{f-f_n} \geq \epsilon$ para todo $n \in \N$; como $D$ era denso conclu\'imos que $X = M$.
+	
+	Finalmente si $F = \ip{\sett{x_n}_{n \in  \N}}_{\mathbb{Q}}$ con las combinaciones lineales con escalares racionales de $M$, entonces $\overline{F} = M = X$ por lo que $X$ es separable. \qed
+	
+\end{proof}
+
+\begin{theorem}
+	\label{El dual de un subespacio es el cociente del dual por el polar}
+	Sea $X$ normado, $S$ subespacio y $S^{\circ} = \sett{f \in X^{\ast} \ / \ S \subset \ker f}$; luego $S^{\circ}$ es un subespacio cerrado y $\quotient{X^{\ast}}{S^{\circ}} \simeq S^{\ast}$.
+\end{theorem}
+
+\begin{proof}
+	Sea $s \in S$ y $\sett{f_n}_{n \in \N} \subset S^{\circ}$ tal que $f_n \rightarrow f$, luego $\abs{f(s)} = \abs{(f-f_n)(s) + \underbrace{f_n(s)}_{f_n \in S^{\circ}}} \leq \norm{f-f_n}\norm{s} \rightarrow 0 $ por lo que $f \in S^{\circ}$ y $S^{\circ}$ es cerrado.
+	
+	Sea entonces $F : S^{\ast} \rightarrow \quotient{X^{\ast}}{S^{\circ}}$ dada por $F(f) = [\hat{f}]$ donde $\hat{f}$ es la de \ref{La extension del funcional preserva norma}, $F$ esta bien definida pues si $g$ es otra extensi\'on continua entonces $[g] = [\hat{f}]$ pues $g \vert_{S} = \hat{f} \vert_{S} = f$.
+	
+	Es claro que $F$ es lineal e inyectiva, si $h \in \quotient{X^{\ast}}{S^{\circ}}$ entonces $F(f) = h$ si y s\'olo si $[\hat{f}] = h = [\hat{h}]$, luego si $f = \hat{h} \vert_{S}$ entonces $F(f)=h$ por lo que $F$ es sobreyectiva.
+	
+	Finalmente, si $f \in S^{\ast}$ entonces $\norm{F(f)} = \norm{[\hat{f}]} = dist (\hat{f}, S^{\circ}) \leq \norm{\hat{f}} \underbrace{=}_{\ref{La extension del funcional preserva norma}} \norm{f}$; por lo que $\norm{F} \leq 1$; rec\'iprocamente si $f \in S^{\ast}$ y $g \in S^{\circ}$ entonces $\norm{f} = \norm{f + g \vert_S} \leq \norm{\hat{f} + g}$, luego $\norm{f} \leq \inf\limits_{g \in S^{\circ}}{\norm{\hat{f} + g}} = \norm{[\hat{f}]} = \norm{F(f)}$. Conclu\'imos que $F$ es un isomorfismo.\qed
+	
+\end{proof}
+
 
 \end{document}
