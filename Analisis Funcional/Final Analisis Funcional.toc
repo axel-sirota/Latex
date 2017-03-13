@@ -20,3 +20,5 @@
 \contentsline {subsection}{\numberline {4.2}El Teorema de Hanh-Banach}{22}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Corolarios de Hanh-Banach}{23}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}Separabilidad y Reflexividad}{24}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Consecuencias Geom\'etricas de Hanh-Banach}{26}{subsection.4.5}
+\contentsline {section}{\numberline {5}Teoremas fundamentales de espacios de Banach}{29}{section.5}

@@ -33,6 +33,8 @@
 \newcommand{\R}{{\mathbb{R}}}
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
 \newcommand{\x}[3]{#1_#2^#3}
 \newcommand{\xx}[4]{#1_#3#2_#4}
 \newcommand\dd{\,\mathrm{d}}
@@ -1129,6 +1131,7 @@ Recordemos:
 \end{proof}
 
 \begin{theorem}[Teorema de Representaci\'on de Riesz]
+	\label{Teorema de representacion de Riesz}
 	Sea $L : H \rightarrow \mathbb{F}$ un funcional, entonces $L$ es acotado si y s\'olo si existe un \'unico $h_0 \in H$ tal que $L(h) = \ip{h,h_0}$. En ese caso $\norm{L} = \norm{h_0}$.
 \end{theorem}
 
@@ -1642,6 +1645,7 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 \end{proof}
 
 \begin{proposition}
+	\label{Hiperplano en normado es cerrado o denso}
 	Si $X$ es un espacio normado y $M$ es un hiperplano entonces $M$ es denso o cerrado.
 \end{proposition}
 
@@ -1650,6 +1654,7 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 \end{proof}
 
 \begin{theorem}
+	\label{Un funcional es continuo sii su nucleo es cerrado}
 	Si $X$ es normado y $f \in X^{'}$ entonces $f$ es acotada si y s\'olo si $\ker f$ es cerrado.
 \end{theorem}
 
@@ -1882,5 +1887,272 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 	
 \end{proof}
 
+\begin{definition}
+	Sea $X$ normado y $\ddual{X}$ su doble dual, definimos la \textit{aplicaci\'on can\'onica} $p: X \rightarrow \ddual{X}$ dada por $P(x)(f) = f(x)$.
+\end{definition}
+
+
+\begin{remark}
+	Si $p$ es la aplicaci\'on can\'onica luego vale que:
+	
+	\begin{enumerate}
+		\item $p(x) \in \ddual{X}$ para todo $x \in X$
+		\item $p$ es lineal y monomorfismo
+		\item $\norm{p} = 1$
+	\end{enumerate}
+	
+\end{remark}
+
+\begin{proof}
+	Si $x \in X$ luego $\abs{p(x)(f)} = \abs{f(x)} \leq \norm{f} \norm{x}$ por lo que $\norm{p} \leq 1$ y $p \in \ddual{X}$; es m\'as $\norm{p(x)} = \sup\limits_{\substack{f \in \dual{X} \\ \norm{f} = 1}}{\abs{p(x)(f)}} = \sup\limits_{\substack{f \in \dual{X} \\ \norm{f} = 1}}{\abs{f(x)}} \underbrace{=}_{\ref{Norma en funcion de funcionales}} \norm{x}$. \qed
+\end{proof}
+
+\begin{definition}
+	Sea $X$ normado, decimos que es un espacio \textit{reflexivo} si $p$ es sobreyectiva.
+\end{definition}
+
+\begin{example}
+	Todo espacio de dimensi\'on finita es reflexivo
+\end{example}
+
+\begin{proof}
+	Como $\dim X = n$ y $p$ es monomorfismo entonces es isomorfismo y luego en particular es sobreyectiva.
+\end{proof}
+
+\begin{remark}
+	Si $f,g \in \dual{H}$ entonces por \ref{Teorema de representacion de Riesz} existen $x_0,y_0 \in H$ tal que $f(z) =  \ip{z,x_0}, g(z) = \ip{z,y_0}$. Luego el producto interno que refiere a $\norm{}_{\dual{H}}$ es $\ip{f,g}_{\dual{H}} = \ip{y_0,x_0}_{H}$ 
+\end{remark}
+
+\begin{theorem}
+	Sea $H$ Hilbert entonces $H$ es reflexivo.
+\end{theorem}
+
+\begin{proof}
+	Ya sabemos de \ref{Teorema de representacion de Riesz} que la aplicaci\'on $F: H \rightarrow \dual{H}$ dada por $F(h)(x) = f(x) = \ip{x,h}$ es una isometr\'ia lineal. Sea $g \in \ddual{H}$ por lo que $g(f) = \ip{f,f_0}$ para alg\'un $f_0 \in \dual{H}$, que a su vez existe $z_0 \in H$ tal que $f_0(x) = \ip{x,z_0}$; luego $p(z_0)(f) = f(z_0) = \ip{x,z_0} = \ip{f,f_0}_{\dual{H}} = g(f)$.
+\end{proof}
+
+\begin{proposition}
+	Si $\B = \sett{v_i}_{i \in I}$ es base ortonormal de $H$ Hilbert entonces si definimos $f_{v_i}(x) = \ip{x,v_i} \in \dual{H}$ vale que $\F = \sett{f_{v_i}}_{i \in I}$ es base ortonormal de $\dual{H}$
+\end{proposition}
+
+\begin{proof}
+	Sean $f_{v{i}}, f_{v_j} \in \F$ luego $\ip{f_{v_i},f_{v_j}} = \ip{v_j,v_i} = \delta_{i,j}$ por lo que $\F$ es ortonormal. Finalmente si $f \in \dual{H}$ entonces existe $x \in H$ tal que $f(z) = \ip{z,x}$ y entonces $0 = \ip{f,f_{v_i}} = \ip{v_i,x}$ para todo $i \in I$, por la completitud de $\B$ conclu\'imos que $x = 0$ por lo que $f = 0$. \qed
+\end{proof}
+
+\begin{corollary}
+	\label{Hilbert es autodual}
+	Si $H$ es Hilbert entonces $H \simeq \dual{H}$
+\end{corollary}
+
+\begin{proof}
+	Por \ref{HIlbert congruente a un l2} dos veces tenemos que $H,\dual{H} \simeq l^2(I)$, luego por transitividad $H \simeq \dual{H}$. \qed
+\end{proof}
+
+\begin{theorem}
+	\label{Si X es reflexivo entonces su dual lo es}
+	Sea $X$ normado y reflexivo, entonces $\dual{X}$ es reflexivo
+\end{theorem}
+
+\begin{proof}
+	Sea $\dual{p}: \dual{X} \rightarrow \dual{\ddual{X}}$, $g \in \dual{\ddual{X}}$, $h \in \ddual{X}$ y definimos $f := g \circ p \in \dual{X}$. Como $h \in \ddual{X}$ entonces existe $x_h \in X$ tal que $p(x_h) = h$ y luego:
+	
+		\begin{itemize}
+			\item $\dual{p}(f)(h) = h(f) = p(x_h)(f) = f(x_h)$
+			\item $g(h) = g \circ p (x_h) = f(x_h)$
+		\end{itemize}
+	
+	Luego $\dual{p}(f) = g$ y conclu\'imos que $\dual{X}$ es reflexivo. \qed
+	
+	
+\end{proof}
+
+\begin{theorem}
+	\label{Cerrado en reflexivo es reflexivo}
+	Si $X$ es reflexivo y $S \subseteq X$ subespacio cerrado entonces $S$ es reflexivo
+\end{theorem}
+
+\begin{proof}
+	Sea $g \in \ddual{S}$ y consideremos $\ddual{x} \in \ddual{X}$ dada por $\ddual{x}(f) = g \circ T \circ \pi (f)$ donde $T: \quotient{\dual{X}}{S^{\circ}} \rightarrow \dual{S}$ es el isomorfismo isom\'etrico dado en \ref{El dual de un subespacio es el cociente del dual por el polar}, $\pi: \dual{X} \rightarrow \quotient{\dual{X}}{S^{\circ}}$ la proyecci\'on al cociente dada por \ref{Propiedades del espacio cociente}. Como $X$ es reflexivo entonces existe $x \in X$ tal que $p(x) = \ddual{x}$, si $x \not \in S$ entonces por \ref{Si x no esta ne la clasura de un subespacio existe un funcional que separa} existe $f \in \dual{X}$ tal que $f\vert_S = 0$ y $f(x) \neq 0$ por lo que $f(x) = p(x)(f) = \ddual{x}(f) = g \circ T \circ \pi (f) \underbrace{=}_{f \vert_S = 0} 0$ y conclu\'imos que $x \in S$.
+	
+	
+	Sea $f \in \dual{S}$ y $\hat{f}$ su extensi\'on dada por \ref{La extension del funcional preserva norma}, entonces $g(f) = g \circ T \circ \pi (\hat{f}) = \ddual{x}(\hat{f}) = p(x) (\hat{f}) = \hat{f}(x) = f(x) = p(x)(f)$ y conclu\'imos que $p(x) = g$ por lo que $S$ es reflexivo. \qed
+	
+\end{proof}
+
+\begin{remark}
+	$l^1$ no es reflexivo
+\end{remark}
+
+\begin{proof}
+	Si $l^1$ fuese reflexivo entonces $l^1 \simeq \dual{l^{\infty}}$ y como $l^1$ es separable entonces por \ref{Dual separable implica separable} conclu\'imos que $l^{\infty}$ es separable, conclu\'imos que $l^1$ no es reflexivo. \qed
+\end{proof}
+
+\subsection{Consecuencias Geom\'etricas de Hanh-Banach}
+
+\begin{definition}
+	Sea $X$ un espacio vectorial real y $K \subset X$ convexo, decimos que es \textit{absorbente} si para todo $x \in X$ existe $\epsilon > 0$ tal que $\alpha x \in K$ para todo $\alpha \in \R, \ \abs{\alpha} < \epsilon$
+\end{definition}
+
+\begin{definition}
+	Sea $X$ un espacio vectorial real y $K \subset X$ convexo absorbente tal que $0 \in K$, definimos la \textit{funcional de Minkowsky asociada a } $K$ como la aplicaci\'on $p_K(x) = \inf \sett{\alpha > 0 \ / \ \quotient{x}{\alpha} \in K}$
+\end{definition}
+
+\begin{definition}
+	Sea $X$ un espacio vectorial real y sea $f$ un funcional lineal, llamaremos \textit{hiperplano} a los conjuntos $f^{-1}(\alpha)$. Si $S \subset X$ decimos que $H = f^{-1}(\sett{\alpha})$ \textit{deja a un lado(estrictamente) a } $S$ si $S \subset \sett{x \in X \  \ f(x) \leq \alpha} \left(\sett{x \in X \ / \ f(x) < \alpha}\right)$ u el an\'alogo con los signos opuestos.
+\end{definition}
+
+\begin{proposition}
+	\label{Lemma1: Hanh-Banach geometrico}
+	Si $H$ es hiperplano y $K \subseteq X$ es convexo entonces $H$ deja a un lado estrictamente a $K$ si y s\'olo si $K \cap H = \emptyset$
+\end{proposition}
+
+\begin{proof}
+	\label{Un hiperplano deja a un lado a un convexo disjunto}
+	Sea $\alpha$ tal que $H = f^{-1}(\sett{\alpha})$ y supongamos que existe $x_1,x_2 \in K$ tal que $f(x_1) < \alpha$ y $f(x_2) > \alpha $, luego si consideramos $g(t) = f(tx_1 + (1-t)x_2) = t f(x_1 - x_2) + (1-t)f(x_2)$ por Bonzano existe $t_0 \in (0,1)$ tal que $g(t_0) = \alpha$ por lo que $t_0 x_1 + (1-t_0)x_2 \in H \cap K$ pues $K$ es convexo \qed
+\end{proof}
+
+\begin{proposition}
+	\label{Lemma2: Hanh-Banach geometrico}
+	Si $H$ es un hiperplano y $K$ es convexo absorbente disjunto de $H$ entonces existe $g$ funcional lineal tal que:
+	
+	\begin{enumerate}
+		\item $H = g^{-1}(1)$
+		\item $-p_K(-x) \leq g(x) \leq p(x)$ para todo $x \in X$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Sea $\alpha \in \R$ y $f \in X'$ tal que $H = f^{-1}(\alpha)$, luego si $g = \dfrac{f}{\alpha}$ entonces $x \in H$ si y s\'olo si $f(x) = \alpha$ si y s\'olo si $\dfrac{f(x)}{\alpha} = g(x) = 1$ por lo que $H = g^{-1}(x)$. Como $K \cap H = \emptyset$ entonces por \ref{Un hiperplano deja a un lado a un convexo disjunto} entonces $K \subset g^{-1}((-\infty, 1))$ o $K \subset g^{-1}((1,\infty))$ pero como $g(\underbrace{0}_{0 \in K}) = 0$ entonces $K \subset g^{-1}((1,\infty))$.
+	
+	Como $K$ es absorbente dado $x \in X$ existe $\beta > 0$ tal que $\dfrac{x}{\beta} < 1$ por lo que $g(x) < \beta$ y conclu\'imos que $g(x) \leq p(x)$. \qed	
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Lemma3: Hanh-Banach geometrico}
+	Sea $H \subseteq X$ un hiperplano en un espacio normado, $S \subset X$ tal que $\interior{S} \neq \emptyset$ entonces $H$ es cerrado.
+\end{proposition}
+
+\begin{proof}
+	Sea $\alpha \in \R$ y $f \in X'$ tal que $H_{\alpha} = f^{-1}(\alpha)$, si $H_{\alpha+1}$ no fuera cerrado entonces por \ref{Hiperplano en normado es cerrado o denso} es denso y como $\interior{S} \neq \emptyset$ eso implica que $S \cap H_{\alpha +1} \neq \emptyset$. Luego si $x_n \subset \ker f$ e $y \in H_{\alpha +1}$ entonces $H_{\alpha +1} \ni z \underbrace{=}_{x_n + y \in H_{\alpha + 1}} \lim \left(x_n + y\right) = \lim x_n + y$ pero $f(z-y) = f(z) - f(y) = 0$ por lo que $\lim x_n \in \ker f$ y por \ref{Un funcional es continuo sii su nucleo es cerrado} $f$ es continua; conclu\'imos que $H$ es cerrado. \qed
+\end{proof}
+
+\begin{definition}
+	Sea $K \subset X$ un conjunto, decimos que es \textit{balanceado} si $\alpha x \in K$ para todo $x \in K$ y $\abs{\alpha} \leq 1$.
+\end{definition}
+
+\begin{proposition}
+	\label{Lemma4: Hanh-Banach geometrico}
+	Si $K \subset X$ es convexo, absorbente tal que $0 \in K$ entonces $p_K$ es sublineal. M\'as a\'un si $K$ es balanceado entonces $p_K$ es seminorma y $K = \sett{x \in X \ / \ p_K(x) < 1}$.
+\end{proposition}
+
+\begin{proof}
+	Como $K$ es absorbente entonces $X = \Bigcup{n \in \N}{nK}$ por lo que $p_K(x)$ est\'a bien definido para todo $x \in X$. Como $p_K(0) = 0$ trivialmente, si $\alpha > 0$:
+	
+	\begin{equation*}
+	\begin{aligned}
+		p_K(\alpha x) = & \inf \sett{t \geq 0 \ / \ \alpha x \in tV} \\
+					  = & \inf \sett{t \geq 0 \ / \ x \in  \left(\dfrac{t}{\alpha}V \right)} \\
+					  = & \alpha \inf \sett{\dfrac{t}{\alpha} \geq 0 \ / \ x \in  \left(\dfrac{t}{\alpha}V \right)} \\
+					  = & \alpha p_K(x)
+	\end{aligned}
+	\end{equation*}
+	
+	Por otro lado si $\alpha, \beta \geq 0$ y $a,b \in K$ entonces:
+	
+	\begin{equation*}
+		\alpha a + \beta b = \left(\alpha + \beta\right) \left(\dfrac{\alpha}{\alpha + \beta} a + \dfrac{\beta}{\alpha + \beta} b\right) \in \left(\alpha + \beta\right) K
+	\end{equation*}	
+	
+	Por la convexidad de $K$, luego si $x,y \in K$ y $p_K(x) = \alpha, p_K(y) = \beta$ y $\delta > 0$ entonces $x \in \left(\alpha + \delta\right)K, y \in \left(\beta + \delta\right)K$ pues $K$ es absorbente. Entonces por convexidad $x+y \in \left(\alpha + \beta + 2 \delta\right)K$ y si $\delta \rightarrow 0$ entonces $p_K(x+y) \leq \alpha + \beta = p_K(x) + p_K(y)$.
+	
+	Supongamos ahora que $K$ es balanceado, si $p_K(x) = \alpha < 1$ entonces para $\alpha < \beta < 1$ vale que $x \in \beta K \subset K$ por lo que $\sett{x \in X \ / \ p_K(x) < 1} \subseteq K$. Rec\'iprocamente si $x \in K$ entonces $p_K(x) \leq 1$ y como $K$ es absorbente existe $\epsilon > 0$ tal que si $0 < t < \epsilon$ entonces $y = (1+t)x = x + tx \in K$, luego $p_K(x) = (1+t)^{-1}p_K(y) \leq (1+t)^{-1} < 1$. \qed
+	
+\end{proof}
+
+\begin{theorem}[Hanh-Banach Geom\'etrico]
+	\label{Hanh-Banach geometrico}
+	Si $X$ es normado, $K \subset X$ es un convexo absorbente abierto tal que $0 \in K$ y $V \subset X$ es una variedad lineal tal que $V \cap K = \emptyset$ entonces existe $H$ hiperplano cerrado tal que $V \subset H$ y $H$ deja a un lado estrictamente a $K$.
+\end{theorem}
+
+\begin{proof}
+	Sea $x_0 \in V$ y $S = V - x_0$ un subespacio tal que $x_0 \not \in S$, definimos $T = \ip{S,x_0}$ entonces $\dim \quotient{T}{S} = 1$ y $K \cap S$ es un convexo absorbente abierto en $T$ tal que $V := S+x_0 \cap \left(K \cap S\right) = \emptyset$, luego por \ref{Lemma2: Hanh-Banach geometrico} existe $g \in T'$ tal que $V = g^{-1}(1)$ y $g \leq p_K$ que es sublineal por \ref{Lemma4: Hanh-Banach geometrico}. Por \ref{Hanh-Banach real} existe $f \in X'$ extensi\'on dominada por $p_K$, luego si $H = f^{-1}(1)$ es un hiperplano que contiene a $V$ y por \ref{Lemma1: Hanh-Banach geometrico} deja estrictamente a un lado a $K$. Finalmente como $K$ es abierto por \ref{Lemma3: Hanh-Banach geometrico} $f$ es continua. \qed
+\end{proof}
+
+\begin{theorem}
+	\label{Dos convexos en un normado se separan si uno es abierto}
+	Si $X$ es normado real y $A,B$ son conjuntos disjuntos convexos con $A$ abierto, entonces existe $f \in \dual{X}$ y $\alpha \in \R$ tal que $f \vert_A < \alpha$ y $f \vert_B \geq \alpha$. M\'as a\'un si $B$ es abierto entonces la separaci\'on es estricta.
+\end{theorem}
+\begin{proof}
+	Sea $G = A - B$, entonces usemos:
+	
+	\begin{lemma}
+		\label{Lemma1: Dos convexos en un normado se separan si uno es abierto}
+		$G$ es convexo, abierto y $0 \not \in G$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Si $x,y \in G$ entonces $x = a_x-b_x, y = a_y-b_y$, luego $tx + (1-t)y = ta_x - t b_x + (1-t)a_y - (1-t)b_y = \left(\underbrace{ta_x + (1-t)a_y}_{\in A}\right) - \left(\underbrace{tb_x + (1-t)b_y}_{\in B}\right) = a_{tx + (1-t)y} - b_{tx + (1-t)y} \in G$.
+		
+		Adem\'as $G = \Bigcup{b \in B}{A-b}$ por lo que $G$ es abierto. Finalmente como $A \cap B = \emptyset$ enotnces $0 \not \in G$\qed
+		
+	\end{proof}
+	
+	Por \ref{Lemma1: Dos convexos en un normado se separan si uno es abierto} y \ref{Hanh-Banach geometrico} existe $H$ hiperplano cerrado tal que $H \cap G = \emptyset$ y sea $f \in \dual{X}$ tal que $H = f^{-1}(0)$ que existe por \ref{Lemma2: Hanh-Banach geometrico}. Luego $f(G)$ es convexo y $0 \not \in f(G)$, luego $f \vert_G > 0$ (sino lo es para $-f$), lo que implica que $f(a) > f(b)$ para todos $a \in A, \ b \in B$; sea $\alpha$ tal que:
+	
+	\begin{equation*}
+		\sup \sett{f(b), \ b \in B} \leq \alpha \leq \inf \sett{f(a), \ a \in A}
+	\end{equation*}
+	
+	Luego $\alpha$ es el buscado.
+	
+	
+	Si $B$ es abierto, notemos:
+	
+	\begin{lemma}
+		\label{Lemma2: Dos convexos en un normado se separan si uno es abierto}
+		Si $f \in \dual{X}$ y $A$ es abierto convexo entonces $f(A)$ es un intervalo abierto
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Sea $a,b \in A$, luego $tf(a) + (1-t)f(b)= f(ta + (1-t)b) \in f(A)$ por lo tanto $f(A)$ es convexo y como los \'unicos convexos de $\R$ son los intervalos, $f(A)$ es un intervalo.
+		
+		Sea $x_0$ tal que $f(x_0) = 1$ y $x \in A$, luego existe $\epsilon > 0$ tal que $x \pm \epsilon x_0 \in A$, luego $f(x \pm \epsilon x_0) = f(x) \pm \epsilon \in f(A)$, luego $\left(f(x) - \epsilon, f(x) + \epsilon\right) \subset f(A)$ y $f(A)$ es abierto. \qed
+	\end{proof}
+	
+	Luego por \ref{Lemma2: Dos convexos en un normado se separan si uno es abierto} $f(A),f(B)$ son intervalo abiertos por lo que $\alpha$ separa de manera estricta. \qed
+	
+\end{proof}
+
+\begin{theorem}
+	\label{Un cerrado se separa de un compacto}
+	Sea $X$ normado y $A,B \subset X$ dos subconjuntos cerrados, convexos y disjuntos; luego si $B$ es compacto entonces $A$ y $B$ se separan de manera estricta.
+\end{theorem}
+
+\begin{proof}
+	Primero notemos:
+
+\begin{lemma}
+	\label{Lemma1: Un cerrado se separa de un compacto}
+	Si $X$ es normado, $K \subseteq X$ es un compacto y $K \subseteq V \subseteq X$ es abierto entonces existe $U \ni 0$ un entorno tal que $K + U \subset V$
+\end{lemma}
+
+\begin{proof}[Demostraci\'on del lema]
+	Sea $\mathcal{U}_0$ todos los entornos abiertos de $0$ y supongamos que para todo $U \in \mathcal{U}_0$, $K+U \not \subseteq V$, luego para cada $U$ existe $x_u \in K, \ y_u \in U$ tal que $x_u+y_u \in V^{c}$ y ordenemos $\mathcal{U}_0$ por la inclusi\'on inversa; luego $\sett{x_u},\sett{y_u}$ son redes en $X$, m\'as a\'un $y_u \rightarrow 0$ y existe $x \in X$ tal que $x$ es punto de acumulaci\'on de la red. Luego, $x$ es punto de acumulaci\'on de $x_u+y_u$ y entonces $x \in \overline{V^{c}} = V^{c}$; pero $x \in K \subset V$ por lo que existe dicho $U \in \mathcal{U}_0$. \qed
+\end{proof}
+
+Usando \ref{Lemma1: Un cerrado se separa de un compacto} sobre $B, A^{c}$ existe $U_1$ entorno de $0$ tal que $B+U_1 \subset A^c$ y por \ref{Lemma4: Hanh-Banach geometrico} existe $p$ seminorma tal que $\sett{x \in X, \ p(x) < 1} \subset U_1$. Sea $U = \sett{x \in X, \ p(x) < \dfrac{1}{2}}$, notemos:
+
+\begin{lemma}
+	\label{Lemma2: Un cerrado se separa de un compacto}
+	 $\left(B+U\right)\cap \left(A + U\right) = \emptyset$ y ambos son abiertos convexos.
+\end{lemma}
+
+Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos en un normado se separan si uno es abierto} se concluye que $A$ y $B$ se separan estrictamente.
+
+\end{proof}
+
+
+\section{Teoremas fundamentales de espacios de Banach}
 
 \end{document}
