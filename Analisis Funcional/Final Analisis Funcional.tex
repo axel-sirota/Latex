@@ -2155,4 +2155,58 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 
 \section{Teoremas fundamentales de espacios de Banach}
 
+\section{Topolog\'ias d\'ebiles}
+
+\begin{definition}
+	Sea $X$ normado, la \textit{topolog\'ia d\'ebil} en $X$ es la topolog\'ia inicial respecto a la familia $\B = \sett{p_{\dual{x}} \tq \dual{x} \in \dual{X}}$, donde:
+	
+	\begin{equation*}
+		p_{\dual{x}}(x) = \abs{\ip{x,\dual{x}}}
+	\end{equation*}
+	
+	Y la notaremos $wk$ o $\sigma(X,\dual{X})$. Asimismo la \textit{topolog\'ia d\'ebil estrella} en $\dual{X}$ es la topolog\'ia inicial respecto a la familia $\F = \sett{p_x \tq x \in X}$ donde:
+	
+	\begin{equation*}
+		p_x(\dual{x}) = \abs{\ip{x,\dual{x}}}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{remark}
+	$U \subset X$ es $wk-$abierto si y s\'olo si para todo $x_0 \in U$ existen $\epsilon > 0$ y $\dual{x_1}, \dots, \dual{x_n} \in \dual{X}$ tal que:
+	
+	\begin{equation*}
+		\Bigcap{1 \leq k \leq n}{\sett{x \in X \tq p_{\dual{x_k}}(x-x_0) < \epsilon}} \subset U
+	\end{equation*}
+	
+	Por lo que $\sett{x_i} \subset X$ converge d\'ebilmente a $x_0$ si y s\'olo si $\ip{x_i,\dual{x}} \rightarrow \ip{x_0,\dual{x}}$ para todo $\dual{x} \in \dual{X}$.
+	
+	\bigskip
+	
+	Rec\'iprocamente, $U \subset \dual{X}$ es $\dual{wk}-$abierto si y s\'olo si para todo $\dual{x_0} \in U$ existen $\epsilon > 0$ y $x_1, \dots, x_n \in X$ tal que:
+	
+	\begin{equation*}
+	\Bigcap{1 \leq k \leq n}{\sett{\dual{x} \in \dual{X} \tq p_{x_k}(\dual{x}-\dual{x_0}) < \epsilon}} \subset U
+	\end{equation*}
+	
+	Por lo que $\sett{\dual{x_i}} \subset \dual{X}$ converge d\'ebil estrella a $\dual{x_0}$ si y s\'olo si $\ip{\dual{x_i},x} \rightarrow \ip{\dual{x_0},x}$ para todo $x \in X$.
+	
+	
+\end{remark}
+
+\begin{proposition}
+	\label{El dual a la topologia debil es la dual fuerte}
+	Sea $X$ normado, entonces $\dual{X,wk} = \dual{X}$
+\end{proposition}
+
+\begin{proof}
+	Sea $f \in \dual{X,wk}$ y $V \subset \mathbb{F}$ un abierto, luego $f^{-1}(V)$ es $wk$-abierto en $X$, luego al ser intersecci\'on e abiertos (pues $p_{\dual{x}}$ son continuas) $f^{-1}(V)$ es abierto fuertemente por lo que $f \in \dual{X}$.
+	
+	Rec\'iprocamente, sea $f \in \dual{X}$ y $\sett{x_i} \subset X$ una red tal que $x_i \ \underrightarrow{wk} \ x_0$, luego $f(x_i) \rightarrow f(x_0)$ si y s\'olo si $\ip{f(x_i),\dual{x}} \rightarrow \ip{f(x_0), \dual{x}}$ si y s\'olo si $p_{\dual{x}} \circ f(x_i) \rightarrow p_{\dual{x}} \circ f (x_0)$ que vale pues ambas son continuas. \qed
+	
+\end{proof}
+
+
+
+
 \end{document}
