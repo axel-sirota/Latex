@@ -2240,6 +2240,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 \end{definition}
 
 \begin{proposition}
+	\label{Lemma 1: Teo Grafico cerrado}
 	Sean $X,Y$ normados y $T \in L(D(T),Y)$ con $D(T)$ subespacio cerrado de $X$, entonces $T$ es cerrado.
 \end{proposition}
 
@@ -2248,6 +2249,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 \end{proof}
 
 \begin{proposition}
+	\label{Lemma 2: Teo Grafico cerrado}
 	Sean $X,Y$ normados con $Y$ Banach y $T: X \rightarrow Y$ un operador cerrado y acotado, entonces $D(T)$ es subespacio cerrado.
 \end{proposition}
 
@@ -2260,7 +2262,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 
 \begin{theorem}[Teorema del gr\'afico cerrado]
 	\label{Teorema del grafico cerrado}
-	Sean $X,Y$ Banach y $T:X \rightarrow Y$ lineal y cerrado, entonces $T \in L(X,Y)$. 
+	Sean $X,Y$ Banach y $T:X \rightarrow Y$ lineal, entonces $T \in L(X,Y)$ si y s\'olo si $T$ es cerrada. 
 \end{theorem}
 
 \begin{proof}
@@ -2269,10 +2271,23 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 	\begin{itemize}
 		\item $\pi$ es lineal
 		\item $\norm{\pi(x,T(x))} = \norm{x} \leq \norm{x} + \norm{T(x)} = \norm{(x,T(x))}$
+		\item $\pi$ es isomorfismo lineal
 		
 	\end{itemize}
 	
+	Entonces por \ref{Teorema de la aplicacion abierta} resulta que $\pi^{-1}$ es continua. Por lo tanto si $x_n \rightarrow x$ entonces:
+	
+	$$(x_n,T(x_n)) = \pi^{-1}(x_n) \rightarrow \pi^{-1}(x) = (x,T(x))$$
+	
+	Por lo que $T(x_n) \rightarrow T(x)$ y por \ref{Continuidad de un operador} $T \in L(X,Y)$.
+	
+	Rec\'iprocamente, por \ref{Lemma 1: Teo Grafico cerrado} y \ref{Lemma 2: Teo Grafico cerrado} vale que $T$ es cerrada. \qed
+	
 \end{proof}
+
+\begin{example}
+	Sea $\sett{a_n} \subset \C$ tal que para todo $p \in \left(1,\infty\right)$ toda sucesi\'on $x_n \in l^p$ cumple $\Bigsum{n \in \N}{a_n x_n} \in \C$ entonces $a_n \in l^q$
+\end{example}
 
 \section{Topolog\'ias d\'ebiles}
 
