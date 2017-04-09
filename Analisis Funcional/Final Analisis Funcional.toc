@@ -1,7 +1,7 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Espacios Vectoriales}{1}{section.1}
 \contentsline {subsection}{\numberline {1.1}Propiedades Elementales}{1}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Normas y productos internos}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.2}Normas y productos internos}{3}{subsection.1.2}
 \contentsline {section}{\numberline {2}Espacios de Hilbert}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Preliminares}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Conjuntos ortogonales y ortonormales}{5}{subsection.2.2}
@@ -22,4 +22,6 @@
 \contentsline {subsection}{\numberline {4.4}Separabilidad y Reflexividad}{24}{subsection.4.4}
 \contentsline {subsection}{\numberline {4.5}Consecuencias Geom\'etricas de Hanh-Banach}{26}{subsection.4.5}
 \contentsline {section}{\numberline {5}Teoremas fundamentales de espacios de Banach}{29}{section.5}
-\contentsline {section}{\numberline {6}Topolog\'ias d\'ebiles}{29}{section.6}
+\contentsline {subsection}{\numberline {5.1}Teorema de la aplicaci\'on abierta}{29}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Teorema del Gr\'afico cerrado}{30}{subsection.5.2}
+\contentsline {section}{\numberline {6}Topolog\'ias d\'ebiles}{30}{section.6}

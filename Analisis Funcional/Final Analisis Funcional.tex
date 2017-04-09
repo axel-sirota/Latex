@@ -56,6 +56,8 @@
 \newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
 \newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
 \newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\graf}{Gr}
 
 \def \le{\leqslant}	
 \def \ge{\geqslant}
@@ -2154,6 +2156,123 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 
 
 \section{Teoremas fundamentales de espacios de Banach}
+
+\subsection{Teorema de la aplicaci\'on abierta}
+
+\begin{definition}
+	Un espacio topol\'ogico  $X$ es de \textit{primera cvategor\'ia} si $X = \Bigcup{n \in \N}{A_n}$ con $\interior{\overline{A_n}} = \emptyset$. Decimos que es de \textit{segunda categoria} si no es de primera categor\'ia.
+\end{definition}
+
+\begin{theorem}
+	\label{Lemma: Teorema aplicacion abierta}
+	Sean $X,Y$ espacios normados y $T \in L(X,Y)$ tal que $\rank T $ es de segunda categor\'ia. Entonces si $U \ni 0$ es un entorno abierto en $X$ luego existe $V \ni 0$ entorno abierto en $Y$ tal que $V \subseteq \overline{T(U)}$.
+\end{theorem}
+
+\begin{proof}
+	Sea $U \ni 0$ un entorno abierto en $X$ y $\alpha > 0$ tal que $B_{\alpha}(0) \subseteq U$, finalmente sea $W = B_{\frac{\alpha}{2}}(0)$. Notemos:
+	
+	\begin{lemma}
+		$\Bigcup{n \in \N}{T\left(nW\right)} = \Bigcup{n \in \N}{nT\left(W\right)} = \rank T$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		
+		Si $y \in \rank T$ entonces existe $x \in X$ tal que $T(x) = y$; por arquimedianidad esta bien definido $n_0 = \min \sett{n \in \N \tq \frac{\norm{x}}{n} < \frac{\alpha}{2}}$ por lo que $x \in n_0W$ y se concluye que $y \in T\left(n_0 W\right)$.
+		
+		Trivialmente $T \left(nW \right) \subset \rank T$ para todo $n \in \N$ por lo que $\Bigcup{n \in \N}{T\left(nW\right)} \subset \rank T$. \qed
+		
+	\end{proof}
+	
+	Como $\rank T$ es de segunda categor\'ia existe $n_0 \in \N$ tal que $n_0\interior{\overline{T \left(W\right)}} \neq \emptyset$; como adem\'as $f(x) = \frac{x}{n_0} \in \text{Hom}(Y)$ entonces conclu\'imos que $\interior{\overline{T \left(W\right)}} \neq \emptyset$. Por lo tanto existe $z_0 \in Y$ y $\delta > 0$ tal que $B_{\delta}(z_0) \cap T \left(W\right) \neq \emptyset$, sea $T(\underbrace{x_0}_{\in W}) = y_0 \in B_{\delta}(z_0) \cap T \left(W\right)$ y $r > 0$ tal que $B_{r}(y_0) \subseteq B_{\delta}(z_0) \subseteq \overline{T \left(W\right)}$.
+	
+	Como $B_{r}(y_0) \subseteq \overline{T(W)}$ entonces $B_{r}(0) \subseteq \overline{T\left(W\right)} - y_0 = \overline{T \left(W\right) - y_0} = \overline{T \left(W- x_0\right) } \subseteq \overline{T \left(B_{\alpha}(0)\right)} \subseteq \overline{T \left(U\right)}$. \qed 
+	
+\end{proof}
+
+\begin{theorem}[Teorema de la aplicaci\'on abierta]
+	\label{Teorema de la aplicacion abierta}
+	Sean $X,Y$ normados con $X$ Banach y sea $T \in L(X,Y)$ tal que $\rank T$ es de segunda categor\'ia, entonces:
+	
+	\begin{enumerate}
+		\item Si $\alpha > 0 $ entonces existe $\beta > 0$ tal que $B_{\beta}[0] \subseteq T(B_{\alpha}[0])$
+		\item $\rank T = Y$
+		\item $T$ es abierta.
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	Vayamos de a partes:
+	
+	\begin{enumerate}
+		
+		\item Sea $\alpha > 0$ y consideremos $B_{\frac{\alpha}{2}}(0) \subset B_{\alpha}[0]$, por \ref{Lemma: Teorema aplicacion abierta} existe $\beta > 0$ tal que $B_{\beta}(0) \subseteq \overline{T(B_{\frac{\alpha}{2}}(0))}$, sea $t > \frac{\alpha}{2}$ y veamos que $B_{\beta}(0) \subset T \left(B_{t}(0)\right)$.
+		
+		Sea $\sett{\epsilon_n}_{n \in \N} \subset \R_{+}$ tal que $\Bigsum{n \in \N}{\epsilon_n} < t - \frac{\alpha}{2}$, por \ref{Lemma: Teorema aplicacion abierta} para cada $n \in \N$ existe $\delta_n > 0$ tal que $B_{\delta_n}(0) \subseteq \overline{T_{\epsilon_n}(0)}$ y llamando $\tilde{\delta_n} = \dfrac{\delta_n}{2^{n}}$ podemos suponer sin p\'erdida de generalidad que $\delta_n \rightarrow 0$.
+		
+		Sea $y \in B_{\beta}(0)$, luego $B_{\delta_1}(y) \cap T \left(B_{\frac{\alpha}{2}}(0)\right) \neq \emptyset$ por lo que existe $T(x_0) = y_0 \in Y$ tal que $\norm{y - y_0} < \delta_1$ con $\norm{x_0} \leq \frac{\alpha}{2}$. Como $y-y_0 \in B_{\delta_1}(0) \subseteq \overline{T \left(B_{\epsilon_1}(0)\right)}$ entonces existe $T(\underbrace{x_1}_{\in B_{\epsilon_1}(0)})=y_1 \in Y$ tal que $\norm{y-y_0-y_1} < \delta_2$. Inductivamente contru\'imos $\sett{y_n}_{n \in \N} \subset Y$ tal que $\norm{y- \left(\Bigsum{1 \leq n \leq k}{y_n}\right)} < \delta_{k+1}$, $y_n = T(x_n)$ y $x_n \in B_{\epsilon_n}(0)$. Notemos que como $\delta_n \rightarrow 0$ entonces $\Bigsum{n \in \N_0}{y_n} = y$; por otro lado $\Bigsum{n \in \N}{\norm{x_n}} < \Bigsum{n \in \N}{\epsilon_n} < t-\frac{\alpha}{2}$ luego por \ref{Banach si y solo si abs convergente es convergente} $\Bigsum{n \in \N_0}{x_n} = x \in X$ y como $T$ es continua, $T(x) = \Bigsum{n \in \N_0}{T(x_n)} = \Bigsum{n \in \N_0}{y_n} = y$.
+		
+		Finalmente notemos que $\norm{x} \leq \Bigsum{n \in \N_0}{\norm{x_n}} = \underbrace{\norm{x_0}}_{< \frac{\alpha}{2}} + \underbrace{\Bigsum{n \in \N}{\norm{x_n}}}_{< t - \frac{\alpha}{2}} < t$; por lo tanto $B_{\beta}(0) \subseteq T \left(B_t(0) \right)$.
+		
+		\item Sea $y \in Y$ y $\alpha,\beta > 0$ que cumplan 1, sea $n \in \N$ tal que $\frac{y}{n} \in B_{\frac{\beta}{2}}[0]$, entonces por 1 $\frac{y}{n} \in \rank T$ por lo que $y \in \rank T$.
+		
+		\item Sea $U \subseteq X$ abierto y sea $T(x_0) = y_0 \in T(U)$, luego $U - x_0 \ni 0$ es un entorno abierto. Sea $r > 0$ tal que $B_r(0) \subseteq U-x_0$ luego $T(B_{\frac{r}{2}[0]}) \subseteq T \left(B_r(0)\right) \subseteq T \left(U\right) - y_0$; por 1 existe $\delta > 0$ tal que $B_{\delta[0]} \subseteq T \left(B_{\frac{r}{2}}[0]\right) \subseteq T(U) - y_0$ por lo que $B_{\frac{\delta}{2}(y_0)} \subseteq T(U)$. \qed
+		
+		
+				
+	\end{enumerate}
+	
+\end{proof}
+
+\begin{corollary}[Teorema de la inversa acotada]
+	\label{Teorema de la inversa acotada}
+	Sean $X,Y$ Banach y sea $T \in L(X,Y)$ tal que $T$ es isomorfismo lineal, entonces $T$ es isomorfismo de Banach.	
+\end{corollary}
+
+\begin{proof}
+	Como $T$ es isomorfismo lineal entonces $\rank T = Y$ y como $Y$ es Banach, es completo y por el teorema de Baire es de segunda categor\'ia; luego por \ref{Teorema de la aplicacion abierta} $T$ es abierta si y s\'olo si $T^{-1}$ es acotada. \qed
+\end{proof}
+
+\subsection{Teorema del Gr\'afico cerrado}
+
+\begin{definition}
+	Sean $X,Y$ normados y $T:X \rightarrow Y$ un operador lineal cuyo dominio $D(T) \subset X$ es subespacio y $\rank T \subset Y$ es subespacio a su vez. Luego diremos que $T$ es \textit{cerrado} si $\graf T \subset X \times Y$ es cerrado.
+\end{definition}
+
+\begin{proposition}
+	Sean $X,Y$ normados y $T \in L(D(T),Y)$ con $D(T)$ subespacio cerrado de $X$, entonces $T$ es cerrado.
+\end{proposition}
+
+\begin{proof}
+	Si $x_n \rightarrow x$ y $T(x_n) \rightarrow y$, luego por \ref{Continuidad de un operador} $T(x) \leftarrow T(x_n) \rightarrow y$ por lo que $y = T(X)$. \qed
+\end{proof}
+
+\begin{proposition}
+	Sean $X,Y$ normados con $Y$ Banach y $T: X \rightarrow Y$ un operador cerrado y acotado, entonces $D(T)$ es subespacio cerrado.
+\end{proposition}
+
+\begin{proof}
+	Sea $x_n \subset D(T)$ tal que $x_n \rightarrow x$, luego como $T$ es acotado y lineal $\norm{T(x_n) - T(x_m)} = \norm{T \left(x_n-x_m\right)} \leq \norm{T} \norm{x_n-x_m} \rightarrow 0$ y como $Y$ es Banach existe $y = \lim T(x_n)$.
+	
+	Luego como $x_n \rightarrow x$, $T(x_n) \rightarrow y$ y $T$ es cerrada entonces $x \in D(T)$ y $T(x) = y$. \qed
+	
+\end{proof}
+
+\begin{theorem}[Teorema del gr\'afico cerrado]
+	\label{Teorema del grafico cerrado}
+	Sean $X,Y$ Banach y $T:X \rightarrow Y$ lineal y cerrado, entonces $T \in L(X,Y)$. 
+\end{theorem}
+
+\begin{proof}
+	Como $T$ es cerrada entonces $\graf T$ es un subespacio cerrado de $X \times Y$ que es Banach con la norma suma directa. Consideremos $\pi: \graf T \rightarrow X$ dada por $\pi(x,T(x)) = x$, entonces:
+	
+	\begin{itemize}
+		\item $\pi$ es lineal
+		\item $\norm{\pi(x,T(x))} = \norm{x} \leq \norm{x} + \norm{T(x)} = \norm{(x,T(x))}$
+		
+	\end{itemize}
+	
+\end{proof}
 
 \section{Topolog\'ias d\'ebiles}
 
