@@ -58,6 +58,7 @@
 \newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
 \DeclareMathOperator{\rank}{ran}
 \DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
 
 \def \le{\leqslant}	
 \def \ge{\geqslant}
@@ -128,6 +129,11 @@
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
 
 
 \begin{document}
@@ -1204,7 +1210,7 @@ Recordemos:
 \end{theorem}
 
 \begin{proof}
-	Sea $S_k = \Bigsum{n \leq k}{x_n}$, entonces si $k > k'$, $\norm{S_{k} - S_{k'}} = \norm{\sum\limits_{n = k'+1}^{k}{x_n}} \leq \sum\limits_{n = k'+1}^{k}{\norm{x_n}} \ \underrightarrow{k,k' \rightarrow \infty} \ 0$. Luego $S_k$ es de Cauchy y como $X$ es Banach $S_k \rightarrow \Bigsum{n \in \N}{x_n} \in X$.
+	Sea $S_k = \Bigsum{n \leq k}{x_n}$, entonces si $k > k'$, $\norm{S_{k} - S_{k'}} = \norm{\sum\limits_{n = k'+1}^{k}{x_n}} \leq \sum\limits_{n = k'+1}^{k}{\norm{x_n}} \ \xrightarrow{k,k' \rightarrow \infty} \ 0$. Luego $S_k$ es de Cauchy y como $X$ es Banach $S_k \rightarrow \Bigsum{n \in \N}{x_n} \in X$.
 	
 	Rec\'iprocamente, sea $\left(x_n\right) \subset X$ de Cauchy y para cada $k \in \N$ sea $\epsilon = \frac{1}{2^k}$ y $n_k \in \N$ tal que $\norm{x_{n} - x_m} < \frac{1}{2^k}$ si $n,m \geq n_k$. Luego si $z_k = x_{n_{k+1}} - x_{n_k}$ entonces $\Bigsum{k}{\norm{z_k}} < \Bigsum{k}{\frac{1}{2^k}} < \infty$; luego por hip\'otesis $S_m = \sum\limits_{k=1}^{m}{z_k}$ converge, pero $S_m = x_{n_{m+1}} - x_{n_1}$, luego $\lim\limits_{m} {x_{n_m}} = x_{n_1} + \lim S_m \in X$; como $x_n$ es de Cauchy y tiene una subsucesi\'on convergente entonces $(x_n)$ es convergente. \qed
 	
@@ -1410,6 +1416,7 @@ Recordemos:
 \end{definition}
 
 \begin{proposition}
+	\label{Normas equivalentes de un operador}
 	Si $T$ es un operador acotado entonces:
 	\begin{equation}
 	\label{eq: Normas equivalentes de un operador}
@@ -1518,7 +1525,7 @@ Recordemos:
 		\item Por \ref{La norma es continua} y la linealidad de $T_n$ vale que $T$ es lineal
 		\item Sea $x \in B_1[0]$ y $\epsilon > 0$, luego sea $N \in \N$ tal que $\norm{T_n - T_m} < \epsilon$ para todos $n,m \geq N$; entonces $\norm{T(x)} = \norm{T(x) - T_N(x) + T_N(x)} \leq \norm{T(x) - T_N(x)} + \norm{T_N(x)} < \epsilon + C$.
 		
-		\item Sea $\epsilon > 0$, luego $\epsilon > \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T_m(x)}} \underrightarrow{m \rightarrow \infty} \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T(x)}} = \norm{T_n - T}$. 
+		\item Sea $\epsilon > 0$, luego $\epsilon > \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T_m(x)}} \xrightarrow{m \rightarrow \infty} \sup\limits_{\norm{x} \leq 1} {\norm{T_n(x) - T(x)}} = \norm{T_n - T}$. 
 	\end{itemize}
 	
 	La vuelta la probaremos con Hanh-Banach. \qed
@@ -2289,7 +2296,217 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 	Sea $\sett{a_n} \subset \C$ tal que para todo $p \in \left(1,\infty\right)$ toda sucesi\'on $x_n \in l^p$ cumple $\Bigsum{n \in \N}{a_n x_n} \in \C$ entonces $a_n \in l^q$
 \end{example}
 
+\begin{proof}
+	Sea $T:l^p \rightarrow l^{\infty}$ dado por $T(x_n)(k) = \Bigsum{1 \leq n \leq k}{a_n x_n}$ y veamos que esta bien definida, es lineal y continua.
+	
+	\begin{enumerate}
+		\item SI $x_n \in l^p$ entonces $\Bigsum{n \in \N}{a_n x_n}$ converge, en particular est\'a acotada por lo que $\sett{\Bigsum{1 \leq n k}{a_n x_n}}_{k \in \N} \in l^{\infty}$.
+		\item Trivial
+		\item Veamos que $T$ es cerrado:
+		
+		Sea $x_n \in l^p$, $x \in l^p$ e $y \in l^{\infty}$ tal que $(x_n, T(x_n)) \xrightarrow{\norm{.}_{l^p \times l^{\infty}}} (x,y)$, escribamos $x_n = \left(x_1^n, x_2^n, \dots, x_j^n, \dots\right)\in l^p$ y consideremos:
+		
+		\[
+		\begin{aligned}
+			\abs{T(x_n)(k) - \Bigsum{1 \leq j \leq k}{a_j x_j}} = & \abs{\Bigsum{1 \leq j \leq k}{a_j(x_j^n - x_j)}} \\
+			& \leq \left(\Bigsum{1 \leq j \leq k}{\abs{x_j^n - x_j}^p}\right)^{\frac{1}{p}} \left(\Bigsum{1 \leq j \leq k}{\abs{a_j}}^q\right)^{\frac{1}{q}} \\
+			& \leq \norm{x_n-x}_{p} C_a \xrightarrow{n \rightarrow \infty} 0
+		\end{aligned}
+		\]
+		
+		Es decir que $T(x_n)(k) \rightarrow \Bigsum{1 \leq j \leq k}{a_j x_j}$ para todo $k \in \N$; si y s\'olo si $T(x_n) \xrightarrow{\norm{.}_{\infty}} T(x)$ y por unicidad del l\'imite $T(x) = y$ y $T$ es cerrada.
+		
+		Finalmente como $T:l^p \rightarrow l^{\infty}$ es cerrada y ambos son Banach entonces por \ref{Teorema del grafico cerrado} $T \in L(l^p, l^{\infty})$
+		
+	\end{enumerate}
+	
+	Luego, si $x \in l^p$ entonces $\norm{T(x)}_{\infty} \leq \norm{T}\norm{x}_p$. Sea:
+	
+	\begin{equation*}
+		x_j^k  =  \left\lbrace \begin{array}{cc}
+									\overline{a_j}\abs{a_j}^{q-2} & \text{si } 1 \leq j \leq k \text{ y } a_j \neq 0 \\
+									0 & \text{ si no}
+								\end{array} \right.
+	\end{equation*}
+	
+	Luego $a_jx_j = \abs{a_j}^q$ y $\norm{x}_p = \left(\Bigsum{1 \leq j \leq k}{\abs{a_j}^{(q-1)p}}\right)^{\frac{1}{p}} = \left(\Bigsum{1 \leq j \leq k}{\abs{a_j}^{q}}\right)^{\frac{1}{p}}$ y por lo tanto:
+	
+	\[
+	\begin{aligned}
+		\Bigsum{1 \leq j \leq k}{\abs{a_j}^q} & = \norm{T(x)}_{\infty} \\
+		& \leq \norm{T}\left(\Bigsum{1 \leq j \leq k}{\abs{a_j}^{q}}\right)^{\frac{1}{p}} \\
+		& \Longrightarrow \left(\Bigsum{1 \leq j \leq k}{\abs{a_j}^q}\right)^{\frac{1}{q}} \leq \norm{T} \qquad \forall \ k \in \N
+	\end{aligned}
+	\]
+	
+	Luego si $k \rightarrow \infty$ vemos que $a_n \in l^q$ y $\norm{a_n}_q \leq \norm{T}$. \qed
+	
+\end{proof}
+
+\subsection{Principio de Acotaci\'on Uniforme}
+
+\begin{theorem}[Banach-Steinhaus, Principio de Acotaci\'on Uniforme]
+	\label{PAU operadores}
+	Sean $X,Y$ Banach y sea $\sett{T_i}_{i \in I} \subset L(X,Y)$ tal que:
+	
+	\begin{equation*}
+		\sup\limits_{\substack{i \in I}} \norm{T_i(x)}_Y < \infty \qquad \forall x \in X
+	\end{equation*}
+	
+	Entonces $\sup\limits_{i \in I} \norm{T_i}_{L(X,Y)} < \infty$
+	
+\end{theorem}
+
+\begin{proof}
+	
+	Sea $n \in N$ y consideremos $X_n = \sett{x \in X \tq \norm{T_i(x)}_Y \leq n \quad \forall i \in I}$, luego $X_n$ es cerrado y por hip\'otesis:
+	
+	\[
+	X = \Bigcup{n \in \N}{X_n}
+	\]
+	
+	Como $X$ es Banach por el teorema de Baire existe $n_0$ tal que $\interior{X_{n_0}} \neq \emptyset$. Sea $x_0 \in X, r > 0$ tal que $B_r(x_0) \subset \interior{X_{n_0}}$, luego $\norm{T(x_0 + rz)}_{Y} \leq n_0$ para todo $i \in I$ y $z \in B_1(0)$; por lo tanto:
+	
+	
+	\begin{equation*}
+		\norm{T_i}_{L(X,Y)} \leq \frac{1}{r} \left(n_0 + \norm{T_ix_0}_Y\right)
+	\end{equation*}
+	
+	.\qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{PAU X}
+	Sea $X$ un espacio de Banach y $F \subset X$ tal que:
+	
+	\begin{equation*}
+		\sup\limits_{x \in F} \abs{f(x)} < \infty \quad \forall f \in \dual{X}
+	\end{equation*}
+	
+	Entonces $F$ es acotado.
+	
+\end{corollary}
+
+\begin{proof}
+	Sea $Y = \dual{X}$, $Z=\R$ y $I = F$, luego para todo $x \in F$ consideremos $T_x : Y \rightarrow Z$ dado por:
+	
+	\[
+		T_x(f) = f(x)
+	\]
+	
+	Luego por hip\'otesis para todo $f \in Y = \dual{X}$:
+	
+	\[
+	\begin{aligned}
+		\sup\limits_{x \in F} \abs{T_x(f)} = \sup\limits_{x \in F} \abs{f(x)} < \infty
+	\end{aligned}
+	\]
+	
+	Por \ref{PAU operadores} vale que $\sup\limits_{x \in F} \norm{T_x} = C < \infty$, por lo que:
+	
+	\[
+	\sup\limits_{x \in F} \norm{x} \underbrace{=}_{\ref{Norma en funcion de funcionales}} \sup\limits_{\substack{x \in F \\ \norm{f} = 1}} \abs{T_x(f)} \leq \sup\limits_{\substack{x \in F \\ \norm{f} = 1}} \norm{T_x}\norm{f} \leq \sup\limits_{\substack{x \in F }} \norm{T_x} = C < \infty
+	\]
+	.\qed
+	
+	
+\end{proof}
+
+\begin{corollary}
+	\label{PAU X dual}
+	Sea $X$ un espacio de Banach y $F \subset \dual{X}$ tal que
+	
+	\begin{equation*}
+	\sup\limits_{f \in F} \abs{f(x)} < \infty \quad \forall x \in X
+	\end{equation*}
+	
+	Entonces $F$ es acotado.
+	
+\end{corollary}
+
+\begin{proof}
+	Sea $Z=\R$ y $I = F$, luego para todo $f \in F$ consideremos $T_f : X \rightarrow Z$ dado por:
+	
+	\[
+	T_f(x) = f(x)
+	\]
+	
+	Luego por hip\'otesis para todo $x \in X$:
+	
+	\[
+	\begin{aligned}
+	\sup\limits_{f \in F} \abs{T_f(x)} = \sup\limits_{f \in F} \abs{f(x)} < \infty
+	\end{aligned}
+	\]
+	
+	Por \ref{PAU operadores} vale que $\sup\limits_{f \in F} \norm{T_f} = C < \infty$, por lo que:
+	
+	\[
+	\sup\limits_{f \in F} \norm{f} = \sup\limits_{\substack{f \in F \\ \norm{x} = 1}} \abs{T_f(x)} \leq \sup\limits_{\substack{f \in F \\ \norm{x} = 1}} \norm{T_f}\norm{x} \leq \sup\limits_{\substack{f \in F }} \norm{T_f} = C < \infty
+	\]
+	.\qed
+\end{proof}
+
+\begin{corollary}
+	\label{Si una sucesion converge debilmente entonces esta fuertemente acotada}
+	Si $X$ Banach y $\sett{x_n}_{n \in \N} \subset X$ tal que $\lim\limits_{n \rightarrow \infty}{f(x_n)} < \infty$ para todo $f \in \dual{X}$ entonces $\sup\limits_{n \in \N}{\norm{x_n}} < \infty$
+\end{corollary}
+
+\begin{proof}
+	Sea $F = \sett{x_n}_{n \in \N} \subset X$, luego si $\lim\limits_{n \rightarrow \infty}{f(x_n)} < \infty$ para todo $f \in \dual{X}$ entonces en particular $\sup\limits_{x_n \in F}{\abs{f(x_n)}} < \infty$ para todo $f \in \dual{X}$ y por \ref{PAU X} entonces $\sup\limits_{n \in \N}{\norm{x_n}} = \sup\limits_{x_n \in F}{\norm{x_n}} < \infty$. \qed
+\end{proof}
+
+\begin{corollary}
+	\label{Si una sucesion converge debilmente estrella entonces esta fuertemente acotada}
+	Si $X$ Banach y $\sett{f_n}_{n \in \N} \subset \dual{X}$ tal que $\lim\limits_{n \rightarrow \infty}{f_n(x)} < \infty$ para todo $x \in X$ entonces $\sup\limits_{n \in \N}{\norm{f_n}} < \infty$
+\end{corollary}
+
+\begin{proof}
+	Sea $F = \sett{f_n}_{n \in \N} \subset \dual{X}$, luego si $\lim\limits_{n \rightarrow \infty}{f_n(x)} < \infty$ para todo $x \in X$ entonces en particular $\sup\limits_{f_n \in F}{\abs{f_n(x)}} < \infty$ para todo $x \in X$ y por \ref{PAU X dual} entonces $\sup\limits_{n \in \N}{\norm{f_n}} = \sup\limits_{f_n \in F}{\norm{f_n}} < \infty$. \qed
+\end{proof}
+
+\begin{corollary}
+	\label{Sucesion de operadores que convergen puntualmente definen un operador limite puntual}
+	Sean $X,Y$ Banach y sea $\sett{T_n}_{n \in \N} \subset L(X,Y)$ tal que para todo $x \in X$ existe $\lim\limits_{n \rightarrow \infty} T_n(x) = T(x)$, luego:
+	
+	\begin{enumerate}
+		\item $\sup\limits_{n \in \N}{\norm{T_n}_{L(X,Y)}} < \infty$
+		\item $T \in L(X,Y)$
+		\item $\norm{T}_{L(X,Y)} \leq \liminf \norm{T_n}_{L(X,Y)}$
+	\end{enumerate}
+	
+\end{corollary}
+
+\begin{proof}
+	Por \ref{PAU operadores} existe $C$ tal que:
+	
+	\[
+	\begin{aligned}
+		\norm{T_n(x)} & \leq C \norm{x} \\
+		\xRightarrow{n \rightarrow \infty} & \norm{Tx} \leq C \norm{x} 
+	\end{aligned}
+	\]
+	
+	Luego eso prueba los primeros dos items pues por unicidad del l\'imite $T$ resulta lineal. Finalmente como $\norm{T_n(x)} \leq \norm{T_n}\norm{x}$ entonces eso implica que:
+	
+	$$\norm{T(x)} = \liminf \norm{T_n(x)} \leq \norm{x} \liminf \norm{T_n}$$
+	
+	Por lo que:
+	
+	$$\sup\limits_{\norm{x} \neq 0}{\dfrac{\norm{T(x)}}{\norm{x}}} \underbrace{=}_{\ref{Normas equivalentes de un operador}} \norm{T} \leq \liminf \norm{T_n}_{L(X,Y)}$$ \qed
+	
+\end{proof}
+
+
 \section{Topolog\'ias d\'ebiles}
+
+\subsection{Topolog\'ia D\'ebil: Definici\'on y propiedades}
+
+\textbf{Notaci\'on:} Sea $X$ Banach y $x \in X, f \in \dual{X}$ entonces notamos:
+
+$$\ip{x,f} = \ip{f,x} := f(x)$$
+
 
 \begin{definition}
 	Sea $X$ normado, la \textit{topolog\'ia d\'ebil} en $X$ es la topolog\'ia inicial respecto a la familia $\B = \sett{p_{\dual{x}} \tq \dual{x} \in \dual{X}}$, donde:
@@ -2298,11 +2515,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 		p_{\dual{x}}(x) = \abs{\ip{x,\dual{x}}}
 	\end{equation*}
 	
-	Y la notaremos $wk$ o $\sigma(X,\dual{X})$. Asimismo la \textit{topolog\'ia d\'ebil estrella} en $\dual{X}$ es la topolog\'ia inicial respecto a la familia $\F = \sett{p_x \tq x \in X}$ donde:
-	
-	\begin{equation*}
-		p_x(\dual{x}) = \abs{\ip{x,\dual{x}}}
-	\end{equation*}
+	Y la notaremos $wk$ o $\sigma(X,\dual{X})$. 
 	
 \end{definition}
 
@@ -2313,20 +2526,10 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 		\Bigcap{1 \leq k \leq n}{\sett{x \in X \tq p_{\dual{x_k}}(x-x_0) < \epsilon}} \subset U
 	\end{equation*}
 	
-	Por lo que $\sett{x_i} \subset X$ converge d\'ebilmente a $x_0$ si y s\'olo si $\ip{x_i,\dual{x}} \rightarrow \ip{x_0,\dual{x}}$ para todo $\dual{x} \in \dual{X}$.
-	
-	\bigskip
-	
-	Rec\'iprocamente, $U \subset \dual{X}$ es $\dual{wk}-$abierto si y s\'olo si para todo $\dual{x_0} \in U$ existen $\epsilon > 0$ y $x_1, \dots, x_n \in X$ tal que:
-	
-	\begin{equation*}
-	\Bigcap{1 \leq k \leq n}{\sett{\dual{x} \in \dual{X} \tq p_{x_k}(\dual{x}-\dual{x_0}) < \epsilon}} \subset U
-	\end{equation*}
-	
-	Por lo que $\sett{\dual{x_i}} \subset \dual{X}$ converge d\'ebil estrella a $\dual{x_0}$ si y s\'olo si $\ip{\dual{x_i},x} \rightarrow \ip{\dual{x_0},x}$ para todo $x \in X$.
-	
-	
-\end{remark}
+	Por lo que $\sett{x_i} \subset X$ converge a $x_0$ en esta topolog\'ia si y s\'olo si $\ip{x_i,\dual{x}} \rightarrow \ip{x_0,\dual{x}}$ para todo $\dual{x} \in \dual{X}$. En este caso, diremos que $x_i$ \textit{converge d\'ebilmente} a $x_0$ y lo notaremos $x_i \xrightarrow{d} x_0$, $x_i \xrightarrow{wk} x_0$ o $x_i \rightarrow x_0 \ (wk)$
+\end{remark}	
+
+
 
 \begin{proposition}
 	\label{El dual a la topologia debil es la dual fuerte}
@@ -2336,11 +2539,367 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 \begin{proof}
 	Sea $f \in \dual{X,wk}$ y $V \subset \mathbb{F}$ un abierto, luego $f^{-1}(V)$ es $wk$-abierto en $X$, luego al ser intersecci\'on e abiertos (pues $p_{\dual{x}}$ son continuas) $f^{-1}(V)$ es abierto fuertemente por lo que $f \in \dual{X}$.
 	
-	Rec\'iprocamente, sea $f \in \dual{X}$ y $\sett{x_i} \subset X$ una red tal que $x_i \ \underrightarrow{wk} \ x_0$, luego $f(x_i) \rightarrow f(x_0)$ si y s\'olo si $\ip{f(x_i),\dual{x}} \rightarrow \ip{f(x_0), \dual{x}}$ si y s\'olo si $p_{\dual{x}} \circ f(x_i) \rightarrow p_{\dual{x}} \circ f (x_0)$ que vale pues ambas son continuas. \qed
+	Rec\'iprocamente, sea $f \in \dual{X}$ y $\sett{x_i} \subset X$ una red tal que $x_i \ \xrightarrow{wk} \ x_0$, luego $f(x_i) \rightarrow f(x_0)$ si y s\'olo si $\ip{f(x_i),\dual{x}} \rightarrow \ip{f(x_0), \dual{x}}$ si y s\'olo si $p_{\dual{x}} \circ f(x_i) \rightarrow p_{\dual{x}} \circ f (x_0)$ que vale pues ambas son continuas. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Topologia debil es Hausdorff}
+	Sea $X$ normado, entonces $\sigma(X,\dual{X})$ es Hausdorff	
+\end{proposition}
+
+\begin{proof}
+	Sea $x \neq y \in X$, como $\sett{x}, \sett{y}$ son espacios compactos por \ref{Un cerrado se separa de un compacto} existe $f \in \dual{X}$ y $\alpha \in \mathbb{F}$ tal que:
+	
+	
+	\begin{equation*}
+	\ip{f, x} < \alpha < \ip{f,y}
+	\end{equation*}
+	
+	Sean $U = f^{-1}(\left(-\infty, \alpha\right)), V = f^{-1}(\left(\alpha, \infty\right))$ luego $U \cap V = \emptyset$ y $x \in U, y \in V$. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Resultados de convergencia debil}
+	Sean $X$ normado y $\sett{x_n}_{n \in \N} \subset X$ una sucesi\'on. Luego:
+	
+	
+	\begin{enumerate}
+		\item Si $x_n \xrightarrow{\norm{.}_X} x_0$ entonces $x_i \xrightarrow{d} x_0$.
+		\item Si $x_i \xrightarrow{d} x_0$ entonces $\sett{\norm{x_n}}$ est\'a acotado y $\norm{x_0} \leq \liminf \norm{x_n}$
+		\item Si $x_i \xrightarrow{d} x_0$  y $f_n \xrightarrow{\norm{.}_{\dual{X}}} f_0$ entonces $f_n(x_n) \rightarrow f_0(x_0)$
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Vamos por partes:
+	
+	\begin{enumerate}
+		\item Sea $f \in \dual{X}$, luego $\abs{\ip{f(x_n) - f(x_0)}} \leq \norm{f}_{\dual{X}} \norm{x_n-x_0}_X \rightarrow 0$; por lo tanto $x_i \xrightarrow{d} x_0$.
+		\item Sea $T_n : \dual{X} \rightarrow \R$ dado por $T_n(f) = f(x_n)$, luego $\lim\limits_{n \rightarrow \infty}{T_n(f)} = f(x_0) = T(f)$ para todo $f \in \dual{X}$; como $\dual{X}, \R$ son Banach entonces por \ref{PAU operadores} vale la conclusi\'on.
+		\item $\abs{\ip{f_n,x_n} - \ip{f_0,x_0}} = \abs{\ip{f_n,x_n} - \ip{f_0,x_n} + \ip{f_0,x_n} - \ip{f_0,x_0}} \leq \abs{\ip{f_n -f_0,x_n}} + \abs{\ip{f_0,x_n - x_0}} \leq \underbrace{\norm{x_n}_X}_{\leq C} \underbrace{\norm{f_n-f_0}_{\dual{X}}}_{\rightarrow 0} + \underbrace{\abs{\ip{f_0,x_n - x_0}}}_{\rightarrow 0} \rightarrow 0$. \qed
+	\end{enumerate}
+	
+\end{proof}
+
+\subsection{Conjuntos convexos y operadores}
+
+\begin{proposition}
+	\label{Clausura fuerta es clausura debil en un convexo}
+	Si $X$ es normado y $A \subset X$ es convexo entonces $\overline{A}^{\norm{.}} = \overline{A}^{wk}$
+\end{proposition}
+
+\begin{proof}
+	Sea $x \in \left(\overline{A}^{\norm{.}}\right)^c$, luego por \ref{Dos convexos en un normado se separan si uno es abierto} existe $\dual{x} \in \dual{X}$ y $\alpha \in \mathbb{R}$ tal que para todo $a \in \overline{A}^{\norm{.}}$ vale:
+	
+	\begin{equation*}
+	\abs{\ip{a,\dual{x}}} < \alpha < \abs{\ip{x,\dual{x}}}
+	\end{equation*}
+	
+	Luego $\overline{A}^{\norm{.}} \subseteq B = \sett{y \in X \tq 	\abs{\ip{y,\dual{x}}} \leq \alpha}$ que es $wk$ cerrado; por lo tanto $\overline{A}^{wk} \subseteq B$ y entonces $x \in \left(\overline{A}^{wk}\right)^c$; conclu\'imos que $\overline{A}^{wk} \subseteq \overline{A}^{\norm{.}}$ y como la rec\'iproca es trivial finalizamos. \qed
+\end{proof}
+
+\begin{corollary}[Teorema de Mazur]
+	\label{Teorema de Mazur}
+	Sea $X$ normado y $\sett{x_n}_{n \in \N} \subset X$ una sucesi\'on tal que $x_i \xrightarrow{d} x$, entonces existe $y_n$ hecho de combinaciones convexas de los $x_n$ tal que $y_n \xrightarrow{\norm{.}} x$. 
+\end{corollary}
+
+\begin{proof}
+	Sea $C = conv \left(\Bigcup{n \in \N}{\sett{x_n}}\right)$ que es convexo, luego por hip\'otesis $x \in \overline{C}^{wk}$ y por \ref{Clausura fuerta es clausura debil en un convexo} $x \in \overline{C}^{\norm{.}}$. \qed
+\end{proof}
+
+\begin{corollary}
+	Sea $\phi : X \rightarrow \R \cup \sett{\infty}$ convexa y semicontinua inferiormente, luego $\phi$ es $wk$ semi continua inferiormente.
+\end{corollary}
+
+\begin{proof}
+	Sea $\lambda \in \R$, luego $A = \phi^{-1}\left((-\infty, \lambda]\right)$ es convexo y fuertemente cerrado, luego por \ref{Clausura fuerta es clausura debil en un convexo} es convexo y $wk$ cerrado. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Convexa y fuertemente continua es debilmente semicontinua inferiormente}
+	Sea $\phi : X \rightarrow \R \cup \sett{\infty}$ convexa y continua, luego $\phi$ es $wk$ semi continua inferiormente.
+\end{corollary}
+
+\begin{theorem}
+	\label{T es fuerte-fuerte continua entonces es debil-debil continua}
+	Sean $X,Y$ Banach. Luego $T \in L(X,Y)$ si y s\'olo si $T \in L(\left(X,wk\right),\left(Y,wk\right))$
+\end{theorem}
+
+\begin{proof}
+	Supongamos que $T \in L(X,Y)$, luego por la propiedad universal de la topolog\'ia inicial basta ver que $p_{\dual{y}} \circ T : \left(X,wk\right) \rightarrow \R$ dado por $x \mapsto \ip{y,T(x)}$ es continua para todo $y \in Y$. Como $T \in L(X,Y)$, $p\in \dual{Y}$ y \ref{El dual a la topologia debil es la dual fuerte} conclu\'imos que $p_{\dual{y}} \circ T \in \dual{\left(X,wk\right)}$.
+	
+	Rec\'iprocamente, si $T \in L(\left(X,wk\right),\left(Y,wk\right))$ entonces por \ref{Teorema del grafico cerrado} $\graf T$ es cerrado en:
+	
+	\begin{equation*}
+	\left(X \times Y, \sigma(X,\dual{X}) \times \sigma\left(Y,\dual{Y}\right)\right) = \left(X \times Y, \sigma(X \times Y,\dual{X \times Y})\right)
+	\end{equation*}
+	
+	y por lo tanto como $\tau_{wk} \subset \tau_{\norm{.}}$ entonces $\graf T$ es fuertemente cerrado; finalmente por \ref{Teorema del grafico cerrado} conclu\'imos que $T \in L(X,Y)$. \qed
+\end{proof}
+
+\subsection{Topolog\'ia D\'ebil Estrella: Definici\'on y Propiedades}
+
+
+\begin{definition}
+	Sea $X$ normado, la \textit{topolog\'ia d\'ebil estrella} en $\dual{X}$ es la topolog\'ia inicial respecto a la familia $\F = \sett{p_x \tq x \in X}$ donde:
+	
+	\begin{equation*}
+	p_x(\dual{x}) = \abs{\ip{x,\dual{x}}}
+	\end{equation*}
+	
+	Y la notaremos $\dual{wk}$ o $\sigma(\dual{X},X)$. 
+	
+\end{definition}
+	
+\begin{remark}
+		
+		$U \subset \dual{X}$ es $\dual{wk}-$abierto si y s\'olo si para todo $\dual{x_0} \in U$ existen $\epsilon > 0$ y $x_1, \dots, x_n \in X$ tal que:
+		
+		\begin{equation*}
+		\Bigcap{1 \leq k \leq n}{\sett{\dual{x} \in \dual{X} \tq p_{x_k}(\dual{x}-\dual{x_0}) < \epsilon}} \subset U
+		\end{equation*}
+		
+		Por lo que $\sett{\dual{x_i}} \subset \dual{X}$ converge a $\dual{x_0}$ en esta topolog\'ia si y s\'olo si $\ip{\dual{x_i},x} \rightarrow \ip{\dual{x_0},x}$ para todo $x \in X$. En este caso, diremos que $\dual{x_i}$ \textit{converge d\'ebil estrella} a $\dual{x_0}$ y lo notaremos $\dual{x_i} \xrightarrow{\dual{d}} \dual{x_0}$, $\dual{x_i} \xrightarrow{\dual{wk}} \dual{x_0}$ o $\dual{x_i} \rightarrow \dual{x_0} \ (\dual{wk})$
+\end{remark}
+
+\begin{proposition}
+	\label{El dual a la topologia debil estrella es X}
+	Sea $X$ normado, entonces $\dual{(\dual{X}, \dual{wk})} \simeq X$
+\end{proposition}
+
+\begin{proof}
+	Sea $x \in X$, afirmo que $ev_x \in dual{(\dual{X}, \dual{wk})}$ pues si $\dual{x_i} \xrightarrow{\dual{d}} \dual{x_0}$ entonces por definici\'on $ev_x (\dual{x_i}) := \ip{\dual{x_i}, x} \rightarrow \ip{\dual{x_0}, x} := ev_x(\dual{x_0})$. Por lo tanto si notamos $J:X \rightarrow \ddual{X}$ a la inyecci\'on can\'onica tenemos que $X \simeq J(X) \subseteq \dual{(\dual{X}, \dual{wk})}$.
+	
+	Rec\'iprocamente, sea $f \in \dual{(\dual{X}, \dual{wk})}$, luego $U = \sett{\dual{x} \in \dual{X} \tq \abs{f(\dual{x})} < \delta} \in \tau_{\dual{wk}}$, si y s\'olo si:existe $\epsilon > 0$ y $x_1 , \dots, x_n \in X$ tal que:
+	
+	\begin{equation*}
+	\Bigcap{1 \leq k \leq n}{\sett{\dual{x} \in \dual{X} \tq \dual{x}(x_k) < \epsilon}} := \Bigcap{1 \leq k \leq n}{\sett{\dual{x} \in \dual{X} \tq ev_{x_k}(\dual{x}) < \epsilon}}  \subset U
+	\end{equation*}
+	
+	Luego vale que $\Bigcap{1 \leq k \leq n}{\ker x_k} \subseteq \ker f$. Notemos el siguiente resultado:
+	
+	
+	
+	\begin{lemma}
+		\label{Lemma: El dual a la topologia debil estrella es X}
+		Sea $f, f_1, \dots, f_n$ funcionales lineales en $X$ tal que $\Bigcap{1 \leq k \leq n}{\ker x_k} \subseteq \ker f$, entonces existen $\alpha_1, \dots, \alpha_n$ tal que $f = \Bigsum{1 \leq i \leq n}{\alpha_i f_i}$
+	\end{lemma}
+	
+	
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Sea $l : X \rightarrow \R^n$ dado por $l(x) = \left(f_1(x), \dots, f_n(x)\right)$ y  sea $V = \rank l$. Luego $\ker l = \Bigcap{1 \leq k \leq n}{\ker x_k} $ y existe $\phi : V \rightarrow \R$ tal que $f = \phi \circ l$ dado por $\phi(v) = f(x)$ donde $x \in l^{-1}(v)$ que esta bien definido por hip\'otesis.
+		
+		Por \ref{La extension del funcional preserva norma} existe $\tilde{\phi} \in \dual{\R^k}$ y $\tilde{\phi}(y) = \Bigsum{1 \leq i \leq n}{\alpha_i y_i}$. Por lo tanto existen $\alpha_1 , \dots , \alpha_n$ tal que $f(x) = \phi \circ l (x) = \phi \left(f_1(x), \dots, f_n(x)\right) = \tilde{\phi} \left(f_1(x), \dots, f_n(x)\right) = \Bigsum{1 \leq i \leq n}{\alpha_i f_i(x)}$. \qed
+		
+	\end{proof}
+	
+	
+	
+	Por \ref{Lemma: El dual a la topologia debil estrella es X} existen $\alpha_1 , \dots, \alpha_n \in \C$ tal que $f = \Bigsum{1 \leq i \leq n}{\alpha_i ev_{x_i}} \in J(X)$. Por lo tanto $\dual{(\dual{X}, \dual{wk})} \simeq X$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	Sea $\phi \in \dual{\dual{X}, \dual{wk}}$, entonces existe $x_0 \in X$ tal que $\phi(f) = \ip{f,x_0}$
+\end{corollary}
+
+\begin{proposition}
+	\label{Topologia debil estrella es Hausdorff}
+	Sea $X$ normado, entonces $\sigma(\dual{X},X)$ es Hausdorff	
+\end{proposition}
+
+\begin{proof}
+	Sea $f \neq g \in \dual{X}$, luego existe $x \in X$ y $\alpha \in \mathbb{R}$ tal que:
+	
+	
+	\begin{equation*}
+	\ip{f, x} < \alpha < \ip{g,x}
+	\end{equation*}
+	
+	Sean $U = p_x^{-1}(\left(-\infty, \alpha\right)), V = p_x^{-1}(\left(\alpha, \infty\right))$ luego $U \cap V = \emptyset$ y $f \in U, g \in V$. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Resultados de convergencia debil estrella}
+	Sean $X$ Banach y $\sett{f_n}_{n \in \N} \subset \dual{X}$ una sucesi\'on. Luego:
+	
+	
+	\begin{enumerate}
+		\item Si $f_n \xrightarrow{\norm{.}_{\dual{X}}} f$ entonces $f_n \xrightarrow{d} f$.
+		\item Si $f_n \xrightarrow{d} f$ entonces $f_n \xrightarrow{\dual{d}} f$.
+		\item Si $f_n \xrightarrow{\dual{d}} f$ entonces $\sett{\norm{f_n}}$ est\'a acotado y $\norm{f} \leq \liminf \norm{f_n}$
+		\item Si $f_n \xrightarrow{\dual{d}} f$  y $x_n \xrightarrow{\norm{.}_{X}} x$ entonces $f_n(x_n) \rightarrow f(x)$
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Vamos por partes:
+	
+	\begin{enumerate}
+		\item Sea $x \in \ddual{X}$, luego $\abs{\ip{x(f_n) - x(f_0)}} \leq \norm{x}_{\ddual{X}} \norm{f_n-f_0}_{\dual{X}} \rightarrow 0$; por lo tanto $f_n \xrightarrow{d} f$.
+		\item Sea $x \in X$, luego $\abs{\ip{f_n(x) - f(x)}} \underbrace{=}_{J:X \rightarrow \ddual{X}} \abs{\ip{J(x)(f_n) - J(x)(f_0)}} \rightarrow 0$; por lo tanto $f_n \xrightarrow{\dual{d}} f$.
+		\item Sea $T_n : X \rightarrow \R$ dado por $T_n(x) = f_n(x)$, luego $\lim\limits_{n \rightarrow \infty}{T_n(x)} = f(x) = T(f)$ para todo $x \in X$; como $X, \R$ son Banach entonces por \ref{PAU operadores} vale la conclusi\'on.
+		\item 
+		\begin{equation*}
+		\begin{aligned}
+		\abs{\ip{f_n,x_n} - \ip{f,x}} = & \abs{\ip{f_n,x_n} - \ip{f_n,x} + \ip{f_n,x} - \ip{f,x}} \leq \abs{\ip{f_n ,x_n-x}} + \abs{\ip{f_n - f,x}} \\
+		\leq & \underbrace{\norm{f_n}_{\dual{X}}}_{\leq C} \underbrace{\norm{x_n-x}_{X}}_{\rightarrow 0} + \underbrace{\abs{\ip{f_n -f,x}}}_{\rightarrow 0} \rightarrow 0
+		\end{aligned}
+		\end{equation*}\qed
+	\end{enumerate}
+	
+\end{proof}
+
+\subsection{El teorema de Alaoglu}
+
+\begin{theorem}[Teorema de Alaoglu]
+	\label{Teorema de Alaoglu}
+	Sea $X$ normado, luego $B_1(0) \subset \dual{X}$ es $\dual{wk}$ compacta.
+\end{theorem}
+
+\begin{proof}
+	Sea $x \in X$, llamemos $B=B_1(0) \subset \dual{X}$, $D_x = \sett{\alpha \in \mathbb{F} \tq \abs{\alpha} \leq 1}$ y sea $D = \Bigprod{x \in X}{D_x}$ que por Tychonoff es compacto. Sea $\tau: B \rightarrow D$ dado por:
+	\begin{equation*}
+	\tau \left(f\right)(x) \ip{f, x}
+	\end{equation*}
+	
+	Afirmo que $\tau$ es un homeomorfismo de $\left(B,\dual{wk}\right)$ a $\tau(B)$ como subespacio de $D$.
+	
+	En efecto, si $\tau(f) = \tau(g)$ entonces $f(x) = \ip{f,x} = \ip{g,x} = g(x)$ para todo $x \in X$ por lo que $f = g$. Por otro lado, si $f_n \xrightarrow{\dual{d}} f$ entonces $\tau(f_n)(x) = \ip{f_n,x} \rightarrow \ip{f,x} = \tau(f)(x)$ para todo $x \in X$ si y s\'olo si $\tau(f_n) \xrightarrow{\tau_{prod}} \tau(f)$ por lo que $\tau$ es continua. Finalmente $\tau^{-1}: \tau(B) \rightarrow \left(B, \dual{wk}\right)$ es continua si y s\'olo si $p_{x} \circ \tau^{-1} : \tau(B) \rightarrow \R$ es continua para todo $x \in X$ por la propiedad universal de la topolog\'ia inicial; pero $p_{x} \circ \tau^{-1}(w) = \ip{\tau^{-1}(w), x} \underbrace{=}_{w = \tau(f)} \ip{f,x} = w_x$ por lo que $p_{x} \circ \tau^{-1} = \pi_x$ la proyecci\'on a la $x$ coordenada que es continua pues $\tau(B) \inc D$ que tiene la topolog\'ia producto. Conclu\'imos que $\tau : \left(B,\dual{wk}\right) \rightarrow \tau(B)$ es un homeomorfismo.
+	
+	Finalmente afirmo que $\tau(B)$ es $\tau_{prod}$ cerrado.
+	
+	Sean $\sett{f_i}_{i \in I} \subset B$ y $g \in D$ tal que $\tau(f_i) \rightarrow g$ por lo que $h(x) = \lim \ip{f_i,x}$ esta bien definido y $h \in \dual{X}$. Adem\'as, si $\norm{x} \leq 1$ entonces $\abs{h(x)} \leq 1$ pues $\ip{f_i,x} \in D_x$ por lo tanto $h \in B$ y $\tau(h) = g$. Esto demuestra que $\tau(B)$ es $\tau_{prod}$ cerrado.
+	
+	Como $D$ es compacto y $\tau(B)$ es cerrado entonces $\tau(B)$ es compacto y como $\tau$ es homeomorfismo conclu\'imos que $B$ es compacto.\qed
+	
+\end{proof}
+
+\subsection{El teorema de Kukatani}
+
+\textbf{Notaci\'on:} Si $X$ es normado entonces notaremos $\ball X$ a la bola cerrada unitaria, ie: $ball X = \sett{x \in X \tq \norm{x} \leq 1}$
+
+\begin{proposition}
+	\label{Lemma: Teorema de Kukatani}
+	Si $X$ es normado entonces $\ball X$ es $\sigma\left(\ddual{X}, \dual{X}\right)$ densa en $\ball \ddual{X}$
+\end{proposition}
+
+\begin{proof}
+	Sea $B = \overline{J(\ball X)}^{\sigma(\ddual{X}, \dual{X})} \subset \ball \ddual{X}$ y supongamos que existe $f_0 \in \ball \ddual{X} \setminus B$,  luego por \ref{Dos convexos en un normado se separan si uno es abierto} existe $\dual{x} \in \dual{X}$ y $\alpha \in \R$ tal que para todo $x \in \ball X$ vale que:
+	
+	\[
+	\text{Re} {\ip{x,\dual{x}}} < \alpha < \text{Re}\ip{\dual{x}, f}
+	\]
+	
+	Reemplazando $\dual{x}$ por $\alpha^{-1} \dual{x}$ obtenemos que:
+	
+	\[
+	\text{Re} {\ip{x,\dual{x}}} < 1 < \text{Re}\ip{\dual{x}, f}
+	\]
+	
+	Como $e^{i\theta}x \in \ball X$ si $x \in \ball X$ entonces $\abs{\ip{x,\dual{x}}} \leq 1$ si $\norm{x} \leq 1$ entonces $\dual{x} \in \ball \dual{X}$. Pero entonces $1 < \text{Re} \ip{\dual{x}, f} \leq \abs{\ip{\dual{x}, f}} \leq \norm{f} \leq 1$ por lo que $\overline{J(\ball X)}^{\sigma(\ddual{X}, \dual{X})} = \ball \ddual{X}$\qed
+	
+\end{proof}
+
+\begin{theorem}[Teorema de Kukatani]
+	\label{Teorema de Kukatani}
+	Sea $X$ Banach, entonces las siguientes son equivalentes:
+	
+	\begin{enumerate}
+		\item $X$ es reflexivo
+		\item $\dual{X}$ es reflexivo
+		\item $\sigma\left(\dual{X}, X\right) = \sigma \left(\dual{X}, \ddual{X}\right)$
+		\item $\ball X$ es $wk$ compacto
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	Vayamos por partes:
+	
+	\begin{itemize}
+		
+		\item[$(1) \Longrightarrow (3)$] Es claro pues $X = \ddual{X}$.
+		\item[$(4) \Longrightarrow (1)$] Afirmo que $\sigma \left(\ddual{X}, \dual{X}\right) \vert_{X} = \sigma \left(X, \dual{X}\right)$
+		
+		En efecto, $U \ni 0$ es un entorno de $0$ referido a $\tau_{\left(\ddual{X}, \dual{wk}\right)} \vert_{J(X)}$ si y s\'olo si existen $\epsilon > 0$ y $f_1 , \dots , f_n \in \dual{X}$ tal que $\Bigcap{1 \leq k \leq n}{\sett{\ddual{x} \in J(X) \subset \ddual{X} \tq {Jx}(f_k) < \epsilon)}} \subset U$ si y s\'olo si existen $\epsilon > 0$ y $f_1 , \dots , f_n \in \dual{X}$ tal que $\Bigcap{1 \leq k \leq n}{\sett{x \in X \tq p_{f_k}(x) < \epsilon)}} \subset U$ si y s\'olo si $U$ es un entorno de $0$ referido a $\tau_{\sigma \left(X, \dual{X}\right)}$
+		
+		Luego, por hip\'otesis y la afirmaci\'on $\ball X$ es $\sigma(\ddual{X}, \dual{X})$ cerrada en $\ball \ddual{X}$ y por \ref{Lemma: Teorema de Kukatani} adem\'as es densa; por lo tanto $\ball X = \ball \ddual{X}$ y $X$ es reflexivo.
+		
+		\item[$(3) \Longrightarrow (2)$] Por \ref{Teorema de Alaoglu} $\ball \dual{X}$ es $\sigma \left(\dual{X}, X\right)$ compacto y por hip\'otesis entonces es $\sigma \left(\dual{X}, \ddual{X}\right)$ compacta. Por $(4) \Longrightarrow (1)$ vale que $\dual{X}$ es reflexivo.
+		
+		\item[$(2) \Longrightarrow (1)$] Como $\ball X$ es cerrado en $\ddual{X}$ (en realidad $J(\ball X)$) por \ref{Clausura fuerta es clausura debil en un convexo} es $\sigma \left(\ddual{X}, \dual{\ddual{X}}\right)$ cerrado. Por hip\'otesis $\dual{X} = \dual{\ddual{X}}$ por lo tanto $\ball X$ es $\sigma \left(\ddual{X}, \dual{X}\right)$ cerrado en $\ddual{X}$, como por \ref{Lemma: Teorema de Kukatani} $\ball X$ es $\sigma \left(\ddual{X}, \dual{X}\right)$ denso en $\ball \ddual{X}$ entonces $\ball X  = \ball \ddual{X}$ y $X$ es reflexivo.
+		
+		\item[$(1) \Longrightarrow (4)$] Por \ref{Teorema de Alaoglu} $\ball \ddual{X}$ es $\sigma \left(\ddual{X}, \dual{X}\right)$ compacta y por hip\'otesis $\ddual{X} = X$ por lo que $\ball X$ es $\sigma \left(X, \dual{X}\right)$ compacta. \qed
+		
+	\end{itemize}
 	
 \end{proof}
 
 
+\begin{corollary}
+	\label{Subespacio de Reflexivo es reflexivo}
+	Sea $X$ Banach reflexivo y $M \subseteq X$ un subespacio cerrado, entonces $M$ es un espacio de Banach reflexivo.
+\end{corollary}
 
+\begin{proof}
+	Como $\ball M = M \cap \ball X$ entonces $\ball M$ es $\sigma(X, \dual{X})$ compacto por \ref{Teorema de Kukatani}, queda ver que $\sigma \left(X, \dual{X}\right) \vert_{M}  = \sigma(M, \dual{M})$.
+	
+	Sea $U \ni 0$ un entorno de $0$ referido a $\tau_{\sigma(M, \dual{M})}$ sy i s\'olo si existe $\epsilon > 0$ y $f_1,\dots, f_n \in \dual{M}$ tal que $\Bigcap{1 \leq k \leq n}{\sett{m \in M \tq f_i(m) < \epsilon}} \subset U$, debido a \ref{La extension del funcional preserva norma} sean $F_1, \dots, F_n \in \dual{X}$ las extensiones respectivas, luego $\Bigcap{1 \leq k \leq n}{\sett{m \in M \tq f_i(m) < \epsilon}} = \Bigcap{1 \leq k \leq n}{\sett{m \in M \tq F_i(m) < \epsilon}} \in \tau_{\sigma \left(X, \dual{X}\right) \vert_{M}}$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Banach reflexivo es debilmente secuencialmente completo}
+	Sea $X$ Banach reflexivo, entonces es $wk$ secuencialmente completo.
+\end{corollary}
+
+\begin{proof}
+	Sea $\sett{x_n}_{n \in \N} \subset X$ una sucesi\'on $wk$ de Cauchy, luego $\sett{\ip{x_n,f}} \subset \mathbb{F}$ es una sucesi\'on de Cauchy (y por ende converge) para todo $f \in \dual{X}$. Por lo tanto $\sett{x_n}$ es $wk$ acotado y por \ref{Si una sucesion converge debilmente entonces esta fuertemente acotada} existe $M$ tal que $\norm{x_n}_X \leq M$ para todo $n \in \N$; no obstante $\sett{x \in X \tq \norm{x} \leq M} = M \ball X$ es $wk$ compacto por \ref{Teorema de Kukatani} por lo que existe $x \in X$ y $\left(x_n\right)_k$ subsucesi\'on tal que $x_{n_k} \xrightarrow[cl]{d} x$ y como para todo $f \in \dual{X}$ $\lim \ip{f,x_n} < \infty$ entonces $x_{n_k} \xrightarrow{d} x$. \qed
+\end{proof}
+
+\begin{corollary}
+	\label{En banach reflexivo se realiza la distancia}
+	Sea $X$ Banach reflexivo, $M \subseteq X$ un subespacio cerrado y $x_0 \in M^c$, entonces existe $y_0 \in M$ tal que $d(x_0, M) = \norm{x_0-y_0}$
+\end{corollary}
+
+\begin{proof}
+	Por \ref{Convexa y fuertemente continua es debilmente semicontinua inferiormente} se tiene que $x \mapsto \norm{x-x_0}$ es $wk$ semicontinua inferiormente y si $d = d(x_0,M)$ entonces $M \cap B_{2d}(x_0)$ es $wk$ compacto por \ref{Teorema de Kukatani} y \ref{Subespacio de Reflexivo es reflexivo}; conclu\'imos porque una funci\'on semicontinua inferiormente alcanza el m\'inimo en un compacto.\qed
+\end{proof}
+
+\begin{corollary}
+	\label{Cerrado, acotado y convexo es debilmente compacto}
+	Sea $X$ Banach reflexivo y sea $K \subseteq X$ cerrado, acotado y convexo; luego $K$ es $\sigma \left(X,\dual{X}\right)$ compacto.
+\end{corollary}
+
+\begin{proof}
+	Como es cerrado y convexo entonces por $\ref{Clausura fuerta es clausura debil en un convexo}$ es $wk$ cerrado, y por ser acotado $K \subset M \ball X$ para alg\'un $M$. Por \ref{Teorema de Kukatani} $M \ball X$ es $wk$ compacto y como $K$ es $wk$ cerrado en un $wk$ compacto, es $wk$ compacto. \qed
+\end{proof}
+
+\subsection{Separabilidad}
+
+
+\begin{theorem}
+	\label{Si el dual es separable entonces X lo es}
+	Sea $X$ Banach tal que $\dual{X}$ es separable, entonces $X$ es separable
+\end{theorem}
+
+\begin{proof}
+	Sea $\sett{f_n}_{n \in \N} \subset \dual{X}$ un conjunto denso numerable, y sea $\sett{x_n}_{n \in \N} \subset X$ el conjunto de los $x_n$ tal que $\norm{x_n}_{X} = 1$ y cumple $\ip{f_n,x_n} \geq \frac{1}{2} \norm{f_n}_{\dual{X}}$; a su vez sea $L_0 = \sett{\Bigsum{J \text{ finito}}{\alpha_j x_j} \tq \alpha_j \in \Q, \ J \subset \N} = \ip{\sett{x_n}_{n \in \N}}_{\Q}$ el espacio vectorial generado sobre $\Q$ de las $x_n$.
+	
+	Es sabido 
+	 
+\end{proof}
+
+\begin{remark}
+	La vuelta no vale pues $X=L^1$ es separable pero su dual $L^{\infty}$ no lo es.
+\end{remark}
 
 \end{document}
