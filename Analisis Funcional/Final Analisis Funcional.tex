@@ -34,6 +34,7 @@
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand\tq{~:~}
 \newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
 \newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
 \newcommand{\x}[3]{#1_#2^#3}
 \newcommand{\xx}[4]{#1_#3#2_#4}
@@ -145,11 +146,12 @@
 	
 	
 	
-	\centerline{\bf An\'alisis Funcional - $1^{\circ}$ cuatrimestre $2017$}
+	\centerline{\bf An\'alisis Funcional}
 	\centerline{\sc Final}
+	\centerline{\sc Axel Sirota}
 	
 	\tableofcontents
-	\bigskip
+	\newpage
 
 \section{Espacios Vectoriales}
 
@@ -2705,7 +2707,8 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 \end{proof}
 
 \begin{corollary}
-	Sea $\phi \in \dual{\dual{X}, \dual{wk}}$, entonces existe $x_0 \in X$ tal que $\phi(f) = \ip{f,x_0}$
+	\label{Caracterizacion de los funcionales del dual con debil estrella}
+	Sea $\phi \in \dual{\dual{X}, \dual{wk}}$, entonces existe un \'unico $x_0 \in X$ tal que $\phi(f) = \ip{f,x_0}$
 \end{corollary}
 
 \begin{proposition}
@@ -2894,12 +2897,344 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 \begin{proof}
 	Sea $\sett{f_n}_{n \in \N} \subset \dual{X}$ un conjunto denso numerable, y sea $\sett{x_n}_{n \in \N} \subset X$ el conjunto de los $x_n$ tal que $\norm{x_n}_{X} = 1$ y cumple $\ip{f_n,x_n} \geq \frac{1}{2} \norm{f_n}_{\dual{X}}$; a su vez sea $L_0 = \sett{\Bigsum{J \text{ finito}}{\alpha_j x_j} \tq \alpha_j \in \Q, \ J \subset \N} = \ip{\sett{x_n}_{n \in \N}}_{\Q}$ el espacio vectorial generado sobre $\Q$ de las $x_n$.
 	
-	Es sabido 
+	Es sabido que $L_0$ es numerable y si llamamos $L = \ip{\sett{x_n}_{n \in \N}}_{\R}$ entonces $L_0$ es denso en $L$; afirmo que $L$ es denso en $X$ a su vez.
+	
+	En efecto, sea $f \in \dual{X}$ tal que $f \vert_{L} = 0$ y sea $\epsilon > 0$, entonces existe $N \in \N$ tal que $\norm{f - f_N}_{\dual{X}} < \epsilon$ y adem\'as:
+	
+	\begin{equation*}
+		\frac{1}{2} \norm{f_N}_{\dual{X}} \leq \ip{f_N, x_N} = \ip{f_N -f, x_N} < \epsilon
+	\end{equation*}
+	
+	Por lo tanto $\norm{f}_{\dual{X}} \leq \norm{f-f_N}_{\dual{X}} + \norm{f_N}_{\dual{X}} < 3\epsilon$ y conclu\'imos que $f = 0$. De \ref{M es denso si el unico funcional que lo anula es el nulo} conclu\'imos que $X$ es separable \qed
 	 
 \end{proof}
 
 \begin{remark}
 	La vuelta no vale pues $X=L^1$ es separable pero su dual $L^{\infty}$ no lo es.
 \end{remark}
+
+\begin{corollary}
+	\label{X es reflexivo y separable si y solo si dual es reflexivo y separable}
+	Sea $X$ un Banach, entonces $X$ es reflexivo y separable si y s\'olo si $\dual{X}$ es reflexivo y separable
+\end{corollary}
+
+\begin{proof}
+	Por \ref{Teorema de Kukatani} y \ref{Si el dual es separable entonces X lo es} conclu\'imos que si $\dual{X}$ es reflexivo y separable entonces $X$ lo es. Rec\'iprocamente, si $X$ es reflexivo y separable entonces $\ddual{X}$ lo es y por la anterior implicaci\'on $\dual{X}$ lo es. \qed
+\end{proof}
+
+\begin{theorem}[Metrizabilidad de la topolog\'ia d\'ebil estrella]
+	\label{Separable si y solo si la bola dual es metrizable estrella}
+	Sea $X$ Banach, entonces $X$ es separable si y s\'olo si $\ball \dual{X}$ es $\dual{wk}$ metrizable
+\end{theorem}
+
+\begin{proof}
+	Sea $\sett{x_n}_{n \in \N} \subset \ball X$ un conjunto denso y numerable de $\ball X$ y para cada $f \in \dual{X}$ definamos:
+	
+	\begin{equation*}
+		[f] = \Bigsum{n \in \N}{\dfrac{1}{2^n}{\abs{\ip{f, x_n}}}}
+	\end{equation*}
+	
+	De C\'alculo Avanzado sabemos que $[.]$ es una norma en $\dual{X}$ y que $[f] \leq \norm{f}_{\dual{X}}$; llamemos $d(f-g) = [f-g]$ la correspondiente m\'etrica y veamos que $\left(\ball \dual{X}, \tau_d\right) = \left(\ball \dual{X}, \dual{wk}\right)$.
+	
+	Sea $f_0 \in \ball \dual{X}$ y $V \ni f_0$ un entorno seg\'un $\dual{wk}$ y asumamos que $V$ es b\'asico, ie:
+	
+	\[
+		V = \sett{f \in \ball \dual{X} \tq \abs{\ip{f - f_0, y_i}} < \epsilon}
+	\]
+	
+	Para algunos $\epsilon > 0$ y $y_1, \dots, y_k \in X$; es m\'as asumamos que $\norm{y_i}_X \leq 1$ y que (bajo reordenamiento de los \'indices de ser necesario) $\norm{y_i - x_{n_i}}_X < \frac{\epsilon}{4}$. Sea $r > 0$ tal que $2^{n_i}r < \frac{\epsilon}{2}$ para todo $1 \leq i \leq k$ y afirmo que $U = B^{d}_r(f_0) \subset V$ donde la bola es tomada seg\'un $d$ (de ah\'i el superscripto $d$).
+	
+	En efecto, si $d(f,f_0) < r$ entonces:
+	
+	\begin{equation*}
+	\begin{array}{ccc}
+		& \dfrac{1}{2^{n_i}} \abs{\ip{f-f_0,x_{n_i}}} < r & 1 \leq i \leq k \\
+		\Longrightarrow & \abs{\ip{f-f_0, y_i}} = \abs{\ip{f-f_0, y_i-x_{n_i}}} + \abs{\ip{f-f_0,x_{n_i}}} < \epsilon & 1 \leq i \leq k
+	\end{array}
+	\end{equation*} 
+	
+	Y conclu\'imos que $f \in V$.
+	
+	Para el otro lado, sea $r > 0$ y encontremos $V \in \tau_{\dual{wk}}$ tal que $f_0 \in V \subset B^{d}_{r}(f_0)$; para esto afirmo que $V = \sett{f \in \ball \dual{X} \tq \abs{\ip{f - f_0, x_i}} < \epsilon \quad 1 \leq  i\leq k}$ con $k,\epsilon$ a determinar. Si $f \in V$ entonces:
+	
+	\begin{equation*}
+		d(f,f_0)  =  \Bigsum{1 \leq  n \leq k}{\dfrac{1}{2^{n}}\abs{\ip{f-f_0, x_n}}} + \Bigsum{n \geq k+1}{\dfrac{1}{2^{n}}\abs{\ip{f-f_0, x_n}}} < \epsilon + 2 \Bigsum{n \geq  k+1}{\dfrac{1}{2^n}} = \epsilon + \dfrac{1}{2^{k-1}}
+	\end{equation*}
+	
+	Por ende si $\epsilon = \dfrac{r}{2}$ y $k$ es tal que $\dfrac{1}{2^{k-1}} < \dfrac{r}{2}$ conclu\'imos que $f_0 \in V \subset U$; conclu\'imos que si $X$ es separable entonces $\ball \dual{X}$ es metrizable.
+	
+	Rec\'iprocamente, supongamos que $\ball \dual{X}$ es $\dual{wk}$ metrizable y sea:
+	
+	\begin{equation*}
+		U_n  =  \sett{f \in \ball X \tq d(f,0) < \frac{1}{n}}
+	\end{equation*}
+	
+	Y sea $V_n \ni 0$ un entorno de $0$ respecto a $\dual{wk}$ tal que $V_n \subset U_n$. Asumamos que:
+	
+	\begin{equation*}
+		V_n = \sett{f \in \ball \dual{X} \tq \abs{\ip{f,x_n}} < \epsilon_n \quad \forall x \in \Phi_n}
+	\end{equation*}
+	
+	Donde $\epsilon_n > 0$ y $\Phi_n \subset X$ es finito. Sea $D = \Bigcup{n \in \N}{\Phi_n}$ y sea $f \in \dual{X}$ tal que $f \vert_{D} = 0$; entonces $f \in V_n$ para todo $n \in \N$ por lo que $f \in U_n$ para todo $n \in \N$. Por ende, $f = 0$ y por \ref{M es denso si el unico funcional que lo anula es el nulo} conclu\'imos que $D$ es denso en $X$ y por lo tanto separable \qed
+	
+\end{proof}
+
+\begin{theorem}[Metrizabilidad de la topolog\'ia d\'ebil]
+	\label{Dual es separable si y solo si la bola es debil metrizable}
+	Sea $X$ Banach, entonces $\dual{X}$ es separable si y s\'olo si $\ball X$ es $wk$ metrizable
+\end{theorem}
+
+\begin{proof}
+	Si $\dual{X}$ es separable entonces replicando la demostraci\'on \ref{Separable si y solo si la bola dual es metrizable estrella} intercambiando los roles de $X$ y $\dual{X}$ se prueba que $\ball X$ es $wk$ metrizable. Para la vuelta esta fuera del alcance de este apunte en el caso general (Notar que a priori no podemos usar Hanh Banach aqu\'i) [Ver An Introduction to Nonlinear Analysis: Theory
+	By Zdzislaw Denkowski, Stanislaw Migórski, Nikolaos S. Papageorgiou]. En el caso reflexivo es trivial por usar \ref{Separable si y solo si la bola dual es metrizable estrella} en $\ball \ddual{X} = \ball X$. \qed
+\end{proof}
+
+\begin{corollary}
+	\label{En un banach separable la bola dual es secuencialmente compacta}
+	Sea $X$ Banach separable y sea $\sett{f_n}_{n \in \N} \subset \dual{X}$ una sucesi\'on acotada, entonces existe $\left(f_{n_k}\right)_{k \in \N} \subset \left(f_n \right)_{n \in \N}$ subsucesi\'on $\dual{wk}$ convergente.
+\end{corollary}
+
+\begin{proof}
+	Podemos suponer sin p\'erdida de generalidad que $\norm{f_n}_{\dual{X}} \leq 1$ y como por \ref{Teorema de Alaoglu} y \ref{Separable si y solo si la bola dual es metrizable estrella} $\ball \dual{X}$ es $\dual{wk}$ compacta y metrizable el resultado sigue de la caracterizaci\'on de espacios m\'etricos compactos \qed
+\end{proof}
+
+\begin{theorem}[Teorema de Eberlein-Smulian]
+	\label{Teorema de Eberlein-Smulian}
+	Sea $X$ un espacio de Banach, entonces $X$ es reflexivo si y s\'olo si toda sucesi\'on $\norm{.}_X$ acotada admite una subsucesi\'on $wk$ convergente
+\end{theorem}
+
+\begin{proof}
+	Sea $M_0 = \ip{\sett{x_n}_{n \in \N}}_{\mathbb{F}}$ y sea $M = \overline{M_0}$, luego $M$ es separable y reflexivo por \ref{Subespacio de Reflexivo es reflexivo}. Entonces por \ref{X es reflexivo y separable si y solo si dual es reflexivo y separable} $\dual{M}$ es reflexivo y separable, por lo que por \ref{Teorema de Kukatani} y \ref{Dual es separable si y solo si la bola es debil metrizable} $\ball M$ es un espacio m\'etrico compacto por lo que existe $\left(x_{n_k}\right)_{k \in \N} \subset \left(x_n\right)_{n \in \N}$ subsucesi\'on $\sigma \left(M, \dual{M}\right)$ convergente a un $x_0$; pero como probamos que $\sigma \left(M, \dual{M}\right) = \sigma \left(X, \dual{X}\right) \vert_{M}$ entonces $\left(x_{n_k}\right)_{k \in \N}$ es $wk$ convergente a $x_0$.
+	
+	\bigskip
+	
+	La vuelta esta por fuera del alcance de este apunte, ver 
+	
+	\begin{itemize}
+		\item Albiac?Kalton, Topics in Banach Space Theory (GTM 233), Corollary 1.6.4, page 24
+		\item Whitley, An elementary proof of the Eberlein-?mulian theorem, Mathematische Annalen 172 (2), 1967, 116-118
+	\end{itemize}
+	.\qed
+	
+\end{proof}
+
+\section{Operadores lineales en Espacios de Banach}
+
+\subsection{Adjunto de un operador lineal}
+
+\begin{definition}
+	Sean $X,Y$ espacios vectoriales y $T: X \rightarrow Y$ una tranformaci\'on lineal. Definimos el \textit{adjunto algebraico} de $T$ como $T' : Y' \rightarrow X'$ dado por $T'(y') = y' \circ T$
+\end{definition}
+
+\begin{proposition}
+	Sean $X,Y$ Banach y $T:X \rightarrow Y$ lineal, entonces son equivalentes:
+	
+	\begin{enumerate}
+		\item $T$ es acotada
+		\item $T'(\dual{Y}) = \dual{X}$
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Si $g \in \dual{Y}$ entonces $\abs{T'(g)(x)} = \abs{g (T(x))} \leq \norm{T} \norm{g}_{\dual{Y}} \norm{x}_X$ por lo que $T'(g) \in \dual{X}$
+	
+	Rec\'iprocamente, sea $g \in \dual{Y}$ y sea $f = T'(g) \in \dual{X}$ por hip\'otesis; luego si $x \in \ball X$ entonces $\abs{\ip{T(x), g}} = \abs{\ip{f, x}} \leq \norm{f}_{\dual{X}} < \infty$ por lo que $ \sup \sett{\abs{\ip{T(x), g}} \tq x \in \ball X} < \infty$ y por \ref{PAU X} $T$ es acotado. \qed 
+	
+\end{proof}
+
+\begin{definition}
+	Sean $X,Y$ Banach y $T \in L\left(X, Y\right)$. Definimos el \textit{adjunto } de $T$ como $\dual{T} : \dual{Y} \rightarrow \dual{X}$ dado por $\dual{T} = T' \vert_{\dual{Y}}$ y cumple que:
+	
+	\begin{equation*}
+		\ip{\dual{T}(\dual{y}), x} = \ip{\dual{y}, T(x)} \qquad x \in X, \dual{y} \in \dual{Y}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{proposition}
+	Sean $X,Y$ Banach, $A,B \in L(X,Y)$ y $\alpha, \beta \in \mathbb{F}$, entonces $\dual{\alpha A + \beta B} = \alpha \dual{A} + \beta \dual{B}$
+\end{proposition}
+
+\begin{proposition}
+	\label{Propiedades del operador adjunto}
+	Sean $X,Y$ Banach, $T \in L(X,Y)$ entonces:
+	
+	\begin{itemize}
+		\item $\ddual{T} \vert_{X} = T$
+		\item Si $Z$ es Banach y $W \in L(Y,Z)$ entonces $\dual{WT} = \dual{T}\dual{W}$
+		\item $\norm{\dual{T}} = \norm{T}$
+		\item $\dual{T}$ es $\dual{wk}$ continua
+	\end{itemize}
+	
+\end{proposition}
+
+\begin{proof}
+	Vayamos por partes:
+	
+	\begin{itemize}
+		\item Sea $x \in X$, entonces $\ip{\ddual{T}(J(x)), \dual{Y}} = \ip{J(x), \dual{T}(\dual{y})} = \ip{Tx, \dual{y}}$
+		
+		\item Sea $\dual{z} \in \dual{Z}$, $x \in X$ entonces:
+		
+		\begin{equation*}
+			\ip{\dual{T}\dual{W} (\dual{z}), x} = \ip{\dual{W} (\dual{z}), Tx} =  \ip{\dual{z}, WTx} = \ip{\dual{WT} \left(\dual{z} \right), x}
+		\end{equation*}
+		
+		Por lo tanto $\dual{WT} = \dual{T}\dual{W}$.
+		
+		
+		\item Si $\norm{\dual{y}}_{\dual{Y}} \leq 1$ y $\norm{x}_X \leq 1$ entonces $\abs{\ip{\dual{T}(\dual{y})}, x} = \abs{\ip{\dual{y}, Tx}} \leq \norm{Tx}_Y \leq \norm{T} \norm{x}_X$. Deducimos que:
+		
+		\begin{equation*}
+			\norm{\dual{T}} = \sup\limits_{\dual{y} \in \ball \dual{Y}} \norm{\dual{T}(\dual{y})}_{\dual{X}} = \sup\limits_{\dual{y} \in \ball \dual{Y}} \sup\limits_{x \in \ball X} \abs{\ip{x, \dual{T}(\dual{y})}} \leq \norm{T}
+		\end{equation*}
+		
+		Rec\'iprocamente, tenemos que $\norm{\ddual{T}} \leq \norm{\dual{T}}$ por lo que si $x \in \ball X$ entonces por (a):
+		
+		\begin{equation*}
+			\norm{T} = \sup\limits_{x \in \ball X} \norm{Tx}_Y = \sup\limits_{x \in \ball X} \norm{\ddual{T}x}_Y \leq \sup\limits_{x \in \ball X} \norm{\dual{T}x}_Y = \norm{\dual{T}}
+		\end{equation*}
+		
+		\item Por la propiedad universal de la topolog\'ia inicial $\dual{T} : \left(\dual{Y}, \dual{wk}\right) \rightarrow  \left(\dual{X}, \dual{wk}\right)$ es continua si y s\'olo si $p_x \circ \dual{T} :  \left(\dual{Y}, \dual{wk}\right) \rightarrow \R$ es continua para todo $x \in X$, pero $p_x \circ \dual{T} (\dual{y}) = \ip{\dual{T}(\dual{y}), x} = \ip{\dual{y}, Tx} = \dual{y} \circ T (x)$ que es continua para todo $x \in X$. \qed
+		 
+	\end{itemize}
+	
+\end{proof}
+
+\begin{definition}
+	Sea $X$ normado y $M \subseteq X$ subespacio, definimos el \textit{ortogonal} a $M$ como:
+	
+	\begin{equation*}
+		\ortogonal{M} = \sett{\dual{x} \in \dual{X} \tq \ip{\dual{x}, m} = 0 \quad \forall m \in M}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{definition}
+	Sea $X$ normado y $M \subseteq \dual{X}$ subespacio, definimos el \textit{pre-ortogonal} a $M$ como:
+	
+	\begin{equation*}
+	^{\perp}\left(M\right) = \sett{x \in X \tq \ip{m, x} = 0 \quad \forall m \in M}
+	\end{equation*}
+	
+\end{definition}
+
+\begin{proposition}
+	\label{Relaciones de ortogonalidad}
+	Sean $X,Y$ Banach y $T \in L(X,Y)$, entonces $\ker \dual{T} = \ortogonal{\rank T}$ y $\ker T = ^{\perp}\left(\rank \dual{T}\right)$
+\end{proposition}
+
+\begin{proof}
+	Sea $f \in \dual{Y}$ y $x \in X$ tal que $f \in \ker \dual{T}$, entonces $\ip{f, T(x)} = \ip{\dual{T}(f), x} = 0$ por lo tanto $f \in \ortogonal{\rank T}$; rec\'iprocamente si $f \in \dual{Y}$ es tal que $\ip{f, T(x)} = \ip{\dual{T}(f), x} = 0$ para todo $x \in X$ entonces $\norm{\dual{T}(f)}_{\dual{X}} = \sup\limits_{x \in \ball X} \abs{\ip{\dual{T}(f), x}} = 0$ por lo que $f \in \ker \dual{T}$.
+	
+	Por otro lado, si $x \in \ker T$ entonces para $f \in \dual{Y}$ vale que $\ip{\dual{T}(f), x} = \ip{f, T(x)} = 0$ por lo que $x \in ^{\perp}\left(\rank \dual{T}\right)$; rec\'iprocamente $x \in X$ es tal que $\ip{f, T(x)} = \ip{\dual{T}(f), x} = 0$ para todo $f \in \dual{Y}$ entonces $\norm{T(x)}_{Y} \underbrace{=}_{\ref{Norma en funcion de funcionales}} \sup\limits_{f \in \ball \dual{Y}} \abs{\ip{f, T(x)}} = 0$ por lo que $x \in \ker T$. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{T es invertible si y solo si el adjunto lo es}
+	Sean $X,Y$ Banach y $T \in L(X,Y)$, entonces $T$ es invertible si y s\'olo si $\dual{T}$ lo es. Es m\'as en este caso $\left(\dual{T}\right)^{-1} = \dual{T^{-1}}$
+\end{proposition}
+
+\begin{proof}
+	En efecto, supongamos que $T$ es invertible y sea $x \in X, f \in \dual{Y}$, entonces:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\ip{f,x} = & \ip{f, T^{-1} \circ T(x)} = \ip{\dual{T^{-1}} (f), Tx} = \ip{\dual{T} \circ \dual{T^{-1}} (f), x} \\
+		= & \ip{f, T \circ T^{-1}(x)} = \ip{\dual{T} (f), T^{-1}x} = \ip{\dual{T^{-1}} \circ \dual{T} (f), x}
+	\end{aligned}		 
+	\end{equation*}
+	
+	Por lo tanto $\dual{T}$ es inversible y $\left(\dual{T}\right)^{-1} = \dual{T^{-1}}$; conclu\'imos que $\dual{T}$ es invertible pues:
+	
+	\begin{equation*}
+		\norm{\left(\dual{T}\right)^{-1}} = \norm{\dual{T^{-1}}} \underbrace{=}_{\ref{Propiedades del operador adjunto}} \norm{T^{-1}} \leq \dfrac{1}{\norm{T}}
+	\end{equation*}
+	
+	 
+	
+	Rec\'iprocamente, si $\dual{T}$ es invertible entonces por \ref{Teorema de la aplicacion abierta} existe $c > 0$ tal que:
+	
+	\begin{equation*}
+		\dual{T} \left( \ball \dual{Y} \right) \supseteq c \ball \dual{X}
+	\end{equation*}
+	
+	Por lo tanto si $x \in X$ entonces:
+	
+	\begin{equation*}
+	\begin{array}{ccc}
+		\norm{Tx}_Y & \underbrace{=}_{\ref{Norma en funcion de funcionales}} & \sup\limits_{\dual{y} \in \ball \dual{Y}} \abs{\ip{\dual{y}, Tx}} \\
+		& = &  \sup\limits_{\dual{y} \in \ball \dual{Y}} \abs{\ip{\dual{T} \left(\dual{y} \right), x}} \\
+		& \geq  &  \sup\limits_{\dual{x} \in c \ball \dual{X}} \abs{\ip{\dual{x} , x}} \\
+		& = & \frac{1}{c} \norm{x}_X
+	\end{array}
+	\end{equation*}
+	
+	Usemos el siguiente lema:
+	
+	\begin{lemma}
+		\label{Lemma: T es invertible si y solo si el adjunto lo es}
+		Sean $X,Y$ Banach y $T \in L(X,Y)$ tal que existe $d > 0$ que cumple $\norm{Tx}_Y \geq d\norm{x}_X$, entonces $\rank T$ es cerrado y $\ker T = 0$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		En efecto, si $Tx = 0$ entonces $\norm{x}_X \leq \frac{1}{d} \norm{Tx}_Y = 0$ por lo que $\ker T = 0$. Asimismo sea $\sett{x_n}_{n \in \N} \subset X$ una sucesi\'on tal que $T(x_n) \rightarrow y \in Y$, entonces $\norm{x_n - x_m}_{X} \leq \frac{1}{d} \norm{T(x_n - x_m)}_Y  = \frac{1}{d} \norm{T(x_n) - T(x_m)}_Y \xrightarrow{n,m \rightarrow \infty} 0$; por lo tanto $\sett{x_n}_{n \in \N}$ es de Cauchy y como $X$ es Banach existe $x \in X$ tal que $x_n \rightarrow x$, finalmente como $T$ es continua conclu\'imos que $T(x_n) \rightarrow T(x) = y$ por la unicidad del l\'imite. \qed
+	\end{proof}
+	
+	Por lo tanto usando \ref{Lemma: T es invertible si y solo si el adjunto lo es} sabemos que $T$ es inyectiva de rango cerrado. Por otro lado por \ref{Relaciones de ortogonalidad} $\ortogonal{\rank T} = \ker \dual{T} = 0$ pues $\dual{T}$ es invertible, de \ref{M es denso si el unico funcional que lo anula es el nulo} conclu\'imos que $\rank T$ adem\'as es denso por lo que $T$ resulta suryectiva, inyectiva y ya era continua; conclu\'imos que $T$ es invertible. \qed 
+	
+\end{proof}
+
+\begin{proposition}
+	Sean $X,Y$ Banach y $S : \dual{Y} \rightarrow \dual{X}$ lineal, entonces existe $T \in L(X,Y)$ tal que $S = \dual{T}$ si y s\'olo si $S : \left(\dual{Y}, \dual{wk}\right) \rightarrow  \left(\dual{X}, \dual{wk}\right)$ es continua
+\end{proposition}
+
+\begin{proof}
+	Para un lado si $S = \dual{T}$ entonces ya probamos en $\ref{Propiedades del operador adjunto}$ que $S$ es $\dual{wk}-\dual{wk}$ continua.
+	
+	Rec\'iprocamente, primero usemos el siguiente lema:
+	
+	\begin{lemma}
+		\label{Lemma: Condiciones de ser adjunto}
+		Sean $X,Y$ Banach y $T : \left(\dual{Y}, \dual{wk}\right) \rightarrow  \left(\dual{X}, \dual{wk}\right)$ continua, entonces $T \in L(X,Y)$
+	\end{lemma}
+	
+	\begin{proof}
+		Sea $\sett{f_n}_{n \in \N} \subset \dual{Y}$ una sucesi\'on tal que $f_n \rightarrow f$ y $S(f_n) \rightarrow g \in \dual{X}$, entonces por \ref{Resultados de convergencia debil estrella} $f_n \xrightarrow{\dual{d}_{\dual{Y}}} f$ y $S(f_n) \xrightarrow{\dual{d}_{\dual{X}}} g$.
+		
+		Como $S$ es $\dual{wk}-\dual{wk}$ continua sabemos que $S(f_n) \xrightarrow{\dual{d}} Sf$, luego por \ref{Topologia debil estrella es Hausdorff} deducimos que $S(f) = g$ y por \ref{Teorema del grafico cerrado} conclu\'imos que $S \in L \left((\dual{Y}, \dual{X} \right))$ \qed
+	\end{proof}
+	
+	Sea $x \in X$ y consideremos $\alpha_x: \dual{Y} \rightarrow \R$ dado por $\alpha_x (f) = S(f) (x)$, entonces:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\norm{\alpha_x}_{\ddual{Y}} = & \sup\limits_{f \in \ball \dual{Y}} \abs{\alpha_x (f)} \\
+		 = & \sup\limits_{f \in \ball \dual{Y}} \abs{ \underbrace{S(f)}_{\in \dual{X}} (x)} \\
+		 \leq & \sup\limits_{f \in \ball \dual{Y}} \norm{S(f)}_{\dual{X}} \norm{x}_X \\
+		 \underbrace{\leq}_{\ref{Lemma: Condiciones de ser adjunto}} & \sup\limits_{f \in \ball \dual{Y}} \norm{S} \norm{f}_{\dual{X}} \norm{x}_X 
+		 = & \norm{S} \norm{x}
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo que $\alpha_x \in \dual{\left(\dual{Y}, \dual{wk}\right)}$ y por \ref{Caracterizacion de los funcionales del dual con debil estrella} existe un \'unico $y \in Y$ tal que $\alpha_x(f) = \ip{f,y}$, definamos $T(x) = y$. Es claro que $T$ es lineal y $\ip{S(f), x} = S(f)(x) = \alpha_x(f) = \ip{f, T(x)}$ por lo que basta ver que $T$ es acotada. En pos de eso:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\norm{T(x)}_Y \underbrace{=}_{\ref{Norma en funcion de funcionales}} & \sup\limits_{f \in \ball \dual{Y}} \abs{\ip{f, T(x)}} \\
+		= &  \sup\limits_{f \in \ball \dual{Y}} \abs{\ip{S(f), x}} \\
+		= & \sup\limits_{f \in \ball \dual{Y}} \abs{\alpha_x (f)} \\
+		= & \norm{\alpha_x}_{\ddual{Y}} \\
+		\leq & \norm{S} \norm{x}
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo que $T \in L(X,Y)$ y $S = \dual{T}$ \qed
+	
+\end{proof}
+
+\subsection{Operadores compactos en espacios de Banach}
 
 \end{document}

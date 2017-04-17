@@ -1,6 +1,6 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Espacios Vectoriales}{1}{section.1}
-\contentsline {subsection}{\numberline {1.1}Propiedades Elementales}{1}{subsection.1.1}
+\contentsline {section}{\numberline {1}Espacios Vectoriales}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Propiedades Elementales}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Normas y productos internos}{3}{subsection.1.2}
 \contentsline {section}{\numberline {2}Espacios de Hilbert}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Preliminares}{5}{subsection.2.1}
@@ -32,3 +32,6 @@
 \contentsline {subsection}{\numberline {6.4}El teorema de Alaoglu}{37}{subsection.6.4}
 \contentsline {subsection}{\numberline {6.5}El teorema de Kukatani}{37}{subsection.6.5}
 \contentsline {subsection}{\numberline {6.6}Separabilidad}{39}{subsection.6.6}
+\contentsline {section}{\numberline {7}Operadores lineales en Espacios de Banach}{40}{section.7}
+\contentsline {subsection}{\numberline {7.1}Adjunto de un operador lineal}{40}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Operadores compactos en espacios de Banach}{43}{subsection.7.2}
