@@ -2,36 +2,38 @@
 \contentsline {section}{\numberline {1}Espacios Vectoriales}{2}{section.1}
 \contentsline {subsection}{\numberline {1.1}Propiedades Elementales}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Normas y productos internos}{3}{subsection.1.2}
-\contentsline {section}{\numberline {2}Espacios de Hilbert}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Preliminares}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Conjuntos ortogonales y ortonormales}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Conjuntos ortonormales completos}{8}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Ortogonalizaci\'on de Gram Schmitt}{9}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Dimensi\'on de un espacio de Hilbert}{9}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Proyecci\'on ortogonal}{11}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Teorema de representaci\'on de Riesz}{13}{subsection.2.7}
-\contentsline {section}{\numberline {3}Espacios de Banach}{15}{section.3}
-\contentsline {subsection}{\numberline {3.1}Operadores entre espacios normados}{15}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Espacios vectoriales de dimensi\'on finita}{17}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Espacio de Operadores entre espacios normados}{18}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Espacios cocientes}{20}{subsection.3.4}
-\contentsline {section}{\numberline {4}Teorema de Hahn-Banach}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Funcionales Lineales}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}El Teorema de Hanh-Banach}{22}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Corolarios de Hanh-Banach}{23}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Separabilidad y Reflexividad}{24}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Consecuencias Geom\'etricas de Hanh-Banach}{26}{subsection.4.5}
-\contentsline {section}{\numberline {5}Teoremas fundamentales de espacios de Banach}{29}{section.5}
-\contentsline {subsection}{\numberline {5.1}Teorema de la aplicaci\'on abierta}{29}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Teorema del Gr\'afico cerrado}{30}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Principio de Acotaci\'on Uniforme}{31}{subsection.5.3}
-\contentsline {section}{\numberline {6}Topolog\'ias d\'ebiles}{33}{section.6}
-\contentsline {subsection}{\numberline {6.1}Topolog\'ia D\'ebil: Definici\'on y propiedades}{33}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Conjuntos convexos y operadores}{34}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Topolog\'ia D\'ebil Estrella: Definici\'on y Propiedades}{35}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}El teorema de Alaoglu}{37}{subsection.6.4}
-\contentsline {subsection}{\numberline {6.5}El teorema de Kukatani}{37}{subsection.6.5}
-\contentsline {subsection}{\numberline {6.6}Separabilidad}{39}{subsection.6.6}
-\contentsline {section}{\numberline {7}Operadores lineales en Espacios de Banach}{40}{section.7}
-\contentsline {subsection}{\numberline {7.1}Adjunto de un operador lineal}{40}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Operadores compactos en espacios de Banach}{43}{subsection.7.2}
+\contentsline {section}{\numberline {2}Espacios de Hilbert}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Preliminares}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Conjuntos ortogonales y ortonormales}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Conjuntos ortonormales completos}{9}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Ortogonalizaci\'on de Gram Schmitt}{10}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Dimensi\'on de un espacio de Hilbert}{10}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Proyecci\'on ortogonal}{12}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Teorema de representaci\'on de Riesz}{14}{subsection.2.7}
+\contentsline {section}{\numberline {3}Espacios de Banach}{17}{section.3}
+\contentsline {subsection}{\numberline {3.1}Operadores entre espacios normados}{17}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Espacios vectoriales de dimensi\'on finita}{19}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Espacio de Operadores entre espacios normados}{20}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Espacios cocientes}{21}{subsection.3.4}
+\contentsline {section}{\numberline {4}Teorema de Hahn-Banach}{24}{section.4}
+\contentsline {subsection}{\numberline {4.1}Funcionales Lineales}{24}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}El Teorema de Hanh-Banach}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Corolarios de Hanh-Banach}{26}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Separabilidad y Reflexividad}{27}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Consecuencias Geom\'etricas de Hanh-Banach}{28}{subsection.4.5}
+\contentsline {section}{\numberline {5}Teoremas fundamentales de espacios de Banach}{32}{section.5}
+\contentsline {subsection}{\numberline {5.1}Teorema de la aplicaci\'on abierta}{32}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Teorema del Gr\'afico cerrado}{33}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Principio de Acotaci\'on Uniforme}{34}{subsection.5.3}
+\contentsline {section}{\numberline {6}Topolog\'ias d\'ebiles}{37}{section.6}
+\contentsline {subsection}{\numberline {6.1}Topolog\'ia D\'ebil: Definici\'on y propiedades}{37}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Conjuntos convexos y operadores}{38}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Topolog\'ia D\'ebil Estrella: Definici\'on y Propiedades}{38}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}El teorema de Alaoglu}{40}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}El teorema de Kukatani}{40}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}Separabilidad}{42}{subsection.6.6}
+\contentsline {section}{\numberline {7}Operadores lineales en Espacios de Banach}{44}{section.7}
+\contentsline {subsection}{\numberline {7.1}Adjunto de un operador lineal}{44}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Operadores compactos}{47}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Ecuaci\'on integral de Fredholm}{49}{subsection.7.3}
+\contentsline {section}{\numberline {8}Operadores compactos en espacio de Hilbert}{51}{section.8}

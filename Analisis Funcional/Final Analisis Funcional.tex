@@ -428,6 +428,8 @@ Recordemos:
 	
 \end{proof}
 
+\newpage
+
 \section{Espacios de Hilbert}
 
 \subsection{Preliminares}
@@ -1167,6 +1169,8 @@ Recordemos:
 	
 \end{proof}
 
+\newpage
+
 \section{Espacios de Banach}
 
 \subsection{Operadores entre espacios normados}
@@ -1372,6 +1376,7 @@ Recordemos:
 \end{proof}
 
 \begin{theorem}
+	\label{En dimension infinita la bola cerrada no es compacta}
 	Si $X$ es un espacio normado de dimensi\'on infinita, entonces $B_1[0]$ no es compacta
 \end{theorem}
 
@@ -1627,6 +1632,8 @@ y definimos $\norm{[x]}_S := \inf \sett{\norm{t} \ : \ x \in [t]}$.
 \begin{proof}
 	Consideremos $Q: X \rightarrow \quotient{X}{M}$, como $\dim Q(N) \leq \dim N < \infty $ entonces $Q(N)$ es cerrado y como $Q$ es continua entonces $Q^{-1}(Q(N)) = N+M$ es cerrado .\qed
 \end{proof}
+
+\newpage
 
 \section{Teorema de Hahn-Banach}
 
@@ -2163,6 +2170,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 
 \end{proof}
 
+\newpage
 
 \section{Teoremas fundamentales de espacios de Banach}
 
@@ -2500,6 +2508,7 @@ Luego por \ref{Lemma2: Un cerrado se separa de un compacto} y \ref{Dos convexos 
 	
 \end{proof}
 
+\newpage
 
 \section{Topolog\'ias d\'ebiles}
 
@@ -2990,6 +2999,16 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 \end{proof}
 
 \begin{corollary}
+	\label{Reflexivo y separable implica bola es un espacio metrico compacto en la topologia debil}
+	Sea $X$ Banach reflexivo y separable, entonces $\left(\ball X, wk\right)$ es un espacio m\'etrico compacto
+\end{corollary}
+
+\begin{proof}
+	Por \ref{Teorema de Kukatani}, $\ref{Dual es separable si y solo si la bola es debil metrizable}$ y \ref{X es reflexivo y separable si y solo si dual es reflexivo y separable} \qed
+\end{proof}
+
+
+\begin{corollary}
 	\label{En un banach separable la bola dual es secuencialmente compacta}
 	Sea $X$ Banach separable y sea $\sett{f_n}_{n \in \N} \subset \dual{X}$ una sucesi\'on acotada, entonces existe $\left(f_{n_k}\right)_{k \in \N} \subset \left(f_n \right)_{n \in \N}$ subsucesi\'on $\dual{wk}$ convergente.
 \end{corollary}
@@ -3017,6 +3036,8 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 	.\qed
 	
 \end{proof}
+
+\newpage
 
 \section{Operadores lineales en Espacios de Banach}
 
@@ -3235,6 +3256,218 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 	
 \end{proof}
 
-\subsection{Operadores compactos en espacios de Banach}
+\subsection{Operadores compactos}
+
+\begin{definition}
+	Sean $X,Y$ Banach y $T: X \rightarrow Y$ lineal, entonces $T$ es un \textit{operador compacto} si $\overline{T(\ball X)}$ es compacto en $Y$
+\end{definition}
+
+\begin{proposition}
+	Sean $X,Y$ Banach y $T: X \rightarrow Y$ lineal y compacto, entonces $T \in L(X,Y)$
+\end{proposition}
+
+\begin{proof}
+	Supongamos que $T$ no es acotado, entonces existe $\sett{x_n}_{n \in \N} \subset \ball X$ tal que $\norm{T(x_n)}_Y \rightarrow \infty$, luego $\sett{T(x_n)}_{n \in \N} \subset \overline{T(\ball X)}$ no admite subsucesi\'on convergente; conclu\'imos que $T \in L(X,Y)$. \qed
+\end{proof}
+
+\begin{definition}
+	Sean $X,Y$ Banach y $T\in L(X,Y)$ entonces $T$ es \textit{completamente continuo} si para toda $\sett{x_n}_{n \in \N} \subset X$ tal que $x_n \xrightarrow{d} x$ se sigue que $T(x_n) \xrightarrow{\norm{.}_Y} T(x)$
+\end{definition}
+
+\begin{proposition}
+	\label{Compacto implica completamente continuo y la vuelta si es reflexivo X}
+	Sean $X,Y$ Banach y $T \in L(X,Y)$, entonces:
+	
+	\begin{enumerate}
+		\item Si $T$ es compacto entonces es completamente continuo
+		\item Si $T$ es completamente continuo y $X$ es reflexivo entonces $T$ es compacto
+		\item La condici\'on de reflexividad en $X$ es necesaria
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Vamos por partes
+	
+	\begin{enumerate}
+		\item Sea $\sett{x_n}_{n \in \N} \subset X$ tal que $x_n \xrightarrow{d} 0$, luego por \ref{Resultados de convergencia debil} podemos suponer sin p\'erdida de generalidad que $\sup\limits_{n} \norm{x_n}_X \leq 1$. Como $T$ es compacto existe $\sett{x_{n_k}}_{k \in \N} \subset \sett{x_n}_{n \in \N}$ subsucesi\'on e $y \in Y$ tal que $T(x_{n_k}) \xrightarrow{\norm{.}_Y} y$; pero $x_{n_k} \xrightarrow{d} 0$ y por \ref{T es fuerte-fuerte continua entonces es debil-debil continua} $T \in L((X,wk), (Y,wk)$ por lo que $T(x_{n_k}) \xrightarrow{d} T(0) = 0$, por \ref{Topologia debil es Hausdorff} conclu\'imos que $y = 0$. Como $0$ es el \'unico punto l\'imite de $\sett{T(x_n)}_{n \in \N}$ en un compacto, conclu\'imos que $T(x_n) \xrightarrow{\norm{.}} 0$.
+		
+		\item Supongamos adem\'as que $X$ es separable, entonces por \ref{Reflexivo y separable implica bola es un espacio metrico compacto en la topologia debil} sabemos que $\left(\ball X, wk\right)$ es un espacio m\'etrico compacto. Si $\sett{x_n}_{n \in \N} \subset \ball X$ es una sucesi\'on,  existe $x \in X$ y $\sett{x_{n_k}}_{k \in \N} \subset \sett{x_n}_{n \in \N}$ subsucesi\'on tal que $x_{n_k} \xrightarrow{d} x$; luego $T(x_{n_k}) \xrightarrow{\norm{.}_Y} T(x)$ pues $T$ es completamente continuo. Conclu\'imos que $T(\ball X)$ es secuencialmente compacto y entonces $T$ es compacto.
+		
+		Si $X$ es arbitrario y $\sett{x_n}_{n \in \N} \subset \ball X$ es una sucesi\'on entonces $X_1 = \overline{\ip{\sett{x_n}}_{\mathbb{F}}}^{\norm{.}_X}$ es un espacio de Banach separable (trivial) y reflexivo por \ref{Subespacio de Reflexivo es reflexivo}. Sea $T_1 = T \vert_{X_1}$ y notemos el siguiente lema:
+		
+		\begin{lemma}
+			\label{Lemma: Compacto implica completamente continuo y la vuelta si es reflexivo X}
+			Sea $X,Y$ Banach y $T \in L(X,Y)$ completamente continuo, luego si $M \subseteq X$ es subespacio cerrado $T \vert_M: M \rightarrow \overline{T(M)}^{\norm{.}_Y}$ es completamente continuo.
+		\end{lemma}
+		
+		\begin{proof}
+			Sea $\sett{x_n}_{n \in \N} \subset M$ tal que $x_n \xrightarrow{d} x$, luego como $T$ es completamente continuo $T(x_n) \xrightarrow{\norm{.}_Y} T(x)$. Como $\norm{.}_{\overline{T(M)}^{\norm{.}_Y}} = \norm{.}_Y \vert_{\overline{T(M)}^{\norm{.}_Y}}$ entonces $T \vert_{M}(x_n) = T(x_n) \xrightarrow{\norm{.}_{\overline{T(M)}^{\norm{.}_Y}}} T(x) = T \vert_{M}(x)$ y $T\vert_M$ es completamente continuo. \qed
+		\end{proof}
+		
+		Luego por \ref{Lemma: Compacto implica completamente continuo y la vuelta si es reflexivo X} $T_1$ es completamente continuo, por ende compacto por el par\'agrafo anterior. Como $\sett{T(x_n)}_{n \in \N} = \sett{T_1(x_n)}_{n \in \N}$ conclu\'imos que $T$ es compacto.
+		
+		\item Sea $X = Y = l^1$ un espacio separable no reflexivo y notemos el siguiente lema:
+		
+		\begin{lemma}
+			\label{Toda sucesion que converge debilmente en l1 converge fuertemente}
+			Sea $\sett{x_n}_{n \in \N} \subset l^1$ una sucesi\'on tal que $x_n \xrightarrow{d} x$, luego $x_n \xrightarrow{\norm{.}_{l^1}} x$.
+		\end{lemma}
+		
+		\begin{proof}[Demostraci\'on del lema]
+			Recordemos que $\dual{l^1} = l^{\infty}$ y por \ref{Teorema de Alaoglu} y \ref{Separable si y solo si la bola dual es metrizable estrella} tenemos que $\left(\ball l^{\infty}, \dual{wk}\right)$ es un espacio m\'etrico compacto, en particular completo.
+			
+			Sea $\sett{x_n}_{n \in \N} \subset l^1$ una sucesi\'on tal que $x_n \xrightarrow{d} 0$ y $\epsilon > 0$, para cada $m \in \N$ definamos:
+			
+			\begin{equation*}
+				F_m = \sett{\phi \in \ball l^{\infty} \tq \abs{\ip{\phi, x_n}} \leq \frac{\epsilon}{3} \quad \forall n \geq m}
+			\end{equation*}
+			
+			Luego $F_n$ es $\dual{wk}$ cerrado en $\ball l^{\infty}$ y $\ball l^{\infty} = \Bigcup{m \in \N}{F_m}$; por el teorema de Baire existe $m_0$ tal que $\interior{F_m} \neq \emptyset$ para la topolog\'ia $\dual{wk}$. Luego existe $\phi_0$ y $\delta > 0$ tal que $B = B_{\delta}^{\dual{wk}}(\phi_0) \subset F_{m_0}$; sea $J \geq 1$ tal que $2^{-(J-1)} < \delta$ y fijemos $n  \geq m_0$, luego podemos definir:
+			
+			\begin{equation*}
+				\psi = \left\lbrace \begin{array}{cc}
+					\psi(j) = \phi_{m_0}(j) & \text{si } 1 \leq j \leq J \\
+					\psi(j) = sign\left(x_n(j)\right) & \text{si } j > J 
+				\end{array}\right.
+			\end{equation*}
+			
+			Es claro que $\psi \in \ball l^{\infty}$ y $\psi(j)x_n(j) = \abs{x_n(j)}$ para todo $j > J$; es m\'as, afirmo que $\psi \in B \subset F_{m_0}$ por lo que $\abs{\ip{\psi, x_{n}}} \leq \frac{\epsilon}{3}$ para todo $n \geq m_0$. Por otro lado como $x_n \xrightarrow{d} 0$ existe $m_1 \geq m_0$ tal que $\sum_{j=1}^{J}{\abs{x_n(j)}} < \frac{\epsilon}{3}$ y juntando todo:
+			
+			\begin{equation*}
+			\begin{aligned}
+				\norm{x_n}_{l^1} = & \Bigsum{j \in \N}{\abs{x_n(j)}} \\
+				< & \frac{\epsilon}{3} + \abs{\underbrace{\Bigsum{j > J+1}{\abs{x_n(j)}} + \Bigsum{1 \leq j \leq J}{\phi_{m_0}x_n(j)}}_{\ip{\psi, x_{n}}}} + \abs{ \Bigsum{1 \leq j \leq J}{\phi_{m_0}x_n(j)}} \\
+				< & \frac{2\epsilon}{3} +  \abs{ \Bigsum{1 \leq j \leq J}{x_n(j)}} \\
+				< & \epsilon
+			\end{aligned}
+			\end{equation*}
+			
+			Para todo $n \geq m_1$ por lo que $x_n \xrightarrow{\norm{.}_{l^1}} 0$. \qed
+			
+		\end{proof}
+		
+		Por lo tanto si $\sett{x_n}_{n \in \N} \subset l^1$ es tal que $x_n \xrightarrow{d} x$, por \ref{T es fuerte-fuerte continua entonces es debil-debil continua} $T(x_n) \xrightarrow{d} T(x)$ y por \ref{Toda sucesion que converge debilmente en l1 converge fuertemente} $T(x_n) \xrightarrow{\norm{.}_{l^1}} T(x)$ por lo que todo $T \in L(l^1,l^1)$ es completamente continuo; basta probar que existen operadores no compactos all\'i.
+		
+		En efecto, $id : l^1 \rightarrow l^1$ es continuo pero no compacto, pues $id(\ball l^1) = \ball l^1$ que no es compacto por \ref{En dimension infinita la bola cerrada no es compacta}. \qed
+		
+	\end{enumerate}
+	
+\end{proof}
+
+
+\begin{theorem}[Teorema de Schauder]
+	\label{Teorema de Schauder}
+	Sean $X,Y$ Banach y $T \in L(X,Y)$, luego $T$ es compacto si y s\'olo si $\dual{T}$ es compacto
+\end{theorem}
+
+\begin{proof}
+	Sea $\sett{f_n}_{n \in \N} \subset \ball \dual{Y}$ una sucesi\'on, por \ref{Teorema de Alaoglu} existe $f \in \ball \dual{Y}$ tal que $f_n \xrightarrow[\dual{d}]{cl} f$. Sea $\epsilon > 0$ y $N \geq 1$, como $T$ es compacto existen $y_1, \dots, y_n \in Y$ tal que  $T(\ball X) \subset \Bigcup{1 \leq i \leq n}{B_{\frac{\epsilon}{3}}^{\norm{.}_Y}(y_i)}$ ; sea $x \in \ball X$ y $k_0$ tal que $\norm{T(x) - y_{k_0}}_Y < \frac{\epsilon}{3}$, luego:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\abs{\ip{\dual{T}(f) - \dual{T}(f_n), x}} = & \abs{\ip{f-f_n, T(x)}} \\
+		\leq & \abs{\ip{f-f_n, T(x) - y_{k_0}}} + \underbrace{\abs{\ip{f-f_n, y_{k_0}}}}_{\rightarrow 0} \\
+		 \leq & 2 \norm{T(x) - y_k}_Y + \frac{\epsilon}{3} \\
+		 < \epsilon
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo tanto $\norm{\dual{T}(f) - \dual{T}(f_n)}_{\dual{X}} = \sup\limits_{x \in \ball X} \abs{\ip{\dual{T}(f) - \dual{T}(f_n), x}} \leq \epsilon$. En resumen probamos que si $\sett{f_n}_{n \in \N} \subset \ball \dual{Y}$ entonces $\sett{\dual{T}(f_n)}_{n \in \N} \subset \dual{X}$ tiene una subsucesi\'on $\norm{.}_{\dual{X}}$ convergente y por ende $\dual{T}$ es compacto.
+	
+	
+	Rec\'iprocamente, si $\dual{T}$ es compacto entonces por lo anterior $\ddual{T}$ lo es. Notemos:
+	
+	\begin{lemma}
+		\label{Lemma: Teorema de Schauder}
+		Sea $X,Y$ Banach y $T \in L(X,Y)$ compacto, luego si $M \subseteq X$ es subespacio cerrado $T \vert_M: M \rightarrow Y$ es compacto.
+	\end{lemma}
+	
+	\begin{proof}
+		Sea $\sett{x_n}_{n \in \N} \subset \ball M$ tal que $x_n \xrightarrow{d} x$, luego como $T$ es compacto existe $\sett{x_{n_k}}_{k \in \N} \subset \sett{x_n}_{n \in \N}$ subsucesi\'on e $y \in Y$ tal que $T(x_{n_k}) \xrightarrow{\norm{.}_Y} y$. Como $\norm{.}_{\overline{T(M)}^{\norm{.}_Y}} = \norm{.}_Y \vert_{\overline{T(M)}^{\norm{.}_Y}}$ entonces $T \vert_{M}(x_n) = T(x_n) \xrightarrow{\norm{.}_{\overline{T(M)}^{\norm{.}_Y}}} T(x) = T \vert_{M}(x)$ y $T\vert_M$ es compacto. \qed
+	\end{proof}
+	
+	Aplicando \ref{Lemma: Teorema de Schauder} a $X \subseteq \ddual{X}$ y por \ref{Propiedades del operador adjunto} resulta que $T = \ddual{T} \vert_{X}$ es compacto. \qed
+	
+\end{proof}
+
+\subsection{Ecuaci\'on integral de Fredholm}
+
+\begin{proposition}
+	Sea $[a,b] \subset \R$ y $X = \C[a,b]$, asimismo sea $k: [a,b]^2 \rightarrow \R$ continua; luego si definimos $K : X \rightarrow X$
+	
+	\begin{equation*}
+		K(\phi)(s) = \int_{a}^{b} k(s,t)\phi(t) dt
+	\end{equation*}
+	
+	Resulta un operador compacto.
+	
+\end{proposition}
+
+\begin{proof}
+	Es claro que $K$ es lineal y acotado, veamos directamente que es compacto; para esto sea $\sett{\phi_n}_{n \in \N} \subset C[a,b]$ tal que $\norm{\phi_n}_{C[a,b]} \leq 1$ y veamos que $\left(K(\phi_n)\right)_{n \in \N} \subset K(\ball C[a,b])$ admite una subsucesi\'on convergente. Recordemos:
+	
+	\begin{theorem}[Teorema de Arzela-Ascoli]
+		\label{Arzela Ascoli}
+		Si $X$ es compacto y $\F \subset C(X)$ entonces $\F$ es totalmente acotado si y s\'olo si $\F$ es acotado y equicontinuo
+	\end{theorem}
+	
+	Como $k$ es continua en un compacto, existe $M > 0$ tal que $\norm{k}_{C[a,b]} \leq M$ por lo que:
+	
+	\begin{equation*}
+		\abs{K(\phi_n)(s)} \leq \int_{a}^{b}{\abs{k(s,t)}\abs{\phi_n(t)} dt} \leq M(b-a) \qquad \forall n \in \N
+	\end{equation*}
+	
+	Y conclu\'imos que $\left(K(\phi_n)\right)_{n \in \N}$ es equiacotada.
+	
+	Adem\'as, dado $\epsilon > 0$, existe $\delta > 0$ tal que si $\norm{(s,t) - (s',t')}_{[a,b]^2} < \delta$ entonces $\abs{k(s,t) - k(s',t')} < \frac{\epsilon}{b-a}$; por lo tanto si $\abs{s-s'} < \delta$ entonces:
+	
+	\begin{equation*}
+		\abs{K(\phi_n)(s) - K(\phi_n)(s')} \leq \int_{a}^{b}{\abs{k(s,t) - k(s',t)}\abs{\phi_n(t)}  dt} \leq \epsilon
+	\end{equation*}
+	
+	Conclu\'imos que $\sett{K(\phi_n)}_{n \in \N}$ es equicontinua y equiacotada y por \ref{Arzela Ascoli} existe $\phi \in \overline{K(\ball C[a,b])}^{C[a,b]}$  y $\left(K(\phi_{n_k})\right) \subset \left(K(\phi_n)\right)$ subsucesi\'on tal que $K(\phi_{n_k}) \xrightarrow[\norm{.}_{C[a,b]}]{k \rightarrow \infty} \phi$. Luego $K$ es compacto. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Identidad - T inversible}
+	Sea $X$ Banach y $T\in \ball L(X)$, entonces $Id_X - T \in L(X)$ y $\left(Id -T \right) ^{-1} = \Bigsum{n \in \N}{T^n}$
+\end{proposition}
+
+\begin{proof}
+	Notemos que $\norm{T^n} \leq \norm{T}^n \leq 1$ para todo $n \in \N$, luego:
+	
+	\begin{equation*}
+		\Bigsum{n \in \N}{\norm{T^n}} \leq \Bigsum{n \in \N}{\underbrace{\norm{T}^n}_{< 1}} = \dfrac{1}{1-\norm{T}} < \infty
+	\end{equation*}
+	
+	Luego por \ref{Banach si y solo si abs convergente es convergente} conclu\'imos que $\Bigsum{n \in \N}{T^n} \in L(X)$. Finalmente notemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+		Id = & \Bigsum{n \in \N}{T^n} - \Bigsum{n \in \N}{T^{n+1}} = \left(Id - T\right) \circ \Bigsum{n \in \N}{T^n} \\
+		= & \Bigsum{n \in \N}{T^n} - \Bigsum{n \in \N}{T^{n+1}} = \Bigsum{n \in \N}{T^n} \circ \left(Id - T\right) 
+	\end{aligned}
+	\end{equation*}
+	.\qed
+	
+\end{proof}
+
+\begin{example}[Aplicaci\'on]
+	Supongamos que $K$ es como antes con $\norm{k}_{C[a,b]} < \frac{1}{b-a}$, luego dada $g \in C[a,b]$, $g = I-T \left(\phi\right)$ si y s\'olo si $\phi = \Bigsum{n \in \N}{K^n(y)}$. 
+\end{example}
+
+\begin{corollary}
+	Sea $X$ Banach y $T_0 \in L(X)$ tal que $T_0^{-1} \in L(X)$, luego si $T \in B^{L(X)}_{\frac{1}{\norm{T_0^{-1}}}} (T_0)$ entonces $T^{-1} \in L(X)$
+\end{corollary}
+
+\begin{proof}
+	Notemos que $T = T_0 - \left(T - T_0\right) = T_0 \circ \left(I - \underbrace{T_0^{-1} \circ \left(T_0 - T\right)}_{\norm{T_0^{-1} \circ \left(T_0 - T\right)} < 1}\right)$, luego por \ref{Identidad - T inversible} el operador $\left(I - T_0^{-1} \circ \left(T_0 - T\right)\right)$ es invertible. AL ser $T$ composici\'on de invertibles, es invertible. \qed
+\end{proof}
+
+\newpage
+
+\section{Operadores compactos en espacio de Hilbert}
 
 \end{document}
