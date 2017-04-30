@@ -37,3 +37,5 @@
 \contentsline {subsection}{\numberline {7.2}Operadores compactos}{47}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Ecuaci\'on integral de Fredholm}{49}{subsection.7.3}
 \contentsline {section}{\numberline {8}Operadores compactos en espacio de Hilbert}{51}{section.8}
+\contentsline {subsection}{\numberline {8.1}Propiedades y Ejemplos}{51}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}El teorema espectral para operadores compactos autoadjuntos}{52}{subsection.8.2}

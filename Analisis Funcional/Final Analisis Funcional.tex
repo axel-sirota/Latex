@@ -3271,6 +3271,44 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 \end{proof}
 
 \begin{definition}
+	Sea $X,Y$ Banach, notamos $L_0(X,Y) = \sett{T \in L(X,Y) \tq T \text{ es compacto}}$
+\end{definition}
+
+\begin{proposition}
+	\label{Los operadores compactos son cerrados}
+	Sean $X,Y$ Banach, luego $L_0(X,Y)$ es cerrado en $L(X,Y)$
+\end{proposition}
+
+\begin{proof}
+	Sea $\sett{T_n}_{n \in \N} \subset L_0(X,Y)$ tal que $T_n \xrightarrow{\norm{.}_{L_0(X,Y)}} T \in L(X,Y)$ y veamos que $T$ es compacto; para eso sea $\epsilon > 0$ y $n_0$ tal que $\norm{T-T_{n_0}} < \epsilon$. Como $T_{n_0}$ es compacto existen $x_1, \dots, x_m \in \ball X$ tal que $T_{n_0}\left(\ball X\right) \subset \Bigcup{1 \leq j \leq m}{B_{\frac{\epsilon}{3}}(T_{n_0}(x_j))}$. Luego si $x \in \ball X$ y tomamos el $x_j$ tal que $\norm{T_{n_0}(x_j) - T_{n_0}(x)}_Y < \frac{\epsilon}{3}$:
+	
+	\begin{equation*}
+		\begin{aligned}
+			\norm{T(x_j) - T(x)}_Y \leq & \norm{T(x_j) - T_{n_0}(x_j)}_Y + \norm{T_{n_0}(x_j) - T_{n_0}(x)}_Y + \norm{T_{n_0}(x) - T(x)}_Y \\
+			< & 2 \norm{T-T_n} + \frac{\epsilon}{3} \\
+			< & \epsilon
+		\end{aligned}
+	\end{equation*}
+	
+	Luego $T\left(\ball X\right) \subset \Bigcup{1 \leq j \leq m}{B_{\epsilon}(T(x_j))}$ y $T\in L_0(X,Y)$. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	Sean $X,Y$ Banach, luego $L_0(X,Y)$ es un $L(X,Y)$ ideal bil\'atero, o sea si $A \in L(X)$, $B \in L(Y)$ y $T \in L_0(X,Y)$ entonces $TA, BT \in L_0(X,Y)$
+\end{proposition}
+
+\begin{proof}
+	Sea $\sett{x_n}_{n \in \N} \in \ball X$, luego como $T$ es compacto existe $\sett{x_{n_k}}_{k \in \N}$ subsucesi\'on tal que $T(x_{n_k}) \xrightarrow{\norm{.}_Y} y \in Y$ y como $B \in L(Y)$ entonces $BT(x_{n_k}) \xrightarrow{\norm{.}_Y} By \in Y$; por lo tanto $BT \in L_0(X,Y)$.
+	
+	Rec\'iprocamente, si $\sett{x_n}_{n \in \N} \subset \ball X$ entonces $\sett{\frac{A(x_n)}{\norm{A}}}_{n \in \N} \subset \ball X$, como $T$ es compacto existe $\sett{\frac{A(x_{n_k})}{\norm{A}}}_{k \in \N}$ subsucesi\'on tal que $T \left(\frac{A(x_{n_k})}{\norm{A}} \right) = \frac{1}{\norm{A}} TA(x_{n_k}) \xrightarrow{\norm{.}_Y} y \in Y$; por lo tanto $TA(x_{n_k}) \xrightarrow{\norm{.}_Y} \norm{A}y$ y $TA$ es compacto. \qed
+\end{proof}
+
+\begin{definition}
+	Sea $X,Y$ Banach, notamos $L_{00}(X,Y) = \sett{T \in L(X,Y) \tq \dim \left(\rank T\right) < \infty}$
+\end{definition}
+
+\begin{definition}
 	Sean $X,Y$ Banach y $T\in L(X,Y)$ entonces $T$ es \textit{completamente continuo} si para toda $\sett{x_n}_{n \in \N} \subset X$ tal que $x_n \xrightarrow{d} x$ se sigue que $T(x_n) \xrightarrow{\norm{.}_Y} T(x)$
 \end{definition}
 
@@ -3469,5 +3507,286 @@ $$\ip{x,f} = \ip{f,x} := f(x)$$
 \newpage
 
 \section{Operadores compactos en espacio de Hilbert}
+
+\subsection{Propiedades y Ejemplos}
+
+\begin{theorem}[Propiedad de aproximaci\'on en Hilbert]
+	\label{En Hilbert un operador compacto es limite de rango finito}
+	Sean $X,Y$ espacios de Hilbert, luego $T \in L_0(X,Y)$ si y s\'olo si existe $\sett{T_n}_{n \in \N} \subset L_{00}(X,Y)$ tal que $\norm{T-T_n} \rightarrow 0$
+\end{theorem}
+
+\begin{proof}
+	Notemos el siguiente lema trivial:
+	
+	\begin{lemma}
+		$L_{00}(X,Y) \subset L_0(X,Y)$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema ]
+		Si $T \in L_{00}(X,Y)$ entonces $T \in L(X,Y)$ por lo que $T(\ball X)$ es acotada y finito dimensional, por ende precompacta; en conclusi\'on $T \in L_0(X,Y)$. \qed
+	\end{proof}
+	
+	Por lo tanto $\sett{T_n}_{n \in \N} \subset L_0(X,Y)$ y por \ref{Los operadores compactos son cerrados} $T \in L_0(X,Y)$.
+	
+	Rec\'iprocamente como $\overline{T(\ball X)}^{Y}$ es compacto en particular es separable, luego $L = \overline{\rank T}^{Y}$ es separable. Sea $\B = \sett{e_1, \dots , e_n, \dots}$ una base ortonormal numerable de $L$ por \ref{Todo conjunto ortonormal en un separable es numerable},  $P_n = P_{\ip{e_1, \dots , e_n}}$ y $T_n = P_n \circ T \in L_{00}(X,Y)$ luego veamos el siguiente lema:
+	
+	\begin{lemma}
+		\label{Lemma: En Hilbert un operador compacto es limite de rango finito}
+		Si $x \in X$ entonces $T_n(x) \xrightarrow{\norm{.}_Y} Tx$
+	\end{lemma}
+	
+	\begin{proof}[Demostraci\'on del lema]
+		Sea $y = T(x)$, luego por \ref{Escritura de elemento de un HIlbert en un ortonormal completo} sabemos que $T_n(x) = P_n(y) \xrightarrow{\norm{.}_Y} y = T(x)$. \qed
+	\end{proof}
+		
+	Como $T$ es compacto existen $x_1, \dots, x_m \in \ball X$ tal que $T\left(\ball X\right) \subset \Bigcup{1 \leq j \leq m}{B_{\frac{\epsilon}{3}}(T(x_j))}$. Luego si $x \in \ball X$ y tomamos el $x_j$ tal que $\norm{T(x_j) - T(x)}_Y < \frac{\epsilon}{3}$:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\norm{T(x) - T_n(x)}_Y \leq & \norm{T(x) - T(x_j)}_Y + \norm{T(x_j) - T_{n}(x_j)}_Y + \norm{\underbrace{T_{n}(x_j) - T_n(x)}_{P_n \left(T(x) - T(x_j\right)}}_Y \\
+	< & 2 \norm{T(x)-T(x_j)} + \norm{T(x_j) - T_{n}(x_j)}_Y \\
+	< & \frac{2\epsilon}{3} + \underbrace{\norm{T(x_j) - T_{n}(x_j)}_Y}_{\xrightarrow{\ref{Lemma: En Hilbert un operador compacto es limite de rango finito}} 0 } 
+	\end{aligned}
+	\end{equation*}
+		
+	Luego existe $n_0 \in \N$ tal que para todo $n \geq n_0$ vale que $\norm{T-T_n} = \sup\limits_{x \in \ball X}{\norm{T(x) - T_n(x)}} < \epsilon$. \qed	
+	
+\end{proof}
+
+\begin{corollary}
+	\label{Corolario En Hilbert un operador compacto es limite de rango finito}
+	Sean $X,Y$ Hilbert y $T \in L_0(X,Y)$, luego si $\B = \sett{e_1, \dots , e_n, \dots} \subset \overline{\rank T}^{Y}$ es una base ortonormal numerable y definimos $P_n = P_{\ip{e_1, \dots, e_n}}$ entonces $\norm{P_n \circ T - T} \rightarrow 0$. 
+\end{corollary}
+
+\begin{proposition}
+	\label{Operador diagonalizable es compacto si autovalores tienden a cero}
+	Sea $X$ Hilbert separable con base $\B$, $\sett{\alpha_n} \subset \mathbb{F}$ con $M = \sup\limits_{n \geq 1}{\abs{\alpha_n}} < \infty $y $T$ dado por $Te_n = \alpha_ne_n$. Luego existe $\tilde{T} \in L(X)$ tal que $\tilde{T} \vert_{\sett{e_n}} = T$ con $\norm{\tilde{T}} = M$. Es m\'as, $T \in L_0(X)$ si y s\'olo si $\alpha_n \rightarrow 0$.
+\end{proposition}
+
+\begin{proof}
+	Es trivial la extensi\'on por linealidad y haremos el abuso de notaci\'on de llamar $T$ a la extensi\'on]; el hecho que $\norm{T} = M$ tambi\'en es claro por lo que sea $T_n = T - P_n \circ T$ donde $P_n$ es la misma de antes. Luego:
+	
+	\begin{equation*}
+	T_n (e_j) = \left\lbrace \begin{array}{ccc}
+	T(e_j) - T(e_j) & = 0 & \text{si } j < n \\
+	T(e_j) - T(0) & = \alpha_j e_j & \text{si } j > n 
+	\end{array}\right.
+	\end{equation*}
+	
+	Por lo tanto $\norm{T_n} = \sup\limits_{j > n}{\abs{\alpha_n}}$.
+	
+	En conclusi\'on si $\alpha_n \rightarrow 0$ entonces $\norm{T_n} \rightarrow 0$ y $T \in L_0(X)$ por \ref{Los operadores compactos son cerrados}.
+	
+	Rec\'iprocamente si $T \in L_0(X)$ entonces por \ref{Corolario En Hilbert un operador compacto es limite de rango finito} sabemos que $\norm{T_n} \rightarrow 0$ por lo que $\alpha_n \rightarrow 0$. \qed
+	
+\end{proof}
+
+\begin{proposition}
+	Sea $\left(X,\Omega, \mu\right)$ un espacio de medida y sea $k \in L^2(X \times X, \Omega \times \Omega, \mu \times \mu)$, luego:
+	\begin{equation*}
+		K(f)(x) = \int{k(x,y)f(y)d\mu(y)}
+	\end{equation*}
+	
+	Es un operador compacto y $\norm{K} \leq \norm{k}_2$
+	
+\end{proposition}
+
+\begin{proof}
+	To do
+\end{proof}
+
+\begin{definition}
+	Sea $X$ Hilbert y $T \in L(X)$, luego $\alpha \in \mathbb{F}$ es un \textit{autovalor de $T$} si $\ker(T - \alpha) \neq (0)$. Es m\'as si $0 \neq x \in \ker( T - \alpha) $ entonces $x$ es llamado un \textit{autovector de $T$} y cumple que $T(x) = \alpha x$.
+	
+	Notaremos $\sigma_p(T) = \sett{\alpha \in \mathbb{F} \tq \alpha \text{ es autovalor}}$
+	
+\end{definition}
+
+\begin{proposition}
+	\label{En un operador compacto los autoespacios son finito dimensionales}
+	Sea $X$ Hilbert, $T \in L_0(X)$ y $\lambda \in \sigma_p(T)$, luego si $\lambda \neq 0$ entonces $\dim \left(\ker(T-\lambda) \right) < \infty$.
+\end{proposition}
+
+\begin{proof}
+	Sea $\sett{e_n}_{n \in \N} \subset \ker(T-\lambda)$ una base ortogonal del autoespacio, como $T$ es compacto existe $\sett{e_{n_k}}_{k \in \N}$ subsucesi\'on tal que $T(e_{n_k}) \rightarrow x \in X$; pero $\norm{T(e_{n_k}) - T(e_{n_j})}^2_X = \abs{\lambda}^2 \norm{e_{n_j} - e_{n_k}}_X > 0$ si $n_j \neq n_k$ por lo que $\dim(\ker(T-\lambda))< \infty$. \qed
+\end{proof}
+
+\begin{proposition}
+	\label{Condicion autovalor en Hilbert y compacto}
+	Sea $X$ Hilbert y $T \in L_0(X)$, luego si $\lambda \neq 0$ cumple que $\inf\limits_{\norm{x}_X = 1}{\norm{(T-\lambda)x}_X} = 0$ entonces $\lambda \in \sigma_p(T)$
+\end{proposition}
+
+\begin{proof}
+	Sea $\sett{x_n}_{n \in \N}$ con $\norm{x_n}_X = 1$ y $(T-\lambda)x_n \xrightarrow{\norm{.}_X} 0$, luego como $\sett{x_n}_{n \in \N} \subset ball X$ existe $y \in X$ y $\sett{x_{n_k}}_{k \in \N}$ subsucesi\'on tal que $T(x_{n_k}) \xrightarrow{\norm{.}_X} f$.
+	
+	Notemos que $x_{n_k} = \frac{1}{\lambda} \left[(\lambda -T)(x_{n_k}) + T(x_{n_k})\right] \rightarrow \frac{1}{\lambda}f$ por lo que $f \neq 0$ por un lado y, por el otro como $T$ es continua, $T(x_{n_k}) \rightarrow T\left(\frac{1}{\lambda}f\right)$; por unicidad del l\'imite $\frac{1}{\lambda}T(f) = f$ y conclu\'imos que $\lambda \in \sigma_p(T)$. \qed
+	 
+\end{proof}
+
+\begin{corollary}
+	Sea $X$ Hilbert,  $T \in L_0(X)$, $\lambda \neq 0 \not \in \sigma_p(T)$ tal que $\overline{\lambda} \not \in \sigma_p(\dual{T})$, luego $\rank (T-\lambda) = X$ y $(T - \lambda)^{-1} \in L(X)$
+\end{corollary}
+
+\begin{proof}
+	Como $\lambda \not \in \sigma_p(T)$ entonces por \ref{Condicion autovalor en Hilbert y compacto} existe $C > 0$ tal que $\norm{(T-\lambda)x} \geq C\norm{x}$, luego por \ref{Lemma: T es invertible si y solo si el adjunto lo es} sabemos que $ \rank T$ es cerrado y $T$ es inyectiva, pero por \ref{Relaciones de ortogonalidad} adem\'as $\rank (T-\lambda) = \ortogonal{\ker\dual{T-\lambda}} = X$. Como $T-\lambda$ es inyectiva, suryectiva y acotada entonces es inversible y adem\'as $C \norm{(T-\lambda)^{-1}y} \leq \norm{(T-\lambda \circ (T-\lambda)^{-1}y)} = \norm{y}$ por lo que $\norm{(T-\lambda)^{-1}} \leq \frac{1}{C}$. \qed
+	
+\end{proof}
+
+\subsection{El teorema espectral para operadores compactos autoadjuntos}
+
+\begin{proposition}
+	\label{Autoespacio es invarinate para T y su dual}
+	Sea $X$ Hilbert, $T\in L(X)$ normal y $\lambda \in \mathbb{F}$, luego $\ker(T-\lambda) = \ker \dual{T-\lambda}$ y $\ker(T - \lambda)$ es un subespacio invariante para $T$ y $\dual{T}$
+\end{proposition}
+
+\begin{proof}
+	Como $T$ es normal entonces $T-\lambda$ tambi\'en lo es; afirmo entonces que $\norm{(T-\lambda)x} = \norm{\dual{T-\lambda}x}$.
+	
+	En efecto, $\ip{(T-\lambda)x, (T-\lambda)x} = \ip{x, \dual{T-\lambda}(T-\lambda)x} \underbrace{=}_{T-\lambda \text{ normal}} \ip{x, (T-\lambda)\dual{T-\lambda}x} = \ip{\dual{T-\lambda}x, \dual{T-\lambda}x}$.
+	
+	Luego $(T-\lambda)x = 0$ si y s\'olo si $\dual{T-\lambda}x = 0$.
+	
+	Por otro lado, si $x \in \ker(T-\lambda)$ entonces $T(x) = \lambda x \in \ker(T-\lambda)$ y $\dual{T}x = \overline{ \lambda}x \in \ker\dual{T-\lambda}$ \qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{Autoespacios de autovalores distintos son ortogonales}
+	Sea $X$ Hilbert y $T \in L(X)$ normal, luego si $\lambda,\mu \in \sigma_p(T)$ y $\lambda \neq \mu$ entonces $\ker(T-\lambda) \perp \ker(T-\mu)$
+\end{proposition}
+
+\begin{proof}
+	Sean $x \in \ker(T-\lambda), y \in \ker(T-\mu)$, notemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\lambda \ip{x,y} = & \ip{Tx, y} \\
+		= & \ip{x, \dual{T}y} \\
+		= & \ip{x, \overline{\mu}y} \\
+		= & \mu \ip{x,y} \\
+		\Longrightarrow & \quad \underbrace{(\lambda - \mu)}_{\neq 0} \ip{x,y} = 0 \\
+		 \Longrightarrow & x \perp y
+	\end{aligned}
+	\end{equation*}
+	\qed
+\end{proof}
+
+\begin{proposition}
+	\label{Autovalores de un operador autoadjunto es real}
+	Sea $X$ Hilbert y $T \in L(X)$ autoadjunto, luego $\sigma_p(T) \subset \R$
+\end{proposition}
+
+\begin{proof}
+	Sea $0 \neq x \in \ker(T-\lambda)$, luego $\lambda x = T(x) = \dual{T}(x) = \overline{\lambda}x$ por lo que $(\lambda - \overline{\lambda})x = 0$. \qed
+\end{proof}
+
+\begin{proposition}
+	\label{Lemma: Existen autovalores no nulos en compacto autoadjunto}
+	Sea $X$ Hilbert y $T \in L(X)$ autoadjunto, luego $\norm{T} = \sup\limits_{\norm{x} = 1}{\abs{\ip{Tx,x}}}$
+\end{proposition}
+
+\begin{proof}
+	Por un lado es claro que $\alpha = \sup\limits_{\norm{x} = 1}{\abs{\ip{Tx,x}}} \leq \sup\limits_{\norm{x} = 1}{\norm{T}\norm{x}^2} = \norm{T}$.
+	
+	
+	Rec\'iprocamente, primero notemos que
+	
+ 	$\norm{T} = \sup\limits_{\norm{x}_X=1}{\norm{T(x)}} = \sup\limits_{\norm{x}_X=1}\sup\limits_{\norm{f}_{\dual{X}} =1}{\abs{f(Tx)}} \underbrace{=}_{\ref{Teorema de representacion de Riesz}} \sup\limits_{\substack{\norm{x}_X = 1 \\ \norm{y}_X=1}} {\ip{T(x),y}}$
+ 	
+ 	Asumamos que $\ip{Tx, y} \in \R$, luego por \ref{Identidad de poralizacion}:
+ 	
+ 	$$\ip{Tx,y} = \frac{1}{4} (\ip{T(x+y),x+y} - \ip{T(x-y),x-y})$$
+ 	
+ 	Por lo que $\abs{\ip{Tx,y}} \leq \frac{1}{4} (\norm{x+y}^2\alpha - \norm{x-y}^2\alpha) \underbrace{=}_{\ref{Ley del paralelogramo}} \alpha $ y por lo tanto $\norm{T} = \sup\limits_{\substack{\norm{x}_X = 1 \\ \norm{y}_X=1}} {\ip{T(x),y}} \leq \sup\limits_{\norm{x} = 1}{\abs{\ip{Tx,x}}}$. \qed
+ 	
+\end{proof}
+
+\begin{proposition}
+	\label{Existen autovalores no nulos en compacto autoadjunto}
+	Sea $X$ Hilbert y $T \in L_0(X)$ autoadjunto, luego $\pm \norm{T} \in \sigma_p(T)$
+\end{proposition}
+
+\begin{proof}
+	Si $T = 0$ es claro, supongamos que $T \neq 0$, luego por \ref{Lemma: Existen autovalores no nulos en compacto autoadjunto} existe $\sett{x_n}_{n \in \N}$ tal que $\norm{x_n} = 1$ y $\ip{T(x_n), x_n} \rightarrow \lambda$ con $\abs{\lambda} = \norm{T}$. Notemos:
+	
+	\begin{equation*}
+	\begin{aligned}
+		0 \leq & \norm{(T-\lambda)x_n}^2 \\
+		= & \norm{T(x_n)}^2 -2\lambda \ip{T(x_n),x_n} + \lambda^2 \\
+		\leq & 2\lambda^2 -2\lambda \ip{T(x_n),x_n} \rightarrow 0
+	\end{aligned}
+	\end{equation*}
+	
+	Luego $\lambda \neq 0$ y $\norm{(T-\lambda)x_n} \rightarrow 0$, por \ref{Condicion autovalor en Hilbert y compacto} $\lambda \in \sigma_p(T)$. \qed
+	
+\end{proof}
+
+\begin{theorem}[Teorema espectral para operadores compactos autoadjuntos]
+	Sea $X$ Hilbert y $T \in L_0(X)$ autoadjunto, entonces $T$ admite numerables distintos autovalores. Es m\'as si $\sett{\lambda_1, \dots, \lambda_n, \dots} \subset \sigma_p(T) \cap \R^{\ast}$ y $P_n = P_{\ker(T-\lambda_n)}$ luego $P_nP_n = P_nP_m = 0$ si $n \neq m$ y vale:
+	
+	\begin{equation}
+		\label{eq: Teorema espectral}
+		T = \Bigsum{n \in \N}{\lambda_n P_n}
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Por \ref{Existen autovalores no nulos en compacto autoadjunto} existe $\lambda_1 \in \sigma_p(T)$ con $\abs{\lambda_1} = \norm{T}$, sea $K_1 = \ker (T-\lambda_1)$, $P_1 = P_{K_1}$ y $X_2 = \ortogonal{K_1}$; por \ref{Autoespacio es invarinate para T y su dual} $K_1$ y por ende $X_2$ son subespacios invariantes para $T$, si consideramos $T_1 = T\vert_{X_2}$ entonces $T_2 \in L_0(X_2)$ y es autoadjunto. 
+	
+	Iterando existe $\lambda_2 \in \sigma_p(T_2)$ con $\abs{\lambda_2} = \norm{T_2}$, sea $K_2 = \ker (T-\lambda_2)$, $P_2 = P_{K_2}$ y $X_3 = \ortogonal{K_1 \oplus K_2}$, notemos que $\norm{T_2} \leq \norm{T}$ y que $\abs{\lambda_2} \leq \abs{\lambda_1}$. Luego por inducci\'on existe $\sett{\lambda_n} \subset \R$ (\ref{Autovalores de un operador autoadjunto es real}) tal que:
+	
+	\begin{itemize}
+		\item $\abs{\lambda_1} \geq \abs{\lambda_2} \geq \dots$
+		\item Si $K_n = \ker(T-\lambda_n)$ entonces $\abs{\lambda_{n+1}} = \norm{T \vert_{\ortogonal{K_1 \oplus \dots \oplus K_n}}}$
+	\end{itemize}
+	 
+	
+	Es claro que existe $\alpha \geq 0$ tal que $\lim \abs{\lambda_n} = \alpha$, afirmo que $\alpha = 0$.
+	
+	En efecto, sea $k_n \in K_n$ tal que $\norm{k_n} = 1$, luego como $T$ es compacto existe $\sett{k_{n_j}}_{j \in \N}$ subsucesi\'on y $x \in X$ tal que $T(k_{n_j}) \xrightarrow{\norm{.}_X} x$, pero $\norm{T(k_{n_j} - T(k_{n_m}))} \underbrace{=}_{\ref{Autoespacios de autovalores distintos son ortogonales}} \lambda_{n_j}^2 + \lambda_{n_m}^2 \geq 2\alpha^2$, luego $\alpha = 0$.
+	
+	Finalmente analicemos:
+	
+	\begin{equation*}
+	(T - \sum\limits_{i=1}^{n} \lambda_i P_i)(x) = \left\lbrace \begin{array}{cccc}
+	T(x) - \lambda_jx & = & 0 & \text{si } x \in K_j \quad 1 \leq j \leq n \\
+	T(x) - 0 & = & T(x) & \text{si } x \in \ortogonal{K_1 \oplus \dots \oplus K_n}
+	\end{array}\right.
+	\end{equation*}
+	 
+	Luego como $ \ortogonal{K_1 \oplus \dots \oplus K_n}$ es invariante para $T$:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\norm{T - \sum\limits_{i=1}^{n} \lambda_i P_i} = & \norm{T \vert_{\ortogonal{K_1 \oplus \dots \oplus K_n}}} \\
+		= & \abs{\lambda_{n+1}} \rightarrow 0
+	\end{aligned}
+	\end{equation*}
+	\qed
+\end{proof}
+
+\begin{corollary}
+	Con la misma notaci\'on de antes:
+	
+	\begin{enumerate}
+		\item $\ker T = \ortogonal{\bigvee \left\lbrace P_nX\right\rbrace} = \ortogonal{\rank T}$
+		\item $P_n \in L_{00}(X)$
+		\item $\norm{T} = \sup {\abs{\lambda_n}}$ y $\lambda_n \rightarrow 0$
+	\end{enumerate}
+	
+\end{corollary}
+
+\begin{corollary}
+	Sea $X$ Hilbert y $T \in L_0(X)$ autoadjunto, luego existe $\sett{\mu_n} \subset \R$ y $\sett{e_n} \subset \ortogonal{\ker T}$ base ortogonal tal que:
+	
+	\begin{equation}
+		T(x) = \Bigsum{n \in \N}{\mu_n \ip{x,e_n}e_n}
+	\end{equation}
+	
+\end{corollary}
+
+\begin{corollary}
+	Sea $X$ Hilbert y $T \in L_0(X)$ autoadjunto e inyectivo, entonces $X \simeq l^2$.
+\end{corollary}
 
 \end{document}
