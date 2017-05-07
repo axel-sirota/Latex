@@ -231,7 +231,7 @@ Recordemos:
 	
 	Sea $\sett{S_i}$ una colecci\'on de subconjuntos de $P$ totalmente ordenada y sea $T = \Bigcup{i \in I}{S_i}$, luego es claro que $S_i \leq T$; faltar\'ia ver que $T \in P$.
 	
-	Para eso sean $v_{i_1}, \dots, v_{i_k} \in T$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \ in \F$ tales que $\Bigsum{k}{\lambda_i v_i} = 0$. Como son finitos existe $k_0 \in \N$ tal que $v_i \in S_{k_0}$ para todo $i$, que al ser un conjunto linealmente independiente resulta que $\lambda_{1} = \lambda_{2} = \dots = \lambda_{n} = 0$. Conclu\'imos que $T \in P$, luego por \ref{Lema de Zorn} existe $M \in P$ elemento maximal.
+	Para eso sean $v_{i_1}, \dots, v_{i_k} \in T$ y $\lambda_{i_1},  \dots, \lambda_{i_k} \in \F$ tales que $\Bigsum{k}{\lambda_{i_k} v_{i_k}} = 0$. Como son finitos existe $k_0 \in \N$ tal que $v_i \in S_{k_0}$ para todo $i$, que al ser un conjunto linealmente independiente resulta que $\lambda_{1} = \lambda_{2} = \dots = \lambda_{i_n} = 0$. Conclu\'imos que $T \in P$, luego por \ref{Lema de Zorn} existe $M \in P$ elemento maximal.
 	
 	Finalmente, sea $v \in E \setminus <M>$ (el conjunto generado por combinaciones lineales de $M$), luego $M \cup \sett{v}$ ser\'ia un conjunto li lo que contradice la maximalidad de $M$; por ende no existe tal $v$ y $M$ resulta base. \qed
 	
@@ -440,7 +440,7 @@ Recordemos:
 \end{proposition}
 
 \begin{proof}
-	Sea $x_n, (y_n)$ tales que $x_n \rightarrow x, y_n \rightarrow y$, luego:
+	Sea $(x_n), (y_n)$ tales que $x_n \rightarrow x, y_n \rightarrow y$, luego:
 	
 	\begin{equation*}
 	\begin{aligned}
@@ -458,13 +458,13 @@ Recordemos:
 \begin{definition}
 	Sea $E$ un espacio vectorial con producto interno, luego dados dos vectores $x,y \in E$ decimos que son \textit{ortogonales} si $\ip{x,y} = 0$.
 	
-	A su vez decimos que son \textit{ortonormales} si osn ortogonales y $\norm{x} = \norm{y} = 1$
+	A su vez decimos que son \textit{ortonormales} si son ortogonales y $\norm{x} = \norm{y} = 1$
 	
 	Finalmente dado un conjunto $S \subseteq E$ entonces decimos que es \textit{ortogonal / ortonormal} si dados cualesquiera $x,y \in S$ resulta que son \textit{ortogonales / ortonormales} 
 \end{definition}
 
 \begin{example}
-	El conjunto $\sett{e^{inx} \ , \ n \in \N \ , \ x \in [0,2 \pi]}$ es ortonormal.
+	El conjunto $\sett{e^{inx} \ , \ n \in \N \ , \ x \in [0,2 \pi]}$ es ortogonal.
 \end{example}
 
 \begin{theorem}
@@ -490,7 +490,7 @@ Recordemos:
 	Sea $E$ un espacio vectorial con producto interno y sea $S \subseteq E$ un conjunto ortonormal, luego:
 	
 	\begin{enumerate}
-		\item SI $x \in E$ y $u_1, \dots, u_n \in S$ luego $\sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2} \leq \norm{x}^2$
+		\item Si $x \in E$ y $u_1, \dots, u_n \in S$ luego $\sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2} \leq \norm{x}^2$
 		\item Si $x \in E$ entonces $\sett{u \in S \ / \ \ip{x,u}\neq 0}$ es a lo sumo numerable
 		\item Si $x,y \in E$ entonces $\abs{\Bigsum{u \in S}{\ip{x,u}\overline{\ip{y,u}}}} \leq \norm{x}\norm{y}$
 	\end{enumerate}
@@ -498,13 +498,13 @@ Recordemos:
 
 \begin{proof}
 	\begin{enumerate}
-		\item Sean $u_1,\dots,u_n \in S$ y sea $z = x - \sum\limits_{i = 1}^{n}{{\ip{x,u_i}}}$, luego:
+		\item Sean $u_1,\dots,u_n \in S$ y sea $z = x - \sum\limits_{i = 1}^{n}{{\ip{x,u_i}}u_i}$, luego:
 	
 	\[
 	\begin{aligned}
 		0 \leq & \ip{z,z} \\
-		= & \ip{x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}},x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}}} \\
-		= & \norm{x}^2 + \norm{\sum\limits_{i = 1}^{n}{\ip{x,u_i}}}^2 - 2 \mathcal{R} \left(\ip{\sum\limits_{i = 1}^{n}{\ip{x,u_i}},x}\right) \\
+		= & \ip{x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}u_i},x - \sum\limits_{i = 1}^{n}{\ip{x,u_i}}u_i} \\
+		= & \norm{x}^2 + \norm{\sum\limits_{i = 1}^{n}{\ip{x,u_i}u_i}}^2 - 2 \mathcal{R} \left(\ip{\sum\limits_{i = 1}^{n}{\ip{x,u_i}u_i},x}\right) \\
 		= & \norm{x}^2 + \sum\limits_{i = 1}^{n}{\norm{\ip{x,u_i}}^2} - 2 \mathcal{R} \left(\sum\limits_{i = 1}^{n}{\abs{\ip{x,u_i}}^2}\right) \\
 		= & \norm{x}^2 - \sum\limits_{i = 1}^{n}{\norm{\ip{x,u_i}}^2}.
 	\end{aligned}
@@ -566,7 +566,7 @@ Recordemos:
 				\Bigsum{n \in \N}{c_nu_n} \in H \ \Longleftrightarrow \ \Bigsum{n \in \N}{\abs{c_n}^2} < \infty
 	\end{equation*}
 	
-	Finalmente, notemos que $\ip{S_k,u_j} = c_j$ para todo $k \geq j$ y ,adem\'as si $(c_n) _in l^2$, entonces $S_k \rightarrow \Bigsum{n \in \N}{c_n u_n}=:x$; por lo tanto por \ref{Prod interno es continuo} $c_n = \ip{S_k,u_n} \rightarrow \ip{x,u_n}$. 
+	Finalmente, notemos que $\ip{S_k,u_j} = c_j$ para todo $k \geq j$ y ,adem\'as si $(c_n) \in l^2$, entonces $S_k \rightarrow \Bigsum{n \in \N}{c_n u_n}=:x$; por lo tanto por \ref{Prod interno es continuo} $c_n = \ip{S_k,u_n} \rightarrow \ip{x,u_n}$. 
 	\qed
 	
 \end{proof}
@@ -581,7 +581,7 @@ Recordemos:
 \end{proposition}
 
 \begin{proof}
-	Si $(x_n) \subset M$ es tal que $x_n \rightarrow x$ entonces por \ref{Prod interno es continuo} $0 = \ip{m,x_n} \rightarrow \ip{m,x}$, por lo que $x \in M$. \qed
+	Si $m \in M$ y $(x_n) \subset \ortogonal{M}$ es tal que $x_n \rightarrow x$ entonces por \ref{Prod interno es continuo}, $0 = \ip{m,x_n} \rightarrow \ip{m,x}$, por lo que $x \in \ortogonal{M}$. \qed
 \end{proof}
 
 \begin{theorem}
