@@ -1,0 +1,270 @@
+\documentclass[12pt, a4paper]{amsart}
+
+\usepackage{picture}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath, exercise}
+\usepackage[activeacute, spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage[pdftex]{color, graphicx}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{pstricks}
+\usepackage[colorlinks=true]{hyperref}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+
+\usepackage{enumitem}
+
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{colormaps}
+\pgfplotsset{compat=1.13}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subfig}
+
+\newtheorem{teo}{Teorema}[]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\newtheorem*{propnonumber}{Proposición}
+
+\theoremstyle{definition}
+\newtheorem{prob}[teo]{Problema}
+\newtheorem{conj}[teo]{Conjectura}
+\newtheorem{defn}[teo]{Definición}
+\newtheorem{ax}[teo]{Axioma}
+\newtheorem{ex}[teo]{Ejemplo}
+\newtheorem{exer}[teo]{Ejercicio}
+
+\newtheorem*{obs}{Observación}
+\newtheorem*{com}{Comentario}
+\newtheorem*{defnonumber}{Definición}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\pint}[1]{\left\langle #1 \right\rangle}
+\newcommand{\tendsto}[1]{\xrightarrow{\smash{\raisebox{-2ex}{$\scriptstyle#1$}}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\renewcommand{\hom}{\mathrm{Hom}}
+
+\renewcommand{\hom}{\mathrm{Hom}}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\nil}{nil}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\sg}{sg}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\car}{car}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\rg}{rg}
+\def\acts{\curvearrowright}
+\def\stca{\curvearrowleft}
+
+\def\noteson{%
+\gdef\note##1{\marginpar[##1]{##1}}}
+\gdef\notesoff{\gdef\note##1{}}
+\noteson
+
+\renewcommand{\qed}{\hfill \mbox{\raggedright \rule{0.075in}{0.075in}}}
+\renewcommand{\thefootnote}{[\arabic{footnote}]}
+
+\usepackage{scrextend}% not needed with a KOMA-Script class, provides the
+                      % `addmargin' environment
+
+\usepackage[load-headings]{exsheets}
+\DeclareInstance{exsheets-heading}{mylist}{default}{
+  runin = true ,
+  attach = {
+    main[l,vc]number[l,vc](-2em,0pt) ; % 3em = indent of question body
+    main[r,vc]points[l,vc](\linewidth+\marginparsep,0pt)
+  }
+}
+
+\SetupExSheets{
+  headings = mylist , % use the new headings instance
+  headings-format = \textbf ,
+  counter-format = qu ,
+  counter-within = section
+}
+
+
+\usepackage{etoolbox}
+% 3em = indent of question body :
+\AtBeginEnvironment{question}{\addmargin[2em]{0em}}
+\AtEndEnvironment{question}{\endaddmargin}
+
+\usepackage{lipsum}
+
+\begin{document}
+
+\title{Geometría Diferencial -- 1er cuatrimestre 2017}
+\author{}
+% Remove command to get current date 
+\date{}
+\nocite{*}
+%\begin{abstract}
+%\end{abstract}
+\maketitle
+\begin{center}
+\section*{Práctica 4: Campos tangentes, flujos y grupos de Lie}
+\end{center}
+\vspace{1em}
+\textsl{\textbf{Campos tangentes y flujos}}
+\vspace{1em}
+
+\begin{question}
+Sea $M$ una variedad, $p\in M$ y $v\in T_pM$ un vector tangente. Probar que existe un campo $X\in\mathfrak{X}(M)$ tal que $X(p)=v$.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad, $p\in M$ un punto y $X$ un campo definido en un entorno de $p$ tal que $X(p)\neq 0$. Probar que existe una carta $(U,\phi)$ de $p$ tal que $\left.X\right|_U = \dfrac{\partial}{\partial\phi_1}$.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad, $p\in M$ un punto y $X_1,\cdots,X_k$ campos definidos en un entorno de $p$ tales que $\{X_1(p),\cdots,X_k(p)\}$ son linealmente independientes en $T_pM$. Probar que existe un entorno $U$ de $p$ tal que $\{X_1(q),\cdots,X_k(q)\}$ son linealmente independientes para todo $q\in U$.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad y sean $X,Y\in\mathfrak{X}(M)$ dos campos.	El \textit{corchete de Lie} se define como $$[X,Y](f) = X(Y(f)) - Y(X(f))$$ para cada $f\in\mathscr{C}^\infty(M,\RR)$ pensando a los campos como derivaciones. Probar que $[X,Y]$ es un campo tangente. Probar que si $(U,\phi)$ es una carta de $M$ en la que $$X=\displaystyle\sum_{i=1}^n X^i \,\dfrac{\partial}{\partial\phi_i},\;\;\; Y = \displaystyle\sum_{i=1}^n Y^i\, \dfrac{\partial}{\partial\phi_i}$$ entonces $$[X,Y] = \displaystyle\sum_{i=1}^n\left(\displaystyle\sum_{j=1}^n X^j\,\dfrac{\partial Y^i}{\partial\phi_j} - Y^j\,\dfrac{\partial X^i}{\partial\phi_j}\right)\dfrac{\partial}{\partial\phi_i}.$$
+\end{question}
+
+\begin{question}
+Dados campos $X,Y$ en una variedad $M$ y funciones diferenciables $f,g:M\to\RR$, probar la fórmula de Lie-Rinehart: $$[fX,gY]=fg[X,Y]+f X(g)Y  - gY(f)X.$$
+\end{question}
+
+\begin{question}
+Probar que, bajo la identificación $T_I\mathrm{GL}_n(\RR)\simeq \mathrm{M}_n(\RR)$ se tiene que $$[X_A,X_B]=X_{[A,B]} = X_{AB-BA}$$ donde $X_A(M)=AM$ es el campo tangente asociado a $A$.
+\end{question}
+
+\begin{question}
+Calcular las curvas integrales y el grupo uniparamétrico definidos por el campo $X$ en cada uno de los siguientes casos
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item $M=\RR^2$ y $X(a,b)=b\dfrac{\partial}{\partial x} + a\dfrac{\partial}{\partial y}$.
+\item $M=\RR^2$ y $X(a,b)=a\dfrac{\partial}{\partial x} - b\dfrac{\partial}{\partial y}$.
+\item $M=S^2$ y $X(a,b,c) = (c-b)\dfrac{\partial}{\partial x} + a\dfrac{\partial}{\partial y} - a\dfrac{\partial}{\partial z}$.
+\item $M=\mathrm{GL}_n(\RR)$ y $X(A)=AB\in T_A\mathrm{GL}_n(\RR)\simeq\RR^{n\times n}$ con $B\in\mathrm{M}_n(\RR)$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sea $\gamma$ una curva integral de un campo $X$ definido sobre $M$. Probar que si $\dot{\gamma}(t)=0$ para algún $t$, entonces $\gamma$ es constante.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad, $\eps>0$ fijo y $X\in\mathfrak{X}(M)$ un campo tal que para todo $p\in M$ la curva integral de $X$ que pasa por $p$ está definida en $(-\eps,\eps)$. Probar que $X$ es completo.
+\end{question}
+
+\begin{question}\vspace{-1.5em}
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Sea $M$ una variedad compacta y $X$ es un campo tangente sobre $M$. Probar que $X$ es completo.
+\item Probar que si $\mathrm{Sop}(X)=\overline{\{p\in M : X(p)\neq 0\}}$ es compacto, $X$ debe ser completo.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad y sea $\theta:\RR\times M\to M$ una acción suave. Para cada $t\in\RR$ notamos $\theta_t(p)=\theta(t,p)$ (con esta notación, el hecho de que $\theta$ sea una acción suave nos dice que $\theta_t$ es un difeomorfismo para cada $t$ y que $\theta_t\circ\theta_s=\theta_{t+s}$). Para cada $f:M\to\RR$ diferenciable definimos $$X(f)(p) = \displaystyle\lim_{t\to 0}\frac{f(\theta_t(p))-f(p)}{t}.$$ Probar que $X$ es un campo diferenciable y que su flujo es exactamente $\theta$.
+\end{question}
+
+\begin{question}
+Sea $f:M\to N$ diferenciable. Un par de campos $X\in\mathfrak{X}(M)$, $Y\in\mathfrak{X}(N)$ se dicen \textit{$f$-relacionados} si $Y(f(p))=\diff_pf(X(p))$ para todo $p\in M$. Lo notaremos $X\sim_f Y$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que si $X\sim_f Y$ y $Y\sim_g Z$ entonces $X\sim_{g\circ f} Z$.
+\item Probar que si $X_1\sim_f Y_1$	 y $X_2\sim_f Y_2$ entonces $[X_1,X_2]\sim_f [Y_1,Y_2]$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sean $f:M\to N$ diferenciable, y sean $X\in\mathfrak{X}(M)$, $Y\in\mathfrak{X}(N)$ dos campos $f$-relacionados. Probar que si $\gamma:(a,b)\to M$ es una curva integral de $X$ entonces $f\circ\gamma$ es una curva integral de $Y$.
+\end{question}
+
+
+\begin{question}
+(Teorema de Ehresmann) Sea $f:M\to U\subseteq \RR$ diferenciable, propia, sobreyectiva y tal que todo $t\in U$ es valor regular.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que existe $X\in\mathfrak{X}(M)$ tal que $X\sim_f\dfrac{\diff}{\diff t}$. ¿Es único?
+\item Sea $X$ como en el ítem anterior. Probar que $X$ es completo.
+\item Probar que $f^{-1}(u)$ es difeomorfo a $f^{-1}(u')$ para todos $u,u'\in U$.
+\end{enumerate}
+\end{question}
+
+\textsl{\textbf{Grupos de Lie}}
+\vspace{1em}
+
+
+\begin{question}
+Sea $G$ un grupo de Lie y notemos $L_g:G\to G$ el difeomorfismo $L_g(h)=gh$. Decimos que un campo $X\in\mathfrak{X}(G)$ es \textit{invariante a izquierda} si para todos $g,h\in G$ se tiene $(\diff_h L_g)(X(h)) = X(gh) = X(L_g(h))$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que si dos campos invariantes a izquierda coinciden en un punto entonces coinciden en todo $G$.
+\item Probar que si $v\in T_gG$, existe un único campo invariante a izquierda $X$ tal que $X(g)=v$.
+\item Deducir que hay un isomorfismo entre $T_eG$ y el espacio de campos invariantes a izquierda.
+\item Probar que todo grupo de Lie es paralelizable.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Un \textit{álgebra de Lie} sobre un cuerpo $k$ es un $k$-espacio vectorial $V$ provisto de una aplicación bilineal $[\cdot,\cdot]:V\times V\to V$ que satisface las siguientes dos condiciones:
+\begin{itemize}
+\item \textbf{Antisimetría:} $[X,Y] = -[Y,X]\;\; \forall\;X,Y\in V$.
+\item \textbf{Identidad de Jacobi:} $[X,[Y,Z]]+[Y,[Z,X]] + [Z,[X,Y]]=0 \;\;\forall\;X,Y,Z\in V$.
+\end{itemize}
+Probar que si $M$ es una variedad, $\mathfrak{X}(M)$ es un álgebra de Lie sobre $\RR$.
+\end{question}
+
+\begin{question}
+Probar que si $G$ es un grupo de Lie y $X,Y$ son campos invariantes a izquierda, entonces $[X,Y]$ es invariante a izquierda. Deducir que $\mathfrak{g}=T_eG$ hereda una estructura de álgebra de Lie.	Diremos que $\mathfrak{g}$ es el álgebra de Lie de $G$.
+\end{question}
+
+\begin{question}
+Sea $G$ un grupo de Lie y tomemos $v\in T_eG$. Sea $X_v$ el único campo invariante a izquierda con $X(e)=v$ y denotemos por $\Phi_v^t$ el grupo uniparamétrico definido por $X_v$. Sea $\exp:T_eG\to G$ dada por $\exp(v)=\Phi_v^1(e)$. Probar que si $f:G\to H$ es un morfismo de grupos de Lie entonces $f\circ\exp = \exp\circ \diff_e f$.
+\end{question}
+
+\begin{question}
+Probar que $\mathrm{GL}_n(\RR)$ es un grupo de Lie y que, identificando $T_I\mathrm{GL}_n(\RR)\simeq M_n(\RR)$, la exponencial $\exp:M_n(\RR)\to\mathrm{GL}_n(\RR)$ definida como en el ejercicio anterior coincide con la exponencial matricial $$\exp(A) = I+A + \dfrac{A^2}{2!}+\dfrac{A^3}{3!} + \cdots.$$ ¿Hay alguna relación entre $\exp(A+B)$ y $\exp(A)\exp(B)$?
+\end{question}
+
+\begin{question}
+Sean $G,H$ grupos de Lie conexos y sean $\mathfrak{g},\mathfrak{h}$ sus álgebras de Lie respectivamente. Sea $f:G\to H$ un morfismo de grupos de Lie. Son equivalentes:
+\begin{itemize}
+\item $f$ es sobreyectiva y $\ker\, f$ es discreto.
+\item El morfismo inducido $f_*:\mathfrak{g}\to\mathfrak{h}$ es un isomorfismo.
+\end{itemize}
+\end{question}
+
+\end{document}

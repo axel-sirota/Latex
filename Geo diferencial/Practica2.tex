@@ -1,0 +1,344 @@
+\documentclass[12pt, a4paper]{amsart}
+
+\usepackage{picture}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath, exercise}
+\usepackage[activeacute, spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage[pdftex]{color, graphicx}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{pstricks}
+\usepackage[colorlinks=true]{hyperref}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+
+\usepackage{enumitem}
+
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{colormaps}
+\pgfplotsset{compat=1.13}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subfig}
+
+\newtheorem{teo}{Teorema}[]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\newtheorem*{propnonumber}{Proposición}
+
+\theoremstyle{definition}
+\newtheorem{prob}[teo]{Problema}
+\newtheorem{conj}[teo]{Conjectura}
+\newtheorem{defn}[teo]{Definición}
+\newtheorem{ax}[teo]{Axioma}
+\newtheorem{ex}[teo]{Ejemplo}
+\newtheorem{exer}[teo]{Ejercicio}
+
+\newtheorem*{obs}{Observación}
+\newtheorem*{com}{Comentario}
+\newtheorem*{defnonumber}{Definición}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\pint}[1]{\left\langle #1 \right\rangle}
+\newcommand{\tendsto}[1]{\xrightarrow{\smash{\raisebox{-2ex}{$\scriptstyle#1$}}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\renewcommand{\hom}{\mathrm{Hom}}
+
+\renewcommand{\hom}{\mathrm{Hom}}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\nil}{nil}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\sg}{sg}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\car}{car}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\rg}{rg}
+\def\acts{\curvearrowright}
+\def\stca{\curvearrowleft}
+
+\def\noteson{%
+\gdef\note##1{\marginpar[##1]{##1}}}
+\gdef\notesoff{\gdef\note##1{}}
+\noteson
+
+\renewcommand{\qed}{\hfill \mbox{\raggedright \rule{0.075in}{0.075in}}}
+\renewcommand{\thefootnote}{[\arabic{footnote}]}
+
+\usepackage{scrextend}% not needed with a KOMA-Script class, provides the
+                      % `addmargin' environment
+
+\usepackage[load-headings]{exsheets}
+\DeclareInstance{exsheets-heading}{mylist}{default}{
+  runin = true ,
+  attach = {
+    main[l,vc]number[l,vc](-2em,0pt) ; % 3em = indent of question body
+    main[r,vc]points[l,vc](\linewidth+\marginparsep,0pt)
+  }
+}
+
+\SetupExSheets{
+  headings = mylist , % use the new headings instance
+  headings-format = \textbf ,
+  counter-format = qu ,
+  counter-within = section
+}
+
+
+\usepackage{etoolbox}
+% 3em = indent of question body :
+\AtBeginEnvironment{question}{\addmargin[2em]{0em}}
+\AtEndEnvironment{question}{\endaddmargin}
+
+\usepackage{lipsum}
+
+\begin{document}
+
+\title{Geometría Diferencial -- 1er cuatrimestre 2017}
+\author{}
+% Remove command to get current date 
+\date{}
+\nocite{*}
+%\begin{abstract}
+%\end{abstract}
+\maketitle
+\begin{center}
+\section*{Práctica 2: Espacios tangentes y fibrados vectoriales}
+\end{center}
+
+\textsl{\textbf{Espacios tangentes}}
+\vspace{1em}
+
+
+\begin{question}
+Sea $M$ una variedad diferencial de dimensión $d$ y $p\in M$ un punto. Probar que las siguientes descripciones del espacio tangente a $M$ en $p$ son equivalentes:
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Derivaciones en $p$, es decir, funcionales lineales en el espacio de funciones diferenciables que cumplen la regla de Leibniz $$T_pM=\{D:\mathscr{C}^\infty(M,\RR)\to\RR\text{ lineal}: D(fg)=D(f)g(p)+f(p)D(g)\}.$$ 
+\item El espacio dual de $\mathfrak{m}_p/\mathfrak{m}_p^2$ donde $\mathfrak{m}_p=\{f\in\mathscr{C}^\infty(M,\RR):f(p)=0\}$.
+\item El espacio dual de $\overline{\mathfrak{m}}_p/\overline{\mathfrak{m}}_p^2$ donde $\overline{\mathfrak{m}}_p$ es el ideal de gérmenes de funciones en $p$ que se anulan en $p$.
+\item Familias $((U,\phi),v)$ con $(U,\phi)$ una carta alrededor de $p$ y $v\in\RR^d$, bajo la relación $$((U,\phi),v)\sim ((V,\psi),w) \text{ si }w = D(\psi\phi^{-1})(\phi(p))v.$$
+\end{enumerate}
+Con cada descripción del espacio tangente, definir la diferencial $\diff_pf:T_pM\to T_{f(p)}N$ de una función diferenciable $f:M\to N$.
+\end{question}
+
+\begin{question}
+Sea $U\subseteq\RR^n$ un abierto y $\phi:U\to\RR$ una función diferenciable. El gráfico $$\Gamma_\phi=\{(x,\phi(x)):x\in U\}$$ es una variedad diferenciable con la carta global $(\Gamma_\phi,\pi)$ con $\pi:\Gamma_\phi\to\RR^n$ definida por $\pi((x,\phi(x)))=x$. Si $f:\Gamma_\phi\to\RR$ es la función dada por $f((x,\phi(x))=\phi(x)$, calcular $$\left.\dfrac{\partial}{\partial \pi^i}\right|_p (f)$$ en función de las derivadas parciales de $\phi$.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad diferencial, $p\in M$ un punto y fijemos una carta $(U,\phi)$ de $M$ alrededor de $p$. Diremos que dos curvas $\gamma_1,\gamma_2:\RR\to M$ con $\gamma_1(0)=\gamma_2(0)=p$ son \textit{equivalentes} si las derivadas $\left.\dfrac{\diff}{\diff t}(\phi\circ\gamma_1)\right|_{t=0}=\left.\dfrac{\diff}{\diff t}(\phi\circ\gamma_2)\right|_{t=0}$ coinciden. Lo denotaremos $\gamma_1\sim\gamma_2$. Probar que:
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item $\sim$ es una relación de equivalencia.
+\item $\sim$ no depende de la carta $(U,\phi)$ elegida.
+\item El conjunto de clases de equivalencia puede ser dotado de estructura de espacio vectorial de forma natural y resulta isomorfo al espacio tangente en $p$. Definir la diferencial de una función en un punto en términos de esta nueva construcción.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sea $U\subseteq\RR^n$ un abierto y $f:U\to\RR$ una función diferenciable tal que $0$ es un valor regular (es decir, si $f(p)=0$ entonces $\nabla f(p)\neq 0$). Si $M=f^{-1}(0)$, probar que $T_pM$ puede identificarse con el espacio ortogonal a $\nabla f(p)$.
+\end{question}
+
+\begin{question}
+Probar que $f:M\to N$ es un difeomorfismo en un entorno de $p\in M$ si y sólo si $\diff_p f:T_pM\to T_{f(p)}N$ es un isomorfismo. 
+\end{question}
+
+\begin{question}
+Sea $f:M\to N$ una función diferenciable. Probar que si $f$ es constante en un entorno $U$ de $p$ entonces $\diff_pf=0$. Recíprocamente, si $\diff_p f=0$ para todo $p$ en un abierto conexo $U$, entonces $\left.f\right|_U$ es constante.
+\end{question}
+
+\begin{question}
+Sean $M,N$ variedades y $p,q$ puntos en ellas respectivamente. Tomemos las inclusiones $\iota_M:M\to M\times N$ dada por $\iota_M(x)=(x,q)$ y $\iota_N:N\to M\times N$ dada por $\iota_N(y)=(p,y)$. Probar que $$T_{(p,q)}(M\times N) = \diff_p\iota_M(T_pM)\oplus\diff_q\iota_N(T_qN).$$
+\end{question}
+
+\textsl{\textbf{Ejemplos}}
+\vspace{1em}
+
+\begin{question}
+Se considera el toro $T=S^1\times S^1$ y la función $f(e^{it},e^{iu})=\sin(3t)\cos(5u)$, mirando $S^1\subset\CC$. Elegir alguna carta alrededor de $p=(1,1)$ en $T$ y calcular las derivadas de $f$ con respecto a las coordenadas dadas por la carta en $p$.
+\end{question}
+
+\begin{question}
+Sea $S^2\subset\RR^3$ la esfera y $f:S^2\to\RR$ dada por $f(x)=\mathrm{dist}(x,N)^2$ donde $N=(0,0,1)$. Consideremos ademas, las cartas $(U,\phi_N)$ y $(V,\phi_S)$ dadas por las proyecciones estereográficas y $p=(\frac{1}{2},\frac{1}{2},\frac{\sqrt{2}}{2})$.
+Se definen los vectores tangentes
+$$v_1=8\left.\dfrac{\partial}{\partial\phi_N^1}\right|_{p}+5\sqrt{2}\left.\dfrac{\partial}{\partial\phi_N^2}\right|_{p},\qquad v_2=(-15\sqrt 2+20)\left.\dfrac{\partial}{\partial\phi_S^1}\right|_{p}+(-24+16\sqrt{2})\left.\dfrac{\partial}{\partial\phi_S^2}\right|_{p}.$$
+    \begin{enumerate}[label=\textbf{\alph*.}]
+    \item Probar que $f$ es diferenciable.
+    \item Calcular $v_1(f)$ y $v_2(f)$.
+    \item Probar que en realidad $v_1=v_2$.
+    \end{enumerate}
+\end{question}
+
+\begin{question}
+Consideremos $\det:\mathrm{GL}_n(\RR)\to\RR$. Dado que $\mathrm{GL}_n(\RR)\subseteq\mathrm{M}_n(\RR)$ es un abierto, identificamos $T_I\mathrm{GL}_n(\RR)\simeq T_I\mathrm{M}_n(\RR)\simeq\mathrm{M}_n(\RR)$ y llamamos $e_{ij}$ a las coordenadas así dadas. Calcular $\dfrac{\partial\det}{\partial e_{ij}}$ y $\left.\dfrac{\partial\det}{\partial e_{ij}}\right|_I$.
+\end{question}
+
+\begin{question}
+Calcular la diferencial de $f:S^1\times (-1,1)\to S^2$, $$f(z,t)=(z_1\sqrt{1-t^2},z_2\sqrt{1-t^2},t),\;\;\;\text{donde }z=z_1+iz_2,$$ en los puntos de la forma $(1,t)\in S^1\times (-1,1)$.
+\end{question}
+
+\begin{question}
+Hallar la diferencial de las siguientes funciones en el punto indicado.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item $f:\RR^2\to\RR^2$ dada por $F(x,y)=(xy+y^2,e^{x-y})$ en $(7,3)$.
+\item $g:S^1\to S^1$ dada por $g(z)=z^n$, con $n\in\NN$, en cualquier punto.
+\item El producto de matrices $\mu:\mathrm{M}_n(\RR)\times\mathrm{M}_n(\RR)\to\mathrm{M}_n(\RR)$ en cualquier punto.
+\item La inversa de matrices $i:\mathrm{GL}_n(\RR)\to\mathrm{GL}_n(\RR)$ en la identidad.
+\item Las restricciones de $\mu$ e $i$ a $\mathrm{SL}_n(\RR)$ en la identidad.
+\item $f:\mathbb{P}^2(\RR)\to\mathbb{P}^2(\RR)$ dada por $f(a:b:c)=(b:a:c)$ en cualquier punto.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Consideremos la función $f:\RR^3\to\RR^2$ dada por $f(x,y,z) = (xy,z)$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Hallar los puntos críticos de $f$.
+\item Hallar los puntos críticos de $\left.f\right|_{S^2}$.
+\item Hallar el conjunto $C$ de valores críticos de $\left.f\right|_{S^2}$.
+\item Probar que $C$ tiene medida $0$.
+\end{enumerate}
+\end{question}
+
+\textsl{\textbf{Fibrados vectoriales}}
+
+Sea $V$ un espacio vectorial real. Recordemos que un \textbf{fibrado vectorial} de fibra $V$ sobre una variedad diferencial $M$ consiste de una variedad diferencial $E$ junto con una función diferenciable $\pi:E\to M$ tal que
+\begin{itemize} 
+\item Para cada $p\in M$ la fibra $\pi^{-1}(p)$ tiene estructura de espacio vectorial.
+\item Para todo $p\in M$ existen un entorno $U$ y un difeomorfismo $\phi_U:\pi^{-1}(U)\to U\times V$ de forma que el siguiente diagrama conmuta
+\begin{center}
+\begin{tikzcd}
+\pi^{-1}(U)\arrow[]{dr}[font=\normalsize,swap]{\pi}\arrow[]{rr}[font=\normalsize]{\phi_U} & & U\times V\arrow[]{dl}[font=\normalsize]{\mathrm{pr}_1} \\
+& M. &
+\end{tikzcd}
+\end{center}
+\item Para todo $p,\phi$ y $U$ como en el ítem anterior, la restricción $\phi_U:\pi^{-1}(p)\to \{p\}\times V$ es un isomorfismo de espacios vectoriales.
+\end{itemize}
+El espacio $E$ se llama el \textit{espacio total}, $M$ el \textit{espacio base}, $\pi$ la \textit{proyección} y $U$ es un \textit{abierto trivializante}. Dados dos abiertos trivializantes $U,V$ la función $\phi_V\circ\phi_U^{-1}$ es llamada la \textit{función de transición}. Decimos que un fibrado es \textit{trivial} si se puede tomar a $M$ como un abierto trivializante. Una \textit{sección} de $\pi:E\to M$ es una función diferenciable $s:M\to E$ tal que $\pi\circ s = \id$.
+
+\begin{question}
+Sea $M$ una variedad diferencial de dimensión $d$. Consideremos $$TM = \{(p,v):p\in M, v\in T_pM\},$$ la unión disjunta de los espacios tangentes.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Si $(U,\phi)$ es una carta, definimos $\widetilde{U} = \{(p,v):p\in U, v\in T_p M\}$ y una función $\widetilde{\phi}:\widetilde{U}\to\RR^d\times\RR^d$, $$\widetilde{\phi}(p,v)=\left(\phi(p),v^1,\cdots,v^d\right)$$ donde $v=v^1\left.\frac{\partial}{\partial \phi^1}\right|_p+\cdots+v^d\left.\frac{\partial}{\partial\phi^d}\right|_p$. Probar que $$\mathscr{A}=\left\{(\widetilde{U},\widetilde{\phi}) : (U,\phi)\text{ carta de }M \right\}$$ induce una estructura de variedad diferenciable sobre $TM$. ¿Cuál es su dimensión?
+\item Probar que la proyección canónica $\pi:TM\to M$ es una función diferenciable de rango constante.
+\item Sea $f:M\to N$. Probar que $\diff f:TM\to TN$ definida por $\diff f(p,v) = (f(p),\diff_p f(v))$ es una función diferenciable.
+\item Probar que $\pi:TM\to M$ es un fibrado vectorial que llamaremos \textit{fibrado tangente}. Encontrar un cubrimiento por abiertos trivializantes y calcular las funciones de transición. 
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Probar que los siguientes son fibrados vectoriales, hallar su fibra y las funciones de transición.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item El \textit{fibrado tautológico} de $\mathbb{P}^n(\RR)$. El espacio total se define como $$\gamma_n=\{([v],p)\in\mathbb{P}^n(\RR)\times\RR^{n+1}:p\in v\}$$ y $\pi:\gamma_n\to\mathbb{P}^n(\RR)$ es la proyección en la primera coordenada.
+\pagebreak
+\item El \textit{fibrado de Moebius} sobre $S^1$. El espacio total se define como $E=[0,1]\times\RR/\sim$ donde $$(a,b)\sim(c,d) \text{ si } b=-d \text{ y }\begin{cases}a=0, c=1,\\ a=1, c=0\end{cases}$$
+y la proyección está dada por $\pi:E\to S^1$, $\pi(\overline{(x,y)}) = e^{2\pi i x}$.
+\end{enumerate}
+\vspace{1em}
+
+\begin{center}\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    view={40}{40}
+]
+\addplot3 [
+    surf, shader=faceted interp,
+    point meta=x,
+    colormap/blackwhite,
+    samples=40,
+    samples y=5,
+    z buffer=sort,
+    domain=0:360,
+    y domain=-0.5:0.5
+] (
+    {(1+0.5*y*cos(x/2)))*cos(x)},
+    {(1+0.5*y*cos(x/2)))*sin(x)},
+    {0.5*y*sin(x/2)});
+
+\addplot3 [
+    samples=50,
+    domain=-145:180,
+    samples y=0,
+    thick
+] (
+    {cos(x)},
+    {sin(x)},
+    {0});
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{question}
+
+\begin{question}Sea $M$ una variedad diferencial y $\pi:E\to M$ un fibrado vectorial y sea $n$ la dimensión de las fibras.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que $\pi:E\to M$ es el fibrado trivial si y sólo si existen secciones $s_1,\ldots,s_n$ tales que $(s_1(p),\ldots,s_n(p))$ es una base de $\pi^{-1}(p)$ para cada $p\in M$.
+
+\item Probar que el fibrado tautológico nunca es trivial.
+
+\noindent Sugerencia: probar que toda sección del fibrado tautológico debe anularse.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Diremos que una variedad es \textit{paralelizable} si su fibrado tangente es trivial. Probar que $S^1, S^3$ y $T^n=S^1\times\cdots\times S^1$ son paralelizables. Probar que $S^2$ no es paralelizable.
+\end{question}
+
+
+\textsl{\textbf{Álgebra de campos}}
+
+\begin{question}
+Consideremos el anillo $\RR[\eps]=\RR[x]/(x^2)$ Probar que $T_p M$ se puede identificar con los morfismos de anillos $$\mathscr{D}_p(M)\to\RR[\eps]$$ donde $\mathscr{D}_p(M)$ es el anillo de gérmenes de funciones en $p$.
+\end{question}
+
+\begin{question}
+Consideremos el conjunto de $\RR$-derivaciones de $\mathscr{C}^\infty(M,\RR)$, $$\mathrm{Der}_\RR(\mathscr{C}^\infty(M,\RR)) = \{D\in\mathrm{End}_\RR(\mathscr{C}^\infty(M,\RR)) : D(fg) = fD(g)+gD(f)\}.$$ Probar que $\mathrm{Der}_\RR(\mathscr{C}^\infty(M,\RR)) \simeq \mathrm{Hom}_{\RR-alg}(\mathscr{C}^\infty(M,\RR),\mathscr{C}^\infty(M,\RR)\otimes_\RR \RR[\eps])$.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad y $U\subseteq M$ un abierto. El conjunto de \textit{campos tangentes sobre $U$} se define como $$\mathfrak{X}(U) = \{X\in\mathscr{C}^\infty(U,TM): \pi\circ X = \id\}.$$ Probar que
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que $\mathfrak{X}(U)$ es un $\mathscr{C}^\infty(U,\RR)$-módulo.
+\item Probar que para todo punto $p\in M$ existe un entorno $U$ de $p$ tal que $\mathfrak{X}(U)$ es un $\mathscr{C}^\infty(U,\RR)$-módulo libre. ¿Cuál es el rango de este módulo?
+\item Probar que $M$ es paralelizable si y sólo si $\mathfrak{X}(M)$ es un $\mathscr{C}^\infty(M,\RR)$-módulo libre.
+\end{enumerate}
+\end{question}
+
+\end{document}

@@ -1,0 +1,582 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{mytheorem}{Theorem}
+%
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheorem{proposition}[theorem]{Proposici\'on}
+
+\newtheorem{corollary}[theorem]{Corolario}
+
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+\usepackage[auto-label]{exsheets}[2015/07/04]
+
+\DeclareInstance{exsheets-heading}{myblock}{default}{
+	attach = {
+		main[l,vc]title[l,vc](0pt,0pt) ;
+		main[r,vc]points[l,vc](\marginparsep,0pt)
+	} ,
+	title-post-code = \bfseries\space
+	a la pregunta \GetQuestionProperty{ref}{\CurrentQuestionID}
+}
+
+\usepackage{hyperref}
+
+\def\questionName{Ejercicio}
+\def\solutionName{Soluci\'on}
+
+\SetupExSheets{
+    headings=block-subtitle,
+    question/name=\questionName,
+    question/pre-hook = \addcontentsline{toc}{subsection}{
+        \questionName\space\thequestion.
+        },
+    solution/name=\solutionName,
+    solution/pre-hook = \addcontentsline{toc}{subsection}{
+    	\solutionName\space\thequestion.
+		}
+    }
+
+
+
+\begin{document}
+
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf An\'alisis Funcional}
+	\centerline{\sc Final}
+	\centerline{\sc Axel Sirota}
+	
+	\tableofcontents
+	\newpage
+	
+\section{Problemas}
+
+\begin{question}
+	Probar que los siguientes conjuntos tienen una estructura de variedad diferencial, exhibir un atlas y hallar la dimensi\'on en cada caso.
+	\begin{enumerate}
+		\item Un espacio vectorial $V$ sobre $\R$.
+		\item La esfera $S^n\subseteq\R^{n+1}$.
+		\item El espacio proyectivo $\mathbb{P}^n(\R) = S^n / \sim$, donde $x\sim y$ si $x=- y$.
+		\item El toro $T_n = S^1\times\cdots\times S^1$.
+		\item El cilindro $\{(x,y,z)\in\R^3:x^2+y^2=1\}$.
+		\item El grupo general lineal $\mathrm{GL}_n(\R)=\{A\in\mathrm{M}_n(\R):\det(A)\neq 0\}$.
+		\item El grupo especial lineal $\mathrm{SL}_n(\R)=\{A\in\mathrm{M}_n(\R):\det(A)=1\}$.
+		\item El grupo ortogonal $\mathrm{O}_n(\R) = \{A\in\mathrm{M}_n(\R):A\cdot A^\intercal=1\}$.
+		\item El grupo especial ortogonal $\mathrm{SO}_n(\R)=\{A\in\mathrm{O}_n(\R) : \det(A)=1\}$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	Vayamos por partes:
+	
+	\begin{enumerate}
+		\item Sea $d$ la dimensi\'on de $V$, luego fijada una base $\B=\sett{v_1, \dots , v_d} \subset V$ existe un isomorfismo $T:V \rightarrow \R^d$ dado por $T(x^1v_1 + \dots + x^dv_d) = (x^1, \dots , x^d)$, por lo tanto notemos que $\A = \sett{(V, T)}$ es una atlas sobre $V$ por \'algebra lineal. Finalmente como $V \simeq \R^d$ como espacios topol\'ogicos entonces $V$ es Haussdorf y tiene base numerable. Conclu\'imos que $V$ es una variedad de dimensi\'on $d$
+		
+		\item Por ser subespacio de $\R^{n+1}$ sabemos que $S^{n}$ es Haussdorf y tiene base numerable por lo que debemos exhibir un conjunto de cartas diferencialmente compatibles. 
+		
+		Pensando en esto, consideremos $f_i^+ = (x^1, \dots, x^{i-1}, \sqrt{1-(x^1)^2 - \dots - (x^n)^2} ,x^{i+1}, \dots , x^{n})$ y $f_i^- = -f_i^+$, $U_i^+ = \sett{x \in B_1(0) \tq x_i > 0}$, $U_i^- = \sett{x \in B_1(0) \tq x_i < 0}$, $\pi_i(x^1, \dots, x^{n+1}) = \left(x^1, \dots , x^{i-1}, x^{i+1}, \dots, x^{n+1}\right)$ y finalmente $V_i^+ = f_i^+(U_i^+)$ y $V_i^- = f_i^- (U_i^-)$. Afirmo que $\A = \sett{(V_i^+, \pi_i), (V_i^-, \pi_i) \tq 1 \leq i \leq n+1}$ es un atlas para $S^n$.
+		
+		En efecto, fijado $V^j_i$ ($j \in \sett{+,-}$) entonces $\pi_i: V^j_i \rightarrow U^j_i$ es homeomorfismo con inversa $f^j_i$ y finalmente donde tenga sentido como todas las funciones son suaves la composicion $\pi_k \circ f^j_i$ es suave.
+		  
+		\item Notemos que si $\B$ es la base contable de bolas de centro y radio racional en $\R^{n+1}$ entonces sabemos que $\B \cap S^{n}$ es una base contable de $S^n$. Finalmente es un ejrcicio de topolog\'ia ver que $q(\B \cap S^n)$ es una base contable de $\mathbb{P}^n$.
+		
+		Por otro lado, si $[x] \neq [y] \in \mathbb{P}^n$ entonces notemos que $q^{-1}([x]) = \sett{x,-x}, q^{-1}([y]) = \sett{y,-y}$, como $S^n$ es Haussdorf entonces existe $U \ni x, V \ni y$ tal que $U \cap V = \emptyset$. Notemos que como $y \neq \pm x$ entonces existe $\tilde{V} \subset V, \tilde{U} \subset U$ tal que $\sett{x,-x} \subset \tilde{U} \cup -\tilde{U}, \sett{y,-y} \subset \tilde{V} \cup -\tilde{V}$ pero que ambos son entornos disjuntos. Conclu\'imos que  $[U] \ni [x], [V] \ni [y]$ son entornos abiertos disjuntos pues su preimagen es la uni\'on de abiertos.
+		
+		Para encontrar un atlas, sea $U_i = \sett{x \in \mathbb{P}^{n} \tq x^i \neq 0}$ que es un entorno abierto de $\mathbb{P}^n$ y consideremos $\phi_i : U_i \rightarrow \R^{n}$ dado por $\phi_i([x^1:\dots:x^i\dots:x^{n+1}]) = (\frac{x^1}{x^i}, \dots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \dots, \frac{x^{n+1}}{x^i})$ con inversa $\psi_i : \R^n \rightarrow U_i$ dada por $\psi_i(x^1, \dots, x^{i-1}, x^{i+1}, \dots, x^n) = [x^1 : \dots : x^{i-1}:1:x^{i+1}: \dots : x^n]$. Es muy simple ver usando la propiedad universal del cociente y a mano para el otro lado que estas son inversas y continuas, por lo cual son homeomorfismos y falta ver la compatibilidad suave.
+		
+		En pos de esto, sea $i < j$ y consideremos $\phi_i \circ \psi_j : \phi_j(U_i \cap U_j) \rightarrow \phi_i(U_i \cap U_j)$:
+		\small
+		\begin{equation*}
+			\begin{aligned}
+			\phi_i \circ \psi_j (x^1, \dots, x^{i-1}, x^{i}, x^{i+1}, \dots, x^{j-1}, x^{j+1}, \dots , x^n) = & \phi_i([x^1:\dots:x^{i-1}:x^{i}:x^{i+1}:\dots:x^{j-1}:1:x^{j+1}:\dots:x^n]) \\
+			= &  (\frac{x^1}{x^i}, \dots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \dots, \frac{x^j-1}{x^i}, \frac{1}{x^i}, \frac{x^{j+1}}{x^i}, \dots, \frac{x^n}{x^i})
+			\end{aligned}
+		\end{equation*}
+		\normalsize
+		Que es trivialmente diferenciable.
+		
+		\item  Va a ser trivial consecuencia que producto de variedades es variedad 
+		
+		\item Idem antes
+		
+		\item Es trivial que $\mathrm{GL}_n(\R) \subset \mathrm{M}_n(\R)$ pues $det: \mathrm{M}_n(\R) \rightarrow \R$ es continua y $\mathrm{GL}_n(\R) = det^{-1}(\R^{\ast})$, por lo tanto esto quedara probado cuando en el proximo ejercicio veamos que los abiertos son variedades de la misma dimensi\'on.
+		
+		\item Asumamos el resultado del problema 12 por ahora, entonces afirmo que si consideramos $\det: \mathrm{GL}_n(\R) \rightarrow \R$ entonces afirmo que $1$ es un valor regular de $\det$, con lo que conclu\'imos que $\mathrm{SL}_n(\R)$ es variedad de dimensi\'on $n^2 -1$
+		
+		En efecto, si $A \in \mathrm{GL}_n(\R) $ notemos que:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\det (A) = & \sum_{i=1}^{n}{(-1)^{i+1}a_{i,1}M_{i,1}} \\
+				\Longrightarrow \quad \dfrac{\partial \det (A)}{\partial a_{i,j}} = & {(-1)^{i+1}M_{i,1}}
+			\end{aligned}
+		\end{equation*}
+		
+		Por lo tanto conclu\'imos que $D(\det)(A) = 0$ si y s\'olo si $M_{i,1} = 0$ para todo $i$ si y s\'olo si $\det (A) = 0$
+		
+		\item Sea $f:  \mathrm{M}_n(\R) :  \mathrm{S}_n(\R)$ dada por $f(A) = AA^t$ que es trivialmente una aplicacion diferenciable entre espacios vectoriales; nuevamente si asumimos el ejercicio 12 para probar que $ \mathrm{O}_n(\R)$ es una variedad de dimensi\'on $n^2 - \dfrac{n(n+1)}{2} = \dfrac{n(n-1)}{2}$ tenemos que ver que $Id_n$ es una valor regular de $f$.
+		
+		En efecto, sea $A \in f^{-1}(Id_n)$ y $B \in  \mathrm{M}_n(\R)$, luego:
+		
+		\begin{equation*}
+			\begin{aligned}
+				d_A(f)(B) = & \lim\limits_{h \rightarrow 0 }{\dfrac{f(A+hB) - f(A)}{h}} \\
+				= & \lim\limits_{h \rightarrow 0 }{\dfrac{(A+hB)(A+hB)^t - AA^T}{h}} \\
+				= & \lim\limits_{h \rightarrow 0 }{\dfrac{(A+hB)(A^t+hB^t) - AA^T}{h}} \\
+				= & \lim\limits_{h \rightarrow 0 }{\dfrac{AA^t+hBA^t + hAB^t + h^2BB^t - AA^T}{h}} \\
+				= & AB^t + BA^t
+			\end{aligned}
+		\end{equation*}
+		
+		Es claro que esta aplicaci\'on es suryectiva pues dado $C \in \mathrm{S}_n(\R)$ entonces si $B = \dfrac{CA}{2}$ entonces $d_A(f)(B) = AB^t + BA^t = \frac{AA^tC^t}{2} + \frac{CAA^t}{2} = \frac{C+C^t}{2} = \frac{2C}{2} = C$; luego $Id_n$ es un valor regular de $f$.
+		
+		\item Es claro que $\mathrm{SL}_n(\R) \subset \mathrm{O}_n(\R)$ es un conjunto abierto pues es $\det^{-1}(\R^{\ast}) \cap \mathrm{O}_n(\R)$, luego si asumimos el ejercicio siguiente conclu\'imos que $\mathrm{SL}_n(\R)$ es una variedad de dimensi\'on $\dfrac{n(n-1)}{2}$
+		
+	\end{enumerate}
+	.\qed
+	
+\end{solution}
+
+\begin{question}
+	Sea $M$ una variedad diferencial de dimensi\'on $d$ y sea $U\subseteq M$ abierto. 
+	\begin{enumerate}
+		\item Probar que $U$ hereda una estructura de variedad con $\dim(U)=\dim(M)$ y que la inclusi\'on $U\hookrightarrow M$ es diferenciable para esa estructura.
+		\item Probar que un subconjunto $S\subseteq M$ (con la topolog\'ia subespacio) es una variedad de dimensi\'on $d$ si y s\'olo si $S$ es abierto en $M$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	Vayamos de a uno:
+	
+	\begin{enumerate}
+		\item Dado que $U \subset M$ es subespacio entonces de topolog\'ia sabemos que $U$ es Haussdorf y admite base numerable; es m\'as notemos que si $\A = \sett{(U_i, \phi_i)}_{i \in I}$ es un atlas para $M$ entonces $\sett{(U_i \cap U, \phi_i \vert_{U})}_{i \in I}$ es un atlas para $U$.
+		
+		En efecto, como $\Bigcup{i \in I}{U_i} = M$ entonces $\Bigcup{i \in I}{U_i \cap U} = U$ y ademas como $\phi_i$ son homeomorfismos entonces $\phi_i\vert_{U}$ tambi\'en lo son. Finalmente como $\phi_j \circ \phi_i^{-1} : \phi_i(U_i \cap U_j) \rightarrow \phi_j(U_i \cap U_j)$ es suave entonces $\phi_j \vert_{U} \circ \phi_i^{-1} \vert_U = \phi_j \circ \phi_i^{-1} : \phi_i(U_i \cap U_j \cap U) \rightarrow \phi_j(U_i \cap U_j \cap U) $ tambi\'en lo es.
+		
+		Finalmente, para ver que $i : U \inc M$ es diferenciable tenemos que ver que $\phi_j \circ i \circ \left(\phi_i \vert_{U}\right)^{-1}$ es diferenciable para todos $i,j$, pero:
+		
+		\begin{equation*}
+			\phi_j \circ i \circ \left(\phi_i \vert_{U}\right)^{-1} = \phi_j \circ i \circ \left(\phi_i \right)^{-1} = \phi_j \circ \left(\phi_i \right)^{-1}
+		\end{equation*}
+		
+		Que ya era diferenciable por ser $\A$ atlas.
+		
+		\item Rec\'iprocamente, supongamos que $S$ es una variedad de $\dim = d$, luego si $\mathcal{S} = \sett{s_i}$ es un atlas de $S$ y $\A = \sett{\phi_i}$ es un atlas de $M$ entonces $\phi_j \circ i \circ s_i^{-1}: U \subset \R^n \rightarrow V \subset \R^n$ es una funci\'on continua e inyectiva, luego por invariance de dominio es abierta por lo que $i(S) = S$ es abierto.(Notemos que lo demostramos para una variedad topol\'ogica arbitraria, en el caso suave podemos recurrir a que $rk (i)$ es completo y por teorema de la funci\\on inversa tenemos un difeomorfismo local) \qed
+		
+	\end{enumerate}
+	
+\end{solution}
+
+\begin{question}
+	Sea $M$ una variedad diferencial conexa. Probar que para cada par de puntos $p,q\in M$ existe un camino suave $c:[0,1]\to M$ que los une (es decir, $c$ es una funci\'on continua en $[0,1]$, diferenciable en $(0,1)$, y $c(0)=p$, $c(1)=q$).
+\end{question}
+
+\begin{solution}
+	Veamos primero el siguiente resultado \'util:
+	
+	\begin{proposition}
+		
+		\label{Existe una base de bolas regulares}
+		
+		Sea $M$ una variedad diferenciable de dimensi\'on $d$, luego existe una base $\B = \sett{B_n}_{n \in \N}$ con la propiedad que para cada $B_n$ existe una carta $\phi$ tal que $\phi(B_n) = B_r(0)$ para alg\'un $r$. Es m\'as dicha base se la puede tomar de modo que dado $B_n$ existe una carta $(B', \phi)$ con $B' \supset \overline{B_n}$ y $r <r'$ tal que:
+		
+		\begin{equation*}
+			\phi(B) = B_r(0) \quad \phi(\overline{B}) = \overline{B_r(0)} \quad \phi(B') = B_{r'}(0)
+		\end{equation*} 
+				
+	\end{proposition}
+	
+	\begin{proof}
+		Supongamos primero que existe una \'unica carta $\phi:M \rightarrow \tilde{U}$ y consideremos:
+		
+		\begin{equation*}
+		\B = \sett{B_r(x) \tq r \in \Q, \ x \in \Q^{d} , \ B_{r'}(x) \subset \tilde{U}}
+		\end{equation*}
+		
+		Notemos entonces que $\phi^{-1}(\B)$ cumple que es una base contable que cumple lo pedido pues $\phi$ es un homeomorfismo.
+		
+		Ahora sea $M$ una variedad arbitraria y consideremos $\A = \sett{(U_i, \phi_i)}_{i \in I}$ su atlas, luego como $M$ admite base numerable existe un subcubrimiento abierto $\A' = \sett{U_n, \phi_n}_{n \in \N}$ de $M$ y por lo anteriormente demostrado cada $U_i$ (que ya probamos que era variedad) admite una base numerable $\B_n^{k}$ con las caracter\'isticas pedidas. Consideremos $\B = \Bigcup{n,k \in \N}{B_{n}^{k}}$ que es base numerable luego si $V \in \B$ entonces $V \subset U_n$ para alg\'un $n$ y conclu\'imos que existe $(B,\phi)$ carta con los requerimientos; conclu\'imos que $\B$ es la base pedida.\qed
+		
+	\end{proof}
+	
+	Ahora si notemos que como cada $V \in \B$ es localmente conexa (por ser homeomorfa a una bola de $\R^n$) entonces es conexa por el arco si y s\'olo si es conexa. 
+	
+	A continuaci\'on, dados $x \neq y \in M$ entonces existe $\gamma$ camino continuo y como $[0,1]$ es compacto existe finitos $V_1, \dots , V_n \in \B$ tal que $\gamma([0,1]) \subset \Bigcup{1 \leq i \leq n}{V_i}$; como $V_i \in \B$ podemos tomar $\tilde{V}_i \subset V_i$ para todo $i$ tal que $\gamma([0,1]) \subset \Bigcup{1 \leq i \leq n}{\tilde{V}_i}$ y $\tilde{V}_i \cap \tilde{V}_{i+1} = \sett{x_{i}}$ pues los achico en el sentido de tomar los que en su imagen den bolas de radio menor. 
+	
+	Finalmente notemos que dados $x_i, x_{i+1}$ existe un camino suave $\alpha_i$ entre $\phi_{i+1}(x_i), \phi_{i+1}(x_{i+1}) \in \R^d$ por teorema de existencia y unicidad de curvas, por lo que $\phi_{i+1}^{-1}(\alpha)$ es un camino trivialmente suave (componiendo con la carta queda la misma $\alpha$) entre $x_i, x_{i+1}$. Concatenando las curvas obtenidasd obtenemos el camino suave entre $x = x_{1}$ e $y = x_{n+1}$. \qed
+	
+\end{solution}
+
+\begin{question}
+	Sean $M,N$ variedades diferenciales. Probar que una funci\'on $f:M\to N$ es diferenciable si y s\'olo si $g\circ f:M\to\R$ es diferenciable para toda $g:N\to\R$ diferenciable.
+\end{question}
+
+\begin{solution}
+	Supongamos que $f$ es diferenciable, entonces dado $p \in M$ existe $(U, \phi)$ carta en $M$ y $(V,\psi)$ carta en $N$ con $f(U) \subset V$ tal que $\psi \circ f \circ \phi{-1}: \phi(U) \rightarrow \psi(V)$ es diferenciable. Asimismo por ser $g$ diferenciable entonces dada $(V,\psi)$ sabemos que $g \circ \psi^{-1} : \psi(V) \rightarrow \R$ es diferenciable, por lo tanto $g \circ \psi^{-1} \circ \psi \circ f \circ \phi{-1} = g \circ f \circ \phi{-1}$ es diferenciable y conclu\'imos que $g \circ f$ es diferenciable. Notemos que usamos el resultado de la teorica que es equivalente pedir que existan un par de cartas conla condici\'on de diferenciabilidad a que para todos las cartas valga.
+	
+	Rec\'iprocamente, como $g \circ f$ para toda $g: N \rightarrow \R$ diferenciable, podemos tomar $\pi_i :N \rightarrow \R$ dada por $\pi_i(x^1, \dots, x^d) = x^i$ y como esta es diferenciable sabemos que $\pi_i \circ f = f^i$ es diferenciable. Como $f^i$ es diferenciable para cada $1 \leq i \leq d$ entonces $f$ es diferenciable. \qed
+	
+\end{solution}
+
+\begin{question}
+	Sea $M$ una variedad diferencial y $\pi:S^n\to\mathbb{P}^n(\R)$ la proyecci\'on can\'onica. Probar que $f:\mathbb{P}^n(\R)\to M$ es diferenciable si y s\'olo si $f\circ p:S^n\to M$ es diferenciable. Comparar el rango de $f$ con el de $f\circ p$.
+\end{question}
+
+\begin{solution}
+	Veamoslo en dos partes, primero veamos que $\pi: S^n\to\mathbb{P}^n(\R)$ es una submersi\'on suryectiva.
+	
+	\begin{lemma}
+		$\pi:S^n\to\mathbb{P}^n(\R)$ es una submersi\'on suryectiva
+	\end{lemma}
+	
+	\begin{proof}
+		Es trivial que es suryectiva y si consideramos una carta $(V^{i}_{j}, \pi_i)$ de $S^n$ y $(U_k, \phi_k)$  donde $k$ es tal que $\pi \circ \pi_i^{-1} (U_{j}^{i}) \subset U_k$, entonces $\phi_k \circ \pi \circ \pi_i^{-1} : U_{j}^{i} \rightarrow \phi_k(U_k)$ esta dada por (supongamos $j = +$):
+		
+		\begin{equation*}
+			\begin{aligned}
+				\phi_k \circ \pi \circ \pi_i^{-1}(x^1, \dots , x^n) = & g \circ \pi \circ \left(f^i_+\right) (x^1, \dots, x^{i-1}, x^{i+1} , \dots, x^n) \\ 
+				= & \phi_k \circ \pi \left( x^1 , \dots , x^{i-1}, \sqrt{1-(x^{1})^2 - \dots - (x^n)^2}, x^{i+1}, \dots, x^n\right) \\
+				= & \phi_k([x^1 : \dots : x^{i-1}: \sqrt{1-(x^{1})^2 - \dots - (x^n)^2}: x^{i+1}: \dots: x^n]) \\
+				= & \left( \frac{x^1}{x^k} , \dots , \frac{x^{i-1}}{x^k}, \frac{\sqrt{1-(x^{1})^2 - \dots - (x^n)^2}, x^{i+1}}{x^k}, \dots, \frac{x^{k-1}}{x^k}, \frac{x^{k+1}}{x^k}, \dots , \frac{x^n}{x^k}\right) \in \mathscr{C}^\infty(\R^n)
+			\end{aligned}
+		\end{equation*}
+		
+		Finalmente de lo mismo notemos que:
+		
+		\begin{equation*}
+			D(\pi) (x) = \left[\begin{array}{cccccc} \frac{1}{x_k} & \dots & \dots & -\frac{x_1}{x_k^2} & \dots & 0\\
+			 0 & \frac{1}{x_k} & \dots & -\frac{x_2}{x_k^2} & \dots & 0\\ \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\  0 & \dots &  \dots & -\frac{x_n}{x_k^2} & \dots & \frac{1}{x_k}\end{array}\right].
+		\end{equation*}
+		
+		Que tiene rango $n$, por lo tanto resulta que $\pi:S^n\to\mathbb{P}^n(\R)$ es una submersi\'on suryectiva.\qed
+		
+	\end{proof}
+	
+	Recordemos el siguiente resultado:
+	
+	\begin{theorem}[Teorema del Rango constante]
+		\label{Teorema del rango constante}
+		Sean $M,N$ de dimensiones $m,n$ respectivamente y sea $F : M \rightarrow N$ una funci\'on suave de rango constante $r$. Entonces para cada $p \in M$ existen cartas $(U,\phi)$ de $M$ centrada en $p$ y $(V, \psi)$ de $N$ centrada en $F(p)$ tal que $F(U) \subset V$ y:
+		
+		\begin{equation*}
+			\psi \circ F \circ \phi^{-1} (x^1, \dots , x^r, x^{r+1}, \dots, x^m) = (x^1,  \dots , x^r, 0 \dots , 0)
+		\end{equation*}
+		
+	\end{theorem}
+	
+	Ahora veamos la existencia local de secciones:
+	
+	\begin{proposition}
+		Sean $M,N$ variedades  y $\pi : M \rightarrow N$ suave, luego $\pi$ es una submersi\'on si y s\'olo si para todo $p \in M$ existe una secci\'on local
+	\end{proposition}
+	
+	\begin{proof}
+		Si $\pi$ es una submersi\'on dado $p \in M$ sea $q = \pi(p)$, luego por \ref{Teorema del rango constante} existen cartas $(U,\phi)$ de $M$ centrada en $p$ y $(V, \psi)$ de $N$ centrada en $q$ tal que:
+		
+		\begin{equation*}
+			\psi \circ \pi \circ \phi^{-1}\left(x^1, \dots, x^n, x^{n+1}, \dots , x^m\right) = (x^1 , \dots , x^n)
+		\end{equation*}
+		
+		Luego tomemos $\epsilon> 0$ tal que $C_{\epsilon} = \sett{x \tq \abs{x^i} < \epsilon \ 1 \leq  i \leq m} \subset U$ sea un entorno de $p$ que cumpla que $\pi(C_{\epsilon}) = C'_{\epsilon} = \sett{y \tq \abs{y^i} < \epsilon \ 1 \leq i \leq n} \subset V$ sea un entorno de $q$. Con estos entornos sea $\sigma : C'_{\epsilon} \rightarrow C_{\epsilon}$ dada por:
+		
+		\begin{equation*}
+			\sigma(x^1, \dots , x^n) = (x^1, \dots , x^n, 0, \dots , 0)
+		\end{equation*}
+		
+		y es claro que es suave, de rango constante y cumple que $\pi \circ \sigma = Id_{C_{\epsilon}}$.
+		
+		Rec\'iprocamente si $\pi \circ \sigma = Id_U$ entonces es claro que (veremos mas tarde) $d\pi_p \circ d\sigma_q = Id_q$ con lo que $d\pi_p$ es suryectiva. (Lo usaremos en el caso real donde basta usar $D(\pi)$ la diferencial total peor el resultado es abstracto tomando en cuesta la diferencial entre espacios tangentes.) \qed
+		
+	\end{proof}
+	
+	Finalmente probemos la siguiente proposici\'on
+	
+	\begin{proposition}[Propiedad universal de las submerciones suryectivas]
+		Sean $M,N$ variedades diferenciables y $\pi_M \rightarrow N$ una submersi\'on suryectiva, entonces para toda variedad diferenciable $P$ una funci\'on $F:N \rightarrow P$ es suave si y s\'olo si $F \circ \pi$ es suave.
+	\end{proposition}
+	
+	\begin{proof}
+		Si $F$ es suave entonces $F \circ \pi$ es suave.
+		
+		Rec\'iprocamente, si $F \circ \pi$ es suave, sea $q \in N$ y sea $p \in \pi^{-1}(q)$, luego por el resultado previo existe $U \ni q$ entorno abierta y $\sigma : U \rightarrow M$ suave tal que $\sigma(q) = p$ y $\pi \circ \sigma = Id_U$; finalmente notemos que:
+		
+		\begin{equation*}
+			F \vert_U = F \vert_U \circ Id_U = F \circ \pi \circ \sigma = (F \circ \pi) \circ \sigma
+		\end{equation*}
+		
+		Que es composici\'on de suaves, por lo tanto $F$ es suave en todo entorno $U$, conclu\'imos que $F$ es suave.\qed
+		
+	\end{proof}
+	
+	Por todo lo visto queda resuelto el punto. Finalmente es trivial usando la regla de la cadena $F(f \circ p) (q) = D(f)(p) \circ \underbrace{D(p)}_{rg(p)=n}(q)$ por lo que el rango de $f$ es el mismo que el rango de $f \circ p$ pues $p$ es submersi\'on. \qed
+	
+\end{solution}
+
+\begin{question}
+	Sea $M$ una variedad diferencial de dimensi\'on $d$ y $(U,\phi)$ una carta de $M$.
+	\begin{enumerate}
+		\item Probar que si $V\subseteq U$ es un abierto, entonces $(V,\left.\phi\right|_V)$ es una carta compatible de $M$.
+		\item Probar que si $f:\phi(U)\to V\subseteq\R^d$ es un difeomorfismo, $(U,f\circ\phi)$ es una carta compatible de $M$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	Vayamos por partes:
+	
+	\begin{enumerate}
+		\item Resuelto arriba
+		\item Trivial \qed
+	\end{enumerate}
+	
+\end{solution}
+
+\begin{question}
+	Sea $M$ una variedad diferencial de dimensi\'on $d$.
+	\begin{enumerate}
+		\item Probar que $M$ admite un atlas $\mathscr{A}=\{(U_i,\phi_i):i\in I\}$ tal que para todo $i\in I$ se tiene que $\phi_i(U_i)$ es un abierto acotado de $\R^d$.
+		\item Probar que $M$ admite un atlas $\mathscr{B}=\{(V_j,\psi_j):j\in J\}$ tal que para todo $j\in J$ se tiene que $\psi_j(V_i)=\R^d$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	Notemos que resolvimos arriba ambos en \ref{Existe una base de bolas regulares} si consideramos luego que existe el obvio difeomorfismo $f : B_r(x) \rightarrow \R^d$ para todos $r> 0 $ y $x \in \R^d$. \qed
+\end{solution}
+
+\begin{question}
+	Considerar en $\R$ las cartas $(\R,id)$ y $(\R,\phi)$ donde $\phi(t)=t^3$. Probar que las dos cartas no son compatibles pero que las variedades definidas por el atlas formado por cada una de las cartas son difeomorfas.
+\end{question}
+
+\begin{question}
+	Sea $M$ la imagen de la funci\'on $f:(0,2\pi)\to\R^2$ donde $f(t)=(\sin(t),\sin(2t))$ con la estructura inducida por la carta $(M,f^{-1})$. Probar que la funci\'on $F:M\to M$ definida por $F(x,y)=(x,-y)$ no es diferenciable.
+	
+\end{question}
+
+\begin{question}
+	Probar que $SO_3(\R)$ es difeomorfo al espacio proyectivo $\mathbb{P}^3(\R)$.
+\end{question}
+
+\begin{question}
+	Probar que $\R$ y $S^1$ son las \'unicas variedades diferenciales conexas de dimensi\'on $1$ salvo difeomorfismo.
+\end{question}
+
+
+
+\begin{question}\textbf{Preimagen de valor regular:} Sean $U\subseteq\R^n$ un abierto y $F:U\to\R^m$ ($n\geq m$) una funci\'on diferenciable tal que $c\in\R^m$ es un valor regular de $F$ (es decir, para cada punto $x\in U$ con $F(x)=c$ el rango de $\mathrm{D}F(x)$ es $m$). Probar que $M=F^{-1}(c)$ es una variedad de dimensi\'on $n-m$ y la inclusi\'on $M\hookrightarrow U$ es diferenciable.
+\end{question}
+
+\begin{question}\textbf{Producto cartesiano:} Sean $M$ y $N$ variedades diferenciales.
+	\begin{enumerate}
+		\item Probar que el producto cartesiano $M\times N$ es naturalmente una variedad diferencial con $\dim(M\times N)=\dim(M)+\dim(N)$ y que las proyecciones can\'onicas $\pi_1:M\times N\to M$ y $\pi_2:M\times N\to N$ son diferenciables. 
+		
+		\item El producto de variedades diferenciales est\'a caracterizado por la siguiente \textit{propiedad universal}: Si $P$ es una variedad diferencial junto con funciones diferenciables $p_1:P\to M, p_2:P\to N$ entonces existe una \'unica funci\'on diferenciable $f:P\to M\times N$ tal que $\pi_1\circ f = p_1$ y $\pi_2\circ f = p_2$.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	\textbf{Pegado de variedades:} Sea $(M_i)_{i\in I}$ una familia numerable de variedades diferenciales, todas de dimensi\'on $n$. Supongamos que para cada par $i\neq j$ est\'an dados: dos abiertos $U_{ij}\subseteq M_i$ y $U_{ji}\subseteq M_j$, y un difeomorfismo $f_{ij}:U_{ij}\to U_{ji}$ que no puede extenderse continuamente a ning\'un punto de $\partial U_{ij}$, tales que se satisfacen las siguientes propiedades:
+	\begin{itemize}
+		\item $f_{ji}=f_{ij}^{-1}$.
+		\item $f_{ij}(U_{ij}\cap U_{ik}) = U_{ji}\cap U_{jk}$.
+		\item $f_{ik} = f_{jk}\circ f_{ij}$ en $U_{ij}\cap U_{ik}$.
+	\end{itemize}
+	
+	Mostrar que existe una variedad diferencial $M$ y morfismos $\psi_i:M_i\to M$ tales que $\psi_i$ es un difeomorfismo entre $M_i$ y un abierto de $M$ y
+	\begin{enumerate}
+		\item los abiertos $\psi_i(M_i)$ cubren $M$,
+		\item $\psi_i(U_{ij})=\psi_i(M_i)\cap\psi_j(M_j)$,
+		\item $\psi_i=\psi_j\circ f_{ij}$ en $U_{ij}$.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	\textbf{Suma conexa de variedades:} Sean $M$ y $N$ dos variedades conexas de la misma dimensi\'on $d$. Se consideran cartas $(U,\phi)$ y $(V,\psi)$ de $M$ y $N$ respectivamente tales que $\phi(U)=\psi(V)=B(0,1)$ y pongamos $p=\phi^{-1}(0)$ y $q=\psi^{-1}(0)$. Definimos una nueva variedad $M\# N$ como el pegado de $M\smallsetminus\{p\}$ y $N\smallsetminus\{q\}$ por los abiertos $U$ y $V$ a trav\'es del difeomorfismo $f:U\to V$ determinado por la ecuaci\'on $$\psi f\phi^{-1}(x)=\dfrac{1-\norm{x}}{\norm{x}} x \;\;\forall x\in B(0,1)\smallsetminus\{0\}.$$ La variedad $M\# N$ se llama la suma conexa de $M$ y $N$. Convencerse de que esta construcci\'on no depende de las cartas utilizadas.
+	
+	\noindent Probar que $M\# S^d$ es difeomorfa a $M$ y que la operaci\'on $\#$ es conmutativa y asociativa.
+	\vspace{1em}
+	
+	\noindent \textit{Observaci\'on:} Se puede probar que cualquier variedad compacta de dimensi\'on $2$ es difeomorfa a la esfera $S^2$, a la suma de $n$ toros $T\#\cdots\# T$ o a la suma de $n$ planos proyectivos $\mathbb{P}(\R)^2\#\cdots\#\mathbb{P}(\R)^2$. Es m\'as, estas variedades no son homeomorfas entre s\'{\i}.
+	
+	
+	
+\end{question}
+
+\begin{question}
+	\textbf{Cociente por la acci\'on de un grupo:} Sea $M$ una variedad diferencial y $G$ un grupo que act\'ua en $M$ por difeomorfismos: para cada $g\in G$ se tiene $\phi_g:M\to M$ difeomorfismo de modo que $\phi_{1_G}=1_M$ y $\phi_g\phi_h=\phi_{gh}$. Supongamos adem\'as que la acci\'on es propiamente discontinua (es decir, todo $p\in M$ est\'a contenido en un abierto $U$ tal que $\phi_g(U)\cap U=\emptyset$ para todo $g\neq 1_G$) y para todos $p,q\in M$ en distintas \'orbitas existen abiertos $U$ y $V$ que los contienen respectivamente tales que $\phi_g(U)\cap V = \emptyset$ para todo $g\in G$.
+	\begin{enumerate}
+		\item Probar que el conjunto de \'orbitas $M/G$ es una variedad diferencial con la estructura inducida por $M$, la proyecci\'on can\'onica $M\to M/G$ es diferenciable y $\dim(M)=\dim(M/G)$.
+		\item Expresar el espacio proyectivo $\mathbb{P}^n(\R)$ y el toro $n$-dimensional $T_n$ como cocientes $S^n/G$ y $\R^n/H$ para grupos y acciones convenientes.
+	\end{enumerate}
+\end{question}
+
+\textsl{\textbf{\'Algebras de funciones}}
+\vspace{1em}
+
+
+\begin{question}
+	Probar que $\mathscr{C}^\infty(M,\R)=\{f:M\to\R:f\text{ es diferenciable}\}$ es un anillo con la suma y el producto punto a punto. Probar que si $g:M\to N$ es diferenciable, entonces $g^*:\mathscr{C}^\infty(N,\R)\to\mathscr{C}^\infty(M,\R)$ es un morfismo de anillos.
+\end{question}
+
+\begin{question}
+	Dadas $M$ y $N$ variedades diferenciales compactas, probar que:
+	\begin{enumerate}
+		\item Los ideales maximales de $\mathscr{C}^\infty(M,\R)$ son de la forma $$\mathfrak{m}_p = \{f\in\mathscr{C}^\infty(M,\R): f(p)=0\}.$$
+		\item Todo morfismo de $\R$-\'algebras $\mathscr{C}^\infty(N,\R)\to\mathscr{C}^\infty(M,\R)$ viene de una funci\'on diferenciable $M\to N$.
+	\end{enumerate}
+	\vspace{1em}
+	
+	
+	\noindent \textit{Observaci\'on:} Por \textbf{a.} podemos recuperar la variedad $M$ como conjunto a partir de $\mathscr{C}^\infty(M,\R)$, por $\textbf{b.}$ tambi\'en recuperamos su estructura diferenciable. ¿Qu\'e pasa si $M$ y $N$ no son compactas? ¿Vale \textbf{b.} si s\'olo pedimos morfismo de anillos?
+\end{question}
+
+\begin{question}
+	Probar que el conjunto $\mathscr{D}_p(M)$ de g\'ermenes de funciones diferenciables a valores reales alrededor de un punto $p\in M$ es un anillo y si $g:M\to N$ es diferenciable entonces $g^*:\mathscr{D}_{g(p)}(N)\to\mathscr{D}_p(M)$ es un morfismo de anillos.
+\end{question}
+
+\begin{question}
+	Dado $p\in M$ probar que la aplicaci\'on cociente $f\mapsto\overline{f}$ da un isomorfismo de $\R$-\'algebras $$\mathscr{C}^\infty(M,\R)/\mathfrak{m}_p^0\to\mathscr{D}_p(M)$$ donde $\mathfrak{m}_p^0 = \{f\in\mathscr{C}^\infty(M,\R): f \text{ se anula en un entorno de } p\}$.
+	\vspace{1em}
+	
+	\noindent\textit{Observaci\'on}: Las $\R$-\'algebras $\mathscr{D}_p(M)$ son anillos locales cuyo \'unico ideal maximal son los g\'ermenes de funciones que se anulan en $p$. M\'as a\'un, $\mathscr{D}_p(M)$ es la localizaci\'on de $\mathscr{C}^\infty(M,\R)$ en el complemento del ideal maximal $\mathfrak{m}_p$.
+\end{question}
+
+\section{Soluciones}
+
+\SetupExSheets{headings=myblock}
+\printsolutions
+
+
+
+\end{document}

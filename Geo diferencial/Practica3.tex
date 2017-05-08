@@ -1,0 +1,273 @@
+\documentclass[12pt, a4paper]{amsart}
+
+\usepackage{picture}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath, exercise}
+\usepackage[activeacute, spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage[pdftex]{color, graphicx}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{pstricks}
+\usepackage[colorlinks=true]{hyperref}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+
+\usepackage{enumitem}
+
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{colormaps}
+\pgfplotsset{compat=1.13}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subfig}
+
+\newtheorem{teo}{Teorema}[]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\newtheorem*{propnonumber}{Proposición}
+
+\theoremstyle{definition}
+\newtheorem{prob}[teo]{Problema}
+\newtheorem{conj}[teo]{Conjectura}
+\newtheorem{defn}[teo]{Definición}
+\newtheorem{ax}[teo]{Axioma}
+\newtheorem{ex}[teo]{Ejemplo}
+\newtheorem{exer}[teo]{Ejercicio}
+
+\newtheorem*{obs}{Observación}
+\newtheorem*{com}{Comentario}
+\newtheorem*{defnonumber}{Definición}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\pint}[1]{\left\langle #1 \right\rangle}
+\newcommand{\tendsto}[1]{\xrightarrow{\smash{\raisebox{-2ex}{$\scriptstyle#1$}}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\renewcommand{\hom}{\mathrm{Hom}}
+
+\renewcommand{\hom}{\mathrm{Hom}}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\nil}{nil}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\sg}{sg}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\car}{car}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\rg}{rg}
+\def\acts{\curvearrowright}
+\def\stca{\curvearrowleft}
+
+\def\noteson{%
+\gdef\note##1{\marginpar[##1]{##1}}}
+\gdef\notesoff{\gdef\note##1{}}
+\noteson
+
+\renewcommand{\qed}{\hfill \mbox{\raggedright \rule{0.075in}{0.075in}}}
+\renewcommand{\thefootnote}{[\arabic{footnote}]}
+
+\usepackage{scrextend}% not needed with a KOMA-Script class, provides the
+                      % `addmargin' environment
+
+\usepackage[load-headings]{exsheets}
+\DeclareInstance{exsheets-heading}{mylist}{default}{
+  runin = true ,
+  attach = {
+    main[l,vc]number[l,vc](-2em,0pt) ; % 3em = indent of question body
+    main[r,vc]points[l,vc](\linewidth+\marginparsep,0pt)
+  }
+}
+
+\SetupExSheets{
+  headings = mylist , % use the new headings instance
+  headings-format = \textbf ,
+  counter-format = qu ,
+  counter-within = section
+}
+
+
+\usepackage{etoolbox}
+% 3em = indent of question body :
+\AtBeginEnvironment{question}{\addmargin[2em]{0em}}
+\AtEndEnvironment{question}{\endaddmargin}
+
+\usepackage{lipsum}
+
+\begin{document}
+
+\title{Geometría Diferencial -- 1er cuatrimestre 2017}
+\author{}
+% Remove command to get current date 
+\date{}
+\nocite{*}
+%\begin{abstract}
+%\end{abstract}
+\maketitle
+\begin{center}
+\section*{Práctica 3: Subvariedades, inmersiones y submersiones}
+\end{center}
+
+\begin{question}
+Sea $M$ una variedad de dimensión $d$ y sea $S\subseteq M$ un espacio con la topología subespacio. Probar que son equivalentes:
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Para cada $p\in S$ existe una carta local $(U,\phi)$ tal que $\phi(U)=V\times W$ donde $V\subseteq\RR^k$, $W\subseteq\RR^{d-k}$ son abiertos que contienen al origen y además se verifica que $\phi(U\cap S) = V\times\{0\}$.
+\item $S$ es una variedad diferenciable de dimensión $k$ y la inclusión $S\hookrightarrow M$ es un embedding.
+\end{enumerate}
+En esta situación, diremos que $S$ es una \textit{subvariedad} de $M$ de dimensión $k$.
+\end{question}
+
+\begin{question}Sean $M,N$ variedades diferenciables de dimensión $m$ y $n$ respectivamente. Supongamos que $f:M\to N$ una función diferenciable.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item \textbf{Teorema del rango constante:}  Si $f$ tiene rango constante $k$, para cada $p\in M$ existen cartas $(U,\phi)$ de un entorno de $p$ y $(V,\psi)$ de un entorno de $f(p)$ de modo que $f(U)\subseteq V$ y se verifica que $$\psi\, f\, \phi^{-1} (x_1,\ldots,x_m) = (x_1,\ldots,x_k,0,\ldots,0).$$
+
+\item Concluir que si $f:M\to N$ es una función diferenciable de rango constante $k$ entonces para todo $c\in N$ los conjuntos de nivel $f^{-1}(c)$ son subvariedades de $M$ de dimensión $m-k$.
+
+\item Más aún, si $f:M\to N$ es una función diferenciable y $c\in N$ es un \textit{valor regular} (es decir, para todo punto $p\in f^{-1}(c)$ tenemos que $\diff_p f:T_pM\to T_{f(p)}N$ es sobreyectiva) entonces $f^{-1}(c)$ es una subvariedad de $M$ de dimensión $m-n$. Además, probar que $T_p(f^{-1}(c)) \simeq \ker(\diff_p f:T_pM\to T_cN)$ para todo $p\in f^{-1}(c)$.
+\end{enumerate}
+\end{question}
+
+\begin{question}\vspace{-1.5em}\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que $S^n$ es una subvariedad de $\RR^{n+1}$.
+
+\item Probar que el cono sin el vértice $$\{(x,y,z)\in\RR^3:x^2+y^2=z^2\}\smallsetminus\{(0,0,0)\}$$ es una subvariedad de $\RR^3$. ¿Qué pasa si consideramos todo el cono?
+
+\item Probar que $\alpha:(0,2\pi)\to\RR^2$ definida por $\alpha(t)=(\cos(t),\sin(2t))$ es una inmersión pero no un embedding. Probar que la imagen de $\alpha$ no es una subvariedad de $\RR^2$.
+
+\item Probar que la superficie de revolución generada por cualquier curva regular en el plano $xz$ alrededor del eje $z$ es una subvariedad de $\RR^3$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sean $M$ y $N$ dos variedades diferenciables y sean $TM$ y $TN$ sus variedades tangentes asociadas. Probar que si $f:M\to N$ es un embedding
+entonces $\diff f:TM\to TN$ es un embedding. ¿Vale la recíproca?
+\end{question}
+
+\begin{question}
+Sean $M,N$ variedades diferenciables y $f:M\to N$ una inmersión inyectiva. Probar que si $f$ es cerrada entonces $f$ es un embedding. Concluir, bajo estas hipótesis, que si adicionalmente $M$ es compacta o $f$ es propia, entonces $f$ es un embedding.
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad compacta de dimensión $d$ y sea $f:M\to\RR^d$ una función diferenciable. Probar que $f$ no es regular. Concluir que no hay un embedding de una variedad compacta de dimensión $d$ en $\RR^d$.
+\end{question}
+
+\begin{question}El objetivo de este ejercicio es probar que aunque no es cierto que toda subvariedad se consigue como el conjunto de nivel de un valor regular, localmente sí es cierto.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item La función $\mathbb{P}^1(\RR) \to \mathbb{P}^2(\RR)$ definida por $(x:y)\mapsto(x:y:0)$ es un embedding y así su imagen $S$ es una subvariedad de $\mathbb{P}^2(\RR)$. Probar que no existe ninguna función diferenciable $g:\mathbb{P}^2(\RR)\to \RR$ que tenga al $0$ como valor regular y tal que $g^{-1}(0)=S$.
+\item Sea $S\subseteq M$ un subconjunto con la topología subespacio. Probar que $S$ es una subvariedad de dimensión $k$ de $M$ si y sólo si para cada punto $p\in S$ existe un entorno abierto $U\subseteq M$ tal que $U\cap S$ es el conjunto de nivel de una submersión $f:U\to\RR^{n-k}$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sean $M,N$ variedades diferenciables y $\pi:M\to N$ una submersión. Probar que $\pi$ es abierta. Más aún, probar que todo punto de $M$ está en la imagen de una sección local de $\pi$.
+\end{question}
+
+\begin{question}
+Sean $X,Y$ variedades diferenciables y $f:X\to Y$ una submersión sobreyectiva. Supongamos que $Y$ es conexo y $f^{-1}(y)$ es conexo para todo $y\in Y$. Probar que $X$ es conexo.
+\end{question}
+
+\begin{question}
+Sean $M$ y $N$ variedades de dimensión $d$, con $M$ compacta y $f:M\to N$ diferenciable.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que si $p\in N$ es valor regular, entonces $f^{-1}(p)$ es un conjunto finito.
+\item Probar que la asignación $p\mapsto \#f^{-1}(p)$ es localmente constante (donde $p$ recorre valores regulares de $f$).
+\end{enumerate}
+\end{question}
+
+\begin{question}
+\vspace{-1.5em}
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Sea $(U, \phi_N)$ la carta de $S^2$ dada por la proyección estereográfica. Probar que un polinomio $P\in\CC[x]$ define una función diferenciable $f_P:S^2\to S^2$ cuya expresión local
+$\phi_N\circ f_P \circ \phi_N^{-1}\colon \RR^2 \to \RR^2 $ se identifica con $P$.
+\item Probar el Teorema Fundamental del Álgebra.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sea $M$ una variedad de dimensión $d$, $U$ abierto en $M$ y $p\in U$ un punto del abierto. Sean $\phi_1,\dots, \phi_d :U\to \RR $ funciones diferenciables
+tales que $\{\diff_p\phi_1,\dots, \diff_p\phi_d\}$ son linealmente independientes en $(T_pM)^*$. Probar que las funciones $\{\phi_i\}$ determinan una
+carta de $M$ en un entorno de $p$.
+\end{question}
+
+\begin{question}
+\vspace{-1.5em}
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item
+Sea $f:M\to N$  diferenciable, $\dim M\leq\dim N$. Sea $p\in M$ punto regular, y sea $(U,\phi)$ carta de $N$ con $f(p)\in U$.
+Probar que un subconjunto de las funciones $\{\phi_i \circ f\}$ determina una carta de $M$ en un entorno de $p$.
+\item
+Sea $S\subset N$ una subvariedad y sea $f:M\to N$ diferenciable tal que $f(M)\subset S$. Probar que $f:M\to S$ es diferenciable.
+\end{enumerate}
+\end{question}
+\begin{question}
+Sea $f:M\to N$ una función diferenciable, y sea $X$ otra variedad diferencial.
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+
+\item Probar que si $f$ es una inmersión entonces para toda $g:X\to M$ función continua tal que $f\circ g$ es diferenciable se puede deducir que
+$g$ es diferenciable.
+
+
+\item Probar que si $f$ es un embedding entonces para toda $g:X\to M$ función tal que $f\circ g$ es diferenciable se puede deducir que $g$ es continua
+y diferenciable.
+
+\item Probar que si $f$ es una submersión sobreyectiva entonces para toda $g:N\to X$ función tal que $g\circ f$ es diferenciable se puede deducir
+que $g$ es diferenciable.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Sean $f:M \to N$ una función diferencial y $S$ una subvariedad de $N$ tales que para todo
+$p \in f^{-1}(S)$ vale que $\diff_pf(T_pM)+T_{f(p)}S=T_{f(p)}N$. Probar que $f^{-1}(S)$ es una subvariedad de $M$
+de dimensión $\dim M -\dim N +\dim S$.
+\end{question}
+
+\begin{question}
+Decimos que dos subvariedades $S_1, S_2$ de $M$ son \textit{transversales}, y lo notamos $S_1 \pitchfork S_2$, si para
+todo $p\in S_1\cap S_2$ tenemos que $T_p S_1 + T_p S_2= T_p M$. 
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Probar que si $S_1\pitchfork S_2$, entonces $S_1 \cap S_2$ es una subvariedad de $M$. 
+\item Probar además que si $S_1\cap S_2\neq\emptyset$ entonces $$\dim S_1 \cap S_2=\max\{\dim S_1 +\dim S_2 - \dim M,0\}.$$
+\end{enumerate}
+\end{question}
+
+
+\end{document}
