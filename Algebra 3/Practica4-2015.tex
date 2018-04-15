@@ -1,0 +1,131 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+\def\F{\mathbb{F}}
+
+\newcommand\Gal{\mbox{Gal}}
+\newcommand\car{\mbox{car}}
+
+\date{Segundo cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 4 - Extensiones de Galois y teorema}\\{\em 2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+\begin{ejer} Sean $E/K$ y $L/K$ dos extensiones finitas. Probar que si $E/K$ y $L/K$ son $K$-isomorfas, entonces sus grupos de Galois son isomorfos. ?`Vale la recíproca? ?`Y si son extensiones de Galois?
+\end{ejer}
+
+
+
+\begin{ejer}
+Sea $E=\mathbb{Q}[\sqrt{2+\sqrt{2}}]$. Probar que $E/\mathbb{Q}$ es normal, calcular su grupo de Galois ${\rm Gal}(E/\mathbb{Q})$ y determinar todas sus subextensiones.
+\end{ejer}
+
+\begin{ejer}
+Determinar todas las subextensiones del cuerpo de descomposici\'on del polinomio $(X^{2}-2)(X^{2}-3)(X^{2}-5)$ sobre $\mathbb{Q}$.
+\end{ejer}
+
+\begin{ejer}
+Determinar todas las subextensiones cuadr\'aticas del cuerpo de descomposici\'on de $X^{4}-2X^{2}-1$ sobre $\mathbb{Q}$.
+\end{ejer}
+
+\begin{ejer}
+Sea $\Phi_{n}=f(\xi_{n},\mathbb{Q})$ el $n$-\'esimo polinomio ciclot\'omico. Sea $K/\mathbb{Q}$ una extensi\'on tal que $\Phi_{n}$ es irreducible en $K[X]$. Probar que $K[\xi_{n}]/K$ es normal de grado $\varphi(n)$ y que ${\rm Gal}(K[\xi_{n}]/K)\cong\mathcal{U}_{n}$.
+\end{ejer}
+
+\begin{ejer} Sea $K$ un cuerpo con $\car(K)\ne 2$, y sea $\alpha,\beta\in K$ tales que $\alpha,\, \beta$ y $\alpha\beta$ no son cuadrados en $K$. Si $a^2=\alpha$ y $b^2=\beta$, caracterizar ${\rm Gal}(K[a,b]/K)$.
+\end{ejer}
+
+\begin{ejer} Sea $K$ un cuerpo con $\car(K)\ne 2$.
+\begin{enumerate}
+\item
+Sea $E/K$ una extensi\'on de Galois tal que ${\rm
+Gal}(E/K)\cong\mathbb{Z}_{2}\oplus\mathbb{Z}_{2}$. Probar que
+$E=K[a,b]$ con $a^2,b^2\in K$.
+\item Generalizar el resultado de (1) para
+ ${\rm Gal}(E/K)\cong\mathbb{Z}_{2}\oplus\cdots\oplus\mathbb{Z}_{2}$ ($n$ sumandos). \end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item Probar que $\mathbb{Q}[\cos(\frac{2\pi}{11})]$ es la \'unica subextensi\'on de grado 5 de $\mathbb{Q}[\xi_{11}]/\mathbb{Q}$.
+\item Probar que $\mathbb{Q}[\xi_{11}]/\mathbb{Q}$ tiene una \'unica subextensi\'on de grado 2. Determinarla.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on de Galois de grado 15. Probar que $E/K$ tiene solo dos subextensiones propias. Calcular sus grados y ver que dichas subextensiones son normales.
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on de Galois de grado 45. Probar que si $F/K$ es una subextensi\'on de grado 3 de $E/K$, entonces es normal.
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo y sea $E/K$ una extensi\'on de Galois de grado $p^{n}s$ con $n,s\in\mathbb{N}$ y $p\nmid s$. Probar que:
+\begin{enumerate}
+\item $E/K$ tiene subextensiones de grado $s$ y todas ellas son isomorfas.
+\item Si $p>s$ entonces hay una \'unica subextensi\'on de grado $s$, que adem\'as, resulta ser normal.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on algebraica. Probar que existe una subextensi\'on $L/K$ abeliana maximal (es decir, que contiene a todas las subextensiones abelianas). ?`Cual es en el caso en que $E$ es el cuerpo de descomposici\'on de $X^{4}-2$ sobre $\mathbb{Q}$?
+\end{ejer}
+
+
+
+\begin{ejer}\begin{enumerate}
+\item
+Sean $E/K$ y $F/K$ dos subextensiones finitas de una extensión  $L/K$ . Probar que $EF/K$ es abeliana si y solo si $E/K$ y $F/K$ son abelianas.
+\item Exhibir dos subextensiones finitas $E/\Q$ y $F/\Q$ de $\C/\Q$ tales que $EF/\Q$ es de Galois pero ni $E/\Q$ ni  $F/\Q$ lo son.\end{enumerate}
+\end{ejer}
+
+
+\begin{ejer}
+Sea $f\in\mathbb{Q}[X]$ un polinomio irreducible con exactamente una ra\'\i z real y ${\rm gr}(f)\geqslant 2$. Sea $E$ el cuerpo de descomposici\'on de $f$ sobre $\mathbb{Q}$. Probar que ${\rm Gal}(E/\Q)$ no es abeliano.
+\end{ejer}
+
+\begin{ejer}
+Sea $E=\mathbb{C}(X)$ y sean $f,g\in{\rm Gal}(E/\mathbb{C})$ dados por $f(X)=X^{-1}$ y $g(X)=\xi_{n}X$, donde $\xi_{n}\in\mathbb{C}$ es una ra\'\i z $n$-\'esima primitiva de la unidad. Probar que:
+\begin{enumerate}
+\item $f^{2}=g^{n}={\rm id}_{E}$ y $fg=g^{-1}f$.
+\item El subgrupo $H$ generado por $f$ y $g$ es isomorfo a $D_{n}$.
+\item $E^{H}=\mathbb{C}(X^{n}+X^{-n})$.
+\end{enumerate}
+\end{ejer}
+
+\end{document}

@@ -1,0 +1,206 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+\date{Primer cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\newcommand{\car}{\mbox{car}}
+\newcommand{\Gal}{\mbox{Gal}}
+\newcommand{\Aut}{\mbox{Aut}}
+\newcommand{\No}{\mbox{N}}
+\newcommand{\Tr}{\mbox{Tr}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 7 - Extensiones algebraicas, norma y traza}\\{\em 2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+En esta pr\'actica $t$, $u$ y $v$ son variables.
+
+\medskip
+
+\begin{ejer} Sea $K$ un cuerpo de caracter\'\i stica $p>0$, y sean $a\in
+K-K^p$ y $n\in\N_0$. Probar que $X^{p^n}-a$ es irreducible en
+$K[X]$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo de caracter\'\i stica $p>0$ y sea $E/K$ algebraica. Sea $\alpha\in E$ tal que $\alpha^{p^{j}}\in K$ para alg\'un $j\in\N_{0}$. Probar que $f(\alpha,K)=X^{p^{r}}-\alpha^{p^{r}}$, donde $r=\min \{ j\in\N_{0}\; :\; \alpha^{p^{j}}\in K\}$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo de caracter\'\i stica $p>2$ y sea $f=X^{2p}+uvX^{p}+v\in K(u,v)[X]$. Sea $\alpha\in\overline{K(u,v)}$ una ra\'\i z de $f$. Probar que:
+\begin{enumerate}
+\item $[K(u,v)[\alpha]:K(u,v)]=2p$.
+\item $K(u,v)[\alpha]/K(u,v)$ no es separable ni puramente inseparable.
+\end{enumerate}
+?`Qu\'e pasa para caracter\'\i stica $p=2$?
+\end{ejer}
+
+
+
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo. Calcular el grado y el grado de inseparabilidad de las siguientes extensiones:
+\begin{enumerate}
+\item $\mathbb{F}_{p}(u,v)/\mathbb{F}_{p}(u^{p}-u,v^{p}-v)$.
+\item $\mathbb{F}_{p}(u,v)/\mathbb{F}_{p}(u^{p},v^{p}-v-u)$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\N$ primo y sea $K=\mathbb{F}_{p}(t)$. Sean $r,n\in\N$
+tales que $r<p^{n}$ y sea $\alpha\in\overline{K}$ una ra\'\i z de
+$X^{p^{n}}-tX^{r}+t\in K[X]$. Probar que $[K[\alpha]:K]_i=p^{m}$
+donde $m=\max\{ k\in\N_{0}\; :\; p^{k}|r\}$.
+\end{ejer}
+
+\begin{ejer} Sea $p\in\N$ primo, $p\ne 2$ y sea $K=\mathbb{F}_{p}(t)$. %, y $t$ es trascendente sobre $\F_p$.
+Sea $\alpha\in \overline K$ una ra\'\i z de $X^{p^3} - t X^p + t
+\in K[X]$. Sea $E$ la clausura normal de $K(\alpha)/K$. Determinar
+$[E:K]$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo de caracter\'\i stica $p$, eventualmente $0$. Se recuerda que $K^{p^{-\infty}}=\{ x\in\overline{K}\; :\; \sigma(x)=x\;\forall\, \sigma\in {\rm Aut}(\overline{K}/K)\}$ y que se dice que $K$ es perfecto cuando $K^{p^{-\infty}}=K$. Probar que:
+\begin{enumerate}
+\item  Si $K$ no es perfecto, entonces $[K^{p^{-\infty}}:K]=\infty$.
+\item $K^{p^{-\infty}}$ es perfecto y $\overline{K}/K^{p^{-\infty}}$ es separable.
+\item $K$ es perfecto si y solo si toda extensi\'on algebraica de $K$ es separable.
+\item Si $K$ es un cuerpo de caracter\'\i stica $p>0$, entonces $K(t)$ no es perfecto.
+\end{enumerate}
+\end{ejer}
+
+
+\begin{ejer}
+Sea $K$ un cuerpo y $E/K$ una extensi\'on algebraica.
+\begin{enumerate}
+\item Probar que si $K$ es perfecto, entonces $E$ es perfecto.
+\item Probar que si $E$ es perfecto y $E/K$ es separable, entonces $K$ es perfecto.
+\item Probar que si $E/K$ es finita y $E$ es perfecto, entonces $E/K$ es separable.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item Calcular la norma y la traza de $\sqrt[3]{2}$ en
+$\Q[\sqrt[3]{2}]/\Q$ y en
+$\Q[\sqrt[3]{2},\xi_{3}]/\Q$.
+\item Sea $p\in\N$ primo. Calcular la norma y la traza de $\xi_{p}$ en
+$\Q[\xi_{p}]/\Q$.
+\item Sea $d\in\N$ libre de cuadrados y sea
+$\alpha\in\Q[\sqrt{d}]-\Q$. Probar que $f(\alpha,\Q)=X^{2}-\Tr(\alpha)X+\No(\alpha)$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo de caracter\'\i stica $p>0$. %y sea $t$ una variable.
+Calcular la norma y la traza de $t$ en $K(t)/K(t^{p})$.
+\end{ejer}
+
+\begin{ejer}
+Sea $p>3$ un primo. Sean $E=\mathbb{F}_{p}(u,v)$ y
+$K=\mathbb{F}_{p}(u^{3},v^{2})$. %donde $u$ y $v$ son variables.
+Calcular $\No_{E/K}(u+v)$y $\Tr_{E/K}(u+v)$.
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on finita. Probar que:
+\begin{enumerate}
+\item Si $E/K$ es separable, entonces $\Tr_{E/K}:E\to K$ es
+suryectiva.
+\item La aplicaci\'on $\Tr:E\times E\to K$ dada por $\Tr(a,b)=\Tr_{E/K}(ab)$ es una forma bilineal sim\'etrica.
+\item Para cada $a\in E$ se define $\Tr_{a}:E\to K$ mediante
+$\Tr_{a}(b)=\Tr_{E/K}(ab)$.
+\begin{enumerate}
+\item Verificar que $\Tr_{a}\in E^{\ast}$ para todo $a\in E$.
+\item Probar que si $E/K$ es separable, entonces la aplicaci\'on
+$a\mapsto \Tr_{a}$ es un isomorfismo de $E$ en
+$E^{\ast}$.
+\end{enumerate}
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sean $p,q\in\mathbb{N}$ primos distintos. Sea $K$ un cuerpo de
+caracter\'\i stica $p$ y sea $E/K$ una extensi\'on de grado
+$[E:K]=q$. Probar que existe $\alpha\in E$ tal que $E=K[\alpha]$ y
+el coeficiente de grado $q-1$ en $f(\alpha,K)$ es nulo.
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item Calcular el n\'ucleo y la imagen del morfismo de grupos multiplicativos
+$\No_{\C/\R}: \C^{\times}\to\R^{\times}$.
+\item Probar que en $\Q[\sqrt{2}]/\Q$ la norma no
+es inyectiva ni suryectiva.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo finito y sea $E/K$ una extensi\'on finita.
+Probar que $\No_{E/K}$ y $\Tr_{E/K}$ son suryectivas.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo de caracter\'\i stica $p$ y sea $E/K$ una
+extensi\'on de grado $n$, con $p\nmid n$. Sea $\alpha\in E$.
+Probar que si $\Tr_{E/K}(\alpha^{i})=0$ para todo $1\leqslant
+i\leqslant n$, entonces $\alpha=0$.
+\end{ejer}
+
+\begin{ejer}
+Sean $r,n\in\N$. Sean $p_{1},\ldots,p_{n}\in\N$
+primos distintos. Probar que
+$\Q[\sqrt[r]{p_{1}},\ldots,\sqrt[r]{p_{n}}]/\Q$ es
+de grado $r^{n}$ y que $\sqrt[r]{p_{1}}+\ldots+\sqrt[r]{p_{n}}$ es
+un elemento primitivo.
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on c\'\i clica de grado $n=mr$, tal que
+$\exists\, c\in K^{\times}$ con $c^{r}=\No_{E/K}(u)$ para alg\'un
+$u\in E$. Sea $F$ la \'unica subextensi\'on de  $E/K$ de grado
+$r$. Decidir si es cierto que existe $v\in F$ tal que
+$c=\No_{F/K}(v)$.
+\end{ejer}
+
+\begin{ejer}
+Sea $\Q[\alpha]/\Q$ una extensión de grado $n$, y sea
+$f:=f(\alpha,\Q)=(X-\alpha_1)\cdots (X-\alpha_n)\in \Q[X]$, con $\alpha_1,\dots,\alpha_n\in \C$.  Se recuerda que el discriminante de $f$ está definido como
+$\Delta (f)=\prod_{i<j} (\alpha_i - \alpha_j)^2.$
+ Probar que $\Delta (f)=
+(-1)^{\frac{ n(n-1)}{2}} \, \No_{\Q[\alpha]/\Q}(f'(\alpha))$, donde $f'$ es el
+polinomio derivado de $f$.
+\end{ejer}
+
+\end{document}

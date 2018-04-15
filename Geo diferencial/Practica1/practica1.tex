@@ -58,6 +58,7 @@
 \newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
 \newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
 \DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\graf}{Gr}
 \DeclareMathOperator{\ball}{ball}
 
@@ -479,6 +480,10 @@
 	Considerar en $\R$ las cartas $(\R,id)$ y $(\R,\phi)$ donde $\phi(t)=t^3$. Probar que las dos cartas no son compatibles pero que las variedades definidas por el atlas formado por cada una de las cartas son difeomorfas.
 \end{question}
 
+\begin{solution}
+	Es claro que no son cartas compatibles pues $id \circ \phi^{-1} = \sqrt[3]{t} : \R \rightarrow \R$ no es diferenciable en $0$. No obstante si notamos $\R$ a $\R$ con la carta usual y $\R_1$ con la otra, si consideremos $F : \R \rightarrow \R_1$ dada por $F(t) = \sqrt[3]{t}$ entonces $\phi \circ F \circ id = \left(\sqrt[3]{t}\right)^3 = t$ que es un difeomorfismo por lo que $F$ es difeo. \qed
+\end{solution}
+
 \begin{question}
 	Sea $M$ la imagen de la funci\'on $f:(0,2\pi)\to\R^2$ donde $f(t)=(\sin(t),\sin(2t))$ con la estructura inducida por la carta $(M,f^{-1})$. Probar que la funci\'on $F:M\to M$ definida por $F(x,y)=(x,-y)$ no es diferenciable.
 	
@@ -488,14 +493,40 @@
 	Probar que $SO_3(\R)$ es difeomorfo al espacio proyectivo $\mathbb{P}^3(\R)$.
 \end{question}
 
+\begin{solution}
+	Hecho en la pr\'actica era una cuenta horrible
+\end{solution}
+
 \begin{question}
 	Probar que $\R$ y $S^1$ son las \'unicas variedades diferenciales conexas de dimensi\'on $1$ salvo difeomorfismo.
 \end{question}
 
-
+\begin{solution}
+	Estan en pedo, se que es largo, dificil y despues con curvas integrales sale f\'acil
+\end{solution}
 
 \begin{question}\textbf{Preimagen de valor regular:} Sean $U\subseteq\R^n$ un abierto y $F:U\to\R^m$ ($n\geq m$) una funci\'on diferenciable tal que $c\in\R^m$ es un valor regular de $F$ (es decir, para cada punto $x\in U$ con $F(x)=c$ el rango de $\mathrm{D}F(x)$ es $m$). Probar que $M=F^{-1}(c)$ es una variedad de dimensi\'on $n-m$ y la inclusi\'on $M\hookrightarrow U$ es diferenciable.
 \end{question}
+
+\begin{solution}
+	Sea $x \in F^{-1}(c)$, luego sabemos que $\rk D(F)(x) = m$ por lo que existe $T : \R^{n} \rightarrow \R^{n-m}$ tal que $\ker D(F)(x) \cap \ker T = \emptyset$. Consideremos $G = (F, T) : \R^n \rightarrow \R^{m} \times \R^{n-m}$ dada por $G(\xi) = (F(\xi), T(\xi)$ y notemos que $DG(v) = (DF(v), T(v)$ por lo que $DG(x)$ es inversible por la condici\'on sobre $T$; del teorema de la funci\'on inversa conclu\'imos que $G$ es difeomorfismo local.
+	
+	Por ende, $G$ mapea difeomorficamente $F^{-1}(c) \cap U$ a $V \cap \left(c \times \R^{n-m}\right)$ que es la definici\'on de subvariedad de dimensi\'on $n-m$; ahora por hobbie vamos a ver que esta definici\'on implica ser variedad construyendo un atlas.
+	
+	Sea $x \in F^{-1}(c)$ y $U, G$ como antes luego si consideramos $\pi: \R^{n-m} \times c \rightarrow \R^{n-m}$ dado por $\pi (((y_1, \dots , y_{n-m}),c)) =(y_1, \dots , y_{n-m})$, $V = U \cap F^{-1}(c)$, $\tilde{V} = \pi \circ G (V)$ y $\phi = \pi \circ G \vert_{V} : V \rightarrow \tilde{V}$ entonces afirmo que $\A = \sett{(V, \psi)_{U_x} \tq U_x \text{ es el entorno que hace a } G \vert_{U_x} \text{ difeomorfismo}}$ es un atlas para $F^{-1}(c)$.
+	
+	Es claro que los $\psi$ son homeomorfismo con su imagen pues $G$ es difeomorfismo y $\pi \vert_{G(V)}$ es difeomorfismo de $\R^n$, con inversa $G^{-1} \circ i$; por lo tanto veamos la condici\'on de compatibilidad. Sea $x \in F^{-1}(c)$, $(U,G \vert_U)$ y $(U', G\vert_{U'})$ dos entornos tales que sus funciones son difeomorfismos y consideremos las cartas asociadas $(V, \psi), (V', \psi')$:
+	
+	\begin{equation*}
+		\psi' \circ \psi = \pi \circ G\vert_{U} \circ G^{-1} \vert_{U'} \circ i
+	\end{equation*}
+	
+	Que son todas suaves, por lo tanto las cartas son compatibles y $\A$ define un atlas de dimensi\'on $n-m$ en $F^{-1}(c)$.
+	
+	Finalmente, es claro que $i : S \inc M$ es un embedding pues $i \vert_{\tilde{V}} = \psi^{-1}$ para alguna carta que es un difeomorfismo por definici\'on.\qed
+	
+	
+\end{solution}
 
 \begin{question}\textbf{Producto cartesiano:} Sean $M$ y $N$ variedades diferenciales.
 	\begin{enumerate}
@@ -504,6 +535,13 @@
 		\item El producto de variedades diferenciales est\'a caracterizado por la siguiente \textit{propiedad universal}: Si $P$ es una variedad diferencial junto con funciones diferenciables $p_1:P\to M, p_2:P\to N$ entonces existe una \'unica funci\'on diferenciable $f:P\to M\times N$ tal que $\pi_1\circ f = p_1$ y $\pi_2\circ f = p_2$.
 	\end{enumerate}
 \end{question}
+
+\begin{solution}
+	\begin{enumerate}
+		\item Es claro que si $\A = \sett{(U,\phi) \tq U \subset M, \ \phi: U \rightarrow \R^m}$, $\B = \sett{(V,\psi) \tq V \subset N, \ \psi: V \rightarrow \R^n}$ son atlases para $M,N$ entonces $\A \times \B = \sett{(U \times V,\phi \times \psi) \tq (U,\phi) \in \A, \ (V, \psi) \in \B}$ es un atlas para $M \times N$.
+		\item De topolog\'ia sabemos que existe una \'unica funci\'on continua tal que $f:P\to M\times N$ tal que $\pi_1\circ f = p_1$ y $\pi_2\circ f = p_2$ por lo que veamos que adem\'as es diferenciable. Eso es claro porque si $(U,\phi)$ es ua carta de $P$ y $(A \times B, h \times g)$ es una carta de $M \times N$ entonces $h \times g \circ f \circ \phi^{-1} = (h \times p_1 \circ \phi^{-1}, g \circ p_2 \circ \phi^{-1})$ que es diferenciable. \qed
+	\end{enumerate}
+\end{solution}
 
 \begin{question}
 	\textbf{Pegado de variedades:} Sea $(M_i)_{i\in I}$ una familia numerable de variedades diferenciales, todas de dimensi\'on $n$. Supongamos que para cada par $i\neq j$ est\'an dados: dos abiertos $U_{ij}\subseteq M_i$ y $U_{ji}\subseteq M_j$, y un difeomorfismo $f_{ij}:U_{ij}\to U_{ji}$ que no puede extenderse continuamente a ning\'un punto de $\partial U_{ij}$, tales que se satisfacen las siguientes propiedades:

@@ -1,0 +1,250 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+\def\F{\mathbb{F}}
+
+\newcommand\Gal{\mbox{Gal}}
+\newcommand\car{\mbox{car}}
+
+\date{Segundo cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 5 - Cuerpos finitos y extensiones ciclotómicas}\\{\em 2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+\begin{ejer} Probar que todo polinomio irreducible en $\F_q[X]$, con $q=p^k$, es separable.
+\end{ejer}
+
+\begin{ejer}
+ Sea $f\in \F_q[X]$, con $q=p^k$,  irreducible de grado $n$  y $\alpha \in \overline{\F_q}$ raíz de $f$.
+Probar que $\F_q[\alpha]/\F_q$ es Galois y $\Gal(\F_q[\alpha]/\F_q)=\langle \Phi\rangle$ con $\Phi(x)=x^{q},\;\forall\, x\in \F_q[\alpha]$. \\
+Concluir que $f=\prod_{0\le k\le n-1}(X-\alpha^{q^k})$.
+\end{ejer}
+
+
+
+\begin{ejer}
+\begin{enumerate}
+\item Sea $f\in \F_q[X]$ irreducible. Probar que $f|X^{q^{n}}-X$ si y solo si ${\rm gr}(f)|n$.
+\item Probar que $X^{q^{n}}-X=\prod_{d|n}(\prod f)$, donde el producto de adentro recorre todos los $f\in \F_q[X]$ irreducibles m\'onicos de grado $d$.
+\item Probar que $q^{n}=\sum_{d|n}u(d)d$, donde $u(d)$ es la cantidad de polinomios m\'onicos irreducibles de grado $d$ en $\F_q[X]$.
+\item Utilizar la f\'ormula de inversi\'on de Moebius para obtener $u(n)$ para todo $n\in\mathbb{N}$.
+\item Calcular cuantos polinomios irreducible de grados $3$ y $4$ hay en $\F_{2^{12}}[X]$ y en  $\F_{3^{12}}[X]$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $f\in\mathbb{F}_{q}[X]$ irreducible de grado $n$ y sea $k\in\mathbb{N}$. Probar que $f$ se factoriza en $\mathbb{F}_{q^{k}}[X]$ como producto de polinomios irreducibles de grado $n/d$, donde $d=\gcd (n,k)$. Concluir que $f$ sigue siendo irreducible en $\mathbb{F}_{q^{k}}[X]$ si y solo si $n$ y $k$ son coprimos.
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo.  Probar que existe un elemento en ${\rm Gal}(\overline{\mathbb{F}_p}/\mathbb{F}_{p})$ que no es una potencia del automorfismo de Frobenius $\Phi:\overline{\mathbb{F}_p}\to \overline{\mathbb{F}_p}$ dado por $\Phi(x)=x^{p}$. Caracterizar el grupo de Galois ${\rm Gal}(\overline{\mathbb{F}_p}/\mathbb{F}_{p})$.
+\end{ejer}
+
+\begin{ejer} Sea $n\in \N$ impar y sea $K$ un cuerpo con ${\rm car}(K)
+\ne 2$. Probar que $K$ contiene una ra\'\i z $n$-\' esima
+primitiva de $1$ si y s\'olo si $K$ contiene una ra\'\i z $2n$-\'
+esima primitiva de $1$.
+\end{ejer}
+
+\begin{ejer} Hallar todos los $m\in \N$ para los cuales una ra\'\i z
+$m$-\'esima primitiva de $1$ tiene grado $2$ o $4$ sobre $\Q$.
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item  Sea $K/\Q$ una extensi\' on de grado finito. Probar que existe
+s\'olo un n\' umero finito de ra\'\i ces de la unidad en $K$.
+\item  Determinar todas las ra\'\i ces de la unidad contenidas
+en cada uno de los siguientes cuerpos: $\Q[\,i\,]$, $\Q [\sqrt
+{-2}\, ]$, $\Q [\sqrt 2\, ]$, $\Q[\sqrt {-3}\, ]$, $\Q[ \sqrt
+{-5}\, ]$, $\Q [\sqrt 2,\sqrt {-3}\, ]$ y $\Q (\xi_9 )$.
+\end{enumerate}
+\end{ejer}
+
+
+\begin{ejer} Sea $\Phi_n\in \Z[X]$ el polinomio
+ciclot\'omico de orden $n$. Probar que:
+\begin{enumerate}
+\item Para cada $r\in \N$ y cada primo $p\in \N$, $\Phi_{p^r} (X)=
+\Phi_p(X^{p^{r-1}})$.
+\item Si $n= p_1^{r_1} p_2^{r_2} \dots p_s^{r_s}$ con $p_1\dots, p_s$ primos distintos,
+$\Phi_n(X)= \Phi_{p_1\dots p_s}\big(X^{p_1^{r_1-1}\dots \, p_s^{r_s -
+1}}\big)$.
+\item Si $n$ es impar, $\Phi_{2n}(X) = \Phi_n(-X)$.
+\item Si $p$ es primo, $p \nmid n$, entonces $\Phi_{pn}(X) =
+\dfrac{\Phi_n(X^p) }{\Phi_n(X)}$.
+%\item[vi)] Para cada $n\in \N$, se tiene que $c_n (X)= \prod\limits_{d\mid n}
+%(X^{\frac{n}{d}} - 1)^{\mu(d)}$, donde $\mu$ es la funci\'on de
+%M\"obius.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer} Sean $E/K$ y $F/K$ extensiones ciclot\'omicas de \'\i
+ndices $m$ y $n$ respectivamente, con $(m:n)=1$, contenidas en
+una clausura algebraica $\overline K$ de $K$. Probar que:
+\begin{enumerate}
+\item  $EF/K$ es una extensi\'on ciclot\'omica de \'\i ndice $mn$.
+\item  Si $K=\Q$, entonces $E\cap F=\Q$.
+\end{enumerate}
+\end{ejer}
+
+
+
+
+\begin{ejer}
+\begin{enumerate}
+\item  Sea $E/\Q$ una extensi\'on cuadr\'atica. Probar que $\Phi_n$
+es reducible en $E[X]$ si y s\'olo si $E \subset \Q(\xi_n)$.
+\item  Determinar todas las extensiones cuadr\'aticas $E/\Q$
+tales que $\Phi_{12}$ es irreducible en $E[X]$. Idem para $\Phi_8$ y
+$\Phi_{10}$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer} Hallar todos los $n\in \N$ tales que $\Phi_n$ es irreducible
+sobre $\Q(\xi_9)$.
+\end{ejer}
+
+\begin{ejer} Sea $K$ un cuerpo, sea $\Psi: \Z \to K$ el \'unico morfismo
+de anillos con unidad y sea $\overline \Psi : \Z [X] \to K[X]$ el
+morfismo de anillos inducido por $\Psi$ definido como $\overline
+\Psi \left( \sum a_i X^i \right) = \sum \Psi (a_i) X^i.$
+
+
+Como $\Phi_n \in \Z [X]$, podemos pensar a $\Phi_n$ en $K[X]$ v\'\i a
+$\overline \Phi$.
+\begin{enumerate}
+\item Probar que:
+\begin{enumerate}
+\item $\Phi_n\in K[X]$ es m\'onico de grado $\varphi(n)$.
+\item  $ X^n - 1 = \prod\limits_{d | n} \Phi_d$ en $K[X]$.
+\item  Si ${\rm car}(K) \ne 0$ y $n$ es coprimo con ${\rm car}(K)$,
+entonces $\Phi_n$ tiene todas sus ra\'\i ces simples.
+\end{enumerate}
+\item  Sea $\overline K/K$ una clausura algebraica y sea $\xi\in \overline K$ una ra\'\i z
+$n$-\'esima primitiva de $1$ (i.e. $\xi^n =1$ y $\xi^r \ne 1,  \
+\forall \, r<n$). Probar que, si ${\rm car}(K)\nmid n$:
+\begin{enumerate}
+\item  $\xi \in \overline K$ es ra\'\i z de $\Phi_n$ si y s\'olo si $\xi $ es
+ra\'\i z $n$-\'esima primitiva de $1$.
+\item  La cantidad de ra\'\i ces $n$-\'esimas primitivas de $1$
+en $\overline K$ es $\varphi(n)$.
+\item  Si $\xi_n$ es una ra\'\i z $n$-\'esima primitiva de $1$ en
+$\overline K$, entonces $\xi\in \overline K$ es otra ra\'\i z
+$n$-\'esima primitiva de $1$ si y s\'olo si $\xi= \xi_n^j$ para
+alg\'un $1\le j\le n$ tal que $(j:n)=1$.
+\end{enumerate}
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer} Sea $K$ un cuerpo y sea $n\in\N$ tal que ${\rm car}(K)\nmid
+n$. Probar que $\Phi_n$ se factoriza en $K[X]$ como producto de
+polinomios irreducibles de grado $[K(\xi_n): K]$, donde $\xi_n$
+es una ra\'\i z $n$-\'esima primitiva de $1$.
+%Probar que $c_n$ se factoriza en $K[X]$ como producto de
+%polinomios irreducibles distintos de igual grado. M\'as a\'un, si
+%$c_n=f_1.f_2\dots f_r$, con $f_1,\dots ,f_r$ irreducibles
+%distintos de grado $m$, entonces $m=|G(K(\xi )/K)|$ y
+%$r.m=\varphi (n)$.
+\end{ejer}
+
+
+
+
+\begin{ejer} Sea  $K/\F_q$ con $q=p^k$, una
+extensi\' on ciclot\' omica de \'\i ndice $n$, con $n$ coprimo con
+$p$. Probar que:
+\begin{enumerate}
+\item  $K=\F_{q^m}$, donde $m$ es el
+menor n\'umero natural tal que $n\mid q^m-1$.
+\item Probar que el polinomio ciclotómico $\Phi_{n}\in \Z[X]$ se factoriza en $\F_q[X]$ como producto de polinomios irreducibles de grado $m$.
+\item  Deducir que $\Phi_n$ es irreducible en $\F_q[X]$ si y s\'olo si la clase de $q$
+en $\mathcal{U}_n$ tiene orden $\varphi(n)$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Probar que:
+\begin{enumerate}
+\item $\mathbb{F}_{3}$ no contiene raices 13-\'esimas de la unidad distintas de 1.
+\item Si $\xi_{13}\in\overline{\mathbb{F}_{3}}$ es una ra\'\i z 13-\'esima primitiva de la unidad, entonces $[\mathbb{F}_{3}[\xi_{13}]:\mathbb{F}_{3}]=3<\varphi(13)$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Hallar todos los $n\in\mathbb{N}$ tales que $\Phi_{n}$ es irreducible en $\mathbb{F}_{9}[X]$.
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo. Hallar todos los $n\in\mathbb{N}$ tales que $\Phi_{6}$ es irreducible en $\mathbb{F}_{p^{n}}[X]$.
+\end{ejer}
+
+
+
+\begin{ejer}
+Factorizar $\Phi_{7}$ en $\mathbb{F}_{27}[X]$ y $\Phi_{9}$ en $\mathbb{F}_{7}[X]$.
+\end{ejer}
+
+
+
+
+
+
+
+
+
+\begin{ejer} Probar que si
+$p$ es  primo, $p\ne 2,\, 3$, entonces $\Phi_{12}$ es reducible en
+$\mathbb{F}_p [X]$.
+\end{ejer}
+
+
+
+
+
+
+\begin{ejer}
+\begin{enumerate}
+\item  Sea $K$ un cuerpo de $27$ elementos. Factorizar $\Phi_7$ como
+producto de polinomios irreducibles en $K[X]$.
+\item Sea $t$ trascendente sobre $\mathbb{F}_7$ y sea $K = \mathbb{F}_7(t)$.
+Factorizar $\Phi_9$ como producto de polinomios irreducibles en
+$K[X]$.
+\end{enumerate}
+\end{ejer}
+
+\end{document}

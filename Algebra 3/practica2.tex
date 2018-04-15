@@ -1,0 +1,614 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage{multicol}
+
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+\newcommand\ip[1]{\left\langle#1\right\rangle}
+\newcommand\pp{\mathbf{p}}
+\newcommand\mm{\mathbf{m}}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf \'Algebra 3 - $2^{\circ}$ cuatrimestre $2017$}
+	\centerline{\sc Pr\'actica 2}
+	
+	\bigskip
+	
+Nota: El polinomio minimal del elemento
+$x$ sobre el cuerpo $K$ se nota aquí  $f(x,K)$, y   $\xi_n$ nota una ra\'\i z $n$-\' esima
+primitiva de la unidad.
+
+\bigskip
+
+\begin{enumerate}
+\item Sea $E/K$ una extensi\'on, y sea $x \in E$ algebraico sobre
+	$K$. Dada una subextensi\'on $F/K$ de $E/K$, probar que $f(x, F)$
+	divide a $f(x, K)$. Dar ejemplos con $f(x, F) = f(x, K)$ y con
+	$f(x, F) \ne f(x, K)$.
+
+\begin{proof}
+	Por definici\'on como $x$ es algebraico sobre $K$ entonces existe $f \in K[X]$ tal que $f(x) = 0$, luego como $K \subset F$ entnces $f \in F[X]$ y $x$ es algebraico sobre $F$. Sea $g = f(x, K)$, luego por lo dicho $g \in F[X]$ y $g(x) = 0$, por definici\'on de polinomio minimal, $f(x, F) | f(x, K) = g$. 
+	
+	Sean $K = \Q, F=\Q[\sqrt{3}]$ y $E = \Q[\sqrt{2}, \sqrt{3}]$, luego $f(\sqrt{2}, \Q) = x^2 - 2$ como vimos en la te\'orica y veamos que tambi\'en es el minimal sobre $\Q[\sqrt{3}]$. Para esto notemos que $[\Q[\sqrt{2}, \sqrt{3}], \Q[\sqrt{3}]] > 1$ pues $\sqrt{2} \not \in \Q[\sqrt{3}]$ y como $g = x^2 -2 \in \Q[\sqrt{3}][X]$ y $g(\sqrt{2}) = 0$ entonces $[\Q[\sqrt{2}, \sqrt{3}], \Q[\sqrt{3}]] = 2$. Como $g$ es m\'onico y de grado de la extrension que anula a $\sqrt{2}$ por definici\'on $g =f(\sqrt{2}, \Q[\sqrt{3}])$.
+	
+	Por otro lado, $f(\sqrt{3}, \Q) = x^2 - 3$ pero $f(\sqrt{3}, \Q[\sqrt{3}]) = x - \sqrt{3}$. \qed
+	
+	
+	
+\end{proof}
+
+
+\item
+	Calcular los siguientes polinomios minimales:
+	\begin{multicols}{3} \begin{enumerate}
+			\item  $f(\sqrt[4]{2},\mathbb{Q}) $ \item  $f(\sqrt[4]{2},\mathbb{Q}[\sqrt{2}])$ \item  $f(\sqrt[4]{2},\mathbb{Q}[\sqrt[4]{2}])$   \item
+			$ f(i,\mathbb{Q})$ \item  $f(i,\mathbb{Q}[i])$ \item $ f(w,\mathbb{R})\mbox{ con } w\in\mathbb{C}$
+		\end{enumerate}
+	\end{multicols}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Notemos que $f = x^4 -2 \in \Q[X]$ es irreducible por Einsenstein, m\'onico y $f(\sqrt[4]{2}) = 0$, por ende $f =  f(\sqrt[4]{2}, \Q[\sqrt[4]{2}])$
+		\item 	Propongamos $f = x^2 - \sqrt{2} \in \Q[\sqrt{2}][X]$ que es m\'onico y anula a $\sqrt[4]{2}$, por lo que nos queda ver que es irreducible.
+		
+		V\'ia 1: Como sabemos del punto anterior que $[Q[\sqrt[4]{2}], \Q] = 4$ y que $[\Q[\sqrt{2}], \Q] = 2$, luego $[\Q[\sqrt[4]{2}], \Q[\sqrt{2}]] = 2$ por multiplicatividad en torres. Pero entonces $gf(f) = [\Q[\sqrt[4]{2}], \Q[\sqrt{2}]]$ con lo que $f$ al ser m\'onico y anular a $\sqrt[4]{2}$ es $f(\sqrt[4]{2}, \Q[\sqrt{2}])$ y por ende es irreducible.
+		
+		V\'ia 2: Las ra\'ices de $f$ son $\pm \sqrt[4]{2} \not \in \Q[\sqrt{2}]$, por lo tanto $f$ es irreducible.
+		
+		\item Proponemos $f = x - \sqrt[4]{2} \in \Q[\sqrt[4]{2}][X]$ pues trivialmente es m\'onico, irreducible y $f(\sqrt[4]{2}) = 0$.
+		
+		\item Proponemos $f = x^2 + 1 \in \Q[X]$  pues es m\'onico, $f(i) = 0$ y por Einsenstein es irreducible.
+		
+		\item Proponemos $f = x - i \in \Q[i][X]$ pues trivialmente es m\'onico, irreducible y $f(i) = 0$.
+		
+		\item Supongamos que $w \in \C \setminus \R$, luego como $w = a + bi; a,b \in \R$ entonces proponemos $f = (x-a)^2 + b^2$ que es m\'onico, $f(w) = 0$ y es irreducible pues $[\C, \R] = 2 = gf(f)$. \qed
+		
+	\end{enumerate}
+\end{proof}
+
+
+\item
+	Calcular:
+	\begin{multicols}{3}
+		\begin{enumerate}
+			\item $ [\mathbb{Q}[\sqrt{2},i]:\mathbb{Q}] $ \item
+			$ [\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}] $ \item $
+			[\mathbb{Q}[\sqrt{2-\sqrt{3}}]:\mathbb{Q}]
+			$\end{enumerate}\end{multicols}
+
+
+\begin{proof}
+	\begin{enumerate}
+		\item Propongamos la torre $\Q \subsetneq \Q[\sqrt{2}] \subsetneq \Q[i, \sqrt{2}]$, luego sabemos que $[\Q[\sqrt{2}], \Q] = 2$ pues $f(\sqrt{2}, \Q) = x^2 - 2$ por lo visto antes. Finalmente como $f = x^2 + 1$ anula a $i$, y $i \not \in Q[\sqrt{2}]$ entonces $f(i, \Q[\sqrt{2}]) = x^2 + 1$; luego $[\mathbb{Q}[\sqrt{2},i]:\mathbb{Q}] = [\mathbb{Q}[\sqrt{2}]:\mathbb{Q}][\mathbb{Q}[\sqrt{2},i]:\mathbb{Q}[\sqrt{2}]] = 2*2 = 4$.
+		\item  Propongamos el rombo $\Q \subsetneq \Q[\sqrt[3]{3}], \Q[\sqrt[5]{7}] \subsetneq \mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]$, luego notemos que $f_3 = x^3 -3, f_7 = x^5 - 7$ son Einsenstein por lo que $[\Q[\sqrt[3]{3}]:\Q] = 3, [\Q[\sqrt[5]{7}]:\Q]=5$. Por la multiplicatividad en torres, $3 | [\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}], 5 | [\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}]$ y como $(3,5)=1$ entonces $15 | [\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}]$. Para finalizar recordemos que como $\sqrt[3]{3},\sqrt[5]{7}$ son algebraicos entonces $15 \leq [\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}] \leq gr(f(\sqrt[3]{3}, Q))*gr(f(\sqrt[5]{7}, Q)) = 15$; conclu\'imos que $[\mathbb{Q}[\sqrt[3]{3},\sqrt[5]{7}]:\mathbb{Q}] = 15$. 
+		
+		\item Llamemos $\sqrt{2-\sqrt{3}} = \alpha$ y proponemos la torre $\Q \subsetneq \Q[\sqrt{3}] \subsetneq \Q[\alpha]$, luego notemos que $f(\alpha, Q[\sqrt{3}]) =  x^2 - (2 - \sqrt{3})$ pues es m\'onico, anula a $\alpha$ y tiene grado m\'inimo entre los que anulan ($\alpha \not \in Q[\sqrt{3}]$). Por lo tanto $[\mathbb{Q}[\sqrt{2-\sqrt{3}}]:\mathbb{Q}] = 4$. \qed
+	\end{enumerate}
+\end{proof}
+
+\item
+	\begin{enumerate}
+		\item Calcular $[\mathbb{Q}[\sqrt{2},\sqrt{3}]:\mathbb{Q}]$ y $[\mathbb{Q}[\sqrt{2}+\sqrt{3}]:\mathbb{Q}]$. Deducir que $\mathbb{Q}[\sqrt{2},\sqrt{3}] = \mathbb{Q}[\sqrt{2}+\sqrt{3}]$.
+		\item Hallar $\alpha\in\mathbb{C}$ tal que $\mathbb{Q}[\alpha]=\mathbb{Q}[\sqrt[3]{2},\sqrt{3}]$.
+	\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Por lo mismo que hicimos el punto 1 sabemos que $[\mathbb{Q}[\sqrt{2},\sqrt{3}]:\mathbb{Q}] = 4$. Llamemos $\alpha = \sqrt{2} + \sqrt{3}$, luego:
+		
+		\begin{equation*}
+		\begin{aligned}
+		\alpha - \sqrt{2} = \sqrt{3} \\
+		3 = \alpha^2 - 2\sqrt{2}\alpha + 2
+		\end{aligned}
+		\end{equation*}
+		
+		Por lo que $f = x^2 - 2\sqrt{2} -1 \in \Q[\sqrt{2}]$, es m\'onico  y $f(\alpha) = 0$. Como $\alpha \not \in \Q[\sqrt{2}]$ entonces tenemos que $[\Q[\alpha], \Q[\sqrt{2}]] = 2$ con lo que $[\Q[\alpha], \Q] = 4 = [\Q[\sqrt{2}, \sqrt{3}:\Q]$ y como $\Q[\sqrt{2} + \sqrt{3}] \subset \Q[\sqrt{2}, \sqrt{3}]$ entonces $\Q[\sqrt{2} + \sqrt{3}] = \Q[\sqrt{2}, \sqrt{3}]$.
+		
+		
+	\end{enumerate}
+\end{proof}
+
+\item
+	Sea $K$ un cuerpo y sea $E=K[a]$ una extensi\'on finita de $K$. Para cada $\alpha\in
+	E$ definimos $L_{\alpha}:E\to E$ la $K$-transformaci\'on lineal dada por
+	$L_{\alpha}(x)=\alpha\, x$.
+	\begin{enumerate}
+		\item Probar que $f(a,K)=\chi_{L_{a}}=\det(xI-L_{a})$.
+		\item ?`Para cuáles $\alpha\in E$ vale que $f(\alpha,K)=\chi_{L_{\alpha}}$?
+	\end{enumerate}
+
+
+
+\item
+	Sea $E/K$ una extensi\'on. Probar que $E/K$ es algebraica
+	si y s\'olo si todo anillo $A$, con $K \subseteq A \subseteq E$,
+	es un cuerpo.
+
+\begin{proof}
+	Supongamos que $E/K$ es algebraica, entonces por un lado $A$ es conmutativo pues es subanillo de $E$ veamos que es anillo de divisi\'on.
+	
+	Para esto sea $\alpha \in A \setminus K$, luego como $\alpha \in E$ que es algebraico sobre $K$ existe $p \in K[X]$ tal que $0 = p(\alpha) = \sum_{i = 0}^{n} {a_i \alpha^i}$ por lo que $\alpha * \underbrace{\left(\dfrac{\sum_{i=1}^{n}{a_i\alpha^{i-1}}}{-a_0}\right)}_{\in K[\alpha] \subset A} = 1$ por lo que $A$ es cuerpo.
+	
+	Rec\'iprocamente, sea $\alpha \in E$, luego podemos tener la torre $K \subsetneq \underbrace{K[\alpha]}_{cuerpo por Hip} \subsetneq E$ con lo que existe $\beta \in K[\alpha]$ tal que $\alpha*\beta = 1$ y existe $q \in K[X]$ tal que $\beta = q(\alpha)$, por lo tanto tomemos $f = q(x)x -1$ que prueba que $\alpha$ es algebraico. \qed
+	
+\end{proof}
+
+\item Sea $a \in \Z [i]$ irreducible y sea $K$ el cuerpo primo de
+	$\Z [i]/ \langle a \rangle$. Calcular $\left[ \Z [i]/\! \langle a
+	\rangle : K\,\right]$.
+
+\begin{proof}
+	Notemos que de \'Algebra 2 sabemos que tenemos tres chances: $N(a) = p$ con $p=2$ o $p \cong 1 (4)$, o $N(p) = p^2$ con $p \cong 3 (4)$. En el primer caso demostremos el siguiente lema:
+	
+	\begin{lemma}
+		Sean $a,b \in \Z$ tal que $(a,b)=1$, entonces $ \quotient{\Z[i]}{(a-ib)} \simeq \quotient{Z}{(a^2 + b^2)}$
+	\end{lemma}
+	
+	\begin{proof}[Del lema]
+		Notemos que $(a:b) = 1$ entonces $(b:a^2+b^2) = 1$ por lo tanto $b^{-1} \in \quotient{Z}{(a^2+b^2)}$, por lo tanto:
+		
+		\begin{equation}
+			\quotient{Z[i]}{(a-ib)} \simeq \quotient{Z[X]}{(X^2 +1, a-bX)} \simeq \quotient{Z[x]}{(a^2 + b^2, x-r_{(b)}(a))} \simeq \quotient{Z}{(a^2+b^2)}
+		\end{equation}
+		
+		\qed
+		
+	\end{proof}
+		
+	Con este lema es claro que para el caso de norma prima, $\quotient{\Z[i]}{(a+ib)}  \simeq \quotient{\Z[i]}{(a-ib)} \simeq \quotient{Z}{(p)} \simeq K$ por lo tanto trivialmente $[\quotient{\Z[i]}{(a)}:K] = 1$.
+	
+	Para el \'ultimo caso notemos que $a = p \in Z$ y entonces $\quotient{\Z[i]}{(a)} \simeq \F_p[i]$ por lo que $[\quotient{\Z[i]}{(a)}:K] = 2$. \qed
+	
+\end{proof}
+
+\item
+	Probar que si $E/K$ es una extensi\'on finita tal que $[E:K]$ es primo, entonces no
+	hay cuerpos intermedios entre $E$ y $K$.
+	
+\begin{proof}
+	Trivialmente, si existiese $K \subset F \subset E$ entonces $p = [E:K] = [E:F][F:K]$ por lo tanto o $F \simeq K$ o $E \simeq F$. \qed
+\end{proof}
+
+
+\item
+	Sea $E/K$ una extensi\'on algebraica y sea $a\in E$ tal que $[K[a]:K]$ es impar.
+	Probar que $K[a]=K[a^{2}]$. Mostrar que eso no vale en general si $[K[a]:K]$ es par.
+
+\begin{proof}
+	Supongamos que $K \subset K[a^2] \subsetneq K[a] \subset E$, luego $[K[a]:K] = [K[a]:K[a^2]][K[a^2]:K] = 2k +1$ para alg\'un $k \in \N$. Notemos no obstante que $f(a, K[a^2]) = x^2 - a^2$ por lo que $[K[a^2]:K[a]] = 2$ por lo que $[K[a]:K]$ es par; por lo que conclu\'imos que $K[a] = K[a^2]$. \qed
+	
+	Trivialmente si $a = \sqrt[4]{2}$ entonces ya sabemos dle ejercicio 2 que $K[a] \neq K[a^2]$.
+	
+\end{proof}
+
+\item
+	Sea $n\in\mathbb{N}$ coprimo con 6 y sea $F/\mathbb{Q}$ una extensi\'on finita de grado $n$. Probar que $[F[\sqrt[3]{2},i]:F]=6$.
+
+\begin{proof}
+	
+	Veamos primero que $i, \sqrt[3]{2} \not \in F$.
+	
+	Supongamos que $i \in F$, luego tenemos la torre de extensiones $\Q \subset \Q[i] \subset F$ y luego $n = 2[f:\Q[i]]$ con lo que $2 | n$, por lo tanto $i \not \in F$; de similar manera $\sqrt[3]{2} \not \in F$.
+	
+	Ahora notemos que tenemos:
+	
+	 \[
+	 \begin{tikzcd}
+	 . & F[\sqrt[3]{2}] & . \\ 
+	 \Q[\sqrt[3]{2}] \arrow{ur} & . & F \arrow{ul} \\ 
+	 . & \Q \arrow{ul}{3} \arrow{ur}{n}&  \\
+	 \end{tikzcd}
+	 \]
+	 
+	 Por lo tanto por un lado del ejercicio 1 tenemos que $f(\sqrt[3]{2}, \Q) | f(\sqrt[3]{2}, F)$ con lo que $3 \leq gr(f(\sqrt[3]{2}, F))$; y por el otro del rombo sabemos que $gr(f(\sqrt[3]{2}, F)) \leq 3$, por lo tanto $gr(f(\sqrt[3]{2}, F)) = 3$ y de eso conclu\'imos que $[F[\sqrt[3]{2}]:F] = 3$.
+	 
+	 Rec\'iprocamente tenemos que $[F[i], F] = 2$.
+	 
+	 Finalmente tenemos el rombo:
+	 
+	 \[
+	 \begin{tikzcd}
+	 . & F[\sqrt[3]{2}, i] & . \\ 
+	 F[\sqrt[3]{2}] \arrow{ur} & . & F[i] \arrow{ul} \\ 
+	 . & F \arrow{ul}{3} \arrow{ur}{2}&  \\
+	 \end{tikzcd}
+	 \]
+	 
+	 Y como $(2:3)=1$ conclu\'imos que $[F[i, \sqrt[3]{2}]:F] = 6$. \qed
+	
+\end{proof}
+
+\item
+	Sea $E/K$ una extensi\'on finita y sean $L_{1}$ y $L_{2}$ subextensiones. Probar que:
+	\begin{enumerate}
+		\item Si $[L_{1}:K]$ y $[L_{2}:K]$ son coprimos, entonces
+		$[L_{1}L_{2}:K]=[L_{1}:K][L_{2}:K]$.
+		\item Si $[L_{1}L_{2}:K]=[L_{1}:K][L_{2}:K]$ entonces $L_{1}\cap L_{2}=K$. ?`Vale la rec\'\i proca?
+	\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Trivialmente de la te\'orica sab\'iamos que $[L_{1}L_{2}:K] \leq [L_{1}:K][L_{2}:K]$, pero de las torres $K \subset L_1 \subset L_1L_2$ y $K \subset L_2 \subset L_1L_2$ se deduce que $n,m | [L_{1}L_{2}:K]$ y como $(n:m)=1$ entonces conclu\'imos lo pedido.\qed
+		
+		\item 
+	\end{enumerate}
+\end{proof}
+
+\item
+	Mostrar que el polinomio $X^{5}+6X^{3}+15X^{2}+3$ es irreducible en
+	$\mathbb{Q}[\sqrt{2},\sqrt{3}][X]$.
+	
+\begin{proof}
+	Notemos primero que $f$ es irreducible en $\Q$ por Einsenstein, luego la extension $\Q \subset \Q[\alpha]$ tiene grado $5$ para $\alpha \in \C$ alguna ra\'iz. Luego tenemos el siguiente rombo:
+	
+	 \[
+	 \begin{tikzcd}
+	 . & \Q[\sqrt{2}, \sqrt{3}, \alpha] & . \\ 
+	 \Q[\sqrt{3}, \sqrt{2}] \arrow{ur} & . & \Q[\alpha] \arrow{ul} \\ 
+	 . & \Q \arrow{ul}{4} \arrow{ur}{5}&  \\
+	 \end{tikzcd}
+	 \]	
+	
+	Y del ejercicio anterior sabemos que $[\Q[\sqrt{2}, \sqrt{3}][\alpha]: \Q[\sqrt{2},\sqrt{3}]] = 5$, luego como $f$ es m\'onico, anula a $\alpha$ y tiene grado de la extensi\'on, es el minimal y por lo tanto irreducible en $\Q[\sqrt{2}, \sqrt{3}][X]$. \qed
+	
+\end{proof}
+
+
+\item
+	\begin{enumerate} \item
+		Sea $K$ un cuerpo con ${\rm car}(K)\neq 2$. Sea $E/K$ un extensi\'on de grado 2.
+		Probar que existe $a\in E$ tal que $E=K[a]$ y $a^{2}\in K$.
+		\item  Sea $f = X^2 +X+1 \in \Z_2[X]$ y sea $a$ una ra\'\i z de
+		$f$ en una clausura algebraica de $\Z_2$. Probar que no existe
+		$b\in \Z_2[a]$ tal que $f(b, \Z_2) = X^2 + c$ para alg\'un $c \in
+		\Z_2$.
+	\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Sea $x \in E \setminus K$, luego como $[E:K] = 2$ entonces $f(x, K) = x^2 +bx +c$ con lo que $x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2}$ que est\'a bien definido pues ${\rm car}(K) \neq 2$, luego $K[x] = K[\sqrt{b^2 - 4ac}]$. Sea $a = \sqrt{b^2 - 4ac}$, luego con lo que $a \not \in K, a^2 \in K$ y $[K[a]:K] = [E:K] = 2$ por lo que $E = K[a]$ (ya que $K[a] \subset E$). \qed
+		
+		\item Supongamos que existe tal $b$, luego $b = c_1 + c_2a$ con $c_2 \neq 0$ de donde sacamos que $0 = (c_1 + c_2a)^2 + c = c_1^2 + c_2^2 a^2 + c = (c_1^2 + c -c_2^2) - c_2^2 a$ y luego si llamamos $g = (c_1^2 + c -c_2^2) - c_2^2x$ entonces $g(a) = 0$. Conclu\'imos por definici\'on de minimal que $f | g$ pero $gr(g) = 1$; por lo tanto no exist\'ia tal $b$. \qed
+	\end{enumerate}
+\end{proof}
+
+\item Dado $c \in \Q$, sea $\alpha_c$ una ra\'\i z del polinomio
+	$X^2+cX+c^2$. Describir las posibles extensiones $\Q [\alpha_c]\,$ de
+	$\Q$ y determinar $\left[ \Q[\alpha_c] : \Q\,\right]$.
+
+\begin{proof}
+	Cuentitas... \qed
+\end{proof}
+
+\item
+	\begin{enumerate}
+		\item Sea $p\in\mathbb{N}$ primo. Calcular $f(\xi _{p},\mathbb{Q})$ y deducir $[\mathbb{Q}[\xi _{p}]:\mathbb{Q}]$.
+		\item Calcular $f(\xi _{6},\mathbb{Q})$.
+	\end{enumerate}
+
+\begin{proof}
+	Te\'orica... \qed
+\end{proof}
+
+\item \begin{enumerate} \item Probar que $f(\xi_{5} + \xi_{5}^4 ,\, \Q) = X^2+X-1$.
+		\item Deducir que $\Q \left[\xi_{5}\,\right]$ admite una subextensi\' on
+		cuadr\' atica y caracterizarla.
+		\item Calcular $\cos\frac{2\pi}{5}+i\sin \frac{2\pi}{5}$.
+	\end{enumerate}
+
+\begin{enumerate}
+	\item Veamos primero que $f$ anula, simplemente verificamos que $(\xi_{5} + \xi_{5}^4)^2 + \xi_{5} + \xi_{5}^4 - 1 = \xi_{5}^2 + 2*\xi_{5}\xi_{5}^{4} + \xi_{5}^8 + \xi_{5} + \xi_{5}^4 - 1 = \xi_{5}^2 + 2 + \xi_{5}^3 + \xi_{5} + \xi_{5}^4 - 1 = 0$. Luego $f$ anula, es m\'onico y es del grado de la extensi\'on pues $\xi_{5} + \xi_{5}^4 \not \in \Q$, de lo que deducimos que $f(\xi_{5} + \xi_{5}^4 ,\, \Q) = X^2+X-1$\qed
+	
+	\item Justamente $\Q \subset \Q[\xi_{5} + \xi_{5}^4] \subset \Q[\xi_{5}]$.
+	
+	\item ??? \qed
+	
+\end{enumerate}
+
+\item
+	Sea $p\in\mathbb{N}$ primo y sea $a\in\mathbb{Q}-\mathbb{Q}^{p}$.
+	\begin{enumerate}
+		\item Probar que $f(\sqrt[p]{a},\mathbb{Q})=X^{p}-a$.
+		\item Sea $K\subseteq\mathbb{C}$ el menor cuerpo que contiene a todas las raices de $f(\sqrt[p]{a},\mathbb{Q})$. Caracterizar $K$ y calcular $[K:\mathbb{Q}]$ y $[K:\mathbb{Q}[\sqrt[p]{a}]]$.
+	\end{enumerate}
+
+\begin{enumerate}
+	\item Supongamos que existe $g \in \Q[X]$ tal que $gr(g) < p$ y $g | f$, como $p$ es primo entonces $g = \prod_{j \in I}{(x- \sqrt[p]{a}\xi_p^{j})}$ para algunos $j \in I \subsetneq \{ 0, ..., p-1 \}$, luego $-a = \prod_{j \in I}{(-\sqrt[p]{a}\xi_p^{j})} = \sqrt[p]{a^{\# I}} * (-1)^{\# I} * \prod_{j \in I}{\xi_{p}^j}$ por lo que $a^{\# I} \in \Q^{p}$ que no puede pasar pues $p$ es primo. Conclu\'imos que no exist\'ia dicho $g$ y entonces $f$ es el minimal. \qed
+	
+	\item Del ejercicio notamos que $K = \Q[\sett{\sqrt[p]{a} \xi_{p}^{l} \ , \ j \in \sett{1, ..., p-1}}] = \Q[\sqrt[p]{a}, \xi_{p}]$ y para ver el orden notemos que tenemos el siguiente rombo:
+	
+	 \[
+	 \begin{tikzcd}
+	 . & K & . \\ 
+	 \Q[\sqrt[p]{a}] \arrow{ur} & . & \Q[\xi_{p}] \arrow{ul} \\ 
+	 . & \Q \arrow{ul}{p} \arrow{ur}{p-1}&  \\
+	 \end{tikzcd}
+	 \]	
+	 
+	 Y por el ejercicio previo se tiene que $[K:\Q] = p(p-1)$. \qed
+	
+\end{enumerate}
+
+%\item
+%Sea $E/K$ una extensi\'on algebraica y sea $R$ un subanillo de $E$ que contiene a
+%$K$. Probar que $R$ es un cuerpo.
+%
+
+
+
+\item
+	Sean $K=\mathbb{C}((X))$ y $L=\mathbb{C}((X^{1/2}))$. Probar que:
+	\begin{enumerate}
+		\item Si $u\in\mathcal{U}(\mathbb{C}[[X]])$ entonces existe $v\in\mathcal{U}(\mathbb{C}[[X]])$ tal que $u=v^{2}$.
+		\item Si $f\in K[Y]$ es de grado 2, entonces $f$ tiene sus raíces en $L$.
+	\end{enumerate}
+
+\begin{proof}
+	Que es esa notaci''on ???
+\end{proof}
+
+\item
+	Sea $\overline{\mathbb{Q}}=\left\{ x\in\mathbb{C}\; :\; x\mbox{ es algebraico
+		sobre }\mathbb{Q}\right\}$. Probar que $\overline{\mathbb{Q}}$ es un cuerpo que es una extensión algebraica de $\Q$ que no es finita, y que es
+	algebraicamente cerrado.
+
+\begin{proof}
+	Te\'orica. \qed
+\end{proof}
+
+\item
+	Sea $E/K$ una extensi\'on algebraica tal que todo polinomio $f\in K[X]$ se
+	factoriza linealmente en $E[X]$. Probar que $E$ es algebraicamente cerrado.
+
+\begin{proof}
+	Te\'orica. \qed
+\end{proof}
+
+\item
+	Sea $K$ un cuerpo. Sea $A=K[\, X_{f}\; :\; f\in K[X]\mbox{ irreducible}\, ]$. Sea
+	$I\subseteq A$ el ideal generado por $\left\{ \, f(X_{f})\; :\; f\in K[X]\mbox{
+		irreducible}\,\right\}$. Sea $\mathcal{M}$ un ideal maximal de $A$ que contiene a
+	$I$ y sea $L=A/\mathcal{M}$. Sea $E=\left\{ x\in L\; :\; x\mbox{ es algebraico
+		sobre }K\right\}$. Probar que $E$ es un cuerpo algebraicamente cerrado que contiene
+	a $K$ y que $E/K$ es algebraica.
+
+\begin{proof}
+	Ni lo entiendo lo que dice jaja
+\end{proof}
+
+\item
+	Sean $p_{1},p_{2},\ldots,p_{n}\in\mathbb{N}$ primos distintos. Sea
+	$E=\mathbb{Q}[\sqrt{p_{1}},\sqrt{p_{2}},\ldots,\sqrt{p_{n}}]$.
+	\begin{enumerate}
+		\item Probar que
+		$[\,E:\mathbb{Q}\,]=2^{n}$.
+		\item Sean $\lambda_{1},\ldots,\lambda_{n}\in\mathbb{Q}$. Probar que  $ \pm \lambda_{1}\sqrt{p_{1}} \pm \lambda_{2}\sqrt{p_{2}} \pm \cdots \pm \lambda_{n}\sqrt{p_{n}}$ don distintos dos a dos.
+		\item Sea $ \alpha  =  \lambda_{1}\sqrt{p_{1}} + \lambda_{2}\sqrt{p_{2}} + \cdots + \lambda_{n}\sqrt{p_{n}}$, ver que $E = \Q[\alpha]$
+	\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Sea la torre de extensiones $\Q \subset \Q[\sqrt{p_1}] \subset \Q[\sqrt{p_1}, \sqrt{p_2}] \subset \cdots \subset \Q[\sqrt{p_1}, \cdots, \sqrt{p_n}]$ y hagamos inducci\'on en $n$ el tama\~no de la torre.
+		
+		Para $n = 1$ es claro pues es el ejercicio previo con $a = p$ y $p = 2$.
+		
+		Si $n > 1$ sea $K = \Q[\sqrt{p_1}, \cdots, \sqrt{p_{n-2}}]$ la torre de altura $n-2$, notemos que podemos separar la torre final en $\Q \subset K$ de tama\~no 2 y $K \subset K[\sqrt{p_{n-1}}] \subset E$, por hip\'otesis inductiva $[\Q, K] = 2^{n-2}$ por lo que si demostramos que $[E, K] = 4$ estamos hechos.
+		
+		Para esto notemos que $K[\sqrt{p_{n-1}}, K] = 2$ pues $\sqrt{p_{n-1}} \not \in K$ porque los primos son distintos, por lo que debemos ver que $\sqrt{p_n} \not \in K[\sqrt{p_{n-1}}]$. Supongamos que si, entonces existen $r,s \in K$ tal que $p_n = r^2 + 2rs\sqrt{p_{n-1} + s^2p_{n-1}}$. Veamos que esto no es posible:
+		
+		\begin{itemize}
+			\item Si $rs \neq 0$ entonces como ${\rm car}(\Q) \neq 2$ entonces podr\'iamos despejar $\sqrt{p_{n-1}} = \dfrac{p_n - r^2}{2rs} \in K$ que dij\'imos que no se pod\'ia. 
+			\item Si $s = 0$ entonces $\sqrt{p_n} \in K$, que no es posible pues los primos son distintos
+			\item Si $r = 0$ entonces $\sqrt{p_{n-1}p_n} = sp_{n-1} \in K$
+		\end{itemize}
+		
+		
+		
+	\end{enumerate}
+\end{proof}
+
+
+\item Sea $E/K$ una extensi\' on algebraica de grado infinito.
+	Probar que existen subextensiones de $E/K$ de grado finito
+	arbitrariamente grande. ?`Qu\' e pasa si $E/K$ es puramente
+	trascendente?
+
+\item
+	\begin{enumerate}
+		%\item[i)] Probar que un cuerpo algebraicamente cerrado no es ordenable.
+		\item  Probar que un cuerpo algebraicamente cerrado es infinito.
+		\item  Sea $E/K$ una extensi\' on algebraica. Calcular el cardinal de
+		$E$ en funci\' on del cardinal de $K$.
+		\item  Deducir que para todo cardinal infinito $a$ existe un cuerpo
+		algebraicamente cerrado de cardinal $a$.
+	\end{enumerate}
+
+
+
+\item Sea $K$ un cuerpo.
+	\begin{enumerate}
+		\item  Sea $t$ trascendente sobre $K$. Para cada $n\in \N$, calcular $f\left( t, K(t^n)\right)$.
+		Deducir $[ K(t) : K(t^n)]$.
+		%\begin{enumerate}
+		%\item[(a)] Describir $K(t)\, /\, K(t^3)$.
+		%\item[(b)] Para cada $n\in \N$, calcular $f\left( t, K(t^n)\right)$.
+		%\end{enumerate}
+		\item  Sea $\{ t_1 , t_2 , \ldots , t_n \}$ una familia
+		algebraicamente independiente sobre $K$ y sean $e_1 , e_2 ,\ldots
+		, e_n$ n\' umeros naturales. Calcular $\left[ K\left( t_1 ,
+		\ldots , t_n\,\right) : K\left( t_1^{e_1} , \ldots ,
+		t_n^{e_n}\,\right)\,\right]$.
+	\end{enumerate}
+
+
+\item Sea $K$ un cuerpo y sea $f\in K[X]-K$. Probar que $\left[
+	K(X) : K(f)\right] = {\rm gr}( f)$.
+
+%\ejer \begin{enumerate}
+%\item[i)] Probar que hay no numerables elementos trascendentes en $\R /
+%\Q$.
+%\item[ii)] Probar que una base de trascendencia de $\R /\Q$ es no numerable.
+%\end{enumerate}
+
+\item Sea $E/K$ una extensi\' on de cuerpos y sean $x,y\in E$.
+	Determinar si las siguientes afirmaciones son verdaderas o
+	falsas. Justificar.
+	\begin{enumerate}
+		\item  Si $x$ e $y$ son trascendentes sobre $K$ entonces $x+y$ o $x.\,y$
+		es trascendente sobre $K$.
+		\item  Si $x$ es trascendente e $y$ es algebraico sobre $K$ entonces
+		$x+y$ es trascendente sobre $K$.
+		\item  Si $x$ es trascendente e $y$ es algebraico sobre $K$ entonces
+		$x.\,y$ es trascendente sobre $K$.
+		\item  Si $x$ es trascendente sobre $K$ e $y$ es trascendente sobre
+		$K(x)$ entonces $\{\, x , y\,\}$ es algebraicamente independiente
+		sobre $K$.
+		\item  Si $x$ e $y$ son trascendentes sobre $K$ entonces $\{ \, x , y
+		\,\}$ es algebraicamente independiente sobre $K$.
+	\end{enumerate}
+
+%\ejer Sean $K\subseteq F\subseteq E$ cuerpos. Probar que $\
+%\text{gr\,tr}(E/K) = \text{gr\,tr} (E/F) + \text{gr\,tr}(F/K)$.
+
+\item
+	\begin{enumerate}
+		\item  Sea $d\in\Z$ libre de cuadrados. Probar que hay s\' olo dos
+		morfismos de cuerpos $f:\Q\big[\sqrt d\,\big] \to \C$ y que en
+		cada caso $f\big(\,\Q\big[\sqrt d\,\big]\,\big) \subseteq
+		\Q\big[\sqrt d\,\big]$ (de hecho, vale la igualdad).
+		
+		\item Sea $d\in \Z$ libre de cubos.
+		\begin{enumerate}
+			\item Probar que hay s\' olo tres morfismos de cuerpos
+			$f:\Q\big[\sqrt[3]{d}\,\big] \to\C$ pero, en general,
+			$f\big(\,\Q\big[\sqrt[3]{d}\,\big]\,\big) \not \subseteq
+			\Q\big[\sqrt[3]{d}\,\big]$.
+			\item Considerar  $\Q\big[ \sqrt[3]{d},\, \xi_{3}\big]$. ?`Qu\' e
+			sucede en este caso?
+			
+		\end{enumerate}
+	\end{enumerate}
+
+
+\end{enumerate}
+\end{document}

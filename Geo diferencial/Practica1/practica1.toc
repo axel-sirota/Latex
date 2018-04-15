@@ -28,3 +28,8 @@
 \contentsline {subsection}{ Soluci\'on 20. }{8}{theorem.2.0.1}
 \contentsline {subsection}{ Soluci\'on 20. }{9}{theorem.2.0.5}
 \contentsline {subsection}{ Soluci\'on 20. }{9}{Item.37}
+\contentsline {subsection}{ Soluci\'on 20. }{9}{Item.37}
+\contentsline {subsection}{ Soluci\'on 20. }{9}{Item.37}
+\contentsline {subsection}{ Soluci\'on 20. }{9}{Item.37}
+\contentsline {subsection}{ Soluci\'on 20. }{10}{Item.37}
+\contentsline {subsection}{ Soluci\'on 20. }{10}{Item.37}

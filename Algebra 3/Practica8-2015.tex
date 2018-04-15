@@ -1,0 +1,108 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+\date{Primer cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\newcommand{\car}{\mbox{car}}
+\newcommand{\Gal}{\mbox{Gal}}
+\newcommand{\Aut}{\mbox{Aut}}
+\newcommand{\No}{\mbox{N}}
+\newcommand{\Tr}{\mbox{Tr}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 8 - Extensiones trascendentes}\\{\em 2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+\begin{ejer}  Sea $E/K$ una extensión de cuerpos y sean $t, t', \alpha\in E$.
+Determinar cuáles de las siguientes afirmaciones son verdaderas, justificando las respuestas:
+
+\begin{enumerate}
+\item Si $t$ y $t'$ son trascendentes sobre~$K$, entonces  $t\,t'$ y
+$t+t'$ no son ambos algebraicos sobre~$K$.
+
+\item Si $t$ es trascendente sobre~$K$ y $\alpha$ es algebraico sobre~$K$,
+entonces $t+\alpha$ es trascendente sobre~$K$.
+
+\item Si $t$ es trascendente sobre~$K$ y $\alpha$ es algebraico sobre~$K$,
+entonces $\alpha t$ es trascendente sobre~$K$.
+
+
+\item Si $t$ y $t'$ son trascendentes sobre~$K$, entonces el
+conjunto~$\{t,t'\}$ es algebraicamente independiente sobre~$K$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo y sean $\alpha$ algebraico sobre $K$ y $t$
+trascendente sobre $K$. Probar que $f(\alpha,K)=f(\alpha,K(t))$ y que $[K[\alpha]:K]=[K(t)[\alpha]:K(t)]$.
+\end{ejer}
+
+\begin{ejer} Sea $E=\C(X)[Y]/\langle f(X,Y)\rangle$ con $f(X,Y)=Y^2-(X-a)(X-b)(X-c)$, para $a,b,c\in \C$.
+Probar que tanto $\{X\}$ e $\{Y\}$ son bases de trascendencia de $E/\C$.
+\end{ejer}
+
+\begin{ejer}
+Sean $L_{1}$ y $L_{2}$ dos subextensiones de $E/K$. Probar que:
+$${\rm trdeg}(L_{1}L_{2}/K)\leqslant{\rm trdeg}(L_{1}/K)+{\rm
+trdeg}(L_{2}/K).$$ Dar un ejemplo donde no valga la igualdad.
+\end{ejer}
+
+\begin{ejer}
+Sea $E$ un cuerpo algebraicamente cerrado y sea $K$ un subcuerpo.
+Sea $\varphi:E\to E$ un $K$-endomorfismo. Probar que si ${\rm
+trdeg}(E/K)<\infty$ entonces $\varphi$ es un automorfismo. Mostrar
+que esto no tiene por qué  valer si ${\rm trdeg}(E/K)=\infty$.
+\end{ejer}
+
+\begin{ejer}
+Sea $t$ trascendente sobre $\mathbb{C}$ y sea $K$ la clausura
+algebraica de $\mathbb{C}(t)$. Probar que $K\simeq\mathbb{C}$.
+\end{ejer}
+
+\begin{ejer}?`Cuál es el cardinal de una base de trascendencia de $\C/\Q$?
+\end{ejer}
+
+\begin{ejer} Probar que $\C$ tiene infinitos automorfismos de cuerpo. ?`Cuál es el cardinal del conjunto  de automorfismos de $\C$?
+\end{ejer}
+
+\begin{ejer} Probar que $\C$ tiene infinitos subcuerpos propios que son isomorfos a él.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo y $E$ una $K$-\'algebra finitamente generada.
+Probar que si $E$ es un cuerpo entonces $E/K$ es una extensi\'on
+algebraica.
+\end{ejer}
+
+\end{document} 

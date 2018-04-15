@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.22)  3 SEP 2017 19:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.22)  24 SEP 2017 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**practica1.tex
-(./practica1.tex
+**practica2.tex
+(./practica2.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -611,39 +611,88 @@ Package: easylist 2014/01/11 v.1.4 Numbered items with a single command.
 \el@TotalMargin=\dimen258
 \el@LeftMove=\dimen259
 )
-\c@theorem=\count148
-
-(./practica1.aux
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2015/08/19 v1.8n multicolumn formatting (FMi)
+\c@tracingmulticols=\count148
+\mult@box=\box45
+\multicol@leftmargin=\dimen260
+\c@unbalance=\count149
+\c@collectmore=\count150
+\doublecol@number=\count151
+\multicoltolerance=\count152
+\multicolpretolerance=\count153
+\full@width=\dimen261
+\page@free=\dimen262
+\premulticols=\dimen263
+\postmulticols=\dimen264
+\multicolsep=\skip55
+\multicolbaselineskip=\skip56
+\partial@page=\box46
+\last@line=\box47
+\maxbalancingoverflow=\dimen265
+\mult@rightbox=\box48
+\mult@grightbox=\box49
+\mult@gfirstbox=\box50
+\mult@firstbox=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\c@columnbadness=\count154
+\c@finalcolumnbadness=\count155
+\last@try=\dimen266
+\multicolovershoot=\dimen267
+\multicolundershoot=\dimen268
+\mult@nat@firstbox=\box69
+\colbreak@box=\box70
+\mc@col@check@num=\count156
+)
+\c@theorem=\count157
+ (./practica2.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 )
-\openout1 = `practica1.aux'.
+\openout1 = `practica2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
- ABD: EveryShipout initializing macros
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+
+ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count149
-\scratchdimen=\dimen260
-\scratchbox=\box45
-\nofMPsegments=\count150
-\nofMParguments=\count151
+\scratchcounter=\count158
+\scratchdimen=\dimen269
+\scratchbox=\box71
+\nofMPsegments=\count159
+\nofMParguments=\count160
 \everyMPshowfont=\toks43
-\MPscratchCnt=\count152
-\MPscratchDim=\dimen261
-\MPnumerator=\count153
-\makeMPintoPDFobject=\count154
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen270
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
 \everyMPtoPDFconversion=\toks44
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -689,24 +738,32 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \. on input line 121.
-LaTeX Info: Redefining \% on input line 121.
-LaTeX Font Info:    Try loading font information for U+msa on input line 121.
+LaTeX Info: Redefining \. on input line 122.
+LaTeX Info: Redefining \% on input line 122.
+LaTeX Font Info:    Try loading font information for U+msa on input line 122.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 121.
+LaTeX Font Info:    Try loading font information for U+msb on input line 122.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 121.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 122.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Package xypdf Info: Line width: 0.43799pt on input line 121.
+Package xypdf Info: Line width: 0.43799pt on input line 122.
+
+Overfull \hbox (13.77051pt too wide) in paragraph at lines 204--205
+[]\OT1/cmr/m/n/10.95 Llamemos $[] = \OML/cmm/m/it/10.95 $ \OT1/cmr/m/n/10.95 y
+ pro-po-ne-mos la to-rre $\U/msb/m/n/10.95 Q ( Q\OT1/cmr/m/n/10.95 [[]] \U/msb/
+m/n/10.95 ( Q\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 \OT1/cmr/m/n/10.95 ]$, lu
+e-go no-te-mos que $\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.9
+5 ; Q\OT1/cmr/m/n/10.95 [[]]) =
+ []
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -716,29 +773,43 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./practica1.aux
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+Overfull \hbox (1.68329pt too wide) in paragraph at lines 602--606
+[]\OT1/cmr/m/n/10.95 Probar que hay s^^Solo tres mor-fis-mos de cuer-pos $\OML/
+cmm/m/it/10.95 f \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Q[][] [] \OMS/cmsy/m/n/1
+0.95 ! \U/msb/m/n/10.95 C$ \OT1/cmr/m/n/10.95 pe-ro, en ge-ne-ral, $\OML/cmm/m/
+it/10.95 f[] \U/msb/m/n/10.95 Q[][] [] [] \OMS/cmsy/m/n/10.95 6^^R
+ []
+
+[7] (./practica2.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 17244 strings out of 493029
- 320687 string characters out of 6136234
- 412529 words of memory out of 5000000
- 20418 multiletter control sequences out of 15000+600000
+ 17759 strings out of 493029
+ 332197 string characters out of 6136234
+ 435950 words of memory out of 5000000
+ 20929 multiletter control sequences out of 15000+600000
  11925 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,11n,84p,3245b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,18n,84p,3245b,1081s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on practica1.pdf (1 page, 68788 bytes).
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on practica2.pdf (7 pages, 181376 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 87 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

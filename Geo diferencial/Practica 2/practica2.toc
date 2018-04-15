@@ -1,0 +1,24 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Problemas}{2}{section.1}
+\contentsline {subsection}{ Ejercicio 1. }{2}{question.1}
+\contentsline {subsection}{ Ejercicio 2. }{2}{question.2}
+\contentsline {subsection}{ Ejercicio 3. }{2}{question.3}
+\contentsline {subsection}{ Ejercicio 4. }{2}{question.4}
+\contentsline {subsection}{ Ejercicio 5. }{3}{question.5}
+\contentsline {subsection}{ Ejercicio 6. }{3}{question.6}
+\contentsline {subsection}{ Ejercicio 7. }{3}{question.7}
+\contentsline {subsection}{ Ejercicio 8. }{3}{question.8}
+\contentsline {subsection}{ Ejercicio 9. }{3}{question.9}
+\contentsline {subsection}{ Ejercicio 10. }{3}{question.10}
+\contentsline {subsection}{ Ejercicio 11. }{3}{question.11}
+\contentsline {subsection}{ Ejercicio 12. }{3}{question.12}
+\contentsline {subsection}{ Ejercicio 13. }{4}{question.13}
+\contentsline {subsection}{ Ejercicio 14. }{4}{question.14}
+\contentsline {subsection}{ Ejercicio 15. }{5}{question.15}
+\contentsline {subsection}{ Ejercicio 16. }{6}{question.16}
+\contentsline {subsection}{ Ejercicio 17. }{6}{question.17}
+\contentsline {subsection}{ Ejercicio 18. }{6}{question.18}
+\contentsline {subsection}{ Ejercicio 19. }{6}{question.19}
+\contentsline {subsection}{ Ejercicio 20. }{6}{question.20}
+\contentsline {section}{\numberline {2}Soluciones}{7}{section.2}
+\contentsline {subsection}{ Soluci\'on 20. }{7}{section.2}

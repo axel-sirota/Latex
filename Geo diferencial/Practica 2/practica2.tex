@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{mytheorem}{Theorem}
+%
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheorem{proposition}[theorem]{Proposici\'on}
+
+\newtheorem{corollary}[theorem]{Corolario}
+
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+\usepackage[auto-label]{exsheets}[2015/07/04]
+
+\DeclareInstance{exsheets-heading}{myblock}{default}{
+	attach = {
+		main[l,vc]title[l,vc](0pt,0pt) ;
+		main[r,vc]points[l,vc](\marginparsep,0pt)
+	} ,
+	title-post-code = \bfseries\space
+	a la pregunta \GetQuestionProperty{ref}{\CurrentQuestionID}
+}
+
+\usepackage{hyperref}
+
+\def\questionName{Ejercicio}
+\def\solutionName{Soluci\'on}
+
+\SetupExSheets{
+    headings=block-subtitle,
+    question/name=\questionName,
+    question/pre-hook = \addcontentsline{toc}{subsection}{
+        \questionName\space\thequestion.
+        },
+    solution/name=\solutionName,
+    solution/pre-hook = \addcontentsline{toc}{subsection}{
+    	\solutionName\space\thequestion.
+		}
+    }
+
+
+
+\begin{document}
+
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf An\'alisis Funcional}
+	\centerline{\sc Final}
+	\centerline{\sc Axel Sirota}
+	
+	\tableofcontents
+	\newpage
+	
+\section{Problemas}
+
+\textsl{\textbf{Espacios tangentes}}
+\vspace{1em}
+
+
+\begin{question}
+	Sea $M$ una variedad diferencial de dimensi\'on $d$ y $p\in M$ un punto. Probar que las siguientes descripciones del espacio tangente a $M$ en $p$ son equivalentes:
+	\begin{enumerate}
+		\item Derivaciones en $p$, es decir, funcionales lineales en el espacio de funciones diferenciables que cumplen la regla de Leibniz $$T_pM=\{D:\mathscr{C}^\infty(M,\R)\to\R\text{ lineal}: D(fg)=D(f)g(p)+f(p)D(g)\}.$$ 
+		\item El espacio dual de $\mathfrak{m}_p/\mathfrak{m}_p^2$ donde $\mathfrak{m}_p=\{f\in\mathscr{C}^\infty(M,\R):f(p)=0\}$.
+		\item El espacio dual de $\overline{\mathfrak{m}}_p/\overline{\mathfrak{m}}_p^2$ donde $\overline{\mathfrak{m}}_p$ es el ideal de g\'ermenes de funciones en $p$ que se anulan en $p$.
+		\item Familias $((U,\phi),v)$ con $(U,\phi)$ una carta alrededor de $p$ y $v\in\R^d$, bajo la relaci\'on $$((U,\phi),v)\sim ((V,\psi),w) \text{ si }w = D(\psi\phi^{-1})(\phi(p))v.$$
+	\end{enumerate}
+	Con cada descripci\'on del espacio tangente, definir la diferencial $\diff_pf:T_pM\to T_{f(p)}N$ de una funci\'on diferenciable $f:M\to N$.
+\end{question}
+
+\begin{solution}
+	
+	Primero unos lemas:
+	
+	\begin{lemma}
+		\label{Constante en un entorno son anuladas por una derivacion}
+		Sea $p \in M$ y $p \in U$ un entorno abierto, luego si $f \vert_U = cte$ entonces $v(f) = 0$ para toda $v \in T_pM$
+	\end{lemma}
+	
+	\begin{proof}
+		En efecto, como $f \vert_U = c$ entonces $\frac{1}{c} v(f) = v(\frac{f}{c}) = v(\frac{f}{c}\frac{f}{c}) = \frac{1}{c} v(f) + \frac{1}{c} v(f) $ con lo que $v(f) = 0$. \qed
+	\end{proof}
+	
+	\begin{lemma}
+		\label{Funciones de orden 2 son anuladas por derivaciones}
+		Sea $p \in M$ y $p \in U$ un entorno abierto, luego si $f \in \mathfrak{m}_p^2$ entonces $v(f) = 0$ 
+	\end{lemma}
+	
+	\begin{proof}
+		En efecto, existen $g,h \in \mathfrak{m}_p$ tal que $f = gh$ por lo que $v(f) = v(gh) = \underbrace{g(p)}_{=0}v(h) + \underbrace{h(p)}_{=0}v(g) = 0$\qed
+	\end{proof}
+	
+	
+	Vayamos de a partes:
+
+		\begin{enumerate}
+			\item[$i \Longrightarrow \ ii$] Supongamos que  $v \in \dual{\mathcal{C}^{\infty}(M)}$ tal que $v$ cumple la regla de Leibniz y sea $[f] \in \mathfrak{m}_p/\mathfrak{m}_p^2$. Definamos $D_v: \mathfrak{m}_p/\mathfrak{m}_p^2 \rightarrow \R$ dado por $D_v[f] = v(f)$ y veamos que es lineal, cumple la regla del producto y que es independiente del representante.
+			
+			Si $f = \underbrace{g}_{\in \mathfrak{m}_p} + \underbrace{h}_{\in \mathfrak{m}_p^2}$ notemos que:
+			
+			\begin{equation*}
+				D_v(f-g) = v (h) \underbrace{=}_{\ref{Funciones de orden 2 son anuladas por derivaciones}} 0
+			\end{equation*}
+			
+			Por lo tanto $D_v$ no depende del representante, como es trivialmente lineal entonces la aplicaci\'on $D_v \in \dual{\quotient{\mathfrak{m}_p}{\mathfrak{m}_p^2}}$.
+			
+			\item [$ii \Longrightarrow \ iii$] En efecto por \ref{Constante en un entorno son anuladas por una derivacion} la aplicaci\'on $v$ es local y por ende podemos tomar todo en un entorno $U \ni p$ en vez de $M$.
+			
+			\item [$iii \Longrightarrow iv$] Sea $v \in \dual{\quotient{\overline{\mathfrak{m}_p}}{\overline{\mathfrak{m}_p}^2}}$ y tomemos una carta $(U,\phi)$ de ese entorno de $p$, luego definimos $\chi(v) = [(\phi,u)]$ donde $u = \left(v(\phi^1), \dots , v(\phi^n)\right)$.
+			
+			\item[$iv \Longrightarrow i$] 
+			
+		\end{enumerate}
+
+\end{solution}
+
+\begin{question}
+	Sea $U\subseteq\R^n$ un abierto y $\phi:U\to\R$ una funci\'on diferenciable. El gr\'afico $$\Gamma_\phi=\{(x,\phi(x)):x\in U\}$$ es una variedad diferenciable con la carta global $(\Gamma_\phi,\pi)$ con $\pi:\Gamma_\phi\to\R^n$ definida por $\pi((x,\phi(x)))=x$. Si $f:\Gamma_\phi\to\R$ es la funci\'on dada por $f((x,\phi(x))=\phi(x)$, calcular $$\left.\dfrac{\partial}{\partial \pi^i}\right|_p (f)$$ en funci\'on de las derivadas parciales de $\phi$.
+\end{question}
+
+\begin{question}
+	Sea $M$ una variedad diferencial, $p\in M$ un punto y fijemos una carta $(U,\phi)$ de $M$ alrededor de $p$. Diremos que dos curvas $\gamma_1,\gamma_2:\R\to M$ con $\gamma_1(0)=\gamma_2(0)=p$ son \textit{equivalentes} si las derivadas $\left.\dfrac{\diff}{\diff t}(\phi\circ\gamma_1)\right|_{t=0}=\left.\dfrac{\diff}{\diff t}(\phi\circ\gamma_2)\right|_{t=0}$ coinciden. Lo denotaremos $\gamma_1\sim\gamma_2$. Probar que:
+	\begin{enumerate}
+		\item $\sim$ es una relaci\'on de equivalencia.
+		\item $\sim$ no depende de la carta $(U,\phi)$ elegida.
+		\item El conjunto de clases de equivalencia puede ser dotado de estructura de espacio vectorial de forma natural y resulta isomorfo al espacio tangente en $p$. Definir la diferencial de una funci\'on en un punto en t\'erminos de esta nueva construcci\'on.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	Sea $U\subseteq\R^n$ un abierto y $f:U\to\R$ una funci\'on diferenciable tal que $0$ es un valor regular (es decir, si $f(p)=0$ entonces $\nabla f(p)\neq 0$). Si $M=f^{-1}(0)$, probar que $T_pM$ puede identificarse con el espacio ortogonal a $\nabla f(p)$.
+\end{question}
+
+\begin{question}
+	Probar que $f:M\to N$ es un difeomorfismo en un entorno de $p\in M$ si y s\'olo si $\diff_p f:T_pM\to T_{f(p)}N$ es un isomorfismo. 
+\end{question}
+
+\begin{question}
+	Sea $f:M\to N$ una funci\'on diferenciable. Probar que si $f$ es constante en un entorno $U$ de $p$ entonces $\diff_pf=0$. Rec\'iprocamente, si $\diff_p f=0$ para todo $p$ en un abierto conexo $U$, entonces $\left.f\right|_U$ es constante.
+\end{question}
+
+\begin{question}
+	Sean $M,N$ variedades y $p,q$ puntos en ellas respectivamente. Tomemos las inclusiones $\iota_M:M\to M\times N$ dada por $\iota_M(x)=(x,q)$ y $\iota_N:N\to M\times N$ dada por $\iota_N(y)=(p,y)$. Probar que $$T_{(p,q)}(M\times N) = \diff_p\iota_M(T_pM)\oplus\diff_q\iota_N(T_qN).$$
+\end{question}
+
+\textsl{\textbf{Ejemplos}}
+\vspace{1em}
+
+\begin{question}
+	Se considera el toro $T=S^1\times S^1$ y la funci\'on $f(e^{it},e^{iu})=\sin(3t)\cos(5u)$, mirando $S^1\subset\C$. Elegir alguna carta alrededor de $p=(1,1)$ en $T$ y calcular las derivadas de $f$ con respecto a las coordenadas dadas por la carta en $p$.
+\end{question}
+
+\begin{question}
+	Sea $S^2\subset\R^3$ la esfera y $f:S^2\to\R$ dada por $f(x)=\mathrm{dist}(x,N)^2$ donde $N=(0,0,1)$. Consideremos ademas, las cartas $(U,\phi_N)$ y $(V,\phi_S)$ dadas por las proyecciones estereogr\'aficas y $p=(\frac{1}{2},\frac{1}{2},\frac{\sqrt{2}}{2})$.
+	Se definen los vectores tangentes
+	$$v_1=8\left.\dfrac{\partial}{\partial\phi_N^1}\right|_{p}+5\sqrt{2}\left.\dfrac{\partial}{\partial\phi_N^2}\right|_{p},\qquad v_2=(-15\sqrt 2+20)\left.\dfrac{\partial}{\partial\phi_S^1}\right|_{p}+(-24+16\sqrt{2})\left.\dfrac{\partial}{\partial\phi_S^2}\right|_{p}.$$
+	\begin{enumerate}
+		\item Probar que $f$ es diferenciable.
+		\item Calcular $v_1(f)$ y $v_2(f)$.
+		\item Probar que en realidad $v_1=v_2$.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	Consideremos $\det:\mathrm{GL}_n(\R)\to\R$. Dado que $\mathrm{GL}_n(\R)\subseteq\mathrm{M}_n(\R)$ es un abierto, identificamos $T_I\mathrm{GL}_n(\R)\simeq T_I\mathrm{M}_n(\R)\simeq\mathrm{M}_n(\R)$ y llamamos $e_{ij}$ a las coordenadas as\'i dadas. Calcular $\dfrac{\partial\det}{\partial e_{ij}}$ y $\left.\dfrac{\partial\det}{\partial e_{ij}}\right|_I$.
+\end{question}
+
+\begin{question}
+	Calcular la diferencial de $f:S^1\times (-1,1)\to S^2$, $$f(z,t)=(z_1\sqrt{1-t^2},z_2\sqrt{1-t^2},t),\;\;\;\text{donde }z=z_1+iz_2,$$ en los puntos de la forma $(1,t)\in S^1\times (-1,1)$.
+\end{question}
+
+\begin{question}
+	Hallar la diferencial de las siguientes funciones en el punto indicado.
+	\begin{enumerate}
+		\item $f:\R^2\to\R^2$ dada por $F(x,y)=(xy+y^2,e^{x-y})$ en $(7,3)$.
+		\item $g:S^1\to S^1$ dada por $g(z)=z^n$, con $n\in\N$, en cualquier punto.
+		\item El producto de matrices $\mu:\mathrm{M}_n(\R)\times\mathrm{M}_n(\R)\to\mathrm{M}_n(\R)$ en cualquier punto.
+		\item La inversa de matrices $i:\mathrm{GL}_n(\R)\to\mathrm{GL}_n(\R)$ en la identidad.
+		\item Las restricciones de $\mu$ e $i$ a $\mathrm{SL}_n(\R)$ en la identidad.
+		\item $f:\mathbb{P}^2(\R)\to\mathbb{P}^2(\R)$ dada por $f(a:b:c)=(b:a:c)$ en cualquier punto.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	Consideremos la funci\'on $f:\R^3\to\R^2$ dada por $f(x,y,z) = (xy,z)$.
+	\begin{enumerate}
+		\item Hallar los puntos cr\'iticos de $f$.
+		\item Hallar los puntos cr\'iticos de $\left.f\right|_{S^2}$.
+		\item Hallar el conjunto $C$ de valores cr\'iticos de $\left.f\right|_{S^2}$.
+		\item Probar que $C$ tiene medida $0$.
+	\end{enumerate}
+\end{question}
+
+\textsl{\textbf{Fibrados vectoriales}}
+
+Sea $V$ un espacio vectorial real. Recordemos que un \textbf{fibrado vectorial} de fibra $V$ sobre una variedad diferencial $M$ consiste de una variedad diferencial $E$ junto con una funci\'on diferenciable $\pi:E\to M$ tal que
+\begin{itemize} 
+	\item Para cada $p\in M$ la fibra $\pi^{-1}(p)$ tiene estructura de espacio vectorial.
+	\item Para todo $p\in M$ existen un entorno $U$ y un difeomorfismo $\phi_U:\pi^{-1}(U)\to U\times V$ de forma que el siguiente diagrama conmuta
+	\begin{center}
+		\begin{tikzcd}
+			\pi^{-1}(U)\arrow[]{dr}[font=\normalsize,swap]{\pi}\arrow[]{rr}[font=\normalsize]{\phi_U} & & U\times V\arrow[]{dl}[font=\normalsize]{\mathrm{pr}_1} \\
+			& M. &
+		\end{tikzcd}
+	\end{center}
+	\item Para todo $p,\phi$ y $U$ como en el \'item anterior, la restricci\'on $\phi_U:\pi^{-1}(p)\to \{p\}\times V$ es un isomorfismo de espacios vectoriales.
+\end{itemize}
+El espacio $E$ se llama el \textit{espacio total}, $M$ el \textit{espacio base}, $\pi$ la \textit{proyecci\'on} y $U$ es un \textit{abierto trivializante}. Dados dos abiertos trivializantes $U,V$ la funci\'on $\phi_V\circ\phi_U^{-1}$ es llamada la \textit{funci\'on de transici\'on}. Decimos que un fibrado es \textit{trivial} si se puede tomar a $M$ como un abierto trivializante. Una \textit{secci\'on} de $\pi:E\to M$ es una funci\'on diferenciable $s:M\to E$ tal que $\pi\circ s = id$.
+
+\begin{question}
+	Sea $M$ una variedad diferencial de dimensi\'on $d$. Consideremos $$TM = \{(p,v):p\in M, v\in T_pM\},$$ la uni\'on disjunta de los espacios tangentes.
+	\begin{enumerate}
+		\item Si $(U,\phi)$ es una carta, definimos $\widetilde{U} = \{(p,v):p\in U, v\in T_p M\}$ y una funci\'on $\widetilde{\phi}:\widetilde{U}\to\R^d\times\R^d$, $$\widetilde{\phi}(p,v)=\left(\phi(p),v^1,\cdots,v^d\right)$$ donde $v=v^1\left.\frac{\partial}{\partial \phi^1}\right|_p+\cdots+v^d\left.\frac{\partial}{\partial\phi^d}\right|_p$. Probar que $$\mathscr{A}=\left\{(\widetilde{U},\widetilde{\phi}) : (U,\phi)\text{ carta de }M \right\}$$ induce una estructura de variedad diferenciable sobre $TM$. ¿Cu\'al es su dimensi\'on?
+		\item Probar que la proyecci\'on can\'onica $\pi:TM\to M$ es una funci\'on diferenciable de rango constante.
+		\item Sea $f:M\to N$. Probar que $\diff f:TM\to TN$ definida por $\diff f(p,v) = (f(p),\diff_p f(v))$ es una funci\'on diferenciable.
+		\item Probar que $\pi:TM\to M$ es un fibrado vectorial que llamaremos \textit{fibrado tangente}. Encontrar un cubrimiento por abiertos trivializantes y calcular las funciones de transici\'on. 
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	Probar que los siguientes son fibrados vectoriales, hallar su fibra y las funciones de transici\'on.
+	\begin{enumerate}
+		\item El \textit{fibrado tautol\'ogico} de $\mathbb{P}^n(\R)$. El espacio total se define como $$\gamma_n=\{([v],p)\in\mathbb{P}^n(\R)\times\R^{n+1}:p\in v\}$$ y $\pi:\gamma_n\to\mathbb{P}^n(\R)$ es la proyecci\'on en la primera coordenada.
+		\pagebreak
+		\item El \textit{fibrado de Moebius} sobre $S^1$. El espacio total se define como $E=[0,1]\times\R/\sim$ donde $$(a,b)\sim(c,d) \text{ si } b=-d \text{ y }\begin{cases}a=0, c=1,\\ a=1, c=0\end{cases}$$
+		y la proyecci\'on est\'a dada por $\pi:E\to S^1$, $\pi(\overline{(x,y)}) = e^{2\pi i x}$.
+	\end{enumerate}
+	\vspace{1em}
+	
+\end{question}
+
+\begin{question}Sea $M$ una variedad diferencial y $\pi:E\to M$ un fibrado vectorial y sea $n$ la dimensi\'on de las fibras.
+	\begin{enumerate}
+		\item Probar que $\pi:E\to M$ es el fibrado trivial si y s\'olo si existen secciones $s_1,\ldots,s_n$ tales que $(s_1(p),\ldots,s_n(p))$ es una base de $\pi^{-1}(p)$ para cada $p\in M$.
+		
+		\item Probar que el fibrado tautol\'ogico nunca es trivial.
+		
+		\noindent Sugerencia: probar que toda secci\'on del fibrado tautol\'ogico debe anularse.
+	\end{enumerate}
+\end{question}
+
+\begin{question}
+	Diremos que una variedad es \textit{paralelizable} si su fibrado tangente es trivial. Probar que $S^1, S^3$ y $T^n=S^1\times\cdots\times S^1$ son paralelizables. Probar que $S^2$ no es paralelizable.
+\end{question}
+
+
+\textsl{\textbf{\'Algebra de campos}}
+
+\begin{question}
+	Consideremos el anillo $\R[\epsilon]=\R[x]/(x^2)$ Probar que $T_p M$ se puede identificar con los morfismos de anillos $$\mathscr{D}_p(M)\to\R[\epsilon]$$ donde $\mathscr{D}_p(M)$ es el anillo de g\'ermenes de funciones en $p$.
+\end{question}
+
+\begin{question}
+	Consideremos el conjunto de $\R$-derivaciones de $\mathscr{C}^\infty(M,\R)$, $$\mathrm{Der}_\R(\mathscr{C}^\infty(M,\R)) = \{D\in\mathrm{End}_\R(\mathscr{C}^\infty(M,\R)) : D(fg) = fD(g)+gD(f)\}.$$ Probar que $\mathrm{Der}_\R(\mathscr{C}^\infty(M,\R)) \simeq \mathrm{Hom}_{\R-alg}(\mathscr{C}^\infty(M,\R),\mathscr{C}^\infty(M,\R)\otimes_\R \R[\epsilon])$.
+\end{question}
+
+\begin{question}
+	Sea $M$ una variedad y $U\subseteq M$ un abierto. El conjunto de \textit{campos tangentes sobre $U$} se define como $$\mathfrak{X}(U) = \{X\in\mathscr{C}^\infty(U,TM): \pi\circ X = id\}.$$ Probar que
+	\begin{enumerate}
+		\item Probar que $\mathfrak{X}(U)$ es un $\mathscr{C}^\infty(U,\R)$-m\'odulo.
+		\item Probar que para todo punto $p\in M$ existe un entorno $U$ de $p$ tal que $\mathfrak{X}(U)$ es un $\mathscr{C}^\infty(U,\R)$-m\'odulo libre. ¿Cu\'al es el rango de este m\'odulo?
+		\item Probar que $M$ es paralelizable si y s\'olo si $\mathfrak{X}(M)$ es un $\mathscr{C}^\infty(M,\R)$-m\'odulo libre.
+	\end{enumerate}
+\end{question}
+
+\section{Soluciones}
+
+\SetupExSheets{headings=myblock}
+\printsolutions
+
+
+
+\end{document}

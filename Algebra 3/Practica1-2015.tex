@@ -1,0 +1,336 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\newcommand{\bfb}{{\boldsymbol{b}}}
+\newcommand{\bfd}{{\boldsymbol{d}}}
+\newcommand{\bff}{{\boldsymbol{f}}}
+\newcommand{\bfx}{{\boldsymbol{x}}}
+\newcommand{\bfX}{{\boldsymbol{X}}}
+\newcommand{\bfa}{{\boldsymbol{a}}}
+\newcommand{\gr}{{\mbox{gr}\,}}
+
+\date{Segundo cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 1 - Anillos y Cuerpos} \\ {\em 2do cuatrimestre  2015}
+\end{center}
+
+\bigskip \textbf{Nota:} En esta materia, anillo significa anillo
+conmutativo con $1 \neq 0$ y todo morfismo de anillo $f:A\to B$ manda el $1_A$ en el $1_B$.
+
+\medskip
+
+\begin{ejer}
+Sea $A$ un anillo. Probar que:
+\begin{enumerate}
+\item $A$ tiene ideales maximales y todo ideal propio $I$ est\'a
+contenido en un ideal maximal.
+\item $P$ es ideal primo si y s\'olo si $A/P$ es dominio \'\i
+ntegro.
+\item $A$ es cuerpo si y s\'olo si tiene exactamente dos ideales.
+\item $M$ es ideal maximal si y s\'olo si $A/M$ es cuerpo.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Probar que:
+\begin{enumerate}
+\item Si $K$ es cuerpo y $f:K\to B$ es morfismo de anillos,
+entonces $f$ es inyectivo.
+\item Si $A$ es anillo tal que todo morfismo de anillos $f:A\to B$
+es inyectivo, entonces $A$ es cuerpo.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $D$ un dominio \'\i ntegro finito. Probar que $D$ es un cuerpo.
+\end{ejer}
+
+\begin{ejer}
+Dado $b\in\mathbb{C}$ se define $\mathbb{Q}[b]=\left\{ \sum_{i=0}^{n}a_{i}b^{i}\,
+/\, a_{i}\in\mathbb{Q}\right\}$. Probar que $\mathbb{Q}[\sqrt{2}]$,
+$\mathbb{Q}[\sqrt{3}]$, $\mathbb{Q}[i]$ y $\mathbb{Q}[\sqrt[3]{2}]$ son cuerpos.
+\end{ejer}
+
+
+
+\begin{ejer}
+Sea $K$ un cuerpo y sea $A$ una $K$-\'algebra de dimensi\'on finita. Probar que si
+$A$ es un dominio \'\i ntegro, entonces es un cuerpo.
+\end{ejer}
+
+\begin{ejer}
+Determinar el grupo de unidades $\mathcal{U}(A)$ de los siguientes anillos $A$:
+\begin{center}$\mathbb{Z}$, $K$ (cuerpo), $\mathbb{Z}[i]$,
+$\mathbb{Z}[\sqrt{-5}]$, $D[X]$ con $D$ dominio \'\i ntegro,
+$\mathbb{Z}/n\Z$.\end{center}
+\end{ejer}
+
+\begin{ejer}
+Caracterizar los siguientes conjuntos:
+\begin{enumerate}
+\item $\{f:\R\to \C \, ,\ f \hbox{ isomorfismo de cuerpos} \}$.
+\item $\{f:\C\to \R \, ,\ f \hbox{ morfismo de cuerpos} \}$.
+\item  $\{f:\Q\to \Z/p\Z \, ,\ f \hbox{ morfismo de
+cuerpos} \}$, $p$ primo.
+\item $\{f:\Q\to \K \, ,\ f \hbox{ morfismo de cuerpos} \}$, $\K$ cuerpo fijo.
+\item  $\{f:\Q[\sqrt 2\,]\to \Q[\sqrt 3\,] \, ,\ f \hbox{ morfismo de cuerpos}\}$.
+%\item[vi)] $\{ f:\Q [\sqrt 2\,]\to \Q [\sqrt[3]{3}\,] \, ,\ f
+%\hbox{ morfismo de cuerpos} \}$.
+\item  $\{f:\C\to \C \, ,\ f
+\hbox{ morfismo de cuerpos tal que } f(a)=a \ \forall \, a\in\R\,\}$.
+\item  $\{ f:\Q[i]\to \Q[i] \, ,\ f \hbox{ morfismo de cuerpos} \}$.
+\item $\{f:\Q[i]\to \Q[i] \, ,\ f \hbox{ isomorfismo de cuerpos}\}$.
+\item $\{f:\Q[i]\to \R \, ,\ f \hbox{ morfismo de cuerpos} \}$.
+\item $\{f:\R\to \R \, ,\ f \hbox{ morfismo de cuerpos} \}$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $A$ un dominio \'\i ntegro y sea $K$ su cuerpo de cocientes.
+\begin{enumerate}
+\item Probar que $f:A\to K$ dada por $a\mapsto\frac{a}{1}$ es un
+monomorfismo de anillos.
+\item  Sea $D$ un anillo. Probar que son equivalentes:
+\begin{enumerate}
+\item  $D$ es dominio \'\i ntegro.
+\item  Existe $f:D\to K$ monomorsfismo de anillos para alg\'un
+cuerpo $K$.
+\end{enumerate}
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Caracterizar el cuerpo de cocientes de los siguientes dominios \'\i ntegros:
+\begin{center} $\mathbb{Z}$, $\mathbb{Z}[i]$, $\mathbb{Z}[\sqrt{2}]$, $A[X]$ ($A$
+dominio \'\i ntegro), $K$ ($K$ cuerpo).\end{center}
+\end{ejer}
+
+\begin{ejer}
+Sea $A$ un dominio \'\i ntegro y sea $a\in A$. Probar que:
+\begin{enumerate}
+\item Si $a$ es primo entonces es irreducible.
+\item Si $A$ es DFU, entonces todo irreducible es primo.
+\item Dar ejemplos en $\mathbb{Z}[\sqrt{-5}]$ de elementos que sean irreducibles
+pero no primos.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $A$ un dominio \'\i ntegro. Probar que valen las siguientes implicaciones pero
+no las rec\'\i procas:
+$$A\;\mbox{es euclideano}\;\Longrightarrow\;A\;\mbox{es principal}\;\Longrightarrow\;A\;\mbox{es DFU}.$$
+\end{ejer}
+
+\begin{ejer}
+Probar que $\mathbb{Z}$, $\mathbb{Z}[i]$, $K$ y $K[X]$ ($K$ cuerpo) son anillos
+euclideanos.
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo. Probar que:
+\begin{enumerate}
+\item $-1$ es un cuadrado en $\mathbb{Z}/{p}\Z$ si y s\'olo si $p=2$ o $p\equiv 1\bmod
+4$.
+\item $p$ es irreducible en $\mathbb{Z}[i]$ si y s\'olo si $p$ no es suma de dos
+cuadrados (en $\mathbb{Z}$).
+\item $p$ es primo en $\mathbb{Z}[i]$ si y s\'olo si $p\equiv 3\bmod 4$.
+\item $p$ es suma de dos cuadrados (en $\mathbb{Z}$) si y s\'olo si $p=2$ o $ p\equiv
+1\bmod 4$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $A$ un DFU, $K$ su cuerpo de cocientes y $f\in A[X]$ con ${\rm gr}(f)\geqslant 1$. Probar que:
+\begin{enumerate}
+\item $A[X]$ es DFU.
+\item $f$ es irreducible (en $A[X]$) si y s\'olo si $f$ es irreducible en $K[X]$ y ${\rm
+cont}(f)=1$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo y sea $f\in K[X]$.
+\begin{enumerate}
+\item Probar que $K[X]/\langle f\rangle$ es un cuerpo si y s\'olo si $f$ es irreducible.
+\item Construir un cuerpo de 9 elementos.
+\item Probar que $\mathbb{R}[X]/\langle X^{2}+1\rangle\simeq\mathbb{C}$.
+\item Supongamos que $f=\prod_{i=1}^{n}(X-\alpha_{i})$ con los $\alpha_{i}\in K$
+todos distintos. Sea $g_{j}:=\prod_{i\neq j}(X-\alpha_{i})$, $1\le j\le n$. Probar que $\{
+\overline{g_{1}},\ldots,\overline{g_{n}}\}$ es base de $K[X]/\langle f\rangle$, y
+para un $h\in K[X]$, calcular las coordenadas de $\overline{h}$ en esa base.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo. Definimos $\Phi:\mathbb{Z}[X]\to (\mathbb{Z}/p\Z)[X]$
+mediante:
+$$\Phi(a_{n}X^{n}+\cdots+a_{1}X+a_{0})=\overline{a_{n}}X^{n}+\cdots+\overline{a_{1}}X+\overline{a_{0}}.$$
+Probar que:
+\begin{enumerate}
+\item $\Phi$ es un morfismo de anillos.
+\item Para un $f\in\mathbb{Z}[X]$ tal que $\Phi(f)\neq 0$ y ${\rm gr}(\Phi(f))={\rm gr}(f)$,
+si $\Phi(f)$ es irreducible en $(\mathbb{Z}/p\Z)[X]$, entonces $f$ no se factoriza en
+$\mathbb{Z}[X]$ como producto de polinomios de grado positivo.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+\emph{Criterio de irreducibilidad de Eisenstein.} Sea $A$ un DFU y sea $K$ su cuerpo
+de cocientes. Sea $f=\sum_{i=0}^{n}a_{i}X^{i}\in A[X]$ con $n> 0$. Probar que si
+existe un primo $p\in A$ que satisface $p\nmid a_{n}$, $p\mid a_{i}\;\forall\,
+0\leqslant i <n$ y $p^{2}\nmid a_{0}$, entonces $f$ es irreducible en $K[X]$.
+\end{ejer}
+
+\begin{ejer}
+Sea $p\in\mathbb{N}$ primo. Probar que:
+\begin{enumerate}
+\item $(X+1)^{p}-1$ es divisible por $X$ y $\frac{(X+1)^{p}-1}{X}=\sum_{i=0}^{p-1}{p \choose i}X^{p-i-1}\in\mathbb{Z}[X]$ es irreducible.
+\item $1+X+X^{2}+\cdots+X^{p-1}$ es irreducible.
+\item $X^{n}-p$ es irreducible $\forall\, n\in\mathbb{N}$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo y sea  $a\in K$. Probar que
+$X^{4}-a$ es reducible en $K[X]$ si y solo si $a=b^2$ para algún $b\in K$ o $a=-4c^4$ para algún $c\in K$.
+\end{ejer}
+
+\begin{ejer}
+\emph{Teorema de Gauss.} Sea $A$ un DFU y sea $K$ su cuerpo de cocientes. Sea
+$f=\sum_{i=0}^{n}a_{i}X^{i}\in A[X]$ con $a_{0}a_{n}\neq 0$. Demostrar que si
+$p,q\in A$ son irreducibles coprimos tales que $f(p/q)=0$, entonces $p\mid a_{0}$ y
+$q\mid a_{n}$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo. Sea $f\in K[X]$ y sea $a\in K$ una ra\'\i z de $f$. Probar que:
+\begin{enumerate}
+\item $a$ es ra\'\i z m\'ultiple de $f$ si y s\'olo si $f'(a)=0$.
+\item Si $K=\mathbb{C}$, $\mathbb{R}$ o $\mathbb{Q}$ entonces $\frac{f}{{\rm
+mcd}(f,f')}\in K[X]$ tiene las mismas raices que $f$ pero todas simples.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Probar que si $f\in\mathbb{Q}[X]$ es irreducible, entonces no tiene raices
+m\'ultiples en $\mathbb{C}$.
+\end{ejer}
+
+\begin{ejer}
+Probar que $\sum_{i=0}^{n}X^{i}$ y $\sum_{i=0}^{n}\frac{X^{i}}{i!}$ no tienen raices
+m\'ultiples en $\mathbb{C}$ para todo $n\in\mathbb{N}$.
+\end{ejer}
+
+\begin{ejer}
+Determinar todos los polinomios irreducibles en $(\mathbb{Z}/2\Z)[X]$ de grado $<6$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo finito de $q$ elementos. ?`Cuantos polinomios irreducibles
+m\'onicos de grado 2 hay en $K[X]$? ?`Y de grado 3?
+\end{ejer}
+
+\begin{ejer}
+Sea $f=\sum_{i=0}^{n}a_{i}X^{i}\in\mathbb{C}[X]$ con $a_{n}\neq 0$. Definimos
+$M=1+|\frac{a_{n-1}}{a_{n}}|+\cdots+|\frac{a_{0}}{a_{n}}|$. Probar que:
+\begin{enumerate}
+\item Si $\alpha\in\mathbb{C}$ es ra\'\i z de $f$, entonces $|\alpha|<M$.
+\item Si $f\in\mathbb{R}[X]$, entonces:
+$f(M)>0\Longleftrightarrow a_{n}>0$ y $f(-M)>0\Longleftrightarrow (-1)^{n}a_{n}>0$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $f=\sum_{i=0}^{n}a_{i}X^{i}=a_{n}\prod_{i=1}^{n}(X-\alpha_{i})\in\mathbb{C}[X]$
+con $a_{n}\neq 0$ y $n\geqslant 2$. Se define el discriminante de $f$ mediante:
+$$\Delta(f)=a_{n}^{2n-2}\prod_{i<j}(\alpha_{i}-\alpha_{j})^{2}.$$
+\eject
+Probar que:
+\begin{enumerate}
+\item Si $f=aX^{2}+bX+c$, entonces $\Delta(f)=b^{2}-4ac$.
+\item Si $f=X^{3}+pX+q$, entonces $\Delta(f)=-4p^{3}-27q^{2}$.
+\item ${\rm
+Res}_{X}(f,f')=a_{n}^{n-1}\prod_{i=1}^{n}f'(\alpha_{i})=(-1)^{\frac{n(n-1)}{2}}a_{n}\Delta(f)$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo. Para un polinomio
+$$f=\sum_{|\bfa|\le d} f_\bfa \bfX^\bfa \in K[\bfX]:=K[X_{1},\ldots,X_{n}],$$
+donde $\bfa=(a_1,\dots,a_n)$, $|\bfa|=a_1+\cdots +a_n$,  $\bfX=(X_1,\dots,X_n)$ y $\bfX^\bfa=X_1^{a_1}\cdots X_n^{a_n}$, se define el {\em grado} de $f$ como $\gr(f)=\max\{|\bfa|: \ f_\bfa\ne 0\}$. \\ Probar las siguientes
+afirmaciones:
+\begin{enumerate}
+\item $f+g=0 $ o $ \gr(f+g)\leqslant\max\{{\rm gr}(f),{\rm gr}(g)\}$, $\forall\, f,g\in K[\bfX]$.
+\item $fg=0\;\Longrightarrow f=0$ o $ g=0$,  $\forall\, f,g\in K[\bfX]$.
+\item Si $f\neq 0$ y $g\neq 0$ entonces $\gr(fg)={\rm gr}(f)+{\rm gr}(g)$, $\forall\, f,g\in K[\bfX]$.
+\item $\mathcal{U}(K[\bfX])=K-\{ 0\}$.
+\item $K[\bfX]$ es un $K$-espacio vectorial. Exhibir una base.
+\item $K[\bfX]_{\leqslant d}=\{ f\; :\; f=0$ o $ {\rm gr}(f)\leqslant d\}$ es
+un subespacio de $K[\bfX]$. Calcular su dimensión.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Probar que $X^{2}+Y^{2}-1$ y $XT-YZ$ son irreducibles en $\mathbb{Q}[X,Y]$ y
+$\mathbb{Q}[X,Y,Z,T]$ respectivamente.
+\end{ejer}
+
+\begin{ejer}
+Sea $f\in\mathbb{C}[X_{1},\ldots,X_{n}]$ de grado $\leqslant d$. Probar que:
+\begin{enumerate}
+\item Si $f$ se anula en $\mathbb{Z}^{n}$, entonces $f=0$.
+\item Lo mismo si $f$ se anula en $\{(x_{1},\ldots,x_{n})\in\mathbb{Z}^{n}\; :\;
+0\leqslant x_{i}\leqslant d\}$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sean $f=XY-1$ y $g=X^{2}+Y^{2}-2$. Calcular ${\rm Res}_{X}(f,g)$ y decidir si $f$ y
+$g$ tienen un factor com\'un en $\mathbb{Q}(Y)[X]$ y en $\mathbb{Q}[X,Y]$. ?`En que
+puntos de $\mathbb{C}^{2}$ se anulan simultaneamente ambos polinomios?
+\end{ejer}
+
+\begin{ejer}
+Sean $f=\prod_{i=1}^{n}(X-\alpha_{i})\in\mathbb{C}[X]$ y
+$g=\prod_{j=1}^{m}(X-\beta_{j})\in\mathbb{C}[X]$.
+\begin{enumerate}
+\item[i)] ?`Cuáles son las raices del polinomio ${\rm Res}_{Y}(f(X-Y),g(Y))\in\mathbb{C}[X]$?
+\item[ii)] ?`Y cuáles las de ${\rm Res}_{Y}(Y^{n}f(X/Y),g(Y))\in\mathbb{C}[X]$?
+\item[iii)] Probar que $a=\prod (\pm\sqrt{1}\pm\sqrt{2}\pm\sqrt{3}\pm\cdots\pm\sqrt{n})$ es
+entero.
+\item[iv)] \emph{(Dif\'\i cil)} Probar que $a$ de (iii) es un cuadrado perfecto para todo $n\geqslant 2$.
+\end{enumerate}
+\end{ejer}
+
+\end{document}

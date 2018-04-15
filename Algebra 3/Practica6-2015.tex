@@ -1,0 +1,107 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+\date{Primer cuatrimestre de 2015}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\newcommand{\car}{\mbox{car\,}}
+\newcommand{\Gal}{\mbox{Gal\,}}
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 6 - Resolubilidad}\\{\em 2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+\bigskip
+
+\begin{ejer}
+Probar que:
+\begin{enumerate}
+\item Todo $p$-grupo es resoluble.
+\item $D_{n}$ es resoluble.
+\item $\mathbb{S}_{n}$ es resoluble si y solo si $n\leqslant 4$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Mostrar explícitamente que las siguientes extensiones son resolubles por radicales:
+\begin{enumerate}
+\item $\mathbb{Q}[\sqrt[3]{1+\sqrt{2}},i+\sqrt{3}]/\mathbb{Q}$
+\item $E/\mathbb{Q}$ cuerpo de descomposici\'on de $f=(X^{4}-2)(X^{2}-5)$
+\item $E/\mathbb{C}(a,b)$ cuerpo de descomposici\'on de $f=X^{2}+aX+b$
+\item $E/\mathbb{C}(a,b,c)$ cuerpo de descomposici\'on de $f=X^{3}+aX^{2}+bX+c$
+\item $E/\mathbb{C}(a,b,c,d)$ cuerpo de descomposici\'on de $f=X^{4}+aX^{3}+bX^{2}+cX+d$
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Probar que ninguno de los siguientes polinomios es resoluble por radicales sobre $\mathbb{Q}$.
+\begin{enumerate}
+\item $X^{5}-14X+7$
+\item $X^{5}-7X^{2}+7$
+\item $X^{7}-10X^{5}+15X+5$
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $f\in\mathbb{Q}[X]$ irreducible de grado primo $\geqslant 5$. Probar que si  $f$ tiene exactamente dos raíces no reales, entonces  $f$ no es resoluble por radicales sobre $\mathbb{Q}$.
+\end{ejer}
+
+\begin{ejer}
+Sea $K\subseteq\mathbb{C}$ un cuerpo. Sea $f\in K[X]$ irreducible de grado primo $p\geqslant 5$. Sean $\alpha_{1},\ldots,\alpha_{p}\in\mathbb{C}$ las raices de $f$ y sea $N=K[\alpha_{1},\ldots,\alpha_{p}]$ el cuerpo de descomposici\'on de $f$ sobre $K$. Probar que $f$ es resoluble por radicales sobre $K$ si y solo si $N=K[\alpha_{i},\alpha_{j}]$ para todos $1\leqslant i<j\leqslant p$.
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item Sea $m\in\mathbb{N}$ par y sean $a_{1}<a_{2}<\cdots<a_{r}$ enteros positivos pares con $r>1$ impar. Sea $f=(X^{2}+m)(X-a_{1})\cdots(X-a_{r})-2$. Probar que:
+\begin{enumerate}
+\item $f$ es irreducible en $\mathbb{Q}[X]$.
+\item Para $m$ suficientemente grande, $f$ tiene exactamente dos ra\'\i ces no reales en $\mathbb{C}$.
+\item (Dif\'\i cil) Probar que el item anterior sigue valiendo si se quita la hip\'otesis ``$m$ suficientemente grande''.
+\end{enumerate}
+\item Deducir que para cada primo $p\in\mathbb{N}$, existe una extensi\'on normal $E/\mathbb{Q}$ con grupo de Galois isomorfo a $\mathbb{S}_{p}$.
+\end{enumerate}
+\end{ejer}
+
+\eject
+\begin{ejer} (Artin-Schreier)\quad Sea $K$ un cuerpo de característica $p$.
+\begin{enumerate}
+\item Sea $E$ una extensión cíclica de $K$ de grado $p$. Probar que existe $\alpha \in E$ que satisface una ecuación $X^p-X-a$ para algún $a\in K$, tal que $E=K[\alpha]$.
+\item Dado $a\in K$, probar que el polinomio $X^p-X-a$ o bien tiene una raíz en $K$, en cuyo caso tiene todas sus raíces en $K$, o bien es irreducible en $K[X]$. Probar que en este último caso,  si $\alpha$ es una raíz, entonces $K[\alpha]$ es cíclico de orden $p$ sobre $K$.
+\end{enumerate}
+
+\begin{ejer} Sea $K$ con $\car(K)=p$. Una extensión separable $E/K$ es {\em radical} si admite una torre de descomposición $$K=:E_0\subset E_1\subset \cdots \subset E_{n-1}\subset E_n:=E$$ tal que para todo $1\le i\le n$ se tiene que $E_i/E_{i-1}$ es de alguno de los tipos siguiente:
+\begin{enumerate}
+\item $E_i=E_{i-1}[\alpha]$ con $\alpha^q\in E_{i-1}$ con $q$ primo, $q\ne p$,
+\item $E_i=E_{i-1}[\alpha]$ con $\alpha$ raíz de $X^p-X-a$ para algún $a\in E_{i-1}$.
+\end{enumerate}
+Una extensión separable $E/K$ es {\em resoluble por radicales} si está contenida en una extensión radical.
+Probar que $E/K$ separable es resoluble por radicales   si y solo si existe una extensión Galois $N/K$ con $E\subset N$ tal que $\Gal(N/K)$ es resoluble.
+
+\end{ejer}
+
+\end{ejer}
+\end{document} 

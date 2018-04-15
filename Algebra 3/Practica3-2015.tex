@@ -1,0 +1,208 @@
+\documentclass[10pt,a4paper,spanish]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{multicol}
+
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+\def\F{\mathbb{F}}
+
+\newcommand\Gal{\mbox{Gal}}
+\newcommand\car{\mbox{car}}
+
+\date{Primer cuatrimestre de 2006}
+\title{Algebra III}
+
+\newcounter{cont_ejer}[section]
+\newenvironment{ejer}{\par\par\smallskip\noindent\addtocounter{cont_ejer}{1}{\bf Ejercicio \arabic{cont_ejer}.}}{\par\par\smallskip}
+
+\renewcommand{\contentsname}{Indice}
+\renewcommand{\refname}{Bibliograf\'\i a}
+
+\parindent = 0cm
+
+\pagestyle{myheadings} \markright{{\footnotesize Departamento de Matem\'atica -
+Facultad de Ciencias Exactas y Naturales - UBA}}
+
+\addtolength{\hoffset}{-1.5cm} \addtolength{\textwidth}{3cm}
+
+\begin{document}
+
+\begin{center}
+\begin{Large}\textbf{Algebra III}\end{Large}
+
+\textbf{Pr\'actica 3 - Extensiones normales y extensiones separables}\\\em{2do cuatrimestre 2015}
+\end{center}
+
+\bigskip
+
+\begin{ejer}
+Determinar si las siguientes afirmaciones son verdaderas o falsas. Justificar.
+\begin{enumerate}
+\item Todo polinomio no constante se factoriza linealmente sobre alg\'un cuerpo.
+\item El cuerpo de descomposici\'on de un polinomio es \'unico, salvo isomorfismos.
+\item Toda extensi\'on de grado finito es el cuerpo de descomposici\'on de alg\'un polinomio.
+\item Sean $K\subseteq L\subseteq E$. Si $E$ es el cuerpo de descomposici\'on un polinomio $f\in K[X]$, entonces $E$ es el cuerpo de descomposici\'on de $f$ visto como polinomio en $L[X]$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Exhibir cuerpos de descomposici\'on, determinando su grado y sistemas de generadores, para cada uno de los siguientes polinomios sobre los cuerpos indicados, y determinar sus grupos de Galois.
+\begin{enumerate}
+\item $X^{p}-a$, sobre $\mathbb{Q}$, con $p\in\mathbb{N}$ primo y $a\in\mathbb{Q}-\mathbb{Q}^{p}$.
+\item $X^{3}-10$, sobre $\mathbb{Q}$ y $\mathbb{Q}[\sqrt{2}]$.
+\item $X^{4}-5$, sobre $\mathbb{Q}$, $\mathbb{Q}[\sqrt{5}]$, $\mathbb{Q}[\sqrt{-5}]$ y $\mathbb{Q}[i]$.
+\item $X^{4}+2$, sobre $\mathbb{Q}$ y $\mathbb{Q}[i]$.
+\item $\prod_{i=1}^{n}(X^{2}-p_{i})$, sobre $\mathbb{Q}$, con $p_{1},\ldots,p_{n}\in\mathbb{N}$ primos distintos.
+\item $X^{3}-2$, sobre $\F_{7}$.
+\item $(X^{3}-2)(X^{3}-3)(X^{2}-2)$, sobre $\mathbb{Q}[\sqrt{-5}]$ y $\F_{5}$.
+\item $X^{n}-t$, sobre $\mathbb{C}(t)$, con $t$ trascendente sobre $\mathbb{C}$ y $n\in\mathbb{N}$.
+\item $X^{4}-t$, sobre $\mathbb{R}(t)$, con $t$ trascendente sobre $\mathbb{R}$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+(F\'acil, pero muy \'util) Sea $E=K[a]/K$ una extensi\'on normal. Sea $b\in\overline{K}$ una ra\'\i z de $f(a,K)$. Probar que $b\in E$ y que $E=K[b]$.
+\end{ejer}
+
+\begin{ejer}
+Caracterizar  los cuerpos de descomposici\' on de los
+polinomios $X^3+2X+1$ y \\$X^3+X^2+X+2$ sobre $\F_3$. Probar que
+son isomorfos como extensiones de $\F_3$.\end{ejer}
+
+\begin{ejer} Calcular los cuerpos de descomposici\' on de los polinomios
+irreducibles de grado $2$ sobre $\F_5$. ?`Son isomorfos entre
+ellos?
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensión que es el cuerpo de descomposici\'on de un polinomio $f\in K[X]$, con ${\rm gr}(f)=n$. Probar que $[E:K]\, |\, n!$. Mostrar ejemplos donde se cumpla la igualdad y donde no se cumpla.
+\end{ejer}
+
+\begin{ejer}
+Determinar si las siguientes afirmaciones son verdaderas o falsas. Justificar.
+\begin{enumerate}
+\item Toda extensi\'on finita es normal.
+\item Toda extensi\'on finita est\'a contenida en una extensi\'on finita normal.
+\item Toda extensi\'on de un cuerpo de caracter\'\i stica cero es normal.
+\item Todo $K$-morfismo $f:L/K\to L/K$ es un $K$-automorfismo.
+\item Si $L/K$ es algebraica, entonces todo $K$-morfismo $f:L\to L$ es un $K$-automorfismo.
+\item Toda extensi\'on con grupo de Galois trivial es normal.
+\item El grupo de Galois de una extensi\'on normal es c\'\i clico.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on normal y sea $K\subseteq F\subseteq E$ una subextensi\'on. Probar que todo $K$-morfismo de $F$ en $E$ puede ser extendido a un $K$-automorfismo de $E$.
+\end{ejer}
+
+\begin{ejer}
+Determinar cuales de las siguientes extensiones $E/K$ son normales. En cada caso, calcular ${\rm Gal}(E/K)$ y $\{\sigma:E\to \overline K, \ K-\mbox{morfismo}\}$.
+\begin{enumerate}
+\item $\mathbb{Q}[\sqrt[7]{5}]/\mathbb{Q}$.
+\item $\mathbb{Q}[\sqrt[7]{5},\sqrt{5}]/\mathbb{Q}[\sqrt[7]{5}]$.
+\item $\mathbb{Q}[\sqrt{2},\sqrt[3]{3}]/\mathbb{Q}$.
+\item $\mathbb{Q}[\xi_{p}]/\mathbb{Q}$, con $p\in\mathbb{N}$ primo.
+\item $\F_3[a]/\F_3$, con $a$ raíz de $X^3+2X+1 $.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $K$ un cuerpo, $n\in\mathbb{N}$ y $t$ trascendente sobre $K$. Probar que $K(t)/K(t^{n})$ es normal si y s\'olo si el polinomio $X^{n}-1$ se factoriza linealmente en $K[X]$.
+\end{ejer}
+
+\begin{ejer} \begin{enumerate}
+\item  Probar que $\Q [\sqrt[4]{2}\,]/\Q[ \sqrt
+2\,]$ y $\Q[ \sqrt 2\,] /\Q$ son normales, pero $\Q
+[\sqrt[4]{2}\,] /\Q$ no lo es. \\Calcular $\Gal(\Q
+[\sqrt[4]{2}\,] /\Q)$.
+\item  Exhibir extensiones normales con subextensiones no normales.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+Sea $H/K$ una extensi\'on algebraica y sean $E/K$ y $F/K$ subextensiones normales. Probar que $EF/K$ y $E\cap F/K$ son normales.
+\end{ejer}
+
+\begin{ejer}
+Probar que toda extensi\'on $E/K$ generada por elementos de grado 2 es normal. ?`Para que valores de $n\in\mathbb{N}$ vale que toda extensi\'on de grado $n$ sobre $\mathbb{Q}$ es normal?
+\end{ejer}
+
+\begin{ejer}
+Determinar el cuerpo de descomposici\'on de $X^{4}-10X^{2}+5$ y su grupo de Galois, sobre $\mathbb{Q}$, $\F_{3}$ y $\F_{7}$.
+\end{ejer}
+
+\begin{ejer}
+\begin{enumerate}
+\item  Sea $E/K$ una extensi\'on algebraica tal que todo polinomio no
+constante en $K[X]$ se factoriza linealmente en $E[X]$. Probar que
+$E$ es algebraicamente cerrado.
+\item  Sea $K$ un cuerpo infinito y sea $E/K$ una extensi\' on algebraica tal
+que todo polinomio no constante en $K[X]$ tiene una ra\'\i z en
+$E$. Probar que $E$ es algebraicamente cerrado. (Nota: Vale tambi\'en si $K$ es finito.)
+\end{enumerate}
+\end{ejer}
+
+
+\begin{ejer}
+Sea $E/K$ una extensi\'on finita y separable. Probar las siguientes afirmaciones:
+\begin{enumerate}
+\item $\{\sigma:E\to\overline K, \ K-\mbox{morfismo}\}$ tiene $[E:K]$ elementos.
+\item Si $a\in E$ satisface $\sigma_1(a)\ne \sigma_2(a)$ para todo $\sigma_1\ne\sigma_2$ $K$-morfismos, entonces $E=K[a]$.
+\item Si $b\in E$, entonces $$\prod_{\sigma:E\to \overline K, K-\mbox{\scriptsize morfismo}}\!\!\!\!\!\!\!\!(X-\sigma(b))=f(b,K)^{[E:K[b]]}.$$
+\item Existe $\theta\in E$ tal que $E=K[\theta]$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer} (Lema de Carlos)
+Sean $f,g,h\in K[X]$ con $f$ irreducible separable, y $h(X)\, |\,f(g(X))$.
+Sean $\alpha_{1},\ldots,\alpha_{n}\in\overline{K}$ las raices de $f$ y sean $\beta_{1},\ldots,\beta_{m}\in\overline{K}$ las raices de $h$. Probar que los conjuntos $A_{j}=\{ 1\leqslant i\leqslant m\; :\; g(\beta_{i})=\alpha_{j}\}$ tienen todos la misma cantidad de elementos.
+\end{ejer}
+
+
+%\begin{ejer} Determinar un elemento primitivo de $\Q[a,b]$ con $a,b\in \C$.\end{ejer}
+
+
+\begin{ejer} Determinar elementos primitivos de $E/\Q$ donde $E$ es el cuerpo de descomposición del polinomio
+\begin{multicols}{4}
+\begin{enumerate}
+\item $X^3-2$ \item $(X^2-2)(X^2-3)$ \item $X^4-2$ \item $(X^4+1)(X^2+5)$
+\end{enumerate}
+\end{multicols}
+\end{ejer}
+
+\begin{ejer} Sea $K$ un cuerpo de característica $p>0$ y sea $f\in K[X]$ un polinomio irreducible de grado $n$ con $p\nmid n$. Probar que el polinomio $f$ es separable.
+\end{ejer}
+
+\begin{ejer} Probar que el polinomio $X^n-1\in K[X]$ no es separable si y solo si $\car(K)=p$ y $p\mid n$.
+\end{ejer}
+
+\begin{ejer} Sea  $K$ es un cuerpo de característica $p>0$, Probar que
+\begin{enumerate} \item la aplicación $x\mapsto x^p$ es un $\F_p$-endomorfismo de $K$ (se llama {\em endomorfismo de Frobenius}).
+\item la aplicación $x\mapsto x^{p^e}$ es un $\F_p$-endomorfismo de $K$, $\forall\, e\in \N$.
+\end{enumerate}
+\end{ejer}
+
+\begin{ejer} Probar que las condiciones siguientes sobre un cuerpo $K$ son equivalentes:
+\begin{enumerate} \item Todo polinomio irreducible en $K[X]$ tiene raíces distintas (o sea es separable)
+\item Toda extensión finita de $K$ es separable.
+\item Si $\car(K)=p$ ($p=0$ o $p>0$), el conjunto $K^{p^{-\infty}}:=
+\{x\in \overline K: \sigma(x)=x, \ \forall\, \sigma\in \Gal(\overline K/K)\}$ coincide con $K$.
+\item O bien $\car(K)=0$ o si $\car(K)=p>0$,  cada elemento de $K$ es  potencia $p$-ésima de un elemento de $K$.
+\item O bien $\car(K)=0$ o si $\car(K)=p>0$, el endomorfismo de Frobenius de $K$ es un automorfismo de $K$.
+    \end{enumerate}
+    En cualquiera de estos casos se dice que el cuerpo $K$ es {\em perfecto}.
+\end{ejer}
+
+\begin{ejer} Probar que todo cuerpo finito es perfecto. \end{ejer}
+
+\end{document} 
