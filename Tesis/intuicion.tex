@@ -1,0 +1,304 @@
+\documentclass[11pt]{book}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{mytheorem}{Theorem}
+ %
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheorem{proposition}[theorem]{Proposici\'on}
+
+\newtheorem{corollary}[theorem]{Corolario}
+
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+\newcommand{\dg}{\textit{gradient descent} \ }
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf Tesis de Licenciatura}
+	\centerline{\sc Axel Sirota}
+	
+	\tableofcontents
+	\newpage
+
+\chapter{Intuici\'on}
+
+Usemos un caso modelo para ejemplificar porque no es probable que los metodos de primer orden (entre ellos \dg) convergan a puntos silla. Sea $f: \R^n \rightarrow \R^n$ dada por $f(x) = \dfrac{1}{2} x^THx$ con $H = \textbf{diag}\left(\lambda_1, \dots, \lambda_n\right)$; supongamos adem\'as que $\lambda_1, \dots, \lambda_k > 0$ y $\lambda_{k+1}, \dots, \lambda_n <0$.
+
+
+Si usamos en la base can\'onica de $\R^n \ \sett{e^1, \dots, e^n}$ entonces:
+
+\begin{equation*}
+	f(x) = f(x^1, \dots, x^n) = \dfrac{1}{2} \left(\lambda_1 {x_1}^2 + \dots + \lambda_n {x_n}^2\right)
+\end{equation*}
+
+Por lo tanto:
+
+\begin{equation*}
+\nabla f (x) \ = \ \lambda_i x_i e^i = 0 \ \Longleftrightarrow \ x = x_1 e^1 = 0
+\end{equation*}
+
+
+Y tenemos que en el \'unico punto cr\'itico el Hessiano de $f$ es $\nabla^2 f (0) =  H$.
+
+Recordemos que si $g(x) = x - \alpha  \nabla f(x)$ entonces \dg  est\'a dado por la iteraci\'on $x_{t+1} = \ g(x_t) \ := g^t(x_0)$ con $t \in \N$ y $x_0 \in \R^n$, y en este caso esta representado por:
+
+\begin{equation*}
+\begin{aligned}
+x_{t+1} = & g(x_t) \\
+= & x_t - \alpha\nabla f(x_t) \\
+= & \left(1 - \alpha\lambda_i\right){x_i}_te^i \\
+= & \left(1 - \alpha\lambda_i\right)\ip{x_t, e^i}e^i
+\end{aligned}
+\end{equation*}
+
+Por lo tanto por inducci\'on es f\'acil probar que:
+
+
+\begin{equation*}
+x_{t+1} = \left(1 - \alpha\lambda_i\right)^t\ip{x_o, e^i}e^i
+\end{equation*}
+
+Sea $L = \max\limits_i\abs{\lambda_i}$ y supongamos que $\alpha < \dfrac{1}{L}$, luego:
+
+\begin{equation*}
+\begin{aligned}
+1 - \alpha \lambda_i < 1 & \quad \text{Si } i \leq k \\
+1 - \alpha \lambda_i > 1 & \quad \text{Si } i > k 
+\end{aligned}
+\end{equation*}
+
+Con lo que conclu\'imos que:
+
+\begin{equation*}
+\lim\limits_t x_t = \left\lbrace{
+	\begin{aligned}
+		0 & \quad \text{Si } x \in E_s := \ip{e^1, \dots, e^k} \\
+		\infty & \quad \text{Si no} 
+	\end{aligned}
+	}\right.
+\end{equation*}
+
+Finalmente, si $k < n$ entonces conclu\'imos que:
+
+\begin{equation*}
+P_{\R^n}(\sett{x \in \R^n \ / \ \lim\limits_t g^t(x) = 0}) = \abs{E_s} = 0
+\end{equation*}
+
+\medskip
+
+Para notar este fen\'omeno en un ejemplo no cuadr\'atico consideremos $f(x, y) = \frac{1}{2}x^2 + \frac{1}{4}y^4 - \frac{1}{2}y^2$, reproduciendo los calculos anteriores:
+
+\begin{equation}
+\label{gradient descent ejemplo 2}
+\begin{aligned}
+\nabla f & = & \left(x, y^3 -y\right) \\
+g & = & \left((1-\alpha)x, (1+\alpha)y - \alpha y^3\right) \\
+\nabla^2 f & = & \left(
+	\begin{aligned}
+		1 & \quad 0 \\
+		0 & \quad 3y^2-1
+	\end{aligned}
+\right) 
+\end{aligned}
+\end{equation}
+
+De lo que vemos que los puntos cr\'iticos son:
+
+\[
+z_1 \ = \ (0,0) \qquad z_2 \ = \ (0,1) \qquad z_3 \ = \ (0,-1)
+\]
+
+Y del crit\'erio del Hessiano conclu\'imos que $z_2, z_3$ son m\'inimos locales mientras que $z_1$ es un punto silla. De la intuici\'on previa, como en $z_1$ el autovector asociado al autovalor positivo es $e^1$ podemos intuir que:
+
+\begin{lemma}
+	Para $f(x, y) = \frac{1}{2}x^2 + \frac{1}{4}y^4 - \frac{1}{2}y^2$ resulta que $E_s = \ip{t*e^1 \ / \ t \in \R}:= W_s$
+\end{lemma}
+
+Asumiendo el resultado por un momento, dado que $\dim_{\R^2}\left(E_s\right) =1 < 2$ entonces $P_{\R^2}(E_s) = 0$ que es lo que quer\'iamos verificar. Demostremos el lema ahora:
+
+\begin{proof}{Del lema}
+	Sea $x_0 \in \R^n$ y $g$ la iteraci\'on de \dg dada por \ref{gradient descent ejemplo 2}, luego:
+	
+	\begin{equation*}
+		(x_t, y_t) \ = \ g^t(x,y) \ = \ \left(\begin{aligned}
+		(1-\alpha)^tx_0 \\
+		g_y^t(y_0)
+		\end{aligned}\right) \ \substack{\longrightarrow \\ \left(t \rightarrow \infty\right)} \ \left(\begin{aligned}
+		0 \\
+		\lim\limits_t g_y^t(y_0)
+		\end{aligned}\right)
+	\end{equation*}
+	
+	Por lo que todo depende de $y_0$. Analizando $\dfrac{d g_y}{dy} = 1 + \alpha - 3\alpha y^2$ notemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\abs{\dfrac{d g_y}{dy}} < 1  & \Longleftrightarrow & \abs{1 + \alpha - 3\alpha y^2} < 1 \\
+	 & \Longleftrightarrow & -1 < 1 + \alpha - 3\alpha y^2 < 1 \\
+	  & \Longleftrightarrow &  -2 - \alpha < -3 \alpha y^2 < -\alpha \\
+	   & \Longleftrightarrow &  \sqrt{\dfrac{2 + \alpha}{3\alpha}} > \abs{y} > \sqrt{\dfrac{1}{3}} \\
+	   	   & \Longleftrightarrow &  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > \abs{y} > \sqrt{\dfrac{1}{3}}
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo que por el Teorema de Punto Fijo de Banach:
+		
+	\begin{equation*}
+	\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
+		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > \sqrt{\dfrac{1}{3}} \\
+		-1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < -y_0 < \sqrt{\dfrac{1}{3}}
+	\end{aligned} \right.
+	\end{equation*}
+	
+	Si analizamos simplemente los signos de $g$ y $\dfrac{d g_y}{dy}$ en los otros intervalos podemos conluir que:
+	
+		\begin{equation*}
+		\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
+		-\infty & \qquad \text{Si } y_0 >  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
+		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > 0 \\
+		-1 & \qquad \text{Si } -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < y_0 < 0 \\
+		\infty & \qquad \text{Si } y_0 < -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
+		\end{aligned} \right.
+		\end{equation*}
+	
+	Dedujimos entonces que $(x,y) \in E_s \ \Longleftrightarrow \ (x,y) = (t,0) \ t \in \R \ \Longleftrightarrow \ (x,y) \in W_s$. \qed
+	
+\end{proof}
+
+\smallskip
+
+
+
+\end{document}
