@@ -1,2 +1,0 @@
-\select@language {spanish}
-\contentsline {chapter}{\numberline {1}Intuici\'on}{5}{chapter.1}

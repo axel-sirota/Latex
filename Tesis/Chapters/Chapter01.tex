@@ -1,4 +1,4 @@
-\chapter{Intuici\'on}
+\chapter{Intuici\'on}\label{ch:intuicion}
 
 Usemos un caso modelo para ejemplificar porque no es probable que los metodos de primer orden (entre ellos \dg) convergan a puntos silla. Sea $f: \R^n \rightarrow \R^n$ dada por $f(x) = \dfrac{1}{2} x^THx$ con $H = \textbf{diag}\left(\lambda_1, \dots, \lambda_n\right)$; supongamos adem\'as que $\lambda_1, \dots, \lambda_k > 0$ y $\lambda_{k+1}, \dots, \lambda_n <0$.
 
@@ -12,7 +12,7 @@ Si usamos en la base can\'onica de $\R^n \ \sett{e^1, \dots, e^n}$ entonces:
 Por lo tanto:
 
 \begin{equation*}
-\nabla f (x) \ = \ \lambda_i x_i e^i = 0 \ \Longleftrightarrow \ x = x_1 e^1 = 0
+	\nabla f (x) \ = \ \lambda_i x_i e^i = 0 \ \Longleftrightarrow \ x = x_1 e^1 = 0
 \end{equation*}
 
 
@@ -21,45 +21,45 @@ Y tenemos que en el \'unico punto cr\'itico el Hessiano de $f$ es $\nabla^2 f (0
 Recordemos que si $g(x) = x - \alpha  \nabla f(x)$ entonces \dg  est\'a dado por la iteraci\'on $x_{t+1} = \ g(x_t) \ := g^t(x_0)$ con $t \in \N$ y $x_0 \in \R^n$, y en este caso esta representado por:
 
 \begin{equation*}
-\begin{aligned}
-x_{t+1} = & g(x_t) \\
-= & x_t - \alpha\nabla f(x_t) \\
-= & \left(1 - \alpha\lambda_i\right){x_i}_te^i \\
-= & \left(1 - \alpha\lambda_i\right)\ip{x_t, e^i}e^i
-\end{aligned}
+	\begin{aligned}
+		x_{t+1} = & g(x_t) \\
+		= & x_t - \alpha\nabla f(x_t) \\
+		= & \left(1 - \alpha\lambda_i\right){x_i}_te^i \\
+		= & \left(1 - \alpha\lambda_i\right)\ip{x_t, e^i}e^i
+	\end{aligned}
 \end{equation*}
 
 Por lo tanto por inducci\'on es f\'acil probar que:
 
 
 \begin{equation*}
-x_{t+1} = \left(1 - \alpha\lambda_i\right)^t\ip{x_o, e^i}e^i
+	x_{t+1} = \left(1 - \alpha\lambda_i\right)^t\ip{x_o, e^i}e^i
 \end{equation*}
 
 Sea $L = \max\limits_i\abs{\lambda_i}$ y supongamos que $\alpha < \dfrac{1}{L}$, luego:
 
 \begin{equation*}
-\begin{aligned}
-1 - \alpha \lambda_i < 1 & \quad \text{Si } i \leq k \\
-1 - \alpha \lambda_i > 1 & \quad \text{Si } i > k 
-\end{aligned}
+	\begin{aligned}
+		1 - \alpha \lambda_i < 1 & \quad \text{Si } i \leq k \\
+		1 - \alpha \lambda_i > 1 & \quad \text{Si } i > k 
+	\end{aligned}
 \end{equation*}
 
 Con lo que conclu\'imos que:
 
 \begin{equation*}
-\lim\limits_t x_t = \left\lbrace{
-	\begin{aligned}
-		0 & \quad \text{Si } x \in E_s := \ip{e^1, \dots, e^k} \\
-		\infty & \quad \text{Si no} 
-	\end{aligned}
+	\lim\limits_t x_t = \left\lbrace{
+		\begin{aligned}
+			0 & \quad \text{Si } x \in E_s := \ip{e^1, \dots, e^k} \\
+			\infty & \quad \text{Si no} 
+		\end{aligned}
 	}\right.
 \end{equation*}
 
 Finalmente, si $k < n$ entonces conclu\'imos que:
 
 \begin{equation*}
-P_{\R^n}(\sett{x \in \R^n \ / \ \lim\limits_t g^t(x) = 0}) = \abs{E_s} = 0
+	P_{\R^n}(\sett{x \in \R^n \ / \ \lim\limits_t g^t(x) = 0}) = \abs{E_s} = 0
 \end{equation*}
 
 \medskip
@@ -72,10 +72,10 @@ Para notar este fen\'omeno en un ejemplo no cuadr\'atico consideremos $f(x, y) =
 \nabla f & = & \left(x, y^3 -y\right) \\
 g & = & \left((1-\alpha)x, (1+\alpha)y - \alpha y^3\right) \\
 \nabla^2 f & = & \left(
-	\begin{aligned}
-		1 & \quad 0 \\
-		0 & \quad 3y^2-1
-	\end{aligned}
+\begin{aligned}
+1 & \quad 0 \\
+0 & \quad 3y^2-1
+\end{aligned}
 \right) 
 \end{aligned}
 \end{equation}
@@ -96,55 +96,51 @@ Asumiendo el resultado por un momento, dado que $\dim_{\R^2}\left(E_s\right) =1 
 
 \begin{proof}{Del lema}
 	Sea $x_0 \in \R^n$ y $g$ la iteraci\'on de \dg dada por \ref{gradient descent ejemplo 2}, luego:
-		
+	
 	\begin{equation*}
 		(x_t, y_t) \ = \ g^t(x,y) \ = \ \left(\begin{aligned}
-		(1-\alpha)^tx_0 \\
-		g_y^t(y_0)
+			(1-\alpha)^tx_0 \\
+			g_y^t(y_0)
 		\end{aligned}\right) \ \substack{\longrightarrow \\ \left(t \rightarrow \infty\right)} \ \left(\begin{aligned}
 		0 \\
 		\lim\limits_t g_y^t(y_0)
-		\end{aligned}\right)
-	\end{equation*}
-	
-	Por lo que todo depende de $y_0$. Analizando $\dfrac{d g_y}{dy} = 1 + \alpha - 3\alpha y^2$ notemos que:
-	
-	\begin{equation*}
+	\end{aligned}\right)
+\end{equation*}
+
+Por lo que todo depende de $y_0$. Analizando $\dfrac{d g_y}{dy} = 1 + \alpha - 3\alpha y^2$ notemos que:
+
+\begin{equation*}
 	\begin{aligned}
-	\abs{\dfrac{d g_y}{dy}} < 1  & \Longleftrightarrow & \abs{1 + \alpha - 3\alpha y^2} < 1 \\
-	 & \Longleftrightarrow & -1 < 1 + \alpha - 3\alpha y^2 < 1 \\
-	  & \Longleftrightarrow &  -2 - \alpha < -3 \alpha y^2 < -\alpha \\
-	   & \Longleftrightarrow &  \sqrt{\dfrac{2 + \alpha}{3\alpha}} > \abs{y} > \sqrt{\dfrac{1}{3}} \\
-	   	   & \Longleftrightarrow &  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > \abs{y} > \sqrt{\dfrac{1}{3}}
+		\abs{\dfrac{d g_y}{dy}} < 1  & \Longleftrightarrow & \abs{1 + \alpha - 3\alpha y^2} < 1 \\
+		& \Longleftrightarrow & -1 < 1 + \alpha - 3\alpha y^2 < 1 \\
+		& \Longleftrightarrow &  -2 - \alpha < -3 \alpha y^2 < -\alpha \\
+		& \Longleftrightarrow &  \sqrt{\dfrac{2 + \alpha}{3\alpha}} > \abs{y} > \sqrt{\dfrac{1}{3}} \\
+		& \Longleftrightarrow &  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > \abs{y} > \sqrt{\dfrac{1}{3}}
 	\end{aligned}
-	\end{equation*}
-	
-	Por lo que por el Teorema de Punto Fijo de Banach:
-		
-	\begin{equation*}
+\end{equation*}
+
+Por lo que por el Teorema de Punto Fijo de Banach:
+
+\begin{equation*}
 	\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
 		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > \sqrt{\dfrac{1}{3}} \\
 		-1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < -y_0 < \sqrt{\dfrac{1}{3}}
 	\end{aligned} \right.
-	\end{equation*}
-	
-	Si analizamos simplemente los signos de $g$ y $\dfrac{d g_y}{dy}$ en los otros intervalos podemos conluir que:
-	
-		\begin{equation*}
-		\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
+\end{equation*}
+
+Si analizamos simplemente los signos de $g$ y $\dfrac{d g_y}{dy}$ en los otros intervalos podemos conluir que:
+
+\begin{equation*}
+	\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
 		-\infty & \qquad \text{Si } y_0 >  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
 		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > 0 \\
 		-1 & \qquad \text{Si } -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < y_0 < 0 \\
 		\infty & \qquad \text{Si } y_0 < -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
-		\end{aligned} \right.
-		\end{equation*}
-	
-	Dedujimos entonces que $(x,y) \in E_s \ \Longleftrightarrow \ (x,y) = (t,0) \ t \in \R \ \Longleftrightarrow \ (x,y) \in W_s$. \qed
-	
+	\end{aligned} \right.
+\end{equation*}
+
+Dedujimos entonces que $(x,y) \in E_s \ \Longleftrightarrow \ (x,y) = (t,0) \ t \in \R \ \Longleftrightarrow \ (x,y) \in W_s$. \qed
+
 \end{proof}
 
 \smallskip
-
-
-
-\end{document}

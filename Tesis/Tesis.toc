@@ -1,0 +1,21 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {spanish}
+\defcounter {refsection}{0}\relax 
+\vspace {-\cftbeforechapskip }
+\defcounter {refsection}{0}\relax 
+\select@language {american}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {I}Introducci\'on}{1}{part.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}\spacedlowsmallcaps {Intuici\'on}}{3}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {II}El teorema y aplicaciones}{7}{part.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Aplicaci\'ones}}{9}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}\textit {Gradient descent} \ }{9}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {III}Ap\'endice}{11}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Ap\'endice}}{13}{appendix.Alph1}
