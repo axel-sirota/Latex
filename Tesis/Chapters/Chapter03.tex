@@ -1,0 +1,117 @@
+\chapter{Aplicaci\'ones}\label{ch: aplicaciones}
+\section{Gradient Descent}
+
+Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que \dg tiene probabilidad cero de converger a puntos silla. Consideremos \dg con \textit{learning rate} $\alpha$:
+
+\begin{equation}
+	\label{eq: GD}
+	x_{k+1} = g(x_k) \stackrel{\triangle}{=} x_k - \alpha \nabla f(x_k)
+\end{equation}
+
+\begin{remark}[Hip\'otesis 1]
+	\label{Hipotesis 1}
+	Asumamos que $f \in \mathcal{C}^2$ y $\norm{\nabla^2 f(x)}_2 \le L$
+\end{remark}
+
+\begin{proposition}
+	\label{prop: GD los puntos silla estrictos son fijos inestables}
+	Todo punto silla estricto de $f$ es un punto fijo inestable de $g$, \ie $\mani^* \subseteq \puntosfijos$.
+\end{proposition}
+
+\begin{proof}
+	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \in \sett{\mu \tq \nabla^2 f(x^*)v = \mu v \quad \text{para alg\'un } v \neq 0}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; conclu\'imos que $x^{*} \in \puntosfijos$. \qed
+	
+	\marginpar{Usamos que f(A) tiene autovalores $f(\sett{\lambda_i})$}
+	
+\end{proof}
+
+\begin{proposition}
+	\label{prop: GD g es difeo local}
+	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces $\det \left(Dg (x)\right) \neq 0$.
+\end{proposition}
+
+\begin{proof}
+	Como ya sabemos $Dg(x) = Id - \alpha \nabla^2 f (x)$ por lo que:
+	
+	\begin{equation*}
+		\det \left(Dg(x)\right) = \Bigprod{i \in \sett{1, \dots, d}}{\parenthesis{1 - \alpha \lambda_i}}
+	\end{equation*}
+	
+	Luego por \ref{Hipotesis 1} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; conclu\'imos que $\det \parenthesis{Dg(x)} > 0$. \qed
+	
+\end{proof}
+
+\begin{corollary}{ \Dg converge a m\'inimos}
+	Sea $g$ dada por \Dg en \ref{eq: GD}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu \left(W_g\right) = 0$.
+\end{corollary}
+
+\begin{proof}
+	Por \ref{prop: GD los puntos silla estrictos son fijos inestables} y \ref{prop: GD g es difeo local} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
+\end{proof}
+
+\section{Punto Pr\'oximo}
+
+El algoritmo de punto pr\'oximo esta dado por la iteraci\'on:
+
+\begin{equation}
+\label{eq: Punto proximo}
+x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x_k - z}_{2}^{2}}
+\end{equation}
+
+\begin{proposition}
+	\label{prop: PP es difeo local y los puntos silla estrictos son fijos inestables}
+	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces vale:
+	
+	\begin{enumerate}
+		\item $\det \parenthesis{Dg(x)} \neq 0$
+		\item $\mani^* \subseteq \puntosfijos$
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Veamos primero el siguiente lema:
+	
+	\marginpar{Probamos esto? Me parece un poco claro}
+	
+	\begin{lemma}
+		\label{lemma: PP es suave}
+		Bajo \ref{Hipotesis 1}, $\alpha < \frac{1}{L}$ y $x \in \mani$ entonces $f(z) + \frac{1}{2 \alpha} \norm{x- z}_2^2$ es estrictamente convexa, por lo que $g \in \mathcal{C}^1 \parenthesis{\mani}$
+	\end{lemma}
+	
+	Por lo tanto por \ref{lemma: PP es suave} podemos tomar l\'imite, \ie
+	
+	\begin{equation*}
+	\begin{aligned}
+	x_{k+1} & = & g(x_k) & = & \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x_k - z}_{2}^{2}} \\
+	\downarrow & & \downarrow & & \downarrow \\
+	x & = & g(x) & = & \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x - z}_{2}^{2}}
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+	\Longleftrightarrow & \nabla_z \parenthesis{f(z) + \frac{1}{2 \alpha} \norm{x-z}^2}(g(x)) = 0 \\
+	\Longleftrightarrow & \nabla f(g(x)) - \frac{1}{\alpha} \parenthesis{x-g(x)} = 0 \\
+	\Longleftrightarrow & g(x) + \alpha \nabla f(g(x)) = x
+	\end{aligned}
+	\end{equation*}
+	
+	Finalmente por diferenciaci\'on implicita obtenemos:
+	
+	\begin{gather*}
+		Dg(x) + \alpha\nabla^2 f (g(x))Dg(x) = Id \\
+		\Longrightarrow \quad Dg(x) = \parenthesis{Id + \alpha \nabla^2 f(g(x))}^{-1}
+	\end{gather*}
+
+	Luego si $x^* \in \mani^*$ entonces $Dg(x^*) = \parenthesis{Id + \alpha \nabla^2 f(x^*)}^{-1}$ y tiene autovalores $\sett{\dfrac{1}{1+ \alpha \lambda_i}}$ con $\lambda_i$ autovalores de $\nabla^2 f(x^*)$. Por lo tanto $x^* \in \puntosfijos$ y para $\alpha < \frac{1}{L}$ se tiene que $\det \parenthesis{Dg(x)} \neq 0$. \qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{coro: PP converge a minimos}
+	Sea $g$ dado por el algoritmo de punto pr\'oximo con ecuaci\'on \ref{eq: Punto proximo}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu\parenthesis{W_g} = 0$.
+\end{corollary}
+
+\begin{proof}
+	Por \ref{prop: PP es difeo local y los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
+\end{proof}

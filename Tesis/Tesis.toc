@@ -12,10 +12,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{\numberline {II}El teorema y aplicaciones}{7}{part.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Aplicaci\'ones}}{9}{chapter.2}
+\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Teorema de la Variedad Estable y los Puntos fijos inestables}}{9}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}\textit {Gradient descent} \ }{9}{section.2.1}
+\contentsline {section}{\numberline {2.1}Resultados previos}{9}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {III}Ap\'endice}{11}{part.3}
+\contentsline {section}{\numberline {2.2}Puntos fijos inestables}{9}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Ap\'endice}}{13}{appendix.Alph1}
+\contentsline {chapter}{\numberline {3}\spacedlowsmallcaps {Aplicaci\'ones}}{13}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Gradient Descent}{13}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Punto Pr\'oximo}{13}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {III}Ap\'endice}{15}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Ap\'endice}}{17}{appendix.Alph1}

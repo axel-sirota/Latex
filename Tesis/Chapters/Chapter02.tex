@@ -1,5 +1,134 @@
-\chapter{Aplicaci\'ones}\label{ch:aplicaciones}
+\chapter{Teorema de la Variedad Estable y los Puntos fijos inestables}\label{ch:teorema-de-variedad-estable}
+\section{Resultados previos}
 
-[Esto va a ir en Resultado principal]
+\marginpar{Esto quizas deberia ir en prerequisitos cuando lo tengamos}
 
-\section{\Dg}
+Por el resto del documento, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$variedad sin borde.
+
+\begin{definition}
+	Dada una variedad de dimensi\'on $d \ \mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
+\end{definition}
+
+\begin{lemma}
+	\label{Difeomorfismos locales preservan medida cero}
+	Sea $E \subset \mani$ tal que $\mu(E) = 0$; si $\det \left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego $\mu\left(g^{-1}(E)\right) = 0$
+\end{lemma}
+
+\begin{proof}
+	Sea $h = g^{-1}$ y $\left(V_i, \psi^i\right)$ una colecci\'on de cartas en el dominio de $g$, si verificamos que $\mu\left(h\left(E\right) \cap V_i\right) = 0$ para todo $i \in \N$ entonces:
+	
+	\begin{equation*}
+	\mu(h(E)) = \mu \left(\Bigcup{i \in \N}{h(E) \cap V_i}\right) \le \Bigsum{i \in \N} \mu \left(h(E) \cap V_i\right) = 0
+	\end{equation*}
+	
+	Sin p\'erdida de generalidad podemos asumir que $h(E) \subseteq V$ con $(V, \psi) \in \sett{(V_i, \phi^i)}$ una carta determinada. Sea $\mathcal{A} := \sett{\left(U_i, \varphi^i \right)}$ un atlas de $\mani$ y notemos $E_i = E \cap U_i$; luego $E = \Bigcup{i \in \N}{E_i} = \Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}$ por lo que:
+	
+	\begin{equation*}
+		\begin{aligned}
+		\mu\left(\psi \circ h(E)\right) & = & \mu \left(\psi \circ h \left(\Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}\right)\right)\\
+		& \le & \Bigsum{i \in \N}{\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)}
+		\end{aligned}
+	\end{equation*}
+	
+	\marginpar{Uso Teorema de la funcion inversa en variedades y que localmente Lipshitz preserva medida}
+	
+	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{??} entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como si $f \in C^1(\R^d)$ entonces  es localmente Lipshitz, ergo $f$ preserva la medida, conclu\'imos que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
+
+\end{proof}
+
+\section{Puntos fijos inestables}
+
+\begin{definition}
+	Sea:
+	\begin{equation*}
+	\label{def:punto fijo inestable de g}
+	\puntosfijos := \sett{x \ : \ g(x) = x \quad \max\limits_{i}\abs{\lambda_i \left(Dg(x)\right) > 1}}
+	\end{equation*}
+	
+	El conjunto de puntos fijos de $g$ cuyo diferencial en ese punto tiene alg\'un autovalor mayor que $1$. A este conjunto lo llamaremos el conjunto de \textit{puntos fijos inestables}
+	
+\end{definition}
+
+\marginpar{Este teorema deber\'ia ir en prerequisitos}
+
+\begin{theorem}
+	\label{teo: variedad local estable central}
+	Sea $x^*$ un punto fijo de $g \in C^{r}(\mani)$ un difeomorfismo local. Supongamos que $E = E_s \oplus E_u$ donde 
+	
+	\begin{equation*}
+	\begin{aligned}
+	E_s & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i \le 1} \rangle \\
+	E_u & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i > 1} \rangle \\
+	\end{aligned}
+	\end{equation*}
+	Entonces existe $W_{loc}^{cs} \inc \mani$ un \textit{embedding} $C^r$ local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
+\end{theorem}
+
+Con todos estos resultados demostremos el teorema principal:
+
+\begin{theorem}
+	\label{teo: Principal}
+	Sea $g \in C^1(\mani)$ tal que $\det\left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego el conjunto de puntos iniciales que convergen por $g$ a un punto fijo inestable tiene medida cero, \ie:
+	
+	\begin{equation*}
+		\mu \left(\sett{x_0 \ \colon \ \Biglim{k}{g^k(x_0) \in \mathcal{A}_g^{*}}}\right) = 0
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	Para cada $x^* \in \puntosfijos$ por \ref{teo: Principal} existe $B_{x^*}$ un entorno abierto; es m\'as, $\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}}$ forma un cubrimiento abierto del cual existe un subcubrimiento numerable pues $X$ es variedad, \ie
+	
+	\[
+	\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}} = \Bigcup{i \in \N}{B_{x^{*}_{i}}}
+	\]
+	
+	\marginpar{Usamos que en una variedad se cumple la propiedad de Lindeloff}
+	
+	Primero si $x_0 \in \mani$ sea:
+	
+	\begin{equation*}
+	\begin{aligned}
+		x_k = & g^k(x_0) \\
+		= & \underbrace{g \circ \dots \circ g }_{k \ veces} (x_0)
+	\end{aligned}
+	\end{equation*}
+	
+	la sucesi\'on del flujo de $g$ evaluado en $x_0$, entonces si $W := \sett{x_0 \ \colon \ \Biglim{k}{x_k \in \mathcal{A}_g^{*}}}$ queremos ver que $\mu(W) = 0$.
+	
+	Sea $x_0 \in W$, luego como $x_k \rightarrow x^* \in \puntosfijos$ entonces existe $T \in \N$ tal que para todo $t \ge T$ , $x_t \in  \Bigcup{i \in \N}{B_{x^{*}_{i}}}$ por lo que $x_t \in B_{x^{*}_{i}}$ para alg\'un $x_{i}^{*} \in \puntosfijos$ y $t \ge T$. Afirmo que:
+	
+		\marginpar{Pablo: Hace falta demostrar esto??}
+	
+	\begin{lemma}
+		\label{lemma: teo_principal}
+		$x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$
+	\end{lemma}
+	
+	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$ \footnote{\color{Red}Por que???}; por lo que $\mu(S_i) = 0$.
+	
+	\marginpar{Usamos que la dimension de la variedad es la de su tangente}
+	\marginpar{Usamos que una subvariedad de dimension menor tiene medida 0}
+	
+	Finalmente como $x_{T} \in S_i$ para alg\'un $T$ entonces $x_0 \in \Bigcup{k \in \N}{g^{-k}(S_i)}$ por lo que $W \subseteq \Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}}$. Conclu\'imos:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\mu \left(W\right) & \le & \mu \left(\Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}} \right) \\
+	& \le & \Bigsum{i \in \N}{\Bigsum{k \in \N}{\mu \left(g^{-k}(S_i)\right)}} \\
+	& \stackrel{\ref{Difeomorfismos locales preservan medida cero}}{=} & 0
+	\end{aligned}
+	\end{equation*}\qed
+	
+	
+\end{proof}
+
+Para finalizar veamos un caso simple que nos encontraremos seguido:
+
+\begin{corollary}
+	\label{coro: Resultado principal}
+	Bajo las mismas hip\'otesis que en \ref{teo: Principal} si agregamos que $\mani* \subseteq \puntosfijos$ entonces $\mu(W_g) =0$
+\end{corollary}
+
+\begin{proof}
+	Como $\mani^* \subseteq \puntosfijos$ entonces $W_g \subseteq W$, luego $\mu(W_g) \le \mu (W) \stackrel{\ref{teo: Principal}}{=} 0$.\qed
+\end{proof}

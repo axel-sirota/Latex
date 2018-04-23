@@ -25,20 +25,23 @@
 % (see ClassicThesis.pdf for more information):
 % ****************************************************************************************************
 \PassOptionsToPackage{
-  drafting=true,    % print version information on the bottom of the pages
   tocaligned=false, % the left column of the toc will be aligned (no indentation)
   dottedtoc=false,  % page numbers in ToC flushed right
   parts=true,       % use part division
   eulerchapternumbers=true, % use AMS Euler for chapter font (otherwise Palatino)
-  linedheaders=false,       % chaper headers will have line above and beneath
+  linedheaders=true,       % chaper headers will have line above and beneath
   floatperchapter=true,     % numbering per chapter for all floats (i.e., Figure 1.1)
   listings=true,    % load listings package and setup LoL
   subfig=true,      % setup for preloaded subfig package
-  eulermath=false,  % use awesome Euler fonts for mathematical formulae (only with pdfLaTeX)
+  eulermath=true,  % use awesome Euler fonts for mathematical formulae (only with pdfLaTeX)
   beramono=true,    % toggle a nice monospaced font (w/ bold)
   minionpro=false   % setup for minion pro font; use minion pro small caps as well (only with pdfLaTeX)
 }{tesis}
+\usepackage{blindtext}
+\usepackage{etoolbox}
+\usepackage[bottom]{footmisc}
 \usepackage{amsfonts}
+\usepackage{xr}
 \usepackage{amsmath,amsfonts, amssymb, mathrsfs }
 \usepackage{tikz-cd}
 \usepackage{syntonly}
@@ -49,11 +52,12 @@
 	\usepackage{easylist}
 \PassOptionsToPackage{dvipsnames}{xcolor}
 	\RequirePackage{xcolor}
+\usepackage{upgreek}
 % ****************************************************************************************************
 % 2. Personal data and user ad-hoc commands
 % ****************************************************************************************************
-\newcommand{\myTitle}{To Be defined\xspace}
-\newcommand{\mySubtitle}{Even more TBD\xspace}
+\newcommand{\myTitle}{M\'etodos de primer orden?\xspace}
+\newcommand{\mySubtitle}{An\'alisis de convergencia??\xspace}
 \newcommand{\myDegree}{Tesis de Licenciatura\xspace}
 \newcommand{\myName}{Axel Sirota\xspace}
 \newcommand{\myDirector}{Director de Tesis: Dr. Pablo Amster\xspace}
@@ -79,6 +83,7 @@
 \newcommand{\dual}[1]{\left(#1\right)^{\ast}}
 \newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
 \newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\parenthesis}[1]{\left(#1\right)}
 \newcommand{\x}[3]{#1_#2^#3}
 \newcommand{\xx}[4]{#1_#3#2_#4}
 \newcommand\dd{\,\mathrm{d}}
@@ -100,6 +105,7 @@
 \newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
 \newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
 \newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\mani}{\upchi}
 \DeclareMathOperator{\rank}{ran}
 \DeclareMathOperator{\graf}{Gr}
 \DeclareMathOperator{\ball}{ball}
@@ -114,18 +120,14 @@
 	\def \en{\end{enumerate}}
 \def\deck{{\rm Deck}}
 \def\Tau{{\rm T}}
-
-\newtheorem{mytheorem}{Theorem}
-%
-
 \newtheorem{theorem}{Teorema}
-\numberwithin{theorem}{subsection}
+\numberwithin{theorem}{section}
 \newtheorem{lemma}[theorem]{Lema}
-
+\numberwithin{theorem}{section}
 \newtheorem{proposition}[theorem]{Proposici\'on}
-
+\numberwithin{theorem}{section}
 \newtheorem{corollary}[theorem]{Corolario}
-
+\numberwithin{theorem}{section}
 
 \newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
@@ -145,6 +147,7 @@
 	\vrule height0.75em width0.5em depth0.25em\fi}
 \newcommand{\dg}{\textit{gradient descent} \ }
 \newcommand{\Dg}{\textit{Gradient descent} \ }
+\newcommand{\puntosfijos}{\mathcal{A}_{g}^{*}}
 \newcommand{\twopartdef}[4]
 {
 	\left\{
@@ -174,6 +177,7 @@
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
 
 % ********************************************************************
 % Setup, finetuning, and useful commands
