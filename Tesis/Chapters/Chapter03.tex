@@ -115,3 +115,101 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 \begin{proof}
 	Por \ref{prop: PP es difeo local y los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
 \end{proof}
+
+\section{Descenso por coordenadas}
+
+Consideremos el algoritmo \ref{algo: CD}, luego si definimos $g_i(x) = x - \alpha \parenthesis{0, \dots, 0, \dfrac{\partial f}{\partial x_i}(x), 0, \dots, 0}$ entonces:
+
+\RestyleAlgo{boxruled}
+\LinesNumbered
+\begin{algorithm}[ht]
+	\caption{Descenso por coordenadas\label{algo: CD}}
+	\textbf{Input:} $f \in C^1$, $\alpha >0$, $x_0 \in \mani$ \\
+	\For{$k \in \N$}{
+		\For{\textbf{index} $i = 1, \dots, d$}{
+			$y_{k}^{0} = x_k$ y $y_{k}^{i} = \parenthesis{x_{k+1}^1, \dots, x_{k+1}^{i}, x_{k}^{i+1}, \dots, x_{k}^{d}}$ \\
+			$x_{k+1}^{i} \gets x_{k}^i - \alpha \dfrac{\partial f}{\partial x_i}\parenthesis{y_{k}^{i-1}}$
+		}
+	}
+\end{algorithm}
+
+\begin{lemma}
+	La iteraci\'on de Descenso por coordenadas esta dada por:
+	
+	\begin{equation}
+		\label{eq: DC}
+		x_{k+1} = g(x_k) \stackrel{\triangle}{=} g_d \circ g_{d-1} \circ \dots \circ g_1(x)
+	\end{equation}
+	
+\end{lemma}
+
+\begin{remark}
+	\label{Hipotesis 2}
+	Sea $f \in C^2$ y supongamos que $\max\limits_{i \in \sett{1, \dots, d}}{\abs{e_{i}^{T}\nabla ^2 f(x) e_i}} \le L_{max}$
+\end{remark}
+
+\begin{lemma}
+	Si $g$ est\'a dada por \ref{eq: DC} entonces:
+	
+	\begin{equation}
+		\label{eq: Diferencial de DC}
+		Dg(x_{k}) = \Bigprod{j \in \sett{1, \dots, d}}{\parenthesis{Id - \alpha e_{d-j+1}e_{n-j+1}^{T}\nabla ^2 f(y_{k}^{n-j})}}
+	\end{equation}
+	
+\end{lemma}
+
+\begin{proof}
+	Notemos primero que:
+	
+	\begin{equation*}
+		Dg_{i}(x) = Id - \alpha \left(
+			\begin{matrix}
+				0 & \dots & 0 & \dots & 0 \\
+				\vdots & \ddots & \vdots &  & \vdots \\
+				\vdots &  & \dfrac{\partial^2 f}{\partial x_{i}^{2} (x)} &  & \vdots \\
+				\vdots &  & \vdots & \ddots & \vdots \\
+				0 & \dots & 0 & \dots & 0 \\
+			\end{matrix}
+		\right) = Id - \alpha e_{i}e_{i}^{T} \nabla ^2 f(x)
+	\end{equation*}
+	
+	Por lo tanto:
+	
+	\begin{equation*}
+	\begin{aligned}[l]
+	Dg(x_k) & = & D\parenthesis{g_d \circ \dots g_1}(x_k) \\
+	& = & \parenthesis{Id - \alpha e_{d}e_{d}^{T}\nabla^2f}\parenthesis{\underbrace{g_{d-1} \circ \dots d_1(x_k)}_{y_{k}^{d-1}}} D\parenthesis{g_{d-1} \circ \dots g_1}(x_k) \\
+	& \vdots & \\
+	& = & \Bigprod{j \in \sett{1, \dots, d}}{\parenthesis{Id - \alpha e_{d-j+1}e_{n-j+1}^{T}\nabla ^2 f(y_{k}^{n-j})}}
+	\end{aligned}
+	\end{equation*}\qed
+	
+\end{proof}
+
+\begin{proposition}
+	\label{prop: DC es difeo local}
+	Bajo \ref{Hipotesis 2} y $\alpha < \frac{1}{L_{max}}$ se tiene que $\det(Dg(x)) \neq 0$
+\end{proposition}
+
+\begin{proof}
+	Basta probar que cada t\'ermino de \ref{eq: Diferencial de DC} es invertible, para eso:
+	\begin{equation*}
+	\begin{aligned}
+	\chi_{Dg_i(x)}(\lambda) & = & \det\parenthesis{
+			\lambda Id_d - Id_d - \alpha e_ie_i^{T} \nabla ^2 f(x)
+		} \\
+		& = & \det\parenthesis{
+				\begin{matrix}
+					\lambda -1 & 0 & \dots & 0 & \dots & 0 \\
+					\vdots & & & \vdots & & \vdots \\
+					0 & \dots & & (\lambda - 1) + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) & & \vdots \\
+					0 & \dots & & & & 0 
+				\end{matrix}
+			} \\
+			& = & (\lambda -1)^{d-1}\parenthesis{\lambda -1 + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) }
+	\end{aligned}
+	\end{equation*}
+	
+	Luego si $\alpha < \frac{1}{L_{max}}$ entonces $\lambda -1 + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) > 0$ para todo $i \in \sett{1, \dots, d}$ por lo que todos los autovalores son positivos y $Dg_i(x)$ es invertible para todo $i$. \qed
+	
+\end{proof}

@@ -24,6 +24,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Punto Pr\'oximo}{13}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {III}Ap\'endice}{15}{part.3}
+\contentsline {section}{\numberline {3.3}Descenso por coordenadas}{14}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Ap\'endice}}{17}{appendix.Alph1}
+\contentsline {part}{\numberline {III}Ap\'endice}{17}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Ap\'endice}}{19}{appendix.Alph1}
