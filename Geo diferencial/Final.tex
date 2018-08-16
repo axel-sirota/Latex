@@ -153,6 +153,269 @@
 	\tableofcontents
 	\newpage
 
-\section{Particiones de la unidad}
+\section{Teorema de Stokes}
+
+\begin{theorem}
+	Sea $M$ una $n-$variedad diferenciable orientable con frontera, $\omega$ una $(n-1)-$forma diferenciable con soporte compacto en $M$. Entonces
+	
+	\begin{equation}
+		\int_{M} {d\omega} = \int_{\partial M} \omega
+	\end{equation}
+	
+\end{theorem}
+
+\begin{remark}
+	Algunas interpretaciones:
+	
+	\begin{enumerate}
+		
+		\item $\partial M$ la tomamos con la orientacion de Stokes
+		\item $\int_{\partial M} \omega = \int_{\partial M} {i^*_{\partial m}\omega}$
+		\item Si  $\partial M = \emptyset$ entonces $\int_{\partial M} \omega = 0 $
+		
+	\end{enumerate}
+	
+\end{remark}
+
+\begin{proof}
+	Vayamos por partes:
+	\medskip
+	
+	$\mathunderscore{\mathbf{M = \mathbb{H}^n}}$
+	
+	\medskip
+	
+	Como $\omega$ es de soporte compacto, existe $R >0$ tal que $supp \ \omega \subset A := [-R,R] \times \dots \times [-R,R] \times [0,R] $ y podemos escribir $\omega$ en coordenadas como:
+	
+	
+	\begin{equation*}
+	\omega = \sum\limits_{i =1 }^{n} {\omega_i dx^1 \wedge \dots \wedge \widehat{dx^i} \wedge \dots \wedge dx^n}
+	\end{equation*}
+	
+	
+	Por lo que:
+	
+	\begin{equation*}
+		\begin{aligned}
+			d\omega & = & \sum\limits_{i =1 }^{n} {d\omega_i \wedge dx^1 \wedge \dots \wedge \widehat{dx^i} \wedge \dots \wedge dx^n} \\
+			& = & \sum\limits_{i,j =1 }^{n} {\dfrac{\omega_i}{dx^j} dx^j \wedge dx^1 \wedge \dots \wedge \widehat{dx^i} \wedge \dots \wedge dx^n} \\
+			& = & \sum\limits_{i =1 }^{n} {(-1)^{i-1}\dfrac{\omega_i}{dx^i}  dx^1 \wedge \dots \wedge dx^n} 
+		\end{aligned}
+	\end{equation*}
+	
+		Notemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\sum\limits_{i =1 }^{n-1} {(-1)^{i-1} \int_{0}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^1 \dots dx^n} = & \sum\limits_{i =1 }^{n-1} {(-1)^{i-1} \int_{0}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^i dx^1 \dots \widehat{dx^i} \dots dx^n} \\
+	= &  \sum\limits_{i =1 }^{n-1} {(-1)^{i-1} \int_{0}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \omega_i \vert_{-R}^{R} dx^1 \dots \widehat{dx^i} \dots dx^n} \\
+	= & 0
+	\end{aligned}
+	\end{equation*}
+	
+	Luego:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\int_{\mathbb{H}^n} {d \omega} & = & \sum\limits_{i =1 }^{n} {(-1)^{i-1} \int_{0}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^1 \dots dx^n} \\
+		& = & (-1)^{n-1}  \int\limits_{-R}^{R} \dots \int\limits_{0}^{R} \dfrac{\omega_n}{dx^n} dx^n  dx^1 \dots dx^{n-1} \\
+		& = & (-1)^{n}  \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \omega_n(x^1, \dots, x^{n-1},0) dx^1 \dots dx^{n-1}
+	\end{aligned}
+	\end{equation*}
+	
+	Por el otro lado:
+	
+	\begin{equation*}
+	\begin{aligned}[l]
+		\int_{\partial \mathbb{H}^n} {\omega} = & \sum\limits_{i =1 }^{n} {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_i(x^1, \dots, x^{n-1},0) dx^1 \wedge \dots \wedge \widehat{dx^i} \wedge \dots \wedge dx^n} \\
+		 = & \sum\limits_{i =1 }^{n-1} {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_i(x^1, \dots, x^{n-1},0) dx^1 \wedge \dots \wedge \widehat{dx^i} \wedge \dots \wedge dx^n}  \\ & + {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_n(x^1, \dots, x^{n-1},0) dx^1 \wedge \dots \wedge dx^{n-1}} \\
+		 = & \sum\limits_{i =1 }^{n-1} {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_i(x^1, \dots, x^{n-1},0) d(i^*_{\partial \mathbb{H}^n}x^1) \wedge \dots \wedge \widehat{d(i^*_{\partial \mathbb{H}^n}x^i)} \wedge \dots \wedge \substack{d(i^*_{\partial \mathbb{H}^n}x^{n}) \\ \underbrace{= 0 } } } \\ & + {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_n(x^1, \dots, x^{n-1},0) dx^1 \wedge \dots \wedge dx^{n-1}}  \\
+		 = & {\int\limits_{A \cap \partial \mathbb{H}^n}  \omega_n(x^1, \dots, x^{n-1},0) dx^1 \wedge \dots \wedge dx^{n-1}} 
+	\end{aligned}
+	\end{equation*}
+	
+	Luego conclu\'imos que:
+	
+	$$\int_{\partial \mathbb{H}^n} {\omega} =  \int_{\mathbb{H}^n} {d \omega} $$
+	
+		\medskip
+	
+	$\mathunderscore{\mathbf{M = \R^n}}$
+	
+	\medskip
+	
+	En este caso notemos que $\int_{\partial \mathbb{R}^n} {\omega} = 0$ y por el otro lado:
+	
+		\begin{equation*}
+	\begin{aligned}
+	\sum\limits_{i =1 }^{n} {(-1)^{i-1} \int_{-R}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^1 \dots dx^n} = & \sum\limits_{i =1 }^{n} {(-1)^{i-1} \int_{-R}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^i dx^1 \dots \widehat{dx^i} \dots dx^n} \\
+	= &  \sum\limits_{i =1 }^{n} {(-1)^{i-1} \int_{-R}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \omega_i \vert_{-R}^{R} dx^1 \dots \widehat{dx^i} \dots dx^n} \\
+	= & 0
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo tanto:
+	
+		\begin{equation*}
+	\int_{\mathbb{R}^n} {d \omega}  = \sum\limits_{i =1 }^{n} {(-1)^{i-1} \int_{-R}^{R} \int\limits_{-R}^{R} \dots \int\limits_{-R}^{R} \dfrac{\omega_i}{dx^i}  dx^1 \dots dx^n} = 0 = \int_{\partial \mathbb{R}^n} {\omega} 
+	\end{equation*}
+	
+			\medskip
+	
+	$\mathunderscore{\mathbf{supp \ \omega \subset U}}$ \textbf{con $(U,\phi)$ carta}
+	
+	\medskip
+	
+	En este caso:
+	
+	\begin{equation*}
+	\int\limits_{M} {d\omega} = \int\limits_{\mathbb{H}^n} {(\phi^{-1})^* d \omega} = \int\limits_{\mathbb{H}^n} {d((\phi^{-1})^* \omega)} = \int\limits_{\partial \mathbb{H}^n} {(\phi^{-1})^* \omega}
+	\end{equation*}
+	
+	Como $d\phi$ lleva vectores externos de $\partial M$ a vectores externos de $\partial \mathbb{H}^n$ entonces $\phi|_{U \cap \partial M}$ es un difeomorfismo que preserva la orientaci\'on a $\phi(U) \cap \partial \mathbb{H}^n$, luego:
+	
+		\begin{equation*}
+		\int\limits_{\partial M} {\omega}  = \int\limits_{\partial \mathbb{H}^n} {(\phi^{-1})^* \omega} = \int\limits_{M} {d\omega} 
+		\end{equation*}
+	
+	\medskip
+	
+	\textbf{M y $supp \ \omega$ arbitrarios}
+	
+	\medskip
+	
+	Como $supp \ \omega$ es compacto, existen finitos $U_i$ cartas tal que $supp \ \omega \subset \Bigcup{i}{U_i}$ y sea $\sett{\psi_i}$ una partici\'on de la unidad subordinada a $\sett{U_i}$, luego $supp \ \psi_i \omega \subset U_i$ y juntando todo:
+	
+	\begin{equation*}
+		\int\limits_{\partial M} {\omega} = \Bigsum{i}{\int\limits_{\partial M}{\psi_i \omega}} = \Bigsum{i}{\int\limits_{M}{d(\psi_i \omega)}} = \Bigsum{i}{\int\limits_{M}{d(\psi_i) \wedge \omega + \psi_i d\omega}} = \int\limits_{M} {d \left(\Bigsum{i}{\psi_i}\right) \wedge \omega} + \int\limits_{M} {\left(\Bigsum{i}{\psi_i} \right) d\omega } = \int\limits_{M}{d \omega}
+	\end{equation*}
+	\qed
+	
+	\pagebreak
+	
+	\section{Teorema de Frobenius}
+	
+	\begin{definition}
+		Sea $D \subset TM$ una $k$ distribuci\'on, definimos:
+		
+		\begin{enumerate}
+			\item $N \subset M$ subvariedad  se dice integral si para todo $p \in N$ vale que $T_pN = D_p$
+			\item $D$ se dice integrable si para todo $p \in M$ existe $N$ variedad integral para $D$.
+			\item Una carta $(U,\phi)$ se dice plana para $D$ si $\phi(U)$ es un cubo y para todo $p \in U$ vale que $D = <\partial x_1, \dots, \partial x_k>$
+			\item $D$ se dice completamente integrable si para todo $p \in M$ existe una carta plana.
+		\end{enumerate}
+		
+		\begin{theorem}
+			Sea $D$ una distribuci\'on en $M$, luego son equivalentes:
+			
+			\begin{enumerate}
+				\item $D$ es involutiva
+				\item $D$ es integrable
+				\item $D$ es completamente integrable
+			\end{enumerate}
+			
+		\end{theorem}
+		
+		\begin{proof}
+			
+			\medskip
+			
+			\textbf{Completamente integrable implica integrable}
+			
+			\medskip
+			
+			Sea $(U,\phi)$ es una carta plana para $p \in M$, entonces tomemos $N = \phi^{-1} \left(\sett{x \in \R^n \tq x_{k+i} = c_i}\right)$ para $c_1, \dots, c_{n-k}$ constantes y veamos que es una subvariedad integral de dimensi\'on $k$.
+			
+			En efecto, es una subvariedad de dimensi\'on $k$ pues admite un slice de codimensi\'on $n-k$, y es integral pues $T_pN = <\partial x_1, \dots, \partial x_k> = D_p$.
+			
+						\medskip
+			
+			\textbf{Integrable implica involutiva}
+			
+			\medskip
+			
+			Sean $X,Y \in \Gamma(D)$ definidas en un abietro $U \subset M$, sea $p \in U$ y $N$ la variedad integral a $D$ que contiene a $p$.  Como $X_p,Y_p \in D_p = T_pN$ entonces vale que $[X,Y]_p \in T_pN$, por lo que $[X,Y]_p \in D_p$; conclu\'imos que $D$ es involutiva.
+			
+			\medskip
+
+			\textbf{Involutiva implica completamente integrable}
+
+			\medskip			
+			
+			Dividamos la prueba en dos subsecciones, primero probemos que toda distribuci\'on involutiva esta localmente generada por campos suaves que conmutan; con eso probemos que es completamente integrable.
+			\\\\
+			\underline{$D$ es generada por campos que conmutan}
+			\\\\
+			Consideremos primero $p \in U \subset \R^n$ y sea $X_1, \dots, X_k$ una base de campos suaves que generan $D$ y sin p\'erdida de generalidad podemos asumir que $D_p^\perp = <\partial x_{k+1} \vert_p, \dots, \partial x_n \vert_p>$. Sea $\pi : \R^n \mapsto \R^k$ y notemos que induce $d \pi : T\R^n \mapsto T\R^k$ dada por:
+			
+			\begin{equation*}
+				d\pi \left(\Bigsum{i \leq n}{v^i \partial x_{i} \vert_q}\right) = \Bigsum{i \leq k}{v^i \partial x_{i} \vert_{\pi(q)}}
+			\end{equation*}
+			
+			Ahora notemos que $d \pi \vert_D = d \pi \circ i_{D \inc TU}$ por lo que es suave y $d \pi _q \vert_{D_q}$ es difeomorfismo local por la elecci\'on de orden de la base. Sean $\sett{V_1, \dots, V_k}$ otra base de $D$ es un entorno de $p$ dado por:
+			
+			\begin{equation*}
+				V_i \vert_q = \left(d \pi \vert_{D_q}\right)^{-1} \partial x_{i} \vert_{\pi(q)}
+			\end{equation*}
+			
+			Luego por la naturalidad del corchete de Lie:
+			
+			\begin{equation*}
+				d \pi_q \left(\left[V_i, V_j\right]_q\right)   = \left[\partial x_{i} , \partial x_{i}\right]_{\pi(q)} = 0
+			\end{equation*}
+			
+			Pero como $V_i,V_j \in D$ para todo $i,j \leq k$ entonces $\left[V_i, V_j\right] \in D$ y como $d \pi \vert_{D}$ es difeomorfismo local, esto implica que:
+			
+			\begin{equation*}
+				\left[V_i, V_j\right] _q = 0 \qquad \forall q \in U
+			\end{equation*}
+			
+			Finalmente, si $p \in M$ esta en una carta $(U, \phi)$, como $\phi$ es difeomorfismo local es trivial ver que $\tilde{V}_i = d\left(\phi^{-1}\right)\left(V_i\right)$ cumple lo dicho, con $V_i$ la base encontrada para $d\phi(D)$.
+			
+			\medbreak
+			\underline{$D$ es completamente integrable}
+			\medbreak
+			
+			Sea nuevamente $p \in U \subset M$, luego por el punto anterior sabemos que $D = <V_1, \dots, V_k>$ y sea $S$ una subvariedad de codimensi\'on $k$ tal que $T_qS = Dq^{\perp}$ para todo $q \in U$, notemos que $\sett{V_1 \vert_{q}, \dots, V_k \vert_q, \partial x^{k+1} \vert_q, \dots, \partial x^{n} \vert_q}$ son base de $T_qM$. Procediendo como antes podemos suponer que $U \subset \R^n$ y $S \subset U$ tal que $x_i = 0$ para $i \leq k$.
+			
+			Sea $\theta_i$ el flujo de $V_i$ y sea $\epsilon > 0$, $Y \subset U$ entorno tal que $(\theta_1)_{t_1} \circ \dots (\theta_k)_{t_k}$ esta bien definido cuando $\max\limits_{i \leq k} {\abs{t_i}} < \epsilon$; definamos $\Omega \subset \R^{n-k}$ dado por:
+			
+			$$\Omega = \sett{(s^{k+1}, \dots, s^n) \in \R^{n-k} \tq (0, \dots, 0, s^{k+1}, \dots, s^n) \in Y}$$
+			
+			Y definamos $\Phi: (-\epsilon, \epsilon)^k \times \Omega \mapsto U$ dado por:
+			
+			$$\Phi(s^1, \dots, s^k, s^{k+1, \dots, s^n}) = (\theta_1)_{s_1} \circ \dots (\theta_k)_{s_k} (0, \dots, 0, s^{k+1}, \dots, s^n) $$
+			
+			Notemos que $\Phi\left(\sett{0} \times \Omega \right) = S \times Y$. Sea entonces $s_0 \in (-\epsilon, \epsilon)^k \times \Omega $ y $i \in \sett{1, \dots, k}$, notemos que:
+			
+			\begin{equation*}
+			\begin{aligned}
+				d \Phi_{s_0} \left(\partial s^i \vert_{s_0}\right)f = & \partial s^i \vert_{s_0} f \left(\Phi(s^1, \dots, s^n)\right) \\
+				= & \partial s^i \vert_{s_0} f \left((\theta_1)_{s_1} \circ \dots (\theta_k)_{s_k} (0, \dots, 0, s^{k+1}, \dots, s^n) \right) \\ 
+				= & \partial s^i \vert_{s_0} f \left((\theta_i)_{s_i} \circ (\theta_1)_{s_1} \circ (\theta_{i-1})_{s_{i-1}}  \circ (\theta_{i+1})_{s_{i+1}} \circ  \dots (\theta_k)_{s_k} (0, \dots, 0, s^{k+1}, \dots, s^n) \right)  \\
+				= & \partial s^i \vert_{s_0} f \left((\theta_i)_{s_i} (q) \right) \qquad q \in M \\
+				= & V_i \vert_{\Phi(s_0)} f \qquad \left( \text{pues } t \mapsto (\theta_i)_t(q) \text{ es una curva integral de } V_i	\right)			
+			\end{aligned}
+			\end{equation*}
+			
+			Luego para todo $i \in \sett{1, \dots, k}$:
+			
+			\begin{equation}
+				d \Phi_{0} \left(\partial s^i \vert_{0}\right) = V_i \vert_{\Phi(0)}  = V_i \vert_{p} 
+			\end{equation}
+			
+			Por otro lado como $\Phi (0, \dots, 0, s^{k+1, \dots, s^n}) = (0, \dots, 0, s^{k+1, \dots, s^n})$ tenemos que para todo $i \in \sett{k+1, \dots, n}$:
+			
+			\begin{equation}
+				d \Phi_{0} \left(\partial s^i \vert_{0}\right) = \partial x^{i} \vert_{p} 
+			\end{equation}
+			
+			Como $d \Phi_{0}$ lleva bases en bases, es inversible, por lo que $\Phi$ es un difeomorfismo local en un entorno $W \ni 0$ y $(\Phi^{-1},\Phi^{-1} \left(W\right))$ es la carta plana de $p$ que quer\'iamos. \qed
+			
+		\end{proof}
+		
+	\end{definition}
+	
+\end{proof}
 
 \end{document}

@@ -213,3 +213,88 @@ Consideremos el algoritmo \ref{algo: CD}, luego si definimos $g_i(x) = x - \alph
 	Luego si $\alpha < \frac{1}{L_{max}}$ entonces $\lambda -1 + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) > 0$ para todo $i \in \sett{1, \dots, d}$ por lo que todos los autovalores son positivos y $Dg_i(x)$ es invertible para todo $i$. \qed
 	
 \end{proof}
+
+\begin{proposition}
+	\label{prop: DC los puntos silla estrictos son fijos inestables}
+	Bajo \ref{Hipotesis 2} y $\alpha < \frac{1}{L_{max}}$ se tiene que $\mani^* \subseteq \puntosfijos$
+\end{proposition}
+
+\begin{proof}
+	Sea $x^* \in \mani^*$, $H = \nabla^2 f(x^*)$, 
+	$J=Dg(x^*) = \Bigprod{j \leq n}{\left(Id_n - \alpha e_{n-j+1}e_{n-j+1}^T H\right)}$ y $y_0$ el autovector correspondiente al menor autovalor de $H$. Vamos a probar que $\norm{J^t y_0}_2 \geq c(1+\epsilon)^t$ por lo que $\norm{J^t} _2 \geq  c(1+\epsilon)^t$, luego por el teorema de Gelfand
+	
+	\marginpar{Usamos q	ue el radio espectral es el limite de cualquier norma matricial}
+	
+	\begin{equation*}
+	\rho(J) = \lim\limits_{t \rightarrow \infty}{\norm{J^t}^{1/t}} \geq \lim\limits_{t \rightarrow \infty}{c^{1/t} (1+\epsilon)} = 1 + \epsilon 
+	\end{equation*}
+	
+	Y conclu\'imos que $\mani^* \subseteq \puntosfijos$.
+	
+	En pos de eso fijemos $t \geq 1$ una iteraci\'on y sea $y_t = J^t x_0$.
+	
+	\begin{lemma}
+		\label{lemma1 : DC los puntos silla estrictos son fijos inestables}
+		Existe $\epsilon >0$ tal que para todo $t \in \N$:
+		
+		\begin{equation*}
+		\label{eq_1: DC los puntos silla estrictos son fijos inestables}
+		y_{t+1}^THy_{t+1} \leq (1+\epsilon) y_{t}^THy_{t} 
+		\end{equation*}
+		
+	\end{lemma}
+	
+	\begin{proof}
+		Llamemos $z_1 = y_t$ y $z_{i+1} = \left(Id - \alpha e_i e_i^TH\right)z_i$ de modo que $y_{t+1} = Jy_t = z_{n+1}$, luego:
+		
+		\begin{equation*}
+		\begin{aligned}
+			z_{i+1}^THz_{i+1} & \leq & \left[z_i^T - \alpha \left( e_i^T H z_i \right) e_i^T \right]H \left[ z_i - \alpha \left(e_i^T H z_i \right) e_i \right] \\
+			& = & z_i^T H z_i - \alpha \left(z_i^T H e_i\right)\left(e_i^T H z_i\right) - \\
+			&& \alpha \left(e_i^T H z_i\right)\left(e_i^T H z_i\right) + \alpha^2 \left(e_i^T H z_i\right)^2\left(e_i^T H e_i\right) \\
+			& = & z_i^T H z_i -  \alpha \left(z_i^T H e_i\right)^2 \left(2 - \alpha  e_i^T H e_i\right) \\
+			& < & z_i^T H z_i -  \alpha \left(z_i^T H e_i\right)^2 
+		\end{aligned} 
+		\end{equation*}\qed
+	\end{proof}
+
+	Continuando con la notaci\'on anterior:
+	
+	\begin{claim}
+		\label{afirmacion1 : DC los puntos silla estrictos son fijos inestables}
+		Sea $y_t \in \rank{H}$, existe $j \in \sett{1, \dots, d}$ y $\delta = \delta(H, d) >0$ tal que:
+		
+		\begin{equation*}
+			\alpha \left[e_j^T H z_j\right] \geq \delta \norm{z_j}_2
+		\end{equation*}
+	\end{claim}
+
+	\marginpar{Quizas podriamos mover esta al anexo}
+
+	\begin{proof}
+		Supongamos que $\alpha \left[e_j^T H z_j\right] < \delta \norm{z_j}_2$ para todo $j \in \sett{1, \dots, d}$ y alg\'un $\delta$.
+		
+		Si $j = 1$ entonces:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\norm{y_t - z_2}_2 & = & \norm{z_1 - z_2}_2 \\
+				& = & \alpha \left[e_1^T hz_1\right] \\
+				& < & \delta \norm{z_1}_2 < 2 \delta \norm{y_t}_2 
+				\end{aligned}
+		\end{equation*}
+		
+		\marginpar{Aca el 2 no hace falta...}
+		
+		Luego se tiene que $\norm{z_2}_2 < \norm{y_t - z_2}_2 + \norm{y_t}_2 < (1 + 2\delta) \norm{y_t}_2$; ahora si suponemos adem\'as que $\norm{z_j}_2 < \left[1 + 2(j-1)\delta\right]\norm{y_t}_2$ por lo que:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\norm{y_t - z_{j+1}}_2 & \leq & \norm{y_t - z_{j}}_2 + \norm{z_j - z_{j+1}}_2 \\
+				& < & 
+			\end{aligned}
+		\end{equation*}
+		
+	\end{proof}
+	
+\end{proof}
