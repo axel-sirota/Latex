@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  16 AUG 2018 19:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  17 AUG 2018 10:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1034,6 +1034,15 @@ m/it/10.95 Dq[]$ \OT1/cmr/m/n/10.95 pa-ra to-do $\OML/cmm/m/it/10.95 q \OMS/cms
 y/m/n/10.95 2 \OML/cmm/m/it/10.95 U$\OT1/cmr/m/n/10.95 , no-te-mos que $[]$
  []
 
+
+Overfull \hbox (26.12825pt too wide) in paragraph at lines 407--408
+[]\OT1/cmr/m/n/10.95 Por otro la-do co-mo $^^H(0\OML/cmm/m/it/10.95 ; [] ; \OT1
+/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; s[]; [] ; s[]\OT1/cmr/m/n/10.95 ) = (0\OM
+L/cmm/m/it/10.95 ; [] ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; s[]; [] ; s[]
+\OT1/cmr/m/n/10.95 )$ te-ne-mos que pa-ra to-do $\OML/cmm/m/it/10.95 i \OMS/cms
+y/m/n/10.95 2 []$\OT1/cmr/m/n/10.95 : 
+ []
+
 LaTeX Info: Redefining \. on input line 421.
 LaTeX Info: Redefining \% on input line 421.
 Package babel Info: Redefining spanish shorthand <<
@@ -1097,7 +1106,7 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 18/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/201
 8/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive
 /2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Final.pdf (6 pages, 200805 bytes).
+Output written on Final.pdf (6 pages, 200719 bytes).
 PDF statistics:
  141 PDF objects out of 1000 (max. 8388607)
  113 compressed objects within 2 object streams
