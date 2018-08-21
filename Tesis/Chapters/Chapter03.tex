@@ -1,300 +1,134 @@
-\chapter{Aplicaci\'ones}\label{ch: aplicaciones}
-\section{Gradient Descent}
+\chapter{Teorema de la Variedad Estable y los Puntos fijos inestables}\label{ch:teorema-de-variedad-estable}
+\section{Resultados previos}
 
-Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que \dg tiene probabilidad cero de converger a puntos silla. Consideremos \dg con \textit{learning rate} $\alpha$:
+\marginpar{Esto quizas deberia ir en prerequisitos cuando lo tengamos}
 
-\begin{equation}
-	\label{eq: GD}
-	x_{k+1} = g(x_k) \stackrel{\triangle}{=} x_k - \alpha \nabla f(x_k)
-\end{equation}
+Por el resto del documento, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$variedad sin borde.
 
-\begin{remark}[Hip\'otesis 1]
-	\label{Hipotesis 1}
-	Asumamos que $f \in \mathcal{C}^2$ y $\norm{\nabla^2 f(x)}_2 \le L$
-\end{remark}
+\begin{definition}
+	Dada una variedad de dimensi\'on $d \ \mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
+\end{definition}
 
-\begin{proposition}
-	\label{prop: GD los puntos silla estrictos son fijos inestables}
-	Todo punto silla estricto de $f$ es un punto fijo inestable de $g$, \ie $\mani^* \subseteq \puntosfijos$.
-\end{proposition}
+\begin{lemma}
+	\label{Difeomorfismos locales preservan medida cero}
+	Sea $E \subset \mani$ tal que $\mu(E) = 0$; si $\det \left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego $\mu\left(g^{-1}(E)\right) = 0$
+\end{lemma}
 
 \begin{proof}
-	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \in \sett{\mu \tq \nabla^2 f(x^*)v = \mu v \quad \text{para alg\'un } v \neq 0}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; conclu\'imos que $x^{*} \in \puntosfijos$. \qed
-	
-	\marginpar{Usamos que f(A) tiene autovalores $f(\sett{\lambda_i})$}
-	
-\end{proof}
-
-\begin{proposition}
-	\label{prop: GD g es difeo local}
-	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces $\det \left(Dg (x)\right) \neq 0$.
-\end{proposition}
-
-\begin{proof}
-	Como ya sabemos $Dg(x) = Id - \alpha \nabla^2 f (x)$ por lo que:
+	Sea $h = g^{-1}$ y $\left(V_i, \psi^i\right)$ una colecci\'on de cartas en el dominio de $g$, si verificamos que $\mu\left(h\left(E\right) \cap V_i\right) = 0$ para todo $i \in \N$ entonces:
 	
 	\begin{equation*}
-		\det \left(Dg(x)\right) = \Bigprod{i \in \sett{1, \dots, d}}{\parenthesis{1 - \alpha \lambda_i}}
+	\mu(h(E)) = \mu \left(\Bigcup{i \in \N}{h(E) \cap V_i}\right) \le \Bigsum{i \in \N} \mu \left(h(E) \cap V_i\right) = 0
 	\end{equation*}
 	
-	Luego por \ref{Hipotesis 1} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; conclu\'imos que $\det \parenthesis{Dg(x)} > 0$. \qed
+	Sin p\'erdida de generalidad podemos asumir que $h(E) \subseteq V$ con $(V, \psi) \in \sett{(V_i, \phi^i)}$ una carta determinada. Sea $\mathcal{A} := \sett{\left(U_i, \varphi^i \right)}$ un atlas de $\mani$ y notemos $E_i = E \cap U_i$; luego $E = \Bigcup{i \in \N}{E_i} = \Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}$ por lo que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\mu\left(\psi \circ h(E)\right) & = & \mu \left(\psi \circ h \left(\Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}\right)\right)\\
+	& \le & \Bigsum{i \in \N}{\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)}
+	\end{aligned}
+	\end{equation*}
+	
+	\marginpar{Uso Teorema de la funcion inversa en variedades y que localmente Lipshitz preserva medida}
+	
+	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{??} entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como si $f \in C^1(\R^d)$ entonces  es localmente Lipshitz, ergo $f$ preserva la medida, conclu\'imos que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
 	
 \end{proof}
 
-\begin{corollary}{ \Dg converge a m\'inimos}
-	Sea $g$ dada por \Dg en \ref{eq: GD}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu \left(W_g\right) = 0$.
-\end{corollary}
+\section{Puntos fijos inestables}
+
+\begin{definition}
+	Sea:
+	\begin{equation*}
+	\label{def:punto fijo inestable de g}
+	\puntosfijos := \sett{x \ : \ g(x) = x \quad \max\limits_{i}\abs{\lambda_i \left(Dg(x)\right) > 1}}
+	\end{equation*}
+	
+	El conjunto de puntos fijos de $g$ cuyo diferencial en ese punto tiene alg\'un autovalor mayor que $1$. A este conjunto lo llamaremos el conjunto de \textit{puntos fijos inestables}
+	
+\end{definition}
+
+\marginpar{Este teorema deber\'ia ir en prerequisitos}
+
+\begin{theorem}
+	\label{teo: variedad local estable central}
+	Sea $x^*$ un punto fijo de $g \in C^{r}(\mani)$ un difeomorfismo local. Supongamos que $E = E_s \oplus E_u$ donde 
+	
+	\begin{equation*}
+	\begin{aligned}
+	E_s & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i \le 1} \rangle \\
+	E_u & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i > 1} \rangle \\
+	\end{aligned}
+	\end{equation*}
+	Entonces existe $W_{loc}^{cs} \inc \mani$ un \textit{embedding} $C^r$ local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
+\end{theorem}
+
+Con todos estos resultados demostremos el teorema principal:
+
+\begin{theorem}
+	\label{teo: Principal}
+	Sea $g \in C^1(\mani)$ tal que $\det\left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego el conjunto de puntos iniciales que convergen por $g$ a un punto fijo inestable tiene medida cero, \ie:
+	
+	\begin{equation*}
+	\mu \left(\sett{x_0 \ \colon \ \Biglim{k}{g^k(x_0) \in \mathcal{A}_g^{*}}}\right) = 0
+	\end{equation*}
+\end{theorem}
 
 \begin{proof}
-	Por \ref{prop: GD los puntos silla estrictos son fijos inestables} y \ref{prop: GD g es difeo local} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
-\end{proof}
-
-\section{Punto Pr\'oximo}
-
-El algoritmo de punto pr\'oximo esta dado por la iteraci\'on:
-
-\begin{equation}
-\label{eq: Punto proximo}
-x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x_k - z}_{2}^{2}}
-\end{equation}
-
-\begin{proposition}
-	\label{prop: PP es difeo local y los puntos silla estrictos son fijos inestables}
-	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces vale:
+	Para cada $x^* \in \puntosfijos$ por \ref{teo: Principal} existe $B_{x^*}$ un entorno abierto; es m\'as, $\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}}$ forma un cubrimiento abierto del cual existe un subcubrimiento numerable pues $X$ es variedad, \ie
 	
-	\begin{enumerate}
-		\item $\det \parenthesis{Dg(x)} \neq 0$
-		\item $\mani^* \subseteq \puntosfijos$
-	\end{enumerate}
+	\[
+	\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}} = \Bigcup{i \in \N}{B_{x^{*}_{i}}}
+	\]
 	
-\end{proposition}
-
-\begin{proof}
-	Veamos primero el siguiente lema:
+	\marginpar{Usamos que en una variedad se cumple la propiedad de Lindeloff}
 	
-	\marginpar{Probamos esto? Me parece un poco claro}
+	Primero si $x_0 \in \mani$ sea:
+	
+	\begin{equation*}
+	\begin{aligned}
+	x_k = & g^k(x_0) \\
+	= & \underbrace{g \circ \dots \circ g }_{k \ veces} (x_0)
+	\end{aligned}
+	\end{equation*}
+	
+	la sucesi\'on del flujo de $g$ evaluado en $x_0$, entonces si $W := \sett{x_0 \ \colon \ \Biglim{k}{x_k \in \mathcal{A}_g^{*}}}$ queremos ver que $\mu(W) = 0$.
+	
+	Sea $x_0 \in W$, luego como $x_k \rightarrow x^* \in \puntosfijos$ entonces existe $T \in \N$ tal que para todo $t \ge T$ , $x_t \in  \Bigcup{i \in \N}{B_{x^{*}_{i}}}$ por lo que $x_t \in B_{x^{*}_{i}}$ para alg\'un $x_{i}^{*} \in \puntosfijos$ y $t \ge T$. Afirmo que:
+	
+	\marginpar{Pablo: Hace falta demostrar esto??}
 	
 	\begin{lemma}
-		\label{lemma: PP es suave}
-		Bajo \ref{Hipotesis 1}, $\alpha < \frac{1}{L}$ y $x \in \mani$ entonces $f(z) + \frac{1}{2 \alpha} \norm{x- z}_2^2$ es estrictamente convexa, por lo que $g \in \mathcal{C}^1 \parenthesis{\mani}$
+		\label{lemma: teo_principal}
+		$x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$
 	\end{lemma}
 	
-	Por lo tanto por \ref{lemma: PP es suave} podemos tomar l\'imite, \ie
+	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$ \footnote{\color{Red}Por que???}; por lo que $\mu(S_i) = 0$.
+	
+	\marginpar{Usamos que la dimension de la variedad es la de su tangente}
+	\marginpar{Usamos que una subvariedad de dimension menor tiene medida 0}
+	
+	Finalmente como $x_{T} \in S_i$ para alg\'un $T$ entonces $x_0 \in \Bigcup{k \in \N}{g^{-k}(S_i)}$ por lo que $W \subseteq \Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}}$. Conclu\'imos:
 	
 	\begin{equation*}
 	\begin{aligned}
-	x_{k+1} & = & g(x_k) & = & \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x_k - z}_{2}^{2}} \\
-	\downarrow & & \downarrow & & \downarrow \\
-	x & = & g(x) & = & \arg \min\limits_{z \in \mani}{f(z) + \dfrac{1}{2\alpha}\norm{x - z}_{2}^{2}}
-	\end{aligned}
-	\end{equation*}
-	\begin{equation*}
-	\begin{aligned}
-	\Longleftrightarrow & \nabla_z \parenthesis{f(z) + \frac{1}{2 \alpha} \norm{x-z}^2}(g(x)) = 0 \\
-	\Longleftrightarrow & \nabla f(g(x)) - \frac{1}{\alpha} \parenthesis{x-g(x)} = 0 \\
-	\Longleftrightarrow & g(x) + \alpha \nabla f(g(x)) = x
-	\end{aligned}
-	\end{equation*}
-	
-	Finalmente por diferenciaci\'on implicita obtenemos:
-	
-	\begin{gather*}
-		Dg(x) + \alpha\nabla^2 f (g(x))Dg(x) = Id \\
-		\Longrightarrow \quad Dg(x) = \parenthesis{Id + \alpha \nabla^2 f(g(x))}^{-1}
-	\end{gather*}
-
-	Luego si $x^* \in \mani^*$ entonces $Dg(x^*) = \parenthesis{Id + \alpha \nabla^2 f(x^*)}^{-1}$ y tiene autovalores $\sett{\dfrac{1}{1+ \alpha \lambda_i}}$ con $\lambda_i$ autovalores de $\nabla^2 f(x^*)$. Por lo tanto $x^* \in \puntosfijos$ y para $\alpha < \frac{1}{L}$ se tiene que $\det \parenthesis{Dg(x)} \neq 0$. \qed
-	
-\end{proof}
-
-\begin{corollary}
-	\label{coro: PP converge a minimos}
-	Sea $g$ dado por el algoritmo de punto pr\'oximo con ecuaci\'on \ref{eq: Punto proximo}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu\parenthesis{W_g} = 0$.
-\end{corollary}
-
-\begin{proof}
-	Por \ref{prop: PP es difeo local y los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
-\end{proof}
-
-\section{Descenso por coordenadas}
-
-Consideremos el algoritmo \ref{algo: CD}, luego si definimos $g_i(x) = x - \alpha \parenthesis{0, \dots, 0, \dfrac{\partial f}{\partial x_i}(x), 0, \dots, 0}$ entonces:
-
-\RestyleAlgo{boxruled}
-\LinesNumbered
-\begin{algorithm}[ht]
-	\caption{Descenso por coordenadas\label{algo: CD}}
-	\textbf{Input:} $f \in C^1$, $\alpha >0$, $x_0 \in \mani$ \\
-	\For{$k \in \N$}{
-		\For{\textbf{index} $i = 1, \dots, d$}{
-			$y_{k}^{0} = x_k$ y $y_{k}^{i} = \parenthesis{x_{k+1}^1, \dots, x_{k+1}^{i}, x_{k}^{i+1}, \dots, x_{k}^{d}}$ \\
-			$x_{k+1}^{i} \gets x_{k}^i - \alpha \dfrac{\partial f}{\partial x_i}\parenthesis{y_{k}^{i-1}}$
-		}
-	}
-\end{algorithm}
-
-\begin{lemma}
-	La iteraci\'on de Descenso por coordenadas esta dada por:
-	
-	\begin{equation}
-		\label{eq: DC}
-		x_{k+1} = g(x_k) \stackrel{\triangle}{=} g_d \circ g_{d-1} \circ \dots \circ g_1(x)
-	\end{equation}
-	
-\end{lemma}
-
-\begin{remark}
-	\label{Hipotesis 2}
-	Sea $f \in C^2$ y supongamos que $\max\limits_{i \in \sett{1, \dots, d}}{\abs{e_{i}^{T}\nabla ^2 f(x) e_i}} \le L_{max}$
-\end{remark}
-
-\begin{lemma}
-	Si $g$ est\'a dada por \ref{eq: DC} entonces:
-	
-	\begin{equation}
-		\label{eq: Diferencial de DC}
-		Dg(x_{k}) = \Bigprod{j \in \sett{1, \dots, d}}{\parenthesis{Id - \alpha e_{d-j+1}e_{n-j+1}^{T}\nabla ^2 f(y_{k}^{n-j})}}
-	\end{equation}
-	
-\end{lemma}
-
-\begin{proof}
-	Notemos primero que:
-	
-	\begin{equation*}
-		Dg_{i}(x) = Id - \alpha \left(
-			\begin{matrix}
-				0 & \dots & 0 & \dots & 0 \\
-				\vdots & \ddots & \vdots &  & \vdots \\
-				\vdots &  & \dfrac{\partial^2 f}{\partial x_{i}^{2} (x)} &  & \vdots \\
-				\vdots &  & \vdots & \ddots & \vdots \\
-				0 & \dots & 0 & \dots & 0 \\
-			\end{matrix}
-		\right) = Id - \alpha e_{i}e_{i}^{T} \nabla ^2 f(x)
-	\end{equation*}
-	
-	Por lo tanto:
-	
-	\begin{equation*}
-	\begin{aligned}[l]
-	Dg(x_k) & = & D\parenthesis{g_d \circ \dots g_1}(x_k) \\
-	& = & \parenthesis{Id - \alpha e_{d}e_{d}^{T}\nabla^2f}\parenthesis{\underbrace{g_{d-1} \circ \dots d_1(x_k)}_{y_{k}^{d-1}}} D\parenthesis{g_{d-1} \circ \dots g_1}(x_k) \\
-	& \vdots & \\
-	& = & \Bigprod{j \in \sett{1, \dots, d}}{\parenthesis{Id - \alpha e_{d-j+1}e_{n-j+1}^{T}\nabla ^2 f(y_{k}^{n-j})}}
+	\mu \left(W\right) & \le & \mu \left(\Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}} \right) \\
+	& \le & \Bigsum{i \in \N}{\Bigsum{k \in \N}{\mu \left(g^{-k}(S_i)\right)}} \\
+	& \stackrel{\ref{Difeomorfismos locales preservan medida cero}}{=} & 0
 	\end{aligned}
 	\end{equation*}\qed
 	
-\end{proof}
-
-\begin{proposition}
-	\label{prop: DC es difeo local}
-	Bajo \ref{Hipotesis 2} y $\alpha < \frac{1}{L_{max}}$ se tiene que $\det(Dg(x)) \neq 0$
-\end{proposition}
-
-\begin{proof}
-	Basta probar que cada t\'ermino de \ref{eq: Diferencial de DC} es invertible, para eso:
-	\begin{equation*}
-	\begin{aligned}
-	\chi_{Dg_i(x)}(\lambda) & = & \det\parenthesis{
-			\lambda Id_d - Id_d - \alpha e_ie_i^{T} \nabla ^2 f(x)
-		} \\
-		& = & \det\parenthesis{
-				\begin{matrix}
-					\lambda -1 & 0 & \dots & 0 & \dots & 0 \\
-					\vdots & & & \vdots & & \vdots \\
-					0 & \dots & & (\lambda - 1) + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) & & \vdots \\
-					0 & \dots & & & & 0 
-				\end{matrix}
-			} \\
-			& = & (\lambda -1)^{d-1}\parenthesis{\lambda -1 + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) }
-	\end{aligned}
-	\end{equation*}
-	
-	Luego si $\alpha < \frac{1}{L_{max}}$ entonces $\lambda -1 + \alpha\dfrac{\partial^2 f}{\partial x_i^2}(x) > 0$ para todo $i \in \sett{1, \dots, d}$ por lo que todos los autovalores son positivos y $Dg_i(x)$ es invertible para todo $i$. \qed
 	
 \end{proof}
 
-\begin{proposition}
-	\label{prop: DC los puntos silla estrictos son fijos inestables}
-	Bajo \ref{Hipotesis 2} y $\alpha < \frac{1}{L_{max}}$ se tiene que $\mani^* \subseteq \puntosfijos$
-\end{proposition}
+Para finalizar veamos un caso simple que nos encontraremos seguido:
+
+\begin{corollary}
+	\label{coro: Resultado principal}
+	Bajo las mismas hip\'otesis que en \ref{teo: Principal} si agregamos que $\mani* \subseteq \puntosfijos$ entonces $\mu(W_g) =0$
+\end{corollary}
 
 \begin{proof}
-	Sea $x^* \in \mani^*$, $H = \nabla^2 f(x^*)$, 
-	$J=Dg(x^*) = \Bigprod{j \leq n}{\left(Id_n - \alpha e_{n-j+1}e_{n-j+1}^T H\right)}$ y $y_0$ el autovector correspondiente al menor autovalor de $H$. Vamos a probar que $\norm{J^t y_0}_2 \geq c(1+\epsilon)^t$ por lo que $\norm{J^t} _2 \geq  c(1+\epsilon)^t$, luego por el teorema de Gelfand
-	
-	\marginpar{Usamos q	ue el radio espectral es el limite de cualquier norma matricial}
-	
-	\begin{equation*}
-	\rho(J) = \lim\limits_{t \rightarrow \infty}{\norm{J^t}^{1/t}} \geq \lim\limits_{t \rightarrow \infty}{c^{1/t} (1+\epsilon)} = 1 + \epsilon 
-	\end{equation*}
-	
-	Y conclu\'imos que $\mani^* \subseteq \puntosfijos$.
-	
-	En pos de eso fijemos $t \geq 1$ una iteraci\'on y sea $y_t = J^t x_0$.
-	
-	\begin{lemma}
-		\label{lemma1 : DC los puntos silla estrictos son fijos inestables}
-		Existe $\epsilon >0$ tal que para todo $t \in \N$:
-		
-		\begin{equation*}
-		\label{eq_1: DC los puntos silla estrictos son fijos inestables}
-		y_{t+1}^THy_{t+1} \leq (1+\epsilon) y_{t}^THy_{t} 
-		\end{equation*}
-		
-	\end{lemma}
-	
-	\begin{proof}
-		Llamemos $z_1 = y_t$ y $z_{i+1} = \left(Id - \alpha e_i e_i^TH\right)z_i$ de modo que $y_{t+1} = Jy_t = z_{n+1}$, luego:
-		
-		\begin{equation*}
-		\begin{aligned}
-			z_{i+1}^THz_{i+1} & \leq & \left[z_i^T - \alpha \left( e_i^T H z_i \right) e_i^T \right]H \left[ z_i - \alpha \left(e_i^T H z_i \right) e_i \right] \\
-			& = & z_i^T H z_i - \alpha \left(z_i^T H e_i\right)\left(e_i^T H z_i\right) - \\
-			&& \alpha \left(e_i^T H z_i\right)\left(e_i^T H z_i\right) + \alpha^2 \left(e_i^T H z_i\right)^2\left(e_i^T H e_i\right) \\
-			& = & z_i^T H z_i -  \alpha \left(z_i^T H e_i\right)^2 \left(2 - \alpha  e_i^T H e_i\right) \\
-			& < & z_i^T H z_i -  \alpha \left(z_i^T H e_i\right)^2 
-		\end{aligned} 
-		\end{equation*}\qed
-	\end{proof}
-
-	Continuando con la notaci\'on anterior:
-	
-	\begin{claim}
-		\label{afirmacion1 : DC los puntos silla estrictos son fijos inestables}
-		Sea $y_t \in \rank{H}$, existe $j \in \sett{1, \dots, d}$ y $\delta = \delta(H, d) >0$ tal que:
-		
-		\begin{equation*}
-			\alpha \left[e_j^T H z_j\right] \geq \delta \norm{z_j}_2
-		\end{equation*}
-	\end{claim}
-
-	\marginpar{Quizas podriamos mover esta al anexo}
-
-	\begin{proof}
-		Supongamos que $\alpha \left[e_j^T H z_j\right] < \delta \norm{z_j}_2$ para todo $j \in \sett{1, \dots, d}$ y alg\'un $\delta$.
-		
-		Si $j = 1$ entonces:
-		
-		\begin{equation*}
-			\begin{aligned}
-				\norm{y_t - z_2}_2 & = & \norm{z_1 - z_2}_2 \\
-				& = & \alpha \left[e_1^T hz_1\right] \\
-				& < & \delta \norm{z_1}_2 < 2 \delta \norm{y_t}_2 
-				\end{aligned}
-		\end{equation*}
-		
-		\marginpar{Aca el 2 no hace falta...}
-		
-		Luego se tiene que $\norm{z_2}_2 < \norm{y_t - z_2}_2 + \norm{y_t}_2 < (1 + 2\delta) \norm{y_t}_2$; ahora si suponemos adem\'as que $\norm{z_j}_2 < \left[1 + 2(j-1)\delta\right]\norm{y_t}_2$ por lo que:
-		
-		\begin{equation*}
-			\begin{aligned}
-				\norm{y_t - z_{j+1}}_2 & \leq & \norm{y_t - z_{j}}_2 + \norm{z_j - z_{j+1}}_2 \\
-				& < & 
-			\end{aligned}
-		\end{equation*}
-		
-	\end{proof}
-	
+	Como $\mani^* \subseteq \puntosfijos$ entonces $W_g \subseteq W$, luego $\mu(W_g) \le \mu (W) \stackrel{\ref{teo: Principal}}{=} 0$.\qed
 \end{proof}
