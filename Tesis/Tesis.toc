@@ -29,3 +29,7 @@
 \contentsline {part}{\numberline {III}Ap\'endice}{21}{part.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}{Ap\'endice}}{23}{appendix.Alph1}
+\defcounter {refsection}{0}\relax 
+\vspace {\beforebibskip }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {}{new name}}{25}{section*.1}
