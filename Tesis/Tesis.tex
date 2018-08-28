@@ -52,20 +52,21 @@
 % use \cleardoublepage here to avoid problems with pdfbookmark
 \cleardoublepage
 \part{Introducci\'on}\label{pt:introduccion}
-\include{Chapters/Chapter01}
-\include{Chapters/Chapter02}
+\include{Chapters/Introduccion}
 \cleardoublepage
-\setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a demostrar el resultado principal referido a la convergencia a m\'inimos de los diferentes algoritmos de primer orden usados en Machine Learning}
-\part{El teorema y aplicaciones}\label{pt:teoyaplicaciones}
-\include{Chapters/Chapter03}
-\include{Chapters/Chapter04}
+\setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden usados en Machine Learning}
+\part{Algoritmos de tipo Batch}\label{pt:algoritmosbatch}
+\include{Chapters/Batch/Intuicion}
+\include{Chapters/Batch/TeoremaBase}
+\include{Chapters/Batch/Applicaciones}
 %********************************************************************
 % Backmatter
 %*******************************************************
+\part{Algoritmos Estoc\'asticos}\label{pt:algoritmosestocasticos}
 \appendix
 \cleardoublepage
 \part{Ap\'endice}
-\include{Chapters/Chapter0A}
+\include{Chapters/Apendice}
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************

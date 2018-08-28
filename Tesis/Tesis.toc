@@ -8,9 +8,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}{Introducci\'on}}{3}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}{Intuici\'on}}{5}{chapter.2}
+\contentsline {part}{\numberline {II}Algoritmos de tipo Batch}{5}{part.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {II}El teorema y aplicaciones}{9}{part.2}
+\contentsline {chapter}{\numberline {2}{Intuici\'on}}{7}{chapter.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}{Teorema de la Variedad Estable y los Puntos fijos inestables}}{11}{chapter.3}
 \defcounter {refsection}{0}\relax 
@@ -26,10 +26,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}{Descenso por coordenadas}}{16}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {III}Ap\'endice}{21}{part.3}
+\contentsline {part}{\numberline {III}Algoritmos Estoc\'asticos}{21}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}{Ap\'endice}}{23}{appendix.Alph1}
+\contentsline {part}{\numberline {IV}Ap\'endice}{23}{part.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}{Ap\'endice}}{25}{appendix.Alph1}
 \defcounter {refsection}{0}\relax 
 \vspace {\beforebibskip }
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {}{new name}}{25}{section*.1}
+\contentsline {chapter}{\numberline {}{new name}}{27}{section*.1}

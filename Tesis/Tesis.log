@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  21 AUG 2018 00:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  28 AUG 2018 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2120,9 +2120,9 @@ LaTeX Info: Redefining \% on input line 34.
  (./FrontBackmatter/Titleback.aux) (./FrontBackmatter/Dedication.aux) (./FrontB
 ackmatter/Abstract.aux)
 (./FrontBackmatter/Acknowledgments.aux) (./FrontBackmatter/Contents.aux)
-(./Chapters/Chapter01.aux) (./Chapters/Chapter02.aux) (./Chapters/Chapter03.aux
-) (./Chapters/Chapter04.aux) (./Chapters/Chapter0A.aux)
-(./FrontBackmatter/Bibliography.aux))
+(./Chapters/Introduccion.aux) (./Chapters/Batch/Intuicion.aux)
+(./Chapters/Batch/TeoremaBase.aux) (./Chapters/Batch/Applicaciones.aux)
+(./Chapters/Apendice.aux) (./FrontBackmatter/Bibliography.aux))
 \openout1 = `Tesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -2282,7 +2282,7 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 
 
 (./FrontBackmatter/Titlepage.tex
-<gfx/uba.jpg, id=91, 1408.26125pt x 1305.87875pt>
+<gfx/uba.jpg, id=95, 1408.26125pt x 1305.87875pt>
 File: gfx/uba.jpg Graphic file (type jpg)
 <use gfx/uba.jpg>
 Package pdftex.def Info: gfx/uba.jpg  used on input line 8.
@@ -2457,27 +2457,33 @@ Package scrkbase Info: You've told me to use the font selection of the element
 
 
 ] [2]
-\openout2 = `Chapters/Chapter01.aux'.
+\openout2 = `Chapters/Introduccion.aux'.
 
- (./Chapters/Chapter01.tex
+ (./Chapters/Introduccion.tex
 Chapter 1.
 ) [3
 
 
 
-]
-\openout2 = `Chapters/Chapter02.aux'.
+] [4
 
- (./Chapters/Chapter02.tex
+
+
+]
+part II.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 58.
+[5
+
+
+] [6]
+\openout2 = `Chapters/Batch/Intuicion.aux'.
+
+ (./Chapters/Batch/Intuicion.tex
 Chapter 2.
-[4
-
-
-
-
-]
 LaTeX Font Info:    Try loading font information for U+fplmbb on input line 3.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+(/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <10.95> not available
@@ -2489,7 +2495,11 @@ Overfull \hbox (7.17955pt too wide) in paragraph at lines 19--20
 /m/it/10.95 f\OT1/zplm/m/n/10.95 (\OT1/pplx/m/n/10.95 0\OT1/zplm/m/n/10.95 ) =
  []
 
-[5]
+[7
+
+
+
+]
 Overfull \hbox (34.20544pt too wide) in paragraph at lines 92--93
 []\T1/pplj/m/it/10.95 Para $\OML/zplm/m/it/10.95 f\OT1/zplm/m/n/10.95 (\OML/zpl
 m/m/it/10.95 x\OT1/pplx/m/n/10.95 , \OML/zplm/m/it/10.95 y\OT1/zplm/m/n/10.95 )
@@ -2498,31 +2508,21 @@ m/m/it/10.95 x\OT1/pplx/m/n/10.95 , \OML/zplm/m/it/10.95 y\OT1/zplm/m/n/10.95 )
 a que $\OML/zplm/m/it/10.95 E[] \OT1/zplm/m/n/10.95 = [] :=
  []
 
-[6]) [7] [8
+[8]) [9]
+\openout2 = `Chapters/Batch/TeoremaBase.aux'.
+
+ (./Chapters/Batch/TeoremaBase.tex
+Chapter 3.
+[10
+
 
 
 
 ]
-part II.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 59.
-[9
-
-
-] [10]
-\openout2 = `Chapters/Chapter03.aux'.
-
- (./Chapters/Chapter03.tex
-Chapter 3.
 
 LaTeX Warning: Reference `??' on page 11 undefined on input line 35.
 
-[11
-
-
-
-]
+[11]
 Overfull \hbox (54.95793pt too wide) in paragraph at lines 96--97
 []\T1/pplj/m/n/10.95 la suce-sión del flujo de $\OML/zplm/m/it/10.95 g$ \T1/ppl
 j/m/n/10.95 eval-u-ado en $\OML/zplm/m/it/10.95 x[]$\T1/pplj/m/n/10.95 , en-ton
@@ -2539,9 +2539,9 @@ emos seguido:
  []
 
 ) [13]
-\openout2 = `Chapters/Chapter04.aux'.
+\openout2 = `Chapters/Batch/Applicaciones.aux'.
 
- (./Chapters/Chapter04.tex
+ (./Chapters/Batch/Applicaciones.tex
 Chapter 4.
 [14
 
@@ -2594,36 +2594,44 @@ m/m/it/10.95 H []$\T1/pplj/m/n/10.95 .
 part III.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 67.
+(scrkbase)              on input line 65.
 [21
 
 
 
-
-
 ] [22]
-\openout2 = `Chapters/Chapter0A.aux'.
+part IV.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 68.
+[23
 
- (./Chapters/Chapter0A.tex
+
+
+
+] [24]
+\openout2 = `Chapters/Apendice.aux'.
+
+ (./Chapters/Apendice.tex
 Appendix A.
-) [23
+) [25
 
 
 
-] [24
+] [26
 
 
 
 ]
 \openout2 = `FrontBackmatter/Bibliography.aux'.
 
- (./FrontBackmatter/Bibliography.tex) [25
+ (./FrontBackmatter/Bibliography.tex) [27
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 78.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 78.
  (./Tesis.aux
 (./FrontBackmatter/Titlepage.aux)
 LaTeX Info: Redefining \sptext on input line 34.
@@ -2632,10 +2640,10 @@ LaTeX Info: Redefining \% on input line 34.
  (./FrontBackmatter/Titleback.aux)
 (./FrontBackmatter/Dedication.aux) (./FrontBackmatter/Abstract.aux)
 (./FrontBackmatter/Acknowledgments.aux) (./FrontBackmatter/Contents.aux)
-(./Chapters/Chapter01.aux) (./Chapters/Chapter02.aux) (./Chapters/Chapter03.aux
-) (./Chapters/Chapter04.aux) (./Chapters/Chapter0A.aux)
-(./FrontBackmatter/Bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
+(./Chapters/Introduccion.aux) (./Chapters/Batch/Intuicion.aux)
+(./Chapters/Batch/TeoremaBase.aux) (./Chapters/Batch/Applicaciones.aux)
+(./Chapters/Apendice.aux) (./FrontBackmatter/Bibliography.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 78.
 
 
  *File List*
@@ -2847,18 +2855,18 @@ FrontBackmatter/Abstract.tex
 FrontBackmatter/Acknowledgments.tex
 FrontBackmatter/Contents.tex
   t1cmss.fd    2014/09/29 v2.5h Standard LaTeX font definitions
-Chapters/Chapter01.tex
-Chapters/Chapter02.tex
+Chapters/Introduccion.tex
+Chapters/Batch/Intuicion.tex
  ufplmbb.fd    2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
-Chapters/Chapter03.tex
-Chapters/Chapter04.tex
-Chapters/Chapter0A.tex
+Chapters/Batch/TeoremaBase.tex
+Chapters/Batch/Applicaciones.tex
+Chapters/Apendice.tex
 FrontBackmatter/Bibliography.tex
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 78.
 Package rerunfilecheck Info: File `Tesis.out' has not changed.
-(rerunfilecheck)             Checksum: EBA338E69FEE7E32B228209F0246DC63;1214.
+(rerunfilecheck)             Checksum: 9388C678C5B450A1D8C982EA501C810D;1273.
 
 LaTeX Warning: There were undefined references.
 
@@ -2867,10 +2875,10 @@ Package logreq Info: Writing requests to 'Tesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48456 strings out of 492649
- 924419 string characters out of 6129622
- 1454820 words of memory out of 5000000
- 51294 multiletter control sequences out of 15000+600000
+ 48464 strings out of 492649
+ 924740 string characters out of 6129622
+ 1454924 words of memory out of 5000000
+ 51298 multiletter control sequences out of 15000+600000
  631838 words of font info for 211 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  75i,23n,95p,10498b,2203s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2894,10 +2902,10 @@ ic/cm-super/sfsx2074.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 tino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/up
 lbi8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplr8a.p
 fb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Tesis.pdf (33 pages, 460267 bytes).
+Output written on Tesis.pdf (35 pages, 463084 bytes).
 PDF statistics:
- 434 PDF objects out of 1000 (max. 8388607)
- 375 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 22714 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 448 PDF objects out of 1000 (max. 8388607)
+ 387 compressed objects within 4 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 22722 words of extra memory for PDF output out of 24883 (max. 10000000)
 
