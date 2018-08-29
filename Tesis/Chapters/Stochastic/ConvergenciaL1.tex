@@ -1,0 +1,182 @@
+\chapter{Convergencia en L1}\label{ch:convergenciaL1}
+
+Consideremos primero los casos de convexidad donde sabemos que el m\'inimo existe y es \'unico, por lo tanto asumamos por ahora:
+
+\begin{hyp}[Convexidad fuerte]
+	\label{hyp: Convexidad fuerte}
+	Supongamos que la funci\'on objetivo $F : \R^d \mapsto \R$ cumple que existe $c >0$ tal que para todos $z,w \in \R^d$:
+	
+	\begin{equation}
+		F(z) \geq F(w) + \nabla F(w)^T (z-w) + \frac{1}{2} c \norm{z-w}_2^2
+	\end{equation}
+	
+	Luego existe un \'unico $w_{*} \in \R^d$ tal que $F_{inf} = F(w_*) \leq F(w)$ para todo $w \in \R^d$
+	
+\end{hyp}
+
+Notemos que de \ref{hyp: Convexidad fuerte} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
+
+\begin{lemma}
+	\label{eq: Desigualdad convexidad fuerte}
+	Supongamos que $F$ cumple \ref{hyp: Convexidad fuerte}, luego para todo $w \in \R^d$ vale que:
+	
+	\begin{equation}
+		2c\left(F(w) - F_{inf}\right) \leq \norm{\nabla F(w)}_2^2
+	\end{equation}
+	
+\end{lemma}
+
+\begin{proof}
+	Dado $w \in \R^d$ sea:
+	
+	\begin{equation*}
+		q(z) = F(w) + \nabla F(w)^T (z-w) + \frac{1}{2} c \norm{z-w}_2^2
+	\end{equation*}
+	
+	Se puede verificar que $z_* := w - \frac{1}{c} \nabla F(w)$ cumple que $q(z_*) = F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 \leq q(z)$ para todo $z \in \R^d$; luego por \ref{eq: Desigualdad convexidad fuerte} se tiene:
+	
+	\begin{equation*}
+		F_{inf} \geq F(w) + \nabla F(w)^T (w_*-w) + \frac{1}{2} c \norm{w_*-w}_2^2 \geq F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 
+	\end{equation*}
+	\qed
+\end{proof}
+
+Ya estamos en condiciones de demostrar nuestro primer resultado de convergencia para \ref{algo: DE} con $\alpha_k = \alpha$, pero notemos que \textit{a priori} lo mas que podemos asumir es quedar en un entorno de $F_{inf}$ ya que de \ref{eq: Fundamental estocasticos 2 ecuacion 2} se ve que el segundo t\'ermino es constante.
+
+Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
+
+\begin{equation*}
+	\label{def: esperanza total}
+	\expectation{F(w_k)} = \mathbb{E}_{\upxi_{1}}\mathbb{E}_{\upxi_{2}}\dots \mathbb{E}_{\upxi_{k-1}}\left[F(w_k)\right]
+\end{equation*}
+
+\begin{theorem}[Objetivo fuertemente convexo, Incremento constante]
+	\label{theorem: DE en fuertemente convexo y alfa fijo converge en l1}
+	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k = \alpha >0 $ constante tal que:
+	
+	\begin{equation}
+	\label{eq: Condicion alfa Conv L1 fuertemente convexo}
+	0  < \alpha \leq \dfrac{\mu}{LM_G} 
+	\end{equation}
+	
+	Luego para todo $k \in \N$ vale que:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	\expectation{F(w_k) - F_{inf}} & \leq & \dfrac{\alpha LM}{2 c \mu} + \left(1 - \alpha c \mu \right)^{k-1} \left(F(w_1) - F_{inf} - \dfrac{\alpha LM}{2 c \mu} \right) \\
+	& \overrightarrow{k \rightarrow \infty} & \dfrac{\alpha LM}{2 c \mu} 
+	\end{array}
+	\end{equation*}
+	 
+\end{theorem}
+
+\begin{proof}
+	Usando \ref{lemma: Fundamental estocasticos 2} con \ref{eq: Condicion alfa Conv L1 fuertemente convexo} y \ref{eq: Desigualdad convexidad fuerte} tenemos para todo $k \in \N$ que:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+		\expectationchik{F(w_{k+1}) - F(w_k)} & \underbrace{\leq}_{\ref{lemma: Fundamental estocasticos 2}} & - \left( \mu - \frac{1}{2} \alpha L M_G \right)\alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 L M \\
+		& \underbrace{\leq}_{\ref{eq: Condicion alfa Conv L1 fuertemente convexo}} & - \frac{1}{2} \alpha \mu \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha ^2 LM \\
+		& \underbrace{\leq}_{\ref{eq: Desigualdad convexidad fuerte}} & - \alpha \mu c \left(F(w_k) - F_{inf} \right)+ \frac{1}{2} \alpha ^2 LM 
+	\end{array}
+	\end{equation*}
+	
+	Luego si restamos $F_{inf}$ y tomamos esperanza total (definida en \ref{def: esperanza total}:
+	
+		\begin{equation*}
+	\begin{array}{rcl}
+	\expectationchik{F(w_{k+1}) - F(w_k)} & \leq & - \alpha \mu c \left(F(w_k) - F_{inf} \right)+ \frac{1}{2} \alpha ^2 LM  \\
+	\Longrightarrow \quad \expectation{F(w_{k+1}) - F_{inf}} & \leq & \left(1 - \alpha c \mu  \right) \expectation{F(w_k) - F_{inf}} +   \frac{1}{2} \alpha ^2 LM  \\
+	\Longrightarrow \quad \expectation{F(w_{k+1}) - F_{inf}} - \dfrac{\alpha L M}{2 c \mu } & \leq & \left(1 - \alpha c \mu  \right) \expectation{F(w_k) - F_{inf}} +   \frac{1}{2} \alpha ^2 LM  - \dfrac{\alpha L M}{2 c \mu } \\
+	& = &  \left(1 - \alpha c \mu  \right)  \left(\expectation{F(w_k) - F_{inf}}  -  \dfrac{\alpha L M}{2 c \mu }  \right)
+	\end{array}
+	\end{equation*}
+	
+	Por otro lado notemos que:
+	
+	\begin{equation*}
+	 0 < \alpha c \mu \leq \dfrac{c \mu^2}{L M_G} \leq \dfrac{c \mu ^2}{L \mu ^2} = \frac{c}{L} \leq 1
+	\end{equation*}
+	
+	Luego deducimos inductivamente que:
+	
+	\begin{equation*}
+		\expectation{F(w_{k+1}) - F_{inf}} - \dfrac{\alpha L M}{2 c \mu } \leq \left(1 - \alpha c \mu \right)^{k} \left(F(w_1) - F_{inf} - \dfrac{\alpha LM}{2 c \mu} \right)
+	\end{equation*}
+	\qed
+\end{proof}
+
+\begin{remark}
+	Notemos que si $g$ es un estimador insesgado de $\nabla F$ entonces $\mu = M_G = 1$ por lo que $\alpha \in [0, \frac{1}{L})$ que es la condici\'on que pedimos en \ref{Dg converge a minimos}.
+\end{remark}
+
+\begin{remark}
+	Notemos adem\'as que si $M=0$ (o sea el algortimo \ref{algo: DE} no tiene ruido) entonces la convergencia es lineal, recuperando el resultado de \cite{nesterov:2004}.
+\end{remark}
+
+\begin{remark}
+	Notemos finalmente que hay un compromiso entre el primer y segundo t\'ermino de \ref{theorem: DE en fuertemente convexo y alfa fijo converge en l1} donde a un $\alpha$ m\'as cercano a $\dfrac{\mu}{LM_G}$ acelera la convergencia del primer t\'ermino, pero a costa de un entorno final de mayor vol\'umen. 
+	
+	Luego esto llevo a varios investigadores a tomar un enfoque artesanal donde se tomaba un $\alpha_k = \alpha_1$ para $k \leq k_1$ donde $k_1$ es tal que $\expectation{F(w_{k_1}) - F_{inf}} \leq \dfrac{\alpha_1 LM}{2c \mu}$. Luego se tomaba $\alpha_2 = \frac{\alpha_1}{2}$ y se segu\'ia inductivamente.
+\end{remark}
+
+\begin{theorem}[Objetivo fuertemente convexo, Incremento decreciente]
+	\label{theorem: DE en fuertemente convexo y alfa decreciente converge en l1}
+	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k$ cunmple:
+	
+	\begin{equation}
+	\label{eq: Condicion alfa Conv L1 fuertemente convexo decreciente}
+	\alpha_k =  \dfrac{\beta}{\gamma + k} \quad \ \text{ para alg\'un } \ \beta > \frac{1}{c \mu} \  \text{ y } \ \gamma > 0 \  \text{ tal que } \ \alpha_1 \leq \dfrac{\mu}{L M_G} 
+	\end{equation}
+	
+	Luego para todo $k \in \N$ vale que:
+	
+	\begin{equation*}
+		\expectation{F(w_k) - F_{inf}} \leq \dfrac{\eta}{\gamma + k}
+	\end{equation*}
+	
+	Donde:
+	
+	\begin{equation*}
+		\eta := \max \sett{\dfrac{\beta ^2 LM}{2 \left(\beta c \mu -1 \right)}, (\gamma + 1)\left(F(w_1) - F_{inf}\right)}
+	\end{equation*}
+	
+\end{theorem}
+
+\begin{proof}
+	Notemos primero que por \ref{eq: Condicion alfa Conv L1 fuertemente convexo decreciente} para todo $k \in \N$ vale:
+	
+	\begin{equation*}
+		\alpha_k L M_G \leq \alpha_1 L M_G \leq \mu
+	\end{equation*}
+	
+	Luego por \ref{lemma: Fundamental estocasticos 2} y \ref{eq: Desigualdad convexidad fuerte} uno tiene para todo $k \in \N$:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\expectationchik{F(w_{k+1})} - F(w_k) & \leq & - \left( \mu - \frac{1}{2} \alpha_k L M_G \right)\alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L M \\
+		& \leq & - \frac{1}{2} \mu\alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L M \\
+		& \leq & - \alpha_k c \mu \left(F(w_k) - F(w_*)\right) + \frac{1}{2} \alpha_k^2 L M
+	\end{aligned}
+	\end{equation*}
+	
+	Luego restando $F_{inf}$, tomando esperanza y reordenando vale:
+	
+	\begin{equation*}
+		\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - \alpha_k c \mu \right) \expectation{F(w_{k}) - F_{inf}}  + \frac{1}{2} \alpha_k^2 L M
+	\end{equation*}
+	
+	Probemos ahora el resultado por inducci\'on. Por la definici\'on de $\eta$ tenemos que $k = 1$ vale, luego si asumimos que vale el resultado para alg\'un $k \geq 1$ entonces:
+	
+		\marginpar{Porque vale k=1?}
+	
+	\begin{equation*}
+	\begin{array}{lll}
+		\expectation{F(w_{k+1}) - F_{inf}} & \leq & \left(1 - \dfrac{\beta c \mu }{\gamma + k}\right) \dfrac{\eta}{\gamma + k} + \dfrac{\beta^2 LM}{2 \left(\gamma + k\right)^2} \\
+		& = & \left(\dfrac{(\gamma + k) - \beta c \mu }{(\gamma + k)^2}\right) {\eta}+ \dfrac{\beta^2 LM}{2 \left(\gamma + k\right)^2} \\
+		& = & \left(\dfrac{(\gamma + k) - 1}{(\gamma + k)^2}\right) {\eta}  \underbrace{- \left(\dfrac{\beta c \mu -1}{(\gamma + k)^2}\right)\eta +  \dfrac{\beta^2 LM}{2 \left(\gamma + k\right)^2}}_{\leq 0 \text{ Por definici\'on de } \eta}\\
+		\underbrace{\leq}_{(\gamma + k)^2 \geq (\gamma + k + 1)(\gamma + k - 1)} & & \dfrac{\eta}{\gamma + k + 1}
+	\end{array}
+	\end{equation*}\qed
+
+\end{proof}

@@ -46,6 +46,29 @@
     \field{year}{1974}
   \endentry
 
+  \entry{nesterov:2004}{book}{}
+    \name{author}{1}{}{%
+      {{hash=NY}{%
+         family={Nesterov},
+         familyi={N\bibinitperiod},
+         given={Yurii},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Science \& Business Media}%
+    }
+    \strng{namehash}{NY1}
+    \strng{fullhash}{NY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{Introductory Lectures on Convex Optimization}
+    \field{volume}{87}
+    \field{year}{2004}
+  \endentry
+
   \entry{krizhevsky:2012}{article}{}
     \name{author}{1}{}{%
       {{hash=eaK}{%
