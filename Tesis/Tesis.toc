@@ -32,10 +32,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}{Convergencia en L1}}{27}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {IV}Ap\'endice}{31}{part.4}
+\contentsline {section}{\numberline {6.1}{Caso Fuertemente Convexo}}{27}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}{Ap\'endice}}{33}{appendix.Alph1}
+\contentsline {section}{\numberline {6.2}{Caso general}}{30}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {IV}Ap\'endice}{35}{part.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}{Ap\'endice}}{37}{appendix.Alph1}
 \defcounter {refsection}{0}\relax 
 \vspace {\beforebibskip }
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {}{new name}}{35}{section*.1}
+\contentsline {chapter}{\numberline {}{new name}}{39}{section*.1}

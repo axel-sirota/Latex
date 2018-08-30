@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  28 AUG 2018 23:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.17)  30 AUG 2018 00:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2316,7 +2316,7 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 
 
 (./FrontBackmatter/Titlepage.tex
-<gfx/uba.jpg, id=103, 1408.26125pt x 1305.87875pt>
+<gfx/uba.jpg, id=111, 1408.26125pt x 1305.87875pt>
 File: gfx/uba.jpg Graphic file (type jpg)
 <use gfx/uba.jpg>
 Package pdftex.def Info: gfx/uba.jpg  used on input line 8.
@@ -2698,7 +2698,7 @@ Overfull \hbox (51.14906pt too wide) detected at line 208
  (./Chapters/Stochastic/ConvergenciaL1.tex
 Chapter 6.
 
-Overfull \hbox (10.48334pt too wide) detected at line 40
+Overfull \hbox (10.48334pt too wide) detected at line 41
 \OML/zplm/m/it/10.95 F[] \OMS/zplm/m/n/10.95 ^^U \OML/zplm/m/it/10.95 F\OT1/zpl
 m/m/n/10.95 (\OML/zplm/m/it/10.95 w\OT1/zplm/m/n/10.95 ) + \OMS/zplm/m/n/10.95 
 r\OML/zplm/m/it/10.95 F\OT1/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 w\OT1/zplm/m/n
@@ -2709,12 +2709,12 @@ n/10.95 ) \OMS/zplm/m/n/10.95 ^^@ [] [][]
  []
 
 
-Overfull \hbox (4.98245pt too wide) in paragraph at lines 55--56
+Overfull \hbox (4.98245pt too wide) in paragraph at lines 56--57
 []
  []
 
 
-Overfull \hbox (24.3246pt too wide) detected at line 69
+Overfull \hbox (24.3246pt too wide) detected at line 70
 []
  []
 
@@ -2724,51 +2724,123 @@ Overfull \hbox (24.3246pt too wide) detected at line 69
 
 
 ]
-Overfull \hbox (12.24371pt too wide) detected at line 82
+Overfull \hbox (12.24371pt too wide) detected at line 83
 []
  []
 
 
-Overfull \hbox (80.38387pt too wide) detected at line 93
+Overfull \hbox (80.38387pt too wide) detected at line 94
 []
  []
 
 [28]
-Overfull \hbox (14.10379pt too wide) in paragraph at lines 125--126
+Overfull \hbox (14.10379pt too wide) in paragraph at lines 126--127
 []
  []
 
 
-Overfull \hbox (1.24608pt too wide) detected at line 161
+Overfull \hbox (1.24608pt too wide) detected at line 162
 [][]
  []
 
 
-Overfull \hbox (24.97304pt too wide) detected at line 180
+Overfull \hbox (24.97304pt too wide) detected at line 181
 []
  []
 
-[29]) [30]
+[29]
+Overfull \hbox (8.16893pt too wide) in paragraph at lines 188--189
+[]
+ []
+
+
+Overfull \hbox (2.14635pt too wide) in paragraph at lines 228--229
+[]\T1/pplj/m/it/10.95 Asumiendo [][]5.1[][]
+ []
+
+[30]
+Overfull \hbox (28.38963pt too wide) detected at line 261
+[]
+ []
+
+
+Overfull \hbox (29.46117pt too wide) detected at line 267
+\OML/zplm/m/it/10.95 F[] \OMS/zplm/m/n/10.95 ^^@ \OML/zplm/m/it/10.95 F\OT1/zpl
+m/m/n/10.95 (\OML/zplm/m/it/10.95 w[]\OT1/zplm/m/n/10.95 ) \OMS/zplm/m/n/10.95 
+^^T \U/fplmbb/m/n/10.95 E [] \OMS/zplm/m/n/10.95 ^^@ \OML/zplm/m/it/10.95 F\OT1
+/zplm/m/n/10.95 (\OML/zplm/m/it/10.95 w[]\OT1/zplm/m/n/10.95 ) \OMS/zplm/m/n/10
+.95 ^^T ^^@[]\OML/zplm/m/it/10.95 ^^V [] [] \OT1/zplm/m/n/10.95 + []\OML/zplm/
+m/it/10.95 K[]LM
+ []
+
+
+Overfull \hbox (26.28015pt too wide) in paragraph at lines 286--287
+[]\T1/pplj/m/it/10.95 Asumiendo
+ []
+
+[31]
+Overfull \hbox (36.97362pt too wide) detected at line 309
+[]
+ []
+
+
+Overfull \hbox (78.00514pt too wide) detected at line 315
+\OML/zplm/m/it/10.95 F[] \OMS/zplm/m/n/10.95 ^^@ \U/fplmbb/m/n/10.95 E [] \OMS/
+zplm/m/n/10.95 ^^T \U/fplmbb/m/n/10.95 E [] \OMS/zplm/m/n/10.95 ^^@ \U/fplmbb/m
+/n/10.95 E [] \OMS/zplm/m/n/10.95 ^^T ^^@[]\OML/zplm/m/it/10.95 ^^V [] [] \OT1/
+zplm/m/n/10.95 + []\OML/zplm/m/it/10.95 LM [] []
+ []
+
+
+Overfull \hbox (32.25923pt too wide) detected at line 350
+\U/fplmbb/m/n/10.95 P [] \OT1/zplm/m/n/10.95 = \U/fplmbb/m/n/10.95 P [] \OMS/zp
+lm/m/n/10.95 ^^T \OML/zplm/m/it/10.95 ^^O[]\U/fplmbb/m/n/10.95 E [] \OMS/zplm/m
+/n/10.95 ! \OT1/pplx/m/n/10.95 0
+ []
+
+
+Overfull \hbox (14.25706pt too wide) in paragraph at lines 356--357
+[]
+ []
+
+[32]
+Overfull \hbox (27.383pt too wide) detected at line 385
+[][]
+ []
+
+
+Overfull \hbox (85.3242pt too wide) detected at line 392
+[]\U/fplmbb/m/n/10.95 E [] \OMS/zplm/m/n/10.95 ^^@ \U/fplmbb/m/n/10.95 E [] \OM
+S/zplm/m/n/10.95 ^^T \OT1/pplx/m/n/10.95 2\OML/zplm/m/it/10.95 []L^^V[]\U/fplm
+bb/m/n/10.95 E [] \OT1/zplm/m/n/10.95 + []\OML/zplm/m/it/10.95 []L[] []
+ []
+
+
+Overfull \hbox (83.46175pt too wide) detected at line 398
+[] [] \OT1/zplm/m/n/10.95 = \OT1/pplx/m/n/10.95 0
+ []
+
+[33]) [34]
 part IV.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 70.
-[31
+[35
 
 
 
 
 
-] [32]
+] [36]
 \openout2 = `Chapters/Apendice.aux'.
 
  (./Chapters/Apendice.tex
 Appendix A.
-) [33
+) [37
 
 
 
-] [34
+] [38
 
 
 
@@ -2781,7 +2853,13 @@ Overfull \hbox (6.50258pt too wide) in paragraph at lines 15--15
 ures on Con-vex Op-ti-miza-tion\T1/pplj/m/n/10.95 . Vol. 87.
  []
 
-) [35
+
+Overfull \hbox (19.60197pt too wide) in paragraph at lines 15--15
+[]\T1/pplj/m/n/10.95 H. Rob-bins and S. Monro. \T1/pplj/m/it/10.95 A Stochas-ti
+c Ap-prox-i-ma-tion Model\T1/pplj/m/n/10.95 . Vol. 22(3).
+ []
+
+) [39
 
 
 
@@ -3029,7 +3107,7 @@ FrontBackmatter/Bibliography.tex
 
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 80.
 Package rerunfilecheck Info: File `Tesis.out' has not changed.
-(rerunfilecheck)             Checksum: 46D19717E2FBF6D7095EBCDC3D56F6A7;1385.
+(rerunfilecheck)             Checksum: 048B5DA3DEE6CD90D6123BF9E38B9D6A;1523.
 
 LaTeX Warning: There were undefined references.
 
@@ -3038,11 +3116,11 @@ Package logreq Info: Writing requests to 'Tesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48915 strings out of 492649
- 932226 string characters out of 6129622
- 1468055 words of memory out of 5000000
- 51674 multiletter control sequences out of 15000+600000
- 640328 words of font info for 229 fonts, out of 8000000 for 9000
+ 48974 strings out of 492649
+ 933521 string characters out of 6129622
+ 1469174 words of memory out of 5000000
+ 51696 multiletter control sequences out of 15000+600000
+ 643201 words of font info for 237 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  75i,23n,95p,10498b,2203s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
@@ -3065,10 +3143,10 @@ ic/cm-super/sfsx2074.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 tino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/up
 lbi8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplr8a.p
 fb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Tesis.pdf (43 pages, 495497 bytes).
+Output written on Tesis.pdf (47 pages, 516110 bytes).
 PDF statistics:
- 597 PDF objects out of 1000 (max. 8388607)
- 526 compressed objects within 6 object streams
- 153 named destinations out of 1000 (max. 500000)
- 26834 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 693 PDF objects out of 1000 (max. 8388607)
+ 617 compressed objects within 7 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 26850 words of extra memory for PDF output out of 29859 (max. 10000000)
 

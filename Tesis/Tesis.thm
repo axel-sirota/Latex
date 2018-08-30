@@ -47,10 +47,22 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {corollary}{{Corolario}{5.5}{}}{26}{theorem.5.0.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {hyp}{{Hip\'otesis}{6.1}{Convexidad fuerte}}{27}{theorem.6.0.1}
+\contentsline {hyp}{{Hip\'otesis}{6.1}{Convexidad fuerte}}{27}{theorem.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {lemma}{{Lema}{6.2}{}}{27}{theorem.6.0.2}
+\contentsline {lemma}{{Lema}{6.2}{}}{27}{theorem.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {theorem}{{Teorema}{6.3}{Objetivo fuertemente convexo, Incremento constante}}{27}{theorem.6.0.3}
+\contentsline {theorem}{{Teorema}{6.3}{Objetivo fuertemente convexo, Incremento constante}}{27}{theorem.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {theorem}{{Teorema}{6.4}{Objetivo fuertemente convexo, Incremento decreciente}}{29}{theorem.6.0.4}
+\contentsline {theorem}{{Teorema}{6.4}{Objetivo fuertemente convexo, Incremento decreciente}}{29}{theorem.6.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Teorema}{6.5}{Objetivo Fuertemente Convexo, Reducci\'on del Ruido}}{30}{theorem.6.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Teorema}{6.1}{Objetivo no convexo, Incrementos fijos}}{31}{theorem.6.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Teorema}{6.2}{Objetivo no convexo, Incrementos decrecientes}}{32}{theorem.6.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corolario}{6.3}{}}{32}{theorem.6.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corolario}{6.4}{}}{32}{theorem.6.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Teorema}{6.5}{Objetivo no convexo regular, Incrementos decrecientes}}{33}{theorem.6.2.5}

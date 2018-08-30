@@ -1,5 +1,6 @@
 \chapter{Convergencia en L1}\label{ch:convergenciaL1}
 
+\section{Caso Fuertemente Convexo}
 Consideremos primero los casos de convexidad donde sabemos que el m\'inimo existe y es \'unico, por lo tanto asumamos por ahora:
 
 \begin{hyp}[Convexidad fuerte]
@@ -64,7 +65,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 	\begin{equation*}
 	\begin{array}{rcl}
 	\expectation{F(w_k) - F_{inf}} & \leq & \dfrac{\alpha LM}{2 c \mu} + \left(1 - \alpha c \mu \right)^{k-1} \left(F(w_1) - F_{inf} - \dfrac{\alpha LM}{2 c \mu} \right) \\
-	& \overrightarrow{k \rightarrow \infty} & \dfrac{\alpha LM}{2 c \mu} 
+	& \underrightarrow{k \rightarrow \infty} & \dfrac{\alpha LM}{2 c \mu} 
 	\end{array}
 	\end{equation*}
 	 
@@ -180,3 +181,231 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 	\end{equation*}\qed
 
 \end{proof}
+
+Notemos entonces que en el caso fuertemente convexo con incrementos fijos tenemos convergencia en un entorno del m\'inimo mientras que si reducimos los incrementos tenemos convergencia en L1, cabr\'ia preguntarse (inspirados en la observaci\'on del caso $\alpha$ fijo con $M=0$) si con el ruido existente pero controlado podemos mantener la convergencia en L1.
+
+\begin{theorem}[Objetivo Fuertemente Convexo, Reducci\'on del Ruido]
+	Supongamos que valen \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte} pero reforcemos \ref{eq: Hipotesis 2 Segundo momento acotado} a la existencia de una constante $M \geq 0$ y $\xi \in (0,1)$ tal que para todo $k \in \N$:
+	
+	\begin{equation}
+	\label{eq: Varianza acotada geometricamente}
+	\variancechik{g(w_k, \upxi_{k})} \leq M \xi^{k-1}
+	\end{equation}
+	
+	Supongamos adem\'as que \ref{algo: DE} tiene $\alpha_k = \alpha$ para todo $k \in \N$ satisfaciendo:
+	
+	\begin{equation}
+	\label{eq: Condicion alfa Conv L1 fuertemente convexo reduccion ruido}
+	0  < \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} 
+	\end{equation}
+	
+	Luego vale:
+	
+	\begin{equation*}
+		\expectation{F(w_k) - F_{inf}} \leq \omega \rho^{k-1}
+	\end{equation*}
+	
+	Donde:
+	
+	\begin{subequations}
+		\begin{equation}
+		\label{def: Omega en dem reduccion ruido}
+		\omega := \max \sett{\dfrac{\alpha L M}{c \mu}, F(w_1) - F_{inf}}
+		\end{equation}
+		\begin{equation}
+		\label{def: Rho en dem reduccion ruido}
+		\rho := \max \sett{1 - \dfrac{\alpha c \mu }{2}, \xi} < 1
+		\end{equation}
+	\end{subequations}
+	
+\end{theorem}
+
+\section{Caso general}
+
+Manteniendo las mismas hip\'otesis y notaciones veamos el caso general, nuevamente separando entre incrementos constantes o decrecientes.
+
+\begin{theorem}[Objetivo no convexo, Incrementos fijos]
+	Asumiendo \ref{hyp: F es L lipshitz} y \ref{hyp: Acotaciones momentos de g} y suponiendo que en \ref{algo: DE} tenemos $\alpha_k = \alpha$ tal que:
+	
+	\begin{equation}
+	\label{eq: Condicion alfa Conv L1 no convexo}
+	0  < \alpha \leq \dfrac{\mu}{LM_G} 
+	\end{equation}
+	
+	Entonces vale para todo $k \in \N$:
+	
+	\begin{subequations}
+		\begin{equation}
+		\label{eq: Objetivo no convexo, incremento fijo, 1}
+		\expectation{\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k)}_2^2}} \leq \dfrac{K \alpha LM}{\mu} + \dfrac{2(F(w_1) - F_{inf})}{\mu \alpha}
+		\end{equation}
+		\begin{equation}
+		\label{eq: Objetivo no convexo, incremento fijo, 2}
+		\begin{array}{rcl}
+		\expectation{\dfrac{1}{K}\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k)}_2^2}} & \leq & \dfrac{\alpha LM}{\mu} + \dfrac{2(F(w_1) - F_{inf})}{K \mu \alpha} \\
+		& \underrightarrow{K \rightarrow \infty} &  \dfrac{\alpha LM}{\mu}
+		\end{array}
+		\end{equation}
+	\end{subequations}
+	
+\end{theorem}
+
+\begin{proof}
+	Recordemos \ref{eq: Fundamental estocasticos 2 ecuacion 1} y si tomamos esperanza total e imponemos \ref{eq: Condicion alfa Conv L1 no convexo} tenemos:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	\expectation{F(w_{k+1})} - \expectation{F(w_k)} & \leq & - \left(\mu - \frac{1}{2}\alpha L M_G \right) \alpha \expectation{\norm{\nabla F(w_k)}_2^2} + \frac{1}{2} \alpha^2 LM \\
+	& \leq & - \frac{1}{2}\alpha \mu \expectation{\norm{\nabla F(w_k)}_2^2} + \frac{1}{2} \alpha^2 LM
+	\end{array}
+	\end{equation*}
+	
+	Luego como por \ref{hyp: Acotaciones momentos de g} tenemos que $F_{inf} \leq \expectation{F(w_k)}$ para todo $k \in \N$ vale:
+	
+	\begin{equation*}
+		F_{inf} - F(w_1) \leq \expectation{F(w_{K+1})} - F(w_1) \leq  - \frac{1}{2}\alpha \mu \sum\limits_{1}^{K}{\expectation{\norm{\nabla F(w_k)}_2^2}} + \frac{1}{2} K \alpha^2 LM
+	\end{equation*}
+	\qed
+\end{proof}
+
+\begin{remark}
+	Notemos que si $M=0$ (no hay ruido o crece comparable a $\norm{\nabla F(w_k)}^2_2$) entonces obtenemos que $\sum\limits_{k=1}^{\infty} {\norm{\nabla F (w)_k)}_2^2} < \infty$ por lo que $\sett{\norm{\nabla F (w_k)}_2^2}_{k \in \N} \underrightarrow{k \rightarrow \infty} 0 $, que es el resultado obtenido en \cite{nesterov:2004}.
+	
+	En cambio, cuando $M \neq 0$ aunque no podemos acotar $\norm{\nabla F (w_k)}_2^2$ \textit{per-se}, podemos decir de \ref{eq: Objetivo no convexo, incremento fijo, 2} que en esperanza el valor del gradiente es cada vez menor en un entorno de radio $\dfrac{\alpha LM}{\mu}$. Luego recuperamos la intuici\'on del caso convexo (\ref{theorem: DE en fuertemente convexo y alfa fijo converge en l1}) donde a menor incremento el entorno es menor (el algortimo es m\'as preciso) pero la cantidad de iteraciones es mayor.
+\end{remark}
+
+Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la condici\'on de \textit{Robbins - Monro} (ver \cite{robbins:1951}):
+
+\begin{equation}
+\label{eq: Condicion robbins monro}
+\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty \quad \text{ y } \quad \sum\limits_{k=1}^{\infty} {\alpha_k^2} < \infty
+\end{equation}
+
+\begin{theorem}[Objetivo no convexo, Incrementos decrecientes]
+	\label{theorem: Convergencia L1, Objetivo no convexo, Incrementos decrecientes}
+	Asumiendo \ref{hyp: F es L lipshitz} y \ref{hyp: Acotaciones momentos de g}, suponiendo adem\'as que en \ref{algo: DE} los $\sett{\alpha_k}$ satisfacen \ref{eq: Condicion robbins monro}; si notamos $A_K := \sum\limits_{k=1}^{K} {\alpha_k}$ vale para todo $k \in \N$::
+	
+	\begin{subequations}
+		\begin{equation}
+		\label{eq: Objetivo no convexo, incremento decreciente, 1}
+		\lim\limits_{K \rightarrow \infty} {\expectation{\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}}} < \infty
+		\end{equation}
+		\begin{equation}
+		\label{eq: Objetivo no convexo, incremento decreciente, 2}
+		\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \underrightarrow{K \rightarrow \infty} \ 0
+		\end{equation}
+	\end{subequations}
+	
+\end{theorem}
+
+\begin{proof}
+	Como $\alpha_k \rightarrow 0$ por \ref{eq: Condicion robbins monro} entonces podemos asumir sin p\'erdida de generalidad que $\alpha_k L M_G \leq \mu$ para todo $k \in \N$, luego:
+	
+		\begin{equation*}
+	\begin{array}{rcl}
+	\expectation{F(w_{k+1})} - \expectation{F(w_k)} & \leq & - \left(\mu - \frac{1}{2}\alpha_k L M_G \right) \alpha_k \expectation{\norm{\nabla F(w_k)}_2^2} + \frac{1}{2} \alpha_k^2 LM \\
+	& \leq & - \frac{1}{2}\alpha_k \mu \expectation{\norm{\nabla F(w_k)}_2^2} + \frac{1}{2} \alpha_k^2 LM
+	\end{array}
+	\end{equation*}
+	
+	Luego como por \ref{hyp: Acotaciones momentos de g} tenemos que $F_{inf} \leq \expectation{F(w_k)}$ para todo $k \in \N$ vale:
+	
+	\begin{equation*}
+	F_{inf} - \expectation{F(w_1)} \leq \expectation{F(w_{K+1})} - \expectation{F(w_1)} \leq  - \frac{1}{2}\mu \sum\limits_{1}^{K}{\alpha_k \expectation{\norm{\nabla F(w_k)}_2^2}} + \frac{1}{2} LM \sum\limits_{k=1}^{K} {\alpha_k^2}
+	\end{equation*}
+	
+	Luego:
+	
+		\begin{equation*}
+	\sum\limits_{1}^{K}{\alpha_k \expectation{\norm{\nabla F(w_k)}_2^2}}  \leq  \dfrac{2 (\expectation{F(w_1) - F_{inf} })}{\mu} + \frac{LM}{\mu}  \underbrace{\sum\limits_{k=1}^{K} {\alpha_k^2}}_{\underrightarrow{K \rightarrow \infty} \ C  \ < \ \infty }
+	\end{equation*}
+	
+	\marginpar{\color{Red}Porque si $\lim \expectation{X_k} < \infty$ entonces $\lim \expectation{\frac{X_k}{A_k}} = 0$ si $A_k \rightarrow \infty$ con $A_k$ escalar ?}
+	
+	Por lo que \ref{eq: Objetivo no convexo, incremento decreciente, 1} esta probado. Finalmente como por \ref{eq: Condicion robbins monro} tenemos que $A_K \rightarrow \infty$ se tiene \ref{eq: Objetivo no convexo, incremento decreciente, 2}.\qed
+	
+\end{proof}
+
+\begin{corollary}
+	\label{coro: Gradientes cerca de cero, Objetivo no convexo, Incrementos decrecientes}
+	Asumiendo \ref{hyp: F es L lipshitz} y \ref{hyp: Acotaciones momentos de g}, suponiendo adem\'as que en \ref{algo: DE} los $\sett{\alpha_k}$ satisfacen \ref{eq: Condicion robbins monro} entonces : 
+	
+	\begin{equation}
+		\liminf\limits_{k \rightarrow \infty} {\expectation{\norm{\nabla F (w_k)}_2^2}} = 0 
+	\end{equation}
+	
+\end{corollary}
+
+\begin{corollary}
+	Bajo las mismas hip\'otesis de \ref{theorem: Convergencia L1, Objetivo no convexo, Incrementos decrecientes} sea $k(K) \in \sett{1, \dots, K}$ un \'indice aleatorio elegido con probabilidades respectivas $\sett{\alpha_k}_{k=1}^K$; luego $\norm{\nabla F(w_k)}_2 \rightarrow 0$ en probabilidad.
+\end{corollary}
+
+\begin{proof}
+	Sea $\epsilon > 0$, luego de $\ref{eq: Objetivo no convexo, incremento decreciente, 1}$ y la desigualdad de Markov:
+	
+	\marginpar{Usamos la desigualdad de Markov}
+	
+	\begin{equation*}
+		\mathbb{P} \left[\norm{\nabla F (w_k)}_2 \geq \epsilon\right] = \mathbb{P} \left[\norm{\nabla F (w_k)}_2^2 \geq \epsilon^2\right] \leq \epsilon^{-2} \expectation{\expectationchik{\norm{\nabla F(w_k)}_2^2}}  \rightarrow 0
+	\end{equation*}
+	\marginpar{\color{Red} Porque aca es la esperanza de la esperanza condicional?} \qed
+	
+\end{proof}.
+
+\begin{theorem}[Objetivo no convexo regular, Incrementos decrecientes]
+	Bajo las mismas hip\'otesis de \ref{theorem: Convergencia L1, Objetivo no convexo, Incrementos decrecientes} si adem\'as pedimos que $F \in C^2$ y que $w \mapsto \norm{\nabla F (w)}_2^2$ sea $l-$ Lipshitz entonces:
+	
+	\begin{equation}
+		\lim\limits_{k \rightarrow \infty} \expectation{\norm{\nabla F (w_k)}_2^2} = 0
+	\end{equation}
+	
+\end{theorem}
+
+\begin{proof}
+	Sea $G(w) := \norm{\nabla F(w)}_2^2$ y sea $L_G$ la constante de Lipshitz de $\nabla G(w) = 2 \nabla^2 F(w) \nabla F(w)$, luego:
+	
+	\begin{equation*}
+	\begin{aligned}
+		G(w_{k+1}) - G(w_k) & \underbrace{\leq}_{\ref{obs: F es l lipshitz}} & \nabla G(w_k)^T (w_{k+1} - w_k) + \frac{1}{2} L_G \norm{w_k - w_{k+1}}_2^2 \\
+		& \leq & - \alpha_k \nabla G(w_k)^T g(w_k, \upxi_{k}) + \frac{1}{2} \alpha_k L_G  \norm{g(w_k, \upxi_{k})}_2^2
+	\end{aligned}
+	\end{equation*}
+	
+	Si tomamos esperanza condicional a $\upxi_{k}$ y usamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} entonces:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectationchik{G(w_{k+1}) - G(w_k)} & \leq & -2 \alpha_k \nabla F(w_k)^T \nabla^2 F(w_k)^T \expectationchik{g(w_k, \upxi_{k})} + \\
+	&& \frac{1}{2} \alpha_k^2 L_G \expectationchik{\norm{g(w_k, \upxi_{k})}^2_2} \\
+	& \leq & 2 \alpha_k \norm{\nabla F(w_k)}_2 \norm{\nabla^2 F(w_k)}_2 \norm{\expectationchik{g(w_k, \upxi_{k})}}_2 +  \\
+	&& \frac{1}{2} \alpha_k^2 L_G \expectationchik{\norm{g(w_k, \upxi_{k})}^2_2} \\
+	& \leq & 2 \alpha_k L \mu_G \norm{\nabla F (w_k)}_2^2 + \\
+	 && \frac{1}{2} \alpha_k^2 L_G\left(M + M_V \norm{\nabla F(w_k)}_2^2\right)
+	\end{aligned}
+	\end{equation*}
+	
+	Luego obtenemos tomando esperanza total:
+	
+	\begin{equation}
+	\label{eq: Objetivo no convexo regular, Incrementos decrecientes}
+	\expectation{G(w_{k+1})} - \expectation{G(w_k)} \leq 2 \alpha_k L \mu_G \expectation{\norm{\nabla F (w_k)}_2^2} +  \frac{1}{2} \alpha_k^2 L_G\left(M + M_V \expectation{\norm{\nabla F(w_k)}_2^2}\right)
+	\end{equation}
+	
+	Notemos que existe $K\in \N$ tal que $\alpha_k^2 \leq \alpha_k$ y luego por \ref{theorem: Convergencia L1, Objetivo no convexo, Incrementos decrecientes} el lado derecho cumple:
+	
+	\begin{equation*}
+	\lim\limits_{N \rightarrow \infty} { {2 L \mu_G \underbrace{\sum\limits_{k=K}^{K+N}\expectation{\alpha_k\norm{\nabla F (w_k)}_2^2}}_{\ref{eq: Objetivo no convexo, incremento decreciente, 1}} +  \frac{1}{2} L_G\left(M\underbrace{\sum\limits_{k=K}^{K+N}\alpha_k^2}_{\ref{eq: Condicion robbins monro}} + M_V \underbrace{\sum\limits_{k=K}^{K+N}\expectation{\alpha_k^2\norm{\nabla F(w_k)}_2^2}}_{{\ref{eq: Objetivo no convexo, incremento decreciente, 1}}}\right)} } = 0
+	\end{equation*}
+	
+	Sean:
+	
+	\begin{equation*}
+	\begin{aligned}
+	S_K^+ & = & \sum\limits_{k=1}^{K} {\max\left(0, \expectation{G(w_{k+1})} - \expectation{G(w_k)} \right)} \\
+	S_K^- & = & \sum\limits_{k=1}^{K} {\max\left(0, \expectation{G(w_{k})} - \expectation{G(w_{k+1})} \right)}
+	\end{aligned}
+	\end{equation*}
+	
+	Luego como en \ref{eq: Objetivo no convexo regular, Incrementos decrecientes} el lado derecho es positivo y su suma es convergente tenemos que $\sett{S_K^+}$ es mon\'otona, acotada superiormente y por ende convergente. Adem\'as como $0 \leq \expectation{G(w_k)} = \expectation{G(w_0)} + S_k^+ - S_k^-$ tenemos que $\sett{S_K^-}$ tambi\'en es mon\'otona y acotada superiormente, por lo que es convergente; conclu\'imos que $\expectation{G(w_k)}$ debe ser convergente, y por \ref{coro: Gradientes cerca de cero, Objetivo no convexo, Incrementos decrecientes} tenemos $\expectation{\norm{\nabla F(w_k)}_2^2} = \expectation{G(w_k)} \rightarrow 0$. \qed	
+\end{proof}
+
