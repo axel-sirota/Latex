@@ -8,19 +8,23 @@
 \BOOKMARK [-1][]{part.1}{ Introducci\363n}{}% 8
 \BOOKMARK [0][]{chapter.1}{1 Introducci\363n}{part.1}% 9
 \BOOKMARK [-1][]{part.2}{ Algoritmos de tipo Batch}{}% 10
-\BOOKMARK [0][]{chapter.2}{2 Intuici\363n}{part.2}% 11
-\BOOKMARK [0][]{chapter.3}{3 Teorema de la Variedad Estable y los Puntos fijos inestables}{part.2}% 12
-\BOOKMARK [1][-]{section.3.1}{3.1 Resultados previos}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.2}{3.2 Puntos fijos inestables}{chapter.3}% 14
-\BOOKMARK [0][]{chapter.4}{4 Aplicaci\363nes}{part.2}% 15
-\BOOKMARK [1][-]{section.4.1}{4.1 Gradient Descent}{chapter.4}% 16
-\BOOKMARK [1][-]{section.4.2}{4.2 Punto Pr\363ximo}{chapter.4}% 17
-\BOOKMARK [1][-]{section.4.3}{4.3 Descenso por coordenadas}{chapter.4}% 18
-\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 19
-\BOOKMARK [0][]{chapter.5}{5 Contexto}{part.3}% 20
-\BOOKMARK [0][]{chapter.6}{6 Convergencia en L1}{part.3}% 21
-\BOOKMARK [1][-]{section.6.1}{6.1 Caso Fuertemente Convexo}{chapter.6}% 22
-\BOOKMARK [1][-]{section.6.2}{6.2 Caso general}{chapter.6}% 23
-\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 24
-\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 25
-\BOOKMARK [0][]{section*.1}{ new name}{part.4}% 26
+\BOOKMARK [0][]{chapter.2}{2 Convergencia Puntual en Caso d\351bilmente Convexo }{part.2}% 11
+\BOOKMARK [1][-]{section.2.1}{2.1 Intuici\363n}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.2}{2.2 Caso discreto}{chapter.2}% 13
+\BOOKMARK [0][]{chapter.3}{3 Intuici\363n al caso de objetivo general}{part.2}% 14
+\BOOKMARK [0][]{chapter.4}{4 Teorema de la Variedad Estable y los Puntos fijos inestables}{part.2}% 15
+\BOOKMARK [1][-]{section.4.1}{4.1 Resultados previos}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.2}{4.2 Puntos fijos inestables}{chapter.4}% 17
+\BOOKMARK [0][]{chapter.5}{5 Aplicaci\363nes}{part.2}% 18
+\BOOKMARK [1][-]{section.5.1}{5.1 Gradient Descent}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.2}{5.2 Punto Pr\363ximo}{chapter.5}% 20
+\BOOKMARK [1][-]{section.5.3}{5.3 Descenso por coordenadas}{chapter.5}% 21
+\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 22
+\BOOKMARK [0][]{chapter.6}{6 Contexto}{part.3}% 23
+\BOOKMARK [0][]{chapter.7}{7 Convergencia en L1}{part.3}% 24
+\BOOKMARK [1][-]{section.7.1}{7.1 Caso Fuertemente Convexo}{chapter.7}% 25
+\BOOKMARK [1][-]{section.7.2}{7.2 Caso general}{chapter.7}% 26
+\BOOKMARK [0][]{chapter.8}{8 Convergencia CTP }{part.3}% 27
+\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 28
+\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 29
+\BOOKMARK [0][]{section*.1}{ new name}{part.4}% 30

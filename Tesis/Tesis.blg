@@ -9,11 +9,13 @@ A level-1 auxiliary file: FrontBackmatter/Abstract.aux
 A level-1 auxiliary file: FrontBackmatter/Acknowledgments.aux
 A level-1 auxiliary file: FrontBackmatter/Contents.aux
 A level-1 auxiliary file: Chapters/Introduccion.aux
+A level-1 auxiliary file: Chapters/Batch/ConvergenciaPuntual.aux
 A level-1 auxiliary file: Chapters/Batch/Intuicion.aux
 A level-1 auxiliary file: Chapters/Batch/TeoremaBase.aux
 A level-1 auxiliary file: Chapters/Batch/Applicaciones.aux
 A level-1 auxiliary file: Chapters/Stochastic/Base.aux
 A level-1 auxiliary file: Chapters/Stochastic/ConvergenciaL1.aux
+A level-1 auxiliary file: Chapters/Stochastic/ConvergenciaCTP.aux
 A level-1 auxiliary file: Chapters/Apendice.aux
 A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
@@ -37,7 +39,7 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 6 entries,
             6268 wiz_defined-function locations,
-            1225 strings with 9544 characters,
+            1227 strings with 9621 characters,
 and the built_in function-call counts, 24988 in all, are:
 = -- 1627
 > -- 604

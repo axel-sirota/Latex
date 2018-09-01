@@ -220,6 +220,48 @@ Notemos entonces que en el caso fuertemente convexo con incrementos fijos tenemo
 	
 \end{theorem}
 
+\begin{proof}
+	Por \ref{eq: Fundamental estocasticos 2 ecuacion 1} vale que:
+	
+	\begin{equation*}
+		\expectationchik{F(w_{k+1})} - F(w_k) \leq  -\mu \alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}_2^2}
+	\end{equation*}
+	
+	Luego si juntamos \ref{def: Definicion varianza condicional}, \ref{eq: Hipotesis 2 subitem 2}, \ref{eq: Condicion alfa Conv L1 fuertemente convexo reduccion ruido} y \ref{eq: Varianza acotada geometricamente} entonces:
+	
+	\begin{equation*}
+	\begin{aligned}
+		\expectationchik{F(w_{k+1})} - F(w_k) & \leq & -\mu \alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 L \left(\mu_G^2  \norm{\nabla F(w_k)}_2^2 + M \xi^{k-1}\right) \\
+		& \leq & - \left(\mu - \frac{1}{2}\alpha L \mu_G^2 \right) \alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 LM \xi^{k-1} \\
+		& \leq & -\frac{1}{2}\mu \alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 LM \xi^{k-1} \\
+		& \leq &  -c \mu \alpha \left( F(w_k) - F_{inf} \right) + \frac{1}{2} \alpha^2 LM \xi^{k-1}
+	\end{aligned}
+	\end{equation*}
+	
+	Por lo tanto:
+	
+	\begin{equation}
+		\label{eq: Ecuacion demostracion reduccion ruido}
+		\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - c \mu \alpha\right) \expectation{F(w_k) - F_{inf}} + \frac{1}{2} \alpha^2 LM \xi^{k-1}
+	\end{equation}
+	
+	\marginpar{\color{Red} Por que vale k=1??}
+	
+	Probemos ahora la identidad por inducci\'on. Para esto, notemos que el caso $k=1$ vale por la definici\'on de $\omega$; luego si asumimos que vale para alg\'un $k \geq 1$ entonces de \ref{eq: Ecuacion demostracion reduccion ruido}, \ref{def: Omega en dem reduccion ruido} y \ref{def: Rho en dem reduccion ruido}:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectation{F(w_{k+1}) - F_{inf}} & \leq &  \left(1 - c \mu \alpha\right) \omega \rho^{k-1}+ \frac{1}{2} \alpha^2 LM \xi^{k-1} \\
+	& = & \omega \rho^{k-1} \left(1 - c \mu \alpha + \dfrac{\alpha^2 L M}{2 \omega} \left(\frac{\xi}{\rho}\right)^{k-1} \right) \\
+	& \leq &  \omega \rho^{k-1} \left(1 - c \mu \alpha + \dfrac{\alpha^2 L M}{2 \omega} \right) \\
+	& \leq &  \omega \rho^{k-1} \left(1 - c \mu \alpha + \dfrac{\alpha c \mu}{2} \right) \\
+	&  = &  \omega \rho^{k-1} \left(1 - \dfrac{\alpha c \mu}{2} \right) \\
+	& \leq & \omega \rho^{k}
+	\end{aligned}
+	\end{equation*}
+	\qed
+\end{proof}
+
 \section{Caso general}
 
 Manteniendo las mismas hip\'otesis y notaciones veamos el caso general, nuevamente separando entre incrementos constantes o decrecientes.
@@ -274,12 +316,7 @@ Manteniendo las mismas hip\'otesis y notaciones veamos el caso general, nuevamen
 	En cambio, cuando $M \neq 0$ aunque no podemos acotar $\norm{\nabla F (w_k)}_2^2$ \textit{per-se}, podemos decir de \ref{eq: Objetivo no convexo, incremento fijo, 2} que en esperanza el valor del gradiente es cada vez menor en un entorno de radio $\dfrac{\alpha LM}{\mu}$. Luego recuperamos la intuici\'on del caso convexo (\ref{theorem: DE en fuertemente convexo y alfa fijo converge en l1}) donde a menor incremento el entorno es menor (el algortimo es m\'as preciso) pero la cantidad de iteraciones es mayor.
 \end{remark}
 
-Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la condici\'on de \textit{Robbins - Monro} (ver \cite{robbins:1951}):
-
-\begin{equation}
-\label{eq: Condicion robbins monro}
-\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty \quad \text{ y } \quad \sum\limits_{k=1}^{\infty} {\alpha_k^2} < \infty
-\end{equation}
+Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la condici\'on de \textit{Robbins - Monro} \ref{eq: Condicion robbins monro}:
 
 \begin{theorem}[Objetivo no convexo, Incrementos decrecientes]
 	\label{theorem: Convergencia L1, Objetivo no convexo, Incrementos decrecientes}

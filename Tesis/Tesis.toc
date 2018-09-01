@@ -10,36 +10,44 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{\numberline {II}Algoritmos de tipo Batch}{5}{part.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}{Intuici\'on}}{7}{chapter.2}
+\contentsline {chapter}{\numberline {2}{Convergencia Puntual en Caso d\'ebilmente Convexo }}{7}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}{Teorema de la Variedad Estable y los Puntos fijos inestables}}{11}{chapter.3}
+\contentsline {section}{\numberline {2.1}{Intuici\'on}}{7}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}{Resultados previos}}{11}{section.3.1}
+\contentsline {section}{\numberline {2.2}{Caso discreto}}{8}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}{Puntos fijos inestables}}{11}{section.3.2}
+\contentsline {chapter}{\numberline {3}{Intuici\'on al caso de objetivo general}}{11}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}{Aplicaci\'ones}}{15}{chapter.4}
+\contentsline {chapter}{\numberline {4}{Teorema de la Variedad Estable y los Puntos fijos inestables}}{15}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}{Gradient Descent}}{15}{section.4.1}
+\contentsline {section}{\numberline {4.1}{Resultados previos}}{15}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}{Punto Pr\'oximo}}{15}{section.4.2}
+\contentsline {section}{\numberline {4.2}{Puntos fijos inestables}}{15}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}{Descenso por coordenadas}}{16}{section.4.3}
+\contentsline {chapter}{\numberline {5}{Aplicaci\'ones}}{19}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {III}Algoritmos Estoc\'asticos}{21}{part.3}
+\contentsline {section}{\numberline {5.1}{Gradient Descent}}{19}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}{Contexto}}{23}{chapter.5}
+\contentsline {section}{\numberline {5.2}{Punto Pr\'oximo}}{19}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}{Convergencia en L1}}{27}{chapter.6}
+\contentsline {section}{\numberline {5.3}{Descenso por coordenadas}}{20}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}{Caso Fuertemente Convexo}}{27}{section.6.1}
+\contentsline {part}{\numberline {III}Algoritmos Estoc\'asticos}{25}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}{Caso general}}{30}{section.6.2}
+\contentsline {chapter}{\numberline {6}{Contexto}}{27}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\numberline {IV}Ap\'endice}{35}{part.4}
+\contentsline {chapter}{\numberline {7}{Convergencia en L1}}{31}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}{Ap\'endice}}{37}{appendix.Alph1}
+\contentsline {section}{\numberline {7.1}{Caso Fuertemente Convexo}}{31}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}{Caso general}}{35}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}{Convergencia CTP }}{39}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {IV}Ap\'endice}{41}{part.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}{Ap\'endice}}{43}{appendix.Alph1}
 \defcounter {refsection}{0}\relax 
 \vspace {\beforebibskip }
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {}{new name}}{39}{section*.1}
+\contentsline {chapter}{\numberline {}{new name}}{45}{section*.1}

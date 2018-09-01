@@ -1,0 +1,196 @@
+\chapter{Convergencia Puntual en Caso d\'ebilmente Convexo }\label{ch:convergenciaPuntualDebilmenteConvexo}
+
+Analizemos ahora la convergencia puntual de \ref{algo: GD}. 
+
+\RestyleAlgo{boxruled}
+\LinesNumbered
+\begin{algorithm}[H]
+	\caption{Descenso de gradiente en batch \label{algo: GD}}
+	\textbf{Input:} $F \in C^1$, $\alpha_k >0$, $w_1 \in \mani$, $X = \sett{\upxi_j}_{j \leq N}$ \text{ muestra} \\
+	\For{$k \in \N$}{
+		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(\upxi_j)$
+	}
+\end{algorithm}
+
+Asumamos adem\'as por esta secci\'on la siguiente condici\'on que llamaremos \textit{convexidad d\'ebil}:
+
+\begin{definition}
+	\label{def: Debilmente convexo}
+	Decimos que $F \in C^1$ es \textit{d\'ebilment convexo} si cumple las siguientes dos propiedades:
+	
+	\begin{itemize}
+		\item Existe un \'unico $w^*$ tal que $F_{inf} := F(w^*) \leq F(w)$ para todo $w \in \R^n$.
+		\item Para todo $\epsilon > 0$ vale que $\inf\limits_{(w-w^*)^2 > \epsilon} {\left(w - w^*\right) \nabla F(w) > 0}$
+	\end{itemize}
+	
+\end{definition}
+
+\begin{remark}
+	Notemos que existen funciones no convexas tal que cumplen \ref{def: Debilmente convexo}.
+\end{remark}
+
+\section{Intuici\'on}\label{section: Intuicion convergencia puntual batch}
+
+Ganemos intuici\'on acerca del proceso como probar la convergencia de \ref{algo: GD} en el caso continuo. En el caso continuo, tenemos que demostrar que la soluci\'on $w(t)$ de la ecuaci\'on diferencial \ref{eq: Ecuacion diferencial de descenso de gradiente} tiene l\'imite $w^*$ y adem\'as que $w^*$ es m\'inimo de $F$.
+
+\begin{equation}
+\label{eq: Ecuacion diferencial de descenso de gradiente}
+\dfrac{d w}{dt} = - \nabla F(w)
+\end{equation}
+
+Para eso, vamos a dividir la demostraci\'on en tres pasos:
+
+\marginpar{Usamos funciones de Lyapunov}
+
+\begin{enumerate}
+	\item Vamos a definir una \textit{funci\'on de Lyapunov}
+	\item Vamos a verificar computando su derivada temporal que es una funci\'on mon\'otona decreciente y acotada, por lo que converge
+	\item Vamos a probar que converge a 0.
+\end{enumerate}
+
+\begin{proposition}[Objetivo d\'ebilmente convexo, Incrementos constantes, Versi\'on continua]
+	\label{Objetivo debilmente convexo, GD continue converge}
+	Sea $F \in C^1$ que cumple \ref{def: Debilmente convexo} y supongamos que \ref{algo: GD} cumple $\alpha_k=\alpha>0$ para $w(t)$ continua. Luego si notamos al m\'inimo de $F$ como $w^*$, vale:
+	
+	\begin{equation*}
+		\lim\limits_{t \rightarrow \infty} w(t) =  w_*
+	\end{equation*}
+
+\end{proposition}
+
+\begin{proof} Vayamos con los pasos que definimos:
+	
+	
+	\begin{enumerate}
+		
+		
+		\item[Paso 1] Definamos la funci\'on de Lyapunov:
+		
+		\begin{equation*}
+			h(t) = \left(w(t) - w^*\right)^2 \geq 0
+		\end{equation*}
+		
+		\item[Paso 2] Notemos que:
+		
+		\begin{equation}
+		\label{eq: Intuicion batch ctp, ecuacion derivada}
+			\dfrac{dh}{dt} = 2 \left(w(t) - w^*\right) \dfrac{dw}{dt} = -2 \left(w(t) - w^*\right) \nabla F(w) \underbrace{\leq}_{\ref{def: Debilmente convexo}} 0
+		\end{equation}
+		
+		Luego como $h(t) \geq 0$ y $\dfrac{dh}{dt} \leq 0$ existe $h_{inf}$ tal que $h(t) \searrow h_{inf}$
+		
+		\item[Paso 3] Como $h(t) \searrow h_{inf}$ entonces $\dfrac{dh}{dt} \rightarrow 0$, supongamos por el absurdo que $h_{inf} > 0$, luego existe $\widetilde{\epsilon} >0$ y $T \in \R$ tal que para todo $t \geq T$ vale que $h(t) = \left(w(t) - w^*\right)^2 > \widetilde{\epsilon}$. Si juntamos entonces \ref{eq: Intuicion batch ctp, ecuacion derivada} y \ref{def: Debilmente convexo} llegamos a un absurdo, conclu\'imos que $h_{inf} = 0$ por lo que:
+		
+		\begin{equation*}
+			w(t) \rightarrow w_*
+		\end{equation*}
+		\qed
+	\end{enumerate}
+\end{proof}
+
+\section{Caso discreto}
+
+Ahora si analicemos la convergencia del algoritmo \ref{algo: GD} para el caso discreto. Para esto enunciamos un lema \'util cuya demostraci\'on referimos al lector al Ap\'endice:
+
+\begin{lemma}
+	\label{lemma: Convergencia de sucesiones positivas acotadas sumables}
+	Sea $\sett{u_k}_{k \in \N} \subset \R$ una sucesi\'on tal que $u_k \geq 0$ para todo $k$. Luego si:
+	
+	\begin{equation*}
+		\sum\limits_{k=1}^{\infty} {\left(u_{t+1} - u_t\right)_{+}} < \infty
+	\end{equation*}
+	
+	Donde $(x)_{\pm} = x * 1_{\sett{\R_{\pm}}}$, entonces:
+	
+	\begin{equation*}
+		\sum\limits_{k=1}^{\infty} {\left(u_{t+1} - u_t\right)_{-}} < \infty
+	\end{equation*}
+	
+	 y $\left(u_k\right)$ converge. 
+	 
+	 Es m\'as, si notamos $S^{\pm}_{\infty} = \sum\limits_{k=1}^{\infty}  {\left(u_{t+1} - u_t\right)_{\pm}} $ entonces $u_{\infty} = \lim\limits_{k \rightarrow \infty} {u_k} = u_0 + S_{\infty}^+ + S_{\infty}^-$
+\end{lemma}
+
+\begin{proof}
+	Ver \ref{ch: apendice}
+\end{proof}
+
+Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\sett{\alpha_k}$  cumplen la condici\'on de \textit{Robbins - Monro} (ver \cite{robbins:1951}) si:
+
+\begin{equation}
+\label{eq: Condicion robbins monro}
+\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty \quad \text{ y } \quad \sum\limits_{k=1}^{\infty} {\alpha_k^2} < \infty
+\end{equation}
+
+\begin{theorem}[Objetivo d\'ebilmente convexo, incrementos decrecientes]
+	Sea $F \in C^1$, asumamos \ref{def: Debilmente convexo} y que existen $A,B \geq 0$ tal que para todo $w \in \mani$ vale que:
+	
+	\begin{equation}
+	\label{eq: Condicion gradiente acotado, ctp, batch}
+		\left(\nabla F(w)\right)^2 \leq A + B \left(w - w^*\right)^2
+	\end{equation}
+	
+	Luego si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
+	
+	\begin{equation}
+		w_k \ \underrightarrow{k \rightarrow \infty} \ w^*
+	\end{equation}
+	
+\end{theorem}
+
+\begin{proof}
+	Hagamos los 3 pasos an\'alogos a \ref{Objetivo debilmente convexo, GD continue converge}:
+	
+	\begin{enumerate}
+		\item [Paso 1] Sea $h_k = \left(w_k - w^*\right)$ una sucesi\'on de Lyapunov
+		\item [Paso 2] An\'alogo a \ref{Objetivo debilmente convexo, GD continue converge} notemos que:
+		
+		\begin{equation*}
+			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k) + \alpha_k^2 (\nabla F(w_k))^2
+		\end{equation*}
+		
+		Notemos que a diferencia de antes la naturaleza discreta del algoritmo lleva a un t\'ermino positivo de ruido en las variaciones. Notemos que si usamos \ref{eq: Condicion robbins monro} y \ref{eq: Condicion gradiente acotado, ctp, batch} entonces:
+		
+		\begin{equation*}
+		\label{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes}
+			h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k \leq \underbrace{-2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k)}_{\leq 0 \text{ por \ref{def: Debilmente convexo}}} + \alpha_k^2A \leq \alpha_k^2A 
+		\end{equation*}
+		
+		Definamos ahora las sucesiones auxiliares:
+		
+		\begin{subequations}
+			\begin{equation}
+				\mu_k = \prod\limits_{j=1}^{k-1} {\dfrac{1}{1 + \alpha_j^2B}}
+			\end{equation}
+			\begin{equation}
+				h_k' = \mu_k h_k
+			\end{equation}
+		\end{subequations}
+		
+		Notemos que $\log (\mu_k) = - \sum\limits_{j=1}^{k-1} {\log \left(1 + \underbrace{\alpha_j^2 B}_{\geq 0}\right)} \geq - B\sum\limits_{j=1}^{k-1} {\alpha_j^2} \geq -B \sum\limits_{j=1}^{\infty} {\alpha_j}$, por lo que $\mu_k$ es una sucesi\'on decreciente acotada inferiormente por $e^{-B \sum\limits_{j=1}^{\infty} {\alpha_j}}$, luego $\mu_k \searrow \mu_{\infty}$ >0. Ahora si volvemos  a \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} tenemos que:
+		
+		\begin{equation*}
+			h_{k+1}' - h_{k}' \leq \alpha_k^2 A \mu_k \leq \alpha_k^2 A
+		\end{equation*}
+		
+		Como $\sum\limits_{k=1}^{\infty} {\alpha_k^2 A} < \infty$ entonces $\sum\limits_{k=1}^{\infty}{h_{k+1}' - h_{k}'} < \infty$ y por \ref{lemma: Convergencia de sucesiones positivas acotadas sumables} conclu\'imos que $\sett{h_k'}$ converge; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge.
+		
+		\item[Paso 3] De \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} como ya vimos que $	h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k$ es sumable conclu\'imos que:
+		
+		\begin{equation*}
+			\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty
+		\end{equation*}
+		
+		Supongamos que $h_k \rightarrow h_{inf} \neq 0$, luego existir\'ia $K\in \N$ y $\widetilde{\epsilon} >0$ tal que $h_k = \left(w_k - w^*\right)^2 > \widetilde{\epsilon}$ para todo $k \geq K$; luego de \ref{def: Debilmente convexo} conclu\'imos que existe $M > 0$ tal que $M \leq \left(w_k - w^* \right)\nabla F(w_k) $ para todo $k \geq K$. Por \ref{eq: Condicion robbins monro} eso implica que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty$, conclu\'imos que $w_k \ \underrightarrow{k \rightarrow \infty} \ w^*$. \qed
+		
+	\end{enumerate}
+	
+\end{proof}
+
+\begin{corollary}
+	Sea $F \in C^2$, asumamos \ref{def: Debilmente convexo} y que $\norm{\nabla^2 F}_2^2 \leq L$; si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
+	
+	\begin{equation}
+	w_k \ \underrightarrow{k \rightarrow \infty} \ w^*
+	\end{equation}
+\end{corollary}

@@ -3,4 +3,31 @@
 %*******************************************************
 % If problems with the headers: get headings in appendix etc. right
 %\markboth{\spacedlowsmallcaps{Appendix}}{\spacedlowsmallcaps{Appendix}}
-\chapter{Ap\'endice}
+\chapter{Ap\'endice}\label{ch: apendice}
+
+\begin{proof}{[De \ref{lemma: Convergencia de sucesiones positivas acotadas sumables}]}
+	Definamos:
+	
+	\begin{subequations}
+		\begin{equation}
+			S^+_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_+}
+		\end{equation}
+		\begin{equation}
+			S^-_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_-}
+		\end{equation}
+	\end{subequations}
+	
+	Donde recordemos que $(x)_{\pm} = x1_{\sett{\R_{\pm}}}$. Como sabemos que $ {\left(u_{k+1} - u_k\right)_+} \geq 0$ para todo $k \in \N$ entonces $S_t^+ \nearrow S_{\infty}^+$; asimismo,  $ {\left(u_{k+1} - u_k\right)_-} \leq 0$ para todo $k \in \N$ entonces $S_t^- \leq 0$. Por lo tanto:
+	
+	\begin{subequations}
+		\begin{equation}
+			0 \leq u_k = u_0 + S_k^+ + S_k^- \leq u_0 + S_{\infty}^+
+		\end{equation}
+		\begin{equation}
+			-u_0 - S_{\infty}^+ \leq S_k^- \leq 0
+		\end{equation}
+	\end{subequations}
+	
+	Luego como $S_{k+1}^- \leq S_k^-$ conclu\'imos que $S_{k}^- \searrow S_{\infty}^-$. Por lo tanto como $S_k^+, \ S_k^-$ convergen entonces $u_k = u_0 + S_k^+ + S_k^- $ converge. \qed
+	
+\end{proof}
