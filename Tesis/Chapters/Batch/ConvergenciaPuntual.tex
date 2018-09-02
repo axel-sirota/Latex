@@ -311,3 +311,13 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 \begin{proof}
 	Ver \ref{ch: apendice}
 \end{proof}
+
+Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:1963}
+
+\begin{theorem}[Convergencia lineal \'optima para objetivos L-Lipshitz y PL-convexos]
+	\label{theorem: convergencia lineal GD}
+	Sea $F \in C^1$ tal que existe $F_{inf}$ valor m\'inimo, $F$ cumple \ref{def: L Lipshitz} y \ref{def: Condicion PL}; entonces el algortimo \ref{algo: GD} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
+	\begin{equation}
+	f(w_k) - f_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(f(w_o) - f_{inf}\right)
+	\end{equation}
+\end{theorem}
