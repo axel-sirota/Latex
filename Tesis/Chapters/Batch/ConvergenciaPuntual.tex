@@ -212,14 +212,12 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 \begin{proposition}
 	\label{prop: equivalencias convexidad fuerte}
 	Sea $f \in C^1$ una funci\'on $\mu-$convexa, entonces son equivalentes:
-	
 	\begin{enumerate}
 		\item $f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \mani$
 		\item $g(x) = f(x) - \frac{\mu}{2} \norm{x}_2^2$ es convexa para todo $x \in \mani$
 		\item $\left(\nabla f(y) - \nabla f(x)\right)^T \left(y-x\right) \leq \mu \norm{y-x}_2^2$ para todos $x,y \in \mani$
 		\item $f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y) - \dfrac{\alpha \left(1 - \alpha \right) \mu}{2}\norm{y-x}_2^2$ para  todos $x,y \in \mani$, $\alpha \in [0,1]$
 	\end{enumerate}
-	
 \end{proposition}
 
 \begin{proof}
@@ -229,24 +227,20 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 \begin{definition}
 	\label{def: Condicion PL}
 	Decimos que una funci\'on $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \mani$ vale:
-	
 	\begin{equation}
-		\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
+	\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
 	\end{equation}
-	
 \end{definition}
 
 \begin{proposition}
 	\label{prop: implicancias de convexidad fuerte}
 	Sea $f \in C^1$ una funci\'on $\mu-$convexa, entonces valen:
-	
 	\begin{enumerate}
 		\item $f$ es $PL$-convexa
 		\item $\norm{\nabla f(x) - \nabla f(y)}_2 \geq \mu \norm{x-y}_2$
 		\item $f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{1}{2 \mu} \norm{\nabla f(x) - \nabla f(y)}_2^2$
 		\item $ \left(\nabla f(x) - \nabla f(y)\right)^T (x-y) \leq \frac{1}{\mu} \norm{\nabla f(x) - \nabla f(y)}_2^2$
 	\end{enumerate}
-	
 \end{proposition}
 
 \begin{proof}
@@ -261,15 +255,13 @@ De esto podemos deducir un resultado, que aunque no lo usemos \textit{per-se} en
 
 \begin{proof}
 	Sean $x,y \in \mani$ y $\alpha \in [0,1]$, luego:
-	
 	\begin{equation*}
 	\begin{array}{rcl}
-		h\left(\alpha x + (1-\alpha)y\right) & = & f\left(\alpha x + (1-\alpha)y\right)  + g\left(\alpha x + (1-\alpha)y\right)  \\
-		& \underbrace{\leq}_{\ref{prop: equivalencias convexidad fuerte}} & \alpha(f + g)(x) + (1-\alpha)(f+g)(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 \\
-		& = & \alpha h(x) + (1-\alpha)h(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 
+	h\left(\alpha x + (1-\alpha)y\right) & = & f\left(\alpha x + (1-\alpha)y\right)  + g\left(\alpha x + (1-\alpha)y\right)  \\
+	& \underbrace{\leq}_{\ref{prop: equivalencias convexidad fuerte}} & \alpha(f + g)(x) + (1-\alpha)(f+g)(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 \\
+	& = & \alpha h(x) + (1-\alpha)h(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 
 	\end{array}
 	\end{equation*}\qed
-	
 \end{proof}
 
 Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
@@ -277,7 +269,6 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 \begin{definition}
 	\label{def: L Lipshitz}
 	Sea $f \in C^1$, decimos que es $L$\textit{-Lipshitz} si existe $L > 0$ tal que para todos $x,y \in \mani$ vale:
-	
 	\begin{equation}
 	\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2
 	\end{equation}
@@ -286,7 +277,6 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 \begin{proposition}
 	\label{prop: Implicancias L lipshitz}
 	Sea $f \in C^1$ una funci\'on $L-$Lipshitz, entonces para las siguientes propiedades:
-	
 	\begin{enumerate}
 		\item $\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2$
 		\item $g(x) = \frac{L}{2} x^Tx - f(x)$ es convexa
@@ -297,7 +287,7 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 		\item $\left(\nabla f(x) - \nabla f(y)\right)^T (x-y) \geq \frac{1}{L}\norm{\nabla f(x)- \nabla f(y)}^2_2$
 		\item $f\left(\alpha x + (1-\alpha)y\right) \leq \alpha f(x) + (1-\alpha) f(y) - \dfrac{\alpha \left(1 - \alpha \right)}{2L}\norm{\nabla f(y)- \nabla f (x)}_2^2$
 	\end{enumerate}
-	
+
 	Valen las siguientes cadenas de equivalencias:
 	
 	\begin{equation*}
@@ -305,7 +295,6 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 	\end{equation*}
 	
 	Es m\'as, si $f$ adem\'as es $\mu-$convexa entonces las 8 propiedades son equivalentes
-	
 \end{proposition}
 
 \begin{proof}
