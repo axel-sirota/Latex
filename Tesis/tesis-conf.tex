@@ -111,6 +111,7 @@
 \newcommand{\expectationsub}[2]{\mathbb{E}_{#1} \left[#2\right]}
 \newcommand{\variancesub}[2]{\mathbb{V}_{#1} \left[#2\right]}
 \newcommand{\expectationchik}[1]{\expectationsub{\upxi_{k}}{#1}}
+\newcommand{\expectationfilt}[1]{\mathbb{E} \left[{#1} \vert \mathcal{P}_{k}\right]}
 \newcommand{\variancechik}[1]{\variancesub{\upxi_{k}}{#1}}
 \newcommand{\mani}{\upchi}
 \DeclareMathOperator{\rank}{ran}
@@ -138,9 +139,9 @@
 \newtheorem{claim}[theorem]{Afirmaci\'on}
 \numberwithin{theorem}{section}
 \newtheorem{hyp}[theorem]{Hip\'otesis}
-\numberwithin{theorem}{chapter}
+\numberwithin{theorem}{section}
 \newtheorem{definition}[theorem]{Definici\'on}
-\numberwithin{theorem}{chapter}
+\numberwithin{theorem}{section}
 
 \newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}

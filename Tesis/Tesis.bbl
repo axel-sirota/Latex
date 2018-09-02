@@ -69,6 +69,29 @@
     \field{year}{2004}
   \endentry
 
+  \entry{polyak:1963}{book}{}
+    \name{author}{1}{}{%
+      {{hash=PBT}{%
+         family={Polyak},
+         familyi={P\bibinitperiod},
+         given={B.\bibnamedelima T.},
+         giveni={B\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Zh. Vychisl. Mat. Mat. Fiz}%
+    }
+    \strng{namehash}{PBT1}
+    \strng{fullhash}{PBT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{pages}{643–653}
+    \field{title}{Gradient methods for minimizing functionals}
+    \field{year}{1963}
+  \endentry
+
   \entry{robbins:1951}{book}{}
     \name{author}{2}{}{%
       {{hash=RH}{%
