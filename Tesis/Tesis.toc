@@ -1,0 +1,63 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {spanish}{}
+\defcounter {refsection}{0}\relax 
+\vspace {-\cftbeforechapskip }
+\babel@toc {american}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {I}Introducci\'on}{1}{part.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}{Introducci\'on}}{3}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {II}Algoritmos de tipo Batch}{5}{part.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}{Convergencia Puntual en Caso d\'ebilmente Convexo }}{7}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}{Intuici\'on}}{7}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}{Caso discreto}}{8}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}{Acerca de convexidad fuerte y funciones L-Lipshitz}}{10}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}{Intuici\'on al caso de objetivo general}}{13}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}{Teorema de la Variedad Estable y los Puntos fijos inestables}}{17}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}{Resultados previos}}{17}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}{Puntos fijos inestables}}{17}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}{Aplicaci\'ones}}{21}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}{Gradient Descent}}{21}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}{Punto Pr\'oximo}}{21}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}{Descenso por coordenadas}}{22}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {III}Algoritmos Estoc\'asticos}{27}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}{Contexto}}{29}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}{Convergencia en L1}}{33}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}{Caso Fuertemente Convexo}}{33}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}{Caso general}}{37}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}{Convergencia CTP }}{41}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.1}{Caso d\'ebilmente convexo}}{41}{section.8.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.2}{Caso no convexo}}{43}{section.8.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.2.1}{Acotaci\'on global del algoritmo}}{44}{subsection.8.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.2.2}{Convergencia del algoritmo}}{45}{subsection.8.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\numberline {IV}Ap\'endice}{49}{part.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}{Ap\'endice}}{51}{appendix.Alph1}
+\defcounter {refsection}{0}\relax 
+\vspace {\beforebibskip }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {}{new name}}{53}{section*.1}
