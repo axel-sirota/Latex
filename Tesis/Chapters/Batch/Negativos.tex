@@ -129,6 +129,298 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	La clave va a ser usar splines para resolver los primeros puntos, espejar $f$ para hacer los puntos extremales interiores, asignar $d$ puntos cr\'iticos similares para generar el tiempo exponencial en $d$ y extender esa funci\'on $\tilde{f}$ a $\R^d$ con el Teorema de extensi\'on de Whitney. Aunque la demostraci\'on es larga y tediosa, la idea clave es la vista aqu\'i.
 \end{remark}
 
-\begin{proof}
-	content...
+\begin{proof} Vayamos de a pasos
+		
+	\medskip
+	
+	\textbf{Paso 1 - Definiciones}
+	
+	\medskip
+	
+	Fijemos 4 constantes: $L=e, \gamma = 1, \tau = e, \eta$ a definir proximamente; inspirados en el ejemplo anterior vamos a construir una $f$ definida en un cerrado $D_0$ tal que tenga $d-1$ puntos silla estrictos y la complejidas del algoritmo \ref{algo: GD} sea exponencial. Sea $D_0$ dado por:
+	
+	\begin{equation}
+	\begin{array}{cl}
+	D_ 0 = & \bigcup\limits_{i=1}^{d+1} \sett{x \in \R^d \tq 6\tau \geq x_1, \dots, x_{i-1} \geq 2\tau; 2\tau \geq x_i \geq 0 ; \tau \geq x_{i+1}, \dots, x_d \geq 0 }  \\
+	:= & \bigcup\limits_{i=1}^{d+1}{D_i}
+	\end{array}
+	\end{equation}
+	
+	Y partamos $D_i = D_{i,1} \cup D_{i,2}$ donde $D_{i,1} = \sett{x \in D_i \tq 0 \leq x_i \leq \tau}$ y $D_{i,2} = \sett{x \in D_i, \tq \tau \leq x_i \leq 2\tau}$.
+	
+	Para un dado $1 \leq i \leq d-1$ definamos:
+	
+	\begin{equation}
+	f\vert_{D_i}(x) = \left\lbrace \begin{array}{l}
+	\sum\limits_{j=1}^{i-1}{L \left(x_j - 4\tau\right)^2}  - \gamma x_i^2 + \sum\limits_{j={i+1}}^{d} {L x_j^2 - \left(i-1\right)\eta } \\
+	\triangleq f_{i,1}(x) \text{ si } x\in D_{i,1} \\
+	\\
+	\\
+	\sum\limits_{j=1}^{i-1}{L \left(x_j - 4\tau\right)^2}  + g(x_i, x_{i+1})+ \sum\limits_{j={i+2}}^{d} {L x_j^2 - \left(i-1\right)\eta } \\ \triangleq f_{i,2}(x)  \text{ si } x\in D_{i,2}
+	\end{array}\right.
+	\end{equation}
+	
+	Donde nuevamente $\eta$ esta pendiente de definici\'on y $g: \R^2 \rightarrow \R$ tambi\'en la definiremos proximamente para que $f$ resulte $C^2$, $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$. 
+	
+	Para $i=d$ definamos:
+	
+	\begin{equation}
+	f\vert_{D_d}(x) = \left\lbrace \begin{array}{l}
+	\sum\limits_{j=1}^{d-1}{L \left(x_j - 4\tau\right)^2}  - \gamma x_d^2 - \left(d-1\right)\eta  \\ \triangleq f_{d,1}(x)  \text{ si } x\in D_{d,1} \\ \\ \\
+	\sum\limits_{j=1}^{d-1}{L \left(x_j - 4\tau\right)^2}  + g_1(x_d)  - \left(d-1\right)\eta \\ \triangleq f_{d,2}(x)  \text{ si } x\in D_{d,2}
+	\end{array}\right.
+	\end{equation}
+	
+	Donde como antes, $g_1$ lo definiremos proximamente. Finalmente si $i = d+1$ entonces $6\tau \geq x_i \geq 2_tau$ para todo $1 \leq i \leq d$ y definimos:
+	
+	\begin{equation}
+		f\vert_{D_{d+1}} = 	\sum\limits_{j=1}^{d}{L \left(x_j - 4\tau\right)^2}  - d\eta \triangleq f_{d+1,1}
+	\end{equation}
+	
+	\begin{lemma}
+		\label{lemma: GD toma tiempo exponencial}
+		Sea $g(x_i,x_{i+1}) = g_1(x_i) + g_2(x_i)x_{i+1}^2$, existen $g_1,g_2$ polinomios y $\eta = - g_1(2\tau) + 4L\tau^2$ tal que para todo $1 \leq i \leq d$ si $x_i = \tau$ vale:
+		
+		\begin{equation*}
+			\begin{aligned}
+				f_{i,2}(x) &  = & f_{i,1}(x) \\
+				\nabla f_{i,2}(x) &  = & \nabla f_{i,1}(x) \\
+				\nabla ^2 f_{i,2}(x) &  = & \nabla ^2f_{i,1}(x)
+			\end{aligned}
+		\end{equation*}
+		
+		Y si $x_i = 2\tau$ entonces:
+		
+		\begin{equation*}
+		\begin{aligned}
+		f_{i,2}(x) &  = & f_{i+1,1}(x) \\
+		\nabla f_{i,2}(x) &  = & \nabla f_{i+1,1}(x) \\
+		\nabla ^2 f_{i,2}(x) &  = & \nabla ^2f_{i+1,1}(x)
+		\end{aligned}
+		\end{equation*}
+		
+		Es m\'as, si $x \in D_{i,2} \cap D_{i+1,1}$ entonces:
+		
+		\begin{equation*}
+		\begin{aligned}
+		-4L\tau & \leq & \dfrac{\partial g}{\partial x_i}(x_i, x_{i+1}) & \leq & -2 \gamma \tau \\
+		-2\gamma x_{i+1} & \leq & \dfrac{\partial g}{\partial x_{i+1}}(x_i, x_{i+1}) & &
+		\end{aligned}
+		\end{equation*}
+		
+		Y finalmente si $x \in D_{i,2}$ entonces:
+		
+		\begin{equation*}
+			-4L\tau \leq \dfrac{\partial g_1}{\partial x_i}(x_i)  \leq  -2 \gamma \tau 
+		\end{equation*}
+		
+	\end{lemma}
+
+	\begin{proof}
+		Ver \ref{ch: apendice}
+	\end{proof}
+
+	\begin{remark}
+		Del lema anterior podemos ver que $\deg(g_1), \deg(g) \leq 5$ por lo que estan acotados. Conclu\'imos que ambas son $B-$acotadas y $\mu-$Lipshitz con $B, \mu \in \text{poly}(L)$
+	\end{remark}
+
+	\begin{remark}
+		Notemos que $\norm{g_1}, \norm{g} > \gamma \tau > 0$ por lo que ninguna de las dos aporta puntos cr\'iticos en $D_0$.
+	\end{remark}
+
+	\begin{remark}
+		Notemos que $f$ queda $C^2$ y que sus $d+1$ puntos cr\'iticos son $z_i = \left(4\tau, \dots, \underbrace{4\tau}_{i}, 0, \dots, 0\right)$ donde todos son puntos silla estrictos menos $z_{d} = \left(4\tau, \dots, 4\tau\right)$ que es m\'inimo.
+	\end{remark}
+	
+	\medskip
+	
+	\textbf{Paso 2- Cota superior a $T_k^{\tau}$}
+	
+	\medskip
+	
+	Supongamos ahora que $\tau > e$, $\alpha \leq \frac{1}{2L}$ y tomemos $w_0 \in [-1,1]^d \cap D_0$, veamos que para todo $T \leq \left(\frac{L+ \gamma}{\gamma}\right)^{d-1}$ vale que $x_{d}^T \leq 2\tau \not \in D_{d+1}$.
+	
+	Sea $T_0 = 0$ y definamos $T_k = \min\limits_{x^t_k \geq 2\tau}$ el tiempo de escape de $D_{k,2}$; notemos que como $x^0 \in D_{1,1}$ vale que $T_k \geq 0$ para todo $k$ y esta bien definido. Definamos adem\'as $T_k^{\tau}$ como la cantidad de iteraciones que $x^k$ esta en $D_{k,2}$ antes de escapar; como del lema $\dfrac{\partial g}{\partial x_k}\left(x_k, x_{k+1}\right) \leq -2\gamma \tau$ tenemos que $\abs{x^k - x^{k+1}} \geq 2 \alpha \gamma \tau $ por lo que:
+	
+	\begin{equation*}
+		T_k^{\tau} \leq \frac{\tau}{2 \alpha \gamma \tau} = \frac{1}{2 \gamma \alpha} \qquad \forall k \in \sett{1, \dots, d+1}
+	\end{equation*}
+	
+	\medskip
+	
+	\textbf{Paso 3 - Cota inferior para $T_1$}:
+	
+	\medskip
+	
+	Notemos que $T_1$ es el m\'inimo valor tal que $x^{T_1}_1 \geq 2\tau$ y entonces vale que $x_1^{T_1 - T_1^{\tau}} \geq \tau$, como del algoritmo \ref{algo: GD} sabemos que en $D_{1,2}$ vale la relaci\'on:
+	
+	\begin{equation*}
+	x_1^{t} = \left(1 + 2 \alpha \gamma\right)^t x_1^0
+	\end{equation*}
+	
+	Tenemos que:
+	
+	\begin{equation*}
+	\begin{array}{crcl}
+	& x_1^0 \left(1 + 2 \alpha \gamma \right)^{T_1 - T_1^{\tau}} & \geq & \tau \\
+	\Longrightarrow & T_1 - T_1^{\tau} & \geq & \frac{1}{2 \alpha \gamma} \underbrace{\log\left(\frac{\tau}{x_1^0}\right)}_{\geq 1}  \geq T_1^{\tau}
+	\end{array}
+	\end{equation*}
+	
+	\medskip
+	
+	\textbf{Paso 4 - El algoritmo \ref{algo: GD} se queda confinado a $D_0$}:
+	
+	\medskip
+	
+	Si $x^t \in D_{k,1}$ luego las iteraciones del algortimo son:
+	
+	\begin{equation*}
+		x_j^{t+1} = \left\lbrace \begin{array}{cr}
+		\left(1 - \alpha L\right)x_j^t - 4\alpha L \tau \in [2\tau, 6\tau] & 1 \leq j \leq k-1 \\
+		\left(1 + 2\alpha \gamma \right)x_j^t \tau \in [0, 2\tau] & j = k \\
+		\left(1 - 2\alpha L\right)x_j^t \in [0, \tau] & j \geq k+1 
+		\end{array}\right.
+	\end{equation*}
+	
+	Mientras que si $x^t \in D_{k,2}$ entonces:
+	
+	\begin{equation*}
+	x_j^{t+1} = \left\lbrace \begin{array}{cr}
+	\left(1 - \alpha L\right)x_j^t - 4\alpha L \tau \in [2\tau, 6\tau] & 1 \leq j \leq k-1 \\
+	x_j^t - \alpha \dfrac{\partial g}{\partial x_k} \left(x_k, x_{k+1}\right) \leq x_j^t  + 2\alpha \gamma \tau \in [0, 6\tau] & j = k \\
+	\left(1 - 2\alpha L\right)x_j^t \in [0, \tau] & j \geq k+2
+	\end{array}\right.
+	\end{equation*}	
+	
+	Separemos el caso $j= k+1$, donde el lema \ref{lemma: GD toma tiempo exponencial} nos dice que:
+	
+	\begin{equation*}
+		\dfrac{\partial f}{\partial x_{k+1}}\left(x\right) \geq -2 \gamma x_{k+1}
+	\end{equation*}
+	
+	Luego para $t = T_k - T_k^{\tau} + 1, \dots, T_k$ vale:
+	
+	\begin{equation*}
+		x_{k+1}^{t} \leq x_{k+1}^0 \left(1 - 2 \alpha L\right)^{T_k - T_k^{\tau}} \left(1 + 2 \alpha \gamma \right)^{t - \left(T_k - T_k^{\tau}\right)} \leq \tau
+	\end{equation*}
+	
+	Y conclu\'imos que $x^t \in D_0$
+	
+	\medskip
+	
+	\textbf{Paso 5 - Relaci\'on entre $T_{k+1}$ y $T_k$}:
+	
+	\medskip
+	
+	Por un lado, por la definici\'on de $T_k$ y $T_k^{\tau}$:
+	
+	\begin{equation*}
+		x_{k+1}^{T_k} \leq x_{k+1}^{0} \left(1 - 2 \alpha L\right)^{T_k - T_k^{\tau}}\left(1 + 2 \gamma \alpha\right)^{T_k^{\tau}}
+	\end{equation*}
+	
+	Por el otro, usando el mismo arguemento que cuando acotamos por debajo a $T_1$:
+	
+	\begin{equation*}
+	\begin{aligned}
+		& x_{k+1}^{T_{k+1} - T_{k+1}^{\tau}} & \geq & \tau \\
+		\Rightarrow & x_{k+1}^{T_k} \left(1 + 2 \alpha \gamma\right)^{T_{k+1} - T_{k+1}^{\tau} - T_k} & \geq & \tau \\
+		\Rightarrow & x_{k+1}^{0} \left(1 - 2 \alpha L\right)^{T_k - T_k^{\tau}}\left(1 + 2 \gamma \alpha\right)^{T_k^{\tau}} \left(1 + 2 \alpha \gamma\right)^{T_{k+1} - T_{k+1}^{\tau} - T_k} & \geq & \tau \\
+	\end{aligned}
+	\end{equation*}
+	
+	Luego como $\alpha < \frac{1}{2L}$:
+	
+	\begin{equation*}
+	2 \alpha \gamma \left(T_{k+1} - T_{k+1}^{\tau} - \left(T_k - T_k^{\tau}\right)\right) \geq \underbrace{\log \left(\frac{\tau}{x_{k+1}^0}\right)}_{\geq 1} + 2 \alpha L\left(T_k - T_k^{\tau}\right)
+	\end{equation*}
+	
+	\begin{equation*}
+		\Rightarrow \quad T_{k+1} - T_{k+1}^{\tau} \geq \dfrac{L + \gamma}{\gamma} \left(T_k - T_k^{\tau}\right)
+	\end{equation*}
+	
+	Inductivamente:
+	
+	\begin{equation}
+		T_d \geq T_d - T_d^{\tau} \geq \left(\dfrac{L+\gamma}{\gamma}\right)^{d-1} \left(T_1 - T_1^{\tau}\right) \geq \dfrac{1}{2 \alpha \gamma}  \left(\dfrac{L+\gamma}{\gamma}\right)^{d-1}  \geq \left(\dfrac{L+\gamma}{\gamma}\right)^{d-1} 
+	\end{equation}
+	
+	\medskip
+	
+	\textbf{Paso 6 - Extender $D_0$ para que los puntos extremales sean interiores}
+	
+	\medskip
+	
+	Ya probamos que si $x^0 \in [-1,1]^d \cap D_0$ entonces el algoritmo \ref{algo: GD} necesita tiempo exponencial para converger al m\'inimo, ataquemos el caso $x^0 \in [-1,1]^d \cap D_0^c$
+	
+	Para $a=0, \dots, 2^d -1$ sea $a_2$ la representaci\'on binaria de $a$ y notemos $a_2(0)$ los \'indices donde $a_2$ tiene $0$ y an\'alogo con $a_2(1)$. Definamos:
+	
+	\begin{equation*}
+	\begin{split}
+		D_a = \bigcup\limits_{i=1}^{d} & \left\lbrace x \in \R^d \tq x_i \geq 0 \text{ si } i \in a_2(0), \ x_i \leq 0 \text{ sino}, \right. \\
+			&  \left. 6\tau \geq \abs{x_1}, \dots, \abs{x_{i-1}} \geq 2\tau,\ \abs{x_i} \leq 2\tau,\ \abs{x_{i+1}}, \dots, \abs{x_d} \leq \tau \right\rbrace
+	\end{split}
+	\end{equation*}
+	
+	\begin{equation*}
+		D = \bigcup\limits_{a = 0}^{2^d -1} {D_a}
+	\end{equation*}
+	
+	Notemos que $D$ es cerrado y que $[-1,1]^d \subset D$. Ahora definamos la funci\'on $f$; sea $i = 0 , \dots, d$ y definamos los subdominios:
+	
+	\begin{equation*}
+		\begin{array}{l}
+		\widetilde{D}_{i,1} = \sett{x \in \R^d \tq 6\tau \geq \abs{x_1}, \dots, \abs{x_{i-1}} \geq 2\tau,\ \abs{x_i} \leq \tau,\ \abs{x_{i+1}}, \dots, \abs{x_d} \leq \tau} \\
+		\widetilde{D}_{i,2} = \sett{x \in \R^d \tq 6\tau \geq \abs{x_1}, \dots, \abs{x_{i-1}} \geq 2\tau,\ \tau \leq \abs{x_i} \leq 2\tau,\ \abs{x_{i+1}}, \dots, \abs{x_d} \leq \tau} \\
+		\widetilde{D}_{d+1} = \sett{x \in \R^d \tq 6\tau \geq \abs{x_1}, \dots, \abs{x_{d}} \geq 2\tau}
+		\end{array}
+	\end{equation*}
+	
+	Luego definimos:
+	
+	\begin{equation*}
+	f(x) = \left\lbrace \begin{array}{cr}
+	\Bigsum{j \leq i-1, j \in a_2(0)}{L \left(x_j - 4\tau\right)^2} + \Bigsum{j \leq i-1, j \in a_2(1)}{L \left(x_j + 4\tau\right)^2} & \\
+	- \gamma x_i^2 + \Bigsum{j \geq i+1}{L x_j^2} - \left(i-1\right)\eta & \text{ si } x \in D_{i,1} ,\ i< d\\
+	& \\
+	\Bigsum{j \leq i-1, j \in a_2(0)}{L \left(x_j - 4\tau\right)^2} + \Bigsum{j \leq i-1, j \in a_2(1)}{L \left(x_j + 4\tau\right)^2} & \\
+	+ G(x_i, x_{i+1}|) + \Bigsum{j \geq i+2}{L x_j^2} - \left(i-1\right)\eta & \text{ si } x \in D_{i,2} ,\ i< d \\
+	& \\
+	\Bigsum{j \leq d-1, j \in a_2(0)}{L \left(x_j - 4\tau\right)^2} + \Bigsum{j \leq d-1, j \in a_2(1)}{L \left(x_j + 4\tau\right)^2} & \\
+	- \gamma x_d^2 - \left(d-1\right)\eta & \text{ si } x \in D_{d,1} \\
+	& \\
+	\Bigsum{j \leq d-1, j \in a_2(0)}{L \left(x_j - 4\tau\right)^2} + \Bigsum{j \leq d-1, j \in a_2(1)}{L \left(x_j + 4\tau\right)^2} & \\
+	+ G_1(x_d) - \left(d-1\right)\eta & \text{ si } x \in D_{d,2} \\
+	& \\
+	\Bigsum{j \leq d, j \in a_2(0)}{L \left(x_j - 4\tau\right)^2} + \Bigsum{j \leq d, j \in a_2(1)}{L \left(x_j + 4\tau\right)^2} & \\
+	- d\eta & \text{ si } x \in D_{d+1} \\
+	\end{array} \right.
+	\end{equation*}
+	
+	Donde:
+	
+	\begin{equation*}
+		\begin{array}{l}
+		G(x_i, x_{i+1}) = \left\lbrace \begin{array}{cc}
+			g(x_i, x_{i+1}) & \text{ si } i \in a_2(0) \\
+			g(-x_i, x_{i+1}) & \text{ si } i \in a_2(1) \\			
+		\end{array}\right. \\
+		\\
+		G_1(x_i) = \left\lbrace \begin{array}{cc}
+			g_1(x_i) & \text{ si } i \in a_2(0) \\
+			g_1(-x_i) & \text{ si } i \in a_2(1) \\			
+		\end{array}\right.
+		\end{array}
+	\end{equation*}
+	
+	Notemos que por simetr\'ia de la definici\'on, si espejamos la demostraci\'on del punto anterior es claro que si $\tau \geq e$ y $x^0 \in [-1,1]^d$ entonces el algoritmo \ref{algo: GD} con $\alpha < \frac{1}{2L}$ cumple $x_d^T \leq 2\tau$ para todo $T \leq \left(\frac{L + \gamma}{\gamma}\right)$ y por lo tanto necesita $e^{\Omega(d)}$ operaciones para llegar al \'unico m\'inimo $\left(4\tau, \dots, 4\tau\right)$.
+	
+	\medskip
+	
+	\textbf{Paso 7 - Extender de $D$ a $\R^d$}
+	
+	\medskip
+	
+	Por \ref{theorem: Extension de Whitney mejorado} sabemos que existe $F : \R^d \rightarrow \R$ que extiende a $f$ y que $\norm{F}_{\infty}, \norm{F}_{C^m} \leq \mathcal{O}\left(\text{poly}(d)\right)$; y aunque $F$ puede admitir nuevos puntos cr\'iticos, del paso 4 y 6 sabemos que si $x^0 \in [-1,1]^d$ entonces $\sett{x^k} \subset D$. \qed
+	
 \end{proof}
