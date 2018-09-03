@@ -310,3 +310,25 @@ Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:
 	f(w_k) - f_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(f(w_o) - f_{inf}\right)
 	\end{equation}
 \end{theorem}
+
+\begin{proof}
+	Notemos que si usamos \ref{prop: Implicancias L lipshitz} entonces tenemos:
+	
+	\begin{equation*}
+		F(w_{k+1}) - F(w_k) \leq \nabla F(w_k)^T \left(-\frac{1}{L} \nabla F(w_k)\right) + \frac{L}{2} \norm{\frac{\nabla F(w_k)}{L}}_2^2 \leq -\frac{1}{2L} \norm{\nabla F(w_k)}_2^2
+	\end{equation*}
+	
+	Luego por \ref{def: Condicion PL} tenemos:
+	
+	\begin{equation*}
+		F(w_{k+1}) - F(w_k) \leq - \frac{\mu}{L} \left(F(w_k) - F_{inf}\right)
+	\end{equation*}
+	
+	Luego obtenemos:
+	
+	\begin{equation*}
+	F(w_{k+1}) - F_{inf} \leq \left(1 - \frac{\mu}{L} \right) \left(F(w_k) - F_{inf}\right) \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_0) - F_{inf}\right)
+	\end{equation*}\qed
+	
+	
+\end{proof}
