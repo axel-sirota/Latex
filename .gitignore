@@ -8,3 +8,8 @@
 *.blg
 *.lof
 *\(busy\)
+Tesis/**/*.aux
+Tesis/**/*.log
+Tesis/*.lol
+Tesis/*.out
+Tesis/*.bbl
