@@ -142,6 +142,11 @@
 \numberwithin{theorem}{section}
 \newtheorem{definition}[theorem]{Definici\'on}
 \numberwithin{theorem}{section}
+\numberwithin{equation}{subsection} 
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+
 
 \newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}

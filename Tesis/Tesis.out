@@ -8,7 +8,7 @@
 \BOOKMARK [-1][]{part.1}{ Introducci\363n}{}% 8
 \BOOKMARK [0][]{chapter.1}{1 Introducci\363n}{part.1}% 9
 \BOOKMARK [-1][]{part.2}{ Algoritmos de tipo Batch}{}% 10
-\BOOKMARK [0][]{chapter.2}{2 Convergencia Puntual en Caso d\351bilmente Convexo }{part.2}% 11
+\BOOKMARK [0][]{chapter.2}{2 Convergencia Puntual }{part.2}% 11
 \BOOKMARK [1][-]{section.2.1}{2.1 Intuici\363n}{chapter.2}% 12
 \BOOKMARK [1][-]{section.2.2}{2.2 Caso discreto}{chapter.2}% 13
 \BOOKMARK [1][-]{section.2.3}{2.3 Acerca de convexidad fuerte y funciones L-Lipshitz}{chapter.2}% 14
@@ -20,16 +20,20 @@
 \BOOKMARK [1][-]{section.5.1}{5.1 Gradient Descent}{chapter.5}% 20
 \BOOKMARK [1][-]{section.5.2}{5.2 Punto Pr\363ximo}{chapter.5}% 21
 \BOOKMARK [1][-]{section.5.3}{5.3 Descenso por coordenadas}{chapter.5}% 22
-\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 23
-\BOOKMARK [0][]{chapter.6}{6 Contexto}{part.3}% 24
-\BOOKMARK [0][]{chapter.7}{7 Convergencia en L1}{part.3}% 25
-\BOOKMARK [1][-]{section.7.1}{7.1 Caso Fuertemente Convexo}{chapter.7}% 26
-\BOOKMARK [1][-]{section.7.2}{7.2 Caso general}{chapter.7}% 27
-\BOOKMARK [0][]{chapter.8}{8 Convergencia CTP }{part.3}% 28
-\BOOKMARK [1][-]{section.8.1}{8.1 Caso d\351bilmente convexo}{chapter.8}% 29
-\BOOKMARK [1][-]{section.8.2}{8.2 Caso no convexo}{chapter.8}% 30
-\BOOKMARK [2][-]{subsection.8.2.1}{8.2.1 Acotaci\363n global del algoritmo}{section.8.2}% 31
-\BOOKMARK [2][-]{subsection.8.2.2}{8.2.2 Convergencia del algoritmo}{section.8.2}% 32
-\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 33
-\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 34
-\BOOKMARK [0][]{section*.1}{ new name}{part.4}% 35
+\BOOKMARK [0][]{chapter.6}{6 Resultados negativos}{part.2}% 23
+\BOOKMARK [1][-]{section.6.1}{6.1 Ejemplos patol\363gicos:}{chapter.6}% 24
+\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 25
+\BOOKMARK [0][]{chapter.7}{7 Contexto}{part.3}% 26
+\BOOKMARK [0][]{chapter.8}{8 Convergencia en L1}{part.3}% 27
+\BOOKMARK [1][-]{section.8.1}{8.1 Caso Fuertemente Convexo}{chapter.8}% 28
+\BOOKMARK [1][-]{section.8.2}{8.2 Caso general}{chapter.8}% 29
+\BOOKMARK [0][]{chapter.9}{9 Convergencia CTP }{part.3}% 30
+\BOOKMARK [1][-]{section.9.1}{9.1 Caso d\351bilmente convexo}{chapter.9}% 31
+\BOOKMARK [1][-]{section.9.2}{9.2 Caso no convexo}{chapter.9}% 32
+\BOOKMARK [2][-]{subsection.9.2.1}{9.2.1 Acotaci\363n global del algoritmo}{section.9.2}% 33
+\BOOKMARK [2][-]{subsection.9.2.2}{9.2.2 Convergencia del algoritmo}{section.9.2}% 34
+\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 35
+\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 36
+\BOOKMARK [1][-]{section.Alph1.1}{A.1 Proposiciones enunciadas}{appendix.Alph1}% 37
+\BOOKMARK [1][-]{section.Alph1.2}{A.2 Demostraciones}{appendix.Alph1}% 38
+\BOOKMARK [0][]{section*.1}{ new name}{part.4}% 39

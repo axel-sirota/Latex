@@ -5,6 +5,55 @@
 %\markboth{\spacedlowsmallcaps{Appendix}}{\spacedlowsmallcaps{Appendix}}
 \chapter{Ap\'endice}\label{ch: apendice}
 
+\section{Proposiciones enunciadas}
+
+\begin{theorem}
+	\label{theorem: splines 1}
+	Dados $y_0 < y_1$, valores $f(y_0), f(y_1)$ y sus derivadas $f'(y_0), f'(y_1)$ con $f'(y_0)<0$ el \textit{polinomio c\'ubico interpolante de Hermite} se define por:
+	
+	\begin{equation}
+	p(y) = c_0 + c_1 \delta_y + c_2 \delta_y^2 + c_3 \delta_y^3
+	\end{equation}
+	
+	Donde:
+	
+	\begin{equation*}
+		\begin{array}{rcl}
+		y & \in & [y_0, y_1] \\
+		c_0 & = & f(y_0) \\
+		c_1 & = & f'(y_0) \\
+		c_2 & = & \dfrac{3S - f'(y_0) - 2f'(y_0)}{y_1 - y_0} \\
+		c_3 & = & - \dfrac{2S - f'(y_1) - f'(y_0)}{\left(y_1 - y_0\right)^2} \\
+		\delta_y & = & y - y_0 \\
+		S & = & \dfrac{f(y_1) - f(y_0)}{y_1 - y_0}
+		\end{array}
+	\end{equation*}
+	
+	Y $p(y)$ satisface $p(y_0) = f(y_0), \ p(y_1) = f(y_1), \ p'(y_0) = f'(y_0)$ y $p'(y_1)=f'(y_1)$; adem\'as si $f(y_1) < f(y_0) < 0$ y:
+	
+	\begin{equation*}
+		f'(y_1) \geq \dfrac{3 \left(f(y_1) - f(y_0)\right)}{y_1 - y_0}
+	\end{equation*}
+	
+	Entonces para $y \in [y_0, y_1]$ vale que $p(y) \in \left[f(y_1), f(y_0)\right]$
+	
+\end{theorem}
+
+\begin{proof}
+	Ver \cite{dougherty:1989}
+\end{proof}
+
+\begin{theorem}
+	\label{theorem: Extension de Whitney mejorado}
+	Sea $E \subset \R^d$ y dotemos a $C^m(E)$ de la norma $\norm{f}_{C^m} = \sup\sett{\norm{\partial^{\alpha}f\vert_E }_{\infty} \tq \abs{\alpha} < m}$, si $E$ es cerrado en $\R^d$ entonces existe $T \in L\left(C^m(E), C^m\left(\R^d \right) \right)$ tal que $T(f) \vert_E = f$ y $T(f) \in C^{\infty}(E^c)$. Es m\'as, $\norm{T} \leq C(m) d^{\frac{5m}{2}}$.
+\end{theorem}
+
+\begin{proof}
+	Ver \cite{cheng:2015}
+\end{proof}
+
+\section{Demostraciones}
+
 \begin{proof}{[De \ref{prop: equivalencias convexidad fuerte}]}
 	\color{Red} TODO
 \end{proof}
@@ -43,3 +92,4 @@
 	Luego como $S_{k+1}^- \leq S_k^-$ conclu\'imos que $S_{k}^- \searrow S_{\infty}^-$. Por lo tanto como $S_k^+, \ S_k^-$ convergen entonces $u_k = u_0 + S_k^+ + S_k^- $ converge. \qed
 	
 \end{proof}
+

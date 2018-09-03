@@ -1,0 +1,134 @@
+\chapter{Resultados negativos}\label{ch:resultadosNegativos}
+
+Ya vimos de \ref{Dg converge a minimos}, que el descenso de gradiente, con cualquier inicialización aleatoria razonable, siempre escapará de los puntos de silla estrictos \textit{eventualmente}, pero sin ninguna garantía sobre el número de pasos requeridos. Esto motiva a la siguiente
+pregunta:
+
+\textbf{¿El descenso de gradiente inicializado aleatoriamente generalmente escapa de los puntos de silla en tiempo polinomial?}
+
+\section{Ejemplos \textit{patol\'ogicos}:}
+
+\begin{example}[Inicializaci\'on uniforme en una banda exponencialmente chica]
+	Consideremos $f \in C^2(\R^2)$ con un punto silla estricto en $(0,0)$. Supongamos que a orden chico en $U = [-1,1]^2$ un entorno del punto silla $f$ es localmente de la forma $f(x_1, x_2) = x_1^2 - x_2^2$, luego si utilizamos el algoritmo \ref{algo: GD} con $\alpha_k = \alpha = \frac{1}{4}$ nos queda:
+	
+	\begin{equation*}
+		\left(x_1^{k+1}, x^{k+1}_2\right) = \left(x^k_1, x^k_2\right)- \frac{1}{4} \left(2x^k_1, -2x^k_2\right) = \left(\frac{x^k_1}{2}, \frac{3 x^k_2}{2}\right)
+	\end{equation*}
+	
+	Luego si tomamos $\epsilon >0$ y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = [-1,1] \times \left[- \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}, \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}\right]$ entonces el algoritmo \ref{algo: GD} necesita $k \geq e^{\frac{1}{\epsilon}}$ pasos para que $w_k \not \in U$. Conclu\'imos que el algoritmo es exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
+	
+\end{example}
+
+\begin{example}[Inicializaci\'on exponencialmente lejana]
+	Consideremos nuevamente $f \in C^2(\R^2)$ dada por:
+	
+	\begin{equation*}
+		f(x_1, x_2) = \left\lbrace \begin{array}{cc}
+		x_1^2 - x_2^2 & \text{ si } x_1 \in (-1,1) \\
+		-4x_1 + x_2^2 & \text{ si } x_1 < -2 \\
+		h(x_1,x_2) & \text{ sino }
+		\end{array}\right.
+	\end{equation*}
+	
+	Con $h$ una funci\'on suave tal que $f \in C^2$ y $x_2$ no crezca demasiado en el intervalo donde es $h$ (Una forma de definir esto es con splines c\'ubicos).
+	
+	Luego si para el algoritmo \ref{algo: GD} tomamos $\alpha_k = \alpha = \frac{1}{4}$ tendr\'iamos la siguiente din\'amica:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	\left(x_1^{k+1}, x^{k+1}_2\right) & = & \left\lbrace\begin{array}{cc}
+	\left(x^k_1, x^k_2\right)- \frac{1}{4} \left(2x^k_1, -2x^k_2\right) & \text{ si } x_1 \in (-1,1) \\
+	\left(x^k_1, x^k_2\right)- \frac{1}{4} \left(-4, 2x^k_2\right) & \text{ si } x_1 < -2 \\
+	\end{array}\right. \\
+	& = & \left\lbrace\begin{array}{cc}
+	\left(\frac{x^k_1}{2}, \frac{3 x^k_2}{2}\right) & \text{ si } x_1 \in (-1,1) \\
+	\left(x^k_1 + 1, \frac{x^k_2}{2}\right) & \text{ si } x_1 < -2 \\
+	\end{array}\right.
+	\end{array}
+	\end{equation*}
+	
+	Luego si tomamos $R >0$ grande y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = \left[ -R-1, -R+1 \right]\times [-1,1]$ entonces notando $t$ como la primera vez que $x_1 > -1$ tenemos que $t \approx R$, con lo que $x_2^t = x_2^0 \left(\frac{1}{2}\right)^R$. Por ende, el algoritmo nuevamente  necesita $R \approx e^{\frac{1}{\epsilon}}$ iteraciones para poder salir de $U = [-1,1]^2$; conclu\'imos que el algoritmo es exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
+	
+\end{example}
+
+\marginpar{Notacion $\Omega$}
+
+\begin{theorem}[Convergencia exponencial, Inicializaci\'on uniforme en el cubo]
+	Consideremos el algoritmo \ref{algo: GD} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $f : \R^d \mapsto \R$ $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
+\end{theorem}
+
+Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de la demostraci\'on:
+
+\begin{remark}[Escapar de dos puntos silla consecutivos]
+	Sean $L > \gamma > 0$ y $f \in [0,3] \times [0,3]$ dada por:
+	
+	\begin{equation}
+		f(x_1, x_2) = \left\lbrace \begin{array}{cc}
+		- \gamma x_1^2 + Lx_2^2 & \text{ si } (x_1,x_2) \in [0,1] \times [0,1] \\
+		L \left(x_1 - 2\right)^2 - \gamma x_2^2 & \text{ si } (x_1,x_2) \in [1,3] \times [0,1] \\
+		L \left(x_1 - 2\right)^2 + L \left(x_2 - 2\right)^2 & \text{ si } (x_1,x_2) \in [1,3] \times [1,3] \\
+		\end{array} \right.
+	\end{equation}
+	
+	Notemos que $f$ tiene dos puntos silla estrictos en $(0,0)$ y $(2,0)$, mientras que tiene un \'optimo en $(2,2)$. Sean $U = [0,1]^2$, $V= [1,3] \times [0,1]$ y $W = [1,3]^2$ entornos respectivos de los tres puntos cr\'iticos, supongamos que $w_0 = \left(x^0_1, x^0_2\right) \in U$ y definamos:
+	
+	\begin{subequations}
+		\begin{equation*}
+			k_1 = \inf\limits_{x^k_1 \geq 1}{k} = \min\limits_{x^k_1 \geq 1}{k}
+		\end{equation*}
+		\begin{equation*}
+		k_2 = \inf\limits_{x^k_2 \geq 1}{k} = \min\limits_{x^k_2 \geq 1}{k}
+		\end{equation*}
+	\end{subequations}
+	
+	Notemos que como la direcci\'on de escape en $(0,0)$ es por $x_1$ y \textit{luego} por $x_2$ (por el cambio de comportamiento de $f$) podemos concluir que $k_1,k_2$ estan bien definidos y que $k_2 \geq k_1 \geq 0$; la observaci\'on clave va a ser que $k_2 = Ck_1$ con $C>1$, es decir que el tiempo en pasar el siguiente punto silla es exponencialmente mayor que los anteriores. En pos de esto, veamos como va a ser la iteraci\'on del algoritmo \ref{algo: GD}:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	\left(x_1^{k+1}, x^{k+1}_2\right) & = & \left\lbrace\begin{array}{cc}
+	\left(x^k_1, x^k_2\right)- \alpha\left(-2 \gamma x^k_1, 2Lx^k_2\right) & \text{ si } x_1 \leq 1\\
+	\left(x^k_1, x^k_2\right)- \alpha\left(2L \left(x_1^k -2\right), -2 \gamma x^k_2\right) & \text{ si } x_1 \geq 1 \ , \ x_2 \leq 1 \\
+	\left(x^k_1, x^k_2\right)- \alpha\left(2L \left(x_1^k -2\right), 2L \left(x_2^k -2\right)\right) & \text{ si } x_1 \geq 1 \ , \ x_2 \geq 1
+	\end{array}\right. \\
+	&&\\
+	& = &\left\lbrace\begin{array}{cc}
+	\left(\left(1 + 2\alpha \gamma \right)x^k_1, \left(1 - \alpha 2L\right)x^k_2\right) & \text{ si } x_1 \leq 1\\
+	\left(\left(1 - 2L \alpha \right)x^k_1 + 4L \alpha, \left(1 + 2 \alpha \gamma \right)x^k_2\right) & \text{ si } x_1 \geq 1 \ , \ x_2 \leq 1 \\
+	\left(\left(1 - 2L \alpha \right)x^k_1 + 4L \alpha, \left(1 - 2L \alpha \right)x^k_2 + 4L \alpha\right)  & \text{ si } x_1 \geq 1 \ , \ x_2 \geq 1
+	\end{array}\right.
+	\end{array}
+	\end{equation*}
+	
+	Luego evaluando en $k_1$ y $k_2$:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	x^{k_1}_1 & = & \left(1 + 2 \alpha \gamma\right)^{k_1} x^0_1 \\
+	x^{k_1}_2 & = & \left(1 - 2 \alpha L\right)^{k_1} x^0_1 \\
+	&&\\
+	x^{k_2}_1 & = & \left(1 - 2L\alpha\right)^{k_2 - k_1}\left(1 + 2 \alpha \gamma\right)^{k_1} x^0_1 + K\geq 1 \quad K \text{ constante}\\
+	x^{k_2}_2 & = & \left(1 + 2 \alpha \gamma\right)^{k_2-k_1}\left(1 - 2 \alpha L\right)^{k_1} x^0_2\geq 1 \\
+	\end{array}
+	\end{equation*}
+	
+	Conclu\'imos que:
+	
+	\begin{equation}
+		k_2 \geq \dfrac{2 \alpha \left(L + \gamma\right)k_1 - \log\left(x_2^0\right)}{2 \alpha \gamma} \geq \dfrac{L + \gamma}{\gamma} k_1 
+	\end{equation}
+	
+	Esta $f$ que presentamos tiene varios problemas:
+	
+	\begin{enumerate}
+		\item $f$ no es continua, y mucho menos $C^2$
+		\item $f$ no podemos asegurar que sea $l-$Lipshitz o $\mu-$Lipshitz en el hessiano
+		\item Los puntos cr\'iticos estan en el borde del dominio, lo que no es ideal
+		\item $f$ no est\'a definida en todo $\R^d$
+		\item Estrictamente $f$ es a\'un resuelto en tiempo polinomial
+	\end{enumerate}
+	
+	La clave va a ser usar splines para resolver los primeros puntos, espejar $f$ para hacer los puntos extremales interiores, asignar $d$ puntos cr\'iticos similares para generar el tiempo exponencial en $d$ y extender esa funci\'on $\tilde{f}$ a $\R^d$ con el Teorema de extensi\'on de Whitney. Aunque la demostraci\'on es larga y tediosa, la idea clave es la vista aqu\'i.
+\end{remark}
+
+\begin{proof}
+	content...
+\end{proof}
