@@ -17,6 +17,28 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
+  \entry{cheng:2015}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AC}{%
+         family={Alan},
+         familyi={A\bibinitperiod},
+         given={Cheng},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {arXiv preprint arXiv:1508.01779}%
+    }
+    \strng{namehash}{AC1}
+    \strng{fullhash}{AC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{The Whitney extension theorem in high dimensions}
+    \field{year}{2015}
+  \endentry
+
   \entry{knuth:1974}{article}{}
     \name{author}{1}{}{%
       {{hash=KDE}{%
