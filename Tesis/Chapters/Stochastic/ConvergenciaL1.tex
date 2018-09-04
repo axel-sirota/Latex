@@ -1,25 +1,232 @@
 \chapter{Convergencia en L1}\label{ch:convergenciaL1}
 
-\section{Caso Fuertemente Convexo}
-Consideremos primero los casos de convexidad donde sabemos que el m\'inimo existe y es \'unico, por lo tanto asumamos por ahora:
+\epigraph{"The Axiom of Choice is obviously true, the well-ordering principle obviously false, and who can tell about Zorn's lemma?"}{Jerry Bona}
 
-\begin{hyp}[Convexidad fuerte]
-	\label{hyp: Convexidad fuerte}
-	Supongamos que la funci\'on objetivo $F : \R^d \mapsto \R$ cumple que existe $c >0$ tal que para todos $z,w \in \R^d$:
+\section{Contexto}
+
+En esta parte vamos a analizar la convergencia en L1 de algoritmos estoc\'asticos para optimizar una $F: \R^d \mapsto \R$ que puede representar tanto el costo esperado como el emp\'irico. Recordemos que $F$ lo asumimos parametrizado por$w \in \R^d$ e imaginamos a los datos $(x,y)$ como extra\'idos de una variable aleatoria $\upxi$ cuya distribuci\'on desconocida es $P$, luego $F$ se representa como:
+
+\begin{equation}
+F(w) = \left\lbrace
+\begin{aligned}
+R(w) & = & \expectation{f(w, \upxi)} \\
+& \text{o} & \\
+R_n(w) & = & \frac{1}{n} \sum\limits_{i=1}^{n} {f_i(w)}
+\end{aligned}
+\right.
+\end{equation}
+
+Sea el algoritmo estoc\'astico \ref{algo: DE}
+
+\RestyleAlgo{boxruled}
+\LinesNumbered
+\begin{algorithm}[H]
+	\caption{Descenso Estocastico (DE) \label{algo: DE}}
+	\textbf{Input:} $w_1 \in \R^d$ el inicio de la iteraci\'on, $\sett{\upxi_{k}} $ iid \\
+	\For{$k \in \N$}{
+		Generar una muestra de la variable aleatoria $\upxi_k$ \\
+		Calcular el vector estoc\'astico $g(w_k, \upxi_k)$ \\
+		Elegir $\alpha_k >0$ \\
+		$w_{k+1} \leftarrow w_k - \alpha_kg(w_k, \upxi_k)$
+	}
+\end{algorithm}
+
+Notemos que representa en forma general los algoritmos estoc\'asticos mas comunes. En particular, una muestra de $\upxi_k$ puede ser un \'unico par $(x_i, y_i)$ como en el \textit{Descenso por gradiente estoc\'astico} o una muestra $S_n = \sett{(x_i, y_i)}_{i \leq n}$ como en \textit{Mini-Batch Descenso por gradiente estoc\'astico} ; a su vez, $g(w_k, \upxi_k)$ puede ser varias estimaciones del gradiente como por ejemplo:
+
+\begin{equation}
+g(w_k, \upxi_k) = \left\lbrace
+\begin{aligned}
+\nabla f(w_k, \upxi_k) \\
+\frac{1}{n_k} \sum\limits_{i=1}^{n_k} {\nabla f (w_k, \upxi_{k,i})}\\
+H_k\frac{1}{n_k} \sum\limits_{i=1}^{n_k} {\nabla f (w_k, \upxi_{k,i})}
+\end{aligned}
+\right.
+\end{equation}
+
+Donde $H_k$ es una matriz sim\'etrica definida positiva como en los m\'etodos de Newton-Gauss. 
+
+\smallskip
+
+Para iniciar el analisis de la convergencia, lo m\'inimo que necesitamos es que el gradiente se mantenga controlado, por lo tanto recordemos la condici\'on \ref{def: L Lipshitz}:
+
+\begin{hyp} [$F$ es $l$-Lipshitz]
+	\label{hyp: F es L lipshitz}
+	La funci\'on a optimizar $F \in C^1(\R^d)$ y existe $L >0$ tal que para todos $w,z \in \R^d$:
+	\begin{equation*}
+	\norm{\nabla F(w) - \nabla F(z)}_2 \leq L \norm{w-z}_2
+	\end{equation*} 
+\end{hyp}
+
+\begin{remark}
+	\label{obs: F es l lipshitz}
+	Sea $F$ bajo \ref{hyp: F es L lipshitz}, luego para todos $w,z\in \R^d$ vale:
+	
+	\begin{equation*}
+	F(w) \leq F(z) + \nabla F(z)^T(w-z) + \frac{1}{2}L \norm{w-z}^2_2
+	\end{equation*}
+	
+\end{remark}
+
+\begin{proof}
+	Ver \ref{prop: Implicancias L lipshitz}
+\end{proof}
+
+\section{Algunos lemas fundamentales}
+
+Con el contexto claro, veamos algunos lemas que van a ser clave en la demostraci\'on de la convergencia L1 del algoritmo \ref{algo: DE}.
+
+Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_k\right]$ la esperanza condicional bajo la distribuci\'on de $\upxi_k$ dado $w_k$.
+
+\begin{lemma}
+	\label{lemma: Fundamental estocasticos 1}
+	Bajo \ref{hyp: F es L lipshitz} las iteraciones de \ref{algo: DE} satisfacen que para todo $k \in N$:
 	
 	\begin{equation}
-		F(z) \geq F(w) + \nabla F(w)^T (z-w) + \frac{1}{2} c \norm{z-w}_2^2
+	\expectationsub{\upxi_{k}}{F(w_{k+1})} - F(w_k) \leq - \alpha_k \nabla F(w_k) ^T \expectationsub{\upxi_{k}}{g(w_k, \upxi_{k})} + \frac{1}{2} \alpha_k^2 \expectationsub{\upxi_{k}}{\norm{g(w_k, \upxi_{k})}^2_2}
 	\end{equation}
+	
+\end{lemma}
+
+\begin{proof}
+	Notemos que por \ref{hyp: F es L lipshitz} vale que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	F(w_{k+1}) - F(w_k) & \leq &  \nabla F(w_k)^T(w{k+1}-w_k) + \frac{1}{2}L \norm{w{k+1}-w_k}^2_2 \\
+	& \leq & - \alpha_k \nabla F(w_k)^Tg(w_k, \upxi_{k}) + \frac{1}{2} \alpha_k^2 L \norm{g(w_k, \upxi_{k})}^2_2 
+	\end{aligned}
+	\end{equation*}
+	
+	\marginpar{Aca usamos propiedades basicas de la esperanza condicional}
+	
+	Luego tomando esperanza de ambos lados y recordando que si $X,Y$ son independientes entonces $\expectationsub{X,Y}{Y \vert X} = \expectation{Y}$:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectationchik{F(w_{k+1}) - F(w_k)} & \leq & - \alpha_k \expectationchik{\nabla F(w_k)^Tg(w_k, \upxi_{k})} + \frac{1}{2} \alpha_k^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}^2_2 } \\
+	\expectationchik{F(w_{k+1})} - F(w_k) & \leq & - \alpha_k \nabla F(w_k)^T \expectationchik{g(w_k, \upxi_{k})}+ \frac{1}{2} \alpha_k^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}^2_2 } 
+	\end{aligned}
+	\end{equation*}
+	\qed
+	
+\end{proof}
+
+\begin{remark}
+	Notemos que si $g(w_k, \upxi_{k})$ es un estimador insesgado de $\nabla F (w_k)$ entonces de \ref{lemma: Fundamental estocasticos 1}:
+	
+	\begin{equation}
+	\expectationsub{\upxi_{k}}{F(w_{k+1})} - F(w_k) \leq - \alpha_k \norm{\nabla F(w_k)}^2 + \frac{1}{2} \alpha_k^2 \expectationsub{\upxi_{k}}{\norm{g(w_k, \upxi_{k})}^2_2}
+	\end{equation}
+	
+\end{remark}
+
+Luego entonces para controlar la convergencia de \ref{algo: DE} tambi\'en hay que poner suposiciones sobre el segundo momento de $g$, luego si definimos:
+
+
+\begin{equation}
+\label{def: Definicion varianza condicional}
+\variancechik{g(w_k, \upxi_{k})} := \expectationchik{\norm{g(w_k, \upxi_{k})}_2^2} - \norm{\expectationchik{g(w_k, \upxi_{k})}}_2^2
+\end{equation}
+
+Asumamos:
+
+\begin{hyp}[Acotaciones al primer y segundo momento de $g$]
+	\label{hyp: Acotaciones momentos de g}
+	Supongamos que dada $F$ funci\'on objetivo y $g$ la estimaci\'on del gradiente en \ref{algo: DE} vale:
+	
+	\begin{enumerate}
+		\item Existe $U \subset \R^d$ tal que $\sett{w_k} \subset U$ y que existe $F_{inf}$ tal que $F\vert_U \geq F_{inf}$
+		\item Existen $\mu_G \geq \mu \geq 0$ tal que para todo $k \in N$ valen:
+		
+		\begin{subequations}
+			\begin{equation}
+			\label{eq: Hipotesis 2 subitem 1}
+			\nabla F(w_k)^T \expectationchik{g(w_k, \upxi_{k})} \geq \mu \norm{\nabla F(w_k)}_2^2
+			\end{equation}
+			Y
+			\begin{equation}
+			\label{eq: Hipotesis 2 subitem 2}
+			\norm{\expectationchik{g(w_k, \upxi_{k})}}_2 \leq \mu_G \norm{\nabla F(w_k)}_2
+			\end{equation}
+		\end{subequations}
+		\item 	Existen $M, M_V \geq 0$ tal que para todo $k \in \N$:
+		\begin{equation}
+		\label{eq: Hipotesis 2 Segundo momento acotado}
+		\variancechik{g(w_k, \upxi_{k})} \leq M + M_V \norm{\nabla F (w_k)}_2^2
+		\end{equation}
+		
+		
+	\end{enumerate}
+	
+\end{hyp}
+
+\begin{remark}
+	Notemos que si $g$ es un estimador insesgado de $\nabla F$ entonces \ref{eq: Hipotesis 2 subitem 1} y \ref{eq: Hipotesis 2 subitem 2} valen con $\mu_G = \mu = 1$. Dejamos de ejercicio al lector notar que si $H_k$ es sim\'etrica positiva definida tal que $H_k$ es independiente de $\upxi_{k}$ entonces tanto \ref{eq: Hipotesis 2 subitem 1} como \ref{eq: Hipotesis 2 subitem 2} valen.
+\end{remark}
+
+\begin{remark}
+	\label{Obs: Acotaciones momentos de g}
+	Bajo \ref{hyp: Acotaciones momentos de g} y por \ref{def: Definicion varianza condicional} tenemos que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectationchik{\norm{g(w_k, \upxi_{k})}_2^2} & \leq & \norm{\expectationchik{g(w_k, \upxi_{k})}}_2^2 + M + M_V\norm{\nabla F(w_k)}_2^2 \\
+	& \leq & M + M_G\norm{\nabla F(w_k)}_2^2 \\
+	\end{aligned}
+	\end{equation*}
+	$M_G:= M_V + \mu_G^2 \geq \mu^2 \geq 0$
+\end{remark}
+
+\begin{lemma}
+	\label{lemma: Fundamental estocasticos 2}
+	Bajo \ref{hyp: Acotaciones momentos de g} y \ref{hyp: F es L lipshitz} las iteraciones de \ref{algo: DE} satisfacen para todo $k \in \N$:
+	
+	\begin{subequations}
+		\begin{equation}
+		\label{eq: Fundamental estocasticos 2 ecuacion 1}
+		\expectationchik{F(w_{k+1})} - F(w_k) \leq -\mu \alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}_2^2}
+		\end{equation}
+		\begin{equation}
+		\label{eq: Fundamental estocasticos 2 ecuacion 2}
+		\expectationchik{F(w_{k+1})} - F(w_k) \leq - \left( \mu - \frac{1}{2} \alpha_k L M_G \right)\alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L M
+		\end{equation}
+	\end{subequations}
+	
+\end{lemma}
+
+\begin{proof}
+	Por \ref{lemma: Fundamental estocasticos 1} y \ref{eq: Hipotesis 2 subitem 1} vale que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectationsub{\upxi_{k}}{F(w_{k+1})} - F(w_k) & \leq & - \alpha_k \nabla F(w_k) ^T \expectationsub{\upxi_{k}}{g(w_k, \upxi_{k})} + \frac{1}{2}L \alpha_k^2 \expectationsub{\upxi_{k}}{\norm{g(w_k, \upxi_{k})}^2_2} \\
+	\expectationchik{F(w_{k+1})} - F(w_k) & \leq & -\mu \alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}_2^2}
+	\end{aligned}
+	\end{equation*}
+	
+	Que es \ref{eq: Fundamental estocasticos 2 ecuacion 1}; luego por \ref{Obs: Acotaciones momentos de g} obtenemos \ref{eq: Fundamental estocasticos 2 ecuacion 2}. \qed	
+\end{proof}
+
+\begin{corollary}
+	\label{coro: DE es una cadena de markov}
+	Bajo \ref{hyp: Acotaciones momentos de g} y \ref{hyp: F es L lipshitz} las iteraciones de \ref{algo: DE} satisfacen para todo $k \in \N$ que $\sett{w_k}$ es una cadena de Markov de primer orden.
+\end{corollary}
+
+\section{Caso Fuertemente Convexo}
+Consideremos primero los casos de convexidad donde sabemos que el m\'inimo existe y es \'unico, por lo tanto asumamos por ahora \ref{def: Fuertemente convexa}:
+
+\begin{hyp}[Convexidad fuerte]
+	Supongamos que la funci\'on objetivo $F : \R^d \mapsto \R$ es fuertemente convexa, es decir que cumple \ref{def: Fuertemente convexa}.
 	
 	Luego existe un \'unico $w_{*} \in \R^d$ tal que $F_{inf} = F(w_*) \leq F(w)$ para todo $w \in \R^d$
 	
 \end{hyp}
 
-Notemos que de \ref{hyp: Convexidad fuerte} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
+Recordemos que de \ref{def: Fuertemente convexa} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
 
-\begin{lemma}
+\begin{lemma}[Fuertemente convexa es PL-convexa]
 	\label{eq: Desigualdad convexidad fuerte}
-	Supongamos que $F$ cumple \ref{hyp: Convexidad fuerte}, luego para todo $w \in \R^d$ vale que:
+	Supongamos que $F$ cumple \ref{def: Fuertemente convexa}, luego para todo $w \in \R^d$ vale que:
 	
 	\begin{equation}
 		2c\left(F(w) - F_{inf}\right) \leq \norm{\nabla F(w)}_2^2
@@ -53,7 +260,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 
 \begin{theorem}[Objetivo fuertemente convexo, Incremento constante]
 	\label{theorem: DE en fuertemente convexo y alfa fijo converge en l1}
-	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k = \alpha >0 $ constante tal que:
+	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{def: Fuertemente convexa}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k = \alpha >0 $ constante tal que:
 	
 	\begin{equation}
 	\label{eq: Condicion alfa Conv L1 fuertemente convexo}
@@ -112,7 +319,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 \end{remark}
 
 \begin{remark}
-	Notemos adem\'as que si $M=0$ (o sea el algortimo \ref{algo: DE} no tiene ruido) entonces la convergencia es lineal, recuperando el resultado de \cite{nesterov:2004}.
+	Notemos adem\'as que si $M=0$ (o sea el algortimo \ref{algo: DE} no tiene ruido) entonces la convergencia es lineal, recuperando el resultado de \ref{theorem: convergencia lineal GD}.
 \end{remark}
 
 \begin{remark}
@@ -123,7 +330,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 
 \begin{theorem}[Objetivo fuertemente convexo, Incremento decreciente]
 	\label{theorem: DE en fuertemente convexo y alfa decreciente converge en l1}
-	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k$ cunmple:
+	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{def: Fuertemente convexa}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k$ cunmple:
 	
 	\begin{equation}
 	\label{eq: Condicion alfa Conv L1 fuertemente convexo decreciente}
@@ -169,7 +376,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 	
 	Probemos ahora el resultado por inducci\'on. Por la definici\'on de $\eta$ tenemos que $k = 1$ vale, luego si asumimos que vale el resultado para alg\'un $k \geq 1$ entonces:
 	
-		\marginpar{Porque vale k=1?}
+		\marginpar{\color{Red}Porque vale k=1?}
 	
 	\begin{equation*}
 	\begin{array}{lll}
@@ -185,7 +392,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 Notemos entonces que en el caso fuertemente convexo con incrementos fijos tenemos convergencia en un entorno del m\'inimo mientras que si reducimos los incrementos tenemos convergencia en L1, cabr\'ia preguntarse (inspirados en la observaci\'on del caso $\alpha$ fijo con $M=0$) si con el ruido existente pero controlado podemos mantener la convergencia en L1.
 
 \begin{theorem}[Objetivo Fuertemente Convexo, Reducci\'on del Ruido]
-	Supongamos que valen \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{hyp: Convexidad fuerte} pero reforcemos \ref{eq: Hipotesis 2 Segundo momento acotado} a la existencia de una constante $M \geq 0$ y $\xi \in (0,1)$ tal que para todo $k \in \N$:
+	Supongamos que valen \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{def: Fuertemente convexa} pero reforcemos \ref{eq: Hipotesis 2 Segundo momento acotado} a la existencia de una constante $M \geq 0$ y $\xi \in (0,1)$ tal que para todo $k \in \N$:
 	
 	\begin{equation}
 	\label{eq: Varianza acotada geometricamente}

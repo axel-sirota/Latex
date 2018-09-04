@@ -1,5 +1,7 @@
 \chapter{Convergencia CTP }\label{ch:convergenciaCTP}
 
+\epigraph{At a purely formal level, one could call probability theory the study of measure spaces with total measure one, but that would be like calling number theory the study of strings of digits which terminate.}{Terence Tao}
+
 Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay una distinci\'on entre el caso convexo y no convexo; donde en el caso convexo usualmente podemos asegurar convergencia a una cercan\'ia del m\'inimo mientras que en el no convexo solo asegurabamos la convergencia a un punto cr\'itico. Nuevamente en el estudio de la convergencia \textit{casi todo punto} vamos a separar en esos dos casos y va a volver a aparecer \ref{eq: Condicion robbins monro}. Por simpleza en los c\'alculos vamos a asumir en este cap\'itulo que $g$ es un estimador insesgado de $\nabla F(w_k)$.
 
 \section{Caso d\'ebilmente convexo}
@@ -279,7 +281,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 
 \subsection{Convergencia del algoritmo}
 
-\begin{theorem}[Convergencia a puntos extremales algoritmo estoc\'astico insesgado]
+\begin{theorem}[Convergencia a puntos extremales,  Caso insesgado]
 	Sea $F$ funci\'on de costo objetivo y $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen \ref{hyp: Condiciones caso no convexo convergencia ctp}, si $\sett{w_k}$ son las iteraciones del algoritmo \ref{algo: DE} entonces valen:
 	
 		\begin{subequations}

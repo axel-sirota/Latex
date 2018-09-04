@@ -5,7 +5,7 @@ pregunta:
 
 \textbf{¿El descenso de gradiente inicializado aleatoriamente generalmente escapa de los puntos de silla en tiempo polinomial?}
 
-\section{Ejemplos \textit{patol\'ogicos}:}
+\section{Ejemplos \textit{patol\'ogicos}}
 
 \begin{example}[Inicializaci\'on uniforme en una banda exponencialmente chica]
 	Consideremos $f \in C^2(\R^2)$ con un punto silla estricto en $(0,0)$. Supongamos que a orden chico en $U = [-1,1]^2$ un entorno del punto silla $f$ es localmente de la forma $f(x_1, x_2) = x_1^2 - x_2^2$, luego si utilizamos el algoritmo \ref{algo: GD} con $\alpha_k = \alpha = \frac{1}{4}$ nos queda:

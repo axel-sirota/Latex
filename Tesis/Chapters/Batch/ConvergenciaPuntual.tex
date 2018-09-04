@@ -1,22 +1,25 @@
 \chapter{Convergencia Puntual }\label{ch:convergenciaPuntual}
 
-Analizemos ahora la convergencia puntual de \ref{algo: GD}. 
+\epigraph{“The book of nature is written in the language of Mathematic”}{Galileo}
+
+Si existe un algoritmo que todo estudiante o practicante del Machine Learning conoce, es el descenso de gradiente cl\'asico (o \textit{Descenso de gradiente en batch}) [Ver algoritmo \ref{algo: GD}].
+Un buen inicio es analizar la convergencia puntual del descenso de gradiente y bajo que condiciones se da.
 
 \RestyleAlgo{boxruled}
 \LinesNumbered
 \begin{algorithm}[H]
 	\caption{Descenso de gradiente en batch \label{algo: GD}}
-	\textbf{Input:} $F \in C^1$, $\alpha_k >0$, $w_1 \in \mani$, $X = \sett{\upxi_j}_{j \leq N}$ \text{ muestra} \\
+	\textbf{Input:} $F \in C^1$, $\alpha_k >0$, $w_1 \in \R^d$, $X = \sett{\upxi_j}_{j \leq N}$ \text{ muestra} \\
 	\For{$k \in \N$}{
 		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(\upxi_j)$
 	}
 \end{algorithm}
 
-Asumamos adem\'as por esta secci\'on la siguiente condici\'on que llamaremos \textit{convexidad d\'ebil}:
+Asumamos por esta secci\'on la siguiente condici\'on, que llamaremos \textit{convexidad d\'ebil}:
 
 \begin{definition}
 	\label{def: Debilmente convexo}
-	Decimos que $F \in C^1$ es \textit{d\'ebilment convexo} si cumple las siguientes dos propiedades:
+	Decimos que $F \in C^1$ es \textit{d\'ebilmente convexo} si cumple las siguientes dos propiedades:
 	
 	\begin{itemize}
 		\item Existe un \'unico $w^*$ tal que $F_{inf} := F(w^*) \leq F(w)$ para todo $w \in \R^n$.
@@ -31,7 +34,7 @@ Asumamos adem\'as por esta secci\'on la siguiente condici\'on que llamaremos \te
 
 \section{Intuici\'on}\label{section: Intuicion convergencia puntual batch}
 
-Ganemos intuici\'on acerca del proceso como probar la convergencia de \ref{algo: GD} en el caso continuo. En el caso continuo, tenemos que demostrar que la soluci\'on $w(t)$ de la ecuaci\'on diferencial \ref{eq: Ecuacion diferencial de descenso de gradiente} tiene l\'imite $w^*$ y adem\'as que $w^*$ es m\'inimo de $F$.
+Ganemos intuici\'on acerca del proceso como probar la convergencia del algoritmo \ref{algo: GD} en el caso continuo. En el caso continuo, tenemos que demostrar que la soluci\'on $w(t)$ de la ecuaci\'on diferencial \ref{eq: Ecuacion diferencial de descenso de gradiente} tiene l\'imite $w^*$ y adem\'as que $w^*$ es m\'inimo de $F$.
 
 \begin{equation}
 \label{eq: Ecuacion diferencial de descenso de gradiente}
@@ -48,9 +51,9 @@ Para eso, vamos a dividir la demostraci\'on en tres pasos:
 	\item Vamos a probar que converge a 0.
 \end{enumerate}
 
-\begin{proposition}[Objetivo d\'ebilmente convexo, Incrementos constantes, Versi\'on continua]
+\begin{proposition}[Objetivo d\'ebilmente convexo, Versi\'on continua]
 	\label{Objetivo debilmente convexo, GD continue converge}
-	Sea $F \in C^1$ que cumple \ref{def: Debilmente convexo} y supongamos que \ref{algo: GD} cumple $\alpha_k=\alpha>0$ para $w(t)$ continua. Luego si notamos al m\'inimo de $F$ como $w^*$, vale:
+	Sea $F \in C^1$ que cumple \ref{def: Debilmente convexo} y supongamos que el algoritmo \ref{algo: GD} cumple $\alpha_k=\alpha>0$ para $w(t)$ continua. Luego si notamos al m\'inimo de $F$ como $w^*$, vale:
 	
 	\begin{equation*}
 		\lim\limits_{t \rightarrow \infty} w(t) =  w_*
@@ -90,7 +93,7 @@ Para eso, vamos a dividir la demostraci\'on en tres pasos:
 
 \section{Caso discreto}
 
-Ahora si analicemos la convergencia del algoritmo \ref{algo: GD} para el caso discreto. Para esto enunciamos un lema \'util cuya demostraci\'on referimos al lector al Ap\'endice:
+Ahora s\'i, analicemos la convergencia del algoritmo \ref{algo: GD} para el caso discreto. Para esto enunciamos un lema \'util cuya demostraci\'on referimos al lector al Ap\'endice:
 
 \begin{lemma}
 	\label{lemma: Convergencia de sucesiones positivas acotadas sumables}
@@ -124,7 +127,7 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 
 \begin{theorem}[Objetivo d\'ebilmente convexo, incrementos decrecientes]
 	\label{theorem: convergencia puntual batch, objetivo debilmente convexo, incrementos decrecientes}
-	Sea $F \in C^1$, asumamos \ref{def: Debilmente convexo} y que existen $A,B \geq 0$ tal que para todo $w \in \mani$ vale que:
+	Sea $F \in C^1$, asumamos \ref{def: Debilmente convexo} y que existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
 	
 	\begin{equation}
 	\label{eq: Condicion gradiente acotado, ctp, batch}
@@ -202,7 +205,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{definition}
 	\label{def: Fuertemente convexa}
-	Sea $f \in C^1$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si existe $\mu > 0$ tal que para todos $x,y \in \mani$ vale:
+	Sea $f \in C^1$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si existe $\mu > 0$ tal que para todos $x,y \in \R^d$ vale:
 	
 	\begin{equation}
 		f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2
@@ -213,10 +216,10 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 	\label{prop: equivalencias convexidad fuerte}
 	Sea $f \in C^1$ una funci\'on $\mu-$convexa, entonces son equivalentes:
 	\begin{enumerate}
-		\item $f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \mani$
-		\item $g(x) = f(x) - \frac{\mu}{2} \norm{x}_2^2$ es convexa para todo $x \in \mani$
-		\item $\left(\nabla f(y) - \nabla f(x)\right)^T \left(y-x\right) \leq \mu \norm{y-x}_2^2$ para todos $x,y \in \mani$
-		\item $f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y) - \dfrac{\alpha \left(1 - \alpha \right) \mu}{2}\norm{y-x}_2^2$ para  todos $x,y \in \mani$, $\alpha \in [0,1]$
+		\item $f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \R^d$
+		\item $g(x) = f(x) - \frac{\mu}{2} \norm{x}_2^2$ es convexa para todo $x \in \R^d$
+		\item $\left(\nabla f(y) - \nabla f(x)\right)^T \left(y-x\right) \leq \mu \norm{y-x}_2^2$ para todos $x,y \in \R^d$
+		\item $f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y) - \dfrac{\alpha \left(1 - \alpha \right) \mu}{2}\norm{y-x}_2^2$ para  todos $x,y \in \R^d$, $\alpha \in [0,1]$
 	\end{enumerate}
 \end{proposition}
 
@@ -226,7 +229,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{definition}
 	\label{def: Condicion PL}
-	Decimos que una funci\'on $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \mani$ vale:
+	Decimos que una funci\'on $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \R^d$ vale:
 	\begin{equation}
 	\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
 	\end{equation}
@@ -254,7 +257,7 @@ De esto podemos deducir un resultado, que aunque no lo usemos \textit{per-se} en
 \end{corollary}
 
 \begin{proof}
-	Sean $x,y \in \mani$ y $\alpha \in [0,1]$, luego:
+	Sean $x,y \in \R^d$ y $\alpha \in [0,1]$, luego:
 	\begin{equation*}
 	\begin{array}{rcl}
 	h\left(\alpha x + (1-\alpha)y\right) & = & f\left(\alpha x + (1-\alpha)y\right)  + g\left(\alpha x + (1-\alpha)y\right)  \\
@@ -268,7 +271,7 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 
 \begin{definition}
 	\label{def: L Lipshitz}
-	Sea $f \in C^1$, decimos que es $L$\textit{-Lipshitz} si existe $L > 0$ tal que para todos $x,y \in \mani$ vale:
+	Sea $f \in C^1$, decimos que es $L$\textit{-Lipshitz} si existe $L > 0$ tal que para todos $x,y \in \R^d$ vale:
 	\begin{equation}
 	\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2
 	\end{equation}
@@ -303,7 +306,7 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 
 Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:1963}
 
-\begin{theorem}[Convergencia lineal \'optima para objetivos L-Lipshitz y PL-convexos]
+\begin{theorem}[Convergencia lineal , Objetivos L-Lipshitz y PL-convexos]
 	\label{theorem: convergencia lineal GD}
 	Sea $F \in C^1$ tal que existe $F_{inf}$ valor m\'inimo, $F$ cumple \ref{def: L Lipshitz} y \ref{def: Condicion PL}; entonces el algortimo \ref{algo: GD} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
 	\begin{equation}

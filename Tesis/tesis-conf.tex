@@ -39,7 +39,7 @@
 }{tesis}
 \usepackage{blindtext}
 \usepackage{etoolbox}
-\usepackage{algorithm2e}
+\usepackage[ruled,vlined,linesnumbered,resetcount,algochapter]{algorithm2e}
 \usepackage[bottom]{footmisc}
 \usepackage{amsfonts}
 \usepackage{xr}
@@ -48,6 +48,7 @@
 \usepackage{syntonly}
 \usepackage{mathrsfs}
 \usepackage{ntheorem}
+\usepackage{epigraph}
 \PassOptionsToPackage{all}{xy}       % math environments and more by the AMS
 	\usepackage{xy}
 \PassOptionsToPackage{at}{easylist}       % math environments and more by the AMS
@@ -58,8 +59,8 @@
 % ****************************************************************************************************
 % 2. Personal data and user ad-hoc commands
 % ****************************************************************************************************
-\newcommand{\myTitle}{M\'etodos de primer orden?\xspace}
-\newcommand{\mySubtitle}{An\'alisis de convergencia??\xspace}
+\newcommand{\myTitle}{M\'etodos de primer orden\xspace}
+\newcommand{\mySubtitle}{An\'alisis de convergencia y complejidad\xspace}
 \newcommand{\myDegree}{Tesis de Licenciatura\xspace}
 \newcommand{\myName}{Axel Sirota\xspace}
 \newcommand{\myDirector}{Director de Tesis: Dr. Pablo Amster\xspace}
@@ -128,6 +129,7 @@
 	\def \en{\end{enumerate}}
 \def\deck{{\rm Deck}}
 \def\Tau{{\rm T}}
+
 \newtheorem{theorem}{Teorema}
 \numberwithin{theorem}{section}
 \newtheorem{lemma}[theorem]{Lema}
@@ -142,10 +144,6 @@
 \numberwithin{theorem}{section}
 \newtheorem{definition}[theorem]{Definici\'on}
 \numberwithin{theorem}{section}
-\numberwithin{equation}{subsection} 
-\makeatletter
-\@addtoreset{equation}{section}
-\makeatother
 
 
 \newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
@@ -158,7 +156,6 @@
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 \newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
 		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-
 
 \newcommand{\qed}{\nobreak \ifvmode \relax \else
 	\ifdim\lastskip<1.5em \hskip-\lastskip
@@ -208,6 +205,8 @@
 \newcommand{\Ie}{I.\,e.}
 \newcommand{\eg}{e.\,g.}
 \newcommand{\Eg}{E.\,g.}
+
+
 % ****************************************************************************************************
 
 
@@ -403,7 +402,7 @@
 \usepackage{classicthesis}
 % ****************************************************************************************************
 
-
+\makeatletter \renewcommand{\theequation}{\thechapter.\arabic{equation}} \@addtoreset{equation}{chapter} \makeatother
 % ****************************************************************************************************
 % 8. Further adjustments (experimental)
 % ****************************************************************************************************

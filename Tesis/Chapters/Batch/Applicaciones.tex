@@ -1,17 +1,19 @@
-\chapter{Aplicaci\'ones}\label{ch: aplicaciones}
-\section{Gradient Descent}
+\chapter{Convergencia CTP a m\'inimos : Caso general}\label{ch: aplicaciones}
+\section{Descenso de Gradiente en Batch}
 
-Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que \dg tiene probabilidad cero de converger a puntos silla. Consideremos \dg con \textit{learning rate} $\alpha$:
+\epigraph{“The difference between mathematicians and physicists is that after physicists prove a big result they think it is fantastic but after mathematicians prove a big result they think it is trivial.”}{Richard Feynman}
+
+Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \textit{descenso de gradiente en batch} tiene probabilidad cero de converger a puntos silla. Consideremos el algoritmo \ref{algo: GD} con incrementos constantes $\alpha_k = \alpha$:
 
 \begin{equation}
 	\label{eq: GD}
 	x_{k+1} = g(x_k) \stackrel{\triangle}{=} x_k - \alpha \nabla f(x_k)
 \end{equation}
 
-\begin{remark}[Hip\'otesis 1]
-	\label{Hipotesis 1}
+\begin{hyp}
+	\label{hyp: Hessiano acotado}
 	Asumamos que $f \in \mathcal{C}^2$ y $\norm{\nabla^2 f(x)}_2 \le L$
-\end{remark}
+\end{hyp}
 
 \begin{proposition}
 	\label{prop: GD los puntos silla estrictos son fijos inestables}
@@ -27,7 +29,7 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que \dg ti
 
 \begin{proposition}
 	\label{prop: GD g es difeo local}
-	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces $\det \left(Dg (x)\right) \neq 0$.
+	Bajo \ref{hyp: Hessiano acotado} y $\alpha < \frac{1}{L}$ entonces $\det \left(Dg (x)\right) \neq 0$.
 \end{proposition}
 
 \begin{proof}
@@ -37,13 +39,13 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que \dg ti
 		\det \left(Dg(x)\right) = \Bigprod{i \in \sett{1, \dots, d}}{\parenthesis{1 - \alpha \lambda_i}}
 	\end{equation*}
 	
-	Luego por \ref{Hipotesis 1} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; conclu\'imos que $\det \parenthesis{Dg(x)} > 0$. \qed
+	Luego por \ref{hyp: Hessiano acotado} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; conclu\'imos que $\det \parenthesis{Dg(x)} > 0$. \qed
 	
 \end{proof}
 
 \begin{corollary}
 	\label{Dg converge a minimos}
-	Sea $g$ dada por \Dg en \ref{eq: GD}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu \left(W_g\right) = 0$.
+	Sea $g$ dada por el algoritmo \ref{algo: GD}, bajo \ref{hyp: Hessiano acotado} y $\alpha < \frac{1}{L}$ se tiene que $\mu \left(W_g\right) = 0$.
 \end{corollary}
 
 \begin{proof}
@@ -61,7 +63,7 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 
 \begin{proposition}
 	\label{prop: PP es difeo local y los puntos silla estrictos son fijos inestables}
-	Bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ entonces vale:
+	Bajo \ref{hyp: Hessiano acotado} y $\alpha < \frac{1}{L}$ entonces vale:
 	
 	\begin{enumerate}
 		\item $\det \parenthesis{Dg(x)} \neq 0$
@@ -73,11 +75,11 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 \begin{proof}
 	Veamos primero el siguiente lema:
 	
-	\marginpar{Probamos esto? Me parece un poco claro}
+	\marginpar{\color{Red}Probamos esto? Me parece un poco claro}
 	
 	\begin{lemma}
 		\label{lemma: PP es suave}
-		Bajo \ref{Hipotesis 1}, $\alpha < \frac{1}{L}$ y $x \in \mani$ entonces $f(z) + \frac{1}{2 \alpha} \norm{x- z}_2^2$ es estrictamente convexa, por lo que $g \in \mathcal{C}^1 \parenthesis{\mani}$
+		Bajo \ref{hyp: Hessiano acotado}, $\alpha < \frac{1}{L}$ y $x \in \mani$ entonces $f(z) + \frac{1}{2 \alpha} \norm{x- z}_2^2$ es estrictamente convexa, por lo que $g \in \mathcal{C}^1 \parenthesis{\mani}$
 	\end{lemma}
 	
 	Por lo tanto por \ref{lemma: PP es suave} podemos tomar l\'imite, \ie
@@ -110,7 +112,7 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 
 \begin{corollary}
 	\label{coro: PP converge a minimos}
-	Sea $g$ dado por el algoritmo de punto pr\'oximo con ecuaci\'on \ref{eq: Punto proximo}, bajo \ref{Hipotesis 1} y $\alpha < \frac{1}{L}$ se tiene que $\mu\parenthesis{W_g} = 0$.
+	Sea $g$ dado por el algoritmo de punto pr\'oximo con ecuaci\'on \ref{eq: Punto proximo}, bajo \ref{hyp: Hessiano acotado} y $\alpha < \frac{1}{L}$ se tiene que $\mu\parenthesis{W_g} = 0$.
 \end{corollary}
 
 \begin{proof}
@@ -121,7 +123,7 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 
 Sea $S_1, \dots, S_b$ una partici\'on disjunta de $\sett{1, \dots, d}$ donde $d$ y $b$ son par\'ametros del m\'etodo. 
 
-Consideremos el ritmo \ref{algo: CD}:
+Consideremos el algoritmo \ref{algo: CD}:
 
 \RestyleAlgo{boxruled}
 \LinesNumbered

@@ -5,7 +5,7 @@
                 footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
                 BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
                 ngerman,american,dvipsnames
-                ]{scrreprt}
+                ]{scrbook}
 
 %********************************************************************
 % Note: Make all your adjustments in here
@@ -54,16 +54,17 @@
 \part{Introducci\'on}\label{pt:introduccion}
 \include{Chapters/Introduccion}
 \cleardoublepage
-\setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden usados en Machine Learning}
+\setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden de tipo batch usados en Machine Learning. A su vez vamos a analizar casos donde aunque la convergencia este, no es \'util computacionalmente}
 \part{Algoritmos de tipo Batch}\label{pt:algoritmosbatch}
 \include{Chapters/Batch/ConvergenciaPuntual}
-\include{Chapters/Batch/Intuicion}
+%\include{Chapters/Batch/Intuicion}
 \include{Chapters/Batch/TeoremaBase}
 \include{Chapters/Batch/Applicaciones}
 \include{Chapters/Batch/Negativos}
 %********************************************************************
 % Backmatter
 %*******************************************************
+\setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden estoc\'asticos usados en Machine Learning.}
 \part{Algoritmos Estoc\'asticos}\label{pt:algoritmosestocasticos}
 \include{Chapters/Stochastic/Base}
 \include{Chapters/Stochastic/ConvergenciaL1}
