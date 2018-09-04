@@ -91,6 +91,39 @@
     \field{year}{2004}
   \endentry
 
+  \entry{dougherty:1989}{book}{}
+    \name{author}{2}{}{%
+      {{hash=RLDASE}{%
+         family={Randall L\bibnamedelima Dougherty},
+         familyi={R\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  D\bibinitperiod},
+         given={Alan S\bibnamedelima Edelman},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim
+  E\bibinitperiod},
+      }}%
+      {{hash=HJM}{%
+         family={Hyman},
+         familyi={H\bibinitperiod},
+         given={James\bibnamedelima M},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Mathematics of Computation}%
+    }
+    \strng{namehash}{RLDASEHJM1}
+    \strng{fullhash}{RLDASEHJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{pages}{471\bibrangedash 494}
+    \field{title}{Nonnegativity, monotonicity, or convexity preserving cubic
+  and quintic Hermite interpolation}
+    \field{volume}{52(186)}
+    \field{year}{1989}
+  \endentry
+
   \entry{robbins:1951}{book}{}
     \name{author}{2}{}{%
       {{hash=RH}{%
