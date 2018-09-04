@@ -68,6 +68,29 @@
     \field{year}{1974}
   \endentry
 
+  \entry{lojasiewicz:1963}{book}{}
+    \name{author}{1}{}{%
+      {{hash=LS}{%
+         family={Lojasiewicz},
+         familyi={L\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Coll. du CNRS, Les equations aux derivees partielles}%
+    }
+    \strng{namehash}{LS1}
+    \strng{fullhash}{LS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{pages}{87\bibrangedash 89}
+    \field{title}{A topological property of real analytic subsets}
+    \field{year}{1963}
+  \endentry
+
   \entry{nesterov:2004}{book}{}
     \name{author}{1}{}{%
       {{hash=NY}{%
