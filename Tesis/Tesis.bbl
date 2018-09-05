@@ -39,6 +39,173 @@
     \field{year}{2015}
   \endentry
 
+  \entry{bottou:1999}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BL}{%
+         family={Bottou},
+         familyi={B\bibinitperiod},
+         given={Leon},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BL1}
+    \strng{fullhash}{BL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{Online Learning and Stochastic Approximations}
+    \field{month}{05}
+    \field{year}{1999}
+  \endentry
+
+  \entry{bottou:2016}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BL}{%
+         family={Bottou},
+         familyi={B\bibinitperiod},
+         given={Leon},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=CFE}{%
+         family={Curtis},
+         familyi={C\bibinitperiod},
+         given={Frank\bibnamedelima E.},
+         giveni={F\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={Nocedal},
+         familyi={N\bibinitperiod},
+         given={Jorge},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BLCFENJ1}
+    \strng{fullhash}{BLCFENJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{SIAM Review}
+    \field{title}{Optimization Methods for Large-Scale Machine Learning}
+    \field{volume}{60}
+    \field{month}{06}
+    \field{year}{2016}
+  \endentry
+
+  \entry{du:2017}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=DSS}{%
+         family={Du},
+         familyi={D\bibinitperiod},
+         given={Simon\bibnamedelima S.},
+         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=JC}{%
+         family={Jin},
+         familyi={J\bibinitperiod},
+         given={Chi},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LJD}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Jason\bibnamedelima D.},
+         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=JMI}{%
+         family={Jordan},
+         familyi={J\bibinitperiod},
+         given={Michael\bibnamedelima I.},
+         giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Poczos},
+         familyi={P\bibinitperiod},
+         given={Barnabas},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Singh},
+         familyi={S\bibinitperiod},
+         given={Aarti},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DSS+1}
+    \strng{fullhash}{DSSJCLJDJMIPBSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{NIPS}
+    \field{title}{Gradient Descent Can Take Exponential Time to Escape Saddle
+  Points}
+    \field{year}{2017}
+  \endentry
+
+  \entry{fisk:1965}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FDL}{%
+         family={Fisk},
+         familyi={F\bibinitperiod},
+         given={Donald\bibnamedelima L.},
+         giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Mathematical Society}%
+    }
+    \strng{namehash}{FDL1}
+    \strng{fullhash}{FDL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{issn}{00029947}
+    \field{number}{3}
+    \field{pages}{369\bibrangedash 389}
+    \field{title}{Quasi-Martingales}
+    \verb{url}
+    \verb http://www.jstor.org/stable/1994531
+    \endverb
+    \field{volume}{120}
+    \field{journaltitle}{Transactions of the American Mathematical Society}
+    \field{year}{1965}
+  \endentry
+
+  \entry{lee:2017}{article}{}
+    \name{author}{2}{}{%
+      {{hash=JLGPMSMJIP}{%
+         family={"J.\bibnamedelima Lee},
+         familyi={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+         suffix={I.\bibnamedelima Panageas},
+         suffixi={I\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={G.\bibnamedelima Piliouras M. Simchowitz M.I.\bibnamedelima
+  Jordan},
+         giveni={G\bibinitperiod\bibinitdelim P\bibinitperiod M\bibinitperiod
+  S\bibinitperiod M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=RB}{%
+         family={Recht"},
+         familyi={R\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {arXiv:1710.07406}%
+    }
+    \strng{namehash}{JLIPGPMSMJRB1}
+    \strng{fullhash}{JLIPGPMSMJRB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{First-order methods almost always avoid saddle points}
+    \field{year}{2017}
+  \endentry
+
   \entry{knuth:1974}{article}{}
     \name{author}{1}{}{%
       {{hash=KDE}{%
@@ -68,6 +235,26 @@
     \field{year}{1974}
   \endentry
 
+  \entry{lee:00}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LJM}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={John\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{geometry}
+    \strng{namehash}{LJM1}
+    \strng{fullhash}{LJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Introduction to Smooth Manifolds}
+    \field{year}{2000}
+  \endentry
+
   \entry{lojasiewicz:1963}{book}{}
     \name{author}{1}{}{%
       {{hash=LS}{%
@@ -89,6 +276,28 @@
     \field{pages}{87\bibrangedash 89}
     \field{title}{A topological property of real analytic subsets}
     \field{year}{1963}
+  \endentry
+
+  \entry{metivier:1983}{book}{}
+    \name{author}{1}{}{%
+      {{hash=MM}{%
+         family={Metivier},
+         familyi={M\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Walter de Gruyter}%
+    }
+    \strng{namehash}{MM1}
+    \strng{fullhash}{MM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Semi-Martingales}
+    \field{year}{1983}
   \endentry
 
   \entry{nesterov:2004}{book}{}
@@ -135,6 +344,36 @@
     \field{pages}{643\bibrangedash 653}
     \field{title}{Gradient methods for minimizing functionals}
     \field{year}{1963}
+  \endentry
+
+  \entry{rao:1969}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RKM}{%
+         family={RAO},
+         familyi={R\bibinitperiod},
+         given={K.\bibnamedelima MURALI},
+         giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Mathematica Scandinavica}%
+    }
+    \strng{namehash}{RKM1}
+    \strng{fullhash}{RKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{issn}{00255521, 19031807}
+    \field{number}{1}
+    \field{pages}{79\bibrangedash 92}
+    \field{title}{QUASI-MARTINGALES}
+    \verb{url}
+    \verb http://www.jstor.org/stable/24489871
+    \endverb
+    \field{volume}{24}
+    \field{journaltitle}{Mathematica Scandinavica}
+    \field{year}{1969}
   \endentry
 
   \entry{dougherty:1989}{book}{}
@@ -200,54 +439,52 @@
     \field{year}{1951}
   \endentry
 
-  \entry{krizhevsky:2012}{article}{}
+  \entry{schub:1987}{book}{}
     \name{author}{1}{}{%
-      {{hash=eaK}{%
-         prefix={et},
-         prefixi={e\bibinitperiod},
-         family={al.},
-         familyi={a\bibinitperiod},
-         given={Krizhevsky},
-         giveni={K\bibinitperiod},
+      {{hash=SM}{%
+         family={Schub},
+         familyi={S\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
       }}%
     }
-    \list{publisher}{1}{%
-      {NIPS}%
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business media}%
     }
-    \strng{namehash}{aKe1}
-    \strng{fullhash}{aKe1}
+    \strng{namehash}{SM1}
+    \strng{fullhash}{SM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \field{title}{Imagenet classification with deep convolutional neural
-  networks}
-    \field{year}{2012}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Global Stability of Dynamical Systems}
+    \field{year}{1987}
   \endentry
 
-  \entry{lee:2016}{book}{}
+  \entry{williams:1991}{book}{}
     \name{author}{1}{}{%
-      {{hash=eaL}{%
-         prefix={et},
-         prefixi={e\bibinitperiod},
-         family={al.},
-         familyi={a\bibinitperiod},
-         given={Lee},
-         giveni={L\bibinitperiod},
+      {{hash=WD}{%
+         family={Williams},
+         familyi={W\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
-      {Conference on learning theory}%
+      {Cambridge University Press}%
     }
-    \strng{namehash}{aLe1}
-    \strng{fullhash}{aLe1}
+    \strng{namehash}{WD1}
+    \strng{fullhash}{WD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \field{pages}{1246\bibrangedash 1257}
-    \field{title}{Gradient descent only converges to minimizers}
-    \field{year}{2016}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{doi}
+    \verb 10.1017/CBO9780511813658
+    \endverb
+    \field{title}{Probability with Martingales}
+    \field{year}{1991}
   \endentry
 \enddatalist
 \endinput
