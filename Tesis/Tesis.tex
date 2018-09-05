@@ -38,14 +38,13 @@
 %*******************************************************
 \include{FrontBackmatter/Titlepage}
 \include{FrontBackmatter/Titleback}
-\cleardoublepage\include{FrontBackmatter/Dedication}
-\cleardoublepage\include{FrontBackmatter/Abstract}
-\cleardoublepage\include{FrontBackmatter/Acknowledgments}
-\cleardoublepage\include{FrontBackmatter/Contents}
+\include{FrontBackmatter/Dedication}
+\include{FrontBackmatter/Abstract}
+\include{FrontBackmatter/Acknowledgments}
+\include{FrontBackmatter/Contents}
 %********************************************************************
 % Mainmatter
 %*******************************************************
-\cleardoublepage
 \pagestyle{scrheadings}
 \pagenumbering{arabic}
 %\setcounter{page}{90}
@@ -53,30 +52,30 @@
 \cleardoublepage
 \part{Introducci\'on}\label{pt:introduccion}
 \include{Chapters/Introduccion}
+\include{Chapters/Preliminares}
 \cleardoublepage
 \setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden de tipo batch usados en Machine Learning. A su vez vamos a analizar casos donde aunque la convergencia este, no es \'util computacionalmente}
 \part{Algoritmos de tipo Batch}\label{pt:algoritmosbatch}
 \include{Chapters/Batch/ConvergenciaPuntual}
-%\include{Chapters/Batch/Intuicion}
 \include{Chapters/Batch/TeoremaBase}
 \include{Chapters/Batch/Applicaciones}
 \include{Chapters/Batch/Negativos}
 %********************************************************************
 % Backmatter
 %*******************************************************
+\cleardoublepage
 \setpartpreamble[u][\textwidth]{\vspace*{1cm} En esta parte vamos a analizar los tipos de convergencia de los diferentes algoritmos de primer orden estoc\'asticos usados en Machine Learning.}
 \part{Algoritmos Estoc\'asticos}\label{pt:algoritmosestocasticos}
 \include{Chapters/Stochastic/Base}
 \include{Chapters/Stochastic/ConvergenciaL1}
 \include{Chapters/Stochastic/ConvergenciaCTP}
 \appendix
-\cleardoublepage
 \part{Ap\'endice}
 \include{Chapters/Apendice}
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************
-\cleardoublepage\include{FrontBackmatter/Bibliography}
+\include{FrontBackmatter/Bibliography}
 %\cleardoublepage\include{FrontBackmatter/Colophon}
 % ********************************************************************
 % Game Over: Restore, Restart, or Quit?

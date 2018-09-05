@@ -50,8 +50,6 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^*\right) g(w_k, \upxi_{k}) + \alpha_k^2 g(w_k, \upxi_{k})^2
 		\end{equation}
 		
-		\marginpar{Usamos filtraciones y el teorema de convergencia de cuasi-martingalas}
-		
 		\marginpar{\color{Red} Como definimos bien la filtracion? Es saber toda esa informacion a tiempo $k$, como lo notamos?}
 		
 		Definamos ahora la filtraci\'on $\mathcal{P}_k = \sett{\upxi_{0}, \dots, \upxi_{k-1}, w_0, \dots, w_k, \alpha_0, \dots, \alpha_k}$ que determina toda la informaci\'on a tiempo $k$ \textbf{antes} de tomar la muestra $\upxi_{k}$; luego si tomamos la esperanza condicional a esta filtraci\'on:
@@ -93,16 +91,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			\expectationfilt{h_{k+1}' - h_k' } \leq \alpha_k^2 \mu_k A 
 		\end{equation*}
 		
-		Definamos ahora el \textit{proceso de variaciones positivas asociadas a un proceso $\sett{u_k}$}:
-		
-		\begin{equation}
-			\delta^u_k := \left\lbrace \begin{array}{cc}
-			1 & \text{ si } \expectationfilt{u_{k+1} - u_k} > 0 \\
-			0 & \text{ si no }
-			\end{array}\right.
-		\end{equation}
-		
-		Luego notemos que:
+		Luego, recordando \ref{def: Variaciones positivas de un proceso} notemos que:
 		
 		\begin{equation*}
 			\expectation{\delta_k^{h'} \left(h_{k+1}' - h_k'\right)} \underbrace{=}_{\text{ por definici\'on de } \delta_k^{h'}} \expectation{\delta_k^{h'} \expectationfilt{h_{k+1}' - h_k'}} \leq  \alpha_k^2 \mu_k A
@@ -119,7 +108,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			\end{equation}
 		\end{subequations}
 		
-		Por el teorema de convergencia de cuasi-martingalas conclu\'imos que $h_k'$ converge \textit{ctp}; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge \textit{ctp}.
+		Por \ref{theorem: Convergencia de cuasi martingalas} conclu\'imos que $h_k'$ converge \textit{ctp}; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge \textit{ctp}.
 		
 		\item[Paso 3] Como $h_k$ converge ctp, de \ref{eq: variaciones proceso lyapunov} conclu\'imos que:
 		
@@ -218,8 +207,6 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		\end{array}
 		\end{equation}
 		
-		\marginpar{Usamos Cauchy Schwartz}
-		
 		Por Cauchy-Schwartz sabemos que $w_k g(w_k, \upxi_{k}) = \ip{w_k, g(w_k, \upxi_{k})} \leq \norm{w_k}_2 \norm{g(w_k, \upxi_{k})}_2$ y que $g(w_k, \upxi_{k})^2 = \ip{g(w_k, \upxi_{k}), g(w_k, \upxi_{k})} \leq \norm{g(w_k, \upxi_{k})}_2^2$, si sumamos esto a la anterior ecuaci\'on tenemos:
 		
 		\begin{equation*}
@@ -254,9 +241,9 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		\expectationfilt{f_{k+1} - f_k} \leq \alpha_k^2\left(A + B f_k\right)
 		\end{equation}	
 		
-		\marginpar{Dado que hicimos lo mismo 3 veces, valdr\'ia que sea un lema?}
+		\marginpar{\color{Red}Dado que hicimos lo mismo 3 veces, valdr\'ia que sea un lema?}
 		
-		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando el teorema de convergencia de cuasi-martingalas conclu\'imos que $\sett{f_k}$ converge ctp.
+		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando \ref{theorem: Convergencia de cuasi martingalas} conclu\'imos que $\sett{f_k}$ converge ctp.
 		
 		\item[Paso 3] Supongamos que $f_{inf} >0$, entonces existe $T \in \N$  tal que $w_k^2, w_{k+1}^2 > D$ para todo $k \geq T$ por lo que \ref{eq: Condicion de proceso de lyapunov, confinamiento global} es una igualdad y deducimos que:
 		
@@ -332,7 +319,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 \end{aligned}
 		 \end{equation*}
 		 
-		  Por lo que por el teorema de convergencia de cuasi martingalas obtenemos:
+		  Por lo que por \ref{theorem: Convergencia de cuasi martingalas} obtenemos:
 		 
 		 \begin{equation}
 		 F(w_k) \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ F_{\infty}
@@ -346,11 +333,9 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 	2\sum\limits_{k=1}^{K} {\alpha_k \left(\nabla F(w_k)\right)^2} & \leq & \sum\limits_{k=1}^{K} {\expectation{h_{k+1} - h_k}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
 		 	& = & \expectation{\sum\limits_{k=1}^{K} {h_{k+1} - h_k}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
 		 	& = & \expectation{h_{k+1}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
-		 	& \xrightarrow[\text{CDL}]{\text{ ctp }} & F_{\infty} + K_2K_1 \sum\limits_{k=1}^{\infty} {\alpha_k^2}
+		 	& \xrightarrow[\ref{theorem: Propiedades de esperanza condicional}]{\text{ ctp }} & F_{\infty} + K_2K_1 \sum\limits_{k=1}^{\infty} {\alpha_k^2}
 		 	\end{aligned}
 		 \end{equation}
-		 
-		 		 \marginpar{Usamos el teorema de convergencia dominada en esperanza condicional}
 		 
 		 Sea ahora $g_k = \left(\nabla F (w_k)\right)^2$ y volvamos a expandir Taylor en $w_k$:
 		 
@@ -377,7 +362,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 \end{array}
 		 \end{equation}
 		 
-		 Nuevamente por el teorema de convergencia de cuasi martingalas conclu\'imos que $\sett{g_k}$ converge \textit{ctp}, y por \ref{eq: los gradientes ponderados son sumables en caso no convexo ctp} este l\'imite es $0$; luego:
+		 Nuevamente por \ref{theorem: Convergencia de cuasi martingalas}conclu\'imos que $\sett{g_k}$ converge \textit{ctp}, y por \ref{eq: los gradientes ponderados son sumables en caso no convexo ctp} este l\'imite es $0$; luego:
 		 
 		 	\begin{subequations}
 		 	\begin{equation}

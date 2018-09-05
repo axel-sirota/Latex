@@ -97,9 +97,7 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 	\end{aligned}
 	\end{equation*}
 	
-	\marginpar{Aca usamos propiedades basicas de la esperanza condicional}
-	
-	Luego tomando esperanza de ambos lados y recordando que si $X,Y$ son independientes entonces $\expectationsub{X,Y}{Y \vert X} = \expectation{Y}$:
+	Luego tomando esperanza de ambos lados y recordando \ref{theorem: Propiedades de esperanza condicional}:
 	
 	\begin{equation*}
 	\begin{aligned}
@@ -586,8 +584,6 @@ Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la co
 
 \begin{proof}
 	Sea $\epsilon > 0$, luego de $\ref{eq: Objetivo no convexo, incremento decreciente, 1}$ y la desigualdad de Markov:
-	
-	\marginpar{Usamos la desigualdad de Markov}
 	
 	\begin{equation*}
 		\mathbb{P} \left[\norm{\nabla F (w_k)}_2 \geq \epsilon\right] = \mathbb{P} \left[\norm{\nabla F (w_k)}_2^2 \geq \epsilon^2\right] \leq \epsilon^{-2} \expectation{\expectationchik{\norm{\nabla F(w_k)}_2^2}}  \rightarrow 0

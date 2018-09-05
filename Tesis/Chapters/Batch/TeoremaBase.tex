@@ -142,8 +142,6 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 		
 		Por lo que por el Teorema de Punto Fijo de Banach:
 		
-		\marginpar{Usamos Teorema de Punto fijo de banach}
-		
 		\begin{equation*}
 		\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
 		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > \sqrt{\dfrac{1}{3}} \\
@@ -168,47 +166,11 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 	
 \end{example}
 
-
-\section{Resultados previos}
-
-\marginpar{Esto quizas deberia ir en prerequisitos cuando lo tengamos}
+\section{Puntos fijos inestables}
 
 Ahora que vimos un par de ejemplos que nos dan una intuici\'on acerca de la convergencia a puntos silla, usemos las herramientas de los sistemas din\'amicos para analizar el caso general.
 
 Por todo este cap\'itulo, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$variedad sin borde.
-
-\begin{definition}
-	Dada una variedad de dimensi\'on $d \ \mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
-\end{definition}
-
-\begin{lemma}
-	\label{Difeomorfismos locales preservan medida cero}
-	Sea $E \subset \mani$ tal que $\mu(E) = 0$; si $\det \left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego $\mu\left(g^{-1}(E)\right) = 0$
-\end{lemma}
-
-\begin{proof}
-	Sea $h = g^{-1}$ y $\left(V_i, \psi^i\right)$ una colecci\'on de cartas en el dominio de $g$, si verificamos que $\mu\left(h\left(E\right) \cap V_i\right) = 0$ para todo $i \in \N$ entonces:
-	
-	\begin{equation*}
-	\mu(h(E)) = \mu \left(\Bigcup{i \in \N}{h(E) \cap V_i}\right) \le \Bigsum{i \in \N} \mu \left(h(E) \cap V_i\right) = 0
-	\end{equation*}
-	
-	Sin p\'erdida de generalidad podemos asumir que $h(E) \subseteq V$ con $(V, \psi) \in \sett{(V_i, \phi^i)}$ una carta determinada. Sea $\mathcal{A} := \sett{\left(U_i, \varphi^i \right)}$ un atlas de $\mani$ y notemos $E_i = E \cap U_i$; luego $E = \Bigcup{i \in \N}{E_i} = \Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}$ por lo que:
-	
-	\begin{equation*}
-	\begin{aligned}
-	\mu\left(\psi \circ h(E)\right) & = & \mu \left(\psi \circ h \left(\Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}\right)\right)\\
-	& \le & \Bigsum{i \in \N}{\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)}
-	\end{aligned}
-	\end{equation*}
-	
-	\marginpar{Uso Teorema de la funcion inversa en variedades y que localmente Lipshitz preserva medida}
-	
-	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{??} entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como si $f \in C^1(\R^d)$ entonces  es localmente Lipshitz, ergo $f$ preserva la medida, conclu\'imos que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
-	
-\end{proof}
-
-\section{Puntos fijos inestables}
 
 \begin{definition}
 	Sea:
@@ -221,22 +183,7 @@ Por todo este cap\'itulo, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$vari
 	
 \end{definition}
 
-\marginpar{Este teorema deber\'ia ir en prerequisitos}
-
-\begin{theorem}
-	\label{teo: variedad local estable central}
-	Sea $x^*$ un punto fijo de $g \in C^{r}(\mani)$ un difeomorfismo local. Supongamos que $E = E_s \oplus E_u$ donde 
-	
-	\begin{equation*}
-	\begin{aligned}
-	E_s & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i \le 1} \rangle \\
-	E_u & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i > 1} \rangle \\
-	\end{aligned}
-	\end{equation*}
-	Entonces existe $W_{loc}^{cs} \inc \mani$ un \textit{embedding} $C^r$ local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
-\end{theorem}
-
-Con todos estos resultados demostremos el teorema principal para analizar la convergencia de los algoritmos de tipo batch en el caso no convexo:
+Con los resultados de \ref{ch:preliminares} demostremos el teorema principal para analizar la convergencia de los algoritmos de tipo batch en el caso no convexo:
 
 \begin{theorem}
 	\label{teo: Principal}
@@ -253,8 +200,6 @@ Con todos estos resultados demostremos el teorema principal para analizar la con
 	\[
 	\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}} = \Bigcup{i \in \N}{B_{x^{*}_{i}}}
 	\]
-	
-	\marginpar{Usamos que en una variedad se cumple la propiedad de Lindeloff}
 	
 	Primero si $x_0 \in \mani$ sea:
 	
@@ -276,10 +221,7 @@ Con todos estos resultados demostremos el teorema principal para analizar la con
 		$x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$
 	\end{lemma}
 	
-	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$; por lo que $\mu(S_i) = 0$.
-	
-	\marginpar{Usamos que la dimension de la variedad es la de su tangente}
-	\marginpar{Usamos que una subvariedad de dimension menor tiene medida 0}
+	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$; por lo que por \ref{prop: Dimension menor tiene medida 0} $\mu(S_i) = 0$.
 	
 	Finalmente como $x_{T} \in S_i$ para alg\'un $T$ entonces $x_0 \in \Bigcup{k \in \N}{g^{-k}(S_i)}$ por lo que $W \subseteq \Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}}$. Conclu\'imos:
 	

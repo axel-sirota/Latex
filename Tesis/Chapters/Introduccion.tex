@@ -6,6 +6,14 @@
 	the cultural world
 	is one country.}{"David Hilbert"}
 
-De lo dicho en \cite{krizhevsky:2012} y \cite{lee:2016}
+\section{Organizaci\'on de la Tesis}
+
+Esta Tesis esta organizada seg\'un la categorizaci\'on mas est\'andar de los algoritmos encontrados en Machine Learning.
+
+La primer parte (\ref{pt:introduccion}) refiere a la motivaci\'on tanto matem\'atica como algoritmica y del \'area para analizar la convergencia de los algoritmos presentados, como a su vez los contenidos preliminares usados a lo largo del documento.
+
+La segunda parte (\ref{pt:algoritmosbatch}) trata exclusivamente los algoritmos deterministicos, comunmente denominados de \textit{tipo batch}. En el Cap\'itulo \ref{ch:convergenciaPuntual} , utilizando la gran referencia \cite{nesterov:2004}, analizamos la convergencia puntual del descenso de gradiente con condiciones de convexidad d\'ebil y luego la convergencia \textit{lineal} con convexidad mas fuerte. Luego en el cap\'itulo \ref{ch:teorema-de-variedad-estable} nos basamos en \cite{lee:2017} para ver a estos algoritmos como discretizaciones de sistemas din\'amicos y con elt eorema de la variedad estable conclu\'imos un m\'etodo pr\'actico para analizar la convergencia \textit{casi todo punto}; esta forma de analizar los algortitmos es aplicada en el cap\'itulo \ref{ch: aplicaciones} con varios algoritmos est\'andar en el \'area. Finalmente en el cap\'itulo \ref{ch:resultadosNegativos} nos basamos en \cite{du:2017} para ver que aunque se tiene convergencia \textit{casi todo punto}, la complijdad algoritmica del descenso de gradiente es exponencial.
+
+Esto nos motiva pasar a analizar los algoritmos estoc\'asticos en la parte \ref{pt:algoritmosestocasticos}, donde nos basamos en \cite{bottou:1999} y \cite{bottou:2016} para analizar en el cap\'itulo \ref{ch:convergenciaL1} la convergencia en \textit{norma $L1$} al m\'inimo (o a un entorno de \'este) y finalmente en el cap\'itulo \ref{ch:convergenciaCTP} la convergencia \textit{casi todo punto} tanto en los casos convexo como no convexo, ya que el algoritmo induce un proceso estoc\'astico que induce una \textit{cuasi-martingala} convergente.
 
 \smallskip

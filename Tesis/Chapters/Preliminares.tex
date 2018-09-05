@@ -1,0 +1,365 @@
+\chapter{Preliminares}\label{ch:preliminares}
+
+\epigraph{Mathematics is the most beautiful and most powerful creation of the human spirit}{Stefan Banach}
+
+\section{Espectro}
+
+\begin{definition}
+	Sea $f : X \rightarrow Y$, con $X,Y$ Banach, $f \in L(X,Y)$; definimos el espectro de $f$ de la siguiente manera:
+	
+	\begin{equation*}
+		\sigma(f) = \sett{\alpha \in \C \tq f- \alpha \text{ no es inversible}}
+	\end{equation*}
+	
+	Al supremo del espectro le decimos radio espectral (\eg $\rho(f) = \sup \sett{\abs{\alpha} \tq \alpha \in \sigma(f) }$)
+	
+\end{definition}
+
+\begin{proposition}
+	\label{prop: teorema de gelfand}
+	Sea $f \in L(X,Y)$ un operador lineal acotado, entonces:
+	
+	\begin{equation*}
+		\rho(f) = \lim \norm{f^n}^{\frac{1}{n}}
+	\end{equation*}
+	
+\end{proposition}
+
+\begin{proposition}
+	\label{prop: calculo funcional}
+	
+	Sea $f \in L(X,Y)$ un operador lineal acotado y $h \in \mathcal{H}ol (U)$ con $\sigma(f) \subset U$ una funci\'on holomorfa en un entorno del espectro, entonces:
+	
+	\begin{equation*}
+		\sigma \left(h(f)\right) = h(\sigma(f))
+	\end{equation*}
+	
+\end{proposition}
+
+\section{Variedades diferenciables y Teorema de la variedad estable}
+
+Cuando estudiemos los algoritmos de tipo batch es normal analizar al algoritmo como $x_{k+1} \gets g(x_k)$ para una $g : X \rightarrow X$ inducida; o sea uno analiza las \'orbitas bajo la acci\'on de $g$ en una variedad dada $X$. Con esa motivaci\'on repasemos los conceptos b\'asicos de sistemas din\'amicos.
+
+\subsection{Un repaso por Variedades}
+
+\begin{definition}{[Cap\'itulo 1 de \cite{lee:00}]}
+	Dado un espacio topol\'ogico $X$ decimos que es una variedad diferenciable de dimensi\'on $d$ si:
+	
+	\begin{itemize}
+		\item $X$ es Haussdorf
+		\item $X$ es $2-$contable
+		\item Existe un atlas suave para $X$, o sea existe un conjunto de pares $\sett{\left(U_i, \phi_i\right)}$ tales que:
+		
+		\begin{enumerate}
+			\item Para todo $x \in X$ existe $(U,\phi)$ con $x \in U$ y $\phi: U \rightarrow \phi{U}$ homeomorfismo
+			\item Si existen dos cartas $(U,\phi), (V,\psi)$ en el entorno de $x$ con $U \cap V \neq \emptyset$ entonces $\phi \circ \psi^{-1} : \psi(U\cap V )\rightarrow \phi(U\cap V)$ es difeomorfismo
+		\end{enumerate}
+	\end{itemize}
+	
+\end{definition}
+
+\begin{definition}{[Cap\'itulo 6 de \cite{lee:00}]}
+	Dada una variedad de dimensi\'on $d \ \mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
+\end{definition}
+
+\begin{definition}{[Cap\'itulo 3 de \cite{lee:00}]}
+	El diferencial de $g$ es un operador lineal $D_g(x): \mathcal{T}_x \mapsto \mathcal{T}_{g (x)}$, donde $\mathcal{T}_x$ es el espacio tangente de $X$ en el punto $x$. Dada una curva $\gamma$
+	en $X$ con $\gamma(0) = x$ y $d\gamma(0) = v \in \mathcal{T}_x$, el operador lineal se define como $D_g(x)v = \dfrac{d (g\circ \gamma)}{dt}(0) \in T_{g (x)}.$ El determinante del operador lineal $det (D_g (x))$ es el determinante de la matriz que representa $D_g (x)$ con respecto a una base arbitraria.
+\end{definition}
+
+\begin{proposition}
+	Sea $X$ una variedad de dimensi\'on $d$, luego para todo $x \in X$ vale que $\mathcal{T}_x$ es un espacio vectorial de dimensi\'on $d$.
+\end{proposition}
+
+\begin{theorem}
+	\label{theorem: Teorema de la funcion inversa}
+	Sea $F: X \mapsto N$ una funci\'on diferenciable tal que $dF_x$ es un isomorfismo lineal, luego existe $x \in U \subset X$ abierto tal que $F \vert_U$ es un difeomorfismo  \eg $F, F^{-1} \in C^{\infty}(U)$
+\end{theorem}
+
+\begin{proposition}
+	\label{prop: Localmente Lipshitz preserva medida}
+	Sea $f : \R^d \rightarrow \R^d$ una funcion localmente Lipshitz, luego si $\mu(E) = 0$ vale que $\mu(f(E)) = 0$
+\end{proposition}
+
+\begin{lemma}
+	\label{Difeomorfismos locales preservan medida cero}
+	Sea $E \subset \mani$ tal que $\mu(E) = 0$; si $\det \left(Dg(x)\right) \neq 0$ para todo $x \in \mani$, luego $\mu\left(g^{-1}(E)\right) = 0$
+\end{lemma}
+
+\begin{proof}
+	Sea $h = g^{-1}$ y $\left(V_i, \psi^i\right)$ una colecci\'on de cartas en el dominio de $g$, si verificamos que $\mu\left(h\left(E\right) \cap V_i\right) = 0$ para todo $i \in \N$ entonces:
+	
+	\begin{equation*}
+	\mu(h(E)) = \mu \left(\Bigcup{i \in \N}{h(E) \cap V_i}\right) \le \Bigsum{i \in \N} \mu \left(h(E) \cap V_i\right) = 0
+	\end{equation*}
+	
+	Sin p\'erdida de generalidad podemos asumir que $h(E) \subseteq V$ con $(V, \psi) \in \sett{(V_i, \phi^i)}$ una carta determinada. Sea $\mathcal{A} := \sett{\left(U_i, \varphi^i \right)}$ un atlas de $\mani$ y notemos $E_i = E \cap U_i$; luego $E = \Bigcup{i \in \N}{E_i} = \Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}$ por lo que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\mu\left(\psi \circ h(E)\right) & = & \mu \left(\psi \circ h \left(\Bigcup{i \in \N}{{\varphi^i}^{-1} \circ \varphi^{i} \left(E_i\right)}\right)\right)\\
+	& \le & \Bigsum{i \in \N}{\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)}
+	\end{aligned}
+	\end{equation*}
+	
+	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{theorem: Teorema de la funcion inversa}  entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como si $f \in C^1(\R^d)$ entonces es localmente Lipshitz conclu\'imos por \ref{prop: Localmente Lipshitz preserva medida} que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
+	
+\end{proof}
+
+Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora de ver la probabilidad de un conjunto dado en $X$.
+
+\begin{proposition}
+	\label{prop: Dimension menor tiene medida 0}
+	Sea $N \inc M$ una subvariedad de dimensi\'on $n < m$, luego para todo $U \subset N$ abierto relativo vale que $\mu(U) = 0$
+\end{proposition}
+
+\subsection{Teorema de la variedad estable}
+
+\begin{definition}
+	Sea $f : \R^d \rightarrow \R$ tal que $f \in C^2$, luego:
+	
+	\begin{itemize}
+		\item Un punto $x^*$ es cr\'itico de $f$  si $\nabla f(x^*) = 0$
+		\item Un m\'inimo local si $x^*$ es cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) > 0$
+		\item Un punto silla estricto de $f$ si es cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) < 0$ 
+	\end{itemize}
+	
+	Notaremos $\mani^*$ al conjunto de puntos silla estrictos de $f$.
+	
+\end{definition}
+
+\begin{theorem}
+	\label{teo: variedad local estable central}
+	Sea $x^*$ un punto fijo de $g \in C^{r}(\mani)$ un difeomorfismo local. Supongamos que $E = E_s \oplus E_u$ donde 
+	
+	\begin{equation*}
+	\begin{aligned}
+	E_s & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i \le 1} \rangle \\
+	E_u & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i > 1} \rangle \\
+	\end{aligned}
+	\end{equation*}
+	Entonces existe $W_{loc}^{cs} \inc \mani$ un \textit{embedding} $C^r$ local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
+\end{theorem}
+
+\begin{proof}
+	Ver Teorema III.1 de \cite{schub:1987}
+\end{proof}
+
+\section{Preliminares de Procesos Estoc\'asticos}
+
+Debido a la naturaleza de los algoritmos estoc\'asticos, tiene sentido repasar los conceptos b\'asicos que utilizaremos en el estudio de ellos.
+
+\subsection{Esperanza condicional}
+
+Dado un espacio de probabilidad $\left(\Omega, \mathcal{F}, P\right)$ definimos una \textit{variable aleatoria } como una funci\'on $X : \Omega \mapsto \R$ tal que $X^{-1}(B) \in \mathcal{F}$ para todo $\B \in \mathcal{B}$ boreliano.
+
+Por otro lado, dado un conjunto $\Omega$ y una familia $\left(X_{\gamma}\right)_{\gamma \in C}$ tal que $X_{\gamma}: \Omega \mapsto \R$ definimos la \textit{sigma algebra generada por las $X_\gamma$} $\mathcal{F} = \sigma\left(X_{\gamma}\right)$ como la menor sigma \'algebra (en el sentido de la inclusi\'on) tal que todas las $X_{\gamma}$ son $\mathcal{F}$ medibles.
+
+Recordemos adem\'as:
+
+\begin{theorem}[Teorema de la convergencia mon\'otona]
+	\label{theorem: Convergencia monotona}
+	Sea $(f_n)$ una sucesi\'on positiva de elementos medibles en $(\Omega, \Sigma, \mu)$ un espacio de medida tal que $f_n \nearrow f$; luego:
+	
+	\begin{equation*}
+		\int\limits_{\Omega} {f_n d\mu} \nearrow \int\limits_{\Omega}{f d\mu} 
+	\end{equation*} 
+\end{theorem}
+
+\begin{theorem}[Teorema de la convergencia dominada]
+	\label{theorem: Convergencia dominada}
+	Sea $(f_n)$ una sucesi\'on de elementos medibles en $(\Omega, \Sigma, \mu)$ un espacio de medida tal que $f_n \nearrow f$ ctp; si existe $g \in L^1$ tal que $\abs{f_n} \leq g$ entonces:
+	
+	\begin{equation*}
+	\int\limits_{\Omega} {\abs{f_n -f}d\mu} \rightarrow 0
+	\end{equation*} 
+\end{theorem}
+
+\begin{remark}
+	Una observaci\'on clave en el an\'alisis de los algoritmos de tipo estoc\'astico es que si llamamos ${W} := \sett{w_k}$ a las iteraciones del algoritmo, entonces notemos que podemos ver a $w_k$ como una variable aleatoria. En efecto, $w_k := w_{k-1} - \alpha_k g(w_k, .) : \Omega \rightarrow \R$ y por hip\'otesis es $\F$ medible; es m\'as, podemos ver a $W$ como un proceso estoc\'astico discreto.
+\end{remark}
+
+\begin{proposition}
+	\label{def: esperanza condicional}
+	Sea $\left(\Omega, \F, P\right)$ un espacio de probabilidad y $X$ una variable aleatoria tal que $X \in L^1(\Omega)$ ( \Eg $\expectation{\abs{X}} < \infty$). Si $\mathcal{G}$ es una sub-$\sigma-$algebra de $\F$ entonces existe $Y$ una variable aleatoria tal que:
+	
+	\begin{enumerate}
+		\item $Y$ es $\mathcal{G}$ medible
+		\item $Y \in L^1(\Omega)$
+		\item Para todo $G \in \mathcal{G}$ vale:
+		
+		\begin{equation*}
+			\int\limits_{G} {Y dP} = \int\limits_{G} {X dP}
+		\end{equation*}
+	\end{enumerate}
+
+	Es m\'as, si $\widetilde{Y}$ es otra variable aleatoria que cumple las propiedades, entonces $Y = \widetilde{Y}$ ctp.
+	
+\end{proposition}
+
+\begin{definition}
+	Dados $X,\mathcal{G}$ como en la proposici\'on, a la variable aleatoria cuya existencia se prueba en \ref{def: esperanza condicional} se le llama \textit{una versi\'on de la esperanza condicional de $X$ dado $\mathcal{G}$} y se lo nota $\expectation{X \vert \mathcal{G}}$.
+	
+	A su vez, dada $Z$ ptra variable aleatoria definimos la \textit{esperanza condicional de $X$ dado $Z$} como $\expectation{X \vert Z} := \expectation{X \vert \sigma(Z)}$
+	
+\end{definition}
+
+\begin{proof}
+	Demostremos la existencia y unicidad:
+	
+	\begin{enumerate}
+		\item [Unicidad ctp]
+		
+		Sea $X \in L^1$ e $Y,\widetilde{Y}$ dos versiones de $\expectation{X \vert \mathcal{G}}$ tal que no son iguales ctp, luego como $\sett{Y - \widetilde{Y} > \frac{1}{n}} \nearrow \sett{Y > \widetilde{Y}}$ existe $N$ tal que:
+		
+		\begin{equation*}
+			P\left(Y - \widetilde{Y} > \frac{1}{N}\right) > 0
+		\end{equation*}
+		
+		Luego como $Y, \widetilde{Y}$ son $\mathcal{G}$ medibles $\sett{Y - \widetilde{Y} > \frac{1}{N}} \in \mathcal{G}$ y entonces:
+		
+		\begin{equation*}
+			0 \underbrace{=}_{Y,\widetilde{Y} = \expectation{X \vert \mathcal{G}}} \int\limits_{\sett{Y - \widetilde{Y} > \frac{1}{N}}} {Y - \widetilde{Y}} \geq \frac{1}{N} P \left(\sett{Y - \widetilde{Y} > \frac{1}{N}}\right) > 0
+		\end{equation*}
+		
+		Luego $Y = \widetilde{Y}$ ctp.
+		
+		\item [Existencia en $L^2$]
+		
+		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2$ y como $L^2$ es Hilbert existe $Y \in \mathcal{K} $ tal que:
+		
+		\begin{equation*}
+			\expectation{\left(X - Y \right)^2} = \inf \sett{\expectation{\left(X - W \right)^2} \tq W \in \mathcal{K}}
+		\end{equation*}
+		
+		\begin{equation*}
+			\ip{X-Y, Z} = 0 \quad Z \in \mathcal{K}
+		\end{equation*}
+		
+		Luego si $G \in \mathcal{G}$ entonces $Z = 1_{G} \in \mathcal{G}$ por lo que:
+		
+		\begin{equation*}
+			\ip{X-Y, 1_G} = 0 \Longrightarrow \ \int\limits_{G} {XdP} = \int\limits_{G}{Y dP}
+		\end{equation*}
+		
+		Conclu\'imos que $Y = \expectation{X \vert \mathcal{G}}$
+		
+		\item [Existencia en $L^1$]		
+		
+		Notemos que basta verlo para $X \geq 0$, luego existen $X_n \geq 0$ acotadas tal que $X_n \nearrow X$; como cada $X_n \in L^2$ si definimos $Y = \limsup \expectation{X_n \vert \mathcal{G}}$ entonces \ref{theorem: Convergencia monotona} demuestra lo que necesitabamos.\qed
+		
+	\end{enumerate}
+	
+\end{proof}
+
+\begin{theorem}[Propiedades de la esperanza condicional]
+	\label{theorem: Propiedades de esperanza condicional}
+	Sea $\left(\Omega, \mathcal{F}, P\right)$ un espacio de medida, $X \in L^1$ y $\mathcal{G}, \mathcal{H}$ sub-$\sigma-$\'algebras de $\F$, luego:
+	
+	\begin{enumerate}
+		\item $\expectation{\expectation{X \vert \mathcal{G}}} = \expectation{X}$
+		\item Si $X$ es $\mathcal{G}$ medible entonces $X = \conditionalExpectation{X}{\G} $ ctp
+		\item $\conditionalExpectation{aX + bY}{\G} = a\conditionalExpectation{X}{\G} + b \conditionalExpectation{Y}{\G}$
+		\item Si $X \geq 0$ ctp, entonces $\conditionalExpectation{X}{\G} \geq 0$ ctp
+		\item Si $0 \leq X_n \nearrow X$ entonces $\conditionalExpectation{X_n}{\G} \nearrow \conditionalExpectation{X}{\G}$
+		\item Si $0 \leq X_n$ ctp entonces $\conditionalExpectation{\liminf X_n}{\G} \leq \liminf \conditionalExpectation{X_n}{\G}$
+		\item Si $\abs{X_n} \leq V$ con $V \in L^1$ entonces si $X_n \rightarrow X$ ctp vale que $\conditionalExpectation{X_n}{\G} \rightarrow \conditionalExpectation{X}{G}$ ctp.
+		\item Si $\mathcal{H}$ es una sub-$\sigma-$\'algebra de $\G$ entonces:
+		
+		\begin{equation*}
+			\conditionalExpectation{X}{\G \vert \mathcal{H}} := \conditionalExpectation{\conditionalExpectation{X}{\G}}{\mathcal{H}} = \conditionalExpectation{X}{\mathcal{H}}
+		\end{equation*}
+		
+		\item Si $Z$ es $\G$ medible y acotada entonces $\conditionalExpectation{ZX}{\G} = Z \conditionalExpectation{X}{\G}$ ctp
+		\item Si $\mathcal{H}$ es independiente de $\sigma\left(\sigma(X), \G\right)$ entonces:
+		
+		\begin{equation*}
+			\conditionalExpectation{X}{\sigma \left(\G, \mathcal{H}\right)} = \conditionalExpectation{X}{G} \ ctp
+		\end{equation*}
+		
+		En particular, si $X$ es independiente de $\G$ vale que $\conditionalExpectation{X}{\G} = \expectation{X}$ ctp. 
+		
+	\end{enumerate}
+	
+\end{theorem}
+
+\begin{proof}
+	En general con cuentas bastante similares a las vistas en cualquier curso de An\'alisis Real teniendo cuidado de las proyecciones. Para una mejor referencia ver \cite{williams:1991}.
+\end{proof}
+
+\subsection{Martingalas y Cuasi-martingalas}
+
+\begin{definition}
+	Dada una sucesi\'on creciente (en el sentido de la inclusi\'on) de $\sigma$ \'algebras $\F_n \subset \F$ decimos que $\sett{\F_n}$ es una \textit{filtraci\'on} y que el espacio $\left(\Omega, \F, \sett{F_n}, P\right)$ es un espacio filtrado.
+	
+	Un proceso $X  = \left(X_n\right)$ decimos que es adaptado si $X_n $ es $\F_n$ medible para todo $n$ en un espacio filtrado.
+	
+	A su vez, dado un proceso $\left(X_n\right)$, \'este induce una filtraci\'on (llamada natural) en un espacio de probabilidad $\left(\Omega, \F, P\right)$ dada por $\F_n = \sigma\left(X_1, \dots, X_n \right)$
+	
+\end{definition}
+
+\begin{definition}
+	Dado un espacio filtrado, decimos que un proceso $X = \left(X_n\right)$ es una martingala relativa a la filtraci\'on $\sett{\F_n}$ si:
+	
+	\begin{itemize}
+		\item $X$ es adaptado
+		\item $X_n \in L^1$
+		\item $\conditionalExpectation{X_n}{\F_{n-1}} = X_{n-1}$ ctp
+	\end{itemize}
+
+	A su vez decimos que es una (sub)supermartingala si vale la condici\'on $\conditionalExpectation{X_n}{\F_{n-1}} (\leq)\geq X_{n-1}$
+	
+\end{definition}
+
+\begin{definition}
+	Dado un espacio filtrado y $X$ un proceso integrable y adaptado, decimos que es una \textit{cuasi-martingala} si para todo $n \in \N$:
+	
+	\begin{equation}
+		\mathbb{Var}_n(X) = \sup\limits_{J \subset \sett{1, \dots, n}} \sett{\expectation{\sum\limits_{\substack{i_k \in J \\ 1 \leq k \leq \abs{J}}}{\abs{\conditionalExpectation{X_{i_{k+1}} - X_{i_k}}{\F_{i_{k}}}}}}} < \infty
+	\end{equation}
+	
+\end{definition}
+
+\begin{remark}
+	El concepto de cuasi-martingalas es una generalizaci\'on natural de las martingalas, submartingalas y supermartingalas. Fueron introducidos por primera vez por Fisk \cite{fisk:1965} para extender la descomposici\'on de Doob-Meyer a una clase m\'as grande de procesos. La forma en que las cuasimartingalas se relacionan con sub y s\'uper martingalas es muy similar a c\'omo las funciones de variaci\'on finita se relacionan con funciones crecientes y decrecientes. En particular, mediante la descomposici\'on de Jordan, cualquier funci\'on de variaci\'on finita en un intervalo se descompone como la suma de una funci\'on creciente y una funci\'on decreciente. De manera similar, un proceso estoc\'astico es una cuasimartingala si y solo si puede escribirse como la suma de una submartingala y una supermartingala. Este importante resultado fue mostrado primero por Rao \cite{rao:1969}, y signific\'o el inicio de la extensi\'on de gran parte de la teor\'ia de submartingalas  a cuasimartingalas.
+\end{remark}
+
+\begin{proposition}
+	Toda martingala, submartingala o supermartingala es una cuasi-martingala
+\end{proposition}
+
+\begin{proof}
+	En efecto, reemplazando $X$ por $-X$ podemos suponer que $\conditionalExpectation{X_{i_{k+1}} - X_{i_k}}{\F_{i_k}} \geq 0$, luego por \ref{theorem: Propiedades de esperanza condicional} resulta que $\mathbb{Var}_n(X) = \abs{\expectation{X_n - X_0}} < \infty$. \qed
+\end{proof}
+
+Ahora estamos en condiciones de enunciar el resultado principal de esta secci\'on: \textbf{El teorema de convergencia de cuasi-martingalas}. Este resultado es crucial en el an\'alisis de convergencia de algoritmos estoc\'asticos porque veremos m\'as adelante que el proceso estoc\'astico $\sett{w_k}$ inducido por el algoritmo induce una cuasi-martingala $\sett{w_k'}$ que ser\'a convergente; de lo cual deduciremos la convergencia de $\sett{w_k}$.
+
+\begin{definition}
+	\label{def: Variaciones positivas de un proceso}
+	Dado un proceso estoc\'astico $\sett{u_k}$ adaptado a un espacio filtrado $\left(\Omega, \F, \sett{\mathcal{P}_k}, P\right)$ definimos el \textit{proceso de variaciones positivas} asociadas a $\sett{u_k}$ como :
+	
+	\begin{equation}
+	\delta^u_k := \left\lbrace \begin{array}{cc}
+	1 & \text{ si } \expectationfilt{u_{k+1} - u_k} > 0 \\
+	0 & \text{ si no }
+	\end{array}\right.
+	\end{equation}
+	
+\end{definition}
+
+\begin{theorem}[Teorema de convergencia de cuasi-martingalas]
+	\label{theorem: Convergencia de cuasi martingalas}
+	Dado un proceso estoc\'astico $\sett{u_k}$ adaptado a un espacio filtrado $\left(\Omega, \F, \sett{\mathcal{P}_k}, P\right)$ tal que:
+	
+	\begin{itemize}
+		\item $u_k \geq 0$ ctp
+		\item $\sum\limits_{k=1}^{\infty} {\expectation{\delta^u_k\left(u_{k+1} - u_k\right)}} < \infty$
+	\end{itemize}
+	
+	Entonces $\sett{u_k}$ es una cuasi-martingala tal que $u_k \rightarrow u_{\infty} \geq 0$ ctp.
+	
+\end{theorem}
+
+\begin{proof}
+	Una buena revisi\'on de la demostraci\'on se encuentra en el cap\'itulo 9 de \cite{metivier:1983}
+\end{proof}

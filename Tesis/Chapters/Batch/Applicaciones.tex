@@ -21,9 +21,7 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \te
 \end{proposition}
 
 \begin{proof}
-	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \in \sett{\mu \tq \nabla^2 f(x^*)v = \mu v \quad \text{para alg\'un } v \neq 0}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; conclu\'imos que $x^{*} \in \puntosfijos$. \qed
-	
-	\marginpar{Usamos que f(A) tiene autovalores $f(\sett{\lambda_i})$}
+	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces por \ref{prop: calculo funcional} los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \in \sett{\mu \tq \nabla^2 f(x^*)v = \mu v \quad \text{para alg\'un } v \neq 0}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; conclu\'imos que $x^{*} \in \puntosfijos$. \qed
 	
 \end{proof}
 
@@ -214,9 +212,7 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 
 \begin{proof}
 	Sea $x^* \in \mani^*$, $H = \nabla^2 f(x^*)$, 
-	$J=Dg(x^*) = \Bigprod{i \leq b}{\left(Id_n - \alpha P_{S_{b-i+1}}H\right)}$ e $y_0$ el autovector correspondiente al menor autovalor de $H$. Vamos a probar que $\norm{J^t y_0}_2 \geq c(1+\epsilon)^t$ por lo que $\norm{J^t} _2 \geq  c(1+\epsilon)^t$, luego por el teorema de Gelfand
-	
-	\marginpar{Usamos que el radio espectral es el limite de cualquier norma matricial}
+	$J=Dg(x^*) = \Bigprod{i \leq b}{\left(Id_n - \alpha P_{S_{b-i+1}}H\right)}$ e $y_0$ el autovector correspondiente al menor autovalor de $H$. Vamos a probar que $\norm{J^t y_0}_2 \geq c(1+\epsilon)^t$ por lo que $\norm{J^t} _2 \geq  c(1+\epsilon)^t$, luego por \ref{prop: teorema de gelfand}:
 	
 	\begin{equation*}
 	\rho(J) = \lim\limits_{t \rightarrow \infty}{\norm{J^t}^{1/t}} \geq \lim\limits_{t \rightarrow \infty}{c^{1/t} (1+\epsilon)} = 1 + \epsilon 
@@ -271,8 +267,6 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 		\label{eq_3: DC los puntos silla estrictos son fijos inestables}
 			w^THw  \geq  \lambda_{min}(H) \norm{w}_2^2 \geq -L_b \norm{w}^2_2
 		\end{equation}
-		
-		\marginpar{Usamos Cauchy Schwartz}
 		
 		Luego si usamos \ref{claim1: DC los puntos silla estrictos son fijos inestables}, \ref{eq_3: DC los puntos silla estrictos son fijos inestables} y Cauchy-Schwartz existe $i \in \sett{1, \dots, b}$ y $\delta >0$ tal que:
 		
