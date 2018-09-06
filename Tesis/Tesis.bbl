@@ -275,6 +275,50 @@
     \field{year}{2000}
   \endentry
 
+  \entry{liu:1989}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LDC}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={D.\bibnamedelima C.},
+         giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={Nocedal},
+         familyi={N\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag New York, Inc.}%
+    }
+    \strng{namehash}{LDCNJ1}
+    \strng{fullhash}{LDCNJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{doi}
+    \verb 10.1007/BF01589116
+    \endverb
+    \field{issn}{0025-5610}
+    \field{number}{3}
+    \field{pages}{503\bibrangedash 528}
+    \field{title}{On the Limited Memory BFGS Method for Large Scale
+  Optimization}
+    \verb{url}
+    \verb http://dx.doi.org/10.1007/BF01589116
+    \endverb
+    \field{volume}{45}
+    \list{location}{1}{%
+      {Secaucus, NJ, USA}%
+    }
+    \field{journaltitle}{Math. Program.}
+    \field{month}{12}
+    \field{year}{1989}
+  \endentry
+
   \entry{lojasiewicz:1963}{book}{}
     \name{author}{1}{}{%
       {{hash=LS}{%
@@ -355,6 +399,31 @@
     \field{year}{2012}
   \endentry
 
+  \entry{agarwal:2017}{article}{}
+    \name{author}{1}{}{%
+      {{hash=NAEHBB}{%
+         family={Naman\bibnamedelima Agarwal},
+         familyi={N\bibinitperiod\bibinitdelim A\bibinitperiod},
+         suffix={Brian\bibnamedelima Bullins},
+         suffixi={B\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Elad\bibnamedelima Hazan},
+         giveni={E\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {arXiv:1602.03943 [stat.ML]}%
+    }
+    \strng{namehash}{NABBEH1}
+    \strng{fullhash}{NABBEH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{Second-Order Stochastic Optimization for Machine Learning in
+  Linear Time}
+    \field{year}{2017}
+  \endentry
+
   \entry{nesterov:2004}{book}{}
     \name{author}{1}{}{%
       {{hash=NY}{%
@@ -376,6 +445,35 @@
     \field{title}{Introductory Lectures on Convex Optimization}
     \field{volume}{87}
     \field{year}{2004}
+  \endentry
+
+  \entry{nocedal:1980}{article}{}
+    \name{author}{1}{}{%
+      {{hash=NJ}{%
+         family={Nocedal},
+         familyi={N\bibinitperiod},
+         given={Jorge},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \strng{namehash}{NJ1}
+    \strng{fullhash}{NJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \verb{doi}
+    \verb 10.1090/S0025-5718-1980-0572855-7
+    \endverb
+    \field{pages}{773\bibrangedash 782}
+    \field{title}{Updating Quasi-Newton Matrices with Limited Storage}
+    \field{volume}{35}
+    \field{journaltitle}{Mathematics of Computation}
+    \field{month}{07}
+    \field{year}{1980}
   \endentry
 
   \entry{nocedal:2006}{book}{}
@@ -408,6 +506,40 @@
       {New York, NY, USA}%
     }
     \field{year}{2006}
+  \endentry
+
+  \entry{ortega:2000}{book}{}
+    \name{author}{2}{}{%
+      {{hash=OJM}{%
+         family={Ortega},
+         familyi={O\bibinitperiod},
+         given={James\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=RWC}{%
+         family={Rheinboldt},
+         familyi={R\bibinitperiod},
+         given={Werner\bibnamedelima C.},
+         giveni={W\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Society for Industrial}%
+      {Applied Mathematics}%
+    }
+    \strng{namehash}{OJMRWC1}
+    \strng{fullhash}{OJMRWC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{isbn}{0-89871-461-3}
+    \field{title}{Iterative Solution of Nonlinear Equations in Several
+  Variables}
+    \list{location}{1}{%
+      {Philadelphia, PA, USA}%
+    }
+    \field{year}{2000}
   \endentry
 
   \entry{polyak:1963}{book}{}
@@ -697,6 +829,35 @@
     \endverb
     \field{title}{Probability with Martingales}
     \field{year}{1991}
+  \endentry
+
+  \entry{atchade:2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=YFAGF}{%
+         family={Yves F\bibnamedelima Atchade},
+         familyi={Y\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
+  A\bibinitperiod},
+         given={Gersende\bibnamedelima Fort},
+         giveni={G\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=ME}{%
+         family={Moulines},
+         familyi={M\bibinitperiod},
+         given={Eric},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {arXiv preprint arXiv:1402.2365}%
+    }
+    \strng{namehash}{YFAGFME1}
+    \strng{fullhash}{YFAGFME1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{title}{On stochastic proximal gradient algorithms}
+    \field{year}{2014}
   \endentry
 \enddatalist
 \endinput

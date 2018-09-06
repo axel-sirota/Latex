@@ -224,12 +224,65 @@ Aqu\'i, para todo $k \in \mathbb{N} := \left\lbrace 1, 2, ... \right\rbrace $, e
 	Antes de analizar las fortalezas de los m\'etodos estoc\'asticos, como DE, no se debe perder de vista el hecho de que los enfoques por Batch poseen algunas ventajas intr\'insecas. Primero, cuando uno ha reducido el problema estoc\'astico de minimizar el riesgo esperado $R$ para enfocarse exclusivamente en el problema determinista de minimizar el riesgo emp\'irico $R_n$, el uso de informaci\'on de gradiente completo en cada iteraci\'on abre la puerta para muchos m\'etodos de optimizaci\'on determin\'isticos basados en gradiente. Es decir, en un enfoque por Batch, uno tiene a su disposici\'on la gran cantidad de t\'ecnicas de optimizaci\'on no lineal que se han desarrollado en las \'ultimas d\'ecadas, incluido el m\'etodo de gradiente completo o gradiente de Batch (\ref{gradiente de Batch}), pero tambi\'en gradiente acelerado, gradiente conjugado, cuasi-Newton y m\'etodos inexactos de Newton \cite{nocedal:2006}. Segundo, debido a la estructura de suma de $R_n$, un m\'etodo por Batch puede beneficiarse f\'acilmente de la paralelizaci\'on ya que la mayor parte del c\'alculo se basa en evaluaciones de $R_n$ y $\nabla R_n$. Los c\'alculos de estas cantidades pueden incluso realizarse de forma distribuida.
 	
 	A pesar de estas ventajas, existen razones intuitivas, pr\'acticas y te\'oricas para seguir un enfoque estoc\'astico. Perm\'itanos motivarlos contrastando la iteraci\'on DE caracter\'istica (\ref{def: DE}) con la iteraci\'on de gradiente de Batch completo (\ref{gradiente de Batch}).
+	
+	\subsection{Motivación intuitiva}
+	
+	En un nivel intuitivo, DE emplea información de manera más eficiente que un método por batch. Para ver esto, considere una situación en la cual un conjunto de entrenamiento, llámelo $S$, consta de diez copias de un conjunto de $S_{sub}$. Un minimizador de riesgo empírico para el conjunto mayor $S$ está claramente dado por un minimizador para el conjunto más pequeño $S_{sub}$, pero si se aplicara un enfoque por batch para minimizar $R_n$ sobre $S$, entonces cada iteración sería diez veces más costosa que si solo uno tenía una copia de $S_{sub}$. Por otro lado, DE realiza los mismos cálculos en ambos escenarios, en el sentido de que los cálculos de gradientes estocásticos implican la elección de elementos de $S_{sub}$ con las mismas probabilidades. En realidad, un conjunto de entrenamiento típicamente no consiste en duplicados exactos de datos de muestra, pero en muchas aplicaciones a gran escala los datos involucran una buena cantidad de redundancia (aproximada). Esto sugiere que usar todos los datos de muestra en cada iteración de optimización es ineficiente.
+	
+	Se puede llegar a una conclusión similar con el uso de conjuntos de entrenamiento, validación y prueba. Si uno cree que trabajar con solo, por ejemplo, la mitad de los datos en el conjunto de entrenamiento  es suficiente para hacer buenas predicciones sobre datos no vistos, entonces uno puede argumentar en contra de trabajar con todo el conjunto de entrenamiento en cada iteración de optimización. Repitiendo este argumento, trabajar con solo una cuarta parte del conjunto de entrenamiento puede ser útil al inicio, o incluso con solo un octavo de los datos, y así sucesivamente. De esta manera, llegamos a la motivación de la idea de que trabajar con muestras pequeñas, al menos inicialmente, puede ser bastante atractivo.
+	
+	\subsection{Motivación práctica}
+	
+	 Los beneficios intuitivos que acabamos de describir se han observado repetidamente en la práctica, donde a menudo se encuentran ventajas muy reales de SG en muchas aplicaciones. Como ejemplo, la Figura \ref{gfx: de} compara el rendimiento de un método \textbf{L-BFGS} por batch \cite{liu:1989} \cite{nocedal:1980} y el método DE \ref{def: DE} con un incremento constante (es decir, $\alpha_k = \alpha$ para todos $k \in \N$) en un problema de clasificación binario que utiliza una función objetivo de pérdida logística y los datos del conjunto de datos RCV1. La figura traza el riesgo empírico $R_n$ en función del número de accesos de una muestra del conjunto de entrenamiento, es decir, el número de evaluaciones de un gradiente de muestra $\nabla f_{i_k}(w_k)$. Cada conjunto de $n$ accesos consecutivos se llama \textit{epoch}. El método por batch solo realiza un paso por \textit{epoch}, mientras que DE realiza $n$ pasos por \textit{epoch}. La trama muestra el comportamiento en los primeros 10 \textit{epochs}. La ventaja de DE es llamativa y representativa del comportamiento típico en la práctica. (Sin embargo, se debe tener en cuenta que para obtener un comportamiento tan eficiente, era necesario ejecutar DE varias veces usando diferentes opciones para $\alpha$ hasta que se identificara una buena opción para este problema en particular. Discutimos cuestiones teóricas y prácticas relacionadas con la elección de incrementos en nuestro análisis en la parte \ref{pt:algoritmosestocasticos})
+
+
+\begin{figure}[h]
+	\label{gfx: de}
+	\centering
+	\includegraphics[scale=.3]{gfx/de.png}
+	\caption{Riesgo empírico $R_n$ en función del número de puntos de datos accedidos (ADP) para un método \textbf{L-BFGS} por batch y el método de gradiente estocástico (DE) \ref{def: DE} en un problema de clasificación binaria con un objetivo de pérdida logística y el conjunto de datos RCV1. SG se ejecutó con un incremento fijo de $\alpha  = 4$}
+\end{figure}
+
+\subsection{Motivación Teórica }
+
+También se pueden citar argumentos teóricos para una preferencia de DE sobre un enfoque por batch. Vamos a dar una vista previa de estos argumentos ahora, que se estudian con más profundidad y más detalles en la parte \ref{pt:algoritmosestocasticos}:
+
+\begin{itemize}
+	\item Es bien sabido que un enfoque por batch puede minimizar $R_n$ a un ritmo rápido; por ejemplo, si $R_n$ es fuertemente convexo (ver \ref{def: Fuertemente convexa}) y uno aplica un método de descenso de gradiente por batch, entonces existe una constante $\rho \in (0,1)$ tal que, para todo $k \in \N$, el error de entrenamiento satisface:
+	
+	\begin{equation}
+		\label{Complejidad riesgo en batch}
+		R_n(w_k) - R_n^* \leq \mathcal{O} \left(\rho^k\right)
+	\end{equation}
+	
+	Donde $R_n^*$ denota el valor mínimo de $R_n$. La velocidad de convergencia exhibida aquí se conoce como \textit{convergencia lineal} en la bibliograf\'ia de optimización \cite{ortega:2000} y \textit{convergencia geométrica} en la comunidad de investigación de machine learning; simplemente nos referiremos a él como convergencia lineal. De \ref{Complejidad riesgo en batch}, se puede concluir que, en el peor de los casos, el número total de iteraciones en las que el error de entrenamiento puede estar por encima de un valor dado de $\epsilon >0$ es proporcional a $\log \left(\frac{1}{\epsilon}\right)$. Esto significa que, con un costo por iteración proporcional a $n$ (debido a la necesidad de calcular $\nabla R_n(w_k)$ para todo $k \in \N$), el trabajo total requerido para obtener $\epsilon-$optimalidad para un método de gradiente por batch es proporcional a $n \log\left(\frac{1}{\epsilon}\right)$.
+	
+	\item La velocidad de convergencia de un método estocástico básico es más lenta que para un método de gradiente por batch; por ejemplo, si $R_n$ es estrictamente convexo y cada $i_k$ se muestrea uniformemente desde en $\sett{1, \dots, n}$, entonces, para todo $k \in \N$, las iteraciones DE satisfacen la propiedad de convergencia sublineal (ver \ref{theorem: DE en fuertemente convexo y alfa decreciente converge en l1}):
+	
+	\begin{equation}
+		\label{Complejidad riesgo en de}
+		\expectation{R_n(w_k) - R_n^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\end{equation}
+	
+	Sin embargo, es cr\'itico notar que ni el costo de iteración ni el orden dependen del tamaño del conjunto de muestras $n$. Esto significa que el trabajo total requerido para obtener $\epsilon-$optimalidad para DE es proporcional a $\frac{1}{\epsilon}$. Es cierto que esto puede ser mayor que $n \log \left(\frac{1}{\epsilon}\right)$ para valores chicos de $n, \epsilon$, pero la comparación favorece a DE cuando se pasa al régimen de \textit{big data} donde $n$ es grande y uno es simplemente limitado por un presupuesto de tiempo computacional.
+	
+	\item Otra característica importante de DE es que produce la misma velocidad de convergencia que en \ref{Complejidad riesgo en de} para el error en el riesgo esperado, $R - R^**$, donde $R^*$ es el valor mínimo de $R$. Específicamente, aplicando la iteración DE, pero con $g(wk, \upxi_{k})$ reemplazado por $\nabla f (w_k; \upxi_{k})$ con cada $\upxi_{k}$ tomado independientemente de acuerdo con la distribución P, vale:
+	
+	\begin{equation}
+		\expectation{R(w_k) - R^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\end{equation}
+	
+	Que nuevamente es una velocidad sublineal pero en el riesgo esperado, algo que es imposible estimar en los m\'etodos de batch. Por lo tanto, deducimos que en el regimen de \textit{big data} minimizar el riesgo emp\'irico o el riesgo esperado es equivalente, lo que potencia la generalidad de las soluciones halladas por DE.
+	
+\end{itemize}
+
+En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enfoques estocásticos sobre por batches en métodos de optimización para el machine learning a gran escala. Sin embargo, no pretendemos que los métodos por batch no tengan lugar en la práctica, si la Figura \ref{gfx: stopping} uno considerara un mayor número de \textit{epochs}, entonces uno vería que el algoritmo de batch eventualmente mejora al método estocástico y produce un menor error de entrenamiento. Esto motiva por qué muchos métodos propuestos recientemente intentan combinar las mejores propiedades de los algoritmos por batch y estocásticos. Además, la iteración de DE es difícil de paralelizar y requiere una comunicación excesiva entre nodos en una configuración de computación distribuida, proporcionando un mayor impulso para el diseño de algoritmos de optimización nuevos y mejorados. \cite{agarwal:2017} \cite{atchade:2014}
 
 \section{Organizaci\'on de la Tesis}
 
 Esta Tesis esta organizada seg\'un la categorizaci\'on mas est\'andar de los algoritmos encontrados en Machine Learning.
 
-La primer parte (\ref{pt:introduccion}) refiere a la motivaci\'on tanto matem\'atica como algoritmica y del \'area para analizar la convergencia de los algoritmos presentados, como a su vez los contenidos preliminares usados a lo largo del documento.
+La primer parte (\ref{pt:introduccion}) refiere a la motivaci\'on tanto matem\'atica como algoritmica y del \'area para analizar la convergencia de los algoritmos presentados, como a su vez los contenidos preliminares usados a lo largo del documento. Al final, en el cap\'itulo \ref{ch:resumen}, se incluye un resumen de los resultados vistos, pensando mayoritariamente  en el aplicante del Machine Learning que quiere r\'apidamente saber condiciones de convergencia para sus algoritmos.
 
 La segunda parte (\ref{pt:algoritmosbatch}) trata exclusivamente los algoritmos deterministicos, comunmente denominados de \textit{tipo batch}. En el Cap\'itulo \ref{ch:convergenciaPuntual} , utilizando la gran referencia \cite{nesterov:2004}, analizamos la convergencia puntual del descenso de gradiente con condiciones de convexidad d\'ebil y luego la convergencia \textit{lineal} con convexidad mas fuerte. Luego en el cap\'itulo \ref{ch:teorema-de-variedad-estable} nos basamos en \cite{lee:2017} para ver a estos algoritmos como discretizaciones de sistemas din\'amicos y con elt eorema de la variedad estable conclu\'imos un m\'etodo pr\'actico para analizar la convergencia \textit{casi todo punto}; esta forma de analizar los algortitmos es aplicada en el cap\'itulo \ref{ch: aplicaciones} con varios algoritmos est\'andar en el \'area. Finalmente en el cap\'itulo \ref{ch:resultadosNegativos} nos basamos en \cite{du:2017} para ver que aunque se tiene convergencia \textit{casi todo punto}, la complijdad algoritmica del descenso de gradiente es exponencial.
 
