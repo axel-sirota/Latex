@@ -174,6 +174,26 @@
     \field{year}{1965}
   \endentry
 
+  \entry{hoeffding:1962}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=HW}{%
+         family={Hoeffding},
+         familyi={H\bibinitperiod},
+         given={Wassily},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HW1}
+    \strng{fullhash}{HW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{title}{PROBABILITY INEQUALITIES FOR SUMS OF BOUNDED RANDOM
+  VARIABLES}
+    \field{year}{1962}
+  \endentry
+
   \entry{lee:2017}{article}{}
     \name{author}{2}{}{%
       {{hash=JLGPMSMJIP}{%
@@ -300,6 +320,41 @@
     \field{year}{1983}
   \endentry
 
+  \entry{mohri:2012}{book}{}
+    \name{author}{3}{}{%
+      {{hash=MM}{%
+         family={Mohri},
+         familyi={M\bibinitperiod},
+         given={Mehryar},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rostamizadeh},
+         familyi={R\bibinitperiod},
+         given={Afshin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Talwalkar},
+         familyi={T\bibinitperiod},
+         given={Ameet},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {The MIT Press}%
+    }
+    \strng{namehash}{MMRATA1}
+    \strng{fullhash}{MMRATA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{isbn}{026201825X, 9780262018258}
+    \field{title}{Foundations of Machine Learning}
+    \field{year}{2012}
+  \endentry
+
   \entry{nesterov:2004}{book}{}
     \name{author}{1}{}{%
       {{hash=NY}{%
@@ -321,6 +376,38 @@
     \field{title}{Introductory Lectures on Convex Optimization}
     \field{volume}{87}
     \field{year}{2004}
+  \endentry
+
+  \entry{nocedal:2006}{book}{}
+    \name{author}{2}{}{%
+      {{hash=NJ}{%
+         family={Nocedal},
+         familyi={N\bibinitperiod},
+         given={Jorge},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WSJ}{%
+         family={Wright},
+         familyi={W\bibinitperiod},
+         given={Stephen\bibnamedelima J.},
+         giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{NJWSJ1}
+    \strng{fullhash}{NJWSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{edition}{second}
+    \field{title}{Numerical Optimization}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{year}{2006}
   \endentry
 
   \entry{polyak:1963}{book}{}
@@ -460,6 +547,131 @@
     \field{sortinithash}{S}
     \field{title}{Global Stability of Dynamical Systems}
     \field{year}{1987}
+  \endentry
+
+  \entry{vapnik:1971}{article}{}
+    \name{author}{2}{}{%
+      {{hash=VVN}{%
+         family={Vapnik},
+         familyi={V\bibinitperiod},
+         given={V.\bibnamedelima N.},
+         giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CAY}{%
+         family={Chervonenkis},
+         familyi={C\bibinitperiod},
+         given={A.\bibnamedelima Ya.},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {SIAM}%
+    }
+    \keyw{learning_theory}
+    \strng{namehash}{VVNCAY1}
+    \strng{fullhash}{VVNCAY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \verb{doi}
+    \verb 10.1137/1116025
+    \endverb
+    \field{number}{2}
+    \field{pages}{264\bibrangedash 280}
+    \field{title}{On the Uniform Convergence of Relative Frequencies of Events
+  to Their Probabilities}
+    \verb{url}
+    \verb http://link.aip.org/link/?TPR/16/264/1
+    \endverb
+    \field{volume}{16}
+    \field{journaltitle}{Theory of Probability and its Applications}
+    \field{year}{1971}
+  \endentry
+
+  \entry{vapnik:1974}{book}{}
+    \name{author}{2}{}{%
+      {{hash=VVN}{%
+         family={Vapnik},
+         familyi={V\bibinitperiod},
+         given={V.\bibnamedelima N.},
+         giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CAY}{%
+         family={Chervonenkis},
+         familyi={C\bibinitperiod},
+         given={A.\bibnamedelima Ya.},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nauka}%
+    }
+    \keyw{learning-theory svm kernel}
+    \strng{namehash}{VVNCAY1}
+    \strng{fullhash}{VVNCAY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    Basis of vapnik's work%
+    }
+    \field{title}{Theory of Pattern Recognition [in Russian]}
+    \list{location}{1}{%
+      {USSR}%
+    }
+    \field{year}{1974}
+  \endentry
+
+  \entry{vapnik:1998}{book}{}
+    \name{author}{1}{}{%
+      {{hash=VVN}{%
+         family={Vapnik},
+         familyi={V\bibinitperiod},
+         given={Vladimir\bibnamedelima N.},
+         giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley-Interscience}%
+    }
+    \keyw{imported}
+    \strng{namehash}{VVN1}
+    \strng{fullhash}{VVN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{title}{Statistical Learning Theory}
+    \field{year}{1998}
+  \endentry
+
+  \entry{vapnik:1982}{book}{}
+    \name{author}{1}{}{%
+      {{hash=VV}{%
+         family={Vapnik},
+         familyi={V\bibinitperiod},
+         given={Vladimir},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag}%
+    }
+    \strng{namehash}{VV1}
+    \strng{fullhash}{VV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{isbn}{0387907335}
+    \field{title}{Estimation of Dependences Based on Empirical Data: Springer
+  Series in Statistics (Springer Series in Statistics)}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{1982}
   \endentry
 
   \entry{williams:1991}{book}{}

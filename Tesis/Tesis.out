@@ -4,42 +4,54 @@
 \BOOKMARK [1][-]{tableofcontents.1}{Contenidos}{}% 4
 \BOOKMARK [-1][]{part.1}{ Introducci\363n}{}% 5
 \BOOKMARK [0][]{chapter.1}{1 Introducci\363n}{part.1}% 6
-\BOOKMARK [1][-]{section.1.1}{1.1 Organizaci\363n de la Tesis}{chapter.1}% 7
-\BOOKMARK [0][]{chapter.2}{2 Preliminares}{part.1}% 8
-\BOOKMARK [1][-]{section.2.1}{2.1 Espectro}{chapter.2}% 9
-\BOOKMARK [1][-]{section.2.2}{2.2 Variedades diferenciables y Teorema de la variedad estable}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 Un repaso por Variedades}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Teorema de la variedad estable}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{2.3 Preliminares de Procesos Estoc\341sticos}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Esperanza condicional}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Martingalas y Cuasi-martingalas}{section.2.3}% 15
-\BOOKMARK [-1][]{part.2}{ Algoritmos de tipo Batch}{}% 16
-\BOOKMARK [0][]{chapter.3}{3 Convergencia Puntual }{part.2}% 17
-\BOOKMARK [1][-]{section.3.1}{3.1 Intuici\363n}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.2}{3.2 Caso discreto}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{3.3 Acerca de convexidad fuerte y funciones L-Lipshitz}{chapter.3}% 20
-\BOOKMARK [0][]{chapter.4}{4 Teorema de la Variedad Estable y los Puntos fijos inestables}{part.2}% 21
-\BOOKMARK [1][-]{section.4.1}{4.1 Intuici\363n}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.2}{4.2 Puntos fijos inestables}{chapter.4}% 23
-\BOOKMARK [0][]{chapter.5}{5 Convergencia CTP a m\355nimos : Caso general}{part.2}% 24
-\BOOKMARK [1][-]{section.5.1}{5.1 Descenso de Gradiente en Batch}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.2}{5.2 Punto Pr\363ximo}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.3}{5.3 Descenso por coordenadas}{chapter.5}% 27
-\BOOKMARK [0][]{chapter.6}{6 Resultados negativos}{part.2}% 28
-\BOOKMARK [1][-]{section.6.1}{6.1 Ejemplos patol\363gicos}{chapter.6}% 29
-\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 30
-\BOOKMARK [0][]{chapter.7}{7 Convergencia en L1}{part.3}% 31
-\BOOKMARK [1][-]{section.7.1}{7.1 Contexto}{chapter.7}% 32
-\BOOKMARK [1][-]{section.7.2}{7.2 Algunos lemas fundamentales}{chapter.7}% 33
-\BOOKMARK [1][-]{section.7.3}{7.3 Caso Fuertemente Convexo}{chapter.7}% 34
-\BOOKMARK [1][-]{section.7.4}{7.4 Caso general}{chapter.7}% 35
-\BOOKMARK [0][]{chapter.8}{8 Convergencia CTP }{part.3}% 36
-\BOOKMARK [1][-]{section.8.1}{8.1 Caso d\351bilmente convexo}{chapter.8}% 37
-\BOOKMARK [1][-]{section.8.2}{8.2 Caso no convexo}{chapter.8}% 38
-\BOOKMARK [2][-]{subsection.8.2.1}{8.2.1 Acotaci\363n global del algoritmo}{section.8.2}% 39
-\BOOKMARK [2][-]{subsection.8.2.2}{8.2.2 Convergencia del algoritmo}{section.8.2}% 40
-\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 41
-\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 42
-\BOOKMARK [1][-]{section.Alph1.1}{A.1 Proposiciones enunciadas}{appendix.Alph1}% 43
-\BOOKMARK [1][-]{section.Alph1.2}{A.2 Demostraciones}{appendix.Alph1}% 44
-\BOOKMARK [0][]{equation.A.3alph2}{ Bibliograf\355a}{part.4}% 45
+\BOOKMARK [1][-]{section.1.1}{1.1 Introduction}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.2}{1.2 Procedimiento formal de machine learning.}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.2.1}{1.2.1 Fundamentos}{section.1.2}% 9
+\BOOKMARK [2][-]{subsection.1.2.2}{1.2.2 Elecci\363n de una familia de funciones de predicci\363n}{section.1.2}% 10
+\BOOKMARK [2][-]{subsection.1.2.3}{1.2.3 Minimizaci\363n de riesgos estructurales}{section.1.2}% 11
+\BOOKMARK [1][-]{section.1.3}{1.3 Enunciados de problemas de optimizaci\363n formal}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.3.1}{1.3.1 Funciones de Predicci\363n y P\351rdida}{section.1.3}% 13
+\BOOKMARK [2][-]{subsection.1.3.2}{1.3.2 Riesgo esperado}{section.1.3}% 14
+\BOOKMARK [2][-]{subsection.1.3.3}{1.3.3 Riesgo emp\355rico}{section.1.3}% 15
+\BOOKMARK [2][-]{subsection.1.3.4}{1.3.4 Notaci\363n simplificada}{section.1.3}% 16
+\BOOKMARK [2][-]{subsection.1.3.5}{1.3.5 M\351todos Estoc\341sticos vs. Optimizaci\363n por Batch}{section.1.3}% 17
+\BOOKMARK [1][-]{section.1.4}{1.4 Motivaci\363n para los m\351todos estoc\341sticos}{chapter.1}% 18
+\BOOKMARK [1][-]{section.1.5}{1.5 Organizaci\363n de la Tesis}{chapter.1}% 19
+\BOOKMARK [0][]{chapter.2}{2 Preliminares}{part.1}% 20
+\BOOKMARK [1][-]{section.2.1}{2.1 Espectro}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.2}{2.2 Variedades diferenciables y Teorema de la variedad estable}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 Un repaso por Variedades}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Teorema de la variedad estable}{section.2.2}% 24
+\BOOKMARK [1][-]{section.2.3}{2.3 Preliminares de Procesos Estoc\341sticos}{chapter.2}% 25
+\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Esperanza condicional}{section.2.3}% 26
+\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Martingalas y Cuasi-martingalas}{section.2.3}% 27
+\BOOKMARK [-1][]{part.2}{ Algoritmos de tipo Batch}{}% 28
+\BOOKMARK [0][]{chapter.3}{3 Convergencia Puntual }{part.2}% 29
+\BOOKMARK [1][-]{section.3.1}{3.1 Intuici\363n}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.2}{3.2 Caso discreto}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.3}{3.3 Acerca de convexidad fuerte y funciones L-Lipshitz}{chapter.3}% 32
+\BOOKMARK [0][]{chapter.4}{4 Teorema de la Variedad Estable y los Puntos fijos inestables}{part.2}% 33
+\BOOKMARK [1][-]{section.4.1}{4.1 Intuici\363n}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.2}{4.2 Puntos fijos inestables}{chapter.4}% 35
+\BOOKMARK [0][]{chapter.5}{5 Convergencia CTP a m\355nimos : Caso general}{part.2}% 36
+\BOOKMARK [1][-]{section.5.1}{5.1 Descenso de Gradiente en Batch}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.2}{5.2 Punto Pr\363ximo}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.3}{5.3 Descenso por coordenadas}{chapter.5}% 39
+\BOOKMARK [0][]{chapter.6}{6 Resultados negativos}{part.2}% 40
+\BOOKMARK [1][-]{section.6.1}{6.1 Ejemplos patol\363gicos}{chapter.6}% 41
+\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 42
+\BOOKMARK [0][]{chapter.7}{7 Convergencia en L1}{part.3}% 43
+\BOOKMARK [1][-]{section.7.1}{7.1 Contexto}{chapter.7}% 44
+\BOOKMARK [1][-]{section.7.2}{7.2 Algunos lemas fundamentales}{chapter.7}% 45
+\BOOKMARK [1][-]{section.7.3}{7.3 Caso Fuertemente Convexo}{chapter.7}% 46
+\BOOKMARK [1][-]{section.7.4}{7.4 Caso general}{chapter.7}% 47
+\BOOKMARK [0][]{chapter.8}{8 Convergencia CTP }{part.3}% 48
+\BOOKMARK [1][-]{section.8.1}{8.1 Caso d\351bilmente convexo}{chapter.8}% 49
+\BOOKMARK [1][-]{section.8.2}{8.2 Caso no convexo}{chapter.8}% 50
+\BOOKMARK [2][-]{subsection.8.2.1}{8.2.1 Acotaci\363n global del algoritmo}{section.8.2}% 51
+\BOOKMARK [2][-]{subsection.8.2.2}{8.2.2 Convergencia del algoritmo}{section.8.2}% 52
+\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 53
+\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 54
+\BOOKMARK [1][-]{section.Alph1.1}{A.1 Proposiciones enunciadas}{appendix.Alph1}% 55
+\BOOKMARK [1][-]{section.Alph1.2}{A.2 Demostraciones}{appendix.Alph1}% 56
+\BOOKMARK [0][]{equation.A.3alph2}{ Bibliograf\355a}{part.4}% 57
