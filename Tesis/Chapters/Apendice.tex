@@ -56,27 +56,15 @@
 
 \section{Demostraciones}
 
-\begin{proof}{[De \ref{prop: equivalencias convexidad fuerte}]}
-	\color{Red} TODO
-\end{proof}
-
-\begin{proof}{[De \ref{prop: implicancias de convexidad fuerte}]}
-	\color{Red} TODO
-\end{proof}
-
-\begin{proof}{[De \ref{prop: Implicancias L lipshitz}]}
-	\color{Red} TODO
-\end{proof}
-
 \begin{proof}{[De \ref{lemma: Convergencia de sucesiones positivas acotadas sumables}]}
 	Definamos:
 	
 	\begin{subequations}
 		\begin{equation}
-			S^+_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_+}
+		S^+_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_+}
 		\end{equation}
 		\begin{equation}
-			S^-_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_-}
+		S^-_t := \sum\limits_{k=1}^{t-1} {\left(u_{k+1} - u_k\right)_-}
 		\end{equation}
 	\end{subequations}
 	
@@ -84,14 +72,189 @@
 	
 	\begin{subequations}
 		\begin{equation}
-			0 \leq u_k = u_0 + S_k^+ + S_k^- \leq u_0 + S_{\infty}^+
+		0 \leq u_k = u_0 + S_k^+ + S_k^- \leq u_0 + S_{\infty}^+
 		\end{equation}
 		\begin{equation}
-			-u_0 - S_{\infty}^+ \leq S_k^- \leq 0
+		-u_0 - S_{\infty}^+ \leq S_k^- \leq 0
 		\end{equation}
 	\end{subequations}
 	
 	Luego como $S_{k+1}^- \leq S_k^-$ conclu\'imos que $S_{k}^- \searrow S_{\infty}^-$. Por lo tanto como $S_k^+, \ S_k^-$ convergen entonces $u_k = u_0 + S_k^+ + S_k^- $ converge. \qed
 	
+\end{proof}
+
+\begin{proof}{[De \ref{prop: equivalencias convexidad fuerte}]}
+	\begin{enumerate}
+		\item {[$1 \Longleftrightarrow 2$]} Notemos que $g$ es convexa si y s\'olo si:
+		
+		\begin{equation*}
+			\begin{array}{lrcl}
+				& g(y) & \geq & g(x) + \nabla g(x) ^T (y-x) \\
+				\Longleftrightarrow & f(y) - \frac{\mu}{2}\norm{y}^2 & \geq & f(x) - \frac{\mu}{2}\norm{x}^2 + \left(\nabla f(x) - \mu x \right)^T \left(y -x\right) \\
+				\Longleftrightarrow & f(y) & \geq & f(x) + \nabla f(x)^T \left(y-x\right) - \mu \left(\frac{\norm{x}^2 - \norm{y}^2}{2} +  x^T \left(y-x\right)\right) \\
+				\Longleftrightarrow & f(y) & \geq & f(x) + \nabla f(x)^T \left(y-x\right) + \frac{\mu}{2} \left(\norm{y}^2 + \norm{x}^2\right) - \mu x^T y \\
+				\Longleftrightarrow & f(y) & \geq & f(x) + \nabla f(x)^T \left(y-x\right) + \frac{\mu}{2} \norm{y-x}^2
+			\end{array}
+		\end{equation*}
+		
+		\item {[$2 \Longleftrightarrow 3$]} Notemos que $g$ es convexa si y s\'olo si:
+		
+		\begin{equation*}
+			\begin{array}{lrcl}
+				& \left( \nabla g(x) - \nabla g(y) \right)^T \left(x-y\right) & \geq & 0 \\
+				\Longleftrightarrow & \left(\nabla f(x) - \mu x - \left[\nabla f (y) - \mu y\right]\right)^T \left(x-y\right) & \geq & 0\\
+				\Longleftrightarrow & \left(\nabla f(x) - \nabla f (y) - \mu \left[x - y\right]\right)^T\left(x-y\right) & \geq & 0 \\
+				\Longleftrightarrow & \left(\nabla f(x) - \nabla f (y) \right)^T \left(x-y\right)  - \mu \left(x-y\right)^T \left(x-y\right) & \geq & 0 \\
+				\Longleftrightarrow & \left(\nabla f(x) - \nabla f (y) \right)^T \left(x-y\right)  & \geq & \mu  \norm{x-y}^2
+			\end{array}
+		\end{equation*}
+		
+		\item {[$2 \Longleftrightarrow 4$]} Notemos que $g$ es convexa si y s\'olo si:
+		
+		\begin{equation*}
+			\begin{array}{llll}
+				& g \left(\alpha x + (1-\alpha)y\right) & \leq & \alpha g(x) + (1-\alpha)g(y) \\
+				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) - \frac{\mu}{2} \norm{\alpha x + (1-\alpha)y}^2 & \leq & \alpha \left(f(x) - \frac{\mu}{2} \norm{x}^2\right) + \left(1-\alpha\right) \left(f(y) - \frac{\mu}{2} \norm{y}^2\right) \\
+				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) & \leq & \left[\alpha f(x) + \left(1 - \alpha\right)f(y) \right] \\ &&& + \frac{\mu}{2} \left(\norm{\alpha x + (1-\alpha)y}^2 \right. \\ &&&  \left. - \left\lbrace \alpha\norm{x}^2 + (1-\alpha) \norm{y}^2 \right\rbrace \right) \\
+				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) & \leq & \alpha f(x) + \left(1 - \alpha\right)f(y) - \dfrac{\alpha (1-\alpha) \mu}{2} \norm{y-x}^2
+			\end{array}
+		\end{equation*}
+		\marginpar{\color{Red}No me queda claro este paso final...}
+		\qed
+	\end{enumerate}
+\end{proof}
+
+\begin{proof}{[De \ref{prop: implicancias de convexidad fuerte}]}
+	\begin{enumerate}
+		\item Dado $x \in \R^d$ sea:
+		
+		\begin{equation*}
+		q(z) = f(x) + \nabla f(x)^T (z-w) + \frac{1}{2} \mu \norm{z-x}_2^2
+		\end{equation*}
+		
+		Se puede verificar que $z_* := x - \frac{1}{\mu} \nabla f(x)$ cumple que $q(z_*) = f(x) - \frac{1}{2\mu} \norm{\nabla f(x)}_2^2 \leq q(z)$ para todo $z \in \R^d$; luego por \ref{def: Fuertemente convexa} se tiene:
+		
+		\begin{equation*}
+		f_{inf} \geq f(x) + \nabla f(x)^T (w_*-x) + \frac{1}{2} \mu \norm{w_*-x}_2^2 \geq f(x) - \frac{1}{2\mu} \norm{\nabla f(x)}_2^2 
+		\end{equation*}
+		
+		\item Por Cauchy-Schwartz y usando \ref{prop: equivalencias convexidad fuerte}:
+		
+		\begin{equation*}
+			\norm{\nabla f(x) - \nabla f(y)} \norm{x-y} \geq \left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \geq \mu \norm{x-y}^2
+		\end{equation*}
+		
+		\item Consideremos $\phi_x(z) = f(z) - \nabla f(x)^T z$, luego notemos que es $\mu-$fuertemente convexa; en efecto:
+		
+		\begin{equation*}
+			\left(\nabla \phi_x(z_1) - \nabla \phi_x(z_2)\right)^T \left(z_1 - z_2\right) = \left(\nabla f(z_1) - \nabla f(z_2)\right)^T \left(z_1 - z_2\right) \geq \mu \norm{z_1 - z_2}^2
+		\end{equation*}
+		
+		Luego si aplicamos la desigualdad PL a $\phi_x(z)$ evaluada en $z^* = x$ entonces:
+		
+		\begin{equation*}
+			\begin{array}{rcl}
+			\left(f(y) - \nabla f(x)^T y\right) - \left(f(x) - \nabla f(x)^T x\right) & = &  \phi_x(y) - \phi_x(x)\\
+			& \leq  & \frac{1}{2 \mu} \norm{\nabla \phi_x(y)}^2 \\
+			& = & \frac{1}{2 \mu} \norm{\nabla f(y) - \nabla f(x)}^2 
+			\end{array}
+		\end{equation*}
+		
+		\item Notemos que por el punto anterior:
+		
+		\begin{equation*}
+			\begin{aligned}
+				f(y) \leq f(x) + \nabla f(x)^T \left(y-x\right) + \frac{1}{2\mu} \norm{\nabla f(y) - \nabla f(x)}^2 \\
+				f(x) \leq f(y) + \nabla f(y)^T \left(x-y\right) + \frac{1}{2\mu} \norm{\nabla f(x) - \nabla f(y)}^2 
+			\end{aligned}
+		\end{equation*}
+		
+		Luego si las sumamos y reordenamos:
+		
+		\begin{equation*}
+			\left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \leq \frac{1}{\mu} \norm{\nabla f(x) - \nabla f(y)}^2 
+		\end{equation*}
+		
+	\end{enumerate}\qed
+\end{proof}
+
+\begin{proof}{[De \ref{prop: Implicancias L lipshitz}]}
+	\begin{enumerate}
+		\item {[$2 \Longleftrightarrow 3$]} Notemos que $g$ es convexa si y s\'olo si:
+		
+		\begin{equation*}
+		\begin{array}{lrcl}
+		& g(y) & \geq & g(x) + \nabla g(x) ^T (y-x) \\
+		\Longleftrightarrow & \frac{L}{2}\norm{y}^2 -  f(y)  & \geq & \frac{L}{2}\norm{x}^2 -  f(x) + \left(Lx - \nabla f(x)\right)^T \left(y-x\right) \\
+		\Longleftrightarrow & \frac{L}{2}\norm{y}^2 -  f(y)  & \geq & \frac{L}{2}\norm{x}^2 -  f(x) + Lx^Ty - L\norm{x}^2 - \nabla f(x)^T \left(y-x\right) \\
+		\Longleftrightarrow &f(y)   & \leq & f(x) + \nabla f(x)^T \left(y-x\right) + \frac{L}{2}\left(\norm{y}^2 + \norm{x}^2 -2 x^Ty\right)\\
+		\Longleftrightarrow &f(y)   & \leq & f(x) + \nabla f(x)^T \left(y-x\right) + \frac{L}{2}\norm{y-x}^2\\
+		\end{array}
+		\end{equation*}
+		
+		\item {[$2 \Longleftrightarrow 4$]} Sale igual que $2 \Longleftrightarrow 3$ de \ref{prop: equivalencias convexidad fuerte}
+		
+		\item {[$2 \Longleftrightarrow 5$]} Sale igual que $2 \Longleftrightarrow 4$ de \ref{prop: equivalencias convexidad fuerte}
+		
+		\item {[$1 \Longrightarrow 4$]} 
+		
+		\begin{equation*}
+		\left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \leq \norm{\nabla f(x) - \nabla f(y)}\norm{x-y} \leq L \norm{x-y}^2 
+		\end{equation*}
+		
+		\item {[$7 \Longrightarrow 1$]} 
+		
+		\begin{equation*}
+		\norm{\nabla f(x) - \nabla f(y)}^2 \leq L \left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \leq L\norm{\nabla f(x) - \nabla f(y)}\norm{x-y}
+		\end{equation*} 
+		
+		\item {[$8 \Longrightarrow 6$]} Notemos que si cambiamos de lugar $x,y$ en $8$ entonces:
+		
+		
+		\begin{equation*}
+		\begin{array}{rcl}
+			f(y) & \geq & f(x) + \dfrac{f\left(x + \alpha (y-x)\right) -f(x)}{\alpha} + \dfrac{1-\alpha}{2L}\norm{\nabla f(x) - \nabla f(y)}^2 \\
+			\downarrow & \alpha \rightarrow 0 & \downarrow \\
+			f(y) & \geq & f(x) + \nabla f(x)^T \left(y-x\right) +  \dfrac{1}{2L}\norm{\nabla f(x) - \nabla f(y)}^2 
+		\end{array}
+		\end{equation*} 
+		
+		\item {[$6 \Longrightarrow 8$]} Sea $z = \alpha x + (1-\alpha)y$, luego:
+		
+		\begin{equation*}
+		\begin{aligned}
+		f(y) & \geq & f(z) + \nabla f(z)^T \left(y-z\right) +  \dfrac{1}{2L}\norm{\nabla f(z) - \nabla f(y)}^2  \\
+		f(x) & \geq & f(z) + \nabla f(z)^T \left(x-z\right) +  \dfrac{1}{2L}\norm{\nabla f(z) - \nabla f(x)}^2 
+		\end{aligned}
+		\end{equation*}
+		
+		Luego si multiplicamos la primera por $\alpha$, la segunda por $1-\alpha$ y las sumamos tenemos:
+		
+		\begin{equation*}
+			\begin{aligned}
+				f(\alpha x + (1-\alpha)y) & \leq & \alpha f(x) + (1-\alpha)f(y) - \dfrac{\alpha}{2L}\norm{\nabla f(z) - \nabla f(y)}^2 - \dfrac{1-\alpha}{2L}\norm{\nabla f(z) - \nabla f(x)}^2 \\
+				& \leq & \alpha f(x) + (1-\alpha)f(y) - \dfrac{\alpha (1-\alpha)}{2L}\norm{\nabla f(y) - \nabla f(x)}^2
+			\end{aligned}
+		\end{equation*}
+		
+		Pues $\norm{x-y}^2\alpha (1-\alpha) \leq \alpha \norm{x}^2 + (1-\alpha)\norm{y}^2$
+		
+			\item {[$2 \Longrightarrow 6$]} Si $f$ es convexa entonces consideremos $\phi_x(z) = f(z) - \nabla f(x)^T z$ que es m\'inimo en $z^* = x$ pues $f$ es convexa. Adem\'as por hip\'otesis $h(z) = \dfrac{L}{2} \norm{z}^2 - \phi_x(z)$ es convexa por lo que:
+		
+		\begin{equation*}
+			\min\limits_{z \in \R^d} {\phi_x(z)} \leq \min\limits_{z \in \R^d} \sett{\phi_x(y) + \nabla \phi_x(y)^T \left(z-y\right) + \dfrac{L}{2}\norm{z-y}^2}
+		\end{equation*}
+		
+		Luego reordenando:
+		
+		\begin{equation*}
+		\begin{aligned}
+			f(y) - f(x) - \nabla f(x)^T \left(y-x\right) & = & \phi_x(y) - \phi_x(x) \\
+			& \geq & \frac{1}{2L} \norm{\nabla \phi_x(y)}^2 \\
+			& = & \frac{1}{2L} \norm{\nabla f(y) - \nabla f(x)}^2
+		\end{aligned}
+		\end{equation*}
+		\qed
+	\end{enumerate}
 \end{proof}
 

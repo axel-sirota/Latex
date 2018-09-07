@@ -222,16 +222,6 @@ Consideremos primero los casos de convexidad donde sabemos que el m\'inimo exist
 
 Recordemos que de \ref{def: Fuertemente convexa} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
 
-\begin{lemma}[Fuertemente convexa es PL-convexa]
-	\label{eq: Desigualdad convexidad fuerte}
-	Supongamos que $F$ cumple \ref{def: Fuertemente convexa}, luego para todo $w \in \R^d$ vale que:
-	
-	\begin{equation}
-		2c\left(F(w) - F_{inf}\right) \leq \norm{\nabla F(w)}_2^2
-	\end{equation}
-	
-\end{lemma}
-
 \begin{proof}
 	Dado $w \in \R^d$ sea:
 	
@@ -239,7 +229,7 @@ Recordemos que de \ref{def: Fuertemente convexa} y \ref{obs: F es l lipshitz} va
 		q(z) = F(w) + \nabla F(w)^T (z-w) + \frac{1}{2} c \norm{z-w}_2^2
 	\end{equation*}
 	
-	Se puede verificar que $z_* := w - \frac{1}{c} \nabla F(w)$ cumple que $q(z_*) = F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 \leq q(z)$ para todo $z \in \R^d$; luego por \ref{eq: Desigualdad convexidad fuerte} se tiene:
+	Se puede verificar que $z_* := w - \frac{1}{c} \nabla F(w)$ cumple que $q(z_*) = F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 \leq q(z)$ para todo $z \in \R^d$; luego por \ref{prop: implicancias de convexidad fuerte} se tiene:
 	
 	\begin{equation*}
 		F_{inf} \geq F(w) + \nabla F(w)^T (w_*-w) + \frac{1}{2} c \norm{w_*-w}_2^2 \geq F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 
