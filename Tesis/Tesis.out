@@ -49,19 +49,21 @@
 \BOOKMARK [1][-]{section.6.3}{6.3 Descenso por coordenadas}{chapter.6}% 49
 \BOOKMARK [0][]{chapter.7}{7 Resultados negativos}{part.2}% 50
 \BOOKMARK [1][-]{section.7.1}{7.1 Ejemplos patol\363gicos}{chapter.7}% 51
-\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 52
-\BOOKMARK [0][]{chapter.8}{8 Convergencia en L1}{part.3}% 53
-\BOOKMARK [1][-]{section.8.1}{8.1 Contexto}{chapter.8}% 54
-\BOOKMARK [1][-]{section.8.2}{8.2 Algunos lemas fundamentales}{chapter.8}% 55
-\BOOKMARK [1][-]{section.8.3}{8.3 Caso Fuertemente Convexo}{chapter.8}% 56
-\BOOKMARK [1][-]{section.8.4}{8.4 Caso general}{chapter.8}% 57
-\BOOKMARK [0][]{chapter.9}{9 Convergencia CTP }{part.3}% 58
-\BOOKMARK [1][-]{section.9.1}{9.1 Caso d\351bilmente convexo}{chapter.9}% 59
-\BOOKMARK [1][-]{section.9.2}{9.2 Caso no convexo}{chapter.9}% 60
-\BOOKMARK [2][-]{subsection.9.2.1}{9.2.1 Acotaci\363n global del algoritmo}{section.9.2}% 61
-\BOOKMARK [2][-]{subsection.9.2.2}{9.2.2 Convergencia del algoritmo}{section.9.2}% 62
-\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 63
-\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 64
-\BOOKMARK [1][-]{section.Alph1.1}{A.1 Proposiciones enunciadas}{appendix.Alph1}% 65
-\BOOKMARK [1][-]{section.Alph1.2}{A.2 Demostraciones}{appendix.Alph1}% 66
-\BOOKMARK [0][]{Item.88}{ Bibliograf\355a}{part.4}% 67
+\BOOKMARK [1][-]{section.7.2}{7.2 Intuici\363n acerca del teorema}{chapter.7}% 52
+\BOOKMARK [1][-]{section.7.3}{7.3 Demostraci\363n del teorema}{chapter.7}% 53
+\BOOKMARK [-1][]{part.3}{ Algoritmos Estoc\341sticos}{}% 54
+\BOOKMARK [0][]{chapter.8}{8 Convergencia en L1}{part.3}% 55
+\BOOKMARK [1][-]{section.8.1}{8.1 Contexto}{chapter.8}% 56
+\BOOKMARK [1][-]{section.8.2}{8.2 Algunos lemas fundamentales}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.3}{8.3 Caso Fuertemente Convexo}{chapter.8}% 58
+\BOOKMARK [1][-]{section.8.4}{8.4 Caso general}{chapter.8}% 59
+\BOOKMARK [0][]{chapter.9}{9 Convergencia CTP }{part.3}% 60
+\BOOKMARK [1][-]{section.9.1}{9.1 Caso d\351bilmente convexo}{chapter.9}% 61
+\BOOKMARK [1][-]{section.9.2}{9.2 Caso no convexo}{chapter.9}% 62
+\BOOKMARK [2][-]{subsection.9.2.1}{9.2.1 Acotaci\363n global del algoritmo}{section.9.2}% 63
+\BOOKMARK [2][-]{subsection.9.2.2}{9.2.2 Convergencia del algoritmo}{section.9.2}% 64
+\BOOKMARK [-1][]{part.4}{ Ap\351ndice}{}% 65
+\BOOKMARK [0][]{appendix.Alph1}{A Ap\351ndice}{part.4}% 66
+\BOOKMARK [1][-]{section.Alph1.1}{A.1 Proposiciones enunciadas}{appendix.Alph1}% 67
+\BOOKMARK [1][-]{section.Alph1.2}{A.2 Demostraciones}{appendix.Alph1}% 68
+\BOOKMARK [0][]{Item.88}{ Bibliograf\355a}{part.4}% 69

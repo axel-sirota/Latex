@@ -50,6 +50,8 @@ pregunta:
 	
 \end{example}
 
+\section{Intuici\'on acerca del teorema}
+
 \begin{theorem}[Convergencia exponencial, Inicializaci\'on uniforme en el cubo]
 	Consideremos el algoritmo \ref{algo: GD} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $f : \R^d \mapsto \R$ $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
 \end{theorem}
@@ -126,6 +128,8 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	
 	La clave va a ser usar splines para resolver los primeros puntos, espejar $f$ para hacer los puntos extremales interiores, asignar $d$ puntos cr\'iticos similares para generar el tiempo exponencial en $d$ y extender esa funci\'on $\tilde{f}$ a $\R^d$ con el Teorema de extensi\'on de Whitney. Aunque la demostraci\'on es larga y tediosa, la idea clave es la vista aqu\'i.
 \end{remark}
+
+\section{Demostraci\'on del teorema}
 
 \begin{proof} Vayamos de a pasos
 		

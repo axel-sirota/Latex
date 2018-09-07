@@ -258,3 +258,51 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{proof}{[De \ref{lemma: GD toma tiempo exponencial}]}
+	
+	Primero construyamos $g_1$. Sea $i \in \sett{1, \dots, d}$, luego si $x_i = \tau$ entonces $\dfrac{\partial f_{i,1}}{\partial x_i} = -2\gamma\tau$, $\dfrac{\partial^2 f_{i,1}}{\partial x_i^2} = -2\gamma$; mientras que si $x_i = 2\tau$ entonces $\dfrac{\partial f_{i+1,1}}{\partial x_i} = -4L\tau$ y $\dfrac{\partial^2 f_{i+1,1}}{\partial x_i^2} = 2L$. Como sabemos que $L > \gamma, 0 > -2\gamma\tau > -4L\tau$ y $2L > \dfrac{-4L\tau - \left(-2\gamma \tau\right)}{\tau}$ entonces por \ref{theorem: splines 1} existe $p(x_i) \in \R_3[x]$ tal que:
+	
+	\begin{equation*}
+		\begin{aligned}
+			p(\tau) & = & -2\gamma \tau \\
+			p(2\tau) & = & -4L\tau \\
+			p'(\tau) & = & -2\gamma \\
+			p'(2\tau) & = & 2L \\
+			p \vert_{\left[\tau, 2\tau\right]} & \leq & -2 \gamma \tau
+		\end{aligned}
+	\end{equation*}
+	
+	Definamos entonces:
+	
+	\begin{equation*}
+	\begin{array}{l}
+		g_1(x_i) = \left(\int p\right) (x_i) - \left(\int p\right) (\tau) - \gamma \tau^2 \\
+		\eta = - g_1(2\tau) + 4L \tau^2 \\
+		g_2(x_i) = -\gamma - \dfrac{10 (l+\gamma) \left(x_i - 2\tau\right)^3}{\tau^3} - \dfrac{15 (L+\gamma)\left(x_i - 2\tau\right)^4}{\tau^4} - \dfrac{6 (L+\gamma)\left(x_i - 2\tau\right)^5}{\tau^5}
+	\end{array}
+	\end{equation*}
+	
+	Luego notemos que $g_1, \eta$ cumplen las condiciones de borde para $x_i$ autom\'aticamente; por otro lado si consideramos $x_{i+1}$ notemos que:
+	
+	\begin{equation*}
+		g_2' (x_i) = - \dfrac{30 \left(L+\gamma\right)\left(x_i - 2\tau\right)^2 \left(x_i - \tau\right)^2}{\tau^5}
+	\end{equation*}
+	
+	Luego:
+	
+	\begin{equation*}
+		\begin{aligned}
+			g_2 \vert_{\left[\tau, 2\tau\right]} & \geq & -\gamma \\
+			g_2' \vert_{\left[\tau, 2\tau\right]} & \leq & 0 \\
+			g_2(\tau) & = & L\\
+			g_2(2\tau) & = & -\gamma\\
+			g_2'(\tau) & = & 0 \\
+			g_2'(2\tau) & = & 0 \\
+			g_2''(\tau) & = & 0 \\
+			g_2''(2\tau) & = & 0 \\
+		\end{aligned}
+	\end{equation*}
+	
+	Luego $g_2$ cumple las condiciones de contorno en $x_{i+1}$ y adem\'as al tener derivadas cero en los l\'imites no contribuye a las condiciones de $x_i$. Conclu\'imos que con estas definiciones $g$ cumple lo pedido .\qed
+\end{proof}
+
