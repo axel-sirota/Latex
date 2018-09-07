@@ -153,7 +153,7 @@ Debido a la naturaleza de los algoritmos estoc\'asticos, tiene sentido repasar l
 
 Dado un espacio de probabilidad $\left(\Omega, \mathcal{F}, P\right)$ definimos una \textit{variable aleatoria } como una funci\'on $X : \Omega \mapsto \R$ tal que $X^{-1}(B) \in \mathcal{F}$ para todo $\B \in \mathcal{B}$ boreliano.
 
-Por otro lado, dado un conjunto $\Omega$ y una familia $\left(X_{\gamma}\right)_{\gamma \in C}$ tal que $X_{\gamma}: \Omega \mapsto \R$ definimos la \textit{sigma algebra generada por las $X_\gamma$} $\mathcal{F} = \sigma\left(X_{\gamma}\right)$ como la menor sigma \'algebra (en el sentido de la inclusi\'on) tal que todas las $X_{\gamma}$ son $\mathcal{F}$ medibles.
+Por otro lado, dado un conjunto $\Omega$ y una familia $\left(X_{\gamma}\right)_{\gamma \in C}$ tal que $X_{\gamma}: \Omega \mapsto \R$ definimos la \textit{sigma algebra generada por las $X_\gamma$} $\mathcal{F} = \sigma\left(\sett{X_{\gamma}}\right)$ como la menor sigma \'algebra (en el sentido de la inclusi\'on) tal que todas las $X_{\gamma}$ son $\mathcal{F}$ medibles.
 
 Recordemos adem\'as:
 
@@ -208,7 +208,7 @@ Recordemos adem\'as:
 	Demostremos la existencia y unicidad:
 	
 	\begin{enumerate}
-		\item [Unicidad ctp]
+		\item {\textbf{Unicidad ctp}}
 		
 		Sea $X \in L^1$ e $Y,\widetilde{Y}$ dos versiones de $\expectation{X \vert \mathcal{G}}$ tal que no son iguales ctp, luego como $\sett{Y - \widetilde{Y} > \frac{1}{n}} \nearrow \sett{Y > \widetilde{Y}}$ existe $N$ tal que:
 		
@@ -224,7 +224,7 @@ Recordemos adem\'as:
 		
 		Luego $Y = \widetilde{Y}$ ctp.
 		
-		\item [Existencia en $L^2$]
+		\item {\textbf{Existencia en $L^2$}}
 		
 		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2$ y como $L^2$ es Hilbert existe $Y \in \mathcal{K} $ tal que:
 		
@@ -244,7 +244,7 @@ Recordemos adem\'as:
 		
 		Conclu\'imos que $Y = \expectation{X \vert \mathcal{G}}$
 		
-		\item [Existencia en $L^1$]		
+		\item {\textbf{Existencia en $L^1$}}		
 		
 		Notemos que basta verlo para $X \geq 0$, luego existen $X_n \geq 0$ acotadas tal que $X_n \nearrow X$; como cada $X_n \in L^2$ si definimos $Y = \limsup \expectation{X_n \vert \mathcal{G}}$ entonces \ref{theorem: Convergencia monotona} demuestra lo que necesitabamos.\qed
 		

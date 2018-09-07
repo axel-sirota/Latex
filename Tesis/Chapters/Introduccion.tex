@@ -31,7 +31,7 @@ Para simplificar, continuamos enfoc\'andonos en los problemas que surgen en el c
 \subsection{Fundamentos} 
 Nuestro objetivo es determinar una funci\'on de predicci\'on  $h:\mathcal{X} \rightarrow \mathcal{Y}$ desde un espacio de entrada $\mathcal{X}$ a un espacio de salida $\mathcal{Y}$ tal que, dado $x \in \mathcal{X}$, el valor $h (x)$ ofrece una predicci\'on precisa sobre el valor verdadero de salida $y$. Es decir, nuestro objetivo es elegir una funci\'on de predicci\'on que evite la memorizaci\'on mec\'anica y, en su lugar, generalice los conceptos que se pueden aprender a partir de un conjunto dado de ejemplos. Para hacer esto, uno debe elegir la funci\'on de predicci\'on $h$ intentando minimizar el riesgo medido sobre una familia de funciones de predicci\'on adecuadamente seleccionadas \cite{vapnik:1971}, llamadas $\mathcal{H}$.
 
-Para formalizar esta idea, supongamos que los ejemplos se muestrean a partir de una funci\'on de distribuci\'on de probabilidad conjunta $P (x, y)$ que simultaneamente representa la distribuci\'on $P (x)$ de entradas as\'i como la probabilidad condicionada $P (y \vert x)$ del valor $y$ para un dado valor de entrada $x$. (Desde este punto de vista, uno a menudo se refiere a los ejemplos como \textit{muestras}, usaremos ambos t\'erminos en el resto del trabajo.) En lugar de algo que simplemente minimiza el riesgo emp\'irico (\ref{def: Riesgo empirico}), uno debe buscar encontrar $h$ que arroje un peque\~no \textit{riesgo esperado} de clasificaciones err\'oneas sobre \textit{todas las entradas posibles}, es decir, una $h$ que minimice
+Para formalizar esta idea, supongamos que los ejemplos se muestrean a partir de una funci\'on de distribuci\'on de probabilidad conjunta $P (x, y)$ que simultaneamente representa la distribuci\'on $P (x)$ de entradas as\'i como la probabilidad condicionada $P (y \vert x)$ del valor $y$ para un dado valor de entrada $x$. (Desde este punto de vista, uno a menudo se refiere a los ejemplos como \textit{muestras}, usaremos ambos t\'erminos en el resto del trabajo.) En lugar de algo que simplemente minimiza el riesgo emp\'irico (\ref{def: Riesgo empirico}), uno debe buscar encontrar $h$ que arroje un peque\~no \textit{riesgo esperado} de clasificaciones err\'oneas sobre \textit{todas las entradas posibles}, es decir, una $h$ que minimice \ref{def: riesgo esperado}:
 
 \begin{equation}
 \label{def: Riesgo empirico}
@@ -172,27 +172,27 @@ R_n(\omega) = \frac{1}{n} \sum\limits_{i=1}^{n} {l \left( h(x;w), y\right)}
 En t\'erminos generales, la minimizaci\'on de $R_n$ puede considerarse el problema pr\'actico de optimizaci\'on de inter\'es. Por ahora, consideramos la medida no regularizada (\ref{eq: Riesgo empirico}), pero notemos que los m\'etodos de optimizaci\'on que discutiremos en las secciones siguientes pueden aplicarse f\'acilmente cuando se incluye un t\'ermino suave de regularizaci\'on.
 
 \subsection{Notaci\'on simplificada}
-Las expresiones (\ref{eq: Riesgo empirico}) y (\ref{eq: Riesgo esperado}) muestran expl\'icitamente c\'omo los riesgos esperado y emp\'irico dependen de la funci\'on de p\'erdida, espacio de muestra o conjunto de muestras, etc. Sin embargo, cuando hablamos de m\'etodos de optimizaci\'on, a menudo emplearemos una notaci\'on simplificada que tambi\'en ofrece algunos caminos para generalizar ciertas ideas algor\'itmicas. En particular, representemos una muestra (o conjunto de muestras) por una variable aleatoria $\upxi$; por ejemplo, uno puede imaginar una realizaci\'on de $\upxi$ como una muestra \'unica $(x, y)$ de $\mathbb{R}^{d_x} \times \mathbb{R}^{d_y}$, o una realizaci\'on de $\upxi$ podr\'ia ser un conjunto de muestras $\left\lbrace(x_i, y_i)\right\rbrace_{i \in S}$. Adem\'as, podemos referirnos a la p\'erdida incurrida para un dado $(w, \upxi)$ como $g (w; \upxi )$, es decir, $g$ es la composici\'on de la funci\'on de p\'erdida y la funci\'on de predicci\'on $h$.
+Las expresiones (\ref{eq: Riesgo empirico}) y (\ref{eq: Riesgo esperado}) muestran expl\'icitamente c\'omo los riesgos esperado y emp\'irico dependen de la funci\'on de p\'erdida, espacio de muestra o conjunto de muestras, etc. Sin embargo, cuando hablamos de m\'etodos de optimizaci\'on, a menudo emplearemos una notaci\'on simplificada que tambi\'en ofrece algunos caminos para generalizar ciertas ideas algor\'itmicas. En particular, representemos una muestra (o conjunto de muestras) por una variable aleatoria $\upxi$; por ejemplo, uno puede imaginar una realizaci\'on de $\upxi$ como una muestra \'unica $(x, y)$ de $\mathbb{R}^{d_x} \times \mathbb{R}^{d_y}$, o una realizaci\'on de $\upxi$ podr\'ia ser un conjunto de muestras $\left\lbrace(x_i, y_i)\right\rbrace_{i \in S}$. Adem\'as, podemos referirnos a la p\'erdida incurrida para un dado $(w, \upxi)$ como $f (w; \upxi )$, es decir, $f$ es la composici\'on de la funci\'on de p\'erdida y la funci\'on de predicci\'on $h$.
 
 De esta manera, el riesgo esperado para una $w$ dada es el valor esperado de esta funci\'on compuesta tomada con respecto a la distribuci\'on de $\upxi$:
 
 \begin{equation}
 \label{Riesgo esperado 3}
-R(w) = \mathbb{E} \left [ g(w; \upxi) \right ]
+R(w) = \mathbb{E} \left [ f(w; \upxi) \right ]
 \end{equation}
 
 De manera similar, dado un conjunto de realizaciones $\left\lbrace \upxi_{\left [ i \right ]} \right\rbrace _{i=1}^{n}$ de $\upxi$ correspondientes a un conjunto de muestras $\left\lbrace (x_i, y_i) \right\rbrace_{i=1}^{n}$, definamos la p\'erdida incurrida por el vector de par\'ametro $w$ con respecto a la i-\'esima muestra como
 
 \begin{equation}
 \label{funci\'on p\'erdida de w}
-g_i (w) := g(w, \upxi_{\left [ i \right ]})
+f_i (w) := f(w, \upxi_{\left [ i \right ]})
 \end{equation}
 
 y luego escribamos el riesgo emp\'irico como el promedio de las p\'erdidas de la muestra:
 
 \begin{equation}
 \label{Riesgo empirico 3}
-R_n(w) = \frac{1}{n}\sum\limits_{i=1}^{n} g_i (w)
+R_n(w) = \frac{1}{n}\sum\limits_{i=1}^{n} f_i (w)
 \end{equation}
 
 Para referencia futura, usamos $\upxi_{\left [ i \right ]}$ para denotar el i-\'esimo elemento de un conjunto fijo de realizaciones de una variable aleatoria $\upxi$, mientras que, comenzando en la parte \ref{pt:algoritmosestocasticos}, utilizaremos $\upxi_{\left [ k \right ]}$ para denotar el k-\'esimo elemento de una secuencia de variables aleatorias .
@@ -203,20 +203,20 @@ Ahora vamos a introducir algunos algoritmos de optimizaci\'on fundamentales para
 Los m\'etodos de optimizaci\'on para el machine learning se dividen en dos grandes categor\'ias. Nos referimos a ellos como estoc\'asticos y por Batch. El m\'etodo protot\'ipico de optimizaci\'on estoc\'astica es el m\'etodo del gradiente estoc\'astico (DE) \cite{robbins:1951}, que, en el contexto de minimizar $R_n$ y con $w_1\in \mathbb{R}^d$ dado, se define por
 \begin{equation}
 \label{def: DE}
-w_{k+1} \gets w_k - \alpha_k \nabla g_{i_k} (w_k)
+w_{k+1} \gets w_k - \alpha_k \nabla f_{i_k} (w_k)
 \end{equation}
 
-Aqu\'i, para todo $k \in \mathbb{N} := \left\lbrace 1, 2, ... \right\rbrace $, el \'indice $i_k$ (correspondiente a la variable aleatoria $\upxi_{\left[ i_k \right]}$, es decir, el par de muestras $(x_{i_k}, y_{i_k})$) se elige \textit{al azar} de $\left\lbrace 1,. . . , n \right\rbrace$ y $\alpha _k$ es un incremento positivo. Cada iteraci\'on de este m\'etodo es, por lo tanto, muy barata, y solo incluye el c\'alculo del gradiente $\nabla g_{i_k} (w_k)$ correspondiente a una muestra. El m\'etodo es notable porque la secuencia de iteraci\'on no est\'a determinada \'unicamente por el
-	la funci\'on $R_n$, el punto de inicio $w_1$, y la secuencia de incrementos $\left\lbrace \alpha _k \right\rbrace $, como lo har\'ia en un algoritmo de optimizaci\'on determinista. Por el contrario, $\left\lbrace w_k \right\rbrace $ es un proceso estoc\'astico cuyo comportamiento est\'a determinado por la secuencia aleatoria $\left\lbrace i_k \right\rbrace $. A\'un as\'i, como veremos en nuestro an\'alisis en el cap\'itulo \ref{ch:convergenciaL1}, mientras que cada direcci\'on $- \nabla g_{i_k} (w_k)$ podr\'ia no ser una de descendencia de $w_k$ (en el sentido de producir una derivada direccional negativa para $R_n$ de $w_k$), s\'i es una direcci\'on de descenso \textit{en esperanza}, luego la secuencia $\left\lbrace w_k \right\rbrace $ puede guiarse hacia un minimizador de $R_n$.
+Aqu\'i, para todo $k \in \mathbb{N} := \left\lbrace 1, 2, ... \right\rbrace $, el \'indice $i_k$ (correspondiente a la variable aleatoria $\upxi_{\left[ i_k \right]}$, es decir, el par de muestras $(x_{i_k}, y_{i_k})$) se elige \textit{al azar} de $\left\lbrace 1,. . . , n \right\rbrace$ y $\alpha _k$ es un incremento positivo. Cada iteraci\'on de este m\'etodo es, por lo tanto, muy barata, y solo incluye el c\'alculo del gradiente $\nabla f_{i_k} (w_k)$ correspondiente a una muestra. El m\'etodo es notable porque la secuencia de iteraci\'on no est\'a determinada \'unicamente por el
+	la funci\'on $R_n$, el punto de inicio $w_1$, y la secuencia de incrementos $\left\lbrace \alpha _k \right\rbrace $, como lo har\'ia en un algoritmo de optimizaci\'on determinista. Por el contrario, $\left\lbrace w_k \right\rbrace $ es un proceso estoc\'astico cuyo comportamiento est\'a determinado por la secuencia aleatoria $\left\lbrace i_k \right\rbrace $. A\'un as\'i, como veremos en nuestro an\'alisis en el cap\'itulo \ref{ch:convergenciaL1}, mientras que cada direcci\'on $- \nabla f_{i_k} (w_k)$ podr\'ia no ser una de descendencia de $w_k$ (en el sentido de producir una derivada direccional negativa para $R_n$ de $w_k$), s\'i es una direcci\'on de descenso \textit{en esperanza}, luego la secuencia $\left\lbrace w_k \right\rbrace $ puede guiarse hacia un minimizador de $R_n$.
 	
 	Para muchos en la comunidad de investigaci\'on de optimizaci\'on, un enfoque por \textit{Batch} es una idea m\'as natural y conocida. El m\'etodo m\'as simple de esta clase es el algoritmo de descenso m\'as pronunciado -tambi\'en conocido como gradiente, descenso de gradiente por Batch o m\'etodo de gradiente completo- (GD)que se define mediante la siguiente iteraci\'on:
 	
 	\begin{equation}
 	\label{gradiente de Batch}
-	w_{k+1} \gets w_k - \alpha_k \nabla R_n(w_k) = w_k -\frac{\alpha_k}{n} \sum\limits_{i=1}^{n} {\nabla g_i (w_k)}
+	w_{k+1} \gets w_k - \alpha_k \nabla R_n(w_k) = w_k -\frac{\alpha_k}{n} \sum\limits_{i=1}^{n} {\nabla f_i (w_k)}
 	\end{equation}
 	
-	Calcular el paso $- \alpha_k \nabla R_n (w_k)$ en tal enfoque es m\'as costoso que calcular el paso $- \alpha_k \nabla g_{i_k} (w_k)$ en DE, aunque se puede esperar que se calcule un mejor paso cuando todas las muestras se consideran en una iteraci\'on.
+	Calcular el paso $- \alpha_k \nabla R_n (w_k)$ en tal enfoque es m\'as costoso que calcular el paso $- \alpha_k \nabla f_{i_k} (w_k)$ en DE, aunque se puede esperar que se calcule un mejor paso cuando todas las muestras se consideran en una iteraci\'on.
 	
 	Los enfoques estoc\'astico y por Batch ofrecen diferentes compensaciones en t\'erminos de costos de iteraci\'on y mejora esperada de la iteraci\'on para minimizar el riesgo emp\'irico. ¿Por qu\'e, entonces, DE ha alcanzado tal prominencia en el contexto del machine learning a gran escala? Comprender el razonamiento detr\'as de esto requiere una consideraci\'on cuidadosa de las compensaciones computacionales entre los m\'etodos estoc\'astico y por Batch, as\'i como una mirada m\'as profunda en sus habilidades para garantizar la mejora en el subyacente riesgo esperado $R$. Comenzaremos a investigar estos temas en la siguiente subsecci\'on.
 	

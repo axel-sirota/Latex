@@ -135,7 +135,7 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 	Luego si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
 	
 	\begin{equation}
-		w_k \ \underrightarrow{k \rightarrow \infty} \ w^*
+		w_k \rightarrow w^*
 	\end{equation}
 	
 \end{theorem}
@@ -183,7 +183,7 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 			\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty
 		\end{equation*}
 		
-		Supongamos que $h_k \rightarrow h_{inf} \neq 0$, luego existir\'ia $K\in \N$ y $\widetilde{\epsilon} >0$ tal que $h_k = \left(w_k - w^*\right)^2 > \widetilde{\epsilon}$ para todo $k \geq K$; luego de \ref{def: Debilmente convexo} conclu\'imos que existe $M > 0$ tal que $M \leq \left(w_k - w^* \right)\nabla F(w_k) $ para todo $k \geq K$. Por \ref{eq: Condicion robbins monro} eso implica que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty$, conclu\'imos que $w_k \ \underrightarrow{k \rightarrow \infty} \ w^*$. \qed
+		Supongamos que $h_k \rightarrow h_{inf} \neq 0$, luego existir\'ia $K\in \N$ y $\widetilde{\epsilon} >0$ tal que $h_k = \left(w_k - w^*\right)^2 > \widetilde{\epsilon}$ para todo $k \geq K$; luego de \ref{def: Debilmente convexo} conclu\'imos que existe $M > 0$ tal que $M \leq \left(w_k - w^* \right)\nabla F(w_k) $ para todo $k \geq K$. Por \ref{eq: Condicion robbins monro} eso implica que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty$, conclu\'imos que $w_k \rightarrow w^*$. \qed
 		
 	\end{enumerate}
 	
@@ -193,7 +193,7 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 	Sea $F \in C^2$, asumamos \ref{def: Debilmente convexo} y que $\norm{\nabla^2 F}_2^2 \leq L$; si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
 	
 	\begin{equation}
-	w_k \ \underrightarrow{k \rightarrow \infty} \ w^*
+	w_k \rightarrow w^*
 	\end{equation}
 \end{corollary}
 
@@ -308,7 +308,7 @@ Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:
 	\label{theorem: convergencia lineal GD}
 	Sea $F \in C^1$ tal que existe $F_{inf}$ valor m\'inimo, $F$ cumple \ref{def: L Lipshitz} y \ref{def: Condicion PL}; entonces el algortimo \ref{algo: GD} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
 	\begin{equation}
-	f(w_k) - f_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(f(w_o) - f_{inf}\right)
+	F(w_k) - F_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
 	\end{equation}
 \end{theorem}
 
@@ -328,7 +328,7 @@ Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:
 	Luego obtenemos:
 	
 	\begin{equation*}
-	F(w_{k+1}) - F_{inf} \leq \left(1 - \frac{\mu}{L} \right) \left(F(w_k) - F_{inf}\right) \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_0) - F_{inf}\right)
+	F(w_{k+1}) - F_{inf} \leq \left(1 - \frac{\mu}{L} \right) \left(F(w_k) - F_{inf}\right) \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
 	\end{equation*}\qed
 	
 	
