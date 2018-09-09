@@ -226,6 +226,50 @@
     \field{year}{2017}
   \endentry
 
+  \entry{jin:2017}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=JC}{%
+         family={Jin},
+         familyi={J\bibinitperiod},
+         given={Chi},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Ge},
+         familyi={G\bibinitperiod},
+         given={Rong},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=NP}{%
+         family={Netrapalli},
+         familyi={N\bibinitperiod},
+         given={Praneeth},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KSM}{%
+         family={Kakade},
+         familyi={K\bibinitperiod},
+         given={Sham\bibnamedelima M.},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=JMI}{%
+         family={Jordan},
+         familyi={J\bibinitperiod},
+         given={Michael\bibnamedelima I.},
+         giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JC+1}
+    \strng{fullhash}{JCGRNPKSMJMI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{booktitle}{ICML}
+    \field{title}{How to Escape Saddle Points Efficiently}
+    \field{year}{2017}
+  \endentry
+
   \entry{knuth:1974}{article}{}
     \name{author}{1}{}{%
       {{hash=KDE}{%
@@ -779,33 +823,6 @@
     \field{year}{1998}
   \endentry
 
-  \entry{vapnik:1982}{book}{}
-    \name{author}{1}{}{%
-      {{hash=VV}{%
-         family={Vapnik},
-         familyi={V\bibinitperiod},
-         given={Vladimir},
-         giveni={V\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer-Verlag}%
-    }
-    \strng{namehash}{VV1}
-    \strng{fullhash}{VV1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{V}
-    \field{sortinithash}{V}
-    \field{isbn}{0387907335}
-    \field{title}{Estimation of Dependences Based on Empirical Data: Springer
-  Series in Statistics (Springer Series in Statistics)}
-    \list{location}{1}{%
-      {Berlin, Heidelberg}%
-    }
-    \field{year}{1982}
-  \endentry
-
   \entry{williams:1991}{book}{}
     \name{author}{1}{}{%
       {{hash=WD}{%
@@ -858,6 +875,39 @@
     \field{sortinithash}{Y}
     \field{title}{On stochastic proximal gradient algorithms}
     \field{year}{2014}
+  \endentry
+
+  \entry{zhang:2017}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yuchen},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Percy},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Charikar},
+         familyi={C\bibinitperiod},
+         given={Moses},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZYLPCM1}
+    \strng{fullhash}{ZYLPCM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{COLT}
+    \field{title}{A Hitting Time Analysis of Stochastic Gradient Langevin
+  Dynamics}
+    \field{year}{2017}
   \endentry
 \enddatalist
 \endinput

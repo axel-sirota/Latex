@@ -1,0 +1,622 @@
+\documentclass{beamer} 
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{amsmath,amsbsy,amscd,amssymb,graphicx, epsfig,color}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+%\useinnertheme{rectangles}
+\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!90!black}
+\setbeamercolor{block body example}{bg=normal text.bg!90!black}
+\setbeamercolor{block title alerted}{use={normal text,alerted text},fg=alerted text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+\setbeamercolor{block title}{bg=shadecolor, fg=black}
+\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+%\setbeamercolor{item projected}{fg=black, bg=darkred}
+\definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
+\definecolor{mapblue}{HTML}{3333B3}
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def \ee{\varepsilon}
+\def \a{\alpha}
+\def \b{\beta}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{lem}{Lemma}
+\def \K{\hbox{Ker}}
+
+
+\title[Uniform persistence and  periodic solutions]{\bf {Uniform persistence and  periodic solutions} {for some systems of delay differential equations}}
+\author[Pablo Amster]{Pablo Amster}
+\institute[UBA-IMAS]{Universidad de Buenos Aires - IMAS  (CONICET)}
+\date[Brasilia 2018]{International Workshop on Nonlinear Dynamical Systems and Functional Analysis.}
+
+\AtBeginSection[] {
+\begin{frame}{Outline}
+\tableofcontents[currentsection]
+\end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\section*{Outline}
+%\begin{frame}
+%  \tableofcontents
+%\end{frame}
+
+
+\section{Introduction}
+\begin{frame}
+ \frametitle{Motivation}
+ Nicholson equation  
+\begin{equation}
+    \label{nich}
+    x'(t)=-d x(t) + p x(t-\tau)e^{-x(t-\tau)}
+\end{equation}
+with $p,d>0$.
+
+\medskip 
+
+The IVP for (\ref{nich}) reads
+
+$$x(t)=\varphi(t) \qquad \varphi\in C([-\tau,0]).
+$$
+
+
+\end{frame} 
+
+
+%\end{document}
+
+
+
+\begin{frame} 
+\frametitle{The whole truth about Nicholson}
+\begin{enumerate}
+
+    \item $p\le d \Longrightarrow$  no positive equilibrium points. 
+    Furthermore,  $0$ is a global attractor of the solutions with $\varphi>0$. 
+    \pause 
+    \item $p>d \Longrightarrow$ unique equilibrium point, which is locally asymptotically stable: 
+    
+      \begin{itemize}
+          \item  for all $\tau$ when $p<de^2$,
+          \item  for $\tau<\tau^*(p)$ when $p\ge de^2$.
+      \end{itemize}   Moreover if  $\varphi>0$  then $$\liminf_{t\to+\infty}x(t)\ge \min \{\ln \left(\frac pd\right), 
+    e^{-\tau d}\}.$$
+    \pause 
+    \item $p, d \in C_T \Longrightarrow$   positive  $T$-periodic solutions if $p(t)>d(t)$ for all $t$ and no $T$-periodic solutions if $p(t)\le d(t)$ 
+    for all $t$ (furthermore, $0$ is a global attractor). 
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Generalisation: Nicholson system}
+
+\begin{equation}
+    \label{nich-sys}
+    \left\{\begin{array}{c}
+        x_1'(t)=-d_1 x_1(t) + b_1x_2(t)+ p_1 x_1(t-\tau)e^{-x_1(t-\tau)}    \\
+               x_2'(t)=-d_2 x_2(t) + b_2x_1(t)+ p_2 x_2(t-\tau)e^{-x_2(t-\tau)}  
+    \end{array}
+    \right.
+    \end{equation}
+
+\begin{enumerate}
+    \item $p_i+b_i\le d_i\Longrightarrow 0$ is a global attractor of positive solutions. 
+        \item Uniform persistence if $p_i+b_i>d_i$.
+        
+        \item $T$-periodic solutions $b_i(t)<d_i(t) <p_i(t)+d_i(t)$ for all $t$. 
+        
+    
+\end{enumerate}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\frametitle{Persistence definitions}
+
+Let $X\ne \emptyset$ and 
+$\rho: X \to \R^+$. A semiflow $\Phi : J \times X \to  X$ is called 
+
+
+
+\begin{itemize}
+    \item weakly $\rho$-persistent, if
+$$\limsup_{t\to+\infty}  
+\rho(\Phi(t, x)) > 0\qquad \forall\, x \in  X, \rho(x) > 0.$$
+    
+    \item 
+     strongly $\rho$-persistent, if
+$$\liminf_{t\to+\infty}  
+\rho(\Phi(t, x)) > 0\qquad \forall\, x \in  X, \rho(x) > 0.$$
+\item 
+uniformly weakly (strongly) $\rho$-persistent, if
+there exists some  $\varepsilon > 0$ such that
+$$\limsup_{t\to+\infty}  
+\rho(\Phi(t, x)) > \varepsilon \qquad \forall\, x \in  X, \rho(x) > 0\qquad \hbox{(resp. liminf)}.$$
+ 
+
+\medskip
+In our case 
+$\rho(x) = |x|$ (persistence of some  species).
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{}
+
+
+
+Clearly, 
+
+\begin{center}
+    (USP)$\Longrightarrow$ (UWP) $\Longrightarrow$ (WP) and
+(SP) $ \Longrightarrow$ (WP).
+\end{center}
+
+\medskip {\bf Results for $X$ locally compact, $X\backslash\{0\}$ positively invariant:}   
+
+
+\begin{center}
+    
+(UWP) $\Longrightarrow$ (USP), but 
+(WP) $\not\Longrightarrow$ (SP)
+and 
+(SP) $\not\Longrightarrow$ (USP). 
+\end{center}
+
+Extra conditions $\Longrightarrow$  all definitions are equivalent (see \cite{FM}).
+
+   \smallskip 
+\pause  
+Fonda \cite{F}:
+   \smallskip 
+    
+    (USP) $\Longleftrightarrow$
+        $\exists \, U\ni 0$ open and $V:U\to [0,+\infty)$ continuous such that: 
+        \begin{enumerate}
+            \item $V(x)=0 \iff x=0$.
+            \item $\forall\, x\ne 0\, \exists t_x>0$ such that $V(\Phi(t_x,x)) > V(x)$. 
+        \end{enumerate}
+\end{frame}
+
+\section{Delayed systems}
+
+\begin{frame}
+    
+  
+
+Our system reads
+\begin{equation}
+\label{eq}
+x'(t)=f(t,x(t),x(t-\tau))
+\end{equation}
+with
+$f:[0,+\infty)\times [0,+\infty)^{2N}\to \R^N$  continuous.
+
+Initial condition:
+\begin{equation}
+\label{ic}
+x(t) =\varphi(t)
+\qquad {-\tau\le t\le 0}
+\end{equation}
+\begin{center}
+    $\varphi\in X:=$ positive cone of $C([-\tau,0],\R^N)$,
+\end{center}
+which is \textbf{not} locally compact. 
+
+\medskip 
+
+{\bf Basic assumption}: 
+
+\smallskip
+
+{\bf (H1)} \label{posit}
+If $x_j=0$ for some $j$ and $y\ne 0$ then $f_j(t,x,y)>0$ for all $t>0$.
+
+\pause 
+\bigskip
+{\bf (H1)} $\Longrightarrow X^\circ$ pos.  invariant, i.e.: $\varphi>0\Longrightarrow x>0$, but {\bf (H1)} $\not\Longrightarrow$ (WP). 
+
+\end{frame}
+
+\begin{frame}{}
+
+ 
+Consider 
+$V:(0,+\infty)^N\to (0,+\infty)$ smooth such that 
+$V(x)\to 0$ as $x\to 0$ in $(0,+\infty)^N$. 
+\medskip 
+
+Obvious choice: $V(x)= |x|^2$. Nicholson system $V=\min x_i$ (nonsmooth). 
+
+\pause 
+\smallskip{}
+
+{\bf Idea}: find conditions that guarantee
+ $\dot V>0$ for $x(t)$ close to $0$, where $\dot V(t)=v'(t):=(V\circ x)'(t)$. 
+
+
+\pause 
+\medskip 
+{\bf Easy case}: 
+\smallskip
+
+{\bf (H2)} There exist $t_0,r>0$ such that
+$$ \langle \nabla V(x),f(t,x,y)\rangle >0 \qquad \hbox{for } t>t_0,  V(x),V(y)<r.$$
+  
+\begin{center}
+    {\bf (H1)} + {\bf (H2)} $\Longrightarrow$ (WP)
+\end{center}
+
+\smallskip{
+}
+
+{\bf (H2)} $\Longrightarrow$ (Fonda) when $\tau=0$. 
+However,  {\bf (H2)} is not satisfied e.g. in (\ref{nich}).    
+    
+\end{frame}
+
+
+\begin{frame}{}
+
+More realistic: 
+\smallskip 
+
+{\bf (H2')} 
+There exist $t_0,r>0$ such that
+$$ \langle \nabla V(x),f(t,x,x)\rangle >0 \qquad \hbox{for } t>t_0\hbox{ and } V(x)<r.$$
+
+\medskip 
+
+{\bf (H1)}  + {\bf (H2')} do not suffice because 
+$x(t)-x(t-\tau)$ may be large. 
+
+\medskip 
+
+{\bf Proposition}:
+(SP) holds if we also assume monotonicity:
+
+\medskip
+
+
+{\bf (H3)} 
+$$\langle \nabla V(x),f(t,x,y)\rangle \ge \langle \nabla V(x),f(t,x,x)\rangle$$
+whenever $V(x)\le V(y)$. 
+
+
+
+\end{frame}
+
+\begin{frame}{}
+\emph{Proof}: Suppose  $s_n\to +\infty$, $x(s_n)\to 0 \Longrightarrow v(s_n)\to 0$. 
+\smallskip 
+
+Set $t_n$ such that    $v(t_n) =\min_{t\le s_n} v(t)$. 
+For $n\gg 0$, 
+\begin{center}
+    $v'(t_n)\le 0$ and  $v(t_n-\tau)\ge v(t_n)$.
+\end{center}
+Thus,
+$$0\ge v'(t_n)=\langle \nabla V(x(t_n)),f(t_n,x(t_n),x(t_n-\tau)\rangle
+$$
+$$\ge \langle \nabla V(x(t_n)),f(t_n,x(t_n),x(t_n)\rangle >0,$$  a contradiction. 
+\medskip 
+\pause 
+
+
+Nicholson does not satisfy {\bf (H3)}, then: why is it (USP)?
+
+\end{frame}    
+\begin{frame}{Local monotonicity}
+
+{\bf (H3')} There exists $\eta >0$ such that
+$$\langle \nabla V(x),f(t,x,y)\rangle \ge \langle \nabla V(x),f(t,x,x)\rangle$$
+whenever $V(x)\le V(y)\le \eta$. 
+
+    \bigskip 
+{\bf    Nicholson}: $f(x,y)= -dx + pye^{-y} \Longrightarrow$  {\bf (H3')} with $\eta=1$ and $V(x)=x$. 
+
+\bigskip 
+\pause 
+
+{\bf (H3')} is not enough! Reason: $x(t)-x(t-\tau)$ may be large.  
+
+\end{frame}
+
+\begin{frame}{A standard assumption in population models}
+
+    {\bf (H4)} 
+$\langle \nabla V(x),f(t,x,y)\rangle \ge -k V(x) $ for some constant $k$. 
+\medskip{}
+
+Thus, 
+$$v'(t)= 
+\langle \nabla V(x(t)), f(t,x(t),x(t-\tau)\rangle \ge -kv(t),
+$$
+whence
+\begin{center}
+    $v(t-\tau) \le e^{k\tau}v(t)$ for all $t\ge \tau$.
+\end{center}
+\medskip 
+
+Consequence:  
+
+\begin{center}
+        {\bf (H1)} +     {\bf (H2')} +     {\bf (H3')} +     {\bf (H4)} $\Longrightarrow$ (SP). 
+\end{center}    
+ 
+ 
+ 
+
+\end{frame}
+
+\begin{frame}{But... why is Nicholson (USP)?}
+    
+    Assume {\bf (H1)} +     {\bf (H2')} +     {\bf (H3')} +     {\bf (H4)} and $i=\liminf_{t\to+\infty} v(t) \ll 1$. Then $i>0$ and there are 3 cases: 
+    \medskip 
+    
+\begin{enumerate}
+    \item $v(t)\ge i$ for all $t\gg 0$. Then choose as before
+        $t_n\to +\infty$ such that $v(t_n) \to i$, $v(t_n-\tau) \ge v(t_n)$ and $v'(t_n)\le 0$ and a contradiction yields.
+        \pause 
+       \item 
+ $v(t)$ oscillates around $i$. Then we may choose 
+    a sequence $t_n\to +\infty$ such that $v(t_n)\to i^-$  and $v'(t_n)\le 0$. However, it might happen that $v(t_n-\tau)< v(t_n)$ for $n$ large, then     {\bf (H3')} + {\bf (H4)} are not of any help.
+ \pause  
+   \item  
+  $v(t)\to i^-$ as $t\to+\infty$: same situation.
+    
+\end{enumerate}       
+    
+
+    
+     
+    
+\end{frame}
+
+\begin{frame}{
+}
+ Wouldn't it be great if 
+ 
+ $$\langle \nabla V(x),f(t,x,y)\rangle \ge c(i)>0
+ $$
+ whenever $V(x), V(y)$ are close to $i$? 
+ \medskip 
+ 
+ 
+ For example, if 
+ $v(t)\to i^-$, then 
+ $$v'(t)=\langle \nabla V(x(t)),f(t,x(t),x(t-\tau))\rangle \ge c
+ $$
+ for $t$ large, a contradiction. 
+\medskip 
+
+\pause 
+\textbf{OK} for (\ref{nich}) but too ambitious when $N>1$:
+the condition fails for example if $V(x)=|x|^2$ and $f(x,y)=y$.
+
+\end{frame}
+
+\begin{frame}{And yet it works
+}
+Let 
+  $$\theta_i:= \limsup_{t\to+\infty, V(x), V(y)\to i^-} |f(t,x,y)|
+$$
+and observe that if $v(t)\to i^-$ then 
+$$|x(t)-x(t-\tau)|\le \tau |x'(\xi)|\qquad \xi \in [t-\tau,t]$$
+and hence: 
+$$
+\limsup_{t\to+\infty} |x(t)-x(t-\tau)| \le \tau \theta_i.
+$$
+
+
+\end{frame}
+
+\begin{frame}{ At last we get (USP)}
+
+{\bf (H2''')} $\exists \, r>0$ such that, $\forall \, i\in (0,r)$ and some $C_i>\tau \theta_i$ 
+$$\liminf_{t\to+\infty, V(x),V(y)\to i^-, |y-x|\le C_i }\langle x,f(t,x,y)\rangle  > 0.
+$$
+
+\begin{theorem}
+
+$$\hbox{ {\bf (H1)} $+$ 
+{\bf (H2'')}
+$+$ 
+{\bf (H3')}
+$+$ 
+{\bf (H4)}
+$\Longrightarrow$ {\bf (USP)}.}$$ 
+More precisely, all solutions of (\ref{eq})-(\ref{ic}) with $\varphi_j(t)>0$ for all $j$ and $t\in [-\tau,0]$ satisfy 
+$$\liminf_{t\to+\infty} V(x(t))\ge \min\{ r, e^{-k\tau}\eta \}.$$
+\end{theorem}
+
+\end{frame}
+
+\section{Periodic solutions, existence and...}
+
+
+\begin{frame}{Periodic solutions}
+    
+Consider a continuous function $a:[0,+\infty)\to (0,+\infty)$ and define
+$$K(t,x,y):= 
+\langle \nabla V(x),f(t,x,y)\rangle + a(t)V(x),
+$$
+$$\phi(t,r):= 
+ \sup_{V(x),V(y)\le r} {\frac {K(t,x,y)}{a(t)}}.
+$$
+
+\medskip 
+
+Autonomous system:  
+{\bf (H1)} + 
+{\bf (H2')}  and  
+ $\phi(R)<R$ for some $R$, then there exists a positive equilibrium point in the region  
+$$
+V_\varepsilon^R:=\{ \varepsilon < V(x) < R\}.
+$$
+Indeed, the field $f(x,x)$ points outwards over $\partial V_\varepsilon^R$.
+
+
+\end{frame}
+
+\begin{frame}{
+}
+
+Faces $\overline{V_\varepsilon^R}\cap \{ 
+x_i = 0\}:$ use {\bf (H1)}. 
+\bigskip
+
+Bottom cap $\{V=\varepsilon\}$: the outer normal is $-\nabla V$ and
+{\bf (H2')} guarantees $\langle \nabla V(x),f(x,x)\rangle>0$.
+
+\bigskip
+
+Top cap $\{V=R\}$: the outer normal is $\nabla V$ and
+the inequality  $\phi(R)<R$ implies 
+$\langle \nabla V(x),f(x,x)\rangle <0$. 
+ 
+\bigskip
+\pause 
+
+{\bf Important condition}: $\chi(V_\varepsilon^R)\ne 0$ (e.g. $\overline{V_\varepsilon^R}$
+is a retract of $C\simeq \overline B$). 
+    
+\end{frame}
+
+\begin{frame}{Closed orbits for the non-autonomous system}
+    
+Let $T\ge \tau$ and consider the assumption: 
+
+\medskip
+
+{\bf (H5)} 
+There exists $R>0$ such that $\phi(t,R)<R$ for $0\le t\le T$. 
+
+\bigskip 
+\begin{theorem}
+    {\bf (H1)} $+$ 
+{\bf (H2')}
+$+$ 
+{\bf (H3')}
+$+$ 
+{\bf (H4)} $+$  {\bf (H5)}
+$\Longrightarrow$ {Positive $T$-periodic solutions}.
+\end{theorem}
+
+\pause 
+\textit{Idea of the proof}: $deg(I-K)= \chi(V_\varepsilon^R)$.
+\end{frame}
+
+
+\section{...nonexistence: 0 is a global attractor}
+
+\begin{frame}{
+Conversely...}
+    
+    Assume that 
+    $$
+\phi^*(r):= \sup_{t\ge 0} \phi(t,r).
+$$
+is continuous and
+
+\medskip 
+
+{\bf (H6)} 
+For every $\varepsilon>0$
+there exists $\mu>0$ such that $V^{-1}(0, \mu) \subset B_\varepsilon(0)$. 
+
+\begin{thm}
+
+Assume  {\bf (H6)} and suppose  there exists $R_0$ such that  $\phi^*(r)<r$ for $0<r<R_0$. 
+Then every solution with initial data $\varphi(t)\in (0,R_0)$ for all $t\in [-\tau,0]$ tends to $0$ as $t\to +\infty$.  
+
+\end{thm}
+
+\end{frame}
+
+\begin{frame}{Sketch of the proof}
+    
+If $v\le r$ on $[t-\tau, t]$ and
+$v'(t)\ge 0$, then 
+$$
+v(t) \le \phi(r). 
+$$
+Let $R_{j+1}:= {\phi^*(R_j)}<R_j$, then two different situations may occur:
+
+\begin{enumerate}
+    \item There exists $t_j\to +\infty$ such that $v(t)\in (0,R_j]$ for $t\ge t_j$. Then $v(t)\to 0$ because
+$$
+\phi^*(\lim_{j\to \infty} R_j) = \lim_{j\to \infty} \phi^*(R_j)= \lim_{j\to \infty} R_j, 
+$$.     
+\item There exist $j$ and $t_j$ such that $v(t) \in (R_{j+1},R_j]$ and decreases strictly for $t\ge t_j$. Let 
+ $r:=\lim_{t\to+\infty} v(t)$, fix $\tilde r>r$ such that $\phi^*(\tilde r)<r$ and $\tilde t$ such that $v(t)\le \tilde r$ for $t\ge \tilde t$. Thus 
+$v(t)\le \phi^*(\tilde r)<r$ for $t\ge t^*+\tau$, a contradiction. 
+
+\end{enumerate}
+
+    
+\end{frame}
+\section{References}
+\begin{frame}[allowframebreaks]{References}
+\begin{thebibliography}{99}
+{\fontsize{10}{10} \selectfont
+
+
+\beamertemplatearticlebibitems
+
+\bibitem{BBI} 
+ L. Berezansky, E. Braverman, L.  Idels,  
+ {\em Nicholson's blowflies differential equation revisited: main results and open problems}. Appl. Math. Model,  {\bf 34}, (2010) 1405--1417.
+ 
+ \beamertemplatearticlebibitems
+
+ \bibitem{FM}
+H. Freedman, P. Moson, {\em Persistence definitions and their connections}, Proc. Am. Math. Soc. 109, 4 (1990), 1025--1033. 
+ 
+\beamertemplatearticlebibitems
+
+\bibitem{F}
+A. Fonda, 
+{\em Uniformly persistent semidynamical systems}
+Proc. Am. Math. Soc.
+104, 1 (1988)
+
+\beamertemplatearticlebibitems
+
+\bibitem{ST}
+H. Smith, H. Thieme, {\em Dynamical Systems
+and Population
+Persistence}. 
+American Mathematical Society, 2011. 
+
+\beamertemplatearticlebibitems
+
+ \bibitem{SY} 
+  J. So, J. S. Yu, {\em Global attractivity and uniform persistence in Nicholson's blowflies}, Diff. Eqns. Dynam. Syst. {\bf 2} (1) (1994) 11--18
+  
+}
+
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+  \LARGE{{\bf Thanks for your attention!}}
+ \end{center}
+\end{frame}
+
+\end{document}

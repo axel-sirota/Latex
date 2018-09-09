@@ -73,12 +73,14 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 \begin{proof}
 	Veamos primero el siguiente lema:
 	
-	\marginpar{\color{Red}Probamos esto? Me parece un poco claro}
-	
 	\begin{lemma}
 		\label{lemma: PP es suave}
 		Bajo \ref{hyp: Hessiano acotado}, $\alpha < \frac{1}{L}$ y $x \in \mani$ entonces $f(z) + \frac{1}{2 \alpha} \norm{x- z}_2^2$ es estrictamente convexa, por lo que $g \in \mathcal{C}^1 \parenthesis{\mani}$
 	\end{lemma}
+
+	\begin{proof}{[Del lema]}
+		En efecto, por hip\'otesis sumado a \ref{prop: Implicancias L lipshitz} y \ref{coro: convexa y fuertemente convexa es fuertemente convexa} conclu\'imos que $g \in \mathcal{C}^1 \parenthesis{\mani}$.\qed
+	\end{proof}
 	
 	Por lo tanto por \ref{lemma: PP es suave} podemos tomar l\'imite, \ie
 	
@@ -222,8 +224,6 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 	
 	En pos de eso fijemos $t \geq 1$ una iteraci\'on , $y_t = J^t x_0$, $z_1 = y_t$ y definamos $z_{i+1} = \parenthesis{Id - \alpha P_{S_i}H}z_i = z_i - \alpha \Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}$. Luego $y_{t+1} = z_{b+1}$, afirmo:
 	
-	\marginpar{Esta demo es horrenda, hay que pensar una mejor y pionerla en el Anexo}
-	
 	\begin{claim}
 		\label{claim1: DC los puntos silla estrictos son fijos inestables}
 		Sea $y_t \in Ran(H)$, luego existe $i \in \sett{1, \dots, b}$ y $\delta > 0$ tal que $\alpha \Bigsum{j \in S_i}{\abs{e_j^T H z_i}} \geq \delta \norm{z_i}_2$
@@ -241,52 +241,7 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 	\end{lemma}
 	
 	\begin{proof}
-		Manteniendo la notaci\'on previa a la afirmaci\'on:
-		
-		\begin{equation*}
-		\begin{aligned}
-			z_{i+1}^THz_{i+1} & \leq & \left[z_i^T - \alpha \Bigsum{j \in S_i}{\left( e_j^T H z_i \right) e_j^T} \right]H \left[ z_i - \alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i \right) e_j }\right] \\
-			& = & z_i^T H z_i - \alpha \Bigsum{j \in S_i}{\left(z_i^T H e_j\right)\left(e_j^T H z_i\right)} - \alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i\right)\left(e_j^T H z_i\right)} \\
-			&& + \alpha^2 \parenthesis{\Bigsum{j \in S_i}{\left(e_j^T H z_i\right)e_j}}^TH\parenthesis{\Bigsum{j \in S_i}{\left(e_j^T H z_i\right)e_j}} \\
-			\parenthesis{\norm{H_{S_i}}_2 \leq L_b} & < & z_i^T H z_i -  2\alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i\right)^2 } + \alpha ^2 L_b \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 \\
-		    & = & z_i^T H z_i -  \alpha \parenthesis{2 - \alpha L_b}\norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 \\
-			\parenthesis{\alpha L_b < 1} & < & z_i^T H z_i -  \alpha \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 
-		\end{aligned} 
-		\end{equation*}
-		
-		Luego juntando todo probamos que $z_i^T H z_i$ es decreciente y cumple la cota:
-		
-		\begin{equation}
-		\label{eq_2: DC los puntos silla estrictos son fijos inestables}
-			z_{i+1}^THz_{i+1}  < z_i^T H z_i -  \alpha \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 
-		\end{equation}
-		
-		Por otro lado sabemos que para todo $w$ vale:
-		
-		\begin{equation}
-		\label{eq_3: DC los puntos silla estrictos son fijos inestables}
-			w^THw  \geq  \lambda_{min}(H) \norm{w}_2^2 \geq -L_b \norm{w}^2_2
-		\end{equation}
-		
-		Luego si usamos \ref{claim1: DC los puntos silla estrictos son fijos inestables}, \ref{eq_3: DC los puntos silla estrictos son fijos inestables} y Cauchy-Schwartz existe $i \in \sett{1, \dots, b}$ y $\delta >0$ tal que:
-		
-		\begin{equation*}
-		\begin{aligned}
-			z_{i+1}^THz_{i+1} & < & z_i^T H z_i -  \alpha \Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}^2} \\
-			& < &  z_i^T H z_i -  \frac{\alpha}{d} \parenthesis{\Bigsum{j \in S_i}{\abs{e_j^T H z_i}}}^2 \\
-			& < &  z_i^T H z_i -  \dfrac{\delta^2}{d\alpha} \norm{z_i}_2^2\\
-			& < &  \parenthesis{1 +  \dfrac{\delta^2}{d\alpha L_b}}z_i^T H z_i
-		\end{aligned}
-		\end{equation*}
-		
-		Tomando $\epsilon = \dfrac{\delta^2}{d\alpha L_b}$ probamos que $y_{t+1}^THy_{t+1} \leq (1+\epsilon) y_{t}^THy_{t} $ para $y_t \in Ran(H)$.
-		
-		Si $y_t = y_N + y_R$ con $y_N \in Ker(H)$, $y_R \in Ran(H)$ entonces $y_{t}^THy_{t} = y_{R}^THy_{R}$ y $y_{t+1} = Jy_t = y_N + Jy_R$ por lo que $y_{t+1}^THy_{t+1} = \parenthesis{Jy_{R}}^TH\parenthesis{Jy_{R}}$. Conclu\'imos:
-		
-		\begin{equation*}
-			y_{t+1}^THy_{t+1} = \parenthesis{Jy_{R}}^TH\parenthesis{Jy_{R}} \leq (1+\epsilon) y_{R}^THy_{R} = (1+\epsilon) y_{t}^THy_{t}
-		\end{equation*}
-		\qed
+		Ver \ref{ch: apendice}
 	\end{proof}
 
 	Volviendo a la demostraci\'on general logramos probar que dado $y_0$ autovector de norma 1 de $H$ con menor autovalor $\lambda < 0$ (pues $x^* \in \mani^*$) vale que:

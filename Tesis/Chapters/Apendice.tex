@@ -114,7 +114,7 @@
 		\begin{equation*}
 			\begin{array}{llll}
 				& g \left(\alpha x + (1-\alpha)y\right) & \leq & \alpha g(x) + (1-\alpha)g(y) \\
-				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) - \frac{\mu}{2} \norm{\alpha x + (1-\alpha)y}^2 & \leq & \alpha \left(f(x) - \frac{\mu}{2} \norm{x}^2\right) + \left(1-\alpha\right) \left(f(y) - \frac{\mu}{2} \norm{y}^2\right) \\
+				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) & \leq &  \frac{\mu}{2} \norm{\alpha x + (1-\alpha)y}^2 + \alpha \left(f(x) - \frac{\mu}{2} \norm{x}^2\right) + \\ &&& \left(1-\alpha\right) \left(f(y) - \frac{\mu}{2} \norm{y}^2\right) \\
 				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) & \leq & \left[\alpha f(x) + \left(1 - \alpha\right)f(y) \right] \\ &&& + \frac{\mu}{2} \left(\norm{\alpha x + (1-\alpha)y}^2 \right. \\ &&&  \left. - \left\lbrace \alpha\norm{x}^2 + (1-\alpha) \norm{y}^2 \right\rbrace \right) \\
 				\Longleftrightarrow & f\left(\alpha x + (1-\alpha)y\right) & \leq & \alpha f(x) + \left(1 - \alpha\right)f(y) - \dfrac{\alpha (1-\alpha) \mu}{2} \norm{y-x}^2
 			\end{array}
@@ -205,7 +205,9 @@
 		\item {[$7 \Longrightarrow 1$]} 
 		
 		\begin{equation*}
-		\norm{\nabla f(x) - \nabla f(y)}^2 \leq L \left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \leq L\norm{\nabla f(x) - \nabla f(y)}\norm{x-y}
+		\begin{aligned}
+		\norm{\nabla f(x) - \nabla f(y)}^2 & \leq & L \left(\nabla f(x) - \nabla f(y)\right)^T \left(x-y\right) \\ & \leq & L\norm{\nabla f(x) - \nabla f(y)}\norm{x-y}
+		\end{aligned}
 		\end{equation*} 
 		
 		\item {[$8 \Longrightarrow 6$]} Notemos que si cambiamos de lugar $x,y$ en $8$ entonces:
@@ -232,7 +234,7 @@
 		
 		\begin{equation*}
 			\begin{aligned}
-				f(\alpha x + (1-\alpha)y) & \leq & \alpha f(x) + (1-\alpha)f(y) - \dfrac{\alpha}{2L}\norm{\nabla f(z) - \nabla f(y)}^2 - \dfrac{1-\alpha}{2L}\norm{\nabla f(z) - \nabla f(x)}^2 \\
+				f(\alpha x + (1-\alpha)y) & \leq & \alpha f(x) + (1-\alpha)f(y) - \dfrac{\alpha}{2L}\norm{\nabla f(z) - \nabla f(y)}^2 \\ & & - \dfrac{1-\alpha}{2L}\norm{\nabla f(z) - \nabla f(x)}^2 \\
 				& \leq & \alpha f(x) + (1-\alpha)f(y) - \dfrac{\alpha (1-\alpha)}{2L}\norm{\nabla f(y) - \nabla f(x)}^2
 			\end{aligned}
 		\end{equation*}
@@ -258,6 +260,55 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{proof}{[De \ref{lemma1 : DC los puntos silla estrictos son fijos inestables}]}
+	Manteniendo la notaci\'on previa a la afirmaci\'on:
+	
+	\begin{equation*}
+	\begin{aligned}
+	z_{i+1}^THz_{i+1} & \leq & \left[z_i^T - \alpha \Bigsum{j \in S_i}{\left( e_j^T H z_i \right) e_j^T} \right]H \left[ z_i - \alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i \right) e_j }\right] \\
+	& = & z_i^T H z_i - \alpha \Bigsum{j \in S_i}{\left(z_i^T H e_j\right)\left(e_j^T H z_i\right)} - \alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i\right)\left(e_j^T H z_i\right)} \\
+	&& + \alpha^2 \parenthesis{\Bigsum{j \in S_i}{\left(e_j^T H z_i\right)e_j}}^TH\parenthesis{\Bigsum{j \in S_i}{\left(e_j^T H z_i\right)e_j}} \\
+	\parenthesis{\norm{H_{S_i}}_2 \leq L_b} & < & z_i^T H z_i -  2\alpha \Bigsum{j \in S_i}{\left(e_j^T H z_i\right)^2 } + \alpha ^2 L_b \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 \\
+	& = & z_i^T H z_i -  \alpha \parenthesis{2 - \alpha L_b}\norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 \\
+	\parenthesis{\alpha L_b < 1} & < & z_i^T H z_i -  \alpha \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 
+	\end{aligned} 
+	\end{equation*}
+	
+	Luego juntando todo probamos que $z_i^T H z_i$ es decreciente y cumple la cota:
+	
+	\begin{equation}
+	\label{eq_2: DC los puntos silla estrictos son fijos inestables}
+	z_{i+1}^THz_{i+1}  < z_i^T H z_i -  \alpha \norm{\Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}}^2_2 
+	\end{equation}
+	
+	Por otro lado sabemos que para todo $w$ vale:
+	
+	\begin{equation}
+	\label{eq_3: DC los puntos silla estrictos son fijos inestables}
+	w^THw  \geq  \lambda_{min}(H) \norm{w}_2^2 \geq -L_b \norm{w}^2_2
+	\end{equation}
+	
+	Luego si usamos \ref{claim1: DC los puntos silla estrictos son fijos inestables}, \ref{eq_3: DC los puntos silla estrictos son fijos inestables} y Cauchy-Schwartz existe $i \in \sett{1, \dots, b}$ y $\delta >0$ tal que:
+	
+	\begin{equation*}
+	\begin{aligned}
+	z_{i+1}^THz_{i+1} & < & z_i^T H z_i -  \alpha \Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}^2} \\
+	& < &  z_i^T H z_i -  \frac{\alpha}{d} \parenthesis{\Bigsum{j \in S_i}{\abs{e_j^T H z_i}}}^2 \\
+	& < &  z_i^T H z_i -  \dfrac{\delta^2}{d\alpha} \norm{z_i}_2^2\\
+	& < &  \parenthesis{1 +  \dfrac{\delta^2}{d\alpha L_b}}z_i^T H z_i
+	\end{aligned}
+	\end{equation*}
+	
+	Tomando $\epsilon = \dfrac{\delta^2}{d\alpha L_b}$ probamos que $y_{t+1}^THy_{t+1} \leq (1+\epsilon) y_{t}^THy_{t} $ para $y_t \in Ran(H)$.
+	
+	Si $y_t = y_N + y_R$ con $y_N \in Ker(H)$, $y_R \in Ran(H)$ entonces $y_{t}^THy_{t} = y_{R}^THy_{R}$ y $y_{t+1} = Jy_t = y_N + Jy_R$ por lo que $y_{t+1}^THy_{t+1} = \parenthesis{Jy_{R}}^TH\parenthesis{Jy_{R}}$. Conclu\'imos:
+	
+	\begin{equation*}
+	y_{t+1}^THy_{t+1} = \parenthesis{Jy_{R}}^TH\parenthesis{Jy_{R}} \leq (1+\epsilon) y_{R}^THy_{R} = (1+\epsilon) y_{t}^THy_{t}
+	\end{equation*}
+	\qed
+\end{proof}
+
 \begin{proof}{[De \ref{lemma: GD toma tiempo exponencial}]}
 	
 	Primero construyamos $g_1$. Sea $i \in \sett{1, \dots, d}$, luego si $x_i = \tau$ entonces $\dfrac{\partial f_{i,1}}{\partial x_i} = -2\gamma\tau$, $\dfrac{\partial^2 f_{i,1}}{\partial x_i^2} = -2\gamma$; mientras que si $x_i = 2\tau$ entonces $\dfrac{\partial f_{i+1,1}}{\partial x_i} = -4L\tau$ y $\dfrac{\partial^2 f_{i+1,1}}{\partial x_i^2} = 2L$. Como sabemos que $L > \gamma, 0 > -2\gamma\tau > -4L\tau$ y $2L > \dfrac{-4L\tau - \left(-2\gamma \tau\right)}{\tau}$ entonces por \ref{theorem: splines 1} existe $p(x_i) \in \R_3[x]$ tal que:
@@ -275,10 +326,10 @@
 	Definamos entonces:
 	
 	\begin{equation*}
-	\begin{array}{l}
-		g_1(x_i) = \left(\int p\right) (x_i) - \left(\int p\right) (\tau) - \gamma \tau^2 \\
-		\eta = - g_1(2\tau) + 4L \tau^2 \\
-		g_2(x_i) = -\gamma - \dfrac{10 (l+\gamma) \left(x_i - 2\tau\right)^3}{\tau^3} - \dfrac{15 (L+\gamma)\left(x_i - 2\tau\right)^4}{\tau^4} - \dfrac{6 (L+\gamma)\left(x_i - 2\tau\right)^5}{\tau^5}
+	\begin{array}{ll}
+		g_1(x_i) = & \left(\int p\right) (x_i) - \left(\int p\right) (\tau) - \gamma \tau^2 \\
+		\eta = & - g_1(2\tau) + 4L \tau^2 \\
+		g_2(x_i) = & -\gamma - \dfrac{10 (l+\gamma) \left(x_i - 2\tau\right)^3}{\tau^3} \\ & - \dfrac{15 (L+\gamma)\left(x_i - 2\tau\right)^4}{\tau^4} - \dfrac{6 (L+\gamma)\left(x_i - 2\tau\right)^5}{\tau^5}
 	\end{array}
 	\end{equation*}
 	

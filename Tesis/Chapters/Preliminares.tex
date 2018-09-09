@@ -2,7 +2,182 @@
 
 \epigraph{Mathematics is the most beautiful and most powerful creation of the human spirit}{Stefan Banach}
 
-\section{Espectro}
+\section{Preliminares de Machine Learning}
+
+En esta secci\'on vamos a presentar en forma resumida el procedimiento por el cual se pasa desde un set de datos a aprender a un problema de optimizaci\'on, generalmente no convexo. De ninguna manera esta exposici\'on pretender ser exhaustiva y se basa principalmente en los excelentes trabajos de \cite{bottou:2016} y \cite{mohri:2012}.
+
+\subsection{Procedimiento formal de machine learning.}
+
+\subsubsection{Fundamentos} 
+Nuestro objetivo es elegir una funci\'on de predicci\'on que evite la memorizaci\'on mec\'anica y, en su lugar, generalice los conceptos que se pueden aprender a partir de un conjunto dado de ejemplos. Formalmente, necesitamos encontrar una $h:\mathcal{X} \rightarrow \mathcal{Y}$ tal que, dado $x \in \mathcal{X}$, el valor $h (x)$ ofrece una predicci\'on precisa sobre el valor verdadero de salida $y$. Para hacer esto, uno debe elegir la funci\'on de predicci\'on $h$ intentando minimizar el riesgo medido sobre una familia de funciones de predicci\'on adecuadamente seleccionadas \cite{vapnik:1971}, llamadas $\mathcal{H}$.
+
+Para formalizar esta idea, supongamos que los ejemplos se muestrean a partir de una funci\'on de distribuci\'on de probabilidad conjunta $P (x, y)$. En lugar de algo que simplemente minimiza el riesgo emp\'irico (\ref{def: Riesgo empirico}), uno debe buscar encontrar $h$ que arroje un peque\~no \textit{riesgo esperado} de clasificaciones err\'oneas sobre \textit{todas las entradas posibles}, es decir, una $h$ que minimice \ref{def: riesgo esperado}:
+
+\begin{equation}
+\label{def: Riesgo empirico}
+R_n(h) = \frac{1}{n}\sum\limits_{i=1}^{n}{\mathbb{1}\left[ h(x_i) \neq y \right]}
+\end{equation}
+
+\begin{equation}
+\label{def: riesgo esperado}
+R(h)=\mathbb{P}\left[h(x) \neq y \right] = \mathbb{E} \left[\mathbb{1} \left[h(x) \neq y \right] \right]
+\end{equation}
+
+donde $\mathbb{P}\left[A \right]$ y $\mathbb{E}\left[A \right]$ denotan la probabilidad y la esperanza de $A$ respectivamente. Tal contexto es \textit{variacional} ya que estamos optimizando sobre un conjunto de funciones, y es \textit{estoc\'astico} ya que la funci\'on objetivo implica una esperanza.
+
+Como en la pr\'actica no se conoce $P$ \textit{a priori}, la \'unica opci\'on posible resulta ser transformar el problema a uno que dependa \'unicamente de los ejemplos $\left\lbrace\left(x_{i},y_{i}\right)\right\rbrace^{n}_{i=1}$ utilizando la \textit{ley de los grandes n\'umeros} y teniendo en cuenta dos cuestiones principales que deben abordarse: 
+
+\begin{itemize}
+	\item C\'omo elegir la familia parametrizada de funciones de predicci\'on $\mathcal{H}$
+	\item C\'omo determinar (y encontrar) la funci\'on de predicci\'on particular $h \in \mathcal{H}$ que es \'optima.
+\end{itemize}
+
+\subsubsection{Elecci\'on de una familia de funciones de predicci\'on}
+
+La familia de funciones $\mathcal{H}$ debe determinarse teniendo en cuenta tres \textit{objetivos potencialmente competitivos}. En primer lugar, $\mathcal{H}$ debe contener funciones de predicci\'on que puedan lograr un riesgo emp\'irico bajo sobre el conjunto de entrenamiento, a fin de evitar el sesgo o el ajuste inadecuado de los datos. Esto se puede lograr seleccionando una familia rica de funciones o utilizando un conocimiento a \textit{priori} para seleccionar una familia bien dirigida. En segundo lugar, la brecha entre el riesgo esperado y el riesgo emp\'irico, es decir, $R(h) - R_n(h)$, debe ser peque\~na para todo $h \in \mathcal{H}$. Por lo general, esta brecha disminuye cuando se utilizan m\'as ejemplos de entrenamiento pero, debido al potencial sobreajuste, aumenta cuando uno usa familias de funciones m\'as ricas. En tercer lugar, $\mathcal{H}$ debe seleccionarse de manera que se pueda resolver eficientemente el problema de optimizaci\'on correspondiente, cuya dificultad puede aumentar cuando se emplea una familia m\'as rica de funciones y/o un conjunto de entrenamiento m\'as amplio.
+
+Nuestra observaci\'on sobre la brecha entre el riesgo esperado y el emp\'irico puede entenderse utilizando la \textit{ley de los grandes n\'umeros}. La desigualdad Hoeffding \cite{hoeffding:1962} garantiza que, con probabilidad de al menos $1 - \eta$, uno tiene
+
+\begin{equation}
+\abs{R(h) - R_n(h)} \leq \sqrt{\frac{1}{2n} \log\left(\frac{2}{\eta}\right)} \quad \text{para un dado } h \in \mathcal{H}
+\end{equation}
+
+Este l\'imite ofrece la explicaci\'on intuitiva de que la brecha disminuye a medida que se usan m\'as ejemplos de entrenamiento. Sin embargo, esta explicaci\'on es insuficiente para nuestros prop\'ositos ya que, en el contexto del machine learning, ¡$h$ no es una funci\'on fija, sino que es la variable sobre la cual se est\'a optimizando!
+
+Por esta raz\'on, a menudo se recurre a la \textit{ley uniforme de los grandes n\'umeros} y al concepto de la dimensi\'on Vapnik-Chervonenkis (VC) de $\mathcal{H} $, una medida de la \textit{capacidad} de dicha familia de funciones \cite{vapnik:1971}, \cite{mohri:2012}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{gfx/overfitting.png}
+	\caption{Fen\'omeno de sobreajuste en polinomios de alto grado}
+	\label{gfx: overfitting}
+\end{figure}
+
+
+No obstante, la brecha entre el riesgo emp\'irico y el riesgo esperado puede ser mayor para un conjunto de polinomios de alto grado ya que su alta capacidad les permite sobreajustar un conjunto dado de datos de entrenamiento. (Ver \ref{gfx: overfitting})
+
+\subsubsection{Minimizaci\'on de riesgos estructurales}
+
+Un enfoque para elegir una funci\'on de predicci\'on que ha demostrado ser ampliamente exitosa en la pr\'actica es la \textit{minimizaci\'on del riesgo estructural} \cite{vapnik:1974}, \cite{vapnik:1998}. En lugar de elegir una familia gen\'erica de funciones de predicci\'on, sobre las cuales ser\'ia dif\'icil optimizar y estimar la brecha entre los riesgos emp\'iricos y los esperados, se elige una \textit{estructura}, es decir, una colecci\'on de familias de funciones anidadas. Por ejemplo, dicha estructura se puede formar como una colecci\'on de subconjuntos de una determinada familia $\mathcal{H}$ de la siguiente manera: dada una funci\'on de preferencia $\Omega$, elegir varios valores de un \textit{hiperpar\'ametro} $C$, de acuerdo con cada uno de los cuales se obtiene el subconjunto $\mathcal{H}_C := \left\lbrace h \in \mathcal{H} : \Omega (h) \leq C \right\rbrace$. Dado un n\'umero fijo de ejemplos, el aumento de $C$ reduce el riesgo emp\'irico (es decir, el m\'inimo de $R_n (h) $ sobre $h \in \mathcal{H}_C$), pero, despu\'es de cierto punto, t\'ipicamente aumenta la brecha entre los riesgos esperado y emp\'irico. Este fen\'omeno se ilustra en la Figura \ref{gfx: hiperparametros}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{gfx/hyperparametros.png}
+	\caption{Fen\'omeno de distancia de los riesgos en funcion de la evoluci\'on de hiperpar\'ametros}
+	\label{gfx: hiperparametros}
+\end{figure}
+
+Luego, en vez de estimar la brecha entre el riesgo emp\'irico y esperado te\'oricamente, se observa que una estimaci\'on aceptable de esa brecha para el valor \'optimo de $C$ se puede tener diviendiendo los datos disponibles en tres subconjuntos.
+
+\begin{enumerate}
+	\item {\textbf{Conjunto de entrenamiento}}: Utilizado para elegir un subconjunto finito $\tilde{\mathcal{H}_C} \subset \mathcal{H}_C$ de valores que minimicen \ref{def: Riesgo empirico}
+	\item{\textbf{Conjunto de validaci\'on}}: Utilizado para estimar \ref{def: riesgo esperado} sobre todo $\tilde{h} \in \tilde{\mathcal{H}_C}$ y elegir una $h_C$ \'optima
+	\item{\textbf{Conjunto de prueba}}: Utilizado para estimar la brecha entre \ref{def: Riesgo empirico} y \ref{def: riesgo esperado} para la $h_C$ elegida
+\end{enumerate}
+
+Suponiendo que se ha utilizado un rango suficientemente grande para $C$, a menudo se encuentra que la mejor soluci\'on no corresponde al mayor valor de $C$ considerado; nuevamente, vea la Figura \ref{gfx: hiperparametros}.
+
+En general, el principio de minimizaci\'on del riesgo estructural ha demostrado ser \'util para muchas aplicaciones. En lugar de codificar el conocimiento como reglas formales de clasificaci\'on, uno lo codifica mediante preferencias para ciertas funciones de predicci\'on sobre otras, luego explora el rendimiento de varias funciones de predicci\'on que se han optimizado bajo la influencia de dichas preferencias.
+
+\subsection{Enunciados de problemas de optimizaci\'on formal}
+
+Para continuar, debemos definir las funciones de predicci\'on y p\'erdida que aparecen en las mediciones de riesgo esperado y emp\'irico que se pretenden minimizar. 
+
+\subsubsection{Funciones de predicci\'on y p\'erdida}
+Durante esta Tesis vamos a considerar, como se mencion\'o anteriormente, que el conocimiento \textit{a priori} del problema otorga una funci\'on $h$ que parametrizaremos por un vector real $w \in \mathbb{R}^d $ sobre el cual se realizar\'a la optimizaci\'on; en vez de encarar el problema variacional. Formalmente, para un $h(\cdot ; \cdot): \mathbb{R}^{d_x} \times \mathbb{R}^d \rightarrow \mathbb{R}^{d_y}$ dado consideramos la familia de funciones de predicci\'on
+
+\begin{equation}
+\mathcal{H} := \lbrace h(\cdot ; w): w \in \mathbb{R}^d \rbrace
+\end{equation}
+
+Nuestro objetivo es encontrar la funci\'on de predicci\'on en esta familia que minimice una funci\'on de p\'erdida dada $ \ell : \mathbb{R}^{d_y} \times \mathbb{R}^{d_y} \rightarrow \mathbb{R}$. Esta mide, para un par de entrada-salida $(x, y)$, la p\'erdida $ \ell (h(x;w),y)$ cuando $h (x; w)$ e $y$ son las salidas predicha y verdadera respectivamente.
+
+\subsubsection{Riesgo esperado}
+Idealmente, el vector de par\'ametros $\omega$ se elige para minimizar la p\'erdida esperada en la que se incurrir\'ia con \textit{cualquier} par de entrada-salida. Para expresar esta idea formalmente, suponemos que las p\'erdidas se miden con respecto a una distribuci\'on de probabilidad $P (x, y)$ que representa la verdadera relaci\'on entre las entradas y las salidas. Luego, la funci\'on objetivo que deseamos minimizar es
+
+\begin{equation}
+\label{eq: Riesgo esperado}
+R(w) = \int\limits_{\mathbb{R}^{d_x}\times \mathbb{R}^{d_y}} {\ell \left(h(x;w), y\right) dP(x,y)} = \mathbb{E} \left[ \ell \left( h(x;w), y \right) \right]
+\end{equation}
+
+Decimos que $R : \mathbb{R}^{d} \rightarrow \mathbb{R}$ produce el \textit{riesgo esperado} (es decir, la p\'erdida esperada) dado un vector de par\'ametro $w$ con una respectiva distribuci\'on de probabilidad $P$.
+
+\subsubsection{Riesgo emp\'irico}
+Si bien puede ser deseable minimizar (\ref{eq: Riesgo esperado}), tal objetivo es insostenible cuando no se cuenta con informaci\'on completa sobre $P$. Por lo tanto, en la pr\'actica, uno busca la soluci\'on de un problema que involucra una estimaci\'on del riesgo esperado $R_n$. En el aprendizaje supervisado, uno tiene acceso (ya sea de una vez o de manera incremental) a un conjunto de  $n \in \mathbb{N}$ muestras de entrada y salida independientes $\left\lbrace (x_i, y_i) \right\rbrace_{i=1}^{n} \subset \mathbb{R}^{d_x} \times \mathbb{R}^{d_y}$, con las cuales se puede definir la funci\'on de riesgo emp\'irico $R_n : \mathbb{R}^d \rightarrow \mathbb{R}$ dada por la ecuaci\'on 
+
+\begin{equation}
+\label{eq: Riesgo empirico}
+R_n(\omega) = \frac{1}{n} \sum\limits_{i=1}^{n} {l \left( h(x;w), y\right)}
+\end{equation}
+
+En t\'erminos generales, la minimizaci\'on de $R_n$ puede considerarse el problema pr\'actico de optimizaci\'on de inter\'es. 
+
+\subsubsection{Notaci\'on simplificada}
+Para simplificar, representemos una muestra (o conjunto de muestras) por una variable aleatoria $\upxi$; por ejemplo, uno puede imaginar una realizaci\'on de $\upxi$ como una muestra \'unica $(x, y)$ de $\mathbb{R}^{d_x} \times \mathbb{R}^{d_y}$, o una realizaci\'on de $\upxi$ podr\'ia ser un conjunto de muestras $\left\lbrace(x_i, y_i)\right\rbrace_{i \in S}$. Adem\'as, podemos referirnos a la p\'erdida incurrida para un dado $(w, \upxi)$ como $f (w; \upxi )$, es decir, $f$ es la composici\'on de la funci\'on de p\'erdida y la funci\'on de predicci\'on $h$.
+
+Para referencia futura, usamos $\upxi_{\left [ i \right ]}$ para denotar el i-\'esimo elemento de un conjunto fijo de realizaciones de una variable aleatoria $\upxi$, mientras que, comenzando en la parte \ref{pt:algoritmosestocasticos}, utilizaremos $\upxi_{\left [ k \right ]}$ para denotar el k-\'esimo elemento de una secuencia de variables aleatorias .
+
+\subsection{Motivaci\'on para los m\'etodos estoc\'asticos}
+Antes de analizar las fortalezas de los m\'etodos estoc\'asticos, como DE, no se debe perder de vista el hecho de que los enfoques por batch poseen algunas ventajas intr\'insecas. Primero, cuando uno ha reducido el problema estoc\'astico de minimizar el riesgo esperado $R$ para enfocarse exclusivamente en el problema determinista de minimizar el riesgo emp\'irico $R_n$, el uso de informaci\'on de gradiente completo en cada iteraci\'on abre la puerta para muchos m\'etodos de optimizaci\'on determin\'isticos basados en gradiente. Es decir, en un enfoque por batch, uno tiene a su disposici\'on la gran cantidad de t\'ecnicas de optimizaci\'on no lineal que se han desarrollado en las \'ultimas d\'ecadas, incluido el m\'etodo de gradiente completo o gradiente de batch (\ref{algo: GD - intro}), pero tambi\'en gradiente acelerado, gradiente conjugado, cuasi-Newton y m\'etodos inexactos de Newton \cite{nocedal:2006}. Segundo, debido a la estructura de suma de $R_n$, un m\'etodo por batch puede beneficiarse f\'acilmente de la paralelizaci\'on ya que la mayor parte del c\'alculo se basa en evaluaciones de $R_n$ y $\nabla F$. Los c\'alculos de estas cantidades pueden incluso realizarse de forma distribuida.
+
+A pesar de estas ventajas, existen razones intuitivas, pr\'acticas y te\'oricas para seguir un enfoque estoc\'astico. Perm\'itanos motivarlos contrastando la iteraci\'on DE caracter\'istica (\ref{algo: DE - intro}) con la iteraci\'on de gradiente de batch completo (\ref{algo: GD - intro}).
+
+\subsubsection{Motivación intuitiva}
+
+En un nivel intuitivo, DE emplea información de manera más eficiente que un método por batch. Para ver esto, considere una situación en la cual un conjunto de entrenamiento, llámelo $S$, consta de diez copias de un conjunto de $S_{sub}$. Un minimizador de riesgo empírico para el conjunto mayor $S$ está claramente dado por un minimizador para el conjunto más pequeño $S_{sub}$, pero si se aplicara un enfoque por batch para minimizar $R_n$ sobre $S$, entonces cada iteración sería diez veces más costosa que si solo tuviese una copia de $S_{sub}$. En realidad, un conjunto de entrenamiento típicamente no consiste en duplicados exactos de datos de muestra, pero en muchas aplicaciones a gran escala los datos involucran una buena cantidad de redundancia (aproximada). Esto sugiere que usar todos los datos de muestra en cada iteración de optimización es ineficiente.
+
+\subsubsection{Motivación práctica}
+
+Los beneficios intuitivos que acabamos de describir se han observado repetidamente en la práctica, donde a menudo se encuentran ventajas muy reales de SG en muchas aplicaciones. Como ejemplo, la Figura \ref{gfx: de} compara el rendimiento de un método \textbf{L-BFGS} por batch \cite{liu:1989} \cite{nocedal:1980} y el método DE \ref{algo: DE - intro} con un incremento constante (es decir, $\alpha_k = \alpha$ para todos $k \in \N$) en un problema de clasificación binario que utiliza una función objetivo de pérdida logística y los datos del conjunto de datos RCV1. La figura traza el riesgo empírico $R_n$ en función del número de accesos de una muestra del conjunto de entrenamiento, es decir, el número de evaluaciones de un gradiente de muestra $\nabla f_{i_k}(w_k)$. Cada conjunto de $n$ accesos consecutivos se llama \textit{epoch}. El método por batch solo realiza un paso por \textit{epoch}, mientras que DE realiza $n$ pasos por \textit{epoch}. La trama muestra el comportamiento en los primeros 10 \textit{epochs}. La ventaja de DE es llamativa y representativa del comportamiento típico en la práctica. 
+
+Sin embargo, se debe tener en cuenta que para obtener un comportamiento tan eficiente, era necesario ejecutar DE varias veces usando diferentes opciones para $\alpha$ hasta que se identificara una buena opción para este problema en particular. Discutimos cuestiones teóricas y prácticas relacionadas con la elección de incrementos en nuestro análisis en la parte \ref{pt:algoritmosestocasticos}.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{gfx/de.png}
+	\caption{Riesgo empírico $R_n$ en función del número de puntos de datos accedidos (ADP) para un método \textbf{L-BFGS} por batch y el método de gradiente estocástico (DE) \ref{algo: DE - intro} en un problema de clasificación binaria con un objetivo de pérdida logística y el conjunto de datos RCV1. SG se ejecutó con un incremento fijo de $\alpha  = 4$}
+	\label{gfx: de}
+\end{figure}
+
+\subsubsection{Motivación Teórica }
+
+También se pueden citar argumentos teóricos para una preferencia de DE sobre un enfoque por batch. Ahora vamos a dar un peque\~n o resumen de estos argumentos, que se estudian con m\'as profundidad y m\'as detalles en la parte \ref{pt:algoritmosestocasticos}:
+
+\begin{itemize}
+	\item Es bien sabido que un enfoque por batch puede minimizar $R_n$ a un ritmo r\'apido. Por ejemplo, si $R_n$ es fuertemente convexo (ver \ref{def: Fuertemente convexa}) y uno aplica un m\'etodo de descenso de gradiente por batch, entonces existe una constante $\rho \in (0,1)$ tal que, para todo $k \in \N$, el error de entrenamiento satisface:
+	
+	\begin{equation}
+	\label{Complejidad riesgo en batch}
+	R_n(w_k) - R_n^* \leq \mathcal{O} \left(\rho^k\right)
+	\end{equation}
+	
+	Donde $R_n^*$ denota el valor m\'inimo de $R_n$. La velocidad de convergencia exhibida aquí se conoce como \textit{convergencia lineal} en la bibliograf\'ia de optimización \cite{ortega:2000} y \textit{convergencia geométrica} en la comunidad de investigación de machine learning; simplemente nos referiremos a él como convergencia lineal. De \ref{Complejidad riesgo en batch}, se puede concluir que, en el peor de los casos, el número total de iteraciones en las que el error de entrenamiento puede estar por encima de un valor dado de $\epsilon >0$ es proporcional a $\log \left(\frac{1}{\epsilon}\right)$. Esto significa que, con un costo por iteración proporcional a $n$ (debido a la necesidad de calcular $\nabla F(w_k)$ para todo $k \in \N$), el trabajo total requerido para obtener $\epsilon-$optimalidad para un método de gradiente por batch es proporcional a $n \log\left(\frac{1}{\epsilon}\right)$.
+	
+	\item La velocidad de convergencia de un método estocástico básico es más lenta que para un método de gradiente por batch; por ejemplo, si $R_n$ es estrictamente convexo y cada $i_k$ se muestrea uniformemente desde en $\sett{1, \dots, n}$, entonces, para todo $k \in \N$, las iteraciones DE satisfacen la propiedad de convergencia sublineal (ver \ref{theorem: DE en fuertemente convexo y alfa decreciente converge en l1}):
+	
+	\begin{equation}
+	\label{Complejidad riesgo en de}
+	\expectation{R_n(w_k) - R_n^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\end{equation}
+	
+	Sin embargo, es cr\'itico notar que ni el costo de iteración ni el orden dependen del tamaño del conjunto de muestras $n$. Esto significa que el trabajo total requerido para obtener $\epsilon-$optimalidad para DE es proporcional a $\frac{1}{\epsilon}$. Es cierto que esto puede ser mayor que $n \log \left(\frac{1}{\epsilon}\right)$ para valores chicos de $n$ y $\epsilon$, pero la comparación favorece a DE cuando se pasa al régimen de \textit{big data} donde $n$ es grande y uno se ecuentra limitado \'unicamente pir un presupuesto de tiempo computacional.
+	
+	\item Otra característica importante de DE es que produce la misma velocidad de convergencia que en \ref{Complejidad riesgo en de} para el error en el riesgo esperado, $R - R^**$, donde $R^*$ es el valor mínimo de $R$. Específicamente, aplicando la iteración DE, pero con $g(wk, \upxi_{k})$ reemplazado por $\nabla f (w_k; \upxi_{k})$ con cada $\upxi_{k}$ tomado independientemente de acuerdo con la distribución P, vale:
+	
+	\begin{equation}
+	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\end{equation}
+	
+	Que nuevamente es una velocidad sublineal pero en el riesgo esperado, algo que es imposible estimar en los m\'etodos de batch. Por lo tanto, deducimos que en el regimen de \textit{big data} minimizar el riesgo emp\'irico o el riesgo esperado es equivalente, lo que potencia la generalidad de las soluciones halladas por DE.
+	
+\end{itemize}
+
+En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enfoques estocásticos sobre m\'etodos por batch en optimización para el machine learning a gran escala. Sin embargo, no pretendemos que los métodos por batch no tengan lugar en la práctica; por ejemplo si en la Figura \ref{gfx: de} se considerara un mayor número de \textit{epochs}, entonces se vería que el algoritmo de batch eventualmente mejora al método estocástico y produce un menor error de entrenamiento. Esto motiva que muchos métodos propuestos recientemente intenten combinar las mejores propiedades de los algoritmos por batch y estocásticos. Además, la iteración de DE es difícil de paralelizar y requiere una comunicación excesiva entre nodos en una configuración de computación distribuida, proporcionando un mayor impulso para el diseño de algoritmos de optimización nuevos y mejorados. \cite{agarwal:2017} \cite{atchade:2014}
+
+\section{Preliminares Matem\'aticas}
+
+\subsection{Espectro}
 
 \begin{definition}
 	Sea $f : X \rightarrow Y$, con $X,Y$ Banach, $f \in L(X,Y)$; definimos el espectro de $f$ de la siguiente manera:
@@ -11,7 +186,11 @@
 		\sigma(f) = \sett{\alpha \in \C \tq f- \alpha \text{ no es inversible}}
 	\end{equation*}
 	
-	Al supremo del espectro le decimos radio espectral (\eg $\rho(f) = \sup \sett{\abs{\alpha} \tq \alpha \in \sigma(f) }$)
+	Al supremo del espectro le decimos radio espectral:
+	
+	\begin{equation*}
+	\rho(f) = \sup \sett{\abs{\alpha} \tq \alpha \in \sigma(f)}
+	\end{equation*}
 	
 \end{definition}
 
@@ -25,22 +204,39 @@
 	
 \end{proposition}
 
+\begin{theorem}[Teorema espectral para operadores compactos autoadjuntos]
+	Sea $X$ Hilbert y $T \in L_0(X)$ autoadjunto, entonces $T$ admite numerables distintos autovalores. 
+	
+	Es m\'as si $\sett{\lambda_1, \dots, \lambda_n, \dots} \subset \sigma_p(T) \cap \R^{\ast}$ y $P_n = P_{\ker(T-\lambda_n)}$ luego $P_nP_n = P_nP_m = 0$ si $n \neq m$ y vale:
+	
+	\begin{equation}
+	\label{eq: Teorema espectral}
+	T = \Bigsum{n \in \N}{\lambda_n P_n}
+	\end{equation}
+\end{theorem}
+
 \begin{proposition}
 	\label{prop: calculo funcional}
 	
-	Sea $f \in L(X,Y)$ un operador lineal acotado y $h \in \mathcal{H}ol (U)$ con $\sigma(f) \subset U$ una funci\'on holomorfa en un entorno del espectro, entonces:
+	Sea $f \in L(X,Y)$ un operador compacto autoadjunto y $h \in \mathcal{H}ol (U)$ con $\sigma(f) \subset U$ una funci\'on holomorfa en un entorno del espectro, entonces:
 	
 	\begin{equation*}
 		\sigma \left(h(f)\right) = h(\sigma(f))
 	\end{equation*}
 	
+	Donde definimos $h(f) = \Bigsum{n \in \N}{h(\lambda_n) P_n}$
+	
 \end{proposition}
 
-\section{Variedades diferenciables y Teorema de la variedad estable}
+\begin{corollary}
+	Sea $A \in \C^{n \times n}$ una matriz diagonalizable con autovalores $\sett{\lambda_1, \dots, \lambda_n}$ y $f \in \C_n[X]$ entonces $f(A)$ tiene autovalores $\sett{f(\lambda_1), \dots, f(\lambda_n)}$.
+\end{corollary}
+
+\subsection{Variedades diferenciables y Teorema de la variedad estable}
 
 Cuando estudiemos los algoritmos de tipo batch es normal analizar al algoritmo como $x_{k+1} \gets g(x_k)$ para una $g : X \rightarrow X$ inducida; o sea uno analiza las \'orbitas bajo la acci\'on de $g$ en una variedad dada $X$. Con esa motivaci\'on repasemos los conceptos b\'asicos de sistemas din\'amicos.
 
-\subsection{Un repaso por Variedades}
+\subsubsection{Un repaso por Variedades}
 
 \begin{definition}{[Cap\'itulo 1 de \cite{lee:00}]}
 	Dado un espacio topol\'ogico $X$ decimos que es una variedad diferenciable de dimensi\'on $d$ si:
@@ -113,10 +309,10 @@ Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora d
 	Sea $N \inc M$ una subvariedad de dimensi\'on $n < m$, luego para todo $U \subset N$ abierto relativo vale que $\mu(U) = 0$
 \end{proposition}
 
-\subsection{Teorema de la variedad estable}
+\subsubsection{Teorema de la variedad estable}
 
 \begin{definition}
-	Sea $f : \R^d \rightarrow \R$ tal que $f \in C^2$, luego:
+	Sea $f : \R^d \rightarrow \R$ tal que $f \in C^2$, (notando $\nabla^2 f (x) = \text{Hessiano de } f \text{ evaluado en } x$) luego:
 	
 	\begin{itemize}
 		\item Un punto $x^*$ es cr\'itico de $f$  si $\nabla f(x^*) = 0$
@@ -145,11 +341,11 @@ Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora d
 	Ver Teorema III.1 de \cite{schub:1987}
 \end{proof}
 
-\section{Preliminares de Procesos Estoc\'asticos}
+\subsection{Procesos Estoc\'asticos}
 
 Debido a la naturaleza de los algoritmos estoc\'asticos, tiene sentido repasar los conceptos b\'asicos que utilizaremos en el estudio de ellos.
 
-\subsection{Esperanza condicional}
+\subsubsection{Esperanza condicional}
 
 Dado un espacio de probabilidad $\left(\Omega, \mathcal{F}, P\right)$ definimos una \textit{variable aleatoria } como una funci\'on $X : \Omega \mapsto \R$ tal que $X^{-1}(B) \in \mathcal{F}$ para todo $\B \in \mathcal{B}$ boreliano.
 
@@ -287,7 +483,7 @@ Recordemos adem\'as:
 	En general con cuentas bastante similares a las vistas en cualquier curso de An\'alisis Real teniendo cuidado de las proyecciones. Para una mejor referencia ver \cite{williams:1991}.
 \end{proof}
 
-\subsection{Martingalas y Cuasi-martingalas}
+\subsubsection{Martingalas y Cuasi-martingalas}
 
 \begin{definition}
 	Dada una sucesi\'on creciente (en el sentido de la inclusi\'on) de $\sigma$ \'algebras $\F_n \subset \F$ decimos que $\sett{\F_n}$ es una \textit{filtraci\'on} y que el espacio $\left(\Omega, \F, \sett{F_n}, P\right)$ es un espacio filtrado.

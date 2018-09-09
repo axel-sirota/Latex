@@ -1,0 +1,25 @@
+\chapter{Conclusiones}\label{ch:conclusiones}
+
+A modo de conclusi\'on observemos que el \'area de algoritmos estoc\'asticos est\'a viviendo un nuevo auge en su an\'alisis motivado en los siguientes puntos:
+
+\begin{enumerate}
+	\item Los m\'etodos determin\'isticos sufren la lentitud natural de tener un solo \textit{epoch} por set de datos.
+	\item El descenso de gradiente tiene complejidad exponencial para alcanzar el m\'inimo.
+	\item Los m\'etodos estoc\'asticos bajo condiciones de convexidad muy leves convergen r\'apidamente en esperanza y \textit{casi todo punto}.
+	\item Esa convergencia es independiente de $n$, lo que los habilita para el r\'egimen del \textit{big data}.
+\end{enumerate}
+
+Adem\'as en \cite{jin:2017} y \cite{zhang:2017} se observan las siguientes propiedades muy interesantes:
+
+\begin{enumerate}
+	\item El algoritmo de PGD (una variante de GD con ruido isom\'etrico) escapa puntos silla en tiempo polinomial.
+	\item El algoritmo SGLD (otra variente de GD) escapa m\'inimo locales con valor absoluto grande.
+\end{enumerate}
+
+Quedan como posibles l\'ineas futuras de investigaci\'on:
+
+\begin{itemize}
+	\item Analizar qu\'e tan restrictivas son las condiciones que pedimos en esta Tesis a la funci\'on objetivo, asi como algoritmos de validaci\'on simples.
+	\item Profundizar el estudio de la complejidad y convergencia a m\'inimos en los algoritmos mixtos que surgen de intentar juntar caracter\'isticas de los algoritmos m\'as usuales.
+	\item Estudiar si SGD, u otros DE, cumplen las propiedades vistas en \cite{jin:2017} y \cite{zhang:2017}; es de particular inter\'es un algoritmo que cumpla ambas y adem\'as no sea costoso computacionalmente o admita un c\'alculo distribuido.
+\end{itemize}

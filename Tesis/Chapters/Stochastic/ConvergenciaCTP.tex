@@ -221,8 +221,10 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		
 		\begin{equation*}
 		\begin{array}{rcl}
-		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2)  + \alpha_k^2 \phi'(w_k^2) \expectation{\norm{g(w_k, \upxi_{k})}_2^2} \\ 
-		& & + 4 \alpha_k^2 \norm{w_k}_2^2 \expectation{\norm{g(w_k, \upxi_{k})}_2^2} -4 \alpha_k^3 \norm{w_k}_2 \expectation{\norm{g(w_k, \upxi_{k})}_2^3}  \\
+		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) \\ 
+		&& + \alpha_k^2 \phi'(w_k^2) \expectation{\norm{g(w_k, \upxi_{k})}_2^2} \\ 
+		& & + 4 \alpha_k^2 \norm{w_k}_2^2 \expectation{\norm{g(w_k, \upxi_{k})}_2^2} \\
+		& & -4 \alpha_k^3 \norm{w_k}_2 \expectation{\norm{g(w_k, \upxi_{k})}_2^3}  \\
 		& & + 4 \alpha_k^4 \expectation{\norm{g(w_k, \upxi_{k})}_2^4} \\
 		\end{array}
 		\end{equation*}

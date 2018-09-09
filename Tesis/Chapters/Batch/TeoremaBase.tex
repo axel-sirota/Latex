@@ -214,12 +214,14 @@ Con los resultados de \ref{ch:preliminares} demostremos el teorema principal par
 	
 	Sea $x_0 \in W$, luego como $x_k \rightarrow x^* \in \puntosfijos$ entonces existe $T \in \N$ tal que para todo $t \ge T$ , $x_t \in  \Bigcup{i \in \N}{B_{x^{*}_{i}}}$ por lo que $x_t \in B_{x^{*}_{i}}$ para alg\'un $x_{i}^{*} \in \puntosfijos$ y $t \ge T$. Afirmo que:
 	
-	\marginpar{\color{Red}Pablo: Hace falta demostrar esto??}
-	
 	\begin{lemma}
 		\label{lemma: teo_principal}
 		$x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$
 	\end{lemma}
+
+	\begin{proof}{[Del lema]}
+		Sea $k_0 \in \N$ y $\widetilde{t} \geq T$, luego $g^{k_0}\left(x_{\widetilde{t}}\right) = x_{\widetilde{t} + k_0} \in B_{x_{i}^{*}}$ pues $\widetilde{t} + k_0 \geq T$. Como $k_0$ era arbitrario y $\widetilde{t}$ era arbitrario sujeto a ser mayor que $T$ conclu\'imos que $x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$.\qed
+	\end{proof}
 	
 	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$; por lo que por \ref{prop: Dimension menor tiene medida 0} $\mu(S_i) = 0$.
 	

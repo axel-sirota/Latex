@@ -219,9 +219,9 @@
 % ********************************************************************
 % Packages with options that might require adjustments
 % ********************************************************************
-%\PassOptionsToPackage{ngerman,american}{babel}   % change this to your language(s), main language last
+\PassOptionsToPackage{american}{babel}   % change this to your language(s), main language last
 % Spanish languages need extra options in order to work with this template
-\PassOptionsToPackage{spanish,es-lcroman}{babel}
+%\PassOptionsToPackage{spanish,es-lcroman}{babel}
     \usepackage{babel}
 
 \usepackage{csquotes}
@@ -359,17 +359,19 @@
 % language you use, e.g., american, ngerman
 % (as chosen when loading babel/AtBeginDocument)
 % ********************************************************************
+      \renewcommand*{\partname}{Parte}
 \makeatletter
 \@ifpackageloaded{babel}%
   {%
     \addto\extrasamerican{%
-      \renewcommand*{\figureautorefname}{Figure}%
-      \renewcommand*{\tableautorefname}{Table}%
-      \renewcommand*{\partautorefname}{Part}%
-      \renewcommand*{\chapterautorefname}{Chapter}%
-      \renewcommand*{\sectionautorefname}{Section}%
-      \renewcommand*{\subsectionautorefname}{Section}%
-      \renewcommand*{\subsubsectionautorefname}{Section}%
+      \renewcommand*{\figureautorefname}{Figura}%
+      \renewcommand*{\tableautorefname}{Tabla}%
+      \renewcommand*{\partautorefname}{Parte}%
+      \renewcommand*{\partname}{Parte}
+      \renewcommand*{\chapterautorefname}{Cap\'itulo}%
+      \renewcommand*{\sectionautorefname}{Secci\'on}%
+      \renewcommand*{\subsectionautorefname}{Secci\'on}%
+      \renewcommand*{\subsubsectionautorefname}{Secci\'on}%
     }%
     \addto\extrasngerman{%
       \renewcommand*{\paragraphautorefname}{Absatz}%
@@ -404,7 +406,7 @@
 % ********************************************************************
 \usepackage{classicthesis}
 % ****************************************************************************************************
-\usepackage[left=2.5in,right=1in,top=1in,bottom=1in]{geometry}
+%\usepackage[left=2.5in,right=1in,top=1in,bottom=1in]{geometry}
 \makeatletter \renewcommand{\theequation}{\thechapter.\arabic{equation}} \@addtoreset{equation}{chapter} \makeatother
 % ****************************************************************************************************
 % 8. Further adjustments (experimental)
