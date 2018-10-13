@@ -1,10 +1,6 @@
 \chapter{Introducci\'on}\label{ch:introduccion}
 
-\epigraph{Mathematics knows no races
-	or geographic boundaries;
-	for mathematics,
-	the cultural world
-	is one country.}{David Hilbert}
+\epigraph{Las Matem\'aticas no conocen de razas ni fronteras geogr\'aficas; para las Matem\'aticas el mundo cultural es un solo pa\'is.}{David Hilbert}
 
 Machine Learning es un conglomerado de t\'ecnicas estad\'isticas, probabil\'isticas y algor\'itmicas para resolver el problema universal siguiente:
 
@@ -20,9 +16,9 @@ Dentro del espectro de los algoritmos de batch se encuentra el algoritmo de desc
 \LinesNumbered
 \begin{algorithm}[H]
 	\caption{Descenso de gradiente en batch \label{algo: GD - intro}}
-	\textbf{Input:} $F \in C^1$, $\alpha_k >0$, $w_1 \in \R^d$, $X = \sett{(x_j,y_j)}_{j \leq N}$ \text{ muestra} \\
+	\textbf{Input:} $F: \R^d \rightarrow \R$, $F \in C^1$, $\alpha_k >0$, $w_1 \in \R^d$, $X = \sett{(x_j,y_j)}_{j \leq N} = \sett{\upxi_j}_{j \leq N}$ \text{ muestra aleatoria i.i.d.} \\
 	\For{$k \in \N$}{
-		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(x_j)$
+		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(\upxi_j, w_k)$
 	}
 \end{algorithm}
 
@@ -34,7 +30,7 @@ Por otro lado, en el espectro \textit{estoc\'astico} encontramos el algoritmo \t
  \LinesNumbered
  \begin{algorithm}[H]
  	\caption{Descenso Estocastico de Gradiente (DE) \label{algo: DE - intro}}
- 	\textbf{Input:} $w_1 \in \R^d$, $\sett{(x_k, y_k)}$ dato \\
+ 	\textbf{Input:} $w_1 \in \R^d$, $(x_k, y_k) = \upxi_j$ dato muestreado al azar\\
  	\For{$k \in \N$}{
  		$w_{k+1} \gets w_k - \alpha_kg(w_k, (x_k, y_k))$
  	}

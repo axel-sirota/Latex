@@ -1,6 +1,8 @@
 \chapter{Resultados negativos}\label{ch:resultadosNegativos}
 
-Ya vimos de \ref{Dg converge a minimos}, que el descenso de gradiente, con cualquier inicialización aleatoria razonable, siempre escapará de los puntos de silla estrictos \textit{eventualmente}, pero sin ninguna garantía sobre el número de pasos requeridos. Esto motiva a la siguiente
+\epigraph{La esencia de las Matem\'aticas yace en su libertad.}{Georg Cantor}
+
+Ya vimos de \ref{Dg converge a minimos}, que el descenso de gradiente, con cualquier inicialización aleatoria razonable, tiene probabilidad $1$ de converger a m\'inimos locales, pero sin ninguna garantía sobre el número de pasos requeridos. Esto motiva a la siguiente
 pregunta:
 
 \textbf{¿El descenso de gradiente inicializado aleatoriamente generalmente escapa de los puntos de silla en tiempo polinomial?}
@@ -14,12 +16,12 @@ pregunta:
 		\left(x_1^{k+1}, x^{k+1}_2\right) = \left(x^k_1, x^k_2\right)- \frac{1}{4} \left(2x^k_1, -2x^k_2\right) = \left(\frac{x^k_1}{2}, \frac{3 x^k_2}{2}\right)
 	\end{equation*}
 	
-	Luego si tomamos $\epsilon >0$ y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = [-1,1] \times \left[- \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}, \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}\right]$ entonces el algoritmo \ref{algo: GD} necesita $k \geq e^{\frac{1}{\epsilon}}$ pasos para que $w_k \not \in U$. Conclu\'imos que el algoritmo es exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
+	Luego si tomamos $\epsilon >0$ y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = [-1,1] \times \left[- \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}, \frac{3}{2}^{-e^{\frac{1}{\epsilon}}}\right]$ entonces el algoritmo \ref{algo: GD} necesita $k \geq e^{\frac{1}{\epsilon}}$ pasos para que $w_k \not \in U$. Concluimos que el algoritmo es exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
 	
 \end{example}
 
 \begin{example}[Inicializaci\'on exponencialmente lejana]
-	Consideremos nuevamente $f \in C^2(\R^2)$ dada por:
+	Consideremos nuevamente $f \in C^2((-\infty, 1 ] \times [-1,1])$ dada por:
 	
 	\begin{equation*}
 		f(x_1, x_2) = \left\lbrace \begin{array}{cc}
@@ -29,7 +31,7 @@ pregunta:
 		\end{array}\right.
 	\end{equation*}
 	
-	Con $h$ una funci\'on suave tal que $f \in C^2$ y $x_2$ no crezca demasiado en el intervalo donde es $h$ (Una forma de definir esto es con splines c\'ubicos).
+	Con $h$ una funci\'on suave conectando las regiones $(-\infty, -2] \times [-1,1]$ y $[-1,1] \times [-1,1]$ de modo que $f \in C^2$ y $\dfrac{\partial f}{\partial x_2} \vert_{[-2,-1] \times [-1,1]} < M$ con $M>0$ constante. Notemos que esta $h$ existe por \ref{theorem: splines 1}.
 	
 	Luego si para el algoritmo \ref{algo: GD} tomamos $\alpha_k = \alpha = \frac{1}{4}$ tendr\'iamos la siguiente din\'amica:
 	
@@ -46,14 +48,19 @@ pregunta:
 	\end{array}
 	\end{equation*}
 	
-	Luego si tomamos $R >0$ grande y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = \left[ -R-1, -R+1 \right]\times [-1,1]$ entonces notando $t$ como la primera vez que $x_1 > -1$ tenemos que $t \approx R$, con lo que $x_2^t = x_2^0 \left(\frac{1}{2}\right)^R$. Por ende, el algoritmo nuevamente  necesita $R \approx e^{\frac{1}{\epsilon}}$ iteraciones para poder salir de $U = [-1,1]^2$; conclu\'imos que el algoritmo es exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
+	Luego si tomamos $R >0$ grande y $w_0 = (x_1^0, x_2^0)$ uniformemente en $w_0\in \widetilde{U} = \left[ -R-1, -R+1 \right]\times [-1,1]$ entonces notando $t$ como la primera vez que $x_1 > -1$ tenemos que $t \approx R$, con lo que $x_2^t = x_2^0 \left(\frac{1}{2}\right)^R$. Por ende, el algoritmo nuevamente  necesita $R \approx e^{\frac{1}{\epsilon}}$ iteraciones para poder salir de $U = [-1,1]^2$; concluimos que el algoritmo toma tiempo al menos exponencial en converger a cualquier m\'inimo si $w_0 \in \widetilde{U}$.\qed 
 	
 \end{example}
 
 \section{Intuici\'on acerca del teorema}
 
+\begin{definition}
+	Dado $B \in \R^d$ decimos que $B \in poly(d)$ si existe $p \in \R[X]$ tal que $p(d) = B$.
+	Asimismo decimos que una iteraci\'on de un algoritmo $w_k$ esta a $\Omega(f(k))$ de $w^*$ si existe $K \in \N$ tal que $\abs{w^* - w_k} \geq Kf(k)$
+\end{definition}
+
 \begin{theorem}[Convergencia exponencial, Inicializaci\'on uniforme en el cubo]
-	Consideremos el algoritmo \ref{algo: GD} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $f : \R^d \mapsto \R$ $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
+	Consideremos el algoritmo \ref{algo: GD} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $f : \R^d \mapsto \R$ $B-$acotada, $l-$Lipschitz, $\mu-$Lipschitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
 \end{theorem}
 
 Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de la demostraci\'on:
@@ -80,7 +87,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 		\end{equation*}
 	\end{subequations}
 	
-	Notemos que como la direcci\'on de escape en $(0,0)$ es por $x_1$ y \textit{luego} por $x_2$ (por el cambio de comportamiento de $f$) podemos concluir que $k_1,k_2$ estan bien definidos y que $k_2 \geq k_1 \geq 0$; la observaci\'on clave va a ser que $k_2 = Ck_1$ con $C>1$, es decir que el tiempo en pasar el siguiente punto silla es exponencialmente mayor que los anteriores. En pos de esto, veamos como va a ser la iteraci\'on del algoritmo \ref{algo: GD}:
+	Notemos que como la direcci\'on de escape en $(0,0)$ es por $x_1$ y \textit{luego} por $x_2$ (por el cambio de comportamiento de $f$) podemos concluir que $k_1,k_2$ estan bien definidos y que $k_2 \geq k_1 \geq 0$. Vamos a probar que $k_2 = Ck_1$ con $C>1$, es decir que el tiempo en pasar el siguiente punto silla es exponencialmente mayor que los anteriores; y esta propiedad se va a mantener en el caso general y nos permitir\'a concluir el resultado. En pos de esto, veamos como va a ser la iteraci\'on del algoritmo \ref{algo: GD - intro}:
 	
 	\begin{equation*}
 	\begin{array}{rcl}
@@ -110,7 +117,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	\end{array}
 	\end{equation*}
 	
-	Conclu\'imos que:
+	concluimos que:
 	
 	\begin{equation}
 		k_2 \geq \dfrac{2 \alpha \left(L + \gamma\right)k_1 - \log\left(x_2^0\right)}{2 \alpha \gamma} \geq \dfrac{L + \gamma}{\gamma} k_1 
@@ -119,11 +126,10 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	Esta $f$ que presentamos tiene varios problemas:
 	
 	\begin{enumerate}
-		\item $f$ no es continua, y mucho menos $C^2$
-		\item $f$ no podemos asegurar que sea $l-$Lipshitz o $\mu-$Lipshitz en el hessiano
+		\item No es continua ni mucho menos $C^2$
+		\item No podemos asegurar que $f$ sea $l-$Lipschitz o $\mu-$Lipschitz en el hessiano
 		\item Los puntos cr\'iticos estan en el borde del dominio, lo que no es ideal
-		\item $f$ no est\'a definida en todo $\R^d$
-		\item Estrictamente $f$ es a\'un resuelto en tiempo polinomial
+		\item No est\'a definida en todo $\R^d$
 	\end{enumerate}
 	
 	La clave va a ser usar splines para resolver los primeros puntos, espejar $f$ para hacer los puntos extremales interiores, asignar $d$ puntos cr\'iticos similares para generar el tiempo exponencial en $d$ y extender esa funci\'on $\tilde{f}$ a $\R^d$ con el Teorema de extensi\'on de Whitney. Aunque la demostraci\'on es larga y tediosa, la idea clave es la vista aqu\'i.
@@ -131,7 +137,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 
 \section{Demostraci\'on del teorema}
 
-\begin{proof} Vayamos de a pasos
+\begin{proof} Segmentemos esta demostraci\'on en diferentes secciones:
 		
 	\medskip
 	
@@ -139,7 +145,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	
 	\medskip
 	
-	Fijemos 4 constantes: $L=e, \gamma = 1, \tau = e, \eta$ a definir proximamente; inspirados en el ejemplo anterior vamos a construir una $f$ definida en un cerrado $D_0$ tal que tenga $d-1$ puntos silla estrictos y la complejidas del algoritmo \ref{algo: GD} sea exponencial. Sea $D_0$ dado por:
+	Fijemos 4 constantes: $L\geq e, \gamma \geq  1, \tau \geq  e, \eta$ a definir proximamente; inspirados en el ejemplo anterior vamos a construir una $f$ definida en un cerrado $D_0$ tal que tenga $d-1$ puntos silla estrictos y la complejidad del algoritmo \ref{algo: GD - intro} sea exponencial. Sea $D_0$ dado por:
 	
 	\begin{equation}
 	\begin{array}{cl}
@@ -162,7 +168,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	\end{array}\right.
 	\end{equation}
 	
-	Donde nuevamente $\eta$ esta pendiente de definici\'on y $g: \R^2 \rightarrow \R$ tambi\'en la definiremos proximamente para que $f$ resulte $C^2$, $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$. 
+	Donde nuevamente $\eta$ esta pendiente de definici\'on y $g: \R^2 \rightarrow \R$ tambi\'en la definiremos proximamente para que $f$ resulte $C^2$, $B-$acotada, $l-$Lipschitz, $\mu-$Lipschitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$. 
 	
 	Para $i=d$ definamos:
 	
@@ -223,11 +229,11 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	\end{proof}
 
 	\begin{remark}
-		Del lema anterior podemos ver que $\deg(g_1), \deg(g) \leq 5$ por lo que estan acotados. Conclu\'imos que ambas son $B-$acotadas y $\mu-$Lipshitz con $B, \mu \in \text{poly}(L)$
+		Del lema anterior podemos ver que $\deg(g_1), \deg(g) \leq 5$ por lo que est\'an acotados. Concluimos que ambas son $B-$acotadas y $\mu-$Lipschitz con $B, \mu \in \text{poly}(L)$
 	\end{remark}
 
 	\begin{remark}
-		Notemos que $\norm{g_1}, \norm{g} > \gamma \tau > 0$ por lo que ninguna de las dos aporta puntos cr\'iticos en $D_0$.
+		Notemos que $\norm{g_1}, \norm{g} > \gamma \tau > 0$ por lo que ninguna de las dos se anula en $D_0$.
 	\end{remark}
 
 	\begin{remark}
@@ -307,7 +313,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 		x_{k+1}^{t} \leq x_{k+1}^0 \left(1 - 2 \alpha L\right)^{T_k - T_k^{\tau}} \left(1 + 2 \alpha \gamma \right)^{t - \left(T_k - T_k^{\tau}\right)} \leq \tau
 	\end{equation*}
 	
-	Y conclu\'imos que $x^t \in D_0$
+	Y concluimos que $x^t \in D_0$
 	
 	\medskip
 	
@@ -359,7 +365,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	
 	\begin{equation*}
 	\begin{split}
-		D_a = \bigcup\limits_{i=1}^{d} & \left\lbrace x \in \R^d \tq x_i \geq 0 \text{ si } i \in a_2(0), \ x_i \leq 0 \text{ sino}, \right. \\
+		D_a = \bigcup\limits_{i=1}^{d} & \left\lbrace x \in \R^d \tq x_i \geq 0 \text{ si } i \in a_2(0), \ x_i \leq 0 \text{ si no}, \right. \\
 			&  \left. 6\tau \geq \abs{x_1}, \dots, \abs{x_{i-1}} \geq 2\tau,\ \abs{x_i} \leq 2\tau,\ \abs{x_{i+1}}, \dots, \abs{x_d} \leq \tau \right\rbrace
 	\end{split}
 	\end{equation*}

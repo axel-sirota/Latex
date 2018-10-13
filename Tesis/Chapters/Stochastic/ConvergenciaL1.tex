@@ -1,10 +1,10 @@
 \chapter{Convergencia en L1}\label{ch:convergenciaL1}
 
-\epigraph{"The Axiom of Choice is obviously true, the well-ordering principle obviously false, and who can tell about Zorn's lemma?"}{Jerry Bona}
+\epigraph{El axioma de elecci\'on es obviamente cierto, el principio de buen ordenamiento es obviamente falso y quien puede decidir sobre el lema de Zorn?}{Jerry Bona}
 
 \section{Contexto}
 
-En esta parte vamos a analizar la convergencia en L1 de algoritmos estoc\'asticos para optimizar una $F: \R^d \mapsto \R$ que puede representar tanto el costo esperado como el emp\'irico. Recordemos que $F$ lo asumimos parametrizado por$w \in \R^d$ e imaginamos a los datos $(x,y)$ como extra\'idos de una variable aleatoria $\upxi$ cuya distribuci\'on desconocida es $P$, luego $F$ se representa como:
+En esta parte vamos a analizar la convergencia en L1 de algoritmos estoc\'asticos para optimizar una $F: \R^d \mapsto \R$ que puede representar tanto el costo esperado como el emp\'irico. Recordemos que $F$ lo asumimos parametrizado por $w \in \R^d$ e imaginamos los datos $(x,y)$ como extra\'idos de una variable aleatoria $\upxi$ cuya distribuci\'on desconocida es $P$, luego $F$ se representa como:
 
 \begin{equation}
 F(w) = \left\lbrace
@@ -47,11 +47,11 @@ Donde $H_k$ es una matriz sim\'etrica definida positiva como en los m\'etodos de
 
 \smallskip
 
-Para iniciar el analisis de la convergencia, lo m\'inimo que necesitamos es que el gradiente se mantenga controlado, por lo tanto recordemos la condici\'on \ref{def: L Lipshitz}:
+Para iniciar el analisis de la convergencia, lo m\'inimo que necesitamos es que el gradiente se mantenga controlado, por lo tanto recordemos la condici\'on \ref{def: L Lipschitz}:
 
 \begin{hyp} [$F$ es $l$-Lipshitz]
 	\label{hyp: F es L lipshitz}
-	La funci\'on a optimizar $F \in C^1(\R^d)$ y existe $L >0$ tal que para todos $w,z \in \R^d$:
+	La funci\'on a optimizar $F: \R^d \rightarrow \R$ es de clase $C^1$ y existe $L >0$ tal que para todos $w,z \in \R^d$:
 	\begin{equation*}
 	\norm{\nabla F(w) - \nabla F(z)}_2 \leq L \norm{w-z}_2
 	\end{equation*} 
@@ -68,7 +68,7 @@ Para iniciar el analisis de la convergencia, lo m\'inimo que necesitamos es que 
 \end{remark}
 
 \begin{proof}
-	Ver \ref{prop: Implicancias L lipshitz}
+	Ver \ref{prop: Implicancias L Lipschitz}
 \end{proof}
 
 \section{Algunos lemas fundamentales}
@@ -159,7 +159,7 @@ Asumamos:
 \end{hyp}
 
 \begin{remark}
-	Notemos que si $g$ es un estimador insesgado de $\nabla F$ entonces \ref{eq: Hipotesis 2 subitem 1} y \ref{eq: Hipotesis 2 subitem 2} valen con $\mu_G = \mu = 1$. Dejamos de ejercicio al lector notar que si $H_k$ es sim\'etrica positiva definida tal que $H_k$ es independiente de $\upxi_{k}$ entonces tanto \ref{eq: Hipotesis 2 subitem 1} como \ref{eq: Hipotesis 2 subitem 2} valen.
+	Notemos que si $g$ es un estimador insesgado de $\nabla F$ entonces \ref{eq: Hipotesis 2 subitem 1} y \ref{eq: Hipotesis 2 subitem 2} valen con $\mu_G = \mu = 1$.
 \end{remark}
 
 \begin{remark}
@@ -222,21 +222,6 @@ Consideremos primero los casos de convexidad donde sabemos que el m\'inimo exist
 
 Recordemos que de \ref{def: Fuertemente convexa} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
 
-\begin{proof}
-	Dado $w \in \R^d$ sea:
-	
-	\begin{equation*}
-		q(z) = F(w) + \nabla F(w)^T (z-w) + \frac{1}{2} c \norm{z-w}_2^2
-	\end{equation*}
-	
-	Se puede verificar que $z_* := w - \frac{1}{c} \nabla F(w)$ cumple que $q(z_*) = F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 \leq q(z)$ para todo $z \in \R^d$; luego por \ref{prop: implicancias de convexidad fuerte} se tiene:
-	
-	\begin{equation*}
-		F_{inf} \geq F(w) + \nabla F(w)^T (w_*-w) + \frac{1}{2} c \norm{w_*-w}_2^2 \geq F(w) - \frac{1}{2c} \norm{\nabla F(w)}_2^2 
-	\end{equation*}
-	\qed
-\end{proof}
-
 Ya estamos en condiciones de demostrar nuestro primer resultado de convergencia para \ref{algo: DE} con $\alpha_k = \alpha$, pero notemos que \textit{a priori} lo mas que podemos asumir es quedar en un entorno de $F_{inf}$ ya que de \ref{eq: Fundamental estocasticos 2 ecuacion 2} se ve que el segundo t\'ermino es constante.
 
 Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
@@ -260,20 +245,20 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 	\begin{equation*}
 	\begin{array}{rcl}
 	\expectation{F(w_k) - F_{inf}} & \leq & \dfrac{\alpha LM}{2 c \mu} + \left(1 - \alpha c \mu \right)^{k-1} \left(F(w_1) - F_{inf} - \dfrac{\alpha LM}{2 c \mu} \right) \\
-	& \underrightarrow{k \rightarrow \infty} & \dfrac{\alpha LM}{2 c \mu} 
+	& \underlimitinf{k} & \dfrac{\alpha LM}{2 c \mu} 
 	\end{array}
 	\end{equation*}
 	 
 \end{theorem}
 
 \begin{proof}
-	Usando \ref{lemma: Fundamental estocasticos 2} con \ref{eq: Condicion alfa Conv L1 fuertemente convexo} y \ref{eq: Desigualdad convexidad fuerte} tenemos para todo $k \in \N$ que:
+	Usando \ref{lemma: Fundamental estocasticos 2} con \ref{eq: Condicion alfa Conv L1 fuertemente convexo} y \ref{prop: Implicancias L Lipschitz} tenemos para todo $k \in \N$ que:
 	
 	\begin{equation*}
 	\begin{array}{rcl}
 		\expectationchik{F(w_{k+1}) - F(w_k)} & \underbrace{\leq}_{\ref{lemma: Fundamental estocasticos 2}} & - \left( \mu - \frac{1}{2} \alpha L M_G \right)\alpha \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha^2 L M \\
 		& \underbrace{\leq}_{\ref{eq: Condicion alfa Conv L1 fuertemente convexo}} & - \frac{1}{2} \alpha \mu \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha ^2 LM \\
-		& \underbrace{\leq}_{\ref{eq: Desigualdad convexidad fuerte}} & - \alpha \mu c \left(F(w_k) - F_{inf} \right)+ \frac{1}{2} \alpha ^2 LM 
+		& \underbrace{\leq}_{\ref{prop: Implicancias L Lipschitz}} & - \alpha \mu c \left(F(w_k) - F_{inf} \right)+ \frac{1}{2} \alpha ^2 LM 
 	\end{array}
 	\end{equation*}
 	
@@ -313,12 +298,12 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 \begin{remark}
 	Notemos finalmente que hay un compromiso entre el primer y segundo t\'ermino de \ref{theorem: DE en fuertemente convexo y alfa fijo converge en l1} donde a un $\alpha$ m\'as cercano a $\dfrac{\mu}{LM_G}$ acelera la convergencia del primer t\'ermino, pero a costa de un entorno final de mayor vol\'umen. 
 	
-	Luego esto llevo a varios investigadores a tomar un enfoque artesanal donde se tomaba un $\alpha_k = \alpha_1$ para $k \leq k_1$ donde $k_1$ es tal que $\expectation{F(w_{k_1}) - F_{inf}} \leq \dfrac{\alpha_1 LM}{2c \mu}$. Luego se tomaba $\alpha_2 = \frac{\alpha_1}{2}$ y se segu\'ia inductivamente.
+	Luego esto llev\'o a varios investigadores a tomar un enfoque experimental donde se tomaba un $\alpha_k = \alpha_1$ para $k \leq k_1$ donde $k_1$ es tal que $\expectation{F(w_{k_1}) - F_{inf}} \leq \dfrac{\alpha_1 LM}{2c \mu}$. Luego se tomaba $\alpha_2 = \frac{\alpha_1}{2}$ y se segu\'ia inductivamente.
 \end{remark}
 
 \begin{theorem}[Objetivo fuertemente convexo, Incremento decreciente]
 	\label{theorem: DE en fuertemente convexo y alfa decreciente converge en l1}
-	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{def: Fuertemente convexa}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k$ cunmple:
+	Supongamos \ref{hyp: F es L lipshitz}, \ref{hyp: Acotaciones momentos de g} y \ref{def: Fuertemente convexa}; adem\'as supongamos que dado \ref{algo: DE} $\alpha_k$ cumple:
 	
 	\begin{equation}
 	\label{eq: Condicion alfa Conv L1 fuertemente convexo decreciente}
@@ -346,7 +331,7 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 		\alpha_k L M_G \leq \alpha_1 L M_G \leq \mu
 	\end{equation*}
 	
-	Luego por \ref{lemma: Fundamental estocasticos 2} y \ref{eq: Desigualdad convexidad fuerte} uno tiene para todo $k \in \N$:
+	Luego por \ref{lemma: Fundamental estocasticos 2} y \ref{prop: Implicancias L Lipschitz} uno tiene para todo $k \in \N$:
 	
 	\begin{equation*}
 	\begin{aligned}
@@ -362,9 +347,15 @@ Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
 		\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - \alpha_k c \mu \right) \expectation{F(w_{k}) - F_{inf}}  + \frac{1}{2} \alpha_k^2 L M
 	\end{equation*}
 	
-	Probemos ahora el resultado por inducci\'on. Por la definici\'on de $\eta$ tenemos que $k = 1$ vale, luego si asumimos que vale el resultado para alg\'un $k \geq 1$ entonces:
+	Probemos ahora el resultado por inducci\'on. 
 	
-		\marginpar{\color{Red}Porque vale k=1?}
+	Para el caso $k=1$ notemos que por definici\'on $\eta \geq \left(\gamma + 1\right) \left(F(w_1) - F_{inf}\right)$ por lo que trivialmente:
+	
+	\begin{equation*}
+		\expectation{\left(F(w_1) - F_{inf}\right)} \leq \expectation{\dfrac{\eta}{\gamma +1}} = \dfrac{\eta}{\gamma + k}
+	\end{equation*}
+	
+	Si asumimos que vale el resultado para alg\'un $k \geq 1$ entonces:
 	
 	\begin{equation*}
 	\begin{array}{lll}
@@ -440,9 +431,15 @@ Notemos entonces que en el caso fuertemente convexo con incrementos fijos tenemo
 		\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - c \mu \alpha\right) \expectation{F(w_k) - F_{inf}} + \frac{1}{2} \alpha^2 LM \xi^{k-1}
 	\end{equation}
 	
-	\marginpar{\color{Red} Por que vale k=1??}
+	Probemos ahora el resultado por inducci\'on. 
 	
-	Probemos ahora la identidad por inducci\'on. Para esto, notemos que el caso $k=1$ vale por la definici\'on de $\omega$; luego si asumimos que vale para alg\'un $k \geq 1$ entonces de \ref{eq: Ecuacion demostracion reduccion ruido}, \ref{def: Omega en dem reduccion ruido} y \ref{def: Rho en dem reduccion ruido}:
+	Para el caso $k=1$ notemos que por definici\'on $\omega \geq F(w_1) - F_{inf}$ por lo que:
+	
+	\begin{equation*}
+		\expectation{\F(w_1) - F_{inf}} \leq \expectation{\omega} = \omega = \omega \rho^{0} = \omega \rho^{k-1}
+	\end{equation*}
+	
+	Si asumimos que vale para alg\'un $k \geq 1$ entonces de \ref{eq: Ecuacion demostracion reduccion ruido}, \ref{def: Omega en dem reduccion ruido} y \ref{def: Rho en dem reduccion ruido}:
 	
 	\begin{equation*}
 	\begin{aligned}
@@ -480,7 +477,7 @@ Manteniendo las mismas hip\'otesis y notaciones veamos el caso general, nuevamen
 		\label{eq: Objetivo no convexo, incremento fijo, 2}
 		\begin{array}{rcl}
 		\expectation{\dfrac{1}{K}\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k)}_2^2}} & \leq & \dfrac{\alpha LM}{\mu} + \dfrac{2(F(w_1) - F_{inf})}{K \mu \alpha} \\
-		& \underrightarrow{K \rightarrow \infty} &  \dfrac{\alpha LM}{\mu}
+		& \underlimitinf{K} &  \dfrac{\alpha LM}{\mu}
 		\end{array}
 		\end{equation}
 	\end{subequations}
@@ -506,7 +503,7 @@ Manteniendo las mismas hip\'otesis y notaciones veamos el caso general, nuevamen
 \end{proof}
 
 \begin{remark}
-	Notemos que si $M=0$ (no hay ruido o crece comparable a $\norm{\nabla F(w_k)}^2_2$) entonces obtenemos que $\sum\limits_{k=1}^{\infty} {\norm{\nabla F (w)_k)}_2^2} < \infty$ por lo que $\sett{\norm{\nabla F (w_k)}_2^2}_{k \in \N} \underrightarrow{k \rightarrow \infty} 0 $, que es el resultado obtenido en \cite{nesterov:2004}.
+	Notemos que si $M=0$ (no hay ruido o crece comparable a $\norm{\nabla F(w_k)}^2_2$) entonces obtenemos que $\sum\limits_{k=1}^{\infty} {\norm{\nabla F (w)_k)}_2^2} < \infty$ por lo que $\sett{\norm{\nabla F (w_k)}_2^2}_{k \in \N} \underlimitinf{K} 0 $, que es el resultado obtenido en \cite{nesterov:2004}.
 	
 	En cambio, cuando $M \neq 0$ aunque no podemos acotar $\norm{\nabla F (w_k)}_2^2$ \textit{per-se}, podemos decir de \ref{eq: Objetivo no convexo, incremento fijo, 2} que en esperanza el valor del gradiente es cada vez menor en un entorno de radio $\dfrac{\alpha LM}{\mu}$. Luego recuperamos la intuici\'on del caso convexo (\ref{theorem: DE en fuertemente convexo y alfa fijo converge en l1}) donde a menor incremento el entorno es menor (el algortimo es m\'as preciso) pero la cantidad de iteraciones es mayor.
 \end{remark}
@@ -524,7 +521,7 @@ Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la co
 		\end{equation}
 		\begin{equation}
 		\label{eq: Objetivo no convexo, incremento decreciente, 2}
-		\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \underrightarrow{K \rightarrow \infty} \ 0
+		\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \underlimitinf{K}  0
 		\end{equation}
 	\end{subequations}
 	
@@ -552,9 +549,11 @@ Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la co
 	\sum\limits_{1}^{K}{\alpha_k \expectation{\norm{\nabla F(w_k)}_2^2}}  \leq  \dfrac{2 (\expectation{F(w_1) - F_{inf} })}{\mu} + \frac{LM}{\mu}  \underbrace{\sum\limits_{k=1}^{K} {\alpha_k^2}}_{\underrightarrow{K \rightarrow \infty} \ C  \ < \ \infty }
 	\end{equation*}
 	
-	\marginpar{\color{Red}Porque si $\lim \expectation{X_k} < \infty$ entonces $\lim \expectation{\frac{X_k}{A_k}} = 0$ si $A_k \rightarrow \infty$ con $A_k$ escalar ?}
-	
-	Por lo que \ref{eq: Objetivo no convexo, incremento decreciente, 1} esta probado. Finalmente como por \ref{eq: Condicion robbins monro} tenemos que $A_K \rightarrow \infty$ se tiene \ref{eq: Objetivo no convexo, incremento decreciente, 2}.\qed
+	Por lo que \ref{eq: Objetivo no convexo, incremento decreciente, 1} esta probado. Finalmente como por \ref{eq: Condicion robbins monro} tenemos que $A_K \rightarrow \infty$ podemos ver que existe $C>0$ constante tal que:
+	\begin{equation*}
+	\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \leq \dfrac{C}{A_K} \underlimitinf{K} 0
+	\end{equation*}
+	se tiene \ref{eq: Objetivo no convexo, incremento decreciente, 2}.\qed
 	
 \end{proof}
 
@@ -576,9 +575,9 @@ Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la co
 	Sea $\epsilon > 0$, luego de $\ref{eq: Objetivo no convexo, incremento decreciente, 1}$ y la desigualdad de Markov:
 	
 	\begin{equation*}
-		\mathbb{P} \left[\norm{\nabla F (w_k)}_2 \geq \epsilon\right] = \mathbb{P} \left[\norm{\nabla F (w_k)}_2^2 \geq \epsilon^2\right] \leq \epsilon^{-2} \expectation{\expectationchik{\norm{\nabla F(w_k)}_2^2}}  \rightarrow 0
+		\mathbb{P} \left[\norm{\nabla F (w_k)}_2 \geq \epsilon\right] = \mathbb{P} \left[\norm{\nabla F (w_k)}_2^2 \geq \epsilon^2\right] \leq \epsilon^{-2} \expectation{\norm{\nabla F(w_k)}_2^2}  \rightarrow 0
 	\end{equation*}
-	\marginpar{\color{Red} Porque aca es la esperanza de la esperanza condicional?} \qed
+\qed
 	
 \end{proof}.
 

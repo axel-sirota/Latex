@@ -114,11 +114,11 @@
 
 \title[\myTitle: \mySubtitle]{\bf {\myTitle}}
 \author[\myName]{\myName}
-\institute{\myFaculty}
+\institute[\myFaculty]{}
 \date[\myTime]{\myDepartment}
 
 \AtBeginSection[] {
-\begin{frame}{Outline}
+\begin{frame}{Panorama}
 \tableofcontents[currentsection]
 \end{frame}
 }
@@ -129,34 +129,12 @@
 \titlepage
 \end{frame}
 
-%\section*{Outline}
-%\begin{frame}
-%  \tableofcontents
-%\end{frame}
-
-
 \section{Introduction}
 \begin{frame}
- \frametitle{Motivation}
- Nicholson equation  
-\begin{equation}
-    \label{nich}
-    x'(t)=-d x(t) + p x(t-\tau)e^{-x(t-\tau)}
-\end{equation}
-with $p,d>0$.
-
-\medskip 
-
-The IVP for (\ref{nich}) reads
-
-$$x(t)=\varphi(t) \qquad \varphi\in C([-\tau,0]).
-$$
-
+ \frametitle{Motivaci\'on}
 
 \end{frame} 
 
-
-%\end{document}
 
 
 

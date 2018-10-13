@@ -1,8 +1,8 @@
 \chapter{Convergencia CTP }\label{ch:convergenciaCTP}
 
-\epigraph{At a purely formal level, one could call probability theory the study of measure spaces with total measure one, but that would be like calling number theory the study of strings of digits which terminate.}{Terence Tao}
+\epigraph{En un nivel puramente formal, uno podr\'ia decir que la teor\'ia de probabilidades es el estudio de los espacios de medida con medida total 1, pero ser\'ia como decir que la teor\'ia de n\'umeros es el estudio de secuencias de d\'igitos que terminan.}{Terence Tao}
 
-Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay una distinci\'on entre el caso convexo y no convexo; donde en el caso convexo usualmente podemos asegurar convergencia a una cercan\'ia del m\'inimo mientras que en el no convexo solo asegurabamos la convergencia a un punto cr\'itico. Nuevamente en el estudio de la convergencia \textit{casi todo punto} vamos a separar en esos dos casos y va a volver a aparecer \ref{eq: Condicion robbins monro}. Por simpleza en los c\'alculos vamos a asumir en este cap\'itulo que $g$ es un estimador insesgado de $\nabla F(w_k)$.
+Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay una distinci\'on entre el caso convexo y no convexo; donde en el caso convexo usualmente podemos asegurar convergencia a una cercan\'ia del m\'inimo mientras que en el no convexo solo asegurabamos la convergencia a un punto cr\'itico. Nuevamente en el estudio de la convergencia \textit{casi todo punto} vamos a separar en esos dos casos y va a volver a aparecer \ref{eq: Condicion robbins monro}. Por simplicidad en los c\'alculos vamos a asumir en este cap\'itulo que $g$ es un estimador insesgado de $\nabla F(w_k)$.
 
 \section{Caso d\'ebilmente convexo}
 
@@ -50,8 +50,6 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^*\right) g(w_k, \upxi_{k}) + \alpha_k^2 g(w_k, \upxi_{k})^2
 		\end{equation}
 		
-		\marginpar{\color{Red} Como definimos bien la filtracion? Es saber toda esa informacion a tiempo $k$, como lo notamos?}
-		
 		Definamos ahora la filtraci\'on $\mathcal{P}_k = \sett{\upxi_{0}, \dots, \upxi_{k-1}, w_0, \dots, w_k, \alpha_0, \dots, \alpha_k}$ que determina toda la informaci\'on a tiempo $k$ \textbf{antes} de tomar la muestra $\upxi_{k}$; luego si tomamos la esperanza condicional a esta filtraci\'on:
 		
 		\begin{equation*}
@@ -97,7 +95,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			\expectation{\delta_k^{h'} \left(h_{k+1}' - h_k'\right)} \underbrace{=}_{\text{ por definici\'on de } \delta_k^{h'}} \expectation{\delta_k^{h'} \expectationfilt{h_{k+1}' - h_k'}} \leq  \alpha_k^2 \mu_k A
 		\end{equation*}
 		
-		Por el mismo motivo que en \ref{theorem: convergencia puntual batch, objetivo debilmente convexo, incrementos decrecientes} conclu\'imos que:
+		Por el mismo motivo que en \ref{theorem: convergencia puntual batch, objetivo debilmente convexo, incrementos decrecientes} concluimos que:
 		
 		\begin{subequations}
 			\begin{equation}
@@ -108,15 +106,15 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			\end{equation}
 		\end{subequations}
 		
-		Por \ref{theorem: Convergencia de cuasi martingalas} conclu\'imos que $h_k'$ converge \textit{ctp}; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge \textit{ctp}.
+		Por \ref{theorem: Convergencia de cuasi martingalas} concluimos que $h_k'$ converge \textit{ctp}; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge \textit{ctp}.
 		
-		\item[Paso 3] Como $h_k$ converge ctp, de \ref{eq: variaciones proceso lyapunov} conclu\'imos que:
+		\item[Paso 3] Como $h_k$ converge ctp, de \ref{eq: variaciones proceso lyapunov} concluimos que:
 		
 		\begin{equation*}
 		\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty \qquad ctp
 		\end{equation*}
 		
-		Supongamos que $\mathbb{P}\left(\sett{\lim\limits_{k} {h_k} > 0}\right) > \widetilde{\epsilon}$, luego $\mathbb{P}\left(\sett{\alpha_k \left(w_k - w^* \right)\nabla F(w_k) > C\alpha_k}\right) > \widetilde{\epsilon}$ lo que implicar\'ia por \ref{eq: Condicion robbins monro} que $\mathbb{P}\left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty}\right) > \widetilde{\epsilon}$; conclu\'imos entonces que:
+		Supongamos que $\mathbb{P}\left(\sett{\lim\limits_{k} {h_k} > 0}\right) > \widetilde{\epsilon}$, luego $\mathbb{P}\left(\sett{\alpha_k \left(w_k - w^* \right)\nabla F(w_k) > C\alpha_k}\right) > \widetilde{\epsilon}$ lo que implicar\'ia por \ref{eq: Condicion robbins monro} que $\mathbb{P}\left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty}\right) > \widetilde{\epsilon}$; concluimos entonces que:
 		
 			\begin{subequations}
 			\begin{equation}
@@ -144,7 +142,13 @@ Vamos a tomar las siguientes hip\'otesis para probar la convergencia ctp a un pu
 		\item Existe $w^* \in \mani$ tal que $F_{inf} = F(w^*) \leq F(w)$, aunque notemos que no necesariamente es \'unico
 		\item $F(w) \geq 0$ para todo $w \in \mani$ (Notemos que como hay un m\'inimo global, podemos redefinir $\widetilde{F} = F - F_{inf} \geq 0$)
 		\item Sean $\sett{\alpha_k}$ los incrementos del algoritmo \ref{algo: DE}, entonces estos cumplen \ref{eq: Condicion robbins monro}
-		\item Para $j = 2, 3, 4$ existen $A_j,B_j \geq 0$ tal que:
+		\item Existe $B_2 \geq 0$ tal que:
+		
+		\begin{equation}
+		\expectation{\norm{g(w_k, \upxi_{k})}_2^2} \leq B_2 \norm{w}_2^2
+		\end{equation}
+		
+		\item Para $j = 3, 4$ existen $A_j,B_j \geq 0$ tal que:
 		
 		\begin{equation}
 			\label{eq: Acotaciones momentos de g}
@@ -229,9 +233,28 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		\end{array}
 		\end{equation*}
 		
-		\marginpar{\color{Red} Porque pablo? Aca esto no me cierra que tantas acotaciones hace!}
+		Si ahora incluimos \ref{eq: Acotaciones momentos de g} y notamos que $\phi'(w_k^2) \leq \norm{w_k}_2^2$ entonces:
 		
-		Si ahora inclu\'imos \ref{eq: Acotaciones momentos de g} entonces esto implica que existen $A,B \geq 0$ tal que:
+		\begin{equation*}
+		\begin{array}{rcl}
+		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) \\ 
+		&& + \alpha_k^2 \phi'(w_k^2) B_2\norm{w_k}_2^2 \\ 
+		& & + 4 \alpha_k^2 B_2\norm{w_k}_2^2 \norm{w_k}_2^2 \\
+		& & \underbrace{-4 \alpha_k^3 \norm{w_k}_2 \left(A_3 + B_3 \norm{w_k}_2^3\right)}_{\leq 0}\\
+		& & + 4 \alpha_k^4 \left(A_4 + B_4 \norm{w_k}_2^4\right)\\
+		& & \\
+		& \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2)  \\
+		& & + \alpha_k^2 \left(5B_2 \norm{w_k}_2^4 + 4 \alpha_k^2 B_4 \norm{w_k}_2^4 + 4 + 4 \alpha_k^2 A_4\right)
+		\end{array} 
+		\end{equation*}
+		
+		Luego existen $A_0, B_0 \geq 0$ constantes tal que:
+		
+		\begin{equation*}
+		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) + \alpha_k^2 \left(A_0 + B_0 \norm{w_k}_2^4\right)
+		\end{equation*}
+		
+		 Lo que implica que existen $A,B \geq 0$ tal que:
 		
 		\begin{equation*}
 		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2)  + \alpha_k^2\left(A + B f_k\right)
@@ -243,9 +266,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		\expectationfilt{f_{k+1} - f_k} \leq \alpha_k^2\left(A + B f_k\right)
 		\end{equation}	
 		
-		\marginpar{\color{Red}Dado que hicimos lo mismo 3 veces, valdr\'ia que sea un lema?}
-		
-		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando \ref{theorem: Convergencia de cuasi martingalas} conclu\'imos que $\sett{f_k}$ converge ctp.
+		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando \ref{theorem: Convergencia de cuasi martingalas} concluimos que $\sett{f_k}$ converge ctp.
 		
 		\item[Paso 3] Supongamos que $f_{inf} >0$, entonces existe $T \in \N$  tal que $w_k^2, w_{k+1}^2 > D$ para todo $k \geq T$ por lo que \ref{eq: Condicion de proceso de lyapunov, confinamiento global} es una igualdad y deducimos que:
 		
@@ -262,7 +283,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 			\end{array}
 		\end{equation*}
 		
-		Conclu\'imos que $f_{inf} = 0$ y entonces existe $K \in \N$ tal que $\sett{w_k}_{k \geq K} \subset \sett{x \in \mani \tq \norm{x} < D }$. \qed
+		concluimos que $f_{inf} = 0$ y entonces existe $K \in \N$ tal que $\sett{w_k}_{k \geq K} \subset \sett{x \in \mani \tq \norm{x} < D }$. \qed
 		
 	\end{enumerate}
 	
@@ -364,7 +385,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 \end{array}
 		 \end{equation}
 		 
-		 Nuevamente por \ref{theorem: Convergencia de cuasi martingalas}conclu\'imos que $\sett{g_k}$ converge \textit{ctp}, y por \ref{eq: los gradientes ponderados son sumables en caso no convexo ctp} este l\'imite es $0$; luego:
+		 Nuevamente por \ref{theorem: Convergencia de cuasi martingalas}concluimos que $\sett{g_k}$ converge \textit{ctp}, y por \ref{eq: los gradientes ponderados son sumables en caso no convexo ctp} este l\'imite es $0$; luego:
 		 
 		 	\begin{subequations}
 		 	\begin{equation}

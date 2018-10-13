@@ -1,7 +1,7 @@
 \chapter{Convergencia CTP a m\'inimos : Caso general}\label{ch: aplicaciones}
 \section{Descenso de Gradiente en Batch}
 
-\epigraph{“The difference between mathematicians and physicists is that after physicists prove a big result they think it is fantastic but after mathematicians prove a big result they think it is trivial.”}{Richard Feynman}
+\epigraph{La diferencia entro los matem\'aticos y los f\'isicos es que luego de que los f\'isicos prueban un resultado grande piensan que es fant\'astico, pero luego que los matem\'aticos lo hacen piensan que es trivial.}{Richard Feynman}
 
 Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \textit{descenso de gradiente en batch} tiene probabilidad cero de converger a puntos silla. Consideremos el algoritmo \ref{algo: GD} con incrementos constantes $\alpha_k = \alpha$:
 
@@ -21,7 +21,7 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \te
 \end{proposition}
 
 \begin{proof}
-	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces por \ref{prop: calculo funcional} los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \in \sett{\mu \tq \nabla^2 f(x^*)v = \mu v \quad \text{para alg\'un } v \neq 0}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; conclu\'imos que $x^{*} \in \puntosfijos$. \qed
+	Es claro que un punto cr\'itico de $f$ es punto fijo de $g$; si $x^* \in \mani^*$ entonces $Dg(x^*) = Id - \alpha \nabla^2 f(x^*)$ y entonces por \ref{prop: calculo funcional} los autovalores de $Dg$ son $\sett{1 - \alpha \lambda_i \tq \lambda_i \text{ autovalor de $\nabla^2 f$}}$. Como $x^* \in \mani^*$ existe $\lambda_{j^*} < 0$ por lo que $1 - \alpha\lambda_{j^*} >1$; concluimos que $x^{*} \in \puntosfijos$. \qed
 	
 \end{proof}
 
@@ -37,7 +37,7 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \te
 		\det \left(Dg(x)\right) = \Bigprod{i \in \sett{1, \dots, d}}{\parenthesis{1 - \alpha \lambda_i}}
 	\end{equation*}
 	
-	Luego por \ref{hyp: Hessiano acotado} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; conclu\'imos que $\det \parenthesis{Dg(x)} > 0$. \qed
+	Luego por \ref{hyp: Hessiano acotado} tenemos que $\alpha < \frac{1}{\abs{\lambda_i}}$ y entonces $1 - \alpha \lambda_i > 0$ para todo $i \in \sett{1, \dots, d}$; concluimos que $\det \parenthesis{Dg(x)} > 0$. \qed
 	
 \end{proof}
 
@@ -47,7 +47,7 @@ Como una aplicaci\'on del teorema en \ref{teo: Principal} demostremos que el \te
 \end{corollary}
 
 \begin{proof}
-	Por \ref{prop: GD los puntos silla estrictos son fijos inestables} y \ref{prop: GD g es difeo local} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
+	Por \ref{prop: GD los puntos silla estrictos son fijos inestables} y \ref{prop: GD g es difeo local} tenemos que vale \ref{coro: Resultado principal} y concluimos que $\mu \parenthesis{W_g} = 0$. \qed
 \end{proof}
 
 \section{Punto Pr\'oximo}
@@ -79,7 +79,7 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 	\end{lemma}
 
 	\begin{proof}{[Del lema]}
-		En efecto, por hip\'otesis sumado a \ref{prop: Implicancias L lipshitz} y \ref{coro: convexa y fuertemente convexa es fuertemente convexa} conclu\'imos que $g \in \mathcal{C}^1 \parenthesis{\mani}$.\qed
+		En efecto, por hip\'otesis sumado a \ref{prop: Implicancias L Lipschitz} y \ref{coro: convexa y fuertemente convexa es fuertemente convexa} concluimos que $g \in \mathcal{C}^1 \parenthesis{\mani}$.\qed
 	\end{proof}
 	
 	Por lo tanto por \ref{lemma: PP es suave} podemos tomar l\'imite, \ie
@@ -106,7 +106,7 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 		\Longrightarrow \quad Dg(x) = \parenthesis{Id + \alpha \nabla^2 f(g(x))}^{-1}
 	\end{gather*}
 
-	Luego si $x^* \in \mani^*$ entonces $Dg(x^*) = \parenthesis{Id + \alpha \nabla^2 f(x^*)}^{-1}$ y tiene autovalores $\sett{\dfrac{1}{1+ \alpha \lambda_i}}$ con $\lambda_i$ autovalores de $\nabla^2 f(x^*)$. Por lo tanto $x^* \in \puntosfijos$ y para $\alpha < \frac{1}{L}$ se tiene que $\det \parenthesis{Dg(x)} \neq 0$. \qed
+	Luego si $x^* \in \mani^*$ entonces $Dg(x^*) = \parenthesis{Id + \alpha \nabla^2 f(x^*)}^{-1}$ y tiene autovalores $\sett{\dfrac{1}{1+ \alpha \lambda_i}}$ con $\lambda_i$ autovalores de $\nabla^2 f(x^*)$; luego como $\alpha < \frac{1}{L}$ se tiene que $\det \parenthesis{Dg(x)} \neq 0$. \qed
 	
 \end{proof}
 
@@ -116,12 +116,12 @@ x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in \mani}{f(z) + \
 \end{corollary}
 
 \begin{proof}
-	Por \ref{prop: PP es difeo local y los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
+	Por \ref{prop: PP es difeo local y los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y concluimos que $\mu \parenthesis{W_g} = 0$. \qed
 \end{proof}
 
 \section{Descenso por coordenadas}
 
-Sea $S_1, \dots, S_b$ una partici\'on disjunta de $\sett{1, \dots, d}$ donde $d$ y $b$ son par\'ametros del m\'etodo. 
+Sea $S_1, \dots, S_b$ una partici\'on disjunta de $\sett{1, \dots, d}$ donde $d$ y $b$ son par\'ametros del m\'etodo, por ejemplo si $d =4$ y $b=2$ una posible opci\'on es $S_1 = \sett{1,3}$ y $S_2 = \sett{2,4}$.
 
 Consideremos el algoritmo \ref{algo: CD}:
 
@@ -147,13 +147,13 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 	
 	\begin{equation}
 		\label{eq: DC}
-		x_{k+1} = g(x_k) \stackrel{\triangle}{=} g_d \circ g_{d-1} \circ \dots \circ g_1(x)
+		x_{k+1} = g(x_k) \stackrel{\triangle}{=} g_b \circ g_{b-1} \circ \dots \circ g_1(x_k)
 	\end{equation}
 	
 \end{lemma}
 
 \begin{lemma}
-	Si $g$ est\'a dada por \ref{eq: DC} entonces si notamos $P_S = \Bigsum{i \in S}{e_ie_i^T}$ entonces:
+	Si $g$ est\'a dada por la ecuaci\'on \ref{eq: DC} y $P_S = \Bigsum{i \in S}{e_ie_i^T}$ entonces:
 	
 	\begin{equation}
 	\label{eq: Diferencial de DC}
@@ -182,14 +182,19 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 	
 \end{proof}
 
-\begin{remark}
+\begin{hyp}
 	\label{Hipotesis 2}
-	Sea $f \in C^2$ y notemos $\nabla^2 f \vert_S$ a la submatriz que resulta de quedarme con filas y columnas indexadas por $S$. Sea $\max\limits_{i \in \sett{1, \dots, b}}{\norm{\nabla ^2 f(x) \vert_{S_i}}} = L_b$
-\end{remark}
+	Sea $f \in C^2$ y $\nabla^2 f \vert_S$ la submatriz compuesta de las filas y columnas indexadas por $S$. Por ejemplo si $f \in C^2(\R^3)$ y $S = \sett{1,2}$ entonces $\nabla^2 f \vert_S = \left(\begin{array}{cc}
+	\dfrac{\partial^2 f}{\partial x_1 ^2} & \dfrac{\partial^2 f}{\partial x_1 x_2} \\
+	\dfrac{\partial^2 f}{\partial x_2 x_1} & \dfrac{\partial^2 f}{\partial x_2 ^2}
+	\end{array}\right)$
+	
+	Supongamos que $\max\limits_{i \in \sett{1, \dots, b}}{\norm{\nabla ^2 f(x) \vert_{S_i}}} = L_b$
+\end{hyp}
 
 \begin{proposition}
 	\label{prop: DC es difeo local}
-	Bajo \ref{Hipotesis 2} y $\alpha < \frac{1}{L_b}$ se tiene que $\det(Dg(x)) \neq 0$
+	Sea $f \in C^2$ y asumamos \ref{Hipotesis 2}, luego \ref{algo: CD} con $\alpha < \frac{1}{L_b}$ cumple que $\det(Dg(x)) \neq 0$
 \end{proposition}
 
 \begin{proof}
@@ -220,7 +225,7 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 	\rho(J) = \lim\limits_{t \rightarrow \infty}{\norm{J^t}^{1/t}} \geq \lim\limits_{t \rightarrow \infty}{c^{1/t} (1+\epsilon)} = 1 + \epsilon 
 	\end{equation*}
 	
-	Y conclu\'imos que $\mani^* \subseteq \puntosfijos$.
+	Y concluimos que $\mani^* \subseteq \puntosfijos$.
 	
 	En pos de eso fijemos $t \geq 1$ una iteraci\'on , $y_t = J^t x_0$, $z_1 = y_t$ y definamos $z_{i+1} = \parenthesis{Id - \alpha P_{S_i}H}z_i = z_i - \alpha \Bigsum{j \in S_i}{\parenthesis{e_j^T H z_i}e_j}$. Luego $y_{t+1} = z_{b+1}$, afirmo:
 	
@@ -266,5 +271,5 @@ Luego si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ e
 \end{corollary}
 
 \begin{proof}
-	Por \ref{prop: DC es difeo local} y \ref{prop: DC los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y conclu\'imos que $\mu \parenthesis{W_g} = 0$. \qed
+	Por \ref{prop: DC es difeo local} y \ref{prop: DC los puntos silla estrictos son fijos inestables} tenemos que vale \ref{coro: Resultado principal} y concluimos que $\mu \parenthesis{W_g} = 0$. \qed
 \end{proof}

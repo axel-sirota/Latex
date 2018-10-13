@@ -1,17 +1,18 @@
 \chapter{Convergencia Puntual }\label{ch:convergenciaPuntual}
 
-\epigraph{“The book of nature is written in the language of Mathematic”}{Galileo}
+\epigraph{“El libro de la naturaleza esta escrito en el lenguaje de las Matem\'aticas"}{Galileo}
 
-Si existe un algoritmo que todo estudiante o practicante del Machine Learning conoce, es el descenso de gradiente cl\'asico (o \textit{Descenso de gradiente en batch}) [Ver algoritmo \ref{algo: GD}].
-Un buen inicio es analizar la convergencia puntual del descenso de gradiente y bajo que condiciones se da.
+Si existe un algoritmo que todo estudiante o practicante del Machine Learning conoce, es el descenso de gradiente cl\'asico (o \textit{Descenso de gradiente en batch}) [Ver algoritmo \ref{algo: GD - intro}].
+
+Un buen inicio es analizar la convergencia puntual del descenso de gradiente y bajo qu\'e condiciones se da. Para esto recordemos que dado una func i\'on de p\'erdida objetivo uno estima el \textit{riesgo esperado} por el \textit{riesgo emp\'irico} (Ver \ref{eq: Riesgo empirico}), luego considerando esto el algoritmo a analizar resulta:
 
 \RestyleAlgo{boxruled}
 \LinesNumbered
 \begin{algorithm}[H]
 	\caption{Descenso de gradiente en batch \label{algo: GD}}
-	\textbf{Input:} $F \in C^1$, $\alpha_k >0$, $w_1 \in \R^d$, $X = \sett{\upxi_j}_{j \leq N}$ \text{ muestra} \\
+	\textbf{Input:} $F: \R^d \rightarrow \R$, $f:\R^d \rightarrow \R$ tal que $f \in C^1$, $\alpha_k >0$, $N \in \N$, $w_1 \in \R^d$, $X = \sett{\upxi_j}_{j \leq N}$ \text{ muestra aleatoria i.i.d.} \\
 	\For{$k \in \N$}{
-		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(\upxi_j)$
+		$w_{k+1} \gets w_{k} - \alpha_k \sum\limits_{j=1}^{N} \nabla F(\upxi_j) = w_{k} - \alpha_k \nabla R_N(w_k)$
 	}
 \end{algorithm}
 
@@ -19,22 +20,47 @@ Asumamos por esta secci\'on la siguiente condici\'on, que llamaremos \textit{con
 
 \begin{definition}
 	\label{def: Debilmente convexo}
-	Decimos que $F \in C^1$ es \textit{d\'ebilmente convexo} si cumple las siguientes dos propiedades:
+	Decimos que $F: \R^d \rightarrow \R$, $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es \textit{d\'ebilmente convexo} si cumple las siguientes dos propiedades:
 	
 	\begin{itemize}
 		\item Existe un \'unico $w^*$ tal que $F_{inf} := F(w^*) \leq F(w)$ para todo $w \in \R^n$.
-		\item Para todo $\epsilon > 0$ vale que $\inf\limits_{(w-w^*)^2 > \epsilon} {\left(w - w^*\right) \nabla F(w) > 0}$
+		\item Para todo $\epsilon > 0$ vale que $\inf\limits_{\norm{w-w^*}^2 > \epsilon} {\left(w - w^*\right) \nabla F(w) > 0}$
 	\end{itemize}
 	
 \end{definition}
 
 \begin{remark}
-	Notemos que existen funciones no convexas tal que cumplen \ref{def: Debilmente convexo}.
+	Si  $F: \R^d \rightarrow \R$, $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es convexa, entonces es d\'ebilmente convexa.
+	
+	En efecto, como $F$ es convexa existe $w* \in \R^d$ m\'inimo global y como $f:\R^d \rightarrow \R$ tal que $f \in C^1$ entonces $\nabla F(w^*) = 0$. Entonces de \ref{ch: apendice} vemos que $F$ cumple:
+	
+	\begin{equation*}
+		\left(\nabla F(x) - \nabla F(y)\right)^T \left(x-y\right) >0
+	\end{equation*}
+	
+	Para todos $x,y \in \R^d$; en particular si $y = w^*$ vemos que $F$ es d\'ebilmente convexa.
+	
+\end{remark}
+
+\begin{remark}
+	Notemos que existen funciones no convexas tal que cumplen \ref{def: Debilmente convexo}. En efecto, sea $M > \epsilon >0$ y basta con tomar:
+	
+	\begin{equation*}
+	f(x) = \left\lbrace \begin{array}{cc}
+	x^2 & \text{ si } \abs{x}< M - \epsilon \\
+	g_+(x) & \text{ si } M - \epsilon <  x < M + \epsilon \\
+	g_-(x) & \text{ si } -M - \epsilon < x < -M + \epsilon \\
+	\sqrt{x} & \text{ si } \abs{x} > M+ \epsilon
+	\end{array} \right.
+	\end{equation*}
+	
+	Con $g_+,g_-$ funciones tal que $f$ resulte $C^1$ [Para ver la existencia basta ver \ref{ch: apendice}]. Luego $f$ es d\'ebilmente convexa pero no convexa pues $\sqrt{x}$ no resulta convexa en $\left(- \infty, -M - \epsilon \right) \cup \left(M + \epsilon , \infty\right)$
+	
 \end{remark}
 
 \section{Intuici\'on}\label{section: Intuicion convergencia puntual batch}
 
-Ganemos intuici\'on acerca del proceso como probar la convergencia del algoritmo \ref{algo: GD} en el caso continuo. En el caso continuo, tenemos que demostrar que la soluci\'on $w(t)$ de la ecuaci\'on diferencial \ref{eq: Ecuacion diferencial de descenso de gradiente} tiene l\'imite $w^*$ y adem\'as que $w^*$ es m\'inimo de $F$.
+A fin de ganar intuici\'on acerca del proceso de c\'omo probar la convergencia del algoritmo \ref{algo: GD} vamos a analizar el caso continuo. En el caso continuo, tenemos que demostrar que la soluci\'on $w(t)$ de la ecuaci\'on diferencial \ref{eq: Ecuacion diferencial de descenso de gradiente} tiene l\'imite $w^*$ y adem\'as que $w^*$ es m\'inimo de $F$.
 
 \begin{equation}
 \label{eq: Ecuacion diferencial de descenso de gradiente}
@@ -44,14 +70,14 @@ Ganemos intuici\'on acerca del proceso como probar la convergencia del algoritmo
 Para eso, vamos a dividir la demostraci\'on en tres pasos:
 
 \begin{enumerate}
-	\item Vamos a definir una \textit{funci\'on de Lyapunov}
-	\item Vamos a verificar computando su derivada temporal que es una funci\'on mon\'otona decreciente y acotada, por lo que converge
-	\item Vamos a probar que converge a 0.
+	\item Vamos a definir $h \in C^1(\R)$ una \textit{funci\'on de Lyapunov}
+	\item Vamos a verificar computando $\dfrac{dh}{dt}$ que es una funci\'on mon\'otona decreciente y acotada, por lo que converge
+	\item Vamos a probar que $h(t) \underlimitinf{t} 0$.
 \end{enumerate}
 
 \begin{proposition}[Objetivo d\'ebilmente convexo, Versi\'on continua]
 	\label{Objetivo debilmente convexo, GD continue converge}
-	Sea $F \in C^1$ que cumple \ref{def: Debilmente convexo} y supongamos que el algoritmo \ref{algo: GD} cumple $\alpha_k=\alpha>0$ para $w(t)$ continua. Luego si notamos al m\'inimo de $F$ como $w^*$, vale:
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$ que cumple \ref{def: Debilmente convexo} y supongamos que el algoritmo \ref{algo: GD} cumple $\alpha_k=\alpha>0$ para $w(t)$ continua. Luego si notamos al m\'inimo de $F$ como $w^*$, vale:
 	
 	\begin{equation*}
 		\lim\limits_{t \rightarrow \infty} w(t) =  w_*
@@ -59,7 +85,7 @@ Para eso, vamos a dividir la demostraci\'on en tres pasos:
 
 \end{proposition}
 
-\begin{proof} Vayamos con los pasos que definimos:
+\begin{proof} Sigamos la estrategia definida anteriormente:
 	
 	
 	\begin{enumerate}
@@ -75,12 +101,14 @@ Para eso, vamos a dividir la demostraci\'on en tres pasos:
 		
 		\begin{equation}
 		\label{eq: Intuicion batch ctp, ecuacion derivada}
-			\dfrac{dh}{dt} = 2 \left(w(t) - w^*\right) \dfrac{dw}{dt} = -2 \left(w(t) - w^*\right) \nabla F(w) \underbrace{\leq}_{\ref{def: Debilmente convexo}} 0
+			\dfrac{dh}{dt} = 2 \left(w(t) - w^*\right) \dfrac{dw}{dt} = -2 \left(w(t) - w^*\right) \nabla F(w) \underbrace{<}_{\substack{\ref{def: Debilmente convexo} \\ w \neq w^*}} 0
 		\end{equation}
 		
-		Luego como $h(t) \geq 0$ y $\dfrac{dh}{dt} \leq 0$ existe $h_{inf}$ tal que $h(t) \searrow h_{inf}$
+		Luego como $h(t) \geq 0$ y $\dfrac{dh}{dt} \leq C < 0$ para $C \in \R$ contante, existe $h_{inf} \geq 0$ tal que $h(t) \searrow h_{inf}$
 		
-		\item[Paso 3] Como $h(t) \searrow h_{inf}$ entonces $\dfrac{dh}{dt} \rightarrow 0$, supongamos por el absurdo que $h_{inf} > 0$, luego existe $\widetilde{\epsilon} >0$ y $T \in \R$ tal que para todo $t \geq T$ vale que $h(t) = \left(w(t) - w^*\right)^2 > \widetilde{\epsilon}$. Si juntamos entonces \ref{eq: Intuicion batch ctp, ecuacion derivada} y \ref{def: Debilmente convexo} llegamos a un absurdo, conclu\'imos que $h_{inf} = 0$ por lo que:
+		\item[Paso 3] Como $h(t) \searrow h_{inf}$ entonces existe una sucesi\'on $\sett{t_k}_{k \in \N} \subset \R_+$ tal que $\dfrac{dh}{dt}(t_k) \underlimitinf{k} 0$. 
+		
+		Supongamos por el absurdo que $h_{inf} > 0$, luego existe $\widetilde{\epsilon} >0$ y $K \in \N$ tal que para todo $k \geq K$ vale que $h(t_k) = \left(w(t_k) - w^*\right)^2 > \widetilde{\epsilon}$. Si juntamos entonces el paso anterior con la definici\'on \ref{def: Debilmente convexo} llegamos a un absurdo; luego concluimos que $h_{inf} = 0$ por lo que:
 		
 		\begin{equation*}
 			w(t) \rightarrow w_*
@@ -98,10 +126,19 @@ Ahora s\'i, analicemos la convergencia del algoritmo \ref{algo: GD} para el caso
 	Sea $\sett{u_k}_{k \in \N} \subset \R$ una sucesi\'on tal que $u_k \geq 0$ para todo $k$. Luego si:
 	
 	\begin{equation*}
-		\sum\limits_{k=1}^{\infty} {\left(u_{t+1} - u_t\right)_{+}} < \infty
+		\sum\limits_{k=1}^{\infty} {\left(u_{k+1} - u_k\right)_{+}} < \infty
 	\end{equation*}
 	
-	Donde $(x)_{\pm} = x * 1_{\sett{\R_{\pm}}}$, entonces:
+	Con:
+	
+	\begin{equation*}
+		(x)_+ = \left\lbrace \begin{array}{cc}
+		x & \text{ si } x >0 \\
+		0 & \text{ si no}
+		\end{array}\right.
+	\end{equation*}
+	
+	Y $(x)_-$ definida an\'alogamente. Luego:
 	
 	\begin{equation*}
 		\sum\limits_{k=1}^{\infty} {\left(u_{t+1} - u_t\right)_{-}} < \infty
@@ -125,38 +162,58 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 
 \begin{theorem}[Objetivo d\'ebilmente convexo, incrementos decrecientes]
 	\label{theorem: convergencia puntual batch, objetivo debilmente convexo, incrementos decrecientes}
-	Sea $F \in C^1$, asumamos \ref{def: Debilmente convexo} y que existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
+	Sea $F: \R^d \rightarrow \R$ tal que  $F\in C^1$, cumple la definici\'on \ref{def: Debilmente convexo} y existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
 	
 	\begin{equation}
 	\label{eq: Condicion gradiente acotado, ctp, batch}
 		\left(\nabla F(w)\right)^2 \leq A + B \left(w - w^*\right)^2
 	\end{equation}
 	
-	Luego si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
+	Luego si consideramos el algoritmo \ref{algo: GD} con incrementos $\sett{\alpha_k}$ que cumplen la condici\'on \ref{eq: Condicion robbins monro} entonces:
 	
 	\begin{equation}
-		w_k \rightarrow w^*
+		w_k \underlimitinf{k} w^*
 	\end{equation}
 	
 \end{theorem}
 
 \begin{proof}
-	Hagamos los 3 pasos an\'alogos a \ref{Objetivo debilmente convexo, GD continue converge}:
+	Hagamos los 3 pasos an\'alogos a la demostraci\'on de la proposici\'on \ref{Objetivo debilmente convexo, GD continue converge}:
 	
 	\begin{enumerate}
-		\item [Paso 1] Sea $h_k = \left(w_k - w^*\right)$ una sucesi\'on de Lyapunov
-		\item [Paso 2] An\'alogo a \ref{Objetivo debilmente convexo, GD continue converge} notemos que:
+		\item [Paso 1] Sea $h_k = \left(w_k - w^*\right)^2$.
+		\item [Paso 2] An\'alogo a la demostraci\'on de la proposici\'on \ref{Objetivo debilmente convexo, GD continue converge} notemos que:
+		
+		\begin{equation*}
+			\begin{aligned}
+			h_{k+1} = & \left(w_{k+1} - w^*\right)^2 \\
+			 = & \left(\left(w_k - w^*\right) - \alpha_k \nabla F(w_k)\right)^2 \\
+			 = & \left(w_k - w^*\right)^2 - 2 \left(w_k - w^*\right) \alpha_k \nabla F(w_k) + \alpha_k^2(\nabla F(w_k))^2
+			\end{aligned}
+		\end{equation*}
+		
+		Luego:
 		
 		\begin{equation*}
 			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k) + \alpha_k^2 (\nabla F(w_k))^2
 		\end{equation*}
 		
-		Notemos que a diferencia de antes la naturaleza discreta del algoritmo lleva a un t\'ermino positivo de ruido en las variaciones. Notemos que si usamos \ref{eq: Condicion robbins monro} y \ref{eq: Condicion gradiente acotado, ctp, batch} entonces:
+		A diferencia de antes la naturaleza discreta del algoritmo lleva a un t\'ermino positivo en las variaciones, pero si usamos la condici\'on \ref{eq: Condicion robbins monro} y la hip\'otesis \ref{eq: Condicion gradiente acotado, ctp, batch} entonces:
 		
 		\begin{equation*}
-		\label{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes}
-			h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k \leq \underbrace{-2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k)}_{\leq 0 \text{ por \ref{def: Debilmente convexo}}} + \alpha_k^2A \leq \alpha_k^2A 
+		\begin{aligned}
+			h_{k+1} - h_k = & \underbrace{-2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k)}_{\substack{\leq 0 \\ \text{ por definici\'on \ref{def: Debilmente convexo}}}}  + \alpha_k^2 (\nabla F(w_k))^2 \\
+			\leq & \alpha_k^2 (\nabla F(w_k))^2 \\
+			\leq & \alpha_k^2 \left(A + B h_k\right)
+		\end{aligned}
 		\end{equation*}
+		
+		Por lo que:
+		
+		\begin{equation}
+		\label{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes}
+			h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k \leq \alpha_k^2A 
+		\end{equation}
 		
 		Definamos ahora las sucesiones auxiliares:
 		
@@ -169,21 +226,21 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 			\end{equation}
 		\end{subequations}
 		
-		Notemos que $\log (\mu_k) = - \sum\limits_{j=1}^{k-1} {\log \left(1 + \underbrace{\alpha_j^2 B}_{\geq 0}\right)} \geq - B\sum\limits_{j=1}^{k-1} {\alpha_j^2} \geq -B \sum\limits_{j=1}^{\infty} {\alpha_j}$, por lo que $\mu_k$ es una sucesi\'on decreciente acotada inferiormente por $e^{-B \sum\limits_{j=1}^{\infty} {\alpha_j}}$, luego $\mu_k \searrow \mu_{\infty}$ >0. Ahora si volvemos  a \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} tenemos que:
+		Notemos que $\log (\mu_k) = - \sum\limits_{j=1}^{k-1} {\log \left(1 + \underbrace{\alpha_j^2 B}_{\geq 0}\right)} \geq - B\sum\limits_{j=1}^{k-1} {\alpha_j^2} \geq -B \sum\limits_{j=1}^{\infty} {\alpha_j^2}$, por lo que $\mu_k$ es una sucesi\'on decreciente acotada inferiormente por $e^{-B \sum\limits_{j=1}^{\infty} {\alpha_j^2}}$, luego $\mu_k \searrow \mu_{\infty}$ >0. Ahora si volvemos  a la ecuaci\'on \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} del paso anterior y observamos que $\mu_{k+1} = \dfrac{\mu_k}{1 + B \alpha_k^2}$ tenemos que:
 		
 		\begin{equation*}
 			h_{k+1}' - h_{k}' \leq \alpha_k^2 A \mu_k \leq \alpha_k^2 A
 		\end{equation*}
 		
-		Como $\sum\limits_{k=1}^{\infty} {\alpha_k^2 A} < \infty$ entonces $\sum\limits_{k=1}^{\infty}{h_{k+1}' - h_{k}'} < \infty$ y por \ref{lemma: Convergencia de sucesiones positivas acotadas sumables} conclu\'imos que $\sett{h_k'}$ converge; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge.
+		Como $\sum\limits_{k=1}^{\infty} {\alpha_k^2 A} < \infty$ entonces $\sum\limits_{k=1}^{\infty}{h_{k+1}' - h_{k}'} < \infty$ y por \ref{lemma: Convergencia de sucesiones positivas acotadas sumables} concluimos que $\sett{h_k'}$ converge; como $\underbrace{\mu_k}_{\geq 0} \ \rightarrow \ \mu_{\infty} > 0$ entonces $\sett{h_k}$ converge.
 		
-		\item[Paso 3] De \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} como ya vimos que $	h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k$ es sumable conclu\'imos que:
+		\item[Paso 3] De la ecuaci\'on \ref{eq: Variaciones sucesion lyapunov, objetivo debilmente convexo, incrmentes decrecientes} del paso anterior vimos que $	h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k$ es sumable concluimos que:
 		
 		\begin{equation*}
 			\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty
 		\end{equation*}
 		
-		Supongamos que $h_k \rightarrow h_{inf} \neq 0$, luego existir\'ia $K\in \N$ y $\widetilde{\epsilon} >0$ tal que $h_k = \left(w_k - w^*\right)^2 > \widetilde{\epsilon}$ para todo $k \geq K$; luego de \ref{def: Debilmente convexo} conclu\'imos que existe $M > 0$ tal que $M \leq \left(w_k - w^* \right)\nabla F(w_k) $ para todo $k \geq K$. Por \ref{eq: Condicion robbins monro} eso implica que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty$, conclu\'imos que $w_k \rightarrow w^*$. \qed
+		Supongamos que $h_k \rightarrow h_{inf} \neq 0$, luego existir\'ia $K\in \N$ y $\widetilde{\epsilon} >0$ tal que $h_k = \left(w_k - w^*\right)^2 > \widetilde{\epsilon}$ para todo $k \geq K$; luego de la definici\'on \ref{def: Debilmente convexo} concluimos que existe $M > 0$ tal que $M \leq \left(w_k - w^* \right)\nabla F(w_k) $ para todo $k \geq K$. Por la condici\'on \ref{eq: Condicion robbins monro} eso implica que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty$, concluimos que $w_k \underlimitinf{k} w^*$. \qed
 		
 	\end{enumerate}
 	
@@ -193,28 +250,28 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 	Sea $F \in C^2$, asumamos \ref{def: Debilmente convexo} y que $\norm{\nabla^2 F}_2^2 \leq L$; si consideramos el algoritmo \ref{algo: GD} tal que incrementos $\sett{\alpha_k}$  cumplen \ref{eq: Condicion robbins monro} entonces:
 	
 	\begin{equation}
-	w_k \rightarrow w^*
+	w_k \underlimitinf{k} w^*
 	\end{equation}
 \end{corollary}
 
-\section{Acerca de convexidad fuerte y funciones L-Lipshitz}
+\section{Acerca de convexidad fuerte y funciones L-Lipschitz}
 
-Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es central para analizar la convergencia de los algoritmos comunes en Machine Learning. Por lo tanto es una buena inversi\'on dedicar esta secci\'on a repasar las equivalencias de dos condiciones que van a aparecer repetidamente: \textbf{L-Lipshitz} y \textbf{Convexidad fuerte}.
+Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es central para analizar la convergencia de los algoritmos comunes en Machine Learning. Por lo tanto es una buena inversi\'on dedicar esta secci\'on a repasar las equivalencias de dos condiciones que van a aparecer repetidamente: \textbf{L-Lipschitz} y \textbf{Convexidad fuerte}.
 
 \begin{definition}
 	\label{def: Fuertemente convexa}
-	Sea $f \in C^1$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si existe $\mu > 0$ tal que para todos $x,y \in \R^d$ vale:
+	Sea $f:\R^d \rightarrow \R$ tal que $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si para todos $x,y \in \R^d$ vale:
 	
 	\begin{equation}
-		f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2
+		f(y) \geq f(x) + \nabla f(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2
 	\end{equation}
 \end{definition}
 
 \begin{proposition}
 	\label{prop: equivalencias convexidad fuerte}
-	Sea $f \in C^1$ una funci\'on $\mu-$convexa, entonces son equivalentes:
+	Sea $f:\R^d \rightarrow \R$ tal que $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, entonces son equivalentes:
 	\begin{enumerate}
-		\item $f(y) \geq f(x) + \nabla F(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \R^d$
+		\item $f(y) \geq f(x) + \nabla f(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \R^d$
 		\item $g(x) = f(x) - \frac{\mu}{2} \norm{x}_2^2$ es convexa para todo $x \in \R^d$
 		\item $\left(\nabla f(y) - \nabla f(x)\right)^T \left(y-x\right) \leq \mu \norm{y-x}_2^2$ para todos $x,y \in \R^d$
 		\item $f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha) f(y) - \dfrac{\alpha \left(1 - \alpha \right) \mu}{2}\norm{y-x}_2^2$ para  todos $x,y \in \R^d$, $\alpha \in [0,1]$
@@ -227,7 +284,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{definition}
 	\label{def: Condicion PL}
-	Decimos que una funci\'on $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \R^d$ vale:
+	Decimos que una funci\'on $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \R^d$ vale:
 	\begin{equation}
 	\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
 	\end{equation}
@@ -235,7 +292,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{proposition}
 	\label{prop: implicancias de convexidad fuerte}
-	Sea $f \in C^1$ una funci\'on $\mu-$convexa, entonces valen:
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$ una funci\'on $\mu-$convexa, entonces valen:
 	\begin{enumerate}
 		\item $f$ es $PL$-convexa
 		\item $\norm{\nabla f(x) - \nabla f(y)}_2 \geq \mu \norm{x-y}_2$
@@ -248,11 +305,15 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 	Ver \ref{ch: apendice}
 \end{proof}
 
-De esto podemos deducir un resultado, que aunque no lo usemos \textit{per-se} en esta tesis, es de sumo interes:
+\begin{definition}
+	Dada una funci\'on objetivo $f:\R^d \rightarrow \R$ tal que $f \in C^1$ definimos el \textit{problema de optimizaci\'on regularizado en $L2$} cuando se minimiza $\tilde{f} = = f + \lambda \norm{x}_2^2$ para $\lambda >0$.
+\end{definition}
+
+En Machine Learning es usual resolver el problema de optimizaci\'on regularizado en vez de el problema original. Esto se debe mayormente al siguiente resultado, que aunque no lo usemos \textit{per-se} en esta tesis, es de sumo inter\'es:
 
 \begin{corollary}
 	\label{coro: convexa y fuertemente convexa es fuertemente convexa}
-	Sea $h = f+g$ donde $f$ es fuertemente convexa y $g$ es convexa, entonces $h$ es fuertemente convexa. En particular, si $f$ es convexa entonces el \textit{problema regularizado en $L2$} de minimizar $h = f + \lambda \norm{x}_2^2$ es fuertemente convexo.
+	Sea $h = f+g$ donde $g$ es fuertemente convexa y $f$ es convexa, entonces $h$ es fuertemente convexa. En particular, si $f$ es convexa entonces $\tilde{f} = f + \lambda \norm{x}_2^2$ es fuertemente convexo.
 \end{corollary}
 
 \begin{proof}
@@ -260,25 +321,25 @@ De esto podemos deducir un resultado, que aunque no lo usemos \textit{per-se} en
 	\begin{equation*}
 	\begin{array}{rcl}
 	h\left(\alpha x + (1-\alpha)y\right) & = & f\left(\alpha x + (1-\alpha)y\right)  + g\left(\alpha x + (1-\alpha)y\right)  \\
-	& \underbrace{\leq}_{\ref{prop: equivalencias convexidad fuerte}} & \alpha(f + g)(x) + (1-\alpha)(f+g)(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 \\
+	& \underbrace{\leq}_{\text{Por proposici\'on \ref{prop: equivalencias convexidad fuerte}}} & \alpha(f + g)(x) + (1-\alpha)(f+g)(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 \\
 	& = & \alpha h(x) + (1-\alpha)h(y) - \dfrac{\mu \alpha \left(1-\alpha\right)}{2} \norm{x-y}^2_2 
 	\end{array}
 	\end{equation*}\qed
 \end{proof}
 
-Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
+Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipschitz.
 
 \begin{definition}
-	\label{def: L Lipshitz}
-	Sea $f \in C^1$, decimos que es $L$\textit{-Lipshitz} si existe $L > 0$ tal que para todos $x,y \in \R^d$ vale:
+	\label{def: L Lipschitz}
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$, decimos que es $L$\textit{-Lipschitz} global si existe $L > 0$ tal que para todos $x,y \in \R^d$ vale:
 	\begin{equation}
 	\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2
 	\end{equation}
 \end{definition}
 
 \begin{proposition}
-	\label{prop: Implicancias L lipshitz}
-	Sea $f \in C^1$ una funci\'on $L-$Lipshitz, entonces para las siguientes propiedades:
+	\label{prop: Implicancias L Lipschitz}
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$, entonces para las siguientes propiedades:
 	\begin{enumerate}
 		\item $\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2$
 		\item $g(x) = \frac{L}{2} x^Tx - f(x)$ es convexa
@@ -305,22 +366,22 @@ Una condici\'on dual a la de convexidad fuerte es la de $L-$ Lipshitz.
 
 Con todas estas propiedades, probemos el resultado hist\'orico de  \cite{polyak:1963}
 
-\begin{theorem}[Convergencia lineal , Objetivos L-Lipshitz y PL-convexos]
+\begin{theorem}[Convergencia lineal , Objetivos L-Lipschitz y PL-convexos]
 	\label{theorem: convergencia lineal GD}
-	Sea $F \in C^1$ tal que existe $F_{inf}$ valor m\'inimo, $F$ cumple \ref{def: L Lipshitz} y \ref{def: Condicion PL}; entonces el algortimo \ref{algo: GD} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
+	Sea $F:\R^d \rightarrow \R$ tal que $F \in C^1$, existe $F_{inf}$ valor m\'inimo, $F$ es $L$-Lipschitz y $PL$-convexa; entonces el algortimo \ref{algo: GD} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
 	\begin{equation}
 	F(w_k) - F_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
 	\end{equation}
 \end{theorem}
 
 \begin{proof}
-	Notemos que si usamos \ref{prop: Implicancias L lipshitz} entonces tenemos:
+	Notemos que si usamos \ref{prop: Implicancias L Lipschitz} entonces tenemos:
 	
 	\begin{equation*}
 		F(w_{k+1}) - F(w_k) \leq \nabla F(w_k)^T \left(-\frac{1}{L} \nabla F(w_k)\right) + \frac{L}{2} \norm{\frac{\nabla F(w_k)}{L}}_2^2 \leq -\frac{1}{2L} \norm{\nabla F(w_k)}_2^2
 	\end{equation*}
 	
-	Luego por \ref{def: Condicion PL} tenemos:
+	Luego por la definici\'on \ref{def: Condicion PL} tenemos:
 	
 	\begin{equation*}
 		F(w_{k+1}) - F(w_k) \leq - \frac{\mu}{L} \left(F(w_k) - F_{inf}\right)

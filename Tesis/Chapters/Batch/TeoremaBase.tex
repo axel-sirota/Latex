@@ -1,6 +1,6 @@
 \chapter{Teorema de la Variedad Estable y los Puntos fijos inestables}\label{ch:teorema-de-variedad-estable}
 
-\epigraph{“A Mathematician who is not also something of a poet will never be a complete mathematician”}{Karl Weierstrass}
+\epigraph{El matem\'atico que no tenga algo de poeta nunca podr\'a ser un matem\'atico completo.}{Karl Weierstrass}
 
 \section{Intuici\'on}
 
@@ -8,15 +8,16 @@ Del cap\'itulo anterior ya sabemos que bajo condiciones de convexidad est\'andar
 
 \medskip 
 
-\textbf{Bajo que casos el algoritmo \ref{algo: GD} converge (en alguna forma) con objetivos no convexos?}
+\textbf{Bajo qu\'e casos el algoritmo \ref{algo: GD - intro} converge (en alguna forma) con objetivos no convexos?}
 
 \medskip
 
+En el caso no convexon existen puntos extremales no \'optimos entre los cuales se encuentran los puntos silla, m\'aximos y m\'inimos locales "grandes" (\Eg  M\'inimos locales $w^*$ tales que $F_{inf} \ll F(w^*)$) [En la bibliograf\'ia a estos puntos se los llama \textit{shallow local minima}]. 
 
-En el caso no convexo, como analizamos previamente, existen puntos extremales no \'optimos entre los cuales se encuentran los puntos silla, m\'aximos y m\'inimos locales "grandes" (\Eg Puntos $w^*$ tales que $F_{inf} \ll F(w^*)$) [En la bibliograf\'ia a estos puntos se los llama \textit{shallow local minima}]. Los m\'aximos en general no son preocupantes pues la naturaleza misma de los algoritmos de primer orden \textit{escapa} de ellos.
+Los m\'aximos en general no son preocupantes pues la naturaleza misma de los algoritmos de primer orden \textit{escapa} de ellos. Intuitivamente esto es claro, ya que asumiendo suficiente regularidad, si tomamos un m\'aximo local $w^*$ y un entorno de \'este $B \ni w^*$ entonces como el gradiente apunta a la direcci\'on de m\'aximo crecimiento y este es en la direcci\'on a $w^*$, la iteraci\'on de descenso de gradiente cumplir\'a que  $ \norm{w^*-\alpha \nabla F(w_k)}^2$ es una sucesi\'on creciente en $B$.
 
 \bigskip
-Usemos un caso modelo para ejemplificar porque no es probable que los metodos de primer orden (entre ellos el algoritmo \ref{algo: GD}) convergan a puntos silla. Sea $f: \R^n \rightarrow \R^n$ dada por $f(x) = \dfrac{1}{2} x^THx$ con $H = \textbf{diag}\left(\lambda_1, \dots, \lambda_n\right)$; supongamos adem\'as que $\lambda_1, \dots, \lambda_k > 0$ y $\lambda_{k+1}, \dots, \lambda_n <0$.
+Usemos un caso modelo para ejemplificar por qu\'e no es probable que los metodos de primer orden (entre ellos el algoritmo \ref{algo: GD}) convergan a puntos silla. Sea $f: \R^n \rightarrow \R^n$ dada por $f(x) = \dfrac{1}{2} x^THx$ con $H = \textbf{diag}\left(\lambda_1, \dots, \lambda_n\right)$; supongamos adem\'as que $\lambda_1, \dots, \lambda_k > 0$ y $\lambda_{k+1}, \dots, \lambda_n <0$ con $k<n$.
 
 \begin{example}
 	
@@ -29,11 +30,11 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 	Por lo tanto:
 	
 	\begin{equation*}
-	\nabla f (x) \ = \ \lambda_i x_i e^i = 0 \ \Longleftrightarrow \ x = x_1 e^1 = 0
+	\nabla f (x) \ = \sum\limits_{i=1}^{n} \lambda_i x_i e^i = 0 \ \Longleftrightarrow \ x = 0
 	\end{equation*}
 	
 	
-	Y tenemos que en el \'unico punto cr\'itico el Hessiano de $f$ es $\nabla^2 f (0) =  H$.
+	Y tenemos que en el \'unico punto cr\'itico $x=0$, el Hessiano de $f$ es $\nabla^2 f (0) =  H$.
 	
 	Recordemos que si $g(x) = x - \alpha  \nabla f(x)$ entonces el algoritmo \ref{algo: GD}  est\'a dado por la iteraci\'on $x_{t+1} = \ g(x_t) \ := g^t(x_0)$ con $t \in \N$ y $x_0 \in \R^n$, y en este caso esta representado por:
 	
@@ -41,8 +42,8 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 	\begin{aligned}
 	x_{t+1} = & g(x_t) \\
 	= & x_t - \alpha\nabla f(x_t) \\
-	= & \left(1 - \alpha\lambda_i\right){x_i}_te^i \\
-	= & \left(1 - \alpha\lambda_i\right)\ip{x_t, e^i}e^i
+	= & \sum\limits_{i=1}^{n} \left(1 - \alpha\lambda_i\right)(x_t)_i e_i \\
+	= & \sum\limits_{i=1}^{n}\left(1 - \alpha\lambda_i\right)\ip{x_t, e_i} e_i
 	\end{aligned}
 	\end{equation*}
 	
@@ -62,21 +63,21 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 	\end{aligned}
 	\end{equation*}
 	
-	Con lo que conclu\'imos que:
+	Con lo que concluimos que:
 	
 	\begin{equation*}
 	\lim\limits_t x_t = \left\lbrace{
 		\begin{aligned}
-		0 & \quad \text{Si } x \in E_s := \ip{e^1, \dots, e^k} \\
+		0 & \quad \text{Si } x \in E_s := gen\left\lbrace e^1, \dots, e^k \right\rbrace \\
 		\infty & \quad \text{Si no} 
 		\end{aligned}
 	}\right.
 	\end{equation*}
 	
-	Finalmente, si $k < n$ entonces conclu\'imos que:
+	Finalmente, si $k < n$ entonces concluimos que:
 	
 	\begin{equation*}
-	P_{\R^n} \left(\sett{x \in \R^n \ / \ \lim\limits_t g^t(x) = 0} \right) = \abs{E_s} = 0
+	\abs{\sett{x \in \R^n \ / \ \lim\limits_t g^t(x) = 0}} = \abs{E_s} = 0
 	\end{equation*}
 	
 \end{example}
@@ -107,13 +108,13 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 	z_1 \ = \ (0,0) \qquad z_2 \ = \ (0,1) \qquad z_3 \ = \ (0,-1)
 	\]
 	
-	Y del crit\'erio del Hessiano conclu\'imos que $z_2, z_3$ son m\'inimos locales mientras que $z_1$ es un punto silla. De la intuici\'on previa, como en $z_1$ el autovector asociado al autovalor positivo es $e^1$ podemos intuir que:
+	Y del criterio del Hessiano concluimos que $z_2, z_3$ son m\'inimos locales mientras que $z_1$ es un punto silla. De la intuici\'on previa, como en $z_1$ el autovector asociado al autovalor positivo es $e^1$ podemos intuir que:
 	
 	\begin{lemma}
-		Para $f(x, y) = \frac{1}{2}x^2 + \frac{1}{4}y^4 - \frac{1}{2}y^2$ resulta que $E_s = \ip{t*e^1 \ / \ t \in \R}:= W_s$
+		Para $f(x, y) = \frac{1}{2}x^2 + \frac{1}{4}y^4 - \frac{1}{2}y^2$ resulta que $E_s = \ip{ \left(t, 0, \dots, 0\right) \ / \ t \in \R}:= W_s$
 	\end{lemma}
 	
-	Asumiendo el resultado por un momento, dado que $\dim_{\R^2}\left(E_s\right) =1 < 2$ entonces $P_{\R^2}(E_s) = 0$ que es lo que quer\'iamos verificar. Demostremos el lema ahora:
+	Asumiendo el resultado por un momento, dado que $\dim_{\R^2}\left(E_s\right) =1 < 2$ entonces $\abs{E_s} = 0$ que es lo que quer\'iamos verificar. Demostremos el lema ahora:
 	
 	\begin{proof}{Del lema}
 		Sea $x_0 \in \R^n$ y $g$ la iteraci\'on de \dg dada por \ref{gradient descent ejemplo 2}, luego:
@@ -140,12 +141,12 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 		\end{aligned}
 		\end{equation*}
 		
-		Por lo que por el Teorema de Punto Fijo de Banach:
+		Luego, bajo esas condiciones $g_y$ resulta una contracci\'on y como $\R$ es completo $g_y$ converge a un punto fijo $y_f$.
 		
 		\begin{equation*}
 		\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
-		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > \sqrt{\dfrac{1}{3}} \\
-		-1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < -y_0 < \sqrt{\dfrac{1}{3}}
+		y_f^1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > \sqrt{\dfrac{1}{3}} \\
+		y_f^2 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < -y_0 < \sqrt{\dfrac{1}{3}}
 		\end{aligned} \right.
 		\end{equation*}
 		
@@ -154,8 +155,8 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 		\begin{equation*}
 		\lim\limits_t g_y^t(y_0) = \left\lbrace \begin{aligned}
 		-\infty & \qquad \text{Si } y_0 >  \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
-		1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > 0 \\
-		-1 & \qquad \text{Si } -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < y_0 < 0 \\
+		y_f^1 & \qquad \text{Si } \sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} > y_0 > 0 \\
+		y_f^2 & \qquad \text{Si } -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} < y_0 < 0 \\
 		\infty & \qquad \text{Si } y_0 < -\sqrt{\dfrac{1 + \frac{2}{\alpha}}{3}} \\
 		\end{aligned} \right.
 		\end{equation*}
@@ -170,16 +171,16 @@ Usemos un caso modelo para ejemplificar porque no es probable que los metodos de
 
 Ahora que vimos un par de ejemplos que nos dan una intuici\'on acerca de la convergencia a puntos silla, usemos las herramientas de los sistemas din\'amicos para analizar el caso general.
 
-Por todo este cap\'itulo, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$variedad sin borde.
+Por todo esta secci\'on, $g: \mani \rightarrow \mani$ y $\mani$ es una $d-$variedad sin borde.
 
 \begin{definition}
 	Sea:
 	\begin{equation*}
 	\label{def:punto fijo inestable de g}
-	\puntosfijos := \sett{x \ : \ g(x) = x \quad \max\limits_{i}\abs{\lambda_i \left(Dg(x)\right) > 1}}
+	\puntosfijos := \sett{x \ : \ g(x) = x \quad \max\limits_{i}\abs{\lambda_i \left(Dg(x)\right)} > 1}
 	\end{equation*}
 	
-	El conjunto de puntos fijos de $g$ cuyo diferencial en ese punto tiene alg\'un autovalor mayor que $1$. A este conjunto lo llamaremos el conjunto de \textit{puntos fijos inestables}
+	el conjunto de puntos fijos de $g$ cuyo diferencial en ese punto tiene alg\'un autovalor mayor que $1$. A este conjunto lo llamaremos el conjunto de \textit{puntos fijos inestables}
 	
 \end{definition}
 
@@ -195,7 +196,7 @@ Con los resultados de \ref{ch:preliminares} demostremos el teorema principal par
 \end{theorem}
 
 \begin{proof}
-	Para cada $x^* \in \puntosfijos$ por \ref{teo: Principal} existe $B_{x^*}$ un entorno abierto; es m\'as, $\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}}$ forma un cubrimiento abierto del cual existe un subcubrimiento numerable pues $X$ es variedad, \ie
+	Sea $x^* \in \puntosfijos$, luego por el teorema de la funci\'on inversa existe $B_{x^*}$ un entorno abierto de $\mani$ tal que $g$ resulta difeomorfismo local; es m\'as, $\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}}$ forma un cubrimiento abierto de $\puntosfijos$ del cual existe un subcubrimiento numerable pues $X$ es variedad, \ie
 	
 	\[
 	\Bigcup{x^* \in \puntosfijos}{B_{x^{*}}} = \Bigcup{i \in \N}{B_{x^{*}_{i}}}
@@ -220,12 +221,12 @@ Con los resultados de \ref{ch:preliminares} demostremos el teorema principal par
 	\end{lemma}
 
 	\begin{proof}{[Del lema]}
-		Sea $k_0 \in \N$ y $\widetilde{t} \geq T$, luego $g^{k_0}\left(x_{\widetilde{t}}\right) = x_{\widetilde{t} + k_0} \in B_{x_{i}^{*}}$ pues $\widetilde{t} + k_0 \geq T$. Como $k_0$ era arbitrario y $\widetilde{t}$ era arbitrario sujeto a ser mayor que $T$ conclu\'imos que $x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$.\qed
+		Sea $k_0 \in \N$ y $\widetilde{t} \geq T$, luego $g^{k_0}\left(x_{\widetilde{t}}\right) = x_{\widetilde{t} + k_0} \in B_{x_{i}^{*}}$ pues $\widetilde{t} + k_0 \geq T$. Como $k_0$ era arbitrario y $\widetilde{t}$ era arbitrario sujeto a ser mayor que $T$ concluimos que $x_t \in \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$ para todo $t \ge T$.\qed
 	\end{proof}
 	
 	Si notamos $S_i \stackrel{\triangle}{=} \Bigcap{k \in \N}{g^{-k}(B_{x_{i}^{*}})}$, entonces por \ref{teo: variedad local estable central} sabemos por un lado que es una subvariedad de $W_{loc}^{cs}$ y por el otro que $\dim(S_i) \le \dim(W_{loc}^{cs}) = \dim(E_s) < d-1$; por lo que por \ref{prop: Dimension menor tiene medida 0} $\mu(S_i) = 0$.
 	
-	Finalmente como $x_{T} \in S_i$ para alg\'un $T$ entonces $x_0 \in \Bigcup{k \in \N}{g^{-k}(S_i)}$ por lo que $W \subseteq \Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}}$. Conclu\'imos:
+	Finalmente como $x_{T} \in S_i$ para alg\'un $T$ entonces $x_0 \in \Bigcup{k \in \N}{g^{-k}(S_i)}$ por lo que $W \subseteq \Bigcup{i \in \N}{\Bigcup{k \in \N}{g^{-k}(S_i)}}$. concluimos:
 	
 	\begin{equation*}
 	\begin{aligned}
