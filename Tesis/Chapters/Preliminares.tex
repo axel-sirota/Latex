@@ -186,7 +186,7 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 		\sigma(f) = \sett{\alpha \in \C \tq f- \alpha \text{ no es inversible}}
 	\end{equation*}
 	
-	Al supremo del espectro le decimos radio espectral:
+	Si este conjunto fuese vac\'io, entonces $R_{\lambda} = \left(\lambda -f\right)^{-1}$ ser\'ia holomorfa en $\C$ y no constante, absurdo por Liouville. Luego, como es no vac\'io existe supremo pues $\C$ es completo; al supremo del espectro le decimos radio espectral:
 	
 	\begin{equation*}
 	\rho(f) = \sup \sett{\abs{\alpha} \tq \alpha \in \sigma(f)}
@@ -199,7 +199,7 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 	Sea $f \in L(X,Y)$ un operador lineal acotado, entonces:
 	
 	\begin{equation*}
-		\rho(f) = \lim \norm{f^n}^{\frac{1}{n}}
+		\rho(f) = \lim\limits_{n \to \infty} \norm{f^n}^{\frac{1}{n}}
 	\end{equation*}
 	
 \end{proposition}
@@ -218,7 +218,7 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 \begin{proposition}
 	\label{prop: calculo funcional}
 	
-	Sea $f \in L(X,Y)$ un operador compacto autoadjunto y $h \in \mathcal{H}ol (U)$ con $\sigma(f) \subset U$ una funci\'on holomorfa en un entorno del espectro, entonces:
+	Sea $f \in L(X,Y)$ un operador compacto autoadjunto y $h$ una funci\'on holomorfa en un entorno $U \subset \C$ con $\sigma(f) \subset U$, entonces:
 	
 	\begin{equation*}
 		\sigma \left(h(f)\right) = h(\sigma(f))
@@ -234,16 +234,16 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 
 \subsection{Variedades diferenciables y Teorema de la variedad estable}
 
-Cuando estudiemos los algoritmos de tipo batch es normal analizar al algoritmo como $x_{k+1} \gets g(x_k)$ para una $g : X \rightarrow X$ inducida; o sea uno analiza las \'orbitas bajo la acci\'on de $g$ en una variedad dada $X$. Con esa motivaci\'on repasemos los conceptos b\'asicos de sistemas din\'amicos.
+Cuando estudiemos los algoritmos de tipo batch es habitual analizar el algoritmo como $x_{k+1} \gets g(x_k)$ para una $g : X \rightarrow X$ inducida; o sea uno analiza las \'orbitas bajo la acci\'on de $g$ en una variedad dada $X$. Con esa motivaci\'on repasemos los conceptos b\'asicos de sistemas din\'amicos.
 
-\subsubsection{Un repaso por Variedades}
+\subsubsection{Un repaso de Variedades}
 
 \begin{definition}{[Cap\'itulo 1 de \cite{lee:00}]}
 	Dado un espacio topol\'ogico $X$ decimos que es una variedad diferenciable de dimensi\'on $d$ si:
 	
 	\begin{itemize}
 		\item $X$ es Haussdorf
-		\item $X$ es $2-$contable
+		\item Para todo cubrimiento por abiertos de $X$ existe un subcubrimiento numerable
 		\item Existe un atlas suave para $X$, o sea existe un conjunto de pares $\sett{\left(U_i, \phi_i\right)}$ tales que:
 		
 		\begin{enumerate}
@@ -255,7 +255,7 @@ Cuando estudiemos los algoritmos de tipo batch es normal analizar al algoritmo c
 \end{definition}
 
 \begin{definition}{[Cap\'itulo 6 de \cite{lee:00}]}
-	Dada una variedad de dimensi\'on $d \ \mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
+	Dada una variedad de dimensi\'on $d$ que notaremos como $\mani$ y el espacio de medida $\left(\R^d, \mathcal{B}, \mu\right)$, decimos que $E \subset \mani$ tiene \textit{medida cero} si existe un atlas $\mathcal{A} = \sett{U_i, \phi^i}_{i \in \N}$ tal que $\mu \left(\phi^i \left(E \cap U_i \right) \right) = 0$ para todo $i$. En este caso usamos el abuso de notaci\'on $\mu(E) = 0$.
 \end{definition}
 
 \begin{definition}{[Cap\'itulo 3 de \cite{lee:00}]}
@@ -298,11 +298,11 @@ Cuando estudiemos los algoritmos de tipo batch es normal analizar al algoritmo c
 	\end{aligned}
 	\end{equation*}
 	
-	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{theorem: Teorema de la funcion inversa}  entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como si $f \in C^1(\R^d)$ entonces es localmente Lipshitz conclu\'imos por \ref{prop: Localmente Lipshitz preserva medida} que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
+	Por hip\'otesis $\varphi^i(E_i)$ es de medida cero, luego como $g$ es difeomorfismo local por \ref{theorem: Teorema de la funcion inversa}  entonces $\psi \circ h \circ {\varphi^{i}}^{-1} \in C^1$. Como $f \in C^1(\R^d)$ implica que es localmente Lipshitz concluimos por \ref{prop: Localmente Lipshitz preserva medida} que ${\mu \left(\psi \circ h \circ {\varphi^{i}}^{-1} \left(\varphi^i (E_i)\right)\right)} = 0$ para todo $i \in \N$. \qed
 	
 \end{proof}
 
-Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora de ver la probabilidad de un conjunto dado en $X$.
+Finalizamos con un resultado natural, pero no por eso menos crucial a la hora de analizar la probabilidad de un conjunto dado en $X$.
 
 \begin{proposition}
 	\label{prop: Dimension menor tiene medida 0}
@@ -312,12 +312,12 @@ Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora d
 \subsubsection{Teorema de la variedad estable}
 
 \begin{definition}
-	Sea $f : \R^d \rightarrow \R$ tal que $f \in C^2$, (notando $\nabla^2 f (x) = \text{Hessiano de } f \text{ evaluado en } x$) luego:
+	Sea $f : \R^d \rightarrow \R$ tal que $f \in C^2$, (notando $\nabla^2 f (x) = \text{Hessiano de } f \text{ evaluado en } x$) y $x^* \in \R^d$, luego:
 	
 	\begin{itemize}
-		\item Un punto $x^*$ es cr\'itico de $f$  si $\nabla f(x^*) = 0$
-		\item Un m\'inimo local si $x^*$ es cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) > 0$
-		\item Un punto silla estricto de $f$ si es cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) < 0$ 
+		\item Decimos que $x^*$ es punto cr\'itico de $f$  si $\nabla f(x^*) = 0$
+		\item Decimos que $x^*$ es un m\'inimo local de $f$ si es un punto cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) > 0$
+		\item Decimos que $x^*$ es un punto silla estricto de $f$ si es un punto cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) < 0$ 
 	\end{itemize}
 	
 	Notaremos $\mani^*$ al conjunto de puntos silla estrictos de $f$.
@@ -334,7 +334,7 @@ Conclu\'imos con un resultado natural, pero no por eso menos crucial a la hora d
 	E_u & = & \langle \sett{v_i \ / \ Dg(x^*)v_i = \lambda_i v_i \quad , \quad \lambda_i > 1} \rangle \\
 	\end{aligned}
 	\end{equation*}
-	Entonces existe $W_{loc}^{cs} \inc \mani$ un \textit{embedding} $C^r$ local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
+	Entonces existe $W_{loc}^{cs} \inc \mani$ una inyecci\'on difeomorfa local tangente a $E_s$ en $x^*$ llamado la \textit{variedad local estable central} que cumple que existe $B \ni x^*$ entorno tal que $g\left(W_{loc}^{cs}\right) \cap B \subseteq W_{loc}^{cs}$ y $\Bigcap{k \in \N}{g^{-k}(B)} \subseteq W_{loc}^{cs}$
 \end{theorem}
 
 \begin{proof}
@@ -349,7 +349,7 @@ Debido a la naturaleza de los algoritmos estoc\'asticos, tiene sentido repasar l
 
 Dado un espacio de probabilidad $\left(\Omega, \mathcal{F}, P\right)$ definimos una \textit{variable aleatoria } como una funci\'on $X : \Omega \mapsto \R$ tal que $X^{-1}(B) \in \mathcal{F}$ para todo $\B \in \mathcal{B}$ boreliano.
 
-Por otro lado, dado un conjunto $\Omega$ y una familia $\left(X_{\gamma}\right)_{\gamma \in C}$ tal que $X_{\gamma}: \Omega \mapsto \R$ definimos la \textit{sigma algebra generada por las $X_\gamma$} $\mathcal{F} = \sigma\left(\sett{X_{\gamma}}\right)$ como la menor sigma \'algebra (en el sentido de la inclusi\'on) tal que todas las $X_{\gamma}$ son $\mathcal{F}$ medibles.
+Por otro lado, dado un conjunto $\Omega$ y una familia $\left(X_{\gamma}\right)_{\gamma \in C}$ tal que $X_{\gamma}: \Omega \mapsto \R$ definimos la \textit{$\sigma$ algebra generada por las $X_\gamma$} $\mathcal{F} = \sigma\left(\sett{X_{\gamma}}\right)$ como la menor $\sigma$ \'algebra (en el sentido de la inclusi\'on) tal que todas las $X_{\gamma}$ son $\mathcal{F}$ medibles.
 
 Recordemos adem\'as:
 
@@ -377,7 +377,7 @@ Recordemos adem\'as:
 
 \begin{proposition}
 	\label{def: esperanza condicional}
-	Sea $\left(\Omega, \F, P\right)$ un espacio de probabilidad y $X$ una variable aleatoria tal que $X \in L^1(\Omega)$ ( \Eg $\expectation{\abs{X}} < \infty$). Si $\mathcal{G}$ es una sub-$\sigma-$algebra de $\F$ entonces existe $Y$ una variable aleatoria tal que:
+	Sea $\left(\Omega, \F, P\right)$ un espacio de probabilidad y $X$ una variable aleatoria tal que $X \in L^1(\Omega)$ ( \Eg $\expectation{\abs{X}} < \infty$). Si $\mathcal{G}$ es una sub-$\sigma-$algebra de $\F$ entonces existe $Y$ variable aleatoria tal que:
 	
 	\begin{enumerate}
 		\item $Y$ es $\mathcal{G}$ medible
@@ -396,7 +396,7 @@ Recordemos adem\'as:
 \begin{definition}
 	Dados $X,\mathcal{G}$ como en la proposici\'on, a la variable aleatoria cuya existencia se prueba en \ref{def: esperanza condicional} se le llama \textit{una versi\'on de la esperanza condicional de $X$ dado $\mathcal{G}$} y se lo nota $\expectation{X \vert \mathcal{G}}$.
 	
-	A su vez, dada $Z$ ptra variable aleatoria definimos la \textit{esperanza condicional de $X$ dado $Z$} como $\expectation{X \vert Z} := \expectation{X \vert \sigma(Z)}$
+	A su vez, dada $Z$ otra variable aleatoria definimos la \textit{esperanza condicional de $X$ dado $Z$} como $\expectation{X \vert Z} := \expectation{X \vert \sigma(Z)}$
 	
 \end{definition}
 
@@ -422,7 +422,7 @@ Recordemos adem\'as:
 		
 		\item {\textbf{Existencia en $L^2$}}
 		
-		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2$ y como $L^2$ es Hilbert existe $Y \in \mathcal{K} $ tal que:
+		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2(\Omega, \mathcal{F}, P)$ y como $L^2$ es Hilbert existe $Y \in \mathcal{K} $ tal que:
 		
 		\begin{equation*}
 			\expectation{\left(X - Y \right)^2} = \inf \sett{\expectation{\left(X - W \right)^2} \tq W \in \mathcal{K}}
@@ -438,7 +438,7 @@ Recordemos adem\'as:
 			\ip{X-Y, 1_G} = 0 \Longrightarrow \ \int\limits_{G} {XdP} = \int\limits_{G}{Y dP}
 		\end{equation*}
 		
-		Conclu\'imos que $Y = \expectation{X \vert \mathcal{G}}$
+		concluimos que $Y = \expectation{X \vert \mathcal{G}}$
 		
 		\item {\textbf{Existencia en $L^1$}}		
 		
@@ -480,7 +480,7 @@ Recordemos adem\'as:
 \end{theorem}
 
 \begin{proof}
-	En general con cuentas bastante similares a las vistas en cualquier curso de An\'alisis Real teniendo cuidado de las proyecciones. Para una mejor referencia ver \cite{williams:1991}.
+	En general con cuentas bastante similares a las vistas en cualquier curso de An\'alisis Real. Para una mejor referencia ver \cite{williams:1991}.
 \end{proof}
 
 \subsubsection{Martingalas y Cuasi-martingalas}
