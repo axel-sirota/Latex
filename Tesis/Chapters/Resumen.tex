@@ -9,22 +9,22 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \subsection{Objetivos convexos}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo, $w^*$ su m\'inimo, asumamos que $F$ es \textit{d\'ebilmente convexo} y que existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo, asumamos que $F$ es \textit{d\'ebilmente convexo}, $w^*$ su m\'inimo y que existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
 	
 	\begin{equation*}
-	\left(\nabla F(w)\right)^2 \leq A + B \left(w - w^*\right)^2
+	\norm{\nabla F(w)}^2 \leq A + B \norm{w - w^*}^2
 	\end{equation*}
 	
 	Luego si consideramos el algoritmo de \textit{descenso de gradiente por batch} tal que incrementos $\sett{\alpha_k}$  cumplen la \textit{condici\'on Robbins - Monro} entonces:
 	
 	\begin{equation*}
-	w_k \rightarrow w^*
+	w_k \underlimitinf{k} w^*
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz} y \textit{PL-convexa}; entonces el algortimo \textit{descenso de gradiente por batch} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz} y \textit{PL-convexa}; entonces el algortimo \textit{descenso de gradiente por batch} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
 	\begin{equation*}
 	F(w_k) - F_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
 	\end{equation*}
@@ -33,34 +33,34 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \subsection{Objetivos no convexos}
 
 \begin{theorem}
-	Sea $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por batch} con incremento fijo $\alpha < \frac{1}{L}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por batch} con incremento fijo $\alpha < \frac{1}{L}$ cumple:
 	
 	\begin{equation*}
-		w_k \rightarrow w^* \quad ctp
+		w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{punto pr\'oximo } con incremento fijo $\alpha < \frac{1}{L}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{punto pr\'oximo } con incremento fijo $\alpha < \frac{1}{L}$ cumple:
 	
 	\begin{equation*}
-	w_k \rightarrow w^* \quad ctp
+	w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^2$ la funci\'on objetivo con Hessiano acotado por bloques con constante $L_b$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por coordenadas} con incremento fijo $\alpha < \frac{1}{L_b}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$  la funci\'on objetivo con Hessiano acotado por bloques con constante $L_b$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por coordenadas} con incremento fijo $\alpha < \frac{1}{L_b}$ cumple:
 	
-	\begin{equation*}
-	w_k \rightarrow w^* \quad ctp
-	\end{equation*}
+\begin{equation*}
+w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
+\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Consideremos el algoritmo \textit{descenso de gradiente por batch} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $f : \R^d \mapsto \R$ funci\'on objetivo $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
+	Consideremos el algoritmo \textit{descenso de gradiente por batch} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $F : \R^d \mapsto \R$ funci\'on objetivo $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
 \end{theorem}
 
 \section{Algoritmos estoc\'asticos}
@@ -68,16 +68,16 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \subsection{Objetivos convexos}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}; entonces el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  <  \alpha_k = \alpha \leq \dfrac{\mu}{LM_G}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}; entonces el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  <  \alpha_k = \alpha \leq \dfrac{\mu}{LM_G}$ cumple:
 
 	\begin{equation*}
-	\expectation{F(w_k) - F_{inf}} \rightarrow \dfrac{\alpha LM}{2 c \mu}
+	\expectation{F(w_k) - F_{inf}} \underlimitinf{k} \dfrac{\alpha LM}{2 c \mu}
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos $\alpha_k$ cumplen:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos $\alpha_k$ cumplen:
 	
 	\begin{equation}
 	\alpha_k =  \dfrac{\beta}{\gamma + k} \quad \ \text{ para alg\'un } \ \beta > \frac{1}{c \mu} \  \text{ y } \ \gamma > 0 \  \text{ tal que } \ \alpha_1 \leq \dfrac{\mu}{L M_G} 
@@ -92,7 +92,7 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada geom\'etricamente}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada geom\'etricamente}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
 	
 	\begin{equation*}
 	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\rho^{k}\right)
@@ -101,14 +101,14 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{d\'ebilmente convexo}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento decrecientes cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{d\'ebilmente convexo}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento decrecientes cumple:
 	
 	\begin{subequations}
 		\begin{equation*}
-		w_k \rightarrow w^* \quad ctp
+		w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
 		\end{equation*}
 		\begin{equation*}
-		\left(w_k - w^*\right) \nabla F(w_k) \rightarrow 0 \quad ctp
+		\left(w_k - w^*\right)^T \nabla F(w_k) \xrightarrow[k \rightarrow \infty]{ctp}  0
 		\end{equation*}
 	\end{subequations}
 	
@@ -117,50 +117,56 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \subsection{Objetivos no convexos}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo , $F$ es \textit{L-Lipshitz} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \dfrac{\mu}{LM_G} $ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo , $F$ es \textit{L-Lipshitz} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \dfrac{\mu}{LM_G} $ cumple:
 	
 	\begin{equation*}
-		\expectation{\dfrac{1}{K}\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k}_2^2}} \rightarrow  \dfrac{\alpha LM}{\mu}
+		\expectation{\dfrac{1}{K}\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k}^2}} \underlimitinf{k}  \dfrac{\alpha LM}{\mu}
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^1$ la funci\'on objetivo, $F$ es \textit{L-Lipshitz}, supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego si notamos $A_K := \sum\limits_{k=1}^{K} {\alpha_k}$, el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo, $F$ es \textit{L-Lipshitz}, supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego si notamos $A_K := \sum\limits_{k=1}^{K} {\alpha_k}$, el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
 	
 	\begin{equation*}
-		\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \rightarrow 0
+		\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}^2}} \underlimitinf{k} 0
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F \in C^2$ la funci\'on objetivo, $F$ es \textit{L-Lipshitz} y $w \mapsto \norm{\nabla F (w)}_2^2$ sea \textit{L-Lipshitz}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo, $F$ es \textit{L-Lipshitz} y $w \mapsto \norm{\nabla F (w)}_2^2$ sea \textit{L-Lipshitz}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
 	
 	\begin{equation*}
-	\lim\limits_{k \rightarrow \infty} \expectation{\norm{\nabla F (w_k)}_2^2} = 0
+	\lim\limits_{k \rightarrow \infty} \expectation{\norm{\nabla F (w_k)}^2} = 0
 	\end{equation*}
 	
 \end{theorem}
 
 \begin{theorem}
-	Sea $F$ funci\'on objetivo y  $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen:
+	Sea $F: \R^d \rightarrow \R$  funci\'on objetivo y  $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen:
 	
 		\begin{enumerate}
 		\item $F \in C^3$
 		\item Existe $w^* \in \R^d$ tal que $F_{inf} = F(w^*) \leq F(w)$ para todo $w \in U$ entorno.
 		\item $F(w) \geq 0$ para todo $w \in \R^d$
 		\item Los incrementos cumplen la \textit{condici\'on de Robbins Monro}
-		\item Para $j = 2, 3, 4$ existen $A_j,B_j \geq 0$ tal que:
+		\item Existe $B_2 \geq 0$ tal que:
 		
 		\begin{equation*}
-		\expectation{\norm{g(w_k, \upxi_{k})}_2^j} \leq A_j + B_j \norm{w}_2^j
+		\expectation{\norm{g(w_k, \upxi_{k})}^2} \leq B_2 \norm{w}^2
+		\end{equation*}		
+		
+		\item Para $3, 4$ existen $A_j,B_j \geq 0$ tal que:
+		
+		\begin{equation*}
+		\expectation{\norm{g(w_k, \upxi_{k})}^j} \leq A_j + B_j \norm{w}^j
 		\end{equation*}
 		
 		\item  Existe $D > 0$ tal que:
 		
 		\begin{equation*}
-		\inf\limits_{(w)^2 > D} {w \nabla F(w)} >0
+		\inf\limits_{(w)^2 > D} {w^T \nabla F(w)} >0
 		\end{equation*}
 	\end{enumerate}
 	
@@ -169,10 +175,10 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 	
 	\begin{subequations}
 		\begin{equation*}
-		F(w_k) \rightarrow \ F_{\infty} \quad ctp
+		F(w_k) \xrightarrow[k \rightarrow \infty]{ctp} \ F_{\infty}
 		\end{equation*}
 		\begin{equation*}
-		\nabla F(w_k) \rightarrow 0 \quad ctp
+		\nabla F(w_k) \xrightarrow[k \rightarrow \infty]{ctp} 0
 		\end{equation*}
 	\end{subequations}
 	
