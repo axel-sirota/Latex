@@ -12,7 +12,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 	
 	\begin{equation*}
 		\label{eq: Segundo momento acotado de g insesgado}
-		\expectation{g(w_k, \upxi_{k})^2} \leq A + B \left(w_k - w^*\right)^2
+		\expectation{\norm{g(w_k, \upxi_{k})}^2} \leq A + B \norm{w_k - w^*}^2
 	\end{equation*}
 	
 \end{hyp}
@@ -32,7 +32,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 			w_k \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ w^*
 		\end{equation}
 		\begin{equation}
-			\left(w_k - w^*\right) \nabla F(w_k) \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ 0
+			\left(w_k - w^*\right)^T \nabla F(w_k) \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ 0
 		\end{equation}
 	\end{subequations}
 	
@@ -42,34 +42,34 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 	Vayamos de a pasos como cuando demostramos \ref{theorem: convergencia puntual batch, objetivo debilmente convexo, incrementos decrecientes}.
 	
 	\begin{enumerate}
-		\item [Paso 1] Definamos el proceso estoc\'astico de Lyapunov $h_k := \left(w_k - w^*\right)^2$
+		\item [Paso 1] Definamos el proceso estoc\'astico de Lyapunov $h_k := \norm{w_k - w^*}^2$
 		
 		\item [Paso 2] An\'alogamente a casos anteriores notemos que:
 		
 		\begin{equation}
-			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^*\right) g(w_k, \upxi_{k}) + \alpha_k^2 g(w_k, \upxi_{k})^2
+			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^*\right)^T g(w_k, \upxi_{k}) + \alpha_k^2 \norm{g(w_k, \upxi_{k}}^2
 		\end{equation}
 		
 		Definamos ahora la filtraci\'on $\mathcal{P}_k = \sett{\upxi_{0}, \dots, \upxi_{k-1}, w_0, \dots, w_k, \alpha_0, \dots, \alpha_k}$ que determina toda la informaci\'on a tiempo $k$ \textbf{antes} de tomar la muestra $\upxi_{k}$; luego si tomamos la esperanza condicional a esta filtraci\'on:
 		
 		\begin{equation*}
 		\begin{aligned}
-			\expectationfilt{h_{k+1} - h_k } & = & -2 \alpha_k \expectationfilt{\underbrace{\left(w_k - w^*\right)}_{\mathcal{P}_k \text{ medible}} g(w_k, \upxi_{k}) } + \alpha_k^2 \expectationfilt{g(w_k, \upxi_{k})^2} \\
-			& = & -2 \alpha_k \left(w_k - w^*\right) \expectationfilt{g(w_k, \upxi_{k})} + \alpha_k^2 \expectationfilt{g(w_k, \upxi_{k})^2} 
+			\expectationfilt{h_{k+1} - h_k } & = & -2 \alpha_k \expectationfilt{\underbrace{\left(w_k - w^*\right)^T}_{\mathcal{P}_k \text{ medible}} g(w_k, \upxi_{k}) } + \alpha_k^2 \expectationfilt{\norm{g(w_k, \upxi_{k})}^2} \\
+			& = & -2 \alpha_k \left(w_k - w^*\right)^T \expectationfilt{g(w_k, \upxi_{k})} + \alpha_k^2 \expectationfilt{\norm{g(w_k, \upxi_{k}}^2} 
 		\end{aligned}
 		\end{equation*}
 		
 		Pero como $\upxi_{k}$ es \textbf{independiente } de $\mathcal{P}_k$ entonces si recordamos que $g$ es insesgado tenemos:
 		
 		\begin{equation*}
-		\expectationfilt{h_{k+1} - h_k } = -2 \alpha_k \left(w_k - w^*\right) \nabla F(w_k) + \alpha_k^2 \expectationfilt{g(w_k, \upxi_{k})^2} 
+		\expectationfilt{h_{k+1} - h_k } = -2 \alpha_k \left(w_k - w^*\right)^T \nabla F(w_k) + \alpha_k^2 \expectationfilt{\norm{g(w_k, \upxi_{k}}^2} 
 		\end{equation*}		
 		
 		Ahora si incorporamos \ref{hyp: Acotaciones varianza de g} obtenemos:
 		
 		\begin{equation}
 			\label{eq: variaciones proceso lyapunov}
-				\expectationfilt{h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k } \leq  -2 \alpha_k \left(w_k - w^*\right) \nabla F(w_k) + \alpha_k^2 A
+				\expectationfilt{h_{k+1} - \left(1 + \alpha_k^2 B\right)h_k } \leq  -2 \alpha_k \left(w_k - w^*\right)^T \nabla F(w_k) + \alpha_k^2 A
 		\end{equation}
 		
 		Definamos ahora las sucesiones auxiliares:
@@ -111,17 +111,17 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 		\item[Paso 3] Como $h_k$ converge ctp, de \ref{eq: variaciones proceso lyapunov} concluimos que:
 		
 		\begin{equation*}
-		\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty \qquad ctp
+		\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)^T\nabla F(w_k)} < \infty \qquad ctp
 		\end{equation*}
 		
-		Supongamos que $\mathbb{P}\left(\sett{\lim\limits_{k} {h_k} > 0}\right) > \widetilde{\epsilon}$, luego $\mathbb{P}\left(\sett{\alpha_k \left(w_k - w^* \right)\nabla F(w_k) > C\alpha_k}\right) > \widetilde{\epsilon}$ lo que implicar\'ia por \ref{eq: Condicion robbins monro} que $\mathbb{P}\left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} = \infty}\right) > \widetilde{\epsilon}$; concluimos entonces que:
+		Supongamos que $\mathbb{P}\left(\sett{\lim\limits_{k} {h_k} > 0}\right) > \widetilde{\epsilon}$, luego $\mathbb{P}\left(\sett{\alpha_k \left(w_k - w^* \right)^T\nabla F(w_k) > C\alpha_k}\right) > \widetilde{\epsilon}$ lo que implicar\'ia por \ref{eq: Condicion robbins monro} que $\mathbb{P}\left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)^T\nabla F(w_k)} = \infty}\right) > \widetilde{\epsilon}$; concluimos entonces que:
 		
 			\begin{subequations}
 			\begin{equation}
 			w_k \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ w^*
 			\end{equation}
 			\begin{equation}
-			\left(w_k - w^*\right) \nabla F(w_k) \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ 0
+			\left(w_k - w^*\right)^T \nabla F(w_k) \ \xrightarrow[\text{ctp}]{k \ \rightarrow \ \infty } \ 0
 			\end{equation}
 		\end{subequations}\qed
 		
@@ -131,7 +131,7 @@ Ahora que ya analizamos la convergencia en L1 de \ref{algo: DE} vimos que hay un
 
 \section{Caso no convexo}
 
-Vamos a tomar las siguientes hip\'otesis para probar la convergencia ctp a un punto extremal.
+Vamos a tomar las siguientes hip\'otesis para probar la convergencia casi todo punto a un punto extremal.
 
 \begin{hyp}[Hip\'otesis caso no convexo]
 	\label{hyp: Condiciones caso no convexo convergencia ctp}
@@ -171,14 +171,14 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 
 \begin{theorem}[Acotaci\'on global del algoritmo estoc\'astico insesgado]
 	\label{theorem: Acotaci\'on global del algoritmo estoc\'astico insesgado}
-	Sea $F$ funci\'on de costo objetivo y $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen \ref{hyp: Condiciones caso no convexo convergencia ctp}, luego existe un entorno $w_1 \in U \subset \mani$ tal que si $\sett{w_k}$ son las iteraciones del algoritmo \ref{algo: DE} entonces $\sett{w_k} \subset U$.
+	Sea $F$ funci\'on de costo objetivo y $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen \ref{hyp: Condiciones caso no convexo convergencia ctp}, luego existe un entorno $w_1 \in U \subset \R^d$ tal que si $\sett{w_k}$ son las iteraciones del algoritmo \ref{algo: DE} entonces $\sett{w_k} \subset U$.
 \end{theorem}
 
 \begin{proof}
 	Nuevamente probemos esto en tres pasos:
 	
 	\begin{enumerate}
-		\item [Paso 1] Sea $D$ el par\'ametro de horizonte dado por \ref{eq: Condicion de horizonte en g} y definamos $\phi: \mani \mapsto \R$ dada por:
+		\item [Paso 1] Sea $D$ el par\'ametro de horizonte dado por \ref{eq: Condicion de horizonte en g} y definamos $\phi: \R \mapsto \R$ dada por:
 		
 		\begin{equation*}
 		\phi(x) = \left\lbrace
@@ -191,13 +191,13 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		Luego, sea:
 		
 		\begin{equation*}
-			f_k = \phi\left(w_k^2\right)
+			f_k = \phi\left(\norm{w_k}^2\right)
 		\end{equation*}
 		
 		\item [Paso 2] Notemos que por la definici\'on vale:
 		
 		\begin{equation*}
-			\phi(y) - \phi(x) \leq \left(y - x\right)\phi\prime(x) + \left(y-x\right)^2
+			\phi(y) - \phi(x) \leq \left(y - x\right) \dfrac{d \phi}{dt}(x) + (y-x)^2
 		\end{equation*}
 		
 		Y la igualdad se da si y s\'olo si $x,y \geq D$; con esto en forma an\'aloga a antes calculemos las variaciones del proceso de Lyapunov $\sett{f_k}$:
@@ -205,85 +205,85 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		\begin{equation}
 		\label{eq: Condicion de proceso de lyapunov, confinamiento global}
 		\begin{array}{rcl}
-			f_{k+1} - f_k & \leq & \left(-2 \alpha_k w_k g(w_k, \upxi_{k}) + \alpha_k^2 g(w_k, \upxi_{k})^2\right) \phi'(w_k^2) \\ 
-			& & + 4 \alpha_k^2 \left(w_kg(w_k, \upxi_{k})\right)^2 -4 \alpha_k^3 w_k g(w_k, \upxi_{k})^3 \\
-			 & &  + 4 \alpha_k^4g(w_k, \upxi_{k})^4 \\
+			f_{k+1} - f_k & \leq & \left(-2 \alpha_k w_k^Tg(w_k, \upxi_{k}) + \alpha_k^2 \norm{g(w_k, \upxi_{k})}^2\right) \dfrac{d \phi}{dx}(\norm{w_k}^2) \\ 
+			& & + 4 \alpha_k^2 \left(w_k^T g(w_k, \upxi_{k})\right)^2 -4 \alpha_k^3 w_k^Tg(w_k, \upxi_{k}) \norm{g(w_k, \upxi_{k}) }^2 \\
+			 & &  + 4 \alpha_k^4 \norm{g(w_k, \upxi_{k})}^4 \\
 		\end{array}
 		\end{equation}
 		
-		Por Cauchy-Schwartz sabemos que $w_k g(w_k, \upxi_{k}) = \ip{w_k, g(w_k, \upxi_{k})} \leq \norm{w_k}_2 \norm{g(w_k, \upxi_{k})}_2$ y que $g(w_k, \upxi_{k})^2 = \ip{g(w_k, \upxi_{k}), g(w_k, \upxi_{k})} \leq \norm{g(w_k, \upxi_{k})}_2^2$, si sumamos esto a la anterior ecuaci\'on tenemos:
+		Por Cauchy-Schwartz sabemos que $w_k^Tg(w_k, \upxi_{k}) = \ip{w_k, g(w_k, \upxi_{k})} \leq \norm{w_k} \norm{g(w_k, \upxi_{k})}$, si sumamos esto a la anterior ecuaci\'on tenemos:
 		
 		\begin{equation*}
 		\begin{array}{rcl}
-		f_{k+1} - f_k & \leq & -2 \alpha_k w_k g(w_k, \upxi_{k}) \phi'(w_k^2)  + \alpha_k^2 \phi'(w_k^2) \norm{g(w_k, \upxi_{k})}_2^2 \\ 
-		& & + 4 \alpha_k^2 \norm{w_k}_2^2 \norm{g(w_k, \upxi_{k})}_2^2 -4 \alpha_k^3 \norm{w_k}_2 \norm{g(w_k, \upxi_{k})}_2^3  \\
-		& & + 4 \alpha_k^4 \norm{g(w_k, \upxi_{k})}_2^4 \\
+		f_{k+1} - f_k & \leq & -2 \alpha_k w_k^Tg(w_k, \upxi_{k}) \dfrac{d \phi}{dx}(\norm{w_k}^2)  + \alpha_k^2 \dfrac{d \phi}{dx}(\norm{w_k}^2) \norm{g(w_k, \upxi_{k})}^2 \\ 
+		& & + 4 \alpha_k^2 \norm{w_k}^2 \norm{g(w_k, \upxi_{k})}^2 -4 \alpha_k^3 \norm{w_k}_2 \norm{g(w_k, \upxi_{k})}^3  \\
+		& & + 4 \alpha_k^4 \norm{g(w_k, \upxi_{k})}^4 \\
 		\end{array}
 		\end{equation*}
 		
-		Lo que implica si tomamos esperanza condicional a la filtraci\'on $\sett{\mathcal{P}_k}$, recordando que $\alpha_k, w_k, \phi'(w_k^2)$ son $\mathcal{P}_k$ medibles y $g(w_k, \upxi_{k})$ es independiente de $\mathcal{P}_k$:
+		Lo que implica si tomamos esperanza condicional a la filtraci\'on $\sett{\mathcal{P}_k}$, recordando que $\alpha_k, w_k, \dfrac{d \phi}{dx}(\norm{w_k}^2)$ son $\mathcal{P}_k$ medibles y $g(w_k, \upxi_{k})$ es independiente de $\mathcal{P}_k$:
 		
 		\begin{equation*}
 		\begin{array}{rcl}
-		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) \\ 
-		&& + \alpha_k^2 \phi'(w_k^2) \expectation{\norm{g(w_k, \upxi_{k})}_2^2} \\ 
-		& & + 4 \alpha_k^2 \norm{w_k}_2^2 \expectation{\norm{g(w_k, \upxi_{k})}_2^2} \\
-		& & -4 \alpha_k^3 \norm{w_k}_2 \expectation{\norm{g(w_k, \upxi_{k})}_2^3}  \\
-		& & + 4 \alpha_k^4 \expectation{\norm{g(w_k, \upxi_{k})}_2^4} \\
+		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2) \\ 
+		&& + \alpha_k^2 \dfrac{d \phi}{dx}(\norm{w_k}^2) \expectation{\norm{g(w_k, \upxi_{k})}^2} \\ 
+		& & + 4 \alpha_k^2 \norm{w_k}^2 \expectation{\norm{g(w_k, \upxi_{k})}^2} \\
+		& & -4 \alpha_k^3 \norm{w_k} \expectation{\norm{g(w_k, \upxi_{k})}^3}  \\
+		& & + 4 \alpha_k^4 \expectation{\norm{g(w_k, \upxi_{k})}^4} \\
 		\end{array}
 		\end{equation*}
 		
-		Si ahora incluimos \ref{eq: Acotaciones momentos de g} y notamos que $\phi'(w_k^2) \leq \norm{w_k}_2^2$ entonces:
+		Si ahora incluimos \ref{eq: Acotaciones momentos de g} y notamos que $\dfrac{d \phi}{dx}(\norm{w_k}^2) \leq \norm{w_k}^2$ entonces:
 		
 		\begin{equation*}
 		\begin{array}{rcl}
-		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) \\ 
-		&& + \alpha_k^2 \phi'(w_k^2) B_2\norm{w_k}_2^2 \\ 
-		& & + 4 \alpha_k^2 B_2\norm{w_k}_2^2 \norm{w_k}_2^2 \\
-		& & \underbrace{-4 \alpha_k^3 \norm{w_k}_2 \left(A_3 + B_3 \norm{w_k}_2^3\right)}_{\leq 0}\\
-		& & + 4 \alpha_k^4 \left(A_4 + B_4 \norm{w_k}_2^4\right)\\
+		\expectationfilt{f_{k+1} - f_k} & \leq & -2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2) \\ 
+		&& + \alpha_k^2 \dfrac{d \phi}{dx}(\norm{w_k}^2) B_2\norm{w_k}^2 \\ 
+		& & + 4 \alpha_k^2 B_2\norm{w_k}^2 \norm{w_k}^2 \\
+		& & \underbrace{-4 \alpha_k^3 \norm{w_k} \expectation{\norm{g(w_k, \upxi_{k})}^3}}_{\leq 0}\\
+		& & + 4 \alpha_k^4 \left(A_4 + B_4 \norm{w_k}^4\right)\\
 		& & \\
-		& \leq & -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2)  \\
-		& & + \alpha_k^2 \left(5B_2 \norm{w_k}_2^4 + 4 \alpha_k^2 B_4 \norm{w_k}_2^4 + 4 + 4 \alpha_k^2 A_4\right)
+		& \leq & -2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2)  \\
+		& & + \alpha_k^2 \left(5B_2 \norm{w_k}^4 + 4 \alpha_k^2 B_4 \norm{w_k}^4 + 4 + 4 \underbrace{\alpha_k^2}_{\leq \widetilde{A}_0 \text{ por \ref{eq: Condicion robbins monro}}} A_4\right)
 		\end{array} 
 		\end{equation*}
 		
 		Luego existen $A_0, B_0 \geq 0$ constantes tal que:
 		
 		\begin{equation*}
-		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) + \alpha_k^2 \left(A_0 + B_0 \norm{w_k}_2^4\right)
+		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2) + \alpha_k^2 \left(A_0 + B_0 \norm{w_k}^4\right)
 		\end{equation*}
 		
 		 Lo que implica que existen $A,B \geq 0$ tal que:
 		
 		\begin{equation*}
-		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2)  + \alpha_k^2\left(A + B f_k\right)
+		\expectationfilt{f_{k+1} - f_k} \leq -2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2)  + \alpha_k^2\left(A + B f_k\right)
 		\end{equation*}
 		
-		Notemos ahora que si $w_k^2 < D$ entonces $\phi'(w_k^2) = 0$, y si $w_k^2 \geq D$ entonces $-2 \alpha_k w_k \nabla F (w_k)\phi'(w_k^2) < 0$ por \ref{eq: Condicion de horizonte en g} por lo que deducimos:
+		Notemos ahora que si $\norm{w_k}^2 < D$ entonces $\dfrac{d \phi}{dx}(\norm{w_k}^2) = 0$, y si $\norm{w_k}^2 \geq D$ entonces $-2 \alpha_k w_k^T\nabla F (w_k)\dfrac{d \phi}{dx}(\norm{w_k}^2) < 0$ por \ref{eq: Condicion de horizonte en g} por lo que deducimos:
 		
 		\begin{equation}
 		\expectationfilt{f_{k+1} - f_k} \leq \alpha_k^2\left(A + B f_k\right)
 		\end{equation}	
 		
-		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando \ref{theorem: Convergencia de cuasi martingalas} concluimos que $\sett{f_k}$ converge ctp.
+		Ahora siguiendo los mismo pasos que al demostrar \ref{theorem: DE en debilmente convexo y alfa decreciente converge ctp} definiendo $\mu_k, f_k'$ y usando \ref{theorem: Convergencia de cuasi martingalas} concluimos que $\sett{f_k}$ converge casi todo punto.
 		
-		\item[Paso 3] Supongamos que $f_{inf} >0$, entonces existe $T \in \N$  tal que $w_k^2, w_{k+1}^2 > D$ para todo $k \geq T$ por lo que \ref{eq: Condicion de proceso de lyapunov, confinamiento global} es una igualdad y deducimos que:
+		\item[Paso 3] Supongamos que $f_{inf} >0$, entonces existe $T \in \N$  tal que $\norm{w_k}^2, \norm{w_{k+1}}^2 > D$ para todo $k \geq T$ por lo que \ref{eq: Condicion de proceso de lyapunov, confinamiento global} es una igualdad y deducimos que:
 		
 		\begin{equation}
-			\sum\limits_{k=1}^{\infty} {\alpha_k w_k \nabla F(w_k) \phi'(w_k^2)} < \infty \quad ctp
+			\sum\limits_{k=1}^{\infty} {\alpha_k w_k^T\nabla F(w_k) \dfrac{d \phi}{dx}(\norm{w_k}^2)} < \infty \quad ctp
 		\end{equation}
 		
-		Pero por otro lado como $f_{inf} >0$, $\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty$, $0 < \lim \phi'(w_k^2) < \infty$ existe $\widetilde{\epsilon} > 0$ y $M > 0$ tal que:
+		Pero por otro lado como $f_{inf} >0$, $\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty$ y  $0 < \lim\limits_{k \to \infty} \dfrac{d \phi}{dx}(\norm{w_k}^2)$ existe $\widetilde{\epsilon} > 0$ y $M > 0$ tal que:
 		
 		\begin{equation*}
 			\begin{array}{rcl}
-			\widetilde{\epsilon} & < & \mathbb{P} \left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k w_k \nabla F(w_k) \phi'(w_k^2)} = \infty }\right) \\
-			& = & \mathbb{P} \left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k w_k \nabla F(w_k) \phi'(w_k^2)} > M \liminf \phi'(w_k^2)\sum\limits_{k=1}^{\infty} {\alpha_k}}\right) 
+			\widetilde{\epsilon} & < & \mathbb{P} \left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k w_k^T\nabla F(w_k) \dfrac{d \phi}{dx}(\norm{w_k}^2)} = \infty }\right) \\
+			& = & \mathbb{P} \left(\sett{\sum\limits_{k=1}^{\infty} {\alpha_k w_k^T\nabla F(w_k) \dfrac{d \phi}{dx}(\norm{w_k}^2)} > M \liminf \dfrac{d \phi}{dx}(\norm{w_k}^2)\sum\limits_{k=1}^{\infty} {\alpha_k}}\right) 
 			\end{array}
 		\end{equation*}
 		
-		concluimos que $f_{inf} = 0$ y entonces existe $K \in \N$ tal que $\sett{w_k}_{k \geq K} \subset \sett{x \in \mani \tq \norm{x} < D }$. \qed
+		concluimos que $f_{inf} = 0$ y entonces existe $K \in \N$ tal que $\sett{w_k}_{k \geq K} \subset \sett{x \in \R^d \tq \norm{x} < D }$. \qed
 		
 	\end{enumerate}
 	
@@ -314,9 +314,9 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		
 		\begin{equation*}
 			\begin{aligned}
-				h_{k+1} - h_k & = & \nabla F(w_k) \left(w_{k+1} - w_k\right) + \frac{1}{2} \nabla^2 F(w_k) \left(w_{k+1} - w_k\right) \\
-				& = & - \alpha_k \nabla F(w_k) g(w_k, \upxi_{k})^2 + \frac{1}{2} \nabla^2 F(w_k)  \alpha_k^2 g(w_k, \upxi_{k})^2 \\
-				& \leq & -2 \alpha_k \nabla F(w_k) g(w_k, \upxi_{k})^2 + K_1 \alpha_k^2 g(w_k, \upxi_{k})^2
+				h_{k+1} - h_k & = & \nabla F(w_k)^T\left(w_{k+1} - w_k\right) + \frac{1}{2} \nabla^2 F(w_k) \left(w_{k+1} - w_k\right) \\
+				& = & - \alpha_k \nabla F(w_k)^T g(w_k, \upxi_{k}) + \frac{1}{2} \nabla^2 F(w_k)  \alpha_k^2 \norm{g(w_k, \upxi_{k})} \\
+				& \leq & -2 \alpha_k \nabla F(w_k)^Tg(w_k, \upxi_{k}) + K_1 \alpha_k^2 \norm{g(w_k, \upxi_{k})}^2
 			\end{aligned}
 		\end{equation*}
 		 
@@ -324,7 +324,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		
 		\begin{equation}
 			\label{eq: Acotacion de la sucesin en la iteracion}
-			\expectationfilt{h_{k+1} - h_k} \leq \underbrace{-2 \alpha_k \left(\nabla F(w_k)\right)^2}_{\leq 0}  + \alpha_k^2 K_1 \underbrace{\expectation{g(w_k, \upxi_{k})}}_{\leq K_2 \text{ por  \ref{theorem: Acotaci\'on global del algoritmo estoc\'astico insesgado}}}
+			\expectationfilt{h_{k+1} - h_k} \leq \underbrace{-2 \alpha_k \norm{\nabla F(w_k)}^2}_{\leq 0}  + \alpha_k^2 K_1 \underbrace{\expectation{g(w_k, \upxi_{k})}}_{\leq K_2 \text{ por  \ref{theorem: Acotaci\'on global del algoritmo estoc\'astico insesgado}}}
 		\end{equation}
 		
 		Lo que implica:
@@ -353,26 +353,26 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 \begin{equation}
 		 \label{eq: los gradientes ponderados son sumables en caso no convexo ctp}
 		 	\begin{aligned}
-		 	2\sum\limits_{k=1}^{K} {\alpha_k \left(\nabla F(w_k)\right)^2} & \leq & \sum\limits_{k=1}^{K} {\expectation{h_{k+1} - h_k}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
+		 	2\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F(w_k)}^2} & \leq & \sum\limits_{k=1}^{K} {\expectation{h_{k+1} - h_k}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
 		 	& = & \expectation{\sum\limits_{k=1}^{K} {h_{k+1} - h_k}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
 		 	& = & \expectation{h_{k+1}} + K_2K_1 \sum\limits_{k=1}^{K} {\alpha_k^2} \\
 		 	& \xrightarrow[\ref{theorem: Propiedades de esperanza condicional}]{\text{ ctp }} & F_{\infty} + K_2K_1 \sum\limits_{k=1}^{\infty} {\alpha_k^2}
 		 	\end{aligned}
 		 \end{equation}
 		 
-		 Sea ahora $g_k = \left(\nabla F (w_k)\right)^2$ y volvamos a expandir Taylor en $w_k$:
+		 Sea ahora $g_k = \norm{\nabla F (w_k)}^2$ y volvamos a expandir Taylor en $w_k$:
 		 
 		 \begin{equation*}
 		 \begin{aligned}
 		 g_{k+1} - g_k & = & \nabla g(w_k) \left(w_{k+1} - w_k\right) + \frac{1}{2} \nabla^2 g(w_k) \left(w_{k+1} - w_k\right)^2 \\
-		 &\underbrace{\leq}_{\text{ por \ref{theorem: Acotaci\'on global del algoritmo estoc\'astico insesgado}}} & - 2 \alpha_k \nabla F(w_k) K_4 g(w_k, \upxi_{k}) + K_3 \alpha_k^2 g(w_k, \upxi_{k})^2 \\
+		 &\underbrace{\leq}_{\text{ por \ref{theorem: Acotaci\'on global del algoritmo estoc\'astico insesgado}}} & - 2 \alpha_k \nabla F(w_k)^T K_4 g(w_k, \upxi_{k}) + K_3 \alpha_k^2 \norm{g(w_k, \upxi_{k}}^2 \\
 		 \end{aligned}
 		 \end{equation*}
 		 
 		 Tomando esperanza condicional respecto a $\mathcal{P}_k$:
 		 
 		 \begin{equation}
-		 	\expectationfilt{g_{k+1} - g_k } \leq 2 \alpha_k K_4 \left(\nabla F(w_k)\right)^2 + K_2K_3\alpha_k^2
+		 	\expectationfilt{g_{k+1} - g_k } \leq 2 \alpha_k K_4 \norm{\nabla F(w_k)}^2 + K_2K_3\alpha_k^2
 		 \end{equation}
 		 
 		 Por lo tanto si sumamos las variaciones asociadas al proceso estoc\'astico $\sett{g_k}$:
@@ -380,7 +380,7 @@ Usemos \ref{eq: Condicion de horizonte en g} para probar que existe un entorno $
 		 \begin{equation}
 		 \begin{array}{rcl}
 		 \sum\limits_{k=1}^{\infty} {\expectation{\delta_k^{g} \left(g_{k+1} - g_k\right)}} & = & \sum\limits_{k=1}^{\infty} {\expectation{\delta_k^{g} \expectationfilt{\left(g_{k+1} - g_k\right)}}} \\
-		 & \leq & K_4 \underbrace{\sum\limits_{k=1}^{\infty} {\alpha_k \left(\nabla F(w_k)\right)^2}}_{\ref{eq: los gradientes ponderados son sumables en caso no convexo ctp}} + K_2K_3 \underbrace{\sum\limits_{k=1}^{\infty} {\alpha_k^2}}_{\ref{eq: Condicion robbins monro}} \\
+		 & \leq & K_4 \underbrace{\sum\limits_{k=1}^{\infty} {\alpha_k \norm{\nabla F(w_k)}^2}}_{\ref{eq: los gradientes ponderados son sumables en caso no convexo ctp}} + K_2K_3 \underbrace{\sum\limits_{k=1}^{\infty} {\alpha_k^2}}_{\ref{eq: Condicion robbins monro}} \\
 		 & < &  \infty
 		 \end{array}
 		 \end{equation}

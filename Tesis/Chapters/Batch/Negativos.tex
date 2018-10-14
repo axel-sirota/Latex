@@ -229,7 +229,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	\end{proof}
 
 	\begin{remark}
-		Del lema anterior podemos ver que $\deg(g_1), \deg(g) \leq 5$ por lo que est\'an acotados. Concluimos que ambas son $B-$acotadas y $\mu-$Lipschitz con $B, \mu \in \text{poly}(L)$
+		Del lema anterior podemos ver que $\deg(g_1), \deg(g) \leq 5$ por lo que est\'an acotados. Concluimos que ambas son $B-$acotadas y $\mu-$Lipschitz con $B, \mu \in \text{poly}(d)$
 	\end{remark}
 
 	\begin{remark}
@@ -248,7 +248,7 @@ Antes de pasa a la prueba veamos un ejemplo modelo para generar intuici\'on de l
 	
 	Supongamos ahora que $\tau > e$, $\alpha \leq \frac{1}{2L}$ y tomemos $w_0 \in [-1,1]^d \cap D_0$, veamos que para todo $T \leq \left(\frac{L+ \gamma}{\gamma}\right)^{d-1}$ vale que $x_{d}^T \leq 2\tau \not \in D_{d+1}$.
 	
-	Sea $T_0 = 0$ y definamos $T_k = \min\limits_{x^t_k \geq 2\tau}$ el tiempo de escape de $D_{k,2}$; notemos que como $x^0 \in D_{1,1}$ vale que $T_k \geq 0$ para todo $k$ y esta bien definido. Definamos adem\'as $T_k^{\tau}$ como la cantidad de iteraciones que $x^k$ esta en $D_{k,2}$ antes de escapar; como del lema $\dfrac{\partial g}{\partial x_k}\left(x_k, x_{k+1}\right) \leq -2\gamma \tau$ tenemos que $\abs{x^k - x^{k+1}} \geq 2 \alpha \gamma \tau $ por lo que:
+	Sea $T_0 = 0$ y definamos $T_k = \min\limits_{x^t_k \geq 2\tau} t$ el tiempo de escape de $D_{k,2}$; notemos que como $x^0 \in D_{1,1}$ vale que $T_k \geq 0$ para todo $k$ y esta bien definido. Definamos adem\'as $T_k^{\tau}$ como la cantidad de iteraciones que $x^k$ esta en $D_{k,2}$ antes de escapar; como del lema $\dfrac{\partial g}{\partial x_k}\left(x_k, x_{k+1}\right) \leq -2\gamma \tau$ tenemos que $\abs{x^k - x^{k+1}} \geq 2 \alpha \gamma \tau $ por lo que:
 	
 	\begin{equation*}
 		T_k^{\tau} \leq \frac{\tau}{2 \alpha \gamma \tau} = \frac{1}{2 \gamma \alpha} \qquad \forall k \in \sett{1, \dots, d+1}

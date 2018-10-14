@@ -220,8 +220,6 @@ Consideremos primero los casos de convexidad donde sabemos que el m\'inimo exist
 	
 \end{hyp}
 
-Recordemos que de \ref{def: Fuertemente convexa} y \ref{obs: F es l lipshitz} vale que $c \leq L$ 
-
 Ya estamos en condiciones de demostrar nuestro primer resultado de convergencia para \ref{algo: DE} con $\alpha_k = \alpha$, pero notemos que \textit{a priori} lo mas que podemos asumir es quedar en un entorno de $F_{inf}$ ya que de \ref{eq: Fundamental estocasticos 2 ecuacion 2} se ve que el segundo t\'ermino es constante.
 
 Dado $w_k$ que depende de $\upxi_{1}, \dots, \upxi_{k-1}$ definamos:
@@ -549,9 +547,9 @@ Para el de incrementos decrecientes, asumamos que $\sett{\alpha_k}$ cumple la co
 	\sum\limits_{1}^{K}{\alpha_k \expectation{\norm{\nabla F(w_k)}_2^2}}  \leq  \dfrac{2 (\expectation{F(w_1) - F_{inf} })}{\mu} + \frac{LM}{\mu}  \underbrace{\sum\limits_{k=1}^{K} {\alpha_k^2}}_{\underrightarrow{K \rightarrow \infty} \ C  \ < \ \infty }
 	\end{equation*}
 	
-	Por lo que \ref{eq: Objetivo no convexo, incremento decreciente, 1} esta probado. Finalmente como por \ref{eq: Condicion robbins monro} tenemos que $A_K \rightarrow \infty$ podemos ver que existe $C>0$ constante tal que:
+	Por lo que \ref{eq: Objetivo no convexo, incremento decreciente, 1} esta probado. Finalmente como por \ref{eq: Condicion robbins monro} tenemos que $A_K \rightarrow \infty$ podemos ver que existe $D>0$ constante tal que:
 	\begin{equation*}
-	\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \leq \dfrac{C}{A_K} \underlimitinf{K} 0
+	\expectation{\dfrac{1}{A_K}\sum\limits_{k=1}^{K} {\alpha_k \norm{\nabla F (w)_k)}_2^2}} \leq \dfrac{D}{A_K} \underlimitinf{K} 0
 	\end{equation*}
 	se tiene \ref{eq: Objetivo no convexo, incremento decreciente, 2}.\qed
 	

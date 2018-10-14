@@ -4,7 +4,7 @@
 
 Si existe un algoritmo que todo estudiante o practicante del Machine Learning conoce, es el descenso de gradiente cl\'asico (o \textit{Descenso de gradiente en batch}) [Ver algoritmo \ref{algo: GD - intro}].
 
-Un buen inicio es analizar la convergencia puntual del descenso de gradiente y bajo qu\'e condiciones se da. Para esto recordemos que dado una func i\'on de p\'erdida objetivo uno estima el \textit{riesgo esperado} por el \textit{riesgo emp\'irico} (Ver \ref{eq: Riesgo empirico}), luego considerando esto el algoritmo a analizar resulta:
+Un buen inicio es analizar la convergencia puntual del descenso de gradiente y bajo qu\'e condiciones se da. Para esto recordemos que dado una funci\'on de p\'erdida objetivo uno estima el \textit{riesgo esperado} por el \textit{riesgo emp\'irico} (Ver \ref{eq: Riesgo empirico}), luego considerando esto el algoritmo a analizar resulta:
 
 \RestyleAlgo{boxruled}
 \LinesNumbered
@@ -30,9 +30,9 @@ Asumamos por esta secci\'on la siguiente condici\'on, que llamaremos \textit{con
 \end{definition}
 
 \begin{remark}
-	Si  $F: \R^d \rightarrow \R$, $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es convexa, entonces es d\'ebilmente convexa.
+	Si  $F: \R^d \rightarrow \R$, tal que $F \in C^1$ es convexa, entonces es d\'ebilmente convexa.
 	
-	En efecto, como $F$ es convexa existe $w* \in \R^d$ m\'inimo global y como $f:\R^d \rightarrow \R$ tal que $f \in C^1$ entonces $\nabla F(w^*) = 0$. Entonces de \ref{ch: apendice} vemos que $F$ cumple:
+	En efecto, como $F$ es convexa existe $w* \in \R^d$ m\'inimo global y como $F \in C^1$ entonces $\nabla F(w^*) = 0$. Entonces $F$ cumple:
 	
 	\begin{equation*}
 		\left(\nabla F(x) - \nabla F(y)\right)^T \left(x-y\right) >0
@@ -166,7 +166,7 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 	
 	\begin{equation}
 	\label{eq: Condicion gradiente acotado, ctp, batch}
-		\left(\nabla F(w)\right)^2 \leq A + B \left(w - w^*\right)^2
+		\norm{\nabla F(w) }^2 \leq A + B \norm{w - w^*}^2
 	\end{equation}
 	
 	Luego si consideramos el algoritmo \ref{algo: GD} con incrementos $\sett{\alpha_k}$ que cumplen la condici\'on \ref{eq: Condicion robbins monro} entonces:
@@ -181,29 +181,29 @@ Consideremos ahora el algoritmo \ref{algo: GD}, decimos que los incrementos $\se
 	Hagamos los 3 pasos an\'alogos a la demostraci\'on de la proposici\'on \ref{Objetivo debilmente convexo, GD continue converge}:
 	
 	\begin{enumerate}
-		\item [Paso 1] Sea $h_k = \left(w_k - w^*\right)^2$.
+		\item [Paso 1] Sea $h_k = \norm{w_k - w^*}^2$.
 		\item [Paso 2] An\'alogo a la demostraci\'on de la proposici\'on \ref{Objetivo debilmente convexo, GD continue converge} notemos que:
 		
 		\begin{equation*}
 			\begin{aligned}
-			h_{k+1} = & \left(w_{k+1} - w^*\right)^2 \\
-			 = & \left(\left(w_k - w^*\right) - \alpha_k \nabla F(w_k)\right)^2 \\
-			 = & \left(w_k - w^*\right)^2 - 2 \left(w_k - w^*\right) \alpha_k \nabla F(w_k) + \alpha_k^2(\nabla F(w_k))^2
+			h_{k+1} = & \norm{w_{k+1} - w^*}^2 \\
+			 = & \ip{\left(w_k - w^*\right) - \alpha_k \nabla F(w_k), \left(w_k - w^*\right) - \alpha_k \nabla F(w_k)} \\
+			 = & \norm{w_k - w^*}^2 - 2  \alpha_k  \left(w_k - w^*\right)^T\nabla F(w_k) + \alpha_k^2 \norm{\nabla F(w_k)}^2
 			\end{aligned}
 		\end{equation*}
 		
 		Luego:
 		
 		\begin{equation*}
-			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k) + \alpha_k^2 (\nabla F(w_k))^2
+			h_{k+1} - h_k = -2 \alpha_k \left(w_k - w^* \right)^T\nabla F(w_k) + \alpha_k^2 \norm{\nabla F(w_k)}^2
 		\end{equation*}
 		
 		A diferencia de antes la naturaleza discreta del algoritmo lleva a un t\'ermino positivo en las variaciones, pero si usamos la condici\'on \ref{eq: Condicion robbins monro} y la hip\'otesis \ref{eq: Condicion gradiente acotado, ctp, batch} entonces:
 		
 		\begin{equation*}
 		\begin{aligned}
-			h_{k+1} - h_k = & \underbrace{-2 \alpha_k \left(w_k - w^* \right)\nabla F(w_k)}_{\substack{\leq 0 \\ \text{ por definici\'on \ref{def: Debilmente convexo}}}}  + \alpha_k^2 (\nabla F(w_k))^2 \\
-			\leq & \alpha_k^2 (\nabla F(w_k))^2 \\
+			h_{k+1} - h_k = & \underbrace{-2 \alpha_k \left(w_k - w^* \right)^T\nabla F(w_k)}_{\substack{\leq 0 \\ \text{ por definici\'on \ref{def: Debilmente convexo}}}}  + \alpha_k^2 \norm{\nabla F(w_k)}^2 \\
+			\leq & \alpha_k^2 \norm{\nabla F(w_k)}^2 \\
 			\leq & \alpha_k^2 \left(A + B h_k\right)
 		\end{aligned}
 		\end{equation*}
@@ -260,7 +260,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{definition}
 	\label{def: Fuertemente convexa}
-	Sea $f:\R^d \rightarrow \R$ tal que $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si para todos $x,y \in \R^d$ vale:
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, decimos que es \textit{fuertemente convexa} o $\mu$\textit{-convexa} si para todos $x,y \in \R^d$ vale:
 	
 	\begin{equation}
 		f(y) \geq f(x) + \nabla f(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2
@@ -269,7 +269,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 
 \begin{proposition}
 	\label{prop: equivalencias convexidad fuerte}
-	Sea $f:\R^d \rightarrow \R$ tal que $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, entonces son equivalentes:
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$ y $\mu >0$, entonces son equivalentes:
 	\begin{enumerate}
 		\item $f(y) \geq f(x) + \nabla f(x)^T\left(y-x\right) + \frac{\mu}{2} \norm{y-x}_2^2$ para todos $x,y \in \R^d$
 		\item $g(x) = f(x) - \frac{\mu}{2} \norm{x}_2^2$ es convexa para todo $x \in \R^d$
@@ -306,7 +306,7 @@ Como ya notamos previamente, la condici\'on de convexidad (en alguna medida) es 
 \end{proof}
 
 \begin{definition}
-	Dada una funci\'on objetivo $f:\R^d \rightarrow \R$ tal que $f \in C^1$ definimos el \textit{problema de optimizaci\'on regularizado en $L2$} cuando se minimiza $\tilde{f} = = f + \lambda \norm{x}_2^2$ para $\lambda >0$.
+	Dada una funci\'on objetivo $f:\R^d \rightarrow \R$ tal que $f \in C^1$ definimos el \textit{problema de optimizaci\'on regularizado en $L2$} cuando se minimiza $\tilde{f} = f + \lambda \norm{x}_2^2$ para $\lambda >0$.
 \end{definition}
 
 En Machine Learning es usual resolver el problema de optimizaci\'on regularizado en vez de el problema original. Esto se debe mayormente al siguiente resultado, que aunque no lo usemos \textit{per-se} en esta tesis, es de sumo inter\'es:
