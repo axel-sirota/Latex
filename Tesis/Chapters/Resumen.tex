@@ -2,7 +2,7 @@
 
 \epigraph{Si de verdad amas a alguien, reg\'alale un teorema; eso s\'i que es para siempre}{Eduardo Sanchez de Cabez\'on}
 
-A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resultados vistos en este trabajo.
+A modo de s\'intesis, presentamos un resumen de los resultados vistos en este trabajo.
 
 \section{Algoritmos de tipo Batch}
 
@@ -15,7 +15,7 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 	\norm{\nabla F(w)}^2 \leq A + B \norm{w - w^*}^2
 	\end{equation*}
 	
-	Luego si consideramos el algoritmo de \textit{descenso de gradiente por batch} tal que incrementos $\sett{\alpha_k}$  cumplen la \textit{condici\'on Robbins - Monro} entonces:
+	Luego si consideramos el algoritmo de \textit{descenso de gradiente por batch} tal que los incrementos $\sett{\alpha_k}$  cumplen la \textit{condici\'on Robbins - Monro} entonces:
 	
 	\begin{equation*}
 	w_k \underlimitinf{k} w^*
@@ -24,7 +24,7 @@ A modo de s\'intesis para utilidad pr\'oxima, presentamos un resumen de los resu
 \end{theorem}
 
 \begin{theorem}
-	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz} y \textit{PL-convexa}; entonces el algortimo \textit{descenso de gradiente por batch} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
+	Sea $F: \R^d \rightarrow \R$ la funci\'on objetivo tal que $F \in C^1$, $F$ es \textit{L-Lipshitz} y \textit{PL-convexa}; entonces el algortimo \textit{descenso de gradiente por batch} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
 	\begin{equation*}
 	F(w_k) - F_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
 	\end{equation*}
