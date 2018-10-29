@@ -4,7 +4,7 @@
 
 \section{Preliminares de Machine Learning}
 
-En esta secci\'on vamos a presentar en forma resumida el procedimiento por el cual se pasa desde un set de datos a aprender a un problema de optimizaci\'on, generalmente no convexo. De ninguna manera esta exposici\'on pretender ser exhaustiva y se basa principalmente en los excelentes trabajos de \cite{bottou:2016} y \cite{mohri:2012}.
+En esta secci\'on vamos a presentar en forma resumida el procedimiento por el cual se pasa desde un conjunto de datos a aprender a un problema de optimizaci\'on, generalmente no convexo. De ninguna manera esta exposici\'on pretender ser exhaustiva y se basa principalmente en los excelentes trabajos de \cite{bottou:2016} y \cite{mohri:2012}.
 
 \subsection{Procedimiento formal de machine learning.}
 
@@ -128,7 +128,7 @@ En un nivel intuitivo, DE emplea información de manera más eficiente que un m�
 
 \subsubsection{Motivación práctica}
 
-Los beneficios intuitivos que acabamos de describir se han observado repetidamente en la práctica, donde a menudo se encuentran ventajas muy reales de SG en muchas aplicaciones. Como ejemplo, la Figura \ref{gfx: de} compara el rendimiento de un método \textbf{L-BFGS} por batch\footnote[1]{El algoritmo L-BFGS no resulta importante \textit{per-se} en este trabajo, se lo menciona pues es un algoritmo de tipo batch de primer orden que resulto muy famoso en los '80 para problemas de clasificaci\'on} \cite{liu:1989} \cite{nocedal:1980} y el método SG con un incremento constante (es decir, $\alpha_k = \alpha$ para todos $k \in \N$) en un problema de clasificación binario que utiliza una función objetivo de pérdida logística y los datos del conjunto de datos RCV1 \footnote[2]{Esta colecci\'on de datos contiene caracter\'isticas de los documentos escritos originalmente en cinco idiomas diferentes y sus traducciones, en un conjunto com\'un de 6 categor\'ias, lo que lo convierte en un set de datos muy \'util a la hora de comparar algoritmos de clasificaci\'on de texto}. La figura traza el riesgo empírico $R_n$ en función del número de accesos de una muestra del conjunto de entrenamiento, es decir, el número de evaluaciones de un gradiente de muestra $\nabla f_{i_k}(w_k)$. Cada conjunto de $n$ accesos consecutivos se llama \textit{epoch}. El método por batch solo realiza un paso por \textit{epoch}, mientras que SG realiza $n$ pasos por \textit{epoch}. La trama muestra el comportamiento en los primeros 10 \textit{epochs}. La ventaja de SG es llamativa y representativa del comportamiento típico en la práctica. 
+Los beneficios intuitivos que acabamos de describir se han observado repetidamente en la práctica, donde a menudo se encuentran ventajas muy reales de SG en muchas aplicaciones. Como ejemplo, la Figura \ref{gfx: de} compara el rendimiento de un método \textbf{L-BFGS} por batch\footnote[1]{El algoritmo L-BFGS no resulta importante \textit{per-se} en este trabajo, se lo menciona pues es un algoritmo de tipo batch de primer orden que resulto muy famoso en los '80 para problemas de clasificaci\'on} \cite{liu:1989} \cite{nocedal:1980} y el método SG con un incremento constante (es decir, $\alpha_k = \alpha$ para todos $k \in \N$) en un problema de clasificación binario que utiliza una función objetivo de pérdida logística y los datos del conjunto de datos RCV1 \footnote[2]{Esta colecci\'on de datos contiene caracter\'isticas de los documentos escritos originalmente en cinco idiomas diferentes y sus traducciones, en un conjunto com\'un de 6 categor\'ias, lo que lo convierte en un conjunto de datos muy \'util a la hora de comparar algoritmos de clasificaci\'on de texto}. La figura traza el riesgo empírico $R_n$ en función del número de accesos de una muestra del conjunto de entrenamiento, es decir, el número de evaluaciones de un gradiente de muestra $\nabla f_{i_k}(w_k)$. Cada conjunto de $n$ accesos consecutivos se llama \textit{epoch}. El método por batch solo realiza un paso por \textit{epoch}, mientras que SG realiza $n$ pasos por \textit{epoch}. La trama muestra el comportamiento en los primeros 10 \textit{epochs}. La ventaja de SG es llamativa y representativa del comportamiento típico en la práctica. 
 
 Sin embargo, se debe tener en cuenta que para obtener un comportamiento tan eficiente, era necesario ejecutar SG varias veces usando diferentes opciones para $\alpha$ hasta que se identificara una buena opción para este problema en particular. Discutimos cuestiones teóricas y prácticas relacionadas con la elección de incrementos en nuestro análisis en la parte \ref{pt:algoritmosestocasticos}.
 
@@ -180,7 +180,7 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 \subsection{Espectro}
 
 \begin{definition}
-	Sea $f : X \rightarrow Y$, con $X,Y$ Banach, $f \in L(X,Y)$; definimos el espectro de $f$ de la siguiente manera:
+	Sea $f : X \rightarrow Y$, con $X,Y$ espacio de Banach, $f \in L(X,Y)$; definimos el espectro de $f$ de la siguiente manera:
 	
 	\begin{equation*}
 		\sigma(f) = \sett{\alpha \in \C \tq f- \alpha \text{ no es inversible}}
@@ -205,7 +205,7 @@ En resumen, existen argumentos intuitivos, prácticos y teóricos a favor de enf
 \end{proposition}
 
 \begin{theorem}[Teorema espectral para operadores compactos autoadjuntos]
-	Sea $X$ Hilbert y $T \in L(X)$ compacto y autoadjunto, entonces $T$ admite numerables autovalores distintos. 
+	Sea $X$ espacio de Hilbert y $T \in L(X)$ compacto y autoadjunto, entonces $T$ admite numerables autovalores distintos. 
 	
 	Es m\'as si $\sett{\lambda_1, \dots, \lambda_n, \dots} \subset \sigma_p(T) \cap \R^{\ast}$ y $P_n = P_{\ker(T-\lambda_n)}$ (donde notamos $P_{\ker(T-\lambda_n)}$ a la proyecci\'on ortogonal con respecto al autoespacio de $T$ asociado al autovalor $\lambda_n$) luego $P_nP_n = P_nP_m = 0$ si $n \neq m$ y vale:
 	
@@ -364,7 +364,7 @@ Recordemos adem\'as:
 
 \begin{theorem}[Teorema de la convergencia dominada]
 	\label{theorem: Convergencia dominada}
-	Sea $(f_n)$ una sucesi\'on de elementos medibles en $(\Omega, \Sigma, \mu)$ un espacio de medida tal que $f_n \rightarrow f$ ctp; si existe $g \in L^1$ tal que $\abs{f_n} \leq g$ entonces:
+	Sea $(f_n)$ una sucesi\'on de elementos medibles en $(\Omega, \Sigma, \mu)$ un espacio de medida tal que $f_n \rightarrow f$ c.t.p.; si existe $g \in L^1$ tal que $\abs{f_n} \leq g$ entonces:
 	
 	\begin{equation*}
 	\int\limits_{\Omega} {\abs{f_n -f}d\mu} \rightarrow 0
@@ -389,7 +389,7 @@ Recordemos adem\'as:
 		\end{equation*}
 	\end{enumerate}
 
-	Es m\'as, si $\widetilde{Y}$ es otra variable aleatoria que cumple las propiedades, entonces $Y = \widetilde{Y}$ ctp.
+	Es m\'as, si $\widetilde{Y}$ es otra variable aleatoria que cumple las propiedades, entonces $Y = \widetilde{Y}$ c.t.p..
 	
 \end{proposition}
 
@@ -404,9 +404,9 @@ Recordemos adem\'as:
 	Demostremos la existencia y unicidad:
 	
 	\begin{enumerate}
-		\item {\textbf{Unicidad ctp}}
+		\item {\textbf{Unicidad c.t.p.}}
 		
-		Sea $X \in L^1$ e $Y,\widetilde{Y}$ dos versiones de $\expectation{X \vert \mathcal{G}}$ tal que no son iguales ctp, luego como $\sett{Y - \widetilde{Y} > \frac{1}{n}} \nearrow \sett{Y > \widetilde{Y}}$ existe $N$ tal que:
+		Sea $X \in L^1$ e $Y,\widetilde{Y}$ dos versiones de $\expectation{X \vert \mathcal{G}}$ tal que no son iguales c.t.p., luego como $\sett{Y - \widetilde{Y} > \frac{1}{n}} \nearrow \sett{Y > \widetilde{Y}}$ existe $N$ tal que:
 		
 		\begin{equation*}
 			P\left(Y - \widetilde{Y} > \frac{1}{N}\right) > 0
@@ -418,11 +418,11 @@ Recordemos adem\'as:
 			0 \underbrace{=}_{Y,\widetilde{Y} = \expectation{X \vert \mathcal{G}}} \int\limits_{\sett{Y - \widetilde{Y} > \frac{1}{N}}} {Y - \widetilde{Y}} \geq \frac{1}{N} P \left(\sett{Y - \widetilde{Y} > \frac{1}{N}}\right) > 0
 		\end{equation*}
 		
-		Luego $Y = \widetilde{Y}$ ctp.
+		Luego $Y = \widetilde{Y}$ c.t.p..
 		
 		\item {\textbf{Existencia en $L^2$}}
 		
-		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2(\Omega, \mathcal{F}, P)$ y como $L^2$ es Hilbert existe $Y \in \mathcal{K} $ tal que:
+		Sea $\mathcal{K} = L^2(\Omega, \mathcal{G}, P)$, sabemos que $\mathcal{K} $ es completo en $L^2(\Omega, \mathcal{F}, P)$ y como $L^2$ es espacio de Hilbert existe $Y \in \mathcal{K} $ tal que:
 		
 		\begin{equation*}
 			\expectation{\left(X - Y \right)^2} = \inf \sett{\expectation{\left(X - W \right)^2} \tq W \in \mathcal{K}}
@@ -454,26 +454,26 @@ Recordemos adem\'as:
 	
 	\begin{enumerate}
 		\item $\expectation{\expectation{X \vert \mathcal{G}}} = \expectation{X}$
-		\item Si $X$ es $\mathcal{G}$ medible entonces $X = \conditionalExpectation{X}{\G} $ ctp
+		\item Si $X$ es $\mathcal{G}$ medible entonces $X = \conditionalExpectation{X}{\G} $ c.t.p.
 		\item $\conditionalExpectation{aX + bY}{\G} = a\conditionalExpectation{X}{\G} + b \conditionalExpectation{Y}{\G}$
-		\item Si $X \geq 0$ ctp, entonces $\conditionalExpectation{X}{\G} \geq 0$ ctp
+		\item Si $X \geq 0$ c.t.p., entonces $\conditionalExpectation{X}{\G} \geq 0$ c.t.p.
 		\item Si $0 \leq X_n \nearrow X$ entonces $\conditionalExpectation{X_n}{\G} \nearrow \conditionalExpectation{X}{\G}$
-		\item Si $0 \leq X_n$ ctp entonces $\conditionalExpectation{\liminf X_n}{\G} \leq \liminf \conditionalExpectation{X_n}{\G}$
-		\item Si $\abs{X_n} \leq V$ con $V \in L^1$ entonces si $X_n \rightarrow X$ ctp vale que $\conditionalExpectation{X_n}{\G} \rightarrow \conditionalExpectation{X}{G}$ ctp.
+		\item Si $0 \leq X_n$ c.t.p. entonces $\conditionalExpectation{\liminf X_n}{\G} \leq \liminf \conditionalExpectation{X_n}{\G}$
+		\item Si $\abs{X_n} \leq V$ con $V \in L^1$ entonces si $X_n \rightarrow X$ c.t.p. vale que $\conditionalExpectation{X_n}{\G} \rightarrow \conditionalExpectation{X}{G}$ c.t.p..
 		\item Si $\mathcal{H}$ es una sub-$\sigma-$\'algebra de $\G$ entonces:
 		
 		\begin{equation*}
 			\conditionalExpectation{X}{\G \vert \mathcal{H}} := \conditionalExpectation{\conditionalExpectation{X}{\G}}{\mathcal{H}} = \conditionalExpectation{X}{\mathcal{H}}
 		\end{equation*}
 		
-		\item Si $Z$ es $\G$ medible y acotada entonces $\conditionalExpectation{ZX}{\G} = Z \conditionalExpectation{X}{\G}$ ctp
+		\item Si $Z$ es $\G$ medible y acotada entonces $\conditionalExpectation{ZX}{\G} = Z \conditionalExpectation{X}{\G}$ c.t.p.
 		\item Si $\mathcal{H}$ es independiente de $\sigma\left(\sigma(X), \G\right)$ entonces:
 		
 		\begin{equation*}
-			\conditionalExpectation{X}{\sigma \left(\G, \mathcal{H}\right)} = \conditionalExpectation{X}{G} \ ctp
+			\conditionalExpectation{X}{\sigma \left(\G, \mathcal{H}\right)} = \conditionalExpectation{X}{G} \ c.t.p.
 		\end{equation*}
 		
-		En particular, si $X$ es independiente de $\G$ vale que $\conditionalExpectation{X}{\G} = \expectation{X}$ ctp. 
+		En particular, si $X$ es independiente de $\G$ vale que $\conditionalExpectation{X}{\G} = \expectation{X}$ c.t.p.. 
 		
 	\end{enumerate}
 	
@@ -500,7 +500,7 @@ Recordemos adem\'as:
 	\begin{itemize}
 		\item $X$ es adaptado
 		\item $X_n \in L^1$
-		\item $\conditionalExpectation{X_n}{\F_{n-1}} = X_{n-1}$ ctp
+		\item $\conditionalExpectation{X_n}{\F_{n-1}} = X_{n-1}$ c.t.p.
 	\end{itemize}
 
 	A su vez decimos que es una (sub)supermartingala si vale la condici\'on $\conditionalExpectation{X_n}{\F_{n-1}} (\leq)\geq X_{n-1}$
@@ -548,11 +548,11 @@ Ahora estamos en condiciones de enunciar el resultado principal de esta secci\'o
 	Dado un proceso estoc\'astico $\sett{u_k}$ adaptado a un espacio filtrado $\left(\Omega, \F, \sett{\mathcal{P}_k}, P\right)$ tal que:
 	
 	\begin{itemize}
-		\item $u_k \geq 0$ ctp
+		\item $u_k \geq 0$ c.t.p.
 		\item $\sum\limits_{k=1}^{\infty} {\expectation{\delta^u_k\left(u_{k+1} - u_k\right)}} < \infty$
 	\end{itemize}
 	
-	Entonces $\sett{u_k}$ es una cuasi-martingala tal que $u_k \rightarrow u_{\infty} \geq 0$ ctp.
+	Entonces $\sett{u_k}$ es una cuasi-martingala tal que $u_k \rightarrow u_{\infty} \geq 0$ c.t.p..
 	
 \end{theorem}
 

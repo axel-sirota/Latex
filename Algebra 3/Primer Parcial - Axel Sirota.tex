@@ -1,0 +1,548 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{mytheorem}{Theorem}
+ %
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheorem{proposition}[theorem]{Proposici\'on}
+
+\newtheorem{corollary}[theorem]{Corolario}
+
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf \'Algebra 3}
+	\centerline{\sc Primer Parcial}
+	\centerline{\sc Axel Sirota}
+	
+\begin{enumerate}
+	\item[Ejercicio 1] 
+	
+	\begin{itemize}
+		\item 
+	Primero recordemos el ejercicio 27 de la pr\'actica 3 que dice:
+	
+	\begin{equation*}
+		Gal \left(K(t) / K\right) \simeq PGL_2(K)
+	\end{equation*}
+	
+	Luego afirmo que en realidad $G = \ip{\tau, \sigma, i} = Gal \left(K(t) / K\right)$ de lo que el orden de $G$ va a ser el orden de $PGL_2(K) = q^3 - q$.
+	
+	En pos de eso, para un lado es claro que los tres generadores de $G$ estan en $Gal \left(K(t) / K\right)$, luego $G \subseteq Gal \left(K(t) / K\right)$. Rec\'iprocamente,  notemos que si $f \in Gal \left(K(t) / K\right)$ entonces ya sabemos que $f(t) = \dfrac{at+b}{ct+d}$ donde $ac-bd \neq 0$; por lo tanto podemos representarlo como $f(t) = \dfrac{A}{Ct + D} + B$.
+	
+	Luego, si notamos $\sigma_C(t) = Ct$, $t_B(t) = t + B$:
+	
+	\begin{equation*}
+		\begin{aligned}
+			f(t) = & \sigma_C\left(\dfrac{A}{t + D} + B\right) \\
+			= & \sigma_C \circ \tau_D \left(\dfrac{A}{t} + B\right) \\
+			= & \sigma_C \circ \tau_D \circ -i \left(At + B\right) \\
+			= & \sigma_C \circ \tau_D \circ -i \circ \tau_B \circ \sigma_A(t)
+		\end{aligned}
+	\end{equation*}
+	
+	Para concluir, es claro que como $B \in K$ entonces $\tau_B = \tau^{B}$ y como $\left(8, 37\right) = 1$ y $37$ es primo (ac\'a usamos que $K = \mathbb{F}_{37}$) entonces existe $j_A, j_C \in \sett{1, \dots, 36}$ tal que $A = 8^{j_A}$ y $C = 8^{j_C}$. Luego tenemos que para $f \in Gal \left(K(t) / K\right)$ existe $j_A, B, D, j_C \in \mathbb{F}_{37}$ tal que $f = \sigma^{j_C} \circ \tau^{D} \circ -i \circ \tau^{B} \circ \sigma^{j_A}$; concluimos que $G = Gal \left(K(t) / K\right)$ y como $\abs{Gal \left(K(t) / K\right)} = q^3 - q$ ya sabemos el orden de $G$.
+	
+	\item Sean $p,q \in \mathbb{F}_{37}[t]$ coprimos y analicemos que tiene que pasar para que $\frac{f}{g} \in \mathbb{F}_{37}(t)^{\ip{h}}$ donde $h$ van a ser $\sigma, \tau, i$ respectivamente. 
+	
+	Para $\sigma$ notemos que si $u = t^{36}$ entonces para $f \in \mathbb{F}_{37}[t]$ vale:
+	
+	\begin{equation*}
+		\begin{aligned}
+		\sigma\left(f(t^{36})\right) = & \sum\limits_{i \in sop(f)}{\sigma\left(a_i (t^{36})^{i} \right)} \\
+		= & \sum\limits_{i \in sop(f)} {a_i \left(\sigma(t^{36})\right)^i} \\
+		= & \sum\limits_{i \in sop(f)} {a_i \left(\underbrace{8^{36}}_{\cong 1 \text{ mod }(37)}(t^{36})\right)^i} \\
+		=  & f(t^{36})
+		\end{aligned}
+	\end{equation*}
+	
+	Luego si $u = t^{36}$ vimos que $\mathbb{F}_{37}(t^{36}) \subset E^{\ip{\sigma}}$. 
+	
+	Por un lado, como $ord(\sigma) = 37$ pues $mcd(8,37) = 1$ del teorema de Galois sabemos que $\left[E: E^{\ip{\sigma}}\right] = 36$; por el otro, como $f(x) = x^{36} - t^{36} \in \mathbb{F}_{37}(t^{36})[X]$ es m\'onico, irreducible (Einseinstein en $t^{36}$ que es primo) y anula a $t$ sabemos que $\left[\mathbb{F}_{37}(t^{36}): \mathbb{F}_{37}(t)\right] = 36$. Luego, juntando todo, tenemos la torre $\mathbb{F}_{37}(t^{36})  \subseteq E^{\ip{\sigma}} \subseteq \mathbb{F}_{37}(t) $ donde:
+
+	\begin{equation*}
+		\left[\mathbb{F}_{37}(t^{36}): E^{\ip{\sigma}}\right] = \dfrac{\left[\mathbb{F}_{37}(t^{36}): \mathbb{F}_{37}(t)\right]}{\left[\mathbb{F}_{37}(t): E^{\ip{\sigma}}\right]} = 1
+	\end{equation*}
+	
+	De lo que concuimos que $E^{\ip{\sigma}} = \mathbb{F}_{37}(t^{36})$.
+	
+	Ahora vayamos a $i$! Si $u = t^2 + t^{-2}$ entonces para $f \in \mathbb{F}_{37}[t]$ vale:
+	
+	\begin{equation*}
+	\begin{aligned}
+	i\left(f(t^2 + t^{-2})\right) = & \sum\limits_{i \in sop(f)}{i\left(a_i (t^2 + t^{-2})^{i} \right)} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(i(t^2 + t^{-2})\right)^i} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(i(t)^2 + \left(\frac{1}{i(t)}\right)^{2}\right)^i} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(t^{-2} + t^{2})\right)^i} \\
+	=  & f(t^2 + t^{-2})
+	\end{aligned}
+	\end{equation*}
+	
+	Luego si $u = t^{2} + t^{-2}$ vimos que $\mathbb{F}_{37}(u) \subset E^{\ip{i}}$. 
+	
+	A continuaci\'on notemos que en realidad $i = i_1 \circ i_2$ donde $i_1(t) = -t$ y $i_2(t) = \frac{1}{t}$ cumplen las relaciones $i_1^2 = i_2^2 = Id$ y $i_1 \circ i_2 = i_2 \circ i_1$; por lo tanto $\ip{i_1, i_2} = \ip{i} \simeq \Z_2 \times \Z_2$. Luego $4 = \abs{Gal \left(\quotient{\mathbb{F}_{37}(t)}{E^{\ip{i}}}\right)} = \left[E: E^{\ip{i}}\right]$ por el teorema de Galois.
+	
+	Por otro lado, si $p(x) = x^4 - x^2 \left(t^2 + t^{-2}\right) + 1$ entonces $p \in \mathbb{F}_{37}(t^2 + t^{-2})[X]$ es m\'onico y $p(t) = 0$, por lo que $f\left(t, \mathbb{F}_{37}(t^2 + t^{-2})\right) \vert p$ con lo que $\left[\mathbb{F}_{37}(u): \mathbb{F}_{37}(t)\right] \leq 4$.
+	
+	Luego, juntando todo, tenemos la torre $\mathbb{F}_{37}(u)  \subseteq E^{\ip{i}} \subseteq \mathbb{F}_{37}(t) $ donde:
+	
+	\begin{equation*}
+	\left[\mathbb{F}_{37}(u): E^{\ip{i}}\right] = \dfrac{\left[\mathbb{F}_{37}(u): \mathbb{F}_{37}(t)\right]}{\left[\mathbb{F}_{37}(t): E^{\ip{i}}\right]} = 1
+	\end{equation*}
+	
+	Pues $1 \leq \left[\mathbb{F}_{37}(u): E^{\ip{i}}\right] \leq 1$, de lo que concuimos que $E^{\ip{i}} = \mathbb{F}_{37}(t^{2} + t^{-2})$.
+	
+	Finalmente analicemos a $\tau$, si $u = t^{37} - t$ entonces para $f \in \mathbb{F}_{37}[t]$ vale:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\tau\left(f(t^{37} - t)\right) = & \sum\limits_{i \in sop(f)}{\tau\left(a_i (t^{37} - t)^{i} \right)} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(\tau(t^{37} - t)\right)^i} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(\left(t + 1\right)^{37} - t - 1\right)^i} \\
+	= & \sum\limits_{i \in sop(f)} {a_i \left(t^{37} + 1^{37} - t - 1\right)^i} \\
+	=  & f(t^{37} - t)
+	\end{aligned}
+	\end{equation*}
+	
+	Luego si $u = t^{37} - t$ vimos que $\mathbb{F}_{37}(u) \subset E^{\ip{\tau}}$. 
+	
+	Por un lado, como $ord(\tau) = 37$ del teorema de Galois sabemos que $\left[E: E^{\ip{\tau}}\right] = 37$; por el otro, como $f(x) = x^{37} - x - t^{37} + t \in \mathbb{F}_{37}(t^{37} - t)[X]$ es m\'onico, irreducible (Einseinstein en $t^{37} - t$ que es primo) y anula a $t$ sabemos que $\left[\mathbb{F}_{37}(t^{37} - t): \mathbb{F}_{37}(t)\right] = 37$. Luego, juntando todo, tenemos la torre $\mathbb{F}_{37}(t^{37} - t)  \subseteq E^{\ip{\tau}} \subseteq \mathbb{F}_{37}(t) $ donde:
+	
+	\begin{equation*}
+	\left[\mathbb{F}_{37}(t^{37} - t): E^{\ip{\tau}}\right] = \dfrac{\left[\mathbb{F}_{37}(t^{37} - t): \mathbb{F}_{37}(t)\right]}{\left[\mathbb{F}_{37}(t): E^{\ip{\tau}}\right]} = 1
+	\end{equation*}
+	
+	De lo que concuimos que $E^{\ip{\tau}} = \mathbb{F}_{37}(t^{37} - t)$.
+	
+	Para concluir el punto notemos que ahora simplemente tenemos que juntar lo que fuimos descubriendo! Es decir es claro que:
+	
+	\begin{equation*}
+		\begin{array}{rcl}
+			E^{\ip{\sigma}} & = & \mathbb{F}_{37}\left(t^{36}\right) \\
+			E^{\ip{\sigma, i}} & = & \mathbb{F}_{37}\left(\left(t^2 - t^{-2}\right)^{36}\right) \\
+			E^{\ip{\sigma, \tau}} & = & \mathbb{F}_{37}\left(\left(t^{37} - t\right)^{36}\right) \\
+			E^{\ip{\tau, i}} & = & \mathbb{F}_{37}\left(\left(t^{2} + t^{-2} \right)^{37} - t^{2} + t^{-2} \right)
+		\end{array}
+	\end{equation*}
+	
+	\item Afirmo que $f(t) = \dfrac{\left(t^{37^2} - t\right)^{38}}{\left(t^{37} - t\right)^{37^2 + 1}}$ cumple que $\mathbb{F}_{37}(t)^{\ip{\sigma, i , \tau}} = \mathbb{F}_{37}(t)^{Gal(\mathbb{F}_{37}(t))} = \mathbb{F}_{37}(f)$.
+	
+	Por un lado recordemos que $q^3 - q = \abs{Gal \left(\quotient{\mathbb{F}_{37}(t)}{E^{G}}\right)} = \left[E: E^{G}\right]$ por el teorema de Galois y el primer punto; y por el otro del ejercicio 19 de la pr\'actica 2 si $f = \frac{g}{h} \in E \setminus \mathbb{F}_{37}$ entonces $\left[E: E(f)\right] = \max \left\lbrace gr(g), gr(h) \right\rbrace$. Luego, si probamos que al reducir $f$ a factores coprimos $g,h$ vale que $\max \left\lbrace gr(g), gr(h) \right\rbrace= q^3 - q$ podemos concluir, ya que claramente $\mathbb{F}_{37}(f) \subseteq E^G$, que $E^G = \mathbb{F}_{37}(f)$.
+	
+	Notemos que:
+	
+	\begin{equation*}
+		\begin{aligned}
+			\dfrac{\left(t^{37^2} - t\right)^{38}}{\left(t^{37} - t\right)^{37^2 + 1}} = & \dfrac{t^{q+1}\left(t^{q^2 -1} - 1\right)^{q+1}}{t^{q^2 + 1}\left(t^{q-1} - 1\right)^{q^2 + 1}} \\
+			= & \dfrac{\left( \left(t^{q -1} \right)^{q+1} - 1\right)^{q+1}}{t^{q^2 - q} \left(t^{q-1} - 1\right)^{q^2 + 1}} \\
+			= & \dfrac{\left( \left(t^{q -1} \right) - 1\right)^{q+1} \left(\sum\limits_{r=0}^{q}{t^{(q-1)r}}\right)^{q+1}}{t^{q^2 - q} \left(t^{q-1} - 1\right)^{q^2 + 1}}  \\
+			= & \dfrac{\left(\sum\limits_{r=0}^{q}{t^{(q-1)r}}\right)^{q+1}}{t^{q^2 - q} \left(t^{q-1} - 1\right)^{q^2 -q}}  \\
+			= & \frac{g}{h} \qquad \text{pues } (g,h) = 1
+		\end{aligned}
+	\end{equation*}
+	
+	Y finalmente $\max \left\lbrace gr(g), gr(h) \right\rbrace = \max \sett{\underbrace{q^2 - q + \left(q-1\right)\left(q^2 - q\right)}_{q^3 - q^2}, \underbrace{(q-1)q(q+1)}_{q^3 - q}} = q^3 - q$, luego conlcuimos que $E^G = \mathbb{F}_{37}(f)$. \qed
+	
+	\end{itemize}
+	
+	\item[Ejercicio 2] 
+	
+	\begin{itemize}
+		\item Notemos primero que $\beta^2 = 10 + 5\sqrt{2} + 2\sqrt{5} + \sqrt{10} \in \Q[\sqrt{2}, \sqrt{5 }]$; luego como $\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}$ es separable de la te\'orica sabemos que para todo $\alpha \in \Q[\sqrt{2}, \sqrt{5 }]$ vale:
+		
+		\begin{equation*}
+			f \left(\alpha, \Q\right) = \prod\limits_{i=1}^{4} \left(x - \sigma_i(\alpha)\right)
+		\end{equation*}
+		
+		Donde $\sett{\sigma_i}_i$ son los elementos de $Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right)$.
+		
+		Por otro lado, ya de la pr\'actica sabemos que $Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right) \simeq \Z_2 \times \Z_2$ y los $4$ morfismos est\'an generados por las restricciones de la conjugaci\'on en $\quotient{\Q[\sqrt{5 }]}{\Q}$ y $\quotient{\Q[\sqrt{2}]}{\Q}$; por lo tanto:
+		
+		\begin{equation*}
+			\begin{aligned}
+				f \left(\beta^2, \Q\right) = & \left(x - \left(10 -5\sqrt{2} + 2\sqrt{5} - \sqrt{10}\right)\right)\left(x - \left(10 +5\sqrt{2} - 2\sqrt{5} - \sqrt{10}\right)\right) \\
+				& \left(x - \left(10 +5\sqrt{2} + 2\sqrt{5} + \sqrt{10}\right)\right)\left(x - \left(10 -5\sqrt{2} - 2\sqrt{5} + \sqrt{10}\right)\right) \\
+				= & x^4 - 40x^3 + 440x^2 - 1600 x +1600 \qquad \text{ si hice bien las cuentas}
+			\end{aligned}
+		\end{equation*}
+		
+		De yapa, como ya sabemos que $f$ es el minimal y tiene grado $4$, sacamos que $\Q[\sqrt{2}, \sqrt{5}] = \Q[\beta^2]$ pues  ya hab\'iamos visto una inclus\'on y sus grados sobre $\Q$ son iguales.
+		
+		Para continuar, entonces tenemos la torre $\Q \subsetneq \Q[\beta^2] \subsetneq \Q[\beta]$ donde se ve las inclusiones son estrictas, pero como $\quotient{\Q[\beta^2]}{\Q[\beta]}$ es una extensi\'on cuadr\'atica ya sabemos que $f(\beta, \Q[\beta^2]) = x^2 - \beta^2$ por lo que vimos en la pr\'actica; por lo tanto por grados sabemos que $[\Q[\beta], \Q] = 8$.
+		
+		Para concluir este punto, recordemos adem\'as que como $\Q$ es de caracter\'istica 0 todas nuestras extensiones son separabales y eso implica que $Hom(\quotient{\Q[\beta]}{\Q}) = Hom\left(\quotient{\Q[\beta]}{\Q[\beta^2]}\right) \times Hom\left(\quotient{\Q[\beta^2]}{\Q}\right)$ de lo que dedujimos en la te\'orica que:
+		
+		\begin{equation*}
+			f\left(\beta, \Q\right) = \prod\limits_{\psi \in Hom\left(\quotient{\Q[\beta^2]}{\Q}\right)}{\psi \left(f\left(\beta, \Q[\beta^2]\right)\right)}
+		\end{equation*}
+		
+		Como hab\'iamos visto que $f\left(\beta, \Q[\beta^2]\right) = x^2 - \beta^2 = p$ entonces:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\sigma_1\left(x^2 - \left(10 + 2\sqrt{5} + 5\sqrt{2} + \sqrt{10}\right)\right) = & \left(x^2 - \left(10 -5\sqrt{2} + 2\sqrt{5} - \sqrt{10}\right)\right) \\
+				\sigma_2\left(x^2 - \left(10 + 2\sqrt{5} + 5\sqrt{2} + \sqrt{10}\right)\right) = & \left(x^2 - \left(10 +5\sqrt{2} - 2\sqrt{5} - \sqrt{10}\right)\right) \\
+				\sigma_3\left(x^2 - \left(10 + 2\sqrt{5} + 5\sqrt{2} + \sqrt{10}\right)\right) = & \left(x^2 - \left(10 +5\sqrt{2} + 2\sqrt{5} + \sqrt{10}\right)\right)\\
+				\sigma_4\left(x^2 - \left(10 + 2\sqrt{5} + 5\sqrt{2} + \sqrt{10}\right)\right) = & \left(x^2 - \left(10 -5\sqrt{2} - 2\sqrt{5} + \sqrt{10}\right)\right)
+			\end{aligned}
+		\end{equation*}
+		
+		De lo que deducimos que:
+		
+		\begin{equation*}
+		\begin{aligned}
+		f \left(\beta, \Q\right) = & \left(x^2 - \left(10 -5\sqrt{2} + 2\sqrt{5} - \sqrt{10}\right)\right)\left(x^2 - \left(10 +5\sqrt{2} - 2\sqrt{5} - \sqrt{10}\right)\right) \\
+		& \left(x^2 - \left(10 +5\sqrt{2} + 2\sqrt{5} + \sqrt{10}\right)\right)\left(x^2 - \left(10 -5\sqrt{2} - 2\sqrt{5} + \sqrt{10}\right)\right) \\
+		= & x^8 - 40x^6 + 440x^4 - 1600 x^2 +1600 \qquad \text{ si hice bien las cuentas}
+		\end{aligned}
+		\end{equation*}
+		
+		Y sabemos que es el minimal (adem\'as de por todos los teoremas) porque es m\'onico, anula a $\beta$ (se ve) y es del grado correcto.
+		
+		\item Si recopilamos un poco lo que fuimos calculando notemos que llegamos a la conclusi\'on que las 8 ra\'ices del minimal son $\pm\sqrt{\left(2 \pm \sqrt{2}\right)\left(5 \pm \sqrt{5}\right)}$, veamos que todas est\'an en $\Q[\beta]$ y para eso es claro que basta verlo para $\sqrt{\left(2 \pm \sqrt{2}\right)\left(5 \pm \sqrt{5}\right)}$.
+		
+		Sea $\alpha_1 = \sqrt{\left(2 - \sqrt{2}\right) \left(5 +\sqrt{5}\right)}$, luego $\alpha_1\beta = \sqrt{\left(2^2 - 2\right)\left(5 + \sqrt{5}\right)^2} = \sqrt{2}\left(5 + \sqrt{5}\right) \in \Q[\sqrt{2}, \sqrt{5}] = \Q[\beta]$. Similarmente sea $\alpha_2 = \sqrt{\left(2 + \sqrt{2}\right) \left(5 -\sqrt{5}\right)}$ y vemos que $\alpha_2\beta = 2\sqrt{5}\left(2+\sqrt{2}\right) \in \Q[\beta]$; y $\alpha_3 = \sqrt{\left(2 - \sqrt{2}\right) \left(5 -\sqrt{5}\right)}$ que se ve que $\alpha_3\beta = 2\sqrt{2}\sqrt{5} \in \Q[\beta]$. Luego conlcu\'imos que $\pm \alpha_1, \pm \alpha_2, \pm \alpha_3 \in \Q[\beta]$ de lo que deducimos que las $8$ ra\'ices de $f\left(\beta, \Q\right)$ est\'an en $\Q[\beta]$m, lo que dice que $\Q[\beta]$ es el cuerpo de descomposici\'on de $f$ y por ende es Galois.
+		
+		\item Sea $\sigma \in Gal\left(\quotient{\Q[\beta]}{\Q}\right)$ un automorfismo que mande $\beta$ a $\alpha_1 := \alpha$, luego por ser automorfismo sabemos que:
+		
+		\begin{equation*}
+			\left(2 + \sigma(\sqrt{2})\right)\left(5 + \sigma(\sqrt{5})\right) = \sigma\left(\left(2 + \sqrt{2}\right)\left(5 + \sqrt{5}\right)\right) = \sigma(\beta^2) = \sigma(\beta)^2 = \alpha^2 = \left(2 - \sqrt{2}\right) \left(5 +\sqrt{5}\right)
+		\end{equation*}
+		
+		Y concluimos que $\sigma(\sqrt{2}) = -\sqrt{2}$ y $\sigma(\sqrt{5}) = \sqrt{5}$. Luego:
+		
+		\begin{equation*}
+			\sigma(\alpha)\alpha = \sigma(\alpha)\sigma(\beta) = \sigma(\alpha \beta) = \sigma(\sqrt{2})(5 + \sigma(\sqrt{5})) = - \sqrt{2}(5 + \sqrt{5}) = -\alpha\beta
+		\end{equation*}
+		
+		Por lo que $\sigma(\alpha)= -\beta$	y tenemos el siguiente diagrama de la acci\'on de $\sigma$:
+		
+		\begin{equation*}
+			\beta \rightarrow \alpha \rightarrow - \beta \rightarrow - \alpha \rightarrow \beta
+		\end{equation*}
+		
+		Y $\sigma$ es un elemento de orden 4. Similarmente vamos a analizar $\tau\in Gal\left(\quotient{\Q[\beta]}{\Q}\right)$ tal que $\tau(\beta) = \alpha_2:= \omega = \sqrt{\left(2 + \sqrt{2}\right) \left(5 -\sqrt{5}\right)}$.
+		
+		\begin{equation*}
+		\left(2 + \tau(\sqrt{2})\right)\left(5 + \tau(\sqrt{5})\right) = \tau\left(\left(2 + \sqrt{2}\right)\left(5 + \sqrt{5}\right)\right) = \tau(\beta^2) = \sigma(\beta)^2 = \omega^2 = \left(2 + \sqrt{2}\right) \left(5 -\sqrt{5}\right)
+		\end{equation*}
+		
+		Y concluimos que $\tau(\sqrt{2}) = \sqrt{2}$ y $\tau(\sqrt{5}) = -\sqrt{5}$. Luego:
+		
+		\begin{equation*}
+		\tau(\omega)\omega = \tau(\omega)\tau(\beta) = \tau(\omega\beta) = 2\tau(\sqrt{5})(2 + \tau(\sqrt{2})) = - 2\sqrt{5}(2 + \sqrt{2}) = - \omega\beta
+		\end{equation*}
+		
+		Por lo que $\tau(\omega)= -\beta$	y tenemos el siguiente diagrama de la acci\'on de $\tau$:
+		
+		\begin{equation*}
+		\beta \rightarrow \omega \rightarrow - \beta \rightarrow - \omega \rightarrow \beta
+		\end{equation*}
+		
+		Y $\tau$ es un elemento de orden 4. A su vez notamos que $\sigma, \tau$ generan y que $\sigma^2 = \tau^2$ con lo que nos faltar\'ia ver si conmutan; en pos de eso
+		
+		\begin{equation*}
+			\begin{aligned}
+				\dfrac{\sigma(\beta)^2}{\beta^2} = & \dfrac{2 - \sqrt{2}}{2 + \sqrt{2}} = & \left(\dfrac{2 - \sqrt{2}}{\sqrt{2}}\right)^2 = & \left(\sqrt{2} - 1\right)^2 \\
+				\dfrac{\tau(\beta)^2}{\beta^2} = & \dfrac{5 - \sqrt{5}}{5 + \sqrt{5}} = & \left(\dfrac{5 - \sqrt{5}}{2\sqrt{5}}\right)^2 = & \left(\dfrac{\sqrt{5} - 1}{2}\right)^2 \\				
+			\end{aligned}
+		\end{equation*}
+		
+		Lo que podemos deducir que (si notamos de igual manera a la extension):
+		
+		\begin{equation*}
+			\begin{aligned}
+				\sigma(\beta) = \left(\sqrt{2} - 1\right)\beta \\
+				\tau(\beta) = \dfrac{\sqrt{5} - 1}{2} \beta
+			\end{aligned}
+		\end{equation*}
+		
+		Luego si vemos como actuan las composiciones en $\beta$:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\beta \xrightarrow{\tau} \dfrac{\sqrt{5} - 1}{2} \beta \xrightarrow{\sigma} \dfrac{\sqrt{5} - 1}{2}\left(\sqrt{2} - 1\right)\beta \\
+				\beta \xrightarrow{\sigma} \left(\sqrt{2} - 1\right)\beta \xrightarrow{\tau} \dfrac{\sqrt{5} - 1}{2}\left(\sqrt{2} - 1\right)\beta 
+			\end{aligned}
+		\end{equation*}
+		
+		Por lo que conclu\'imos que una presentaci\'on de $Gal\left(\quotient{\Q[\beta]}{\Q}\right)$ es
+		
+		 $\sett{\sigma, \tau \tq \sigma^4 = \tau^4 = Id \ , \ \sigma^2 = \tau^2 \ , \ \sigma\tau = \tau\sigma } \simeq \Z_4 \times \Z_2$
+		
+		\item Este punto es muy parecido a la pr\'actica asi que notemos que tenemos la torre de extensiones $\Q \subseteq \Q[\sqrt{10}] \subseteq \Q[\sqrt{10 + \sqrt{10}}]$ y veamos que son inclusiones estrictas.
+		
+		Es simple y ya sabemos que $\sqrt{10} \not \in \Q$, luego asumamos que $\sqrt{10 + \sqrt{10}} \in \Q[\sqrt{10}] $; entonces existen $a,b \in \Q$ tal que $\sqrt{10 + \sqrt{10}} = a + b \sqrt{10}$. Elevando al cuadrado e igualando t\'ermino a t\'ermino de la base $\sett{1, \sqrt{10}}$ de $\Q[\sqrt{10}]$ tenemos el sistema:
+		
+		\begin{equation*}
+			\begin{aligned}
+				2ab = 1 \\
+				a^2 + 10b^2 = 10
+			\end{aligned}
+		\end{equation*}
+		
+		Lo que lleva a que $b = \frac{1}{2a}$ y $a$ cumpla $a^4 + \frac{10}{4}-10a^2 =0$ que podemos verificar que no tiene soluciones racionales; luego las inclusiones son estrictas.
+		
+		Pero como $p_1 = x^2 - 10 \in \Q[X]$ y $p_2 = x^2 - \left(10 + \sqrt{10}\right) \in \Q[\sqrt{10}]$ son polinomios m\'onicos y anulan a $\sqrt{10}, \sqrt{10+\sqrt{10}}$ respectivamente podemos concluir que ambas extensiones son cuadr\'aticas y esos son los polinomios minimales; es m\'as, tenemos en conclusi\'on que el grado de la extensi\'on $\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}$ es $4$.
+		
+		Si hacemos lo mismo que en el primer punto, podemos verificar entonces que las 4 ra\'ices del polinomio minimal resultan $\pm \sqrt{10 \pm \sqrt{10}}$ y todas se encuentran en $\Q[\sqrt{10 + \sqrt{10}}]$ pues:
+		
+		\begin{equation*}
+		\sqrt{10 + \sqrt{10}} \sqrt{10 - \sqrt{10}} = 3 \sqrt{10} = 3 \left[\left(\sqrt{10 + \sqrt{10}}\right)^2 -10 \right] \in \Q[\sqrt{10 + \sqrt{10}}]
+		\end{equation*}
+		
+		Por lo que $\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}$ es Galois!
+		
+		Sea $\sigma \in Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$ tal que $\sigma(\sqrt{10 + \sqrt{10}}) = \sqrt{10 - \sqrt{10}}$, luego:
+		
+		\begin{equation*}
+			\begin{aligned}
+				\sigma\left(\sqrt{10 - \sqrt{10}}\right) = & \dfrac{3 \left[\left(\sigma(\sqrt{10 + \sqrt{10}})\right)^2 -10 \right] }{\sigma(\sqrt{10+\sqrt{10}})} \\
+				= &  \dfrac{3 \left[\left(\sqrt{10 - \sqrt{10}}\right)^2 -10 \right] }{\sqrt{10-\sqrt{10}}} \\
+				= &  \dfrac{-3 \sqrt{10}}{\dfrac{3\sqrt{10}}{\sqrt{10 + \sqrt{10}}}} \\
+				= & -\sqrt{10 + \sqrt{10}}
+			\end{aligned}
+		\end{equation*}
+		
+		Luego tenemos la siguiente acci\'on de $\sigma$ sobre $\sqrt{10+\sqrt{10}}$
+		
+		\begin{equation*}
+			\gamma \rightarrow \sqrt{10 - \sqrt{10}} \rightarrow - \gamma \rightarrow - \sqrt{10 - \sqrt{10}} \rightarrow \gamma
+		\end{equation*}
+		
+		Y $\sigma$ resulta un generador de order $4$ de $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$; luego $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right) \simeq \Z_4$
+		
+		\item Como $\Z_4$ es (isomorfo a) un subgrupo de $\Z_4 \times \Z_2$ el teorema de correspondencia de Galois nos dice que existe la torre de subextensiones $\Q \subsetneq \Q[\gamma] \subsetneq \Q[\beta]$, lo que implica directamente que $\gamma \in \Q[\beta]$. \qed
+		
+	\end{itemize}
+	
+	\item[Ejercicio 3] 
+	
+	\begin{itemize}
+		\item Primero veamos si podemos reducir a $f$ a una forma m\'as tratable. Para eso recordemos que si $p = ax^4  + bx^3 + cx^2 + dx + e$ entonces $\widetilde{p}(x) = \frac{p(x- \frac{b}{4a})}{a}$ cumple que no tiene t\'ermino c\'ubico y que si $\widetilde{p}$ es irreducible entonces $p$ lo es (esto lo vimos tanto en la pr\'actica como la te\'orica).
+		
+		Luego:
+		
+		\begin{equation*}
+			\widetilde{f} = f\left(x +1\right) = x^4 - x^2 + 1 \qquad \text{ si hice bien las cuentas}
+		\end{equation*}
+		
+		Con lo que llegamos a la hermosa conclusi\'on que $f$ es irreducible en $K$ si y s\'olo si $\Phi_{12}$ es irreducible en $K[X]$.
+		
+		Para el caso $K= \Q$ ya sabemos que todos los polinomios ciclot\'omicos son irreducibles asi que $f$ lo es.
+		
+		Ahora si $char(K) =2$ entonces notemos que $\Phi_{12} (x) = x^4 - x^2 + 1 = \left(x^2 - x + 1\right)^2$ por lo que $f$ no seria irreducible
+		
+		Si $char(K) = 3$ notemos que $\Phi_{12} (x) = x^4 - x^2 + 1 = \left(x^2 + 1\right)^2$ por lo que $f$ no ser\'ia irreducible.
+		
+		Para finalizar veamos que en general $\Phi_n$ es irreducible en $\mathbb{F}_p$ con $p \not\vert n$ si y s\'olo si $Gal\left(\quotient{F[\xi]}{F}\right) \simeq \left(\quotient{\Z}{n\Z}\right)^*$ si y s\'olo si $p$ es un generador de $\left(\quotient{\Z}{n\Z}\right)^*$.
+		
+		En efecto, como $\xi$ es una ra\'iz de $\Phi_n$ entonces es igual a su minimal si y s\'olo si $[F[\xi]:F] = \varphi(n)$ y ya vimos en la te\'orica que eso pasa si y s\'olo si la inyecci\'on $Gal\left(\quotient{F[\xi]}{F}\right) \inc \left(\quotient{\Z}{n\Z}\right)^*$ es suryectiva, y por lo tanto un isomorfismo.
+		
+		Luego, $\Phi_n$ es irreducible en $\mathbb{F}_p$ con $p \not\vert n$ si y s\'olo si $\left(\quotient{\Z}{n\Z}\right)^*$ es c\'iclico, que de \'Algebra 2 sabemos que pasa si y s\'olo si $n \in \sett{2, 4, l^s, 2l^s}$ con $l$ primo impar o $s \geq 1$; como $12$ no entra en ninguna de esas posibilidades sabemos que $\Phi_{12}$ es reducible en $\mathbb{F}_p$ para $p \neq 2,3$.
+		
+		Resumiendo vimos que $f$ es irreducible solo si $K = \Q$. \qed
+		
+		\item Notemos que podemos representar este problema con el siguiente diamante:
+		
+		\[
+		\begin{tikzcd}
+		& \Q[\sqrt[p]{5}, \xi_n] & \\
+		\Q[\sqrt[p]{5}] \arrow{ru}{\varphi(n)?}  & & \Q[\xi_n] \arrow{lu} \\ \quad
+		& \Q \arrow{ru}{\varphi(n)} \arrow{lu}{p}&
+		\end{tikzcd}
+		\]
+		
+		Pues $\Phi_n$ es irreducible en $\Q[\sqrt[p]{5}]$ si y s\'olo si el polinomio minimal de $\xi_n$ en $\Q[\sqrt[p]{5}]$ es $\Phi_n$ si y s\'olo si $[\Q[\sqrt[p]{5}, \xi_n]:\Q[\sqrt[p]{5}]] = \varphi(n)$. 
+		
+		Luego, sabemos que si $p \not\vert \varphi(n)$ entonces como los grados inferiores del diamante son coprimos $[\Q[\sqrt[p]{5}, \xi_n]:\Q[\sqrt[p]{5}]] = \varphi(n)$ y $\Phi_n$ resulta irreducible en $\Q[\sqrt[p]{5}]$.
+		
+		Supongamos entonces que $p \vert \varphi(n)$, luego algo que podemos notar en este caso es que $[\Q[\sqrt[p]{5}, \xi_n]:\Q[\sqrt[p]{5}]] = \varphi(n)$ si $\sqrt[p]{5} \not\in \Q[\xi_n]$, con lo cu\'al en este caso podemos reducirnos a evaluar si vale esa condici\'on. 
+		
+		Supongamos que $\sqrt[p]{5} \in \Q[\xi_n]$, luego existe la torre de extensiones $\Q \subsetneq \Q[\sqrt[p]{5}] \subsetneq \Q[\xi_n]$ y por el teorema de correspondencia de Galois $Gal\left(\quotient{ \Q[\sqrt[p]{5}] }{\Q}\right)$ resulta un subgrupo de $Gal(\quotient{\Q[\xi_n]}{\Q})$. Recordemos que vale:
+		
+		\begin{equation*}
+			Gal(\quotient{\Q[\xi_n]}{\Q}) \simeq \left(\quotient{\Z}{n\Z}\right)^*
+		\end{equation*}
+		
+		Y este grupo resulta abeliano, luego todo subgrupo de un grupo abeliano resulta normal al menos. Por lo tanto, eso implicar\'ia que $Gal\left(\quotient{ \Q[\sqrt[p]{5}] }{\Q}\right)$ es un subgrupo normal, lo que implicar\'ia, por el teorema de correspondencia de Galois nuevamente, que la extensi\'on $(\quotient{ \Q[\sqrt[p]{5}] }{\Q}$ es normal. Esto es absurdo pues $p > 2$ y ya lo vimos varias veces en la materia. Luego, $[\Q[\sqrt[p]{5}, \xi_n]:\Q[\sqrt[p]{5}]] = \varphi(n)$ para este caso tambi\'en y entonces conclu\'imos que $\Phi_n$ resulta irreducible en $Q[\sqrt[p]{5}]$ para todo $p>3$.\qed 
+		
+	\end{itemize}
+	
+	\item[Ejercicio 4]
+	
+	\begin{itemize}
+		\item Sea $S = \sett{K \text{ subextensiones de } \quotient{\C}{\Q} \tq \alpha \not \in K}$ y notemos que es no vac\'io pues $\Q \in S$; sea entonces $\F$ una cadena totalmente ordenada ee $S$ y tomemos $L = \Bigcup{K \in \F}{K}$, afirmo que $L$ es cota superior de $S$.
+		
+		En efecto, si $K \in \F$ entonces $K \subset L$ por definici\'on, $L$ es subextensi\'on de $\quotient{\C}{\Q}$ pues todos los $K \in \F$ lo son y $\alpha \not \in L$ pues si lo estuviese, entonces $\alpha \in K_{\F}$ para alg\'un $K_{\F} \in \F$ lo que es absurdo pues $K_{\F} \in S$.
+	
+		Luego, por el lema de Zorn, existe un elemento maximal $K \in S$ que resulta la subextensi\'on buscada.
+		
+		\item Sea $x \in \C - K$ y supongamos que es trascendente, lo esto implica que tenemos la torre de extesiones $\Q \subsetneq K \subsetneq K[x] \subset \C$ y $K[x]$ es una subextensi\'on de $\quotient{\C}{\Q}$ tal que no tiene a $\alpha$.
+		
+		Esto es claro pues $\alpha \not \in K$ y $\alpha \neq x$ pues $x$ es trascendente y $\alpha$ algebraico. Como $K$ era maximal uno concluir\'ia que $K = K[x]$ lo que es absurdo, luego $\quotient{\C}{K}$ es algebraico.
+	
+		\item Sea $\quotient{M}{K}$ una subextension finita de $\quotient{\C}{K}$ luego, por un lado, sabemos que $\alpha \in M$ por la maximalidad de $K$ y, por el otro, existe  $\sigma \in Gal\left(\quotient{M}{K}\right)$ tal que $\sigma(\alpha) \neq \alpha$ pues es Galois. Luego $\quotient{M^{\ip{\sigma}}}{K}$ es una extensi\'on tal que $\alpha \not \in M^{\ip{\sigma}}$, por la maximalidad de $K$ concluimos que $K = M^{\ip{\sigma}}$ y entonces por el teorema de correspondencia de Galois esto es si y s\'olo si $\ip{\sigma} = Gal\left(\quotient{M}{K}\right)$. Concluimos que $\quotient{M}{K}$ es c\'iclico.
+	
+		\item Sea $G = Gal\left(\quotient{M}{K}\right)$ y sabemos porque $\alpha^2 = 3 \in \Q \subset K$ que $[K[\alpha]:K] = 2$. Sea $q$ un primo que divida a $n = \abs{G}$, luego como $G$ es c\'iclico sabemos que existe una subextensi\'on $\quotient{F}{K}$ de grado $q$. Finalmente, como $\alpha \in F$ (pues sino por la maximalidad de $K$ respecto a la propiedad de $\alpha \not \in K$ eso implicar\'ia que $K=F$ lo que dir\'ia que $q=1$ es primo) entonces sabemos que $2 \vert q$ por lo que $q = 2$; luego $\abs{G} = [M:K] = 2^r$.
+		
+		Notemos que por lo visto anteriormente $\sqrt[n]{\alpha} \not \in K$ para todo $n$ (pues sino $\sqrt[n]{\alpha}^{n-1} = \pm \alpha \in K $) por lo que deducirmos que $[\C:K] \geq [K[\sqrt[n]{\alpha}]:K] = n$ para todo $n$ y entonces $[\C:K] = \infty$. \qed
+	
+	\end{itemize}
+	
+	\item[Ejercicio 5]
+	
+	\begin{itemize}
+		\item No se aun
+		
+		\item Veamos que es falso! Sea $f = x^4 -4x +2$ y su resolvente $g(x) = x^3 -8x -16$. Ambos resultan irreducibles pues $f$ es Einsenstein con $p=2$ y su resolvente pues $\widehat{g} = x^3 +2x +4$ es irreducible en $\mathbb{F}_5$. 
+		
+		Como el discriminante de $g$ es $-4864 \not \in \Q^2$ entonces concluimos que $Gal(g) \simeq Gal(\quotient{L}{\Q[\alpha]}) \simeq S_3$ con $\alpha$ ra\'iz de $f$ y $Gal(f) = Gal(\quotient{L}{\Q}) \simeq S_4$.
+		
+		Supongamos que existe $M$ subextensi\'on de grado $2$, luego tendr\'iamos la torre $\Q \subseteq M \subseteq \Q[\alpha] \subseteq L$ (pues $[\Q[\alpha] : \Q] =4$ pues $f$ irreducible) lo que implica que $S_3 \simeq Gal(\quotient{L}{\Q[\alpha]}) \leq Gal(\quotient{L}{M}) \leq Gal(\quotient{L}{\Q}) \simeq S_4$ (donde $\leq$ implica ser subgrupo) y veamos que eso no puede ser.
+		
+		En efecto, sea $H$ un subgrupo entre $S_3$ y $S_4$ con esas caracter\'isticas, entonces $H$ es transitivo (por ser un grupo de Galois), tiene un $n-1$ ciclo y una transposici\'on lo que implica que $H \simeq S_4$.
+		
+		Conclu\'imos que tal subextensi\'on cuadr\'atica $M$ no puede existir. \qed
+		
+		 \qed
+	\end{itemize}
+	
+\end{enumerate}
+	
+\end{document}

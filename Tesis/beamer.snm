@@ -1,5 +1,9 @@
-\beamer@slide {nich}{3}
-\beamer@slide {nich-sys}{7}
-\beamer@slide {eq}{12}
-\beamer@slide {ic}{12}
-\beamer@slide {posit}{12}
+\beamer@slide {def: Condicion PL}{15}
+\beamer@slide {def: L Lipschitz}{15}
+\beamer@slide {algo: DE}{45}
+\beamer@slide {lemma: Fundamental estocasticos 1}{46}
+\beamer@slide {hyp: Acotaciones momentos de g}{48}
+\beamer@slide {eq: Hipotesis 2 subitem 1}{48}
+\beamer@slide {eq: Hipotesis 2 subitem 2}{48}
+\beamer@slide {eq: Hipotesis 2 Segundo momento acotado}{48}
+\beamer@slide {lemma: Fundamental estocasticos 2}{49}

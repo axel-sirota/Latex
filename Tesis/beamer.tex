@@ -1,8 +1,75 @@
-\documentclass[spanish]{beamer}
+\documentclass{beamer}
+
+%% Beamer stuff
+
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{ upgreek }
+\usepackage[spanish, activeacute]{babel}
+\usepackage{graphicx}
+\usepackage{epsfig}
+%   \usepackage{epstopdf}
+%   \DeclareGraphicsRule{.eps}{pdf}{.pdf}{'epstopdf #1'}
+%   \pdfcompresslevel=9
+\usecolortheme[rgb={.2,.0,.7}]{structure}
+\setbeamercolor{graybox}{bg=lightgray}
+\colorlet{darkred}{red!65!black}
+\colorlet{darkblue}{blue!65!black}
+\colorlet{darkgreen}{green!50!black}
+\colorlet{darkorange}{orange!85!black}
+\definecolor{red1}{rgb}{0.8,0,0}
+\definecolor{red2}{rgb}{0.7,0,0}
+\definecolor{red3}{rgb}{0.6,0,0}
+\definecolor{red4}{rgb}{0.5,0,0}
+
+\definecolor{green1}{rgb}{0,0.8,0}
+\definecolor{green2}{rgb}{0,0.7,0}
+\definecolor{green3}{rgb}{0,0.6,0}
+\definecolor{green4}{rgb}{0,0.5,0}
+
+\definecolor{blue1}{rgb}{0,0,0.8}
+\definecolor{blue2}{rgb}{0,0,0.7}
+\definecolor{blue3}{rgb}{0,0,0.6}
+\definecolor{blue4}{rgb}{0,0,0.4}
+
+\definecolor{cyan1}{rgb}{0,0.8,0.8}
+\definecolor{cyan2}{rgb}{0,0.7,0.7}
+\definecolor{cyan3}{rgb}{0,0.6,0.6}
+\definecolor{cyan4}{rgb}{0,0.5,0.5}
+
+\definecolor{magenta1}{rgb}{0.8,0,0.8}
+\definecolor{magenta2}{rgb}{0.7,0,0.7}
+\definecolor{magenta3}{rgb}{0.6,0,0.6}
+\definecolor{magenta4}{rgb}{0.5,0,0.5}
+
+%\useoutertheme{infolines}
+%\author{Rouben Rostamian}
+%\title{Beamer tutorial}
+%\institute{UMBC}
+
+\mode<presentation> {
+	%\usetheme{Hannover}
+	\usetheme{CambridgeUS}
+	%\usetheme{Singapore}
+	%\usetheme{Madrid}
+	%\usetheme{Marburg}
+	% or ...
+	
+	\setbeamercovered{transparent}
+	% or whatever (possibly just delete it)
+}
+
+%\useoutertheme{shadow}
+\usecolortheme{seagull}
+\setbeamertemplate{footline}{}
+
+\beamertemplatenavigationsymbolsempty
+
+%% Standard structure
+
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{babel}
 \usepackage[ruled,vlined,linesnumbered,resetcount]{algorithm2e}
 \usepackage{amsfonts}
 \usepackage{xr}
@@ -12,17 +79,17 @@
 \usepackage{mathrsfs}
 \usepackage{lmodern}
 \usepackage{amsmath,amsbsy,amscd,amssymb,graphicx, epsfig,color}
-\usetheme{Boadilla}
-\usecolortheme{beaver}
-\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
-\setbeamercolor{block body}{bg=normal text.bg!90!black}
-\setbeamercolor{block body example}{bg=normal text.bg!90!black}
-\setbeamercolor{block title alerted}{use={normal text,alerted text},fg=alerted text.fg!75!normal text.fg,bg=normal text.bg!75!black}
-\setbeamercolor{block title}{bg=shadecolor, fg=black}
-\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+%\usetheme{Boadilla}
+%\usecolortheme{beaver}
+%\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
+%\setbeamercolor{block body}{bg=normal text.bg!90!black}
+%\setbeamercolor{block body example}{bg=normal text.bg!90!black}
+%\setbeamercolor{block title alerted}{use={normal text,alerted text},fg=alerted text.fg!75!normal text.fg,bg=normal text.bg!75!black}
+%\setbeamercolor{block title}{bg=shadecolor, fg=black}
+%\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
 %\setbeamercolor{item projected}{fg=black, bg=darkred}
-\definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
-\definecolor{mapblue}{HTML}{3333B3}
+%\definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
+%\definecolor{mapblue}{HTML}{3333B3}
 
 \uselanguage{Spanish}
 \languagepath{Spanish}
@@ -36,7 +103,7 @@
 \newtheorem{hyp}[theorem]{Hip\'otesis}
 
 \def \K{\hbox{Ker}}
-
+\newcommand{\puntosfijos}{\mathcal{A}_{g}^{*}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\Cont}{\mathcal{C}}
 \newcommand{\F}{\mathcal{F}}
@@ -83,6 +150,7 @@
 \newcommand{\expectationchik}[1]{\expectationsub{\upxi_{k}}{#1}}
 \newcommand{\expectationfilt}[1]{\mathbb{E} \left[{#1} \vert \mathcal{P}_{k}\right]}
 \newcommand{\variancechik}[1]{\variancesub{\upxi_{k}}{#1}}
+\newcommand{\underlimitinf}[1]{\xrightarrow[#1 \rightarrow \infty]{}}
 \newcommand{\mani}{\upchi}
 \DeclareMathOperator{\rank}{ran}
 \DeclareMathOperator{\graf}{Gr}
@@ -107,18 +175,19 @@
 \newcommand{\myDepartment}{Departamento de Matem\'atica\xspace}
 \newcommand{\myUni}{Universidad de Buenos Aires\xspace}
 \newcommand{\myLocation}{Buenos Aires\xspace}
-\newcommand{\myTime}{Septiembre 2018\xspace}
-\newcommand{\myVersion}{version 1.0}
+\newcommand{\myTime}{Noviembre 2018\xspace}
+\newcommand{\myVersion}{version 2.0}
 
-
-
+\title[]
+%{Sistemas de ecuaciones polinomiales ralas}
+{\textbf{\textcolor[rgb]{0.0,0.50,0}{\Large \myTitle: \mySubtitle}}}
 \title[\myTitle: \mySubtitle]{\bf {\myTitle}}
 \author[\myName]{\myName}
 \institute{\myFaculty}
 \date[\myTime]{\myDepartment}
 
 \AtBeginSection[] {
-\begin{frame}{Outline}
+\begin{frame}{Hoja de ruta}
 \tableofcontents[currentsection]
 \end{frame}
 }
@@ -126,534 +195,624 @@
 \begin{document}
 
 \begin{frame}
+
 \titlepage
+\vspace{-1.6cm}
+\begin{center}
+	
+\end{center}
 \end{frame}
 
-%\section*{Outline}
-%\begin{frame}
-%  \tableofcontents
-%\end{frame}
+\section{Introducci\'on}
+
+\begin{frame}{Marco te\'orico del problema}
+Consideremos una muestra aleatoria $\sett{x_i, y_i}_{i \leq N} \subset \R^{d_x} \times \R^{d_y}$ tomada bajo una distribuci\'on $\mathbb{P}(x,y)$.
+
+\bigskip
+
+El objetivo del \textit{Machine Learning} es encontrar $h^* \in \mathcal{H} = \sett{h : \R^{d_x} \rightarrow \R^{d_y}}$ tal que $R(h) = \mathbb{E} \left[1 \left[h(x) \neq y \right] \right]$ sea m\'inima.
+
+\bigskip
+\pause
+
+Dicho contexto es \textit{variacional} y \textit{estoc\'astico}. 
+
+\pause
+\bigskip
+
+La pr\'actica usual consiste en tomar una dada $\widetilde{h}: \R^{d_x} \times \R^d \rightarrow \R^{d_y}$ que surge del conocimiento a priori del problema y tomar:
 
 
-\section{Introduction}
-\begin{frame}
- \frametitle{Motivation}
- Nicholson equation  
-\begin{equation}
-    \label{nich}
-    x'(t)=-d x(t) + p x(t-\tau)e^{-x(t-\tau)}
-\end{equation}
-with $p,d>0$.
-
-\medskip 
-
-The IVP for (\ref{nich}) reads
-
-$$x(t)=\varphi(t) \qquad \varphi\in C([-\tau,0]).
-$$
+\begin{equation*}
+\mathcal{H}_{\widetilde{h}} := \lbrace \widetilde{h}(\cdot ; w): w \in \mathbb{R}^d \rbrace
+\end{equation*}
 
 
-\end{frame} 
-
-
-%\end{document}
-
-
-
-\begin{frame} 
-\frametitle{The whole truth about Nicholson}
-\begin{enumerate}
-
-    \item $p\le d \Longrightarrow$  no positive equilibrium points. 
-    Furthermore,  $0$ is a global attractor of the solutions with $\varphi>0$. 
-    \pause 
-    \item $p>d \Longrightarrow$ unique equilibrium point, which is locally asymptotically stable: 
-    
-      \begin{itemize}
-          \item  for all $\tau$ when $p<de^2$,
-          \item  for $\tau<\tau^*(p)$ when $p\ge de^2$.
-      \end{itemize}   Moreover if  $\varphi>0$  then $$\liminf_{t\to+\infty}x(t)\ge \min \{\ln \left(\frac pd\right), 
-    e^{-\tau d}\}.$$
-    \pause 
-    \item $p, d \in C_T \Longrightarrow$   positive  $T$-periodic solutions if $p(t)>d(t)$ for all $t$ and no $T$-periodic solutions if $p(t)\le d(t)$ 
-    for all $t$ (furthermore, $0$ is a global attractor). 
-\end{enumerate}
 
 \end{frame}
 
-\begin{frame}
-\frametitle{Generalisation: Nicholson system}
+\begin{frame}{Marco te\'orico del problema}
 
-\begin{equation}
-    \label{nich-sys}
-    \left\{\begin{array}{c}
-        x_1'(t)=-d_1 x_1(t) + b_1x_2(t)+ p_1 x_1(t-\tau)e^{-x_1(t-\tau)}    \\
-               x_2'(t)=-d_2 x_2(t) + b_2x_1(t)+ p_2 x_2(t-\tau)e^{-x_2(t-\tau)}  
-    \end{array}
-    \right.
-    \end{equation}
+Dada $ \ell : \mathbb{R}^{d_y} \times \mathbb{R}^{d_y} \rightarrow \mathbb{R}$ una distancia en $\R^{d_y}$ entonces el objetivo se reduce a minimizar $R(w)$ donde:
+
+\begin{equation*}
+	R(w) = \int\limits_{\mathbb{R}^{d_x}\times \mathbb{R}^{d_y}} {\ell \left(h(x;w), y\right) dP(x,y)} = \mathbb{E} \left[ \ell \left( h(x;w), y \right) \right]
+\end{equation*}
+
+\pause
+
+Al no conocer $\mathbb{P}$ se optimiza $R_n(w)$:
+
+\begin{equation*}
+R_n(w) = \frac{1}{n} \sum\limits_{i=1}^{n} {l \left( h(x;w), y\right)}
+\end{equation*}
+
+Que resulta un estimador insesgado de $R$ para cada $w \in \R^d$ por la desigualdad Hoeffding \cite{hoeffding:1962} 
+
+\pause
+
+No obstante, este subconjunto $\mathcal{H}$ parametrizado adem\'as debe minimizar $L(h^*, w) = \abs{R(h^*) - R_n(h_w)}$ donde $h^*$ es la funci\'on \'optima objetivo y $h_w$ es la minimizante de $R_n$ sobre el subconjunto $\mathcal{H}$.
+
+\end{frame}
+
+\begin{frame}{Marco te\'orico del problema}
+
+En conclusi\'on, la obtenci\'on de dicha $h$ \'optima se separa en dos problemas no disjuntos:
 
 \begin{enumerate}
-    \item $p_i+b_i\le d_i\Longrightarrow 0$ is a global attractor of positive solutions. 
-        \item Uniform persistence if $p_i+b_i>d_i$.
-        
-        \item $T$-periodic solutions $b_i(t)<d_i(t) <p_i(t)+d_i(t)$ for all $t$. 
-        
-    
+	\item Encontrar $\mathcal{H}$ parametrizada por $w\in \R^d$ tal que $L(h^*, w^*)$ sea m\'inima, donde $w^* = arg\min\limits_{w \in \R^d}{R_n(w)}$.
+	\item Dado $\mathcal{H}$ parametrizado, hallar $w^* = arg\min\limits_{w \in \R^d}{R_n(w)}$.
 \end{enumerate}
-\end{frame}
 
+\pause
 
+El problema 1  suele tener diferentes enfoques pero ninguno estrictamente te\'orico, sino que mas bien son basados en el conocimiento a priori del problema
 
-
-\begin{frame}
-
-\frametitle{Persistence definitions}
-
-Let $X\ne \emptyset$ and 
-$\rho: X \to \R^+$. A semiflow $\Phi : J \times X \to  X$ is called 
-
-
-
-\begin{itemize}
-    \item weakly $\rho$-persistent, if
-$$\limsup_{t\to+\infty}  
-\rho(\Phi(t, x)) > 0\qquad \forall\, x \in  X, \rho(x) > 0.$$
-    
-    \item 
-     strongly $\rho$-persistent, if
-$$\liminf_{t\to+\infty}  
-\rho(\Phi(t, x)) > 0\qquad \forall\, x \in  X, \rho(x) > 0.$$
-\item 
-uniformly weakly (strongly) $\rho$-persistent, if
-there exists some  $\varepsilon > 0$ such that
-$$\limsup_{t\to+\infty}  
-\rho(\Phi(t, x)) > \varepsilon \qquad \forall\, x \in  X, \rho(x) > 0\qquad \hbox{(resp. liminf)}.$$
- 
-
-\medskip
-In our case 
-$\rho(x) = |x|$ (persistence of some  species).
-
-\end{itemize}
+Nos vamos a enfocar en el problema 2 viendo diferentes algoritmos existentes para resolverlo y sus propiedades de convergencia
 
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Algoritmos de primer orden}
 
+Comunmente para encontrar $arg\min\limits_{w \in \R^d}{F(w)}$ se utilizan algoritmos iterativos de primer orden; es decir, algoritmos que se pueden representar por $g : \R^d \rightarrow \R^d$ ta que $w_n = \underbrace{g \circ \dots \circ g}_{n} (w_0)$ y calcular $g(w)$ solo involucra calcular $F(w)$ y $\nabla F(w)$. Se suelen dividir en dos grandes grupos:
 
+\pause
 
-Clearly, 
+\bigskip
 
-\begin{center}
-    (USP)$\Longrightarrow$ (UWP) $\Longrightarrow$ (WP) and
-(SP) $ \Longrightarrow$ (WP).
-\end{center}
+De tipo \textit{batch}, donde para cada iteraci\'on se utilizan todo el conjunto de datos $\sett{x_i, y_i}$. Un ejemplo de esta categor\'ia es el \textit{descenso de gradiente} (GD) dado por $g(w) = w - \alpha_n\sum\limits_{i=1}^{N} \nabla F(x_i, y_i)$.
 
-\medskip {\bf Results for $X$ locally compact, $X\backslash\{0\}$ positively invariant:}   
+\bigskip
 
+De tipo \textit{estoc\'astico}, donde se elije en cada iteraci\'on al azar un subconjunto $S \subset \sett{x_i, y_i}$ para calcular $g$. Un ejemplo de esta categor\'ia es el \textit{descenso estoc\'astico de gradiente} (SG) dado por $g(w) = w - \alpha_n\nabla F(x_i, y_i)$ para un $i$ elejido al azar.
 
-\begin{center}
-    
-(UWP) $\Longrightarrow$ (USP), but 
-(WP) $\not\Longrightarrow$ (SP)
-and 
-(SP) $\not\Longrightarrow$ (USP). 
-\end{center}
-
-Extra conditions $\Longrightarrow$  all definitions are equivalent (see \cite{FM}).
-
-   \smallskip 
-\pause  
-Fonda \cite{F}:
-   \smallskip 
-    
-    (USP) $\Longleftrightarrow$
-        $\exists \, U\ni 0$ open and $V:U\to [0,+\infty)$ continuous such that: 
-        \begin{enumerate}
-            \item $V(x)=0 \iff x=0$.
-            \item $\forall\, x\ne 0\, \exists t_x>0$ such that $V(\Phi(t_x,x)) > V(x)$. 
-        \end{enumerate}
 \end{frame}
 
-\section{Delayed systems}
+\section{Convergencia de algoritmos de tipo batch}
 
-\begin{frame}
-    
-  
+\begin{frame}{Definiciones}
 
-Our system reads
-\begin{equation}
-\label{eq}
-x'(t)=f(t,x(t),x(t-\tau))
-\end{equation}
-with
-$f:[0,+\infty)\times [0,+\infty)^{2N}\to \R^N$  continuous.
 
-Initial condition:
-\begin{equation}
-\label{ic}
-x(t) =\varphi(t)
-\qquad {-\tau\le t\le 0}
-\end{equation}
-\begin{center}
-    $\varphi\in X:=$ positive cone of $C([-\tau,0],\R^N)$,
-\end{center}
-which is \textbf{not} locally compact. 
-
-\medskip 
-
-{\bf Basic assumption}: 
+\begin{definition}[D\'ebilmente convexo]
+	Decimos que $F: \R^d \rightarrow \R$, tal que $F \in C^1$ es \textit{d\'ebilmente convexo} si cumple las siguientes dos propiedades:
+	
+	\begin{itemize}
+		\item Existe un \'unico $w^*$ tal que $F_{inf} := F(w^*) \leq F(w)$ para todo $w \in \R^n$.
+		\item Para todo $\epsilon > 0$ vale que $\inf\limits_{\norm{w-w^*}^2 > \epsilon} {\left(w - w^*\right) \nabla F(w) > 0}$
+	\end{itemize}
+	
+\end{definition}
 
 \smallskip
 
-{\bf (H1)} \label{posit}
-If $x_j=0$ for some $j$ and $y\ne 0$ then $f_j(t,x,y)>0$ for all $t>0$.
-
-\pause 
-\bigskip
-{\bf (H1)} $\Longrightarrow X^\circ$ pos.  invariant, i.e.: $\varphi>0\Longrightarrow x>0$, but {\bf (H1)} $\not\Longrightarrow$ (WP). 
+\begin{definition}[Condici\'on de Robbins - Monro]
+	Si consideramos el algoritmo GD, decimos que los incrementos $\sett{\alpha_k}$  cumplen la condici\'on de \textit{Robbins - Monro} (ver \cite{robbins:1951}) si:
+	
+	\begin{equation*}
+	\sum\limits_{k=1}^{\infty} {\alpha_k} = \infty \quad \text{ y } \quad \sum\limits_{k=1}^{\infty} {\alpha_k^2} < \infty
+	\end{equation*}
+\end{definition}
 
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{M\'as definiciones}
 
- 
-Consider 
-$V:(0,+\infty)^N\to (0,+\infty)$ smooth such that 
-$V(x)\to 0$ as $x\to 0$ in $(0,+\infty)^N$. 
-\medskip 
+\begin{definition}[Condici\'on de \textit{Polyak- Lojasiewicz}]
+	\label{def: Condicion PL}
+	Decimos que una funci\'on $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \R^d$ vale:
+	\begin{equation*}
+	\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
+	\end{equation*}
+\end{definition}
 
-Obvious choice: $V(x)= |x|^2$. Nicholson system $V=\min x_i$ (nonsmooth). 
+\begin{definition}[Funci\'on Lipschitz]
+	\label{def: L Lipschitz}
+	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$, decimos que es $L$\textit{-Lipschitz} global si existe $L > 0$ tal que para todos $x,y \in \R^d$ vale:
+	\begin{equation*}
+	\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2
+	\end{equation*}
+\end{definition}
 
-\pause 
-\smallskip{}
+\end{frame}
 
-{\bf Idea}: find conditions that guarantee
- $\dot V>0$ for $x(t)$ close to $0$, where $\dot V(t)=v'(t):=(V\circ x)'(t)$. 
+\begin{frame}{Resultados de convergencia puntual para GD}
 
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo, asumamos que $F$ es \textit{d\'ebilmente convexo}, $w^*$ su m\'inimo y que existen $A,B \geq 0$ tal que para todo $w \in \R^d$ vale que:
+	
+	\begin{equation*}
+	\norm{\nabla F(w)}^2 \leq A + B \norm{w - w^*}^2
+	\end{equation*}
+	
+	Luego si consideramos el algoritmo de \textit{descenso de gradiente por batch} tal que los incrementos $\sett{\alpha_k}$  cumplen la \textit{condici\'on Robbins - Monro} entonces:
+	
+	\begin{equation*}
+	w_k \underlimitinf{k} w^*
+	\end{equation*}
+	
+\end{theorem}
 
-\pause 
-\medskip 
-{\bf Easy case}: 
+\end{frame}
+
+\begin{frame}{Idea de la demostraci\'on}
+Sea $h_k = \norm{w_k - w^*}^2$, entonces vale que $h_{k+1} - h_k \leq \alpha_k^2 \left(A + B h_k\right)$. Luego si definimos:
+
+\begin{subequations}
+	\begin{equation*}
+	\mu_k = \prod\limits_{j=1}^{k-1} {\dfrac{1}{1 + \alpha_j^2B}}
+	\end{equation*}
+	\begin{equation*}
+	h_k' = \mu_k h_k
+	\end{equation*}
+\end{subequations}
+
+Uno ve que $\sett{h_k}$ converge pues $h_{k+1}' - h_{k}' \leq \alpha_k^2 A \mu_k \leq \alpha_k^2 A$. 
+
+\pause
 \smallskip
 
-{\bf (H2)} There exist $t_0,r>0$ such that
-$$ \langle \nabla V(x),f(t,x,y)\rangle >0 \qquad \hbox{for } t>t_0,  V(x),V(y)<r.$$
-  
-\begin{center}
-    {\bf (H1)} + {\bf (H2)} $\Longrightarrow$ (WP)
-\end{center}
+Finalmente, como podemos deducir que $\sum\limits_{k=1}^{\infty} {\alpha_k \left(w_k - w^* \right)\nabla F(w_k)} < \infty$, entonces como los incrementos cumples la condicion de Robbins Monro uno obtiene que $w_k \underlimitinf{k} w^*$.
 
-\smallskip{
-}
+\end{frame}
 
-{\bf (H2)} $\Longrightarrow$ (Fonda) when $\tau=0$. 
-However,  {\bf (H2)} is not satisfied e.g. in (\ref{nich}).    
-    
+\begin{frame}{Resultados de convergencia puntual para GD}
+
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ la funci\'on objetivo tal que $F \in C^1$, $F$ es \textit{L-Lipshitz} y \textit{PL-convexa}; entonces el algortimo \textit{descenso de gradiente por batch} con incremento fijo $\alpha_k = \frac{1}{L}$ cumple:
+	\begin{equation*}
+	F(w_k) - F_{inf} \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
+	\end{equation*}
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Idea de la demostraci\'on}
+
+Por las implicancias de ser $L-$Lipschitz y $PL-$convexa tenemos:
+
+\begin{equation*}
+F(w_{k+1}) - F(w_k) \leq -\frac{1}{2L} \norm{\nabla F(w_k)}_2^2 \leq - \frac{\mu}{L} \left(F(w_k) - F_{inf}\right)
+\end{equation*}
+
+Luego:
+
+\begin{equation*}
+F(w_{k+1}) - F_{inf} \leq \left(1 - \frac{\mu}{L} \right) \left(F(w_k) - F_{inf}\right) \leq \left(1 - \frac{\mu}{L}\right)^k \left(F(w_1) - F_{inf}\right)
+\end{equation*}
+
 \end{frame}
 
 
-\begin{frame}{}
+\begin{frame}{Caso no convexo}
 
-More realistic: 
-\smallskip 
+\textbf{{Bajo qu\'e casos el algoritmo GD converge (en alguna forma) con objetivos no convexos?}}
 
-{\bf (H2')} 
-There exist $t_0,r>0$ such that
-$$ \langle \nabla V(x),f(t,x,x)\rangle >0 \qquad \hbox{for } t>t_0\hbox{ and } V(x)<r.$$
+\pause
 
-\medskip 
+Para responder esto, sea $g : M  \rightarrow M$ la f\'ormula del algoritmo de primer orden en $M \subset \R^N$ una subvariedad sin borde de dimensi\'on $d$.
 
-{\bf (H1)}  + {\bf (H2')} do not suffice because 
-$x(t)-x(t-\tau)$ may be large. 
+\begin{definition}
+	Sea $f : M \rightarrow \R$ tal que $f \in C^2$ y $x^* \in \R^d$, luego decimos que $x^*$ es un \textit{punto silla estricto} de $f$ si es un punto cr\'itico y $\lambda_{min} \left(\nabla ^2 f(x^*)\right) < 0$ 
+	
+	Notaremos $M^*$ al conjunto de puntos silla estrictos de $f$.
+	
+\end{definition}
 
-\medskip 
+\pause
 
-{\bf Proposition}:
-(SP) holds if we also assume monotonicity:
+\begin{definition}
+	Sea:
+	\begin{equation*}
+	\puntosfijos := \sett{x \ : \ g(x) = x \quad \max\limits_{i}\abs{\lambda_i \left(Dg(x)\right)} > 1}
+	\end{equation*}
+	
+	A este conjunto lo llamaremos el conjunto de \textit{puntos fijos inestables}
+\end{definition}
 
+
+
+\end{frame}
+
+\begin{frame}{Caso no convexo}
+
+\begin{theorem}
+	Sea $g \in C^1(M)$ tal que $\det\left(Dg(x)\right) \neq 0$ para todo $x \in M$, luego el conjunto de puntos iniciales que convergen por $g$ a un punto fijo inestable tiene medida cero:
+	\begin{equation*}
+	\mu \left(\sett{x_0 \ \colon \ \Biglim{k}{g^k(x_0) \in \mathcal{A}_g^{*}}}\right) = 0
+	\end{equation*}
+\end{theorem}
+
+\pause
+
+\begin{corollary}
+	Bajo las mismas hip\'otesis si agregamos que $M^* \subseteq \mathcal{A}_g^{*}$ entonces $\mu(\sett{x_0 \ \colon \ \Biglim{k}{g^k(x_0) \in M^*}}) =0$
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}{Algoritmos de tipo batch est\'andar}
+Ademas del algoritmo GD, en la optimizaci\'on de tipo batch existen dos algoritmos muy usuales:
+
+\pause
 \medskip
 
+El algoritmo de punto pr\'oximo esta dado por la iteraci\'on:
 
-{\bf (H3)} 
-$$\langle \nabla V(x),f(t,x,y)\rangle \ge \langle \nabla V(x),f(t,x,x)\rangle$$
-whenever $V(x)\le V(y)$. 
+\begin{equation*}
+x_{k+1} = g(x_k) \stackrel{\triangle}{=} \arg \min\limits_{z \in M}{f(z) + \dfrac{1}{2\alpha}\norm{x_k - z}_{2}^{2}}
+\end{equation*}
 
-
-
-\end{frame}
-
-\begin{frame}{}
-\emph{Proof}: Suppose  $s_n\to +\infty$, $x(s_n)\to 0 \Longrightarrow v(s_n)\to 0$. 
-\smallskip 
-
-Set $t_n$ such that    $v(t_n) =\min_{t\le s_n} v(t)$. 
-For $n\gg 0$, 
-\begin{center}
-    $v'(t_n)\le 0$ and  $v(t_n-\tau)\ge v(t_n)$.
-\end{center}
-Thus,
-$$0\ge v'(t_n)=\langle \nabla V(x(t_n)),f(t_n,x(t_n),x(t_n-\tau)\rangle
-$$
-$$\ge \langle \nabla V(x(t_n)),f(t_n,x(t_n),x(t_n)\rangle >0,$$  a contradiction. 
-\medskip 
-\pause 
-
-
-Nicholson does not satisfy {\bf (H3)}, then: why is it (USP)?
-
-\end{frame}    
-\begin{frame}{Local monotonicity}
-
-{\bf (H3')} There exists $\eta >0$ such that
-$$\langle \nabla V(x),f(t,x,y)\rangle \ge \langle \nabla V(x),f(t,x,x)\rangle$$
-whenever $V(x)\le V(y)\le \eta$. 
-
-    \bigskip 
-{\bf    Nicholson}: $f(x,y)= -dx + pye^{-y} \Longrightarrow$  {\bf (H3')} with $\eta=1$ and $V(x)=x$. 
-
-\bigskip 
-\pause 
-
-{\bf (H3')} is not enough! Reason: $x(t)-x(t-\tau)$ may be large.  
-
-\end{frame}
-
-\begin{frame}{A standard assumption in population models}
-
-    {\bf (H4)} 
-$\langle \nabla V(x),f(t,x,y)\rangle \ge -k V(x) $ for some constant $k$. 
-\medskip{}
-
-Thus, 
-$$v'(t)= 
-\langle \nabla V(x(t)), f(t,x(t),x(t-\tau)\rangle \ge -kv(t),
-$$
-whence
-\begin{center}
-    $v(t-\tau) \le e^{k\tau}v(t)$ for all $t\ge \tau$.
-\end{center}
-\medskip 
-
-Consequence:  
-
-\begin{center}
-        {\bf (H1)} +     {\bf (H2')} +     {\bf (H3')} +     {\bf (H4)} $\Longrightarrow$ (SP). 
-\end{center}    
- 
- 
- 
-
-\end{frame}
-
-\begin{frame}{But... why is Nicholson (USP)?}
-    
-    Assume {\bf (H1)} +     {\bf (H2')} +     {\bf (H3')} +     {\bf (H4)} and $i=\liminf_{t\to+\infty} v(t) \ll 1$. Then $i>0$ and there are 3 cases: 
-    \medskip 
-    
-\begin{enumerate}
-    \item $v(t)\ge i$ for all $t\gg 0$. Then choose as before
-        $t_n\to +\infty$ such that $v(t_n) \to i$, $v(t_n-\tau) \ge v(t_n)$ and $v'(t_n)\le 0$ and a contradiction yields.
-        \pause 
-       \item 
- $v(t)$ oscillates around $i$. Then we may choose 
-    a sequence $t_n\to +\infty$ such that $v(t_n)\to i^-$  and $v'(t_n)\le 0$. However, it might happen that $v(t_n-\tau)< v(t_n)$ for $n$ large, then     {\bf (H3')} + {\bf (H4)} are not of any help.
- \pause  
-   \item  
-  $v(t)\to i^-$ as $t\to+\infty$: same situation.
-    
-\end{enumerate}       
-    
-
-    
-     
-    
-\end{frame}
-
-\begin{frame}{
-}
- Wouldn't it be great if 
- 
- $$\langle \nabla V(x),f(t,x,y)\rangle \ge c(i)>0
- $$
- whenever $V(x), V(y)$ are close to $i$? 
- \medskip 
- 
- 
- For example, if 
- $v(t)\to i^-$, then 
- $$v'(t)=\langle \nabla V(x(t)),f(t,x(t),x(t-\tau))\rangle \ge c
- $$
- for $t$ large, a contradiction. 
-\medskip 
-
-\pause 
-\textbf{OK} for (\ref{nich}) but too ambitious when $N>1$:
-the condition fails for example if $V(x)=|x|^2$ and $f(x,y)=y$.
-
-\end{frame}
-
-\begin{frame}{And yet it works
-}
-Let 
-  $$\theta_i:= \limsup_{t\to+\infty, V(x), V(y)\to i^-} |f(t,x,y)|
-$$
-and observe that if $v(t)\to i^-$ then 
-$$|x(t)-x(t-\tau)|\le \tau |x'(\xi)|\qquad \xi \in [t-\tau,t]$$
-and hence: 
-$$
-\limsup_{t\to+\infty} |x(t)-x(t-\tau)| \le \tau \theta_i.
-$$
-
-
-\end{frame}
-
-\begin{frame}{ At last we get (USP)}
-
-{\bf (H2''')} $\exists \, r>0$ such that, $\forall \, i\in (0,r)$ and some $C_i>\tau \theta_i$ 
-$$\liminf_{t\to+\infty, V(x),V(y)\to i^-, |y-x|\le C_i }\langle x,f(t,x,y)\rangle  > 0.
-$$
-
-\begin{theorem}
-
-$$\hbox{ {\bf (H1)} $+$ 
-{\bf (H2'')}
-$+$ 
-{\bf (H3')}
-$+$ 
-{\bf (H4)}
-$\Longrightarrow$ {\bf (USP)}.}$$ 
-More precisely, all solutions of (\ref{eq})-(\ref{ic}) with $\varphi_j(t)>0$ for all $j$ and $t\in [-\tau,0]$ satisfy 
-$$\liminf_{t\to+\infty} V(x(t))\ge \min\{ r, e^{-k\tau}\eta \}.$$
-\end{theorem}
-
-\end{frame}
-
-\section{Periodic solutions, existence and...}
-
-
-\begin{frame}{Periodic solutions}
-    
-Consider a continuous function $a:[0,+\infty)\to (0,+\infty)$ and define
-$$K(t,x,y):= 
-\langle \nabla V(x),f(t,x,y)\rangle + a(t)V(x),
-$$
-$$\phi(t,r):= 
- \sup_{V(x),V(y)\le r} {\frac {K(t,x,y)}{a(t)}}.
-$$
-
-\medskip 
-
-Autonomous system:  
-{\bf (H1)} + 
-{\bf (H2')}  and  
- $\phi(R)<R$ for some $R$, then there exists a positive equilibrium point in the region  
-$$
-V_\varepsilon^R:=\{ \varepsilon < V(x) < R\}.
-$$
-Indeed, the field $f(x,x)$ points outwards over $\partial V_\varepsilon^R$.
-
-
-\end{frame}
-
-\begin{frame}{
-}
-
-Faces $\overline{V_\varepsilon^R}\cap \{ 
-x_i = 0\}:$ use {\bf (H1)}. 
-\bigskip
-
-Bottom cap $\{V=\varepsilon\}$: the outer normal is $-\nabla V$ and
-{\bf (H2')} guarantees $\langle \nabla V(x),f(x,x)\rangle>0$.
-
-\bigskip
-
-Top cap $\{V=R\}$: the outer normal is $\nabla V$ and
-the inequality  $\phi(R)<R$ implies 
-$\langle \nabla V(x),f(x,x)\rangle <0$. 
- 
-\bigskip
-\pause 
-
-{\bf Important condition}: $\chi(V_\varepsilon^R)\ne 0$ (e.g. $\overline{V_\varepsilon^R}$
-is a retract of $C\simeq \overline B$). 
-    
-\end{frame}
-
-\begin{frame}{Closed orbits for the non-autonomous system}
-    
-Let $T\ge \tau$ and consider the assumption: 
-
+\pause
 \medskip
 
-{\bf (H5)} 
-There exists $R>0$ such that $\phi(t,R)<R$ for $0\le t\le T$. 
+Por otro lado, si definimos $g_i(x) = x - \alpha \Bigsum{j \in S_i}{e_j^T \nabla f(x)}$ entonces el algoritmo de descenso de coordenadas por bloques esta dado por:
 
-\bigskip 
-\begin{theorem}
-    {\bf (H1)} $+$ 
-{\bf (H2')}
-$+$ 
-{\bf (H3')}
-$+$ 
-{\bf (H4)} $+$  {\bf (H5)}
-$\Longrightarrow$ {Positive $T$-periodic solutions}.
-\end{theorem}
+	\begin{equation*}
+	x_{k+1} = g(x_k) \stackrel{\triangle}{=} g_b \circ g_{b-1} \circ \dots \circ g_1(x_k)
+	\end{equation*}
 
-\pause 
-\textit{Idea of the proof}: $deg(I-K)= \chi(V_\varepsilon^R)$.
+
+
+
+
 \end{frame}
 
+\begin{frame}{Un marco de demostraci\'on com\'un}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por batch} con incremento fijo $\alpha < \frac{1}{L}$ cumple:
+	
+	\begin{equation*}
+	w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
+	\end{equation*}
+	
+\end{theorem}
 
-\section{...nonexistence: 0 is a global attractor}
-
-\begin{frame}{
-Conversely...}
-    
-    Assume that 
-    $$
-\phi^*(r):= \sup_{t\ge 0} \phi(t,r).
-$$
-is continuous and
-
-\medskip 
-
-{\bf (H6)} 
-For every $\varepsilon>0$
-there exists $\mu>0$ such that $V^{-1}(0, \mu) \subset B_\varepsilon(0)$. 
+\smallskip
 
 \begin{theorem}
-
-Assume  {\bf (H6)} and suppose  there exists $R_0$ such that  $\phi^*(r)<r$ for $0<r<R_0$. 
-Then every solution with initial data $\varphi(t)\in (0,R_0)$ for all $t\in [-\tau,0]$ tends to $0$ as $t\to +\infty$.  
-
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{punto pr\'oximo } con incremento fijo $\alpha < \frac{1}{L}$ cumple:
+	
+	\begin{equation*}
+	w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
+	\end{equation*}
+	
 \end{theorem}
 
 \end{frame}
 
-\begin{frame}{Sketch of the proof}
-    
-If $v\le r$ on $[t-\tau, t]$ and
-$v'(t)\ge 0$, then 
-$$
-v(t) \le \phi(r). 
-$$
-Let $R_{j+1}:= {\phi^*(R_j)}<R_j$, then two different situations may occur:
+\begin{frame}{Un marco de demostraci\'on com\'un}
+
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$  la funci\'on objetivo con Hessiano acotado por bloques con constante $L_b$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por coordenadas} con incremento fijo $\alpha < \frac{1}{L_b}$ cumple:
+	
+	\begin{equation*}
+	w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
+	\end{equation*}
+	
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Idea de las demostraciones}
+
+En los tres casos las hip\'otesis llevan a demostrar que:
 
 \begin{enumerate}
-    \item There exists $t_j\to +\infty$ such that $v(t)\in (0,R_j]$ for $t\ge t_j$. Then $v(t)\to 0$ because
-$$
-\phi^*(\lim_{j\to \infty} R_j) = \lim_{j\to \infty} \phi^*(R_j)= \lim_{j\to \infty} R_j, 
-$$.     
-\item There exist $j$ and $t_j$ such that $v(t) \in (R_{j+1},R_j]$ and decreases strictly for $t\ge t_j$. Let 
- $r:=\lim_{t\to+\infty} v(t)$, fix $\tilde r>r$ such that $\phi^*(\tilde r)<r$ and $\tilde t$ such that $v(t)\le \tilde r$ for $t\ge \tilde t$. Thus 
-$v(t)\le \phi^*(\tilde r)<r$ for $t\ge t^*+\tau$, a contradiction. 
-
+	\item 	$det\left(Dg\right)(x) \neq 0$
+	\item $M^* \subset \puntosfijos$
 \end{enumerate}
 
-    
+Luego con eso uno concluye que $\mu(\sett{x_0 \ \colon \ \Biglim{k}{g^k(x_0) \in M^*}}) =0$ por lo que el conjunto de puntos iniciales tales que el algoritmo en cuesti\'on converge a un punto silla estricto en $0$. Como ya sabemos que el algoritmo no converge a m\'aximos locales se concluye que:
+
+	\begin{equation*}
+w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
+\end{equation*}
+
+Donde $w^*$ es m\'inimo local.
+
 \end{frame}
+
+\begin{frame}{Convergencia exponencial de GD}
+\textbf{¿El descenso de gradiente inicializado aleatoriamente generalmente escapa de los puntos de silla en tiempo polinomial?}
+
+\pause
+
+\begin{definition}
+	Dado $B \in \R^d$ decimos que $B \in poly(d)$ si existe $p \in \R[X]$ tal que $p(d) = B$.
+	Asimismo decimos que una iteraci\'on de un algoritmo $w_k$ esta a $\Omega(f(k))$ de $w^*$ si existe $K \in \N$ tal que $\abs{w^* - w_k} \geq Kf(k)$
+\end{definition}
+
+\pause
+
+\begin{theorem}
+	Consideremos el algoritmo \textit{descenso de gradiente por batch} con $w_0$ elegido uniformemente en $[-1,1]^d$; luego existe $F : \R^d \mapsto \R$ funci\'on objetivo $B-$acotada, $l-$Lipshitz, $\mu-$Lipshitz en el Hessiano con $B,l,\mu \in \text{poly}(d)$ tal que si $\alpha_k = \alpha \leq \frac{1}{l}$ entonces $w_k$ va a estar a $\Omega(1)$ de cualquier m\'inimo para todo $k \leq e^{\Omega(d)}$
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Intuici\'on acerca de la demostraci\'on: Parte 1}
+
+\textbf{Escapar de dos puntos silla consecutivos}
+
+\bigskip
+\pause
+
+	Sean $L > \gamma > 0$ y $f \in [0,3] \times [0,3]$ dada por:
+	
+	\begin{equation*}
+	f(x_1, x_2) = \left\lbrace \begin{array}{cc}
+	- \gamma x_1^2 + Lx_2^2 & \text{ si } (x_1,x_2) \in [0,1] \times [0,1] \\
+	L \left(x_1 - 2\right)^2 - \gamma x_2^2 & \text{ si } (x_1,x_2) \in [1,3] \times [0,1] \\
+	L \left(x_1 - 2\right)^2 + L \left(x_2 - 2\right)^2 & \text{ si } (x_1,x_2) \in [1,3] \times [1,3] \\
+	\end{array} \right.
+	\end{equation*}
+	
+	\pause
+	\bigskip
+	
+	Notemos que $f$ tiene dos puntos silla estrictos en $(0,0)$ y $(2,0)$, mientras que tiene un \'optimo en $(2,2)$. 
+	
+\end{frame}
+\begin{frame}{Intuici\'on acerca de la demostraci\'on: Parte 2}
+	
+	Sean $U = [0,1]^2$, $V= [1,3] \times [0,1]$ y $W = [1,3]^2$ entornos respectivos de los tres puntos cr\'iticos, supongamos que $w_0 = \left(x^0_1, x^0_2\right) \in U$ y definamos:
+	
+	\begin{subequations}
+		\begin{equation*}
+		k_1 = \inf\limits_{x^k_1 \geq 1}{k} = \min\limits_{x^k_1 \geq 1}{k}
+		\end{equation*}
+		\begin{equation*}
+		k_2 = \inf\limits_{x^k_2 \geq 1}{k} = \min\limits_{x^k_2 \geq 1}{k}
+		\end{equation*}
+	\end{subequations}
+	
+	\pause
+	\bigskip
+	
+	Notemos que como la direcci\'on de escape en $(0,0)$ es por $x_1$ y \textit{luego} por $x_2$ (por el cambio de comportamiento de $f$) podemos concluir que $k_1,k_2$ estan bien definidos y que $k_2 \geq k_1 \geq 0$.
+	
+	\medskip
+	Vamos a probar que $k_2 = Ck_1$ con $C>1$.
+	
+\end{frame}
+\begin{frame}{Intuici\'on acerca de la demostraci\'on: Parte 3}
+	
+Las iteraciones de GD en este caso van a ser:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	\left(x_1^{k+1}, x^{k+1}_2\right) & =  &\left\lbrace\begin{array}{c}
+	\left(\left(1 + 2\alpha \gamma \right)x^k_1, \left(1 - \alpha 2L\right)x^k_2\right) \\ \text{ si } x_1 \leq 1\\
+	\left(\left(1 - 2L \alpha \right)x^k_1 + 4L \alpha, \left(1 + 2 \alpha \gamma \right)x^k_2\right) \\ \text{ si } x_1 \geq 1 \ , \ x_2 \leq 1 \\
+	\left(\left(1 - 2L \alpha \right)x^k_1 + 4L \alpha, \left(1 - 2L \alpha \right)x^k_2 + 4L \alpha\right)  \\ \text{ si } x_1 \geq 1 \ , \ x_2 \geq 1
+	\end{array}\right.
+	\end{array}
+	\end{equation*}
+	
+	\end{frame}
+\begin{frame}{Intuici\'on acerca de la demostraci\'on: Parte 4}
+	
+	Luego evaluando en $k_1$ y $k_2$:
+	
+	\begin{equation*}
+	\begin{array}{rcl}
+	x^{k_1}_1 & = & \left(1 + 2 \alpha \gamma\right)^{k_1} x^0_1 \\
+	x^{k_1}_2 & = & \left(1 - 2 \alpha L\right)^{k_1} x^0_1 \\
+	&&\\
+	x^{k_2}_1 & = & \left(1 - 2L\alpha\right)^{k_2 - k_1}\left(1 + 2 \alpha \gamma\right)^{k_1} x^0_1 + K\geq 1 \quad K \text{ constante}\\
+	x^{k_2}_2 & = & \left(1 + 2 \alpha \gamma\right)^{k_2-k_1}\left(1 - 2 \alpha L\right)^{k_1} x^0_2\geq 1 \\
+	\end{array}
+	\end{equation*}
+	
+	\medskip
+	
+	concluimos que:
+	
+	\medskip
+	\begin{equation*}
+	k_2 \geq \dfrac{2 \alpha \left(L + \gamma\right)k_1 - \log\left(x_2^0\right)}{2 \alpha \gamma} \geq \dfrac{L + \gamma}{\gamma} k_1 
+	\end{equation*}
+	
+	\end{frame}
+	
+	\begin{frame}{Intuici\'on acerca de la demostraci\'on: Conclusiones}
+	Esta $f$ que presentamos tiene varios problemas:
+	
+	\begin{enumerate}
+		\item No es continua ni mucho menos $C^2$
+		\item No podemos asegurar que $f$ sea $l-$Lipschitz o $\mu-$Lipschitz en el hessiano
+		\item Los puntos cr\'iticos estan en el borde del dominio, lo que no es ideal
+		\item No est\'a definida en todo $\R^d$
+	\end{enumerate}
+	
+	\pause
+	\bigskip
+	
+	La clave va a ser usar splines para resolver los primeros puntos, espejar $f$ para hacer los puntos extremales interiores, asignar $d$ puntos cr\'iticos similares para generar el tiempo exponencial en $d$ y extender esa funci\'on $\tilde{f}$ a $\R^d$ con el Teorema de extensi\'on de Whitney. Aunque la demostraci\'on es larga y tediosa, la idea clave es la vista aqu\'i.
+\end{frame}
+
+\section{Algoritmos estoc\'asticos}
+
+\begin{frame}
+En el contexto estoc\'astico vamos a analizar el algoritmo de descenso estoc\'astico generalizado (DE) dado por:
+
+\begin{algorithm*}[H]
+	\caption{Descenso Estocastico (DE) \label{algo: DE}}
+	\textbf{Input:} $w_1 \in \R^d$ el inicio de la iteraci\'on, $\sett{\upxi_{k}} $ iid \\
+	\For{$k \in \N$}{
+		Generar una muestra de la variable aleatoria $\upxi_k$ \\
+		Calcular el vector estoc\'astico $g(w_k, \upxi_k)$ \\
+		Elegir $\alpha_k >0$ \\
+		$w_{k+1} \leftarrow w_k - \alpha_kg(w_k, \upxi_k)$
+	}
+\end{algorithm*}
+
+Donde $g(w_k, \upxi_k)$ puede ser varias estimaciones del gradiente como por ejemplo:
+
+\begin{equation}
+g(w_k, \upxi_k) = \left\lbrace
+\begin{aligned}
+\nabla f(w_k, \upxi_k) \\
+\frac{1}{n_k} \sum\limits_{i=1}^{n_k} {\nabla f (w_k, \upxi_{k,i})}
+\end{aligned}
+\right.
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{Lemas fundamentales}
+
+Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_k\right]$ la esperanza condicional bajo la distribuci\'on de $\upxi_k$ dado $w_k$.
+
+\medskip
+
+
+\begin{lemma}
+	\label{lemma: Fundamental estocasticos 1}
+	Si $F$ es Lipschitz , entonces las iteraciones del algoritmo DE satisfacen que para todo $k \in N$:
+	
+	\begin{equation*}
+	\begin{aligned}
+	\expectationsub{\upxi_{k}}{F(w_{k+1})} - F(w_k) \leq & - \alpha_k \nabla F(w_k) ^T \expectationsub{\upxi_{k}}{g(w_k, \upxi_{k})} \\ & + \frac{1}{2} \alpha_k^2 \expectationsub{\upxi_{k}}{\norm{g(w_k, \upxi_{k})}^2_2}
+	\end{aligned}
+	\end{equation*}
+	
+\end{lemma}
+\pause
+\medskip
+
+	Notemos que si $g(w_k, \upxi_{k})$ es un estimador insesgado de $\nabla F (w_k)$ entonces del lema:
+	
+	\begin{equation*}
+	\expectationsub{\upxi_{k}}{F(w_{k+1})} - F(w_k) \leq - \alpha_k \norm{\nabla F(w_k)}^2 + \frac{1}{2} \alpha_k^2 \expectationsub{\upxi_{k}}{\norm{g(w_k, \upxi_{k})}^2_2}
+	\end{equation*}
+	
+
+\end{frame}
+
+\begin{frame}{Lemas fundamentales}
+
+
+
+\begin{hyp}[Acotaciones al primer y segundo momento de $g$]
+	\label{hyp: Acotaciones momentos de g}
+	Supongamos que dada $F$ funci\'on objetivo y $g$ la estimaci\'on del gradiente en \ref{algo: DE} vale:
+	
+	\begin{enumerate}
+		\item Existe $U \subset \R^d$ tal que $\sett{w_k} \subset U$ y que existe $F_{inf}$ tal que $F\vert_U \geq F_{inf}$
+		\item Existen $\mu_G \geq \mu \geq 0$ tal que para todo $k \in N$ valen:
+		
+		\begin{subequations}
+			\begin{equation}
+			\label{eq: Hipotesis 2 subitem 1}
+			\nabla F(w_k)^T \expectationchik{g(w_k, \upxi_{k})} \geq \mu \norm{\nabla F(w_k)}_2^2
+			\end{equation}
+			Y
+			\begin{equation}
+			\label{eq: Hipotesis 2 subitem 2}
+			\norm{\expectationchik{g(w_k, \upxi_{k})}}_2 \leq \mu_G \norm{\nabla F(w_k)}_2
+			\end{equation}
+		\end{subequations}
+		\item 	Existen $M, M_V \geq 0$ tal que para todo $k \in \N$:
+		\begin{equation}
+		\label{eq: Hipotesis 2 Segundo momento acotado}
+		\variancechik{g(w_k, \upxi_{k})} \leq M + M_V \norm{\nabla F (w_k)}_2^2
+		\end{equation}
+		
+	\end{enumerate}
+	
+\end{hyp}
+
+\end{frame}
+
+\begin{frame}{Lemas fundamentales}
+
+	Notemos que si vale la hip\'otesis en los momentos de $g$ entonces:
+	
+	\begin{equation*}
+	\expectationchik{\norm{g(w_k, \upxi_{k})}_2^2} \leq M + M_G\norm{\nabla F(w_k)}_2^2  \qquad M_G:= M_V + \mu_G^2 \geq \mu^2 \geq 0
+	\end{equation*}
+
+\bigskip
+\pause
+
+\begin{lemma}
+	\label{lemma: Fundamental estocasticos 2}
+	Bajo la hip\'otesis en los momentos de $g$ y si $F$ es Lipszhits entonces las iteraciones del algoritmo DE satisfacen para todo $k \in \N$:
+	
+	\begin{subequations}
+		\begin{equation*}
+		\expectationchik{F(w_{k+1})} - F(w_k) \leq -\mu \alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L \expectationchik{\norm{g(w_k, \upxi_{k})}_2^2}
+		\end{equation*}
+		\begin{equation*}
+		\expectationchik{F(w_{k+1})} - F(w_k) \leq - \left( \mu - \frac{1}{2} \alpha_k L M_G \right)\alpha_k \norm{\nabla F(w_k)}_2^2 + \frac{1}{2} \alpha_k^2 L M
+		\end{equation*}
+	\end{subequations}
+	
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}{Convergencia en L1}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}; entonces el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  <  \alpha_k = \alpha \leq \dfrac{\mu}{LM_G}$ cumple:
+	
+	\begin{equation*}
+	\expectation{F(w_k) - F_{inf}} \underlimitinf{k} \dfrac{\alpha LM}{2 c \mu}
+	\end{equation*}
+	
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Convergencia en L1}
+
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos $\alpha_k$ cumplen:
+	
+	\begin{equation}
+	\alpha_k =  \dfrac{\beta}{\gamma + k} \quad \ \text{ para alg\'un } \ \beta > \frac{1}{c \mu} \  \text{ y } \ \gamma > 0 \  \text{ tal que } \ \alpha_1 \leq \dfrac{\mu}{L M_G} 
+	\end{equation}
+	
+	Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} cumple::
+	
+	\begin{equation*}
+	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\end{equation*}
+	
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Convergencia en L1}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada geom\'etricamente}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
+	
+	\begin{equation*}
+	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\rho^{k}\right)
+	\end{equation*}
+	
+\end{theorem}
+\end{frame}
+
 \section{References}
 \begin{frame}[allowframebreaks]{References}
 \begin{thebibliography}{99}

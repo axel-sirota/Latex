@@ -5,7 +5,7 @@
 Machine Learning es un conglomerado de t\'ecnicas estad\'isticas, probabil\'isticas y algor\'itmicas para resolver el problema universal siguiente:
 
 \begin{center}
-\textbf{Dado un set de datos ya ocurridos, construir un algoritmo que aprenda los patrones intr\'insecos para poder predecir datos futuros bajo la misma distribuci\'on.}
+\textbf{Dado un conjunto de datos ya ocurridos, construir un algoritmo que aprenda los patrones intr\'insecos para poder predecir datos futuros bajo la misma distribuci\'on.}
 \end{center}
 
 Esto est\'a contextualizado en la formalizaci\'on matem\'atica del problema y la identificaci\'on de una familia de funciones tal que aproximen a este, lo que conlleva un problema de optimizaci\'on convexa o no convexa seg\'un el caso. A este proceso de modelizar el problema mediante una familia de funciones y obtener el \'optimo mediante un algoritmo de optimizaci\'on es lo que comunmente se llama \textit{aprender} la distribuci\'on de los datos. En esta Tesis nos centramos en el an\'alisis de convergencia de algoritmos de optimizaci\'on que suelen aparecer en machine learning, los cuales se dividen en \textit{batch} o \textit{estoc\'asticos} dependiendo la naturaleza de \'este.
@@ -24,7 +24,7 @@ Vamos a representar a los algoritmos mediante un recuadro titulado. Tendr\'an un
 	}
 \end{algorithm}
 
-En este algoritmo $F$ es la funci\'on objetivo a optimizar, $\sett{\alpha_k}$ resultan los incrementos positivos, $w_1$ la condici\'on inicial y $X$ el set de datos conocidos. 
+En este algoritmo $F$ es la funci\'on objetivo a optimizar, $\sett{\alpha_k}$ resultan los incrementos positivos, $w_1$ la condici\'on inicial y $X$ el conjunto de datos conocidos. 
 
 Por otro lado, en el espectro \textit{estoc\'astico} encontramos el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} (DE) definido en \ref{algo: DE - intro}:
 

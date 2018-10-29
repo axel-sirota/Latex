@@ -36,7 +36,7 @@ A modo de s\'intesis, presentamos un resumen de los resultados vistos en este tr
 	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por batch} con incremento fijo $\alpha < \frac{1}{L}$ cumple:
 	
 	\begin{equation*}
-		w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
+		w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
 	\end{equation*}
 	
 \end{theorem}
@@ -45,7 +45,7 @@ A modo de s\'intesis, presentamos un resumen de los resultados vistos en este tr
 	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo con Hessiano acotado con constante $L$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{punto pr\'oximo } con incremento fijo $\alpha < \frac{1}{L}$ cumple:
 	
 	\begin{equation*}
-	w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
+	w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
 	\end{equation*}
 	
 \end{theorem}
@@ -54,7 +54,7 @@ A modo de s\'intesis, presentamos un resumen de los resultados vistos en este tr
 	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$  la funci\'on objetivo con Hessiano acotado por bloques con constante $L_b$, $w^*$ alg\'un m\'inimo local de $F$; entonces el algoritmo \textit{descenso de gradiente por coordenadas} con incremento fijo $\alpha < \frac{1}{L_b}$ cumple:
 	
 \begin{equation*}
-w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
+w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
 \end{equation*}
 	
 \end{theorem}
@@ -105,10 +105,10 @@ w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
 	
 	\begin{subequations}
 		\begin{equation*}
-		w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
+		w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
 		\end{equation*}
 		\begin{equation*}
-		\left(w_k - w^*\right)^T \nabla F(w_k) \xrightarrow[k \rightarrow \infty]{ctp}  0
+		\left(w_k - w^*\right)^T \nabla F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.}  0
 		\end{equation*}
 	\end{subequations}
 	
@@ -175,10 +175,10 @@ w_k \xrightarrow[k \rightarrow \infty]{ctp} w^*
 	
 	\begin{subequations}
 		\begin{equation*}
-		F(w_k) \xrightarrow[k \rightarrow \infty]{ctp} \ F_{\infty}
+		F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.} \ F_{\infty}
 		\end{equation*}
 		\begin{equation*}
-		\nabla F(w_k) \xrightarrow[k \rightarrow \infty]{ctp} 0
+		\nabla F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.} 0
 		\end{equation*}
 	\end{subequations}
 	
