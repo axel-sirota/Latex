@@ -318,7 +318,6 @@ De tipo \textit{estoc\'astico}, donde se elije en cada iteraci\'on al azar un su
 \begin{frame}{M\'as definiciones}
 
 \begin{definition}[Condici\'on de \textit{Polyak- Lojasiewicz}]
-	\label{def: Condicion PL}
 	Decimos que una funci\'on $f:\R^d \rightarrow \R$ tal que $f \in C^1$ es $PL-$convexa, o cumple la condici\'on de \textit{Polyak- Lojasiewicz} (ver \cite{polyak:1963}, \cite{lojasiewicz:1963}) si existe $\mu >0$ tal que para todo $x \in \R^d$ vale:
 	\begin{equation*}
 	\frac{1}{2} \norm{\nabla f(x)}^2_2 \geq \mu \left(f(x) - f_{inf}\right)
@@ -326,7 +325,6 @@ De tipo \textit{estoc\'astico}, donde se elije en cada iteraci\'on al azar un su
 \end{definition}
 
 \begin{definition}[Funci\'on Lipschitz]
-	\label{def: L Lipschitz}
 	Sea $f:\R^d \rightarrow \R$ tal que $f \in C^1$, decimos que es $L$\textit{-Lipschitz} global si existe $L > 0$ tal que para todos $x,y \in \R^d$ vale:
 	\begin{equation*}
 	\norm{\nabla f(x) - \nabla f (y)}_2 \leq  L\norm{y-x}_2
@@ -652,11 +650,11 @@ Las iteraciones de GD en este caso van a ser:
 
 \section{Algoritmos estoc\'asticos}
 
-\begin{frame}
+\begin{frame}{Descenso estoc\'astico}
 En el contexto estoc\'astico vamos a analizar el algoritmo de descenso estoc\'astico generalizado (DE) dado por:
 
 \begin{algorithm*}[H]
-	\caption{Descenso Estocastico (DE) \label{algo: DE}}
+	\caption{Descenso Estocastico (DE)}
 	\textbf{Input:} $w_1 \in \R^d$ el inicio de la iteraci\'on, $\sett{\upxi_{k}} $ iid \\
 	\For{$k \in \N$}{
 		Generar una muestra de la variable aleatoria $\upxi_k$ \\
@@ -668,14 +666,14 @@ En el contexto estoc\'astico vamos a analizar el algoritmo de descenso estoc\'as
 
 Donde $g(w_k, \upxi_k)$ puede ser varias estimaciones del gradiente como por ejemplo:
 
-\begin{equation}
+\begin{equation*}
 g(w_k, \upxi_k) = \left\lbrace
 \begin{aligned}
 \nabla f(w_k, \upxi_k) \\
 \frac{1}{n_k} \sum\limits_{i=1}^{n_k} {\nabla f (w_k, \upxi_{k,i})}
 \end{aligned}
 \right.
-\end{equation}
+\end{equation*}
 
 \end{frame}
 
@@ -687,7 +685,6 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 
 
 \begin{lemma}
-	\label{lemma: Fundamental estocasticos 1}
 	Si $F$ es Lipschitz , entonces las iteraciones del algoritmo DE satisfacen que para todo $k \in N$:
 	
 	\begin{equation*}
@@ -714,29 +711,25 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 
 
 \begin{hyp}[Acotaciones al primer y segundo momento de $g$]
-	\label{hyp: Acotaciones momentos de g}
-	Supongamos que dada $F$ funci\'on objetivo y $g$ la estimaci\'on del gradiente en \ref{algo: DE} vale:
+	Supongamos que dada $F$ funci\'on objetivo y $g$ la estimaci\'on del gradiente en DE vale:
 	
 	\begin{enumerate}
 		\item Existe $U \subset \R^d$ tal que $\sett{w_k} \subset U$ y que existe $F_{inf}$ tal que $F\vert_U \geq F_{inf}$
 		\item Existen $\mu_G \geq \mu \geq 0$ tal que para todo $k \in N$ valen:
 		
 		\begin{subequations}
-			\begin{equation}
-			\label{eq: Hipotesis 2 subitem 1}
+			\begin{equation*}
 			\nabla F(w_k)^T \expectationchik{g(w_k, \upxi_{k})} \geq \mu \norm{\nabla F(w_k)}_2^2
-			\end{equation}
+			\end{equation*}
 			Y
-			\begin{equation}
-			\label{eq: Hipotesis 2 subitem 2}
+			\begin{equation*}
 			\norm{\expectationchik{g(w_k, \upxi_{k})}}_2 \leq \mu_G \norm{\nabla F(w_k)}_2
-			\end{equation}
+			\end{equation*}
 		\end{subequations}
 		\item 	Existen $M, M_V \geq 0$ tal que para todo $k \in \N$:
-		\begin{equation}
-		\label{eq: Hipotesis 2 Segundo momento acotado}
+		\begin{equation*}
 		\variancechik{g(w_k, \upxi_{k})} \leq M + M_V \norm{\nabla F (w_k)}_2^2
-		\end{equation}
+		\end{equation*}
 		
 	\end{enumerate}
 	
@@ -756,7 +749,6 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 \pause
 
 \begin{lemma}
-	\label{lemma: Fundamental estocasticos 2}
 	Bajo la hip\'otesis en los momentos de $g$ y si $F$ es Lipszhits entonces las iteraciones del algoritmo DE satisfacen para todo $k \in \N$:
 	
 	\begin{subequations}
@@ -784,14 +776,34 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 
 \end{frame}
 
+\begin{frame}{Esquema de la demostraci\'on}
+	Usando que $F$ es Lipschitz y fuertemente convexa con la condici\'on sobre $\alpha$ tenemos para todo $k \in \N$ vale:
+
+\begin{equation*}
+\expectationchik{F(w_{k+1}) - F(w_k)} \leq - \alpha \mu c \left(F(w_k) - F_{inf} \right)+ \frac{1}{2} \alpha ^2 LM 
+\end{equation*}
+
+Luego si restamos $F_{inf}$ y tomamos esperanza total:
+
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}} - \dfrac{\alpha L M}{2 c \mu }   \left(1 - \alpha c \mu  \right)  \left(\expectation{F(w_k) - F_{inf}}  -  \dfrac{\alpha L M}{2 c \mu }  \right)
+\end{equation*}
+
+Luego deducimos inductivamente que:
+
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}} - \dfrac{\alpha L M}{2 c \mu } \leq \left(1 - \alpha c \mu \right)^{k} \left(F(w_1) - F_{inf} - \dfrac{\alpha LM}{2 c \mu} \right)
+\end{equation*}
+\end{frame}
+
 \begin{frame}{Convergencia en L1}
 
 \begin{theorem}
 	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos $\alpha_k$ cumplen:
 	
-	\begin{equation}
+	\begin{equation*}
 	\alpha_k =  \dfrac{\beta}{\gamma + k} \quad \ \text{ para alg\'un } \ \beta > \frac{1}{c \mu} \  \text{ y } \ \gamma > 0 \  \text{ tal que } \ \alpha_1 \leq \dfrac{\mu}{L M_G} 
-	\end{equation}
+	\end{equation*}
 	
 	Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} cumple::
 	
@@ -802,15 +814,203 @@ Definamos ahora $\expectationsub{\upxi_k}{.} := \mathbb{E}_{P_k}\left[. \vert w_
 \end{theorem}
 \end{frame}
 
+\begin{frame}{Esquema de la demostraci\'on}
+	Usando que $F$ es Lipschitz y fuertemente convexa con la condici\'on sobre $\alpha$ tenemos para todo $k \in \N$ vale:
+
+\begin{equation*}
+\expectationchik{F(w_{k+1})} - F(w_k) \leq  - \alpha_k c \mu \left(F(w_k) - F(w_*)\right) + \frac{1}{2} \alpha_k^2 L M
+\end{equation*}
+
+Luego restando $F_{inf}$, tomando esperanza y reordenando vale:
+
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - \alpha_k c \mu \right) \expectation{F(w_{k}) - F_{inf}}  + \frac{1}{2} \alpha_k^2 L M
+\end{equation*}
+
+Luego inductivamente:
+
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}} \leq \dfrac{\eta}{\gamma + k + 1}
+\end{equation*}
+\end{frame}
+
 \begin{frame}{Convergencia en L1}
 \begin{theorem}
-	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que $g$ tiene \textit{varianza acotada geom\'etricamente}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{L-Lipshitz}, $F$ es \textit{fuertemente convexa}; supongamos adem\'as que existe $M \geq 0$ y $\xi \in (0,1)$ tal que para todo $k \in \N$:
+	
+	\begin{equation*}
+	\variancechik{g(w_k, \upxi_{k})} \leq M \xi^{k-1}
+	\end{equation*}
+	
+	Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
 	
 	\begin{equation*}
 	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\rho^{k}\right)
 	\end{equation*}
 	
 \end{theorem}
+\end{frame}
+
+\begin{frame}{Esquema de la demostraci\'on}
+	Por el lema, la condici\'on de $\alpha$ y las hip\'otesis sobre $F$ y $g$ vale que:
+	
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}} \leq \left(1 - c \mu \alpha\right) \expectation{F(w_k) - F_{inf}} + \frac{1}{2} \alpha^2 LM \xi^{k-1}
+\end{equation*}
+
+E inductivamente se prueba que:
+
+\begin{equation*}
+\expectation{F(w_{k+1}) - F_{inf}}  \leq  \omega \rho^{k}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Convergencia en L1}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo , $F$ es \textit{L-Lipshitz} y supongamos adem\'as que $g$ tiene \textit{varianza acotada}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \dfrac{\mu}{LM_G} $ cumple:
+	
+	\begin{equation*}
+	\expectation{\dfrac{1}{K}\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k}^2}} \underlimitinf{k}  \dfrac{\alpha LM}{\mu}
+	\end{equation*}
+	
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Esquema de la demostraci\'on}
+	Recordemos del lema si tomamos esperanza total e imponemos la condici\'on de $\alpha$ tenemos:
+
+\begin{equation*}
+\expectation{F(w_{k+1})} - \expectation{F(w_k)}  \leq  - \frac{1}{2}\alpha \mu \expectation{\norm{\nabla F(w_k)}_2^2} + \frac{1}{2} \alpha^2 LM
+\end{equation*}
+
+Luego si usamos la hip\'otesis de $g$ y que $F_{inf} \leq \expectation{F(w_k)}$ para todo $k \in \N$ vale:
+
+\begin{equation*}
+		\expectation{\sum\limits_{k=1}^{K} {\norm{\nabla F (w)_k)}_2^2}} \leq \dfrac{K \alpha LM}{\mu} + \dfrac{2(F(w_1) - F_{inf})}{\mu \alpha}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Convergencia en L1}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^2$ la funci\'on objetivo, $F$ es \textit{L-Lipshitz} y $w \mapsto \norm{\nabla F (w)}_2^2$ sea \textit{L-Lipshitz}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
+	
+	\begin{equation*}
+	\lim\limits_{k \rightarrow \infty} \expectation{\norm{\nabla F (w_k)}^2} = 0
+	\end{equation*}
+	
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Idea de la demostraci\'on}
+Sea $G(w) := \norm{\nabla F(w)}_2^2$ y sea $L_G$ la constante de Lipshitz de $\nabla G(w) = 2 \nabla^2 F(w) \nabla F(w)$, luego:
+
+\begin{equation*}
+G(w_{k+1}) - G(w_k) \leq  - \alpha_k \nabla G(w_k)^T g(w_k, \upxi_{k}) + \frac{1}{2} \alpha_k L_G  \norm{g(w_k, \upxi_{k})}_2^2
+\end{equation*}
+
+Si tomamos esperanza condicional a $\upxi_{k}$ y usamos que $F$ es Lipschitz y $g$ tiene momentos acotados entonces:
+
+\begin{footnotesize}
+\begin{equation*}
+\begin{aligned}
+\expectationchik{G(w_{k+1}) - G(w_k)} & \leq &   2 \alpha_k \norm{\nabla F(w_k)}_2 \norm{\nabla^2 F(w_k)}_2 \norm{\expectationchik{g(w_k, \upxi_{k})}}_2 +  \\
+&& \frac{1}{2} \alpha_k^2 L_G \expectationchik{\norm{g(w_k, \upxi_{k})}^2_2} \\
+& \leq & 2 \alpha_k L \mu_G \norm{\nabla F (w_k)}_2^2 + \\
+&& \frac{1}{2} \alpha_k^2 L_G\left(M + M_V \norm{\nabla F(w_k)}_2^2\right)
+\end{aligned}
+\end{equation*}
+\end{footnotesize}
+
+\end{frame}
+\begin{frame}{Idea de la demostraci\'on: Continuaci\'on}
+Tomando esperanza total:
+
+\begin{footnotesize}
+\begin{equation*}
+\begin{aligned}
+\expectation{G(w_{k+1})} - \expectation{G(w_k)} \leq & 2 \alpha_k L \mu_G \expectation{\norm{\nabla F (w_k)}_2^2} \\  & + \frac{1}{2} \alpha_k^2 L_G\left(M + M_V \expectation{\norm{\nabla F(w_k)}_2^2}\right)
+\end{aligned}
+\end{equation*}
+\end{footnotesize}
+	
+Luego:
+
+\begin{footnotesize}
+\begin{equation*}
+\lim\limits_{N \rightarrow \infty} { {2 L \mu_G \sum\limits_{k=K}^{K+N}\expectation{\alpha_k\norm{\nabla F (w_k)}_2^2}+  \frac{1}{2} L_G\left(M\sum\limits_{k=K}^{K+N}\alpha_k^2 + M_V \sum\limits_{k=K}^{K+N}\expectation{\alpha_k^2\norm{\nabla F(w_k)}_2^2}\right)} } = 0
+\end{equation*}
+\end{footnotesize}
+
+Se concluye que $\expectation{G(w_k)}$ debe ser convergente, y por los teoremas anteriores tenemos $\expectation{\norm{\nabla F(w_k)}_2^2} = \expectation{G(w_k)} \rightarrow 0$
+
+\end{frame}
+
+\begin{frame}{Convergencia c.t.p.}
+\begin{theorem}
+	Sea $F: \R^d \rightarrow \R$ tal que $F \in C^1$ la funci\'on objetivo tal que existe $F_{inf}$ valor m\'inimo, $F$ es \textit{d\'ebilmente convexo}; supongamos adem\'as que $g$ tiene \textit{varianza acotada} y que los incrementos cumplen la \textit{condici\'on de Robbins Monro}. Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento decrecientes cumple:
+	
+	\begin{subequations}
+		\begin{equation*}
+		w_k \xrightarrow[k \rightarrow \infty]{c.t.p.} w^*
+		\end{equation*}
+		\begin{equation*}
+		\left(w_k - w^*\right)^T \nabla F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.}  0
+		\end{equation*}
+	\end{subequations}
+	
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Convergencia c.t.p. : Hip\'otesis}
+\begin{hyp}
+	Sea $F: \R^d \rightarrow \R$  funci\'on objetivo y  $g$ un estimador insesgado de $\nabla F$ tal que ambos cumplen:
+	
+	\begin{enumerate}
+		\item $F \in C^3$
+		\item Existe $w^* \in \R^d$ tal que $F_{inf} = F(w^*) \leq F(w)$ para todo $w \in U$ entorno.
+		\item $F(w) \geq 0$ para todo $w \in \R^d$
+		\item Los incrementos cumplen la \textit{condici\'on de Robbins Monro}
+		\item Existe $B_2 \geq 0$ tal que:
+		
+		\begin{equation*}
+		\expectation{\norm{g(w_k, \upxi_{k})}^2} \leq B_2 \norm{w}^2
+		\end{equation*}		
+		\end{enumerate}
+\end{hyp}	
+\end{frame}
+\begin{frame}{Convergencia c.t.p. : Hip\'otesis continuaci\'on}
+\begin{hyp}
+	\begin{enumerate}
+		\setcounter{enumi}{5}
+		\item Para $j=3, 4$ existen $A_j,B_j \geq 0$ tal que:
+		
+		\begin{equation*}
+		\expectation{\norm{g(w_k, \upxi_{k})}^j} \leq A_j + B_j \norm{w}^j
+		\end{equation*}
+		
+		\item  Existe $D > 0$ tal que:
+		
+		\begin{equation*}
+		\inf\limits_{(w)^2 > D} {w^T \nabla F(w)} >0
+		\end{equation*}
+	\end{enumerate}
+	
+\end{hyp}
+\end{frame}
+
+\begin{frame}{Convergencia c.t.p. : Teorema}
+\begin{theorem}
+	Bajo todas las hip\'otesis mencionadas anteriormente, el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incrementos decrecientes cumple:
+	
+	\begin{subequations}
+		\begin{equation*}
+		F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.} \ F_{\infty}
+		\end{equation*}
+		\begin{equation*}
+		\nabla F(w_k) \xrightarrow[k \rightarrow \infty]{c.t.p.} 0
+		\end{equation*}
+	\end{subequations}
+\end{theorem}	
 \end{frame}
 
 \section{References}
