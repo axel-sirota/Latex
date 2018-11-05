@@ -646,15 +646,28 @@
 	
 		Luego, por el lema de Zorn, existe un elemento maximal $K \in S$ que resulta la subextensi\'on buscada.
 		
-		\item Sea $x \in \C - K$ y supongamos que es trascendente, lo esto implica que tenemos la torre de extesiones $\Q \subsetneq K \subsetneq K[x] \subset \C$ y $K[x]$ es una subextensi\'on de $\quotient{\C}{\Q}$ tal que no tiene a $\alpha$.
+		\item Sea $x \in \C - K$ y supongamos que es trascendente sobre $K$, lo esto implica que tenemos la torre de extesiones $\Q \subsetneq K \subsetneq K(x) \subset \C$ y $K(x)$ es una subextensi\'on de $\quotient{\C}{\Q}$. Afirmo que no tiene a $\alpha$.
 		
-		Esto es claro pues $\alpha \not \in K$ y $\alpha \neq x$ pues $x$ es trascendente y $\alpha$ algebraico. Como $K$ era maximal uno concluir\'ia que $K = K[x]$ lo que es absurdo, luego $\quotient{\C}{K}$ es algebraico.
+		\textcolor{red}{En efecto, supongamos que $\alpha = \dfrac{f(x)}{g(x)}$ con $f,g \in K[X]$, luego por ser algebraico sobre $\Q$ sabemos que existe $h \in \Q[X]$ tal que $h(\alpha) = 0$. En particular, si notamos $h_0, \dots, h_n \in \Q$ a los coeficientes de $h$ esto es equivalente a:
+		\begin{equation*}
+			h_0 + h_1\dfrac{f(x)}{g(x)} + \dots + h_n\dfrac{f^n(x)}{g^n(x)} = 0
+		\end{equation*}
+		Luego:
+		\begin{equation*}
+		\begin{aligned}
+			0 = & h_0g^n(x) + h_1g^{n-1}(x)f(x) + \dots + h_nf^n(x) \\
+			=& \left(h_0g^n + h_1g^{n-1}f + \dots + h_n f^n\right) (x)
+		\end{aligned}
+		\end{equation*}
+		Y como $h_0g^n + h_1g^{x-1}f + \dots + h_nf^n \in K[X]$ concluimos que $x$ es algebraico sobre $K$, lo que es absurdo.
+	}
+		Como $K$ era maximal uno concluir\'ia que $K = K(x)$ lo que es absurdo, luego $\quotient{\C}{K}$ es algebraico.
 	
-		\item Sea $\quotient{M}{K}$ una subextension finita de $\quotient{\C}{K}$ luego, por un lado, sabemos que $\alpha \in M$ por la maximalidad de $K$ y, por el otro, existe  $\sigma \in Gal\left(\quotient{M}{K}\right)$ tal que $\sigma(\alpha) \neq \alpha$ pues es Galois. Luego $\quotient{M^{\ip{\sigma}}}{K}$ es una extensi\'on tal que $\alpha \not \in M^{\ip{\sigma}}$, por la maximalidad de $K$ concluimos que $K = M^{\ip{\sigma}}$ y entonces por el teorema de correspondencia de Galois esto es si y s\'olo si $\ip{\sigma} = Gal\left(\quotient{M}{K}\right)$. Concluimos que $\quotient{M}{K}$ es c\'iclico.
-	
-		\item Sea $G = Gal\left(\quotient{M}{K}\right)$ y sabemos porque $\alpha^2 = 3 \in \Q \subset K$ que $[K[\alpha]:K] = 2$. Sea $q$ un primo que divida a $n = \abs{G}$, luego como $G$ es c\'iclico sabemos que existe una subextensi\'on $\quotient{F}{K}$ de grado $q$. Finalmente, como $\alpha \in F$ (pues sino por la maximalidad de $K$ respecto a la propiedad de $\alpha \not \in K$ eso implicar\'ia que $K=F$ lo que dir\'ia que $q=1$ es primo) entonces sabemos que $2 \vert q$ por lo que $q = 2$; luego $\abs{G} = [M:K] = 2^r$.
+		\item Sea $\quotient{M}{K}$ una subextension finita de $\quotient{\C}{K}$ luego, por un lado, sabemos que $\alpha \in M$ por la maximalidad de $K$. 
 		
-		Notemos que por lo visto anteriormente $\sqrt[n]{\alpha} \not \in K$ para todo $n$ (pues sino $\sqrt[n]{\alpha}^{n-1} = \pm \alpha \in K $) por lo que deducirmos que $[\C:K] \geq [K[\sqrt[n]{\alpha}]:K] = n$ para todo $n$ y entonces $[\C:K] = \infty$. \qed
+		\textcolor{red}{Consideremos $\quotient{\widetilde{M}}{K}$ la clasura normal de $\quotient{M}{K}$, como $\quotient{\C}{K}$ es separable y $\C$ es algebraicamente cerrado sabemos que $\quotient{\widetilde{M}}{K}$ es una subextensi\'on normal y separable de $\quotient{\C}{K}$, luego Galois. Por ser Galois y $\alpha \not\in K$ existe $\sigma \in Gal\left(\quotient{\widetilde{M}}{K}\right)$ tal que $\sigma(\alpha) \neq \alpha$. Luego $\quotient{\widetilde{M}^{\ip{\sigma}}}{K}$ es una extensi\'on tal que $\alpha \not \in \widetilde{M}^{\ip{\sigma}}$. Por la maximalidad de $K$ concluimos que $K = \widetilde{M}^{\ip{\sigma}}$ y entonces por el teorema de correspondencia de Galois esto es si y s\'olo si $\ip{\sigma} = Gal\left(\quotient{\widetilde{M}}{K}\right)$. Concluimos que $\quotient{M}{K}$ es c\'iclico al ser subextensi\'on de $\quotient{\widetilde{M}}{K}$ que lo es.}
+	
+		\item \textcolor{red}{Dijimos que no valia} \qed
 	
 	\end{itemize}
 	
