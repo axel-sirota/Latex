@@ -284,7 +284,7 @@
 	
 	\begin{itemize}
 		\item Notemos primero que $\beta^2 = 10 + 5\sqrt{2} + 2\sqrt{5} + \sqrt{10} \in \Q[\sqrt{2}, \sqrt{5 }]$; \textcolor{red}{
-			 es m\'as, notemos que de la misma cuenta $\beta^2 \not\in  \Q,  \Q[\sqrt{2}],  \Q[\sqrt{5 }]$ que son (lo vimos en la pr\'actica analizando $\Q[\sqrt{p_1}, \sqrt{p_2}]$) las \'unicas subextensiones propias de $\Q[\sqrt{2}, \sqrt{5}]$ 
+			 es m\'as, notemos que de la misma cuenta $\beta^2 \not\in  \Q,  \Q[\sqrt{2}],  \Q[\sqrt{5 }], \Q[\sqrt{10}]$ que son (lo vimos en la pr\'actica analizando $\Q[\sqrt{p_1}, \sqrt{p_2}]$) las \'unicas subextensiones propias de $\Q[\sqrt{2}, \sqrt{5}]$ 
 		 }. Luego como $\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}$ es separable, de la te\'orica sabemos que para todo $\alpha \in \Q[\sqrt{2}, \sqrt{5 }]$ vale:
 		
 		\begin{equation*}
@@ -591,11 +591,11 @@
 			\end{enumerate}
 		\end{lemma}
 		\begin{proof}
-			En efecto, como $\xi$ es una ra\'iz de $\Phi_n$ entonces $f(\xi, F) = \Phi_n$ pues es irreducible, m\'onico y anula; luego $[F[\xi]:F] = \varphi(n) = gr(\Phi_n)$. Como $\quotient{F[\xi]}{F}$ es Galois ($p \not\vert n$), sabemos que $\varphi(n) = \abs{Gal\left(\quotient{F[\xi]}{F}\right)} = \abs{(\quotient{\Z}{n\Z}} = \varphi(n)$, luego la inyecci\'on $Gal\left(\quotient{F[\xi]}{F}\right) \inc \left(\quotient{\Z}{n\Z}\right)^*$ es un isomorfismo de grupos pues de \'Algebra 2 sabemos que un homomorfismo inyectivo (esto lo sabemos de la te\'orica) entre grupos de igual orden es isomorfismo. Finalmente de la teor\'ia de cuerpos finitos sabemos que siempre:
+			En efecto, como $\xi$ es una ra\'iz de $\Phi_n$ entonces $f(\xi, F) = \Phi_n$ pues es irreducible, m\'onico y anula; luego $[F[\xi]:F] = \varphi(n) = gr(\Phi_n)$ y la vuelta es por definici\'on. Como $\quotient{F[\xi]}{F}$ es Galois ($p \not\vert n$), sabemos que $\varphi(n) = \abs{Gal\left(\quotient{F[\xi]}{F}\right)} = \abs{(\quotient{\Z}{n\Z}} = \varphi(n)$, luego la inyecci\'on $Gal\left(\quotient{F[\xi]}{F}\right) \inc \left(\quotient{\Z}{n\Z}\right)^*$ es un isomorfismo de grupos pues de \'Algebra 2 sabemos que un homomorfismo inyectivo (esto lo sabemos de la te\'orica) entre grupos de igual orden es isomorfismo, y la vuelta es trivial. Finalmente de la teor\'ia de cuerpos finitos sabemos que siempre:
 			\begin{equation*}
-				p = f\left(\xi, F\right) = \prod\limits_{i=1}^{k}{x-\xi^{p^i}}
+				f\left(\xi, F\right) = \prod\limits_{i=1}^{k}{x-\xi^{p^i}}
 			\end{equation*}
-			donde $k = [{F[\xi]}:{F}]$. Luego sabemos que $ p \vert \Phi_n$ y van a ser iguales si y s\'olo si sus ra\'ices son iguales, es decir cuando $\xi^{a} \cong \xi^{p^i}$ para todo $a \leq n$ tal que $(a, n) = 1$. Esto vimos que pasa si y s\'olo si $a \cong p^i \ \mod(n)$ para alg\'un $i$, lo que pasa si y s\'olo si $p$ es generador de $\left(\quotient{\Z}{n\Z}\right)^*$. \qed
+			donde $k = [{F[\xi]}:{F}]$. Luego sabemos que $ f\left(\xi, F\right) \vert \Phi_n$ y van a ser iguales si y s\'olo si sus ra\'ices son iguales, es decir cuando $\xi^{a} \cong \xi^{p^i}$ para todo $a \leq n$ tal que $(a, n) = 1$. Esto vimos que pasa si y s\'olo si $a \cong p^i \ \mod(n)$ para alg\'un $i$, lo que pasa si y s\'olo si $p$ es generador de $\left(\quotient{\Z}{n\Z}\right)^*$. \qed
 		\end{proof}
 		}
 		Luego, $\Phi_n$ es irreducible en $\mathbb{F}_p$ con $p \not\vert n$ si y s\'olo si $\left(\quotient{\Z}{n\Z}\right)^*$ es c\'iclico, que de \'Algebra 2 sabemos que pasa si y s\'olo si $n \in \sett{2, 4, l^s, 2l^s}$ con $l$ primo impar o $s \geq 1$; como $12$ no entra en ninguna de esas posibilidades sabemos que $\Phi_{12}$ es reducible en $\mathbb{F}_p$ para $p \neq 2,3$.

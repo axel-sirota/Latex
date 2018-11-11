@@ -1,113 +1,245 @@
+\defcounter {refsection}{0}\relax 
 \headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {1}{1}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@sectionpages {1}{1}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@subsectionpages {1}{1}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\sectionentry {1}{Introducci\'on}{2}{Introducci\'on}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\slideentry {1}{0}{1}{2/2}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {2}{2}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\slideentry {1}{0}{2}{3/5}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {3}{5}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\slideentry {1}{0}{3}{6/8}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {6}{8}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\slideentry {1}{0}{4}{9/10}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {9}{10}}
-\headcommand {\slideentry {1}{0}{5}{11/12}{}{0}}
-\headcommand {\beamer@framepages {11}{12}}
-\headcommand {\beamer@sectionpages {2}{12}}
-\headcommand {\beamer@subsectionpages {2}{12}}
-\headcommand {\sectionentry {2}{Convergencia de algoritmos de tipo batch}{13}{Convergencia de algoritmos de tipo batch}{0}}
-\headcommand {\slideentry {2}{0}{1}{13/13}{}{0}}
-\headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {2}{0}{2}{14/14}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {1}{0}{5}{11/13}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {11}{13}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {2}{13}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {2}{13}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\sectionentry {2}{Convergencia de algoritmos de tipo batch}{14}{Convergencia de algoritmos de tipo batch}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{0}{1}{14/14}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {2}{0}{3}{15/15}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{0}{2}{15/15}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {2}{0}{4}{16/16}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{0}{3}{16/16}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {2}{0}{5}{17/18}{}{0}}
-\headcommand {\beamer@framepages {17}{18}}
-\headcommand {\slideentry {2}{0}{6}{19/19}{}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {2}{0}{7}{20/20}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {14}{16}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{2}{1}{17}{Convergencia Puntual}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{1}{1}{17/17}{Convergencia Puntual}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {17}{17}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{1}{2}{18/19}{Convergencia Puntual}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {18}{19}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{1}{3}{20/20}{Convergencia Puntual}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {2}{0}{8}{21/23}{}{0}}
-\headcommand {\beamer@framepages {21}{23}}
-\headcommand {\slideentry {2}{0}{9}{24/25}{}{0}}
-\headcommand {\beamer@framepages {24}{25}}
-\headcommand {\slideentry {2}{0}{10}{26/28}{}{0}}
-\headcommand {\beamer@framepages {26}{28}}
-\headcommand {\slideentry {2}{0}{11}{29/29}{}{0}}
-\headcommand {\beamer@framepages {29}{29}}
-\headcommand {\slideentry {2}{0}{12}{30/30}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{1}{4}{21/21}{Convergencia Puntual}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {21}{21}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {17}{21}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{2}{2}{22}{Convergencia c.t.p.}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{1}{22/24}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {22}{24}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{2}{25/26}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {25}{26}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{3}{27/29}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {27}{29}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{4}{30/30}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\slideentry {2}{0}{13}{31/31}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{5}{31/31}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\slideentry {2}{0}{14}{32/34}{}{0}}
-\headcommand {\beamer@framepages {32}{34}}
-\headcommand {\slideentry {2}{0}{15}{35/37}{}{0}}
-\headcommand {\beamer@framepages {35}{37}}
-\headcommand {\slideentry {2}{0}{16}{38/39}{}{0}}
-\headcommand {\beamer@framepages {38}{39}}
-\headcommand {\slideentry {2}{0}{17}{40/40}{}{0}}
-\headcommand {\beamer@framepages {40}{40}}
-\headcommand {\slideentry {2}{0}{18}{41/41}{}{0}}
-\headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {2}{0}{19}{42/43}{}{0}}
-\headcommand {\beamer@framepages {42}{43}}
-\headcommand {\beamer@sectionpages {13}{43}}
-\headcommand {\beamer@subsectionpages {13}{43}}
-\headcommand {\sectionentry {3}{Algoritmos estoc\'asticos}{44}{Algoritmos estoc\'asticos}{0}}
-\headcommand {\slideentry {3}{0}{1}{44/44}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{2}{6}{32/32}{Convergencia c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {32}{32}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {22}{32}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{2}{3}{33}{Complejidad exponencial}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{3}{1}{33/35}{Complejidad exponencial}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {33}{35}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{3}{2}{36/38}{Complejidad exponencial}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {36}{38}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{3}{3}{39/40}{Complejidad exponencial}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {39}{40}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {2}{3}{4}{41/42}{Complejidad exponencial}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {41}{42}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {14}{42}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {33}{42}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\sectionentry {3}{Algoritmos estoc\'asticos}{43}{Algoritmos estoc\'asticos}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{0}{1}{43/43}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {43}{43}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{0}{2}{44/44}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {3}{0}{2}{45/45}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{0}{3}{45/45}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\slideentry {3}{0}{3}{46/47}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{0}{4}{46/47}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {46}{47}}
-\headcommand {\slideentry {3}{0}{4}{48/48}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {43}{47}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{3}{1}{48}{Convergencia en L1}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{1}{48/48}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {48}{48}}
-\headcommand {\slideentry {3}{0}{5}{49/50}{}{0}}
-\headcommand {\beamer@framepages {49}{50}}
-\headcommand {\slideentry {3}{0}{6}{51/51}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{2}{49/49}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {49}{49}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{3}{50/50}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {50}{50}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{4}{51/51}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {51}{51}}
-\headcommand {\slideentry {3}{0}{7}{52/52}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{5}{52/52}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {52}{52}}
-\headcommand {\slideentry {3}{0}{8}{53/53}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{6}{53/53}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {53}{53}}
-\headcommand {\slideentry {3}{0}{9}{54/54}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{1}{7}{54/54}{Convergencia en L1}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {3}{0}{10}{55/55}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {48}{54}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{3}{2}{55}{Convergencia en c.t.p.}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{2}{1}{55/55}{Convergencia en c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {3}{0}{11}{56/56}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{2}{2}{56/56}{Convergencia en c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\slideentry {3}{0}{12}{57/57}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{2}{3}{57/57}{Convergencia en c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {57}{57}}
-\headcommand {\slideentry {3}{0}{13}{58/58}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{2}{4}{58/58}{Convergencia en c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\slideentry {3}{0}{14}{59/59}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {3}{2}{5}{59/59}{Convergencia en c.t.p.}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {59}{59}}
-\headcommand {\slideentry {3}{0}{15}{60/60}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {43}{59}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {55}{59}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\sectionentry {4}{Conclusiones y continuaci\'on}{60}{Conclusiones y continuaci\'on}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{0}{1}{60/60}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {60}{60}}
-\headcommand {\slideentry {3}{0}{16}{61/61}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{0}{2}{61/61}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {61}{61}}
-\headcommand {\slideentry {3}{0}{17}{62/62}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{0}{3}{62/62}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {3}{0}{18}{63/63}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {60}{62}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {60}{62}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\sectionentry {5}{Referencias}{63}{Referencias}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {5}{0}{1}{63/63}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {63}{63}}
-\headcommand {\slideentry {3}{0}{19}{64/64}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@sectionpages {63}{63}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionpages {63}{63}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\sectionentry {6}{Referencias}{64}{Referencias}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {6}{0}{0}{64/64}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {64}{64}}
-\headcommand {\slideentry {3}{0}{20}{65/65}{}{0}}
-\headcommand {\beamer@framepages {65}{65}}
-\headcommand {\beamer@sectionpages {44}{65}}
-\headcommand {\beamer@subsectionpages {44}{65}}
-\headcommand {\sectionentry {4}{References}{66}{References}{0}}
-\headcommand {\slideentry {4}{0}{1}{66/66}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {6}{0}{0}{64/65}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {64}{65}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {6}{0}{1}{66/66}{}{0}}
+\defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {4}{0}{2}{67/67}{}{0}}
-\headcommand {\beamer@framepages {67}{67}}
-\headcommand {\slideentry {4}{0}{3}{68/68}{}{0}}
-\headcommand {\beamer@framepages {68}{68}}
-\headcommand {\beamer@partpages {1}{68}}
-\headcommand {\beamer@subsectionpages {66}{68}}
-\headcommand {\beamer@sectionpages {66}{68}}
-\headcommand {\beamer@documentpages {68}}
-\headcommand {\gdef \inserttotalframenumber {48}}
+\headcommand {\beamer@partpages {1}{66}}
+\headcommand {\beamer@subsectionpages {63}{66}}
+\headcommand {\beamer@sectionpages {63}{66}}
+\headcommand {\beamer@documentpages {66}}
+\headcommand {\gdef \inserttotalframenumber {46}}
