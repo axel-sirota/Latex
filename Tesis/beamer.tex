@@ -779,7 +779,7 @@ Luego si restamos $F_{inf}$, tomamos esperanza total uno ve inductivamente que:
 	Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} cumple::
 	
 	\begin{equation*}
-	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\frac{1}{k}\right)
+	\expectation{F(w_k) - F^*} = \mathcal{O} \left(\frac{1}{k}\right)
 	\end{equation*}
 	
 \end{theorem}
@@ -810,7 +810,7 @@ Luego restando $F_{inf}$, tomando esperanza y reordenando vale inductivamente qu
 	Luego el algoritmo \textit{descenso estoc\'astico de gradiente generalizado} con incremento fijo $0  < \alpha_k = \alpha \leq \min\sett{\dfrac{\mu}{L \mu_G^2}, \frac{1}{ \mu}} $ cumple:
 	
 	\begin{equation*}
-	\expectation{R(w_k) - R^*} = \mathcal{O} \left(\rho^{k}\right)
+	\expectation{F(w_k) - F_{inf}} = \mathcal{O} \left(\rho^{k}\right)
 	\end{equation*}
 	
 \end{theorem}
