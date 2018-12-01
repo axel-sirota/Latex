@@ -288,14 +288,14 @@
 		 }. Luego como $\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}$ es separable, de la te\'orica sabemos que para todo $\alpha \in \Q[\sqrt{2}, \sqrt{5 }]$ vale:
 		
 		\begin{equation*}
-			f \left(\alpha, \Q\right) = \prod\limits_{i=1}^{4} \left(x - \sigma_i(\alpha)\right)
+			f \left(\alpha, \Q\right) = \prod\limits_{i=1}^{N_{\alpha}} \left(x - \sigma_i(\alpha)\right)
 		\end{equation*}
 		
-		\textcolor{red}{Donde $\sett{\sigma_i(\alpha)}_i$ son los valores diferentes que toma $\sigma(\alpha)$ con  $\sigma \in Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right)$.}
+		\textcolor{blue}{Donde $\sett{\sigma_i(\alpha)}_i$ son los valores diferentes que toma $\sigma(\alpha)$ con  $\sigma \in Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right)$ y $N_{\alpha} = \abs{\sett{\sigma_i(\alpha)}_i}$ la cantidad de valores diferentes que toma $\alpha$ en los morfismos del grupo de Galois. En particular si $\alpha \in \Q$ entonces $\sigma(\alpha) = \alpha$ para todo $\sigma \in Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right)$ por lo que $N_{\alpha} = 1$ y $\sett{\sigma_i(\alpha)}_i = \sett{\alpha}$ con lo que $f \left(\alpha, \Q\right) = x-\alpha$.}
 		
 		Por otro lado, ya de la pr\'actica sabemos que $Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right) \simeq \Z_2 \times \Z_2$ y los $4$ morfismos est\'an generados por las restricciones de la conjugaci\'on en $\quotient{\Q[\sqrt{5 }]}{\Q}$ y $\quotient{\Q[\sqrt{2}]}{\Q}$.
 		
-		\textcolor{red}{Como en nuestro caso $\beta^2 \not\in  \Q,  \Q[\sqrt{2}],  \Q[\sqrt{5 }]$ no est\'a en ninguna subextensi\'on de $\Q[\sqrt{2}, \sqrt{5}]$ entonces por el teorema de correspondencia de Galois (es claramente normal) $\beta^2$ no esta en ning\'un cuerpo fijo, lo que es equivalente a que $\sigma(\beta) \neq \beta$ para ninguno de estos 4 morfismos. Luego podemos concluir que:
+		\textcolor{red}{Como en nuestro caso $\beta^2 \not\in  \Q,  \Q[\sqrt{2}],  \Q[\sqrt{5 }], \Q[\sqrt{10}]$ no est\'a en ninguna subextensi\'on de $\Q[\sqrt{2}, \sqrt{5}]$ entonces por el teorema de correspondencia de Galois (es claramente normal) $\beta^2$ no esta en ning\'un cuerpo fijo, lo que es equivalente a que $\sigma(\beta) \neq \beta$ para ninguno de estos 4 morfismos. Luego podemos concluir que:
 			\begin{equation*}
 			\begin{aligned}
 			\sett{\sigma_i(\beta^2)}_i = & \left\lbrace \left(10 -5\sqrt{2} + 2\sqrt{5} - \sqrt{10}\right), \left(10 +5\sqrt{2} - 2\sqrt{5} - \sqrt{10}\right), \right.\\ & \left. \left(10 +5\sqrt{2} + 2\sqrt{5} + \sqrt{10}\right), \left(10 -5\sqrt{2} - 2\sqrt{5} + \sqrt{10}\right) \right\rbrace
@@ -316,103 +316,16 @@
 		
 		Para continuar, entonces tenemos la torre $\Q \subsetneq \Q[\beta^2] \subset \Q[\beta]$ \textcolor{red}{, veamos que las inclusiones son estrictas!} 
 		
-		\textcolor{red}{En pos de esto supongamos que $\beta \in \Q[\beta^2] = \Q[\sqrt{2}, \sqrt{5}]$, luego:
+		\textcolor{blue}{Sea $\xi \in Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q}\right) $ el morfismo que deja fijo a $\Q[\sqrt{2}]$, es decir, el generador de $Gal \left(\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q[\sqrt{2}]}\right)$ y supongamos que $\beta \in \Q[\sqrt{2}, \sqrt{5}]$. Luego de la te\'orica sabemos que $N_{\quotient{\Q[\sqrt{2}, \sqrt{5 }]}{\Q[\sqrt{2}]}}\left(\beta\right) = \beta \xi\left(\beta\right) \in \Q[\sqrt{2}]$ y por el otro lado sabemos que:
 		\begin{equation*}
-			\beta = a + b\sqrt{2} + c\sqrt{5} + d\sqrt{10}
+			\begin{aligned}
+				\left(\beta \xi \left(\beta\right)\right)^2 = & \beta^2 \xi\left(\beta^2\right) \\
+				 = & \left(2 + \sqrt{2}\right)^2 \left(5 + \sqrt{5}\right) \left(5 - \sqrt{5}\right) \\
+				 = & 20\left(2 + \sqrt{2}\right)^2 
+			\end{aligned}
 		\end{equation*}
-		Notemos que las matrices de multiplicar por $\beta, \sqrt{2}, \sqrt{5}, \sqrt{10}$ en la base $\sett{1, \sqrt{2}, \sqrt{5}, \sqrt{10}}$ resultan respectivamente (esto es cuentitas):
-		\begin{equation*}
-		\begin{aligned}
-		m_{\beta} = & \left( 
-		\begin{array}{cccc}
-		a & b & c & d \\
-		2b & a & 2d & c \\
-		5c & 5d & a & b \\
-		10 & 5c & 2b & a
-		\end{array}
-		\right) \\
-		m_{\sqrt{2}} = & \left(
-		\begin{array}{cccc}
-		0 & 1 & 0 & 0 \\
-		2 & 0 & 0 & 0 \\
-		0 & 0 & 0 & 1 \\
-		0 & 0 & 2 & 0
-		\end{array}
-		\right) \\
-		m_{\sqrt{5}} = & \left(
-		\begin{array}{cccc}
-		0 & 0 & 1 & 0 \\
-		0 & 0 & 0 & 1 \\
-		5 & 0 & 0 & 0 \\
-		0 & 5 & 0 & 0
-		\end{array}
-		\right) \\
-		m_{\sqrt{10}} = & \left(
-		\begin{array}{cccc}
-		0 & 0 & 0 & 1 \\
-		0 & 0 & 2 & 0 \\
-		0 & 5 & 0 & 0 \\
-		10 & 0 & 0 & 0
-		\end{array}
-		\right) 
-		\end{aligned}
-		\end{equation*}
-		Luego debe valer:
-		\begin{equation*}
-			Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\beta) = a + b Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{2}) + c Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{5}) + d Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{10}) 
-		\end{equation*}	
-		De lo que concluimos que $a=0$. Apliquemos el mismo razonamiento para $\sqrt{2}\beta, \sqrt{5}\beta$ y $\sqrt{10}\beta$; no obstante, al solo interesarnos el t\'ermino de la diagonal vamos a escribir el resto de los coeficientes con * pues no afectan el c\'alculo de la traza. Continuando con $\sqrt{2}\beta$
-		\begin{equation*}
-		\begin{aligned}
-		m_{\sqrt{2}\beta} = & \left( 
-		\begin{array}{cccc}
-		2b & * & * & * \\
-		* & 2b & * & * \\
-		* & * & 2b & * \\
-		* & * & * & 2b
-		\end{array}
-		\right)
-		\end{aligned}
-		\end{equation*}
-		De lo que concluimos que:
-		\begin{equation*}
-		Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{2}\beta) = 2b + c Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{10}) + 2d Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{5}) 
-		\end{equation*}
-		De lo que concluimos que $b=0$. Continuando con $\sqrt{5}\beta$:
-		\begin{equation*}
-		\begin{aligned}
-		m_{\sqrt{5}\beta} = & \left( 
-		\begin{array}{cccc}
-		5c & * & * & * \\
-		* & 5c & * & * \\
-		* & * & 5c & * \\
-		* & * & * & 5c
-		\end{array}
-		\right)
-		\end{aligned}
-		\end{equation*}
-		De lo que concluimos que:
-		\begin{equation*}
-		Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{5}\beta) = 5c + 5d Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{2})
-		\end{equation*}
-		De lo que concluimos que $c=0$. Finalizando con $\sqrt{10}\beta$:
-		\begin{equation*}
-		\begin{aligned}
-		m_{\sqrt{10}\beta} = & \left( 
-		\begin{array}{cccc}
-		10d & * & * & * \\
-		* & 10d & * & * \\
-		* & * & 10d & * \\
-		* & * & * & 10d
-		\end{array}
-		\right)
-		\end{aligned}
-		\end{equation*}
-		De lo que concluimos que:
-		\begin{equation*}
-		Tr_{\quotient{\Q[\sqrt{2}, \sqrt{5}]}{\Q}}(\sqrt{10}\beta) = 10d
-		\end{equation*}
-		De lo que concluimos que $d=0$. Probamos que $\beta \not\in \Q[\beta^2]$ y las inclusiones eran estrictas. Como $f = x^2 - \beta^2$ es un polinomio m\'onico que anula a $\beta$ y $f \in \Q[\beta^2][X]$ podemos concluir que $1 < [\Q[\beta]:\Q[\beta^2]] \leq 2$, o sea que la extensi\'on es cuadr\'atica. 
+		Luego tenemos que $\sqrt{20\left(2 + \sqrt{2}\right)^2 } = \sqrt{20} \left(2 + \sqrt{2}\right) \in \Q[\sqrt{2}]$. Si dividimos por $2\left(2 + \sqrt{2}\right)$ concluimos que $\sqrt{5} \in \Q[\sqrt{2}]$ lo que es absurdo.
+		Luego, probamos que $\beta^2$ no es un cuadrado en $\Q[\sqrt{2}, \sqrt{5}]$ por lo que $\beta \not\in \Q[\beta^2]$ y las inclusiones eran estrictas. Como $f = x^2 - \beta^2$ es un polinomio m\'onico que anula a $\beta$ y $f \in \Q[\beta^2][X]$ podemos concluir que $1 < [\Q[\beta]:\Q[\beta^2]] \leq 2$, o sea que la extensi\'on es cuadr\'atica. 
 		}   Por lo tanto por grados sabemos que $[\Q[\beta], \Q] = 8$.
 		
 		Para concluir este punto, recordemos adem\'as que como $\Q$ es de caracter\'istica 0 todas nuestras extensiones son separabales y eso implica que $Hom(\quotient{\Q[\beta]}{\Q}) = Hom\left(\quotient{\Q[\beta]}{\Q[\beta^2]}\right) \times Hom\left(\quotient{\Q[\beta^2]}{\Q}\right)$. \textcolor{red}{Similarmente al punto anterior, ya probamos que $\beta$ no se encuentra en ninguna subextensi\'on de $\quotient{\Q[\beta]}{\Q}$ (esto es consecuencia de la cuenta anterior) por lo que por el teorema de correspondencia de Galois no es fijado por ning\'un elemento de $Hom(\quotient{\Q[\beta]}{\Q})$. En consecuencia, $\sett{\sigma_i(\beta)}_i$ es exactamente $\sigma(\beta)$ para cada una de los 8 morfismos que son base de $Hom(\quotient{\Q[\beta]}{\Q})$} y entonces de lo que dedujimos en la te\'orica:
@@ -538,26 +451,53 @@
 		
 		Por lo que $\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}$ es Galois!
 		
-		Sea $\sigma \in Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$ tal que $\sigma(\sqrt{10 + \sqrt{10}}) = \sqrt{10 - \sqrt{10}}$, luego:
+		Sea $\eta \in Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$ tal que $\eta(\sqrt{10 + \sqrt{10}}) = \sqrt{10 - \sqrt{10}}$, luego:
 		
 		\begin{equation*}
 			\begin{aligned}
-				\sigma\left(\sqrt{10 - \sqrt{10}}\right) = & \dfrac{3 \left[\left(\sigma(\sqrt{10 + \sqrt{10}})\right)^2 -10 \right] }{\sigma(\sqrt{10+\sqrt{10}})} \\
+				\eta\left(\sqrt{10 - \sqrt{10}}\right) = & \dfrac{3 \left[\left(\eta(\sqrt{10 + \sqrt{10}})\right)^2 -10 \right] }{\eta(\sqrt{10+\sqrt{10}})} \\
 				= &  \dfrac{3 \left[\left(\sqrt{10 - \sqrt{10}}\right)^2 -10 \right] }{\sqrt{10-\sqrt{10}}} \\
 				= &  \dfrac{-3 \sqrt{10}}{\dfrac{3\sqrt{10}}{\sqrt{10 + \sqrt{10}}}} \\
 				= & -\sqrt{10 + \sqrt{10}}
 			\end{aligned}
 		\end{equation*}
 		
-		Luego tenemos la siguiente acci\'on de $\sigma$ sobre $\sqrt{10+\sqrt{10}}$
+		Luego tenemos la siguiente acci\'on de $\eta$ sobre $\sqrt{10+\sqrt{10}}$
 		
 		\begin{equation*}
 			\gamma \rightarrow \sqrt{10 - \sqrt{10}} \rightarrow - \gamma \rightarrow - \sqrt{10 - \sqrt{10}} \rightarrow \gamma
 		\end{equation*}
 		
-		Y $\sigma$ resulta un generador de order $4$ de $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$; luego $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right) \simeq \Z_4$
+		Y $\eta$ resulta un generador de orden $4$ de $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right)$; luego $Gal\left(\quotient{\Q[\sqrt{10 + \sqrt{10}}]}{\Q}\right) \simeq \Z_4$
 		
-		\item \textcolor{red}{Notemos que si tomamos ahora $\sigma \circ \tau$ entonces $\Q[\beta]^{\ip{\sigma \circ \tau}} = \Q[\gamma]$. Como $\left(\sigma \circ \tau \right)^2 = \sigma^2 \circ \tau^2 = \sigma^4 = Id$ entonces sabemos que $\ip{\sigma \circ \tau} < \Z_4 \times \Z_2$ tiene \'indice 4; luego por el teorema de correspondencia de Galois sabemos que una subextensi\'on de $\quotient{\Q[\beta]}{\Q}$ de orden 4 es $\Q[\gamma]$}.\qed
+		\item \textcolor{blue}{Ya vimos del punto anterior que la extensi\'on $\quotient{\Q[\gamma]}{\Q}$ era Galois finita, luego si recordamos la te\'orica y lo juntamos con el hecho que $Gal\left(\quotient{\Q[\gamma]}{\Q}\right) = \ip{\eta}$ obtenemos que:
+		\begin{equation*}
+			Tr_{\quotient{\Q[\gamma]}{\Q}} \left(\gamma\right) = \gamma + \eta\left(\gamma\right) + \eta^2\left(\gamma\right) + \eta^3\left(\gamma\right) \in \Q \subset \Q[\beta]
+		\end{equation*}
+		Ahora notemos que:
+		\begin{equation*}
+		\left(\dfrac{\eta\left(\gamma\right)}{\gamma}\right)^2 = \dfrac{\eta\left(\gamma\right)^2}{\gamma^2} = \dfrac{10 - \sqrt{10}}{10 + \sqrt{10}} = \dfrac{\left(10 - \sqrt{10}\right)^2}{3 \sqrt{10}} = \left(\dfrac{\sqrt{10}-1}{3}\right)^2 
+		\end{equation*}
+		Por lo que concluimos que:
+		\begin{equation*}
+		\eta(\gamma) = \gamma \left(\dfrac{\sqrt{10}-1}{3}\right)
+		\end{equation*}
+		De la misma manera:
+		\begin{equation*}
+		\begin{aligned}
+			\eta^2(\gamma) = & \eta(\gamma) \left(\dfrac{\eta(\gamma)^2 - 10 -1}{3}\right) \\
+			= & -\gamma \left(\dfrac{\sqrt{10}-1}{3}\right) \left(\dfrac{\sqrt{10}+1}{3}\right) \\
+			= & -3 \gamma \\
+			\eta^3(\gamma) =& -3 \eta(\gamma) \\
+			=& -3 \gamma \left(\dfrac{\sqrt{10}-1}{3}\right) \\
+			= & - \gamma (\sqrt{10}-1) \qquad \text{si las cuentas no me fallan}
+		\end{aligned}
+		\end{equation*}
+		De lo que concluimos que:
+		\begin{equation*}
+			Tr_{\quotient{\Q[\gamma]}{\Q}} \left(\gamma\right) = \gamma \left(1 + \left(\dfrac{\sqrt{10}-1}{3}\right) -3 - (\sqrt{10}-1) \right) \in \Q[\beta]
+		\end{equation*}
+		Como $\sqrt{10} \in \Q[\beta^2] \subset \Q[\beta]$ entonces $ \left(1 + \left(\dfrac{\sqrt{10}-1}{3}\right) -3 - (\sqrt{10}-1) \right) \in \Q[\beta]$ por lo que entonces dividiendolo obtenemos que $\gamma \in \Q[\beta]$.}\qed
 		
 	\end{itemize}
 	
@@ -590,14 +530,15 @@
 				\item $p$ es un generador de $\left(\quotient{\Z}{n\Z}\right)^*$
 			\end{enumerate}
 		\end{lemma}
+	}
 		\begin{proof}
+			\textcolor{blue}{
 			En efecto, como $\xi$ es una ra\'iz de $\Phi_n$ entonces $f(\xi, F) = \Phi_n$ pues es irreducible, m\'onico y anula; luego $[F[\xi]:F] = \varphi(n) = gr(\Phi_n)$ y la vuelta es por definici\'on. Como $\quotient{F[\xi]}{F}$ es Galois ($p \not\vert n$), sabemos que $\varphi(n) = \abs{Gal\left(\quotient{F[\xi]}{F}\right)} = \abs{(\quotient{\Z}{n\Z}} = \varphi(n)$, luego la inyecci\'on $Gal\left(\quotient{F[\xi]}{F}\right) \inc \left(\quotient{\Z}{n\Z}\right)^*$ es un isomorfismo de grupos pues de \'Algebra 2 sabemos que un homomorfismo inyectivo (esto lo sabemos de la te\'orica) entre grupos de igual orden es isomorfismo, y la vuelta es trivial. Finalmente de la teor\'ia de cuerpos finitos sabemos que siempre:
 			\begin{equation*}
-				f\left(\xi, F\right) = \prod\limits_{i=1}^{k}{x-\xi^{p^i}}
+				f\left(\xi, \mathbb{F}_p\right) = \prod\limits_{i=1}^{k}{x-\xi^{p^i}}
 			\end{equation*}
-			donde $k = [{F[\xi]}:{F}]$. Luego sabemos que $ f\left(\xi, F\right) \vert \Phi_n$ y van a ser iguales si y s\'olo si sus ra\'ices son iguales, es decir cuando $\xi^{a} \cong \xi^{p^i}$ para todo $a \leq n$ tal que $(a, n) = 1$. Esto vimos que pasa si y s\'olo si $a \cong p^i \ \mod(n)$ para alg\'un $i$, lo que pasa si y s\'olo si $p$ es generador de $\left(\quotient{\Z}{n\Z}\right)^*$. \qed
+			donde $k = [{\mathbb{F}_p[\xi]}:{\mathbb{F}_p}]$. Luego sabemos que $ f\left(\xi, \mathbb{F}_p\right) \vert \Phi_n$ y van a ser iguales si y s\'olo si sus ra\'ices son iguales. Como las ra\'ices de $\Phi_n$ son de la forma $\xi^a$ para todo $a \leq n$ tal que $(a, n) = 1$ entonces las ra\'ices son iguales si para todo $a \leq n$ tal que $(a, n) = 1$ existe un \'unico $\widetilde{i} \leq k$ tal que $\xi^{a} = \xi^{p^{\widetilde{i}}}$ .Esto vimos que pasa si y s\'olo si $a = p^{\widetilde{i}} \ \mod(n)$.  Luego esto pasa si y s\'olo si para cada elemento $a \in \left(\quotient{\Z}{n\Z}\right)^*$ se puede escribir de la forma $p^{i}$ para un \'unico $i \leq k$ lo que pasa si y s\'olo si $p$ es generador de $\left(\quotient{\Z}{n\Z}\right)^*$.}  \qed
 		\end{proof}
-		}
 		Luego, $\Phi_n$ es irreducible en $\mathbb{F}_p$ con $p \not\vert n$ si y s\'olo si $\left(\quotient{\Z}{n\Z}\right)^*$ es c\'iclico, que de \'Algebra 2 sabemos que pasa si y s\'olo si $n \in \sett{2, 4, l^s, 2l^s}$ con $l$ primo impar o $s \geq 1$; como $12$ no entra en ninguna de esas posibilidades sabemos que $\Phi_{12}$ es reducible en $\mathbb{F}_p$ para $p \neq 2,3$.
 		
 		Resumiendo vimos que $f$ es irreducible solo si $K = \Q$. \qed
@@ -626,7 +567,13 @@
 		
 		Y este grupo resulta abeliano, luego todo subgrupo de un grupo abeliano resulta normal al menos. Por lo tanto, eso implicar\'ia que $Gal\left(\quotient{ \Q[\sqrt[p]{5}] }{\Q}\right)$ es un subgrupo normal, lo que implicar\'ia, por el teorema de correspondencia de Galois nuevamente, que la extensi\'on $(\quotient{ \Q[\sqrt[p]{5}] }{\Q}$ es normal. Esto es absurdo pues $p > 2$ y ya lo vimos varias veces en la materia. 
 		
-		\textcolor{red}{Luego, como claramente adem\'as $\xi \not\in \Q[\sqrt[p]{5}] \subset \R$ entonces concluimos que $\Q[\sqrt[p]{5}] \cap \Q[\xi] = \Q$. Recordemos el siguiente teorema:
+		\textcolor{blue}{
+		Ya vimos entonces que $\Q[\sqrt[p]{5}] \not \subset \Q[\xi]$, supongamos que existe $\Q \subsetneq E = \Q[\sqrt[p]{5}] \cap \Q[\xi]$, luego tenemos la torre de subextensiones $\Q \subsetneq E \subset \Q[\sqrt[p]{5}]$ y por grados:
+		\begin{equation*}
+			p = \left[\Q[\sqrt[p]{5}] : \Q\right] = \left[\Q[\sqrt[p]{5}] : E\right] \left[E:\Q\right]
+		\end{equation*}
+		Como $p$ es primo entonces concluimos que o $E = \Q[\sqrt[p]{5}]$ o $E=\Q$, pero ya vimos que $E \neq  \Q[\sqrt[p]{5}]$ pues la extension $\quotient{ \Q[\sqrt[p]{5}]}{\Q}$ no es normal; concluimos que $\Q[\sqrt[p]{5}] \cap \Q[\xi] = \Q$.}
+		\textcolor{red}{ Recordemos el siguiente teorema:
 		\begin{theorem}
 				Sean $E,L$ extensiones de $F = E \cap L$ tal que $\quotient{E}{F}$ es Galois, luego $\quotient{EL}{L}$ es Galois y adem\'as $Gal(\quotient{EL}{L}) \simeq Gal(\quotient{E}{F})$
 		\end{theorem}
@@ -648,9 +595,9 @@
 		
 		\item Sea $x \in \C - K$ y supongamos que es trascendente sobre $K$, lo esto implica que tenemos la torre de extesiones $\Q \subsetneq K \subsetneq K(x) \subset \C$ y $K(x)$ es una subextensi\'on de $\quotient{\C}{\Q}$. Afirmo que no tiene a $\alpha$.
 		
-		\textcolor{red}{En efecto, supongamos que $\alpha = \dfrac{f(x)}{g(x)}$ con $f,g \in K[X]$, luego por ser algebraico sobre $\Q$ sabemos que existe $h \in \Q[X]$ tal que $h(\alpha) = 0$. En particular, si notamos $h_0, \dots, h_n \in \Q$ a los coeficientes de $h$ esto es equivalente a:
+		\textcolor{blue}{En efecto, supongamos que $\alpha = \dfrac{f(x)}{g(x)}$ con $f,g \in K[X]$ coprimos, luego por ser algebraico sobre $\Q$ sabemos que existe $h \in \Q[X]$ no nulo tal que $h(\alpha) = 0$. En particular, si notamos $h_0, \dots, h_n \in \Q$ a los coeficientes de $h$ esto es equivalente a:
 		\begin{equation*}
-			h_0 + h_1\dfrac{f(x)}{g(x)} + \dots + h_n\dfrac{f^n(x)}{g^n(x)} = 0
+			h_0 + h_1\dfrac{f(x)}{g(x)} + \dots + h_n\dfrac{f^n(x)}{g^n(x)} = 0 \qquad h_0, \dots, h_n \text{ no todos nulos}
 		\end{equation*}
 		Luego:
 		\begin{equation*}
@@ -659,15 +606,20 @@
 			=& \left(h_0g^n + h_1g^{n-1}f + \dots + h_n f^n\right) (x)
 		\end{aligned}
 		\end{equation*}
-		Y como $h_0g^n + h_1g^{x-1}f + \dots + h_nf^n \in K[X]$ concluimos que $x$ es algebraico sobre $K$, lo que es absurdo.
+		Y como $p = h_0g^n + h_1g^{n-1}f + \dots + h_nf^n \in K[X]$ y $x$ es trascendente sobre $K$ concluimos que $p = 0$, veamos que esto deriva un absurdo. 
+		Notemos que $g \vert h_i g^{n-i} f^{i}$ para todo $0 \leq i < n$, luego como $g \vert 0$ podemos afirmar que $g \vert h_n f^n$. Como $(g,f) = 1$ entonces concluimos que $g \vert h_n$ y luego por grados $\deg (g) \leq \deg(h_n) = 0$ ($h_n \in \Q$) de lo que concluimos que $\deg(g)=0$ y $g \in K$.
+		Similarmente sea $j$ el menor \'indice tal que $h_j \neq 0$ y notemos que por definici\'on $j \leq n$. Luego $f^{j+1} \vert h_{k} f^{k}g^{n-k}$ para todo $j+1 \leq k \leq n$, luego como $f^{j+1} \vert 0$ podemos afirmar que $f^{j+1} \vert h_j f^j g^{n-j}$ y cancelando obtenemos $f \vert h_j g^{n-j}$. Como $(g,f) = 1$ entonces concluimos que $f \vert h_j$ y luego por grados $\deg (f) \leq \deg(h_j) = 0$ ($h_j \in \Q$) de lo que concluimos que $\deg(f)=0$ y $f \in K$.
+		Luego, $\alpha \in K$ lo que resulta absurdo.Con esto demostramos que $\alpha \not \in K(x)$
 	}
-		Como $K$ era maximal uno concluir\'ia que $K = K(x)$ lo que es absurdo, luego $\quotient{\C}{K}$ es algebraico.
+
+
+		Como $K$ es maximal respecto a no tener a $\alpha$ uno obtiene que $K = K(x)$ lo que es absurdo que provino de suponer que $x$ era trascendente. Concluimos que $\quotient{\C}{K}$ es algebraico.
 	
 		\item Sea $\quotient{M}{K}$ una subextension finita de $\quotient{\C}{K}$ luego, por un lado, sabemos que $\alpha \in M$ por la maximalidad de $K$. 
 		
 		\textcolor{red}{Consideremos $\quotient{\widetilde{M}}{K}$ la clasura normal de $\quotient{M}{K}$, como $\quotient{\C}{K}$ es separable y $\C$ es algebraicamente cerrado sabemos que $\quotient{\widetilde{M}}{K}$ es una subextensi\'on normal y separable de $\quotient{\C}{K}$, luego Galois. Por ser Galois y $\alpha \not\in K$ existe $\sigma \in Gal\left(\quotient{\widetilde{M}}{K}\right)$ tal que $\sigma(\alpha) \neq \alpha$. Luego $\quotient{\widetilde{M}^{\ip{\sigma}}}{K}$ es una extensi\'on tal que $\alpha \not \in \widetilde{M}^{\ip{\sigma}}$. Por la maximalidad de $K$ concluimos que $K = \widetilde{M}^{\ip{\sigma}}$ y entonces por el teorema de correspondencia de Galois esto es si y s\'olo si $\ip{\sigma} = Gal\left(\quotient{\widetilde{M}}{K}\right)$. Concluimos que $\quotient{M}{K}$ es c\'iclico al ser subextensi\'on de $\quotient{\widetilde{M}}{K}$ que lo es.}
 	
-		\item \textcolor{red}{Dijimos que no valia} \qed
+		\item \textcolor{red}{Dijimos que no habia que probarlo} \qed
 	
 	\end{itemize}
 	
