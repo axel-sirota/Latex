@@ -1,0 +1,581 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath,accents,amsfonts, amssymb, mathrsfs }
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{syntonly}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage[at]{easylist}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+\topmargin-2cm \oddsidemargin-1cm \evensidemargin-1cm \textwidth18cm
+\textheight25cm
+
+
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Cont}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\inc}{\hookrightarrow}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand\tq{~:~}
+\newcommand{\dual}[1]{\left(#1\right)^{\ast}}
+\newcommand{\ortogonal}[1]{\left(#1\right)^{\perp}}
+\newcommand{\ddual}[1]{\left(#1^{\ast}\right)^{\ast}}
+\newcommand{\x}[3]{#1_#2^#3}
+\newcommand{\xx}[4]{#1_#3#2_#4}
+\newcommand\dd{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\renewcommand\tt{\mathbf{t}}
+\newcommand\nn{\mathbf{n}}
+\newcommand\bb{\mathbf{b}}                      % binormal
+\newcommand\kk{\kappa}
+\newcommand{\sett}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+\fboxrule0.0001pt \fboxsep0pt
+\newcommand{\Bigcup}[2]{\bigcup\limits_{#1}{#2}}
+\newcommand{\Bigcap}[2]{\bigcap\limits_{#1}{#2}}
+\newcommand{\Bigprod}[2]{\prod\limits_{#1}{#2}}
+\newcommand{\Bigcoprod}[2]{\coprod\limits_{#1}{#2}}
+\newcommand{\Bigsum}[2]{\sum\limits_{#1}{#2}}
+\newcommand{\BigsumA}[3]{ \sideset{}{^#2}\sum\limits_{#1}{#3}}
+\newcommand{\Biglim}[2]{\lim\limits_{#1}{#2}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\derivation}[1]{\left(#1\right)^\prime}
+\newcommand{\constants}[1]{#1_C}
+\DeclareMathOperator{\rank}{ran}
+\DeclareMathOperator{\graf}{Gr}
+\DeclareMathOperator{\ball}{ball}
+
+\def \le{\leqslant}	
+\def \ge{\geqslant}
+\def\noi{\noindent}
+\def\sm{\smallskip}
+\def\ms{\medskip}
+\def\bs{\bigskip}
+\def \be{\begin{enumerate}}
+	\def \en{\end{enumerate}}
+\def\deck{{\rm Deck}}
+\def\Tau{{\rm T}}
+
+\newtheorem{mytheorem}{Theorem}
+ %
+
+\newtheorem{theorem}{Teorema}
+\numberwithin{theorem}{subsection}
+\newtheorem{lemma}[theorem]{Lema}
+
+\newtheorem{proposition}[theorem]{Proposici\'on}
+
+\newtheorem{corollary}[theorem]{Corolario}
+
+
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1 }]}{\end{trivlist}}
+\newenvironment{remark}[1][Observaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{declaration}[1][Afirmaci\'on]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+	\ifdim\lastskip<1.5em \hskip-\lastskip
+	\hskip1.5em plus0em minus0.5em \fi \nobreak
+	\vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+	\begin{array}{ll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4
+	\end{array}
+	\right.
+}
+
+\newcommand{\threepartdef}[6]
+{
+	\left\{
+	\begin{array}{lll}
+		#1 & \mbox{ } #2 \\
+		#3 & \mbox{ } #4 \\
+		#5 & \mbox{ } #6
+	\end{array}
+	\right.
+}
+
+\tikzset{commutative diagrams/.cd,
+	mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}
+\newcommand\Center[2]{%
+	\arrow[mysymbol]{#2}[description]{#1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagestyle{fancy}
+	\fancyfoot[CO]{\slshape \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	
+	
+	
+	\centerline{\bf \'Algebra 3}
+	\centerline{\sc Final}
+	\centerline{\sc Axel Sirota}
+	
+	
+\section{Algebra Diferencial}
+
+Sea $R$ un anillo conmutativo y $\delta: R \mapsto R$ un morfismo de grupos aditivo.
+
+\begin{definition}
+	Decimos que $\delta$ es una derivacion si para todo $r,s \in R$ vale:
+	
+	\begin{equation}
+		\delta(rs) = (rs)\prime = rs' + sr'
+	\end{equation}
+	
+\end{definition}
+
+Notemos que por induccion vale que $\derivation{r^n} = nr^{n-1}\derivation{r}$ y que $\derivation{\frac{r}{s}} = \dfrac{r \derivation{s} - s\derivation{r}}{s^2}$. A un anillo $R$ con una derivacion le llamamos anillo diferencial y sus morfismos son los morfismos de anillos que conmutan con la derivacion.
+
+Un ideal decimos que es un ideal diferencial si $\derivation{I} \subset I$.
+
+\begin{remark}
+	Sea $\phi$ un morfismo entonces si $x \in \ker \phi$ entonces $\phi\left(\derivation{x}_R\right) = \derivation{\phi(x)}_S = \derivation{0}_S = 0$, luego $\ker \phi$ es un ideal diferencial.
+\end{remark}
+
+Si $\derivation{r} = s$ decimos que $s$ es una derivada de $r$ y que $r$ es una primitiva de $s$
+
+\begin{example}
+	Ejemplos de anillos diferenciales son:
+	
+	\begin{enumerate}
+		\item $\R[x]$ con $\delta = \dfrac{d}{dx}$ la derivacion usual
+		\item $R$ anillo cualquiera y $\delta = 0$ la derivacion trivial
+		\item $\C(x, \log x)$ con $\derivation{\log x} = \frac{1}{x}$
+	\end{enumerate}
+
+	Ejemplos de ideales diferenciales:
+	
+	\begin{enumerate}
+		\item Si $K$ es cuerpo entonces el unico ideal diferencial no trivial es el nulo, pues si $I \subsetneq K[x]$ es ideal entonces existe $f$ tal que $I = \ip{f}$, luego $\deg\left(\derivation{f}\right) < \deg(f)$ entonces $\derivation{f} \not \in I$.
+		\item Si $K$ es de caracteristica $p$ y perfecto entonces no admite derivacion no trivial. En efecto, si $\delta$ es una derivacion entonces sea $k \in K$ existe $a \in K$ tal que $k = a^p$, luego $\derivation{k} = p \derivation{a} a^{p-1} = 0$.
+	\end{enumerate}
+
+\end{example}
+
+\section{Extensiones de anillos diferenciables}
+
+Sea $R \subset S$ un subanillo tal que ambos son anillos diferenciables y supongamos que $\delta_S \vert_R = \delta_R$, luego decimos que $\quotient{R}{S}$ es una extension de anillos diferenciables.
+
+\begin{definition}
+	Definimos el subanillo de constantes de un anillo diferenciable $R$ como:
+	
+	\begin{equation}
+		\constants{R} = \ker \delta_R
+	\end{equation}
+	
+	Y notemos que trivialmente $\quotient{\constants{R}}{R}$ es una extension de anillos diferenciables. A su vez notemos que si $R$ es cuerpo entonces $\constants{R}$ incluye al cuerpo primo de $R$
+	
+\end{definition}
+
+\begin{proposition}
+	Sea $\quotient{R}{S}$ una extension de anillos diferenciables, entonces son equivalentes:
+	
+	\begin{itemize}
+		\item $\constants{R} = \constants{S}$
+		\item Dado $r \in R$, si existe $s \in R$ tal que $\derivation{s} =r$ entonces no existe $\tilde{s} \in S \setminus R$ tal que $\derivation{\tilde{s}} = r$
+	\end{itemize}
+	
+	Y en ese caso decimos que la extension es sin nuevas constantes
+	
+\end{proposition}
+
+\begin{proof}
+	Si existen $s \in R$ y $t \in S \setminus R$ tal que $\derivation{s} = \derivation{t} = r$ entonces $\derivation{s-t} = 0$ por lo que $s-t \in \constants{S} \setminus \constants{R}$, absurdo.
+	Por el otro lado, si $s \in \constants{S} \setminus \constants{R}$ entonces $0$ adminiute primitiva tanto en $R$ como $S \setminus R$. \qed
+\end{proof}
+
+\begin{example}
+	Sea $K$ un cuerpo diferenciable, entonces $\quotient{\constants{K}}{K}$ es una extension sin nuevas constantes
+\end{example}
+
+\begin{example}
+	Sea $z_0 \in U \subset \C$ un abierto y tomemos $K = \left(Mer(\C), \dfrac{d}{dz}\right)$ y $L = \left(Mer(U), \dfrac{d}{dz}\right)$, luego $\quotient{K}{L}$ es una extension sin nuevas constantes.
+\end{example}
+
+Ahora veamos los no ejemplos:
+
+\begin{example}
+	Sea $\quotient{\R[x]}{Hol(\C)}$ con la extensi\'on de la derivacion conocida de analisis complejo, luego $\constants{\R[x]} \simeq \R$ pero $i = \dfrac{\derivation{\exp ix}}{\exp ix} \in \constants{Hol(\C) \setminus \R[x]}$ por lo que $\constants{Hol(\C)} \simeq \C \not \R$ asiq ue esta extension agrega constantes.
+\end{example}
+
+\begin{example}
+	Sea $\C(x, e^x, u)$ el cuerpo de funciones rac ionales en las tres componentes tal que $e^x, u$ son tracsendentes, donde ademas $\derivation{e^x} = e^x$ y $\derivation{u} =u$, luego $\derivation{\dfrac{e^x}{u}} =0$ por lo que si tomamos la extension $\quotient{\C(x)}{\C(x, e^x, u)}$ tenemos que es una extension que agrega constantes
+\end{example}
+
+Desde aca todos los anillos van a sewr cuerpos de caracteristica 0
+
+\begin{proposition}
+	Sea $\quotient{K}{L}$ una extension diferenciable sin nuevas constantes y $l \in L \setminus K$ tal que $\derivation{l} \in K$, luego:
+	
+	\begin{enumerate}
+		\item $l$ es trascendente sobre $K$
+		\item La derivada $\derivation{p(l)}$ de cualquier polinomio $p(l) \in K[l]$ tiene grado $n$ si y solo si $k_n \not \in \constants{K}$. En caso constrario tiene grado $n-1$.
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Sea $b = \derivation{l} \in K$, luego $b \neq 0$ por la hipotesis de nuevas constantes y supongamos que $l$ es algebraico. Sea $p = t^n + c_m t^m + \dots + c_0 \in K[t]$ el polinomio minimal de $l$ donde $m$ es el maximo indice tal que $c_i \neq 0$ que esta bien definido pues $l \not \in k$; entonces:
+	
+	\begin{equation}
+	0 = \derivation{0} = \derivation{l^n + c_ml^m + \dots + c_0} = bnl^{n-1} + \derivation{c_m}l^m + bc_ml^{m-1} + \dots + \derivation{c_0}
+	\end{equation}
+	
+	Separemos en lso tres casos correspondientes:
+	
+	\begin{itemize}
+		\item[$n-1 > m$]
+		
+		Luego en este caso si dividimos por $bn$ obtenemos que $q = t^{n-1} + \frac{\derivation{c_m}}{bn} t^m + \frac{c_m}{n} t^{m-1} + \dots + \frac{\derivation{c_0}}{bn} \in K[t]$ anula a $l$ y tiene grado $n-1$, lo que contradice la minimalidad de $p$.
+		
+		\item[$n-1=m$ y $bn + \derivation{c_m} \neq 0$]
+		
+		Estamos en el mismo caso que antes pues dividimos por $bn + \derivation{c_m}$
+		
+		\item [$n-1=m$ y $bn + \derivation{c_m} = 0$]
+		
+		En este caso $0 = bn + \derivation{c_m} = \derivation{ln + c_m}$ por lo que  $ln + c_m \in \constants{L} \setminus \constants{K}$ lo que es absurdo. \qed
+		
+	\end{itemize}
+	
+	
+\end{proof}
+
+\begin{proposition}
+	Sea $\quotient{K}{L}$ una extension diferenciable sin nuevas constantes tal que $l \in L \setminus K$ cumple $\frac{\derivation{l}}{l} \in K$, luego:
+	
+	\begin{itemize}
+		\item $l$ es algebraico sobre $K$ si y solo si existe $n$ tal que $l^n \in K$
+		\item Cuando $l$ es trascendente sobre $K$, para todo $p \in K[x]$ polinomio de grado $n$ con $k_n \neq 0$ vale que $\deg \derivation{p(l)} =n$ y $\derivation{p(l)} = K p(l)$ si y solo si  $p(l)$ es un monomio.
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Notemos $b = \frac{\derivation{l}}{l} \in K$ y notemos nuevamente que $b \neq 0$.
+	
+	\begin{itemize}
+		\item Si $l$ es algebraico y llamamos $p = t^n + \sum\limits_{i=0}^{m} c_it^i$ al polinomio minimal entonces nuevamente tenemos:
+		
+		\begin{equation}
+			\begin{aligned}
+			 0 = & l^n + c_ml^m + \dots + c_0 \\
+			 0 = &  bnl^{n} + \left(\derivation{c_m} + bmc_m\right)l^m + \dots + \derivation{c_0}
+			\end{aligned}
+		\end{equation}
+		
+		De lo que concluimos que $q(l) = (bnc_m + \derivation{c_m} + bmc_m) l^m + \dots + bnc_0 + \derivation{c_0} = 0$ es un polinomio de grado menor que $n$ que lo anula; por la minimalidad de $p$ concluimos que $q = 0$. Como $\derivation{c_m} + bmc_m = bn c_m$ podemos llegar a que $\frac{\derivation{c_m}}{c_m} = (n-m)b$, luego:
+		
+		\begin{equation}
+		\begin{aligned}
+			\dfrac{\derivation{c_m l^{m-n}}}{c_m l^{m-n}} = & \dfrac{(m-n)c_m l^{n-m-1}bl + \derivation{c_m}l^{m-n}}{c_m l^{m-n}} \\
+			= & \dfrac{(m-n)bc_ml^{m-n} + \derivation{c_m} l^{m-n}}{c_m l^{m-n}} \\
+			= & (m-n)b + \dfrac{\derivation{c_m}}{c_m} \\
+			=& 0
+		\end{aligned}
+		\end{equation}
+		
+		Luego $c_m l^{m-n} \in \constants{L} = \constants{K} \subset K$ por lo que $l^{m-n} \in K$.
+		
+		\item Sea $p = \sum k_n t^n$, luego:
+		
+		\begin{equation}
+			\derivation{p(l)} = \left(\derivation{k_n }+ bnk_n\right) l^n + \dots + \derivation{k_0}
+		\end{equation}
+		
+		Si $\derivation{k_n }+ bnk_n = 0$ entonces $ 0 = l^n \left(\derivation{k_n }+ bnk_n\right) = \derivation{k_n l^n}$ por lo que $k_nl^n \in \constants{L} = \constants{K} \subset K$ por lo que $l^n \in K$ que vimos que pasa si y solo si $l$ es algebraico, luego $\deg(p(l)) = n$.
+		
+		Si $p(l) = kl^n$ entonces es claro que $\derivation{p(l)} = \underbrace{\frac{\left(\derivation{k} + bnk\right)}{k}}_{C}kl^n = C p(l)$; reciprocamente supongamos que $\derivation{p(l)} = k p(l)$ y supongamos que $k_n l^n, k_ml^m$ son dos terminos de $p(l)$, ewntonces para $i=n,m$:
+		
+		\begin{equation}
+		\derivation{k_i} + ik_ib = k k_i
+		\end{equation}
+		
+		Luego:
+		
+		\begin{equation}
+			\dfrac{\derivation{k_n} + nk_nb}{k_n} = \dfrac{\derivation{k_m} + mk_mb}{k_m}
+		\end{equation}
+		
+		Lo que dice que:
+		
+		\begin{equation}
+			a := (n-m)k_nk_mb + k_m\derivation{k_n} - k_n\derivation{k_m} = 0
+		\end{equation}
+		
+		Luego:
+		
+		\begin{equation}
+			\derivation{\dfrac{k_nl^n}{k_ml^m}} = \dfrac{a l^{n+m}}{\left(k_m l^m\right)^2} = 0
+		\end{equation}
+		
+		Luego concluimos que $l^{n-m} \in \constants{K}$ lo que es absurdo pues $l$ es trascendente. \qed
+		
+	\end{itemize}
+	
+\end{proof}
+
+\section{Extensiones de derivaciones}
+
+\begin{proposition}
+	Sea $\quotient{K}{L}$ una extension de cuerpos diferenciable y supongamos que $\delta: K \rightarrow K$ es una derivacion en $K$, entonces:
+	
+	\begin{enumerate}
+		\item Sea $l \in L \setminus K$ trascendente sobre $K$ y $m \in L$ arbitrario, entonces existe una extension $\delta_L$ de $\delta$ tal que $\derivation{l}_L = m$
+		\item Si $\quotient{K}{L}$ es algebraica, entonces existe una unica extension $\delta_L$ de $\delta$.
+	\end{enumerate}
+	
+\end{proposition}
+
+\begin{proof}
+	Para la demostracion supongamos que la extension es simple, dado que sino es simplemente usar finitos pasos (en el caso algebraico) o el lema de Zorn.
+	
+	\begin{enumerate}
+		\item [$l$ trascendente]
+		
+		Dado que si existe $\delta : K[l] \mapsto K[l]$ entonces existe uan unica extension a $K(l)$ dada por la regla del cociente, extendamos a $K[l]$. Sea $m \in L$ y definamos $\delta_L: K[l] \mapsto L$ dado por:
+		
+		\begin{equation}
+			\derivation{\sum\limits_j a_jl^j} = \sum\limits_j \derivation{a_j}l^j + m \sum\limits_j j a_j l^{j-1}
+		\end{equation}
+		
+		De la manera que fue armado, es claro que haciendo las cuentas va a daer que cumple la regla de Leibniz asi q	ue $\delta$ es la extension buscada.
+		
+		\item[$\quotient{K}{K[l]}$ es algebraica]
+		
+		Sea $p(t) = t^n + \sum\limits_{i=0}^{n-1} k_it^i \in K[t]$ el polinomio minimal de $l$, entonces vemos que si $\delta$ fuese una extension a $K[l]$ vale que:
+		
+		\begin{equation}
+			\begin{aligned}
+				0 = & \derivation{p(l)} \\
+				=& nl^{n-1}\derivation{l} + \sum\limits_j j k_j l^{j-1} \derivation{l} + \sum\limits_j \derivation{k_j}l^j \\
+				= & \derivation{l} \left( \derivation{p}(l)\right) + \sum\limits_j \derivation{k_j}l^j
+			\end{aligned}
+		\end{equation}
+		
+		Como $K$ es de caraceteristica $0$ y entonces seprabale sabemos que $\derivation{p}(l) \neq 0$ por lo que, si notamos $\check{D}q(t) = \sum\limits_j \derivation{k_j}t^j$: al polinomio con los coeficientes derivados para todo polinomio $q \in K[t]$, vale que:
+		
+		\begin{equation}
+			\derivation{l} = \dfrac{- \check{D}p(l)}{\derivation{p}(l)}
+		\end{equation}
+		
+		Luego , de existir, a lo sumo una extension puede ser definida y esta dada por la formula anterior. Formalmente, sea $\check{D}$ la derivacion en $K[t]$ dada por $m=0$ y como $l$ es algebraico existe un polinomio $s(l)$ tal que:
+		
+		\begin{equation}
+		s(l) = \dfrac{-\check{D}p (l)}{\derivation{p}(l)} \in K[l]
+		\end{equation}
+		
+		Definamos entonces la segunda derivacion $\widetilde{D} : K[t] \mapsto L$ dada por la eleccion $m = s(t)$, ie: $\widetilde{D}(q)(t) = \check{D}(q)(t) + s(t) \derivation{q}(t)$ y definamos $\eta: K[t] \mapsto L$ el morfismo de evaluacion tal que $\eta(q(t)) = q(l)$. Notemos entonces que $\ker(\eta)$ es un ideal principal generado por $p(t)$, luego si $q(t) \in \ker \eta$ entonces $q = p(t)r(t)$ y notemos que:
+		
+		\begin{equation}
+		\begin{aligned}
+			\eta \circ \widetilde{D} \left(q\right) (t) = & \eta \circ \widetilde{D} \left(p(t)r(t\right) \\
+			= & \eta\left(p(t) \check{D}r(t) + \check{D}p(t)r(t) + s(t) \left(p(t) \derivation{r}(t) + \derivation{p}(t) r(t)\right) \right) \\
+			= & p(l) \check{D}r(l) + \check{D}p(l)r(l) + s(l) \left(p(l) \derivation{r}(l) + \derivation{p}(l) r(l)\right) \\
+			= & r(l) \left(\check{D}p (l) + s(l)\derivation{p}(l)\right) \\
+			= & 0
+		\end{aligned}
+		\end{equation}
+		
+	Luego $\widetilde{D}\left(\ker \eta\right) \subset \ker \eta$ y por el primer teorema de isomorfismo $\widetilde{D}$ induce un morfismo de cuerpos diferenciales $D : K[l] \simeq \quotient{K[t]}{\ker \eta} \simeq  \quotient{K[t]}{\ip{p}} \mapsto K[l]$ dado por:
+	
+	\begin{equation}
+		Dq(l) = \eta \left(\widetilde{D}q (t)\right)
+	\end{equation}		
+		
+		Es facil ver que $D$ esta bien definido y que es una derivacion. \qed
+		
+	\end{enumerate}
+	
+\end{proof}
+
+\begin{remark}
+	La separabilidad de la extension es necesaria en la proposicion anterior. En efecto, sea $K := \mathbb{F}_2 (t)$ y tomemos $\sqrt{t}$ raiz de $x^2 -t$ en alguna clausura algebraica $F$, entonces afirmo que no existe una extension de la derivacion usual a $K(\sqrt{t})$; ya que $1 = \derivation{t} = \derivation{\sqrt{t}^2} = 2 \sqrt{t} \derivation{\sqrt{t}} = 0$ lo que es absurdo.
+\end{remark}
+
+\section{Integracion en terminos finitos}
+
+\begin{theorem}
+	Sea $K$ un cuerpo diferencial de caracteristica $0$ y sea $\alpha \in K$. Entonces $\alpha$ admite una primitva en uan extension de cuerpos elemental sin nuevas constantes si y solo si existen $c_1, \dots, c_m \in \constants{K}$ y elementos $\beta_1, \dots, \beta_m, \gamma \in K$ tal que $\beta_j \neq 0$ para $j = 1, \dots, m$ y:
+	
+	\begin{equation}
+		\alpha = \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{\beta_j}}{\beta_j} + \derivation{\gamma}
+	\end{equation}
+	
+\end{theorem}
+
+\begin{proof}
+	Supongamos que existe una torre $K = K_0 \subset \dots \subset K_n$ de extensiones de cuerpos diferenciales sin nuevas constantes tal que $K_j = K_{j-1}[a]$ con $a$ un logaritmo, exponencial o algebraico. Ademas, existe un elemento $\rho \in K_n$ tal que $\derivation{\rho} = \alpha$; hagamos induccion en el largo de la torre $n$.
+	
+	Si $n=0$ entonces trivialmente vale por lo que supongamos que la ecuacion vale para $n-1$, entonces mirando la extension $\quotient{K_1}{K_n}$ existe $m \in \N, \ c_1, \dots, c_m \in {K_1}_C = \constants{K}$ y $\beta_1, \dots, \beta_m , \gamma \in K_1 = K[l]$ tal que vale la ecuacion. Luego basta probar que $\beta_1, \dots, \beta_m , \gamma \in K$ para los tres casos, ie: $l$ algebraico, logaritmo y exponencial.
+	
+	\begin{enumerate}
+		\item [$l$ algebraico] Sea $F$ una clausura algebraica para $K$ conteniendo a $K[l]$ y sea $\sigma_i$ los diferentes morfismos de extension de cuerpos que permuta las raices del minimal de $l$, notemoslo $p$.
+		
+		Como $\quotient{K}{F}$ es algebraica, sabemos que existe una unica extension de la derivacion a $F$, y como $\sigma_i \circ \delta \circ \sigma_i^{-1}$ vale lo mismo en $l$, concluimos que $\sigma_i$ conmuta con la derivacion de $K$.
+		
+		Como $\beta_i, \gamma \in K(l) = K[l]$ pues $l$ es algebraico eligamos polinomios $q_i, \dots, q_m, r \in K[x]$ tal que:
+		
+		\begin{equation}
+			\beta_i = q_i(l) \qquad \gamma = r(l)
+		\end{equation}
+		
+		Luego tenemos que vale:
+		
+			\begin{equation}
+		\alpha = \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l)}}{q_j(l)} + \derivation{r(l)}
+		\end{equation}
+		
+		Y si aplicamos $\sigma_i$:
+		
+		\begin{equation}
+		\begin{aligned}
+			\alpha = & \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{\sigma_i(q_j(l))}}{\sigma_i(q_j(l))} + \derivation{\sigma_i(r(l))} \\
+			= & \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l_i)}}{q_j(l_i)} + \derivation{r(l_i)} 
+		\end{aligned}
+		\end{equation}
+		
+		Si llamamos $s$ a la cantidad de morfismos $\sigma_i$ y sumamos sobre $i$ y dividimos por $s$:
+		
+		\begin{equation}
+		\begin{aligned}
+		\alpha = & \sum\limits_{j=1}^{m} \frac{c_j}{s} \sum\limits_i{\dfrac{\derivation{q_j(l_i)}}{q_j(l_i)}} + \derivation{\frac{\sum\limits_i{r(l_i)}}{s}} \\
+		=& \sum\limits_{j=1}^{m} \frac{c_j}{s} {\dfrac{\derivation{\prod\limits_i q_j(l_i)}}{\prod\limits_i q_j(l_i)}} + \derivation{\frac{\sum\limits_i{r(l_i)}}{s}}
+		\end{aligned}
+		\end{equation}
+		
+		Como cada termino en la suma es fijado por $\sigma_i$ para todo $i$, eso implica que todas las sumas estan en $K$.
+		
+		\item[$l$ es un logaritmo]
+		
+		Como $l$ es trascendente existen $q_1, \dots, q_m, r \in K(l)$ tal que:
+		
+		\begin{equation}
+			\alpha = \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l)}}{q_j(l)} + \derivation{r(l)}
+		\end{equation}
+		
+		Como $l$ es logaritmo entonces $\derivation{l} = \frac{\derivation{k}}{k} \in K$ para algun $k \in K$, luego tenemos que $\quotient{K}{K(l)}$ es extension de cuerpos diferencial. Asumamos el siguiente lema:
+		
+		\begin{lemma}
+			Sea $\quotient{K}{K(l)}$ una extension de cuerpos diferencial con $l$ trascendente y tal que $\derivation{l} \in K[l]$, supongamos que $\alpha \in K$ y que $p(l)$ es un polinomio monico e irreducible tal que $\derivation{p(l)} \in K[l]$ no es dividible por $p(l)$. Luego si tenemos:
+			
+			\begin{equation}
+			\alpha = \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l)}}{q_j(l)} + \derivation{r(l)}
+			\end{equation}
+			
+			Entonces $q_j \neq p$ para todo $j$.
+		\end{lemma}
+		
+		Sea $p(l)$ un polinomio irreducible, monico y no constante, luego sabemos que $\deg(\derivation{p(l)}) < \deg(p(l))$ por lo que $p(l) \not\vert \derivation{p(l)}$. Del lema podemos concluir que para todo $p(l)$ polinomio monico e irreducible, $q_j(l) \neq p$, luego como $K[l]$ es UFD concluimos que $q_j(l) \in K$ para todo $j$.
+		
+		Como $\alpha, \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l)}}{q_j(l)}  \in K$entonces $ \derivation{r(l)} \in K$ por lo que $r(l) = cl + \check{c}$ con $c \in \constants{K}$ y $\check{c} \in K$ y concluimos que vale lo pedido:
+		
+		\begin{equation}
+			\alpha = \sum\limits_{j=1}^{m} c_j \dfrac{\derivation{q_j(l)}}{q_j(l)} + c \dfrac{\derivation{k}}{k} + \derivation{\check{c}}
+		\end{equation}
+		
+		\item [$l$ es exponencial]
+		
+		En este caso como $\derivation{l} = l \derivation{k} \in K[l]$ concluimos que $\quotient{K}{K(l)}$ es una extension de cuerpos diferenciables. Si $p(l) \in K[l]$ es monico, irreducible, no constante y $p(l) \neq l$ tenemos que $p(l) \not\vert \derivation{p(l)} \in K[l]$; por lo mismo de antes entonces $q_j(l) \in K$ para todo $j$ y continuamos de la misma manera \qed
+	\end{enumerate}
+	
+\end{proof}
+
+\begin{corollary}
+	Sea $\quotient{K}{K(e^g)}$ una extension de cuerpos diferenciales sin nuevas constantes con $g \in K$ y supongamos que $e^g$ es trascendente sobre $K$, entonces dado $f \in K$ arbitrario $fe^g$ admite una primitiva  en una extension elemental sin nuevas constantes si y solo si existe $a\in K$ tal que:
+	
+	\begin{equation}
+		f = \derivation{a} + a\derivation{g}
+	\end{equation}
+\end{corollary}
+
+\begin{proof}
+	Por el teorema $fe^g$ admite primitva si y solo si existen $c_j \in \constants{K}$ y $\beta_j, \gamma \in K$ tal que:
+	
+	\begin{equation}
+		fe^g = \sum\limits_j c_j \dfrac{\derivation{\beta_j}}{\beta_j} + \derivation{\gamma}
+	\end{equation}
+	
+	Razonando igual que en la demostraciomn del caso exponencial notando $l = e^g$, sabemos que existen $q_j(l) \in K$, $r(l) = \sum\limits_{j=-b}^{b} {k)j l^j} \in K[l]$ tal que:
+	
+	\begin{equation}
+	fe^g = \sum\limits_j c_j \dfrac{\derivation{q_j(l)}}{q_j(l)} + \derivation{\sum\limits_{j=-b}^{b} {k_j l^j}}
+	\end{equation}
+	
+	Luego:
+	
+	
+	\begin{equation}
+	fl = c + \derivation{\sum\limits_{j=-b}^{b} {\derivation{k_j} l^j}} + \derivation{g} \sum\limits_{j=-b}^{b} {j k_j l^{j}} = c +  \sum\limits_{j=-b}^{b} {l^j \left(\derivation{k_j} + j \derivation{g} k_j\right)}
+	\end{equation}
+	
+	Luego de igualar los coeficientes obtenemos:
+	
+	\begin{equation}
+		f = \derivation{k_1} + k_1 \derivation{g}
+	\end{equation}
+	\qed
+\end{proof}
+
+\begin{corollary}
+	No existe una extension diferencial elemental si nuevas constantes de $\R(x, e^{x^2})$ tal que $e^{x^2}$ tenga primitiva.
+\end{corollary}
+
+\begin{proof}
+	En efecto, esta existe si y solo si existe $a \in \R(x)$ tal que $1 = \derivation{a} + 2ax$; luego escribamos $a = \frac{p}{q}$ con $p,q$ coprimos. Entonces:
+	
+	\begin{equation}
+	1 = \dfrac{q\derivation{p} - p \derivation{q}}{q^2} + 2\dfrac{px}{q}
+	\end{equation}
+	
+	de lo que:
+	
+	\begin{equation}
+		q - 2px - \derivation{p} = - \dfrac{\derivation{q}p}{q}
+	\end{equation}
+	
+	Y como $q \vert \derivation{q}p$ y $p,q$ son coprimos concluimos que $q \vert \derivation{q}$ y por las proposiciones anteriores llegamos a que $a = Cp \in \R[x]$ y comparando grados concluimos que no existe tal $a$. \qed
+	
+\end{proof}
+\end{document}
